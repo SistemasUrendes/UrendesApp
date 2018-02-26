@@ -81,10 +81,10 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>ClaveAppUrendes.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>ClaveAppUrendes.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CData.MySQL.System, Version=16.0.0.40, Culture=neutral, PublicKeyToken=cdc168f89cffe9cf" />
@@ -1557,9 +1557,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="ClaveAppUrendes.pfx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="ClaveAppUrendes.snk" />
     <None Include="DataSetTodasTablas.xsc">
       <DependentUpon>DataSetTodasTablas.xsd</DependentUpon>
     </None>
