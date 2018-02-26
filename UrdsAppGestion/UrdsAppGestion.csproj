@@ -117,11 +117,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataSetTodasTablas.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetTodasTablas.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Logica\EnvioCorreo.cs" />
     <Compile Include="Logica\FormEnvioCorreoSeguridad.cs">
       <SubType>Form</SubType>
@@ -1554,17 +1549,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="DataSetTodasTablas.xsc">
-      <DependentUpon>DataSetTodasTablas.xsd</DependentUpon>
-    </None>
-    <None Include="DataSetTodasTablas.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetTodasTablas.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DataSetTodasTablas.xss">
-      <DependentUpon>DataSetTodasTablas.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Presentacion\ComunidadesForms\CargosForms\Informes\DataSetCargos.xsc">
       <DependentUpon>DataSetCargos.xsd</DependentUpon>
