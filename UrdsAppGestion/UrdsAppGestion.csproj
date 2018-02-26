@@ -294,11 +294,6 @@
     <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\FormComuneroReglasDivision.Designer.cs">
       <DependentUpon>FormComuneroReglasDivision.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetMovimientosComuneros.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetMovimientosComuneros.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\VistaInforme.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1568,17 +1563,6 @@
     </None>
     <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetDeudas.xss">
       <DependentUpon>DataSetDeudas.xsd</DependentUpon>
-    </None>
-    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetMovimientosComuneros.xsc">
-      <DependentUpon>DataSetMovimientosComuneros.xsd</DependentUpon>
-    </None>
-    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetMovimientosComuneros.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetMovimientosComuneros.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetMovimientosComuneros.xss">
-      <DependentUpon>DataSetMovimientosComuneros.xsd</DependentUpon>
     </None>
     <None Include="Presentacion\ComunidadesForms\CuotasForms\Informes\DataSetCuota.xsc">
       <DependentUpon>DataSetCuota.xsd</DependentUpon>
