@@ -57,7 +57,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Logo Urendes - copia.png.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Logo Urendes - copia.png.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>UrdsAppGestión.Program</StartupObject>
@@ -120,11 +120,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataSetTodasTablas.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetTodasTablas.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Logica\EnvioCorreo.cs" />
     <Compile Include="Logica\FormEnvioCorreoSeguridad.cs">
       <SubType>Form</SubType>
@@ -1558,17 +1553,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="ClaveAppUrendes.snk" />
-    <None Include="DataSetTodasTablas.xsc">
-      <DependentUpon>DataSetTodasTablas.xsd</DependentUpon>
-    </None>
-    <None Include="DataSetTodasTablas.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetTodasTablas.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DataSetTodasTablas.xss">
-      <DependentUpon>DataSetTodasTablas.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Presentacion\ComunidadesForms\CargosForms\Informes\DataSetCargos.xsc">
       <DependentUpon>DataSetCargos.xsd</DependentUpon>
@@ -1750,12 +1734,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="favicon.ico" />
-    <Content Include="Logo Urendes - copia.png.ico" />
+    <Content Include="Resources\favicon.ico" />
+    <Content Include="Resources\Logo Urendes - copia.png.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
