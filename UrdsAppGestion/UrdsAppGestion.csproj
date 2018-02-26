@@ -1,0 +1,1898 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B649C580-9A6A-49E8-B9EF-97E6C6691D84}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UrdsAppGestión</RootNamespace>
+    <AssemblyName>UrdsAppGestión</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>\\Urenux\app\App\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <UpdateUrl>\\Urenux\app\App\</UpdateUrl>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>194</ApplicationRevision>
+    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Logo Urendes - copia.png.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>UrdsAppGestión.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>1BACC5A5E399A85D94C0DE964A1AFFE260C79E45</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>UrdsAppGestión_ClaveTemporal.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>ClaveAppUrendes.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CData.MySQL.System, Version=16.0.0.40, Culture=neutral, PublicKeyToken=cdc168f89cffe9cf" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\..\..\Downloads\Dlls MySQL\Dlls MySQL\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.CData.MySQL, Version=16.0.0.40, Culture=neutral, PublicKeyToken=cdc168f89cffe9cf" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataSetTodasTablas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetTodasTablas.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Logica\EnvioCorreo.cs" />
+    <Compile Include="Logica\FormEnvioCorreoSeguridad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logica\FormEnvioCorreoSeguridad.Designer.cs">
+      <DependentUpon>FormEnvioCorreoSeguridad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logica\FormLogBorrarComunidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logica\FormLogBorrarComunidad.Designer.cs">
+      <DependentUpon>FormLogBorrarComunidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logica\FuncionesAvanzadas.cs" />
+    <Compile Include="Logica\FuncionesCuotas.cs" />
+    <Compile Include="Logica\FuncionesGenerales.cs" />
+    <Compile Include="Logica\FuncionesOperaciones.cs" />
+    <Compile Include="Logica\FuncionesTesoreria.cs" />
+    <Compile Include="Logica\ReciboRemesa.cs" />
+    <Compile Include="Persistencia\conexion_bd.cs" />
+    <Compile Include="Persistencia\SentenciasSQL.cs" />
+    <Compile Include="Presentacion\ComunidadesForms\BloquesForms\Bloques.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\BloquesForms\Bloques.Designer.cs">
+      <DependentUpon>Bloques.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\BloquesForms\CambiarSubcuota.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\BloquesForms\CambiarSubcuota.Designer.cs">
+      <DependentUpon>CambiarSubcuota.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\BloquesForms\FormBloquesAlta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\BloquesForms\FormBloquesAlta.Designer.cs">
+      <DependentUpon>FormBloquesAlta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\BloquesForms\FormBloquesDetalles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\BloquesForms\FormBloquesDetalles.Designer.cs">
+      <DependentUpon>FormBloquesDetalles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\BloquesForms\FormCambiarPartes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\BloquesForms\FormCambiarPartes.Designer.cs">
+      <DependentUpon>FormCambiarPartes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\BusquedaAvanzada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\BusquedaAvanzada.Designer.cs">
+      <DependentUpon>BusquedaAvanzada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\CuentasBanco.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\CuentasBanco.Designer.cs">
+      <DependentUpon>CuentasBanco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormAnyadirOrgano.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormAnyadirOrgano.Designer.cs">
+      <DependentUpon>FormAnyadirOrgano.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormOrganos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormOrganos.Designer.cs">
+      <DependentUpon>FormOrganos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormCargosEditar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormCargosEditar.Designer.cs">
+      <DependentUpon>FormCargosEditar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormCargosFechaBaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormCargosFechaBaja.Designer.cs">
+      <DependentUpon>FormCargosFechaBaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormCargos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormCargos.Designer.cs">
+      <DependentUpon>FormCargos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormCargosAlta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormCargosAlta.Designer.cs">
+      <DependentUpon>FormCargosAlta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormNuevoCargos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormNuevoCargos.Designer.cs">
+      <DependentUpon>FormNuevoCargos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\Informes\DataSetCargos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetCargos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\Informes\FormVerInformeCargos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\Informes\FormVerInformeCargos.Designer.cs">
+      <DependentUpon>FormVerInformeCargos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Anticipos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Anticipos.Designer.cs">
+      <DependentUpon>Anticipos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Comuneros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Comuneros.Designer.cs">
+      <DependentUpon>Comuneros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Comunidades.cs">
+      <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Presentacion\Comunidades.Designer.cs">
+      <DependentUpon>Comunidades.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\FormMovimientosComunero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\FormMovimientosComunero.Designer.cs">
+      <DependentUpon>FormMovimientosComunero.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetDeudas.cs">
+      <DependentUpon>DataSetDeudas.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetDeudas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetDeudas.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\FormAltaComunero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\FormAltaComunero.Designer.cs">
+      <DependentUpon>FormAltaComunero.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\FormComuneroAsociacones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\FormComuneroAsociacones.Designer.cs">
+      <DependentUpon>FormComuneroAsociacones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\FormComuneroReglas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\FormComuneroReglas.Designer.cs">
+      <DependentUpon>FormComuneroReglas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\FormComuneroReglasAlta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\FormComuneroReglasAlta.Designer.cs">
+      <DependentUpon>FormComuneroReglasAlta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\FormComuneroReglasDivision.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\FormComuneroReglasDivision.Designer.cs">
+      <DependentUpon>FormComuneroReglasDivision.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetMovimientosComuneros.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetMovimientosComuneros.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\VistaInforme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\VistaInforme.Designer.cs">
+      <DependentUpon>VistaInforme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\Informes\DataSetCuota.cs">
+      <DependentUpon>DataSetCuota.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\Informes\DataSetCuota.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetCuota.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\Informes\VisorInformeCuotas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\Informes\VisorInformeCuotas.Designer.cs">
+      <DependentUpon>VisorInformeCuotas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\FormCertificadoDeudasDivision.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\FormCertificadoDeudasDivision.Designer.cs">
+      <DependentUpon>FormCertificadoDeudasDivision.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\FormSubcuotaManual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\FormSubcuotaManual.Designer.cs">
+      <DependentUpon>FormSubcuotaManual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\ReglasPago\FormAnyadirRegla.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\ReglasPago\FormAnyadirRegla.Designer.cs">
+      <DependentUpon>FormAnyadirRegla.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\ReglasPago\FormAnyadirReglaDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\ReglasPago\FormAnyadirReglaDetalle.Designer.cs">
+      <DependentUpon>FormAnyadirReglaDetalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\ReglasPago\FormReglasPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\ReglasPago\FormReglasPago.Designer.cs">
+      <DependentUpon>FormReglasPago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormEntradasFondos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormEntradasFondos.Designer.cs">
+      <DependentUpon>FormEntradasFondos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormFondosDetalles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormFondosDetalles.Designer.cs">
+      <DependentUpon>FormFondosDetalles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormIndenxarLiquidacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormIndenxarLiquidacion.Designer.cs">
+      <DependentUpon>FormIndenxarLiquidacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormIniciarFondo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormIniciarFondo.Designer.cs">
+      <DependentUpon>FormIniciarFondo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormSalidasFondos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormSalidasFondos.Designer.cs">
+      <DependentUpon>FormSalidasFondos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\Informes\InformeDeudasComunero\DataSetDeudasComunero.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetDeudasComunero.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\Informes\InformeDeudasComunero\FormInformeDeudasComunero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\Informes\InformeDeudasComunero\FormInformeDeudasComunero.Designer.cs">
+      <DependentUpon>FormInformeDeudasComunero.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\FormAnyadirNotaLiq.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\FormAnyadirNotaLiq.Designer.cs">
+      <DependentUpon>FormAnyadirNotaLiq.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\FormGastosReparto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\FormGastosReparto.Designer.cs">
+      <DependentUpon>FormGastosReparto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\FormLiquidacionReparto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\FormLiquidacionReparto.Designer.cs">
+      <DependentUpon>FormLiquidacionReparto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularRecibo\DataSetInfoEntidadxsd.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetInfoEntidadxsd.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularRecibo\DataSetInformeParticularRecibo.cs">
+      <DependentUpon>DataSetInformeParticularRecibo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularRecibo\DataSetInformeParticularRecibo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetInformeParticularRecibo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularRecibo\DataSetReparto.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetReparto.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularRecibo\FormVerInformeParticularRecibo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularRecibo\FormVerInformeParticularRecibo.Designer.cs">
+      <DependentUpon>FormVerInformeParticularRecibo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticular\FormVerInformeParticular.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticular\FormVerInformeParticular.Designer.cs">
+      <DependentUpon>FormVerInformeParticular.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticular\InformeParticular.cs">
+      <DependentUpon>InformeParticular.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticular\InformeParticular.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InformeParticular.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\DataSetLiqDetallado.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetLiqDetallado.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\DataSetLiqInformacion.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetLiqInformacion.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\DataSetLiqResumen.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetLiqResumen.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\FormVerInformeDetallado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\FormVerInformeDetallado.Designer.cs">
+      <DependentUpon>FormVerInformeDetallado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\FormVerInformeResumen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\FormVerInformeResumen.Designer.cs">
+      <DependentUpon>FormVerInformeResumen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormIngresoFondo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormIngresoFondo.Designer.cs">
+      <DependentUpon>FormIngresoFondo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\DataSetProveedores.cs">
+      <DependentUpon>DataSetProveedores.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\DataSetProveedores.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetProveedores.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\FormAnyadirProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\FormAnyadirProveedor.Designer.cs">
+      <DependentUpon>FormAnyadirProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\FormInformeProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\FormInformeProveedores.Designer.cs">
+      <DependentUpon>FormInformeProveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\Recibos\FormNuevoRecibo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\Recibos\FormNuevoRecibo.Designer.cs">
+      <DependentUpon>FormNuevoRecibo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\Recibos\FormRecibos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\Recibos\FormRecibos.Designer.cs">
+      <DependentUpon>FormRecibos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ContenedorComunidad.cs">
+      <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ContenedorComunidad.Designer.cs">
+      <DependentUpon>ContenedorComunidad.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\Cuotas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\Cuotas.Designer.cs">
+      <DependentUpon>Cuotas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasAlta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasAlta.Designer.cs">
+      <DependentUpon>FormCuotasAlta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasDetalle.Designer.cs">
+      <DependentUpon>FormCuotasDetalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillaAlta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillaAlta.Designer.cs">
+      <DependentUpon>FormCuotasPlantillaAlta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillaManualAlta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillaManualAlta.Designer.cs">
+      <DependentUpon>FormCuotasPlantillaManualAlta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillaPptoAlta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillaPptoAlta.Designer.cs">
+      <DependentUpon>FormCuotasPlantillaPptoAlta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillaPptoDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillaPptoDetalle.Designer.cs">
+      <DependentUpon>FormCuotasPlantillaPptoDetalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillas.Designer.cs">
+      <DependentUpon>FormCuotasPlantillas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillaTipoDivAlta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillaTipoDivAlta.Designer.cs">
+      <DependentUpon>FormCuotasPlantillaTipoDivAlta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillaManualDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillaManualDetalle.Designer.cs">
+      <DependentUpon>FormCuotasPlantillaManualDetalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillaTipoDivDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillaTipoDivDetalle.Designer.cs">
+      <DependentUpon>FormCuotasPlantillaTipoDivDetalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\FormAltaAsociacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\FormAltaAsociacion.Designer.cs">
+      <DependentUpon>FormAltaAsociacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\FormAltaDivisiones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\FormAltaDivisiones.Designer.cs">
+      <DependentUpon>FormAltaDivisiones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\FormCambiarEstadoDivision.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\FormCambiarEstadoDivision.Designer.cs">
+      <DependentUpon>FormCambiarEstadoDivision.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\FormDivisionesCuotas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\FormDivisionesCuotas.Designer.cs">
+      <DependentUpon>FormDivisionesCuotas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\FormReasignarPagador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\FormReasignarPagador.Designer.cs">
+      <DependentUpon>FormReasignarPagador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\EjerciciosForms\Ejercicios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\EjerciciosForms\Ejercicios.Designer.cs">
+      <DependentUpon>Ejercicios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\EjerciciosForms\FormEjerciciosAlta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\EjerciciosForms\FormEjerciciosAlta.Designer.cs">
+      <DependentUpon>FormEjerciciosAlta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormFondos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormFondos.Designer.cs">
+      <DependentUpon>FormFondos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormFondosAlta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormFondosAlta.Designer.cs">
+      <DependentUpon>FormFondosAlta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\FormLiquidacionesAlta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\FormLiquidacionesAlta.Designer.cs">
+      <DependentUpon>FormLiquidacionesAlta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\Liquidaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\Liquidaciones.Designer.cs">
+      <DependentUpon>Liquidaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormCompensarAnticipos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormCompensarAnticipos.Designer.cs">
+      <DependentUpon>FormCompensarAnticipos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormDetallesOperacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormDetallesOperacion.Designer.cs">
+      <DependentUpon>FormDetallesOperacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesAddIVA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesAddIVA.Designer.cs">
+      <DependentUpon>FormOperacionesAddIVA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesAjustarFavorita.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesAjustarFavorita.Designer.cs">
+      <DependentUpon>FormOperacionesAjustarFavorita.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesCabeceraEdicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesCabeceraEdicion.Designer.cs">
+      <DependentUpon>FormOperacionesCabeceraEdicion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesComuneros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesComuneros.Designer.cs">
+      <DependentUpon>FormOperacionesComuneros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesEditReparto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesEditReparto.Designer.cs">
+      <DependentUpon>FormOperacionesEditReparto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesEleccionFavorita.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesEleccionFavorita.Designer.cs">
+      <DependentUpon>FormOperacionesEleccionFavorita.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesLiquidacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesLiquidacion.Designer.cs">
+      <DependentUpon>FormOperacionesLiquidacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\FormOperacionesListadoProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\FormOperacionesListadoProveedores.Designer.cs">
+      <DependentUpon>FormOperacionesListadoProveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesVencimientos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesVencimientos.Designer.cs">
+      <DependentUpon>FormOperacionesVencimientos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormReasignarVencimiento%28Sin usar%29.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormReasignarVencimiento%28Sin usar%29.Designer.cs">
+      <DependentUpon>FormReasignarVencimiento%28Sin usar%29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\OperacionesComuneros.cs">
+      <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\OperacionesComuneros.Designer.cs">
+      <DependentUpon>OperacionesComuneros.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\RemesasForms\FormAnyadirRecibos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\RemesasForms\FormAnyadirRecibos.Designer.cs">
+      <DependentUpon>FormAnyadirRecibos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\RemesasForms\FormAnyadirRemesa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\RemesasForms\FormAnyadirRemesa.Designer.cs">
+      <DependentUpon>FormAnyadirRemesa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\RemesasForms\FormDetalleRemesa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\RemesasForms\FormDetalleRemesa.Designer.cs">
+      <DependentUpon>FormDetalleRemesa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\RemesasForms\FormRemesas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\RemesasForms\FormRemesas.Designer.cs">
+      <DependentUpon>FormRemesas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormActualizarFechaCierre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormActualizarFechaCierre.Designer.cs">
+      <DependentUpon>FormActualizarFechaCierre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormAsientoApertura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormAsientoApertura.Designer.cs">
+      <DependentUpon>FormAsientoApertura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormCrearCuentaComunidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormCrearCuentaComunidad.Designer.cs">
+      <DependentUpon>FormCrearCuentaComunidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormDevolucionAbonoCuota.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormDevolucionAbonoCuota.Designer.cs">
+      <DependentUpon>FormDevolucionAbonoCuota.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormDevolucionIngreso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormDevolucionIngreso.Designer.cs">
+      <DependentUpon>FormDevolucionIngreso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormTesoreriaCasamiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormTesoreriaCasamiento.Designer.cs">
+      <DependentUpon>FormTesoreriaCasamiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FromOperacionesVer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FromOperacionesVer.Designer.cs">
+      <DependentUpon>FromOperacionesVer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormCuentasExistentes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormCuentasExistentes.Designer.cs">
+      <DependentUpon>FormCuentasExistentes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProvisionesForms\FormNuevaSubcuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProvisionesForms\FormNuevaSubcuenta.Designer.cs">
+      <DependentUpon>FormNuevaSubcuenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProvisionesForms\FormProvisionesAlta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProvisionesForms\FormProvisionesAlta.Designer.cs">
+      <DependentUpon>FormProvisionesAlta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProvisionesForms\FormProvisiones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProvisionesForms\FormProvisiones.Designer.cs">
+      <DependentUpon>FormProvisiones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProvisionesForms\FormProvisionesDotarAplicar1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProvisionesForms\FormProvisionesDotarAplicar1.Designer.cs">
+      <DependentUpon>FormProvisionesDotarAplicar1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProvisionesForms\FormProvisionesDotarAplicar2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProvisionesForms\FormProvisionesDotarAplicar2.Designer.cs">
+      <DependentUpon>FormProvisionesDotarAplicar2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormAccesoOperacionesTesoreria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormAccesoOperacionesTesoreria.Designer.cs">
+      <DependentUpon>FormAccesoOperacionesTesoreria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormOperacionesTesoreria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormOperacionesTesoreria.Designer.cs">
+      <DependentUpon>FormOperacionesTesoreria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormTesoreriaCompesaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormTesoreriaCompesaciones.Designer.cs">
+      <DependentUpon>FormTesoreriaCompesaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormTraspasoES.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormTraspasoES.Designer.cs">
+      <DependentUpon>FormTraspasoES.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormVerVencimientos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormVerVencimientos.Designer.cs">
+      <DependentUpon>FormVerVencimientos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\Remesas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\Remesas.Designer.cs">
+      <DependentUpon>Remesas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\Recibos\VerReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\Recibos\VerReporte.Designer.cs">
+      <DependentUpon>VerReporte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\EnviosForms\CompletarEnvioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\EnviosForms\CompletarEnvioForm.Designer.cs">
+      <DependentUpon>CompletarEnvioForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormAccesoTesoreria.cs">
+      <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\FormAccesoTesoreria.Designer.cs">
+      <DependentUpon>FormAccesoTesoreria.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\Divisiones.cs">
+      <SubType>Form</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\Divisiones.Designer.cs">
+      <DependentUpon>Divisiones.cs</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FormFicha.cs">
+      <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FormFicha.Designer.cs">
+      <DependentUpon>FormFicha.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\OperacionesProveedores.cs">
+      <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\OperacionesProveedores.Designer.cs">
+      <DependentUpon>OperacionesProveedores.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\Tesoreria.cs">
+      <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\TesoreriaForms\Tesoreria.Designer.cs">
+      <DependentUpon>Tesoreria.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\AddEntidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\AddEntidad.Designer.cs">
+      <DependentUpon>AddEntidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\EnviosForms\Documentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\EnviosForms\Documentos.Designer.cs">
+      <DependentUpon>Documentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\EnviosForms\Envios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\EnviosForms\Envios.Designer.cs">
+      <DependentUpon>Envios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\FormBancos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\FormBancos.Designer.cs">
+      <DependentUpon>FormBancos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\FormCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\FormCategoria.Designer.cs">
+      <DependentUpon>FormCategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\FormContacto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\FormContacto.Designer.cs">
+      <DependentUpon>FormContacto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\FormCorreos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\FormCorreos.Designer.cs">
+      <DependentUpon>FormCorreos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\FormDirecciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\FormDirecciones.Designer.cs">
+      <DependentUpon>FormDirecciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\VerEntidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\VerEntidad.Designer.cs">
+      <DependentUpon>VerEntidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\ComprobarEntidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\ComprobarEntidad.Designer.cs">
+      <DependentUpon>ComprobarEntidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\Entidades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\Entidades.Designer.cs">
+      <DependentUpon>Entidades.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\FormTelefono.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\FormTelefono.Designer.cs">
+      <DependentUpon>FormTelefono.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\EnviosForms\FormSeleccionFromEnvio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\EnviosForms\FormSeleccionFromEnvio.Designer.cs">
+      <DependentUpon>FormSeleccionFromEnvio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\EnviosForms\FormSeleccionPlantillas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\EnviosForms\FormSeleccionPlantillas.Designer.cs">
+      <DependentUpon>FormSeleccionPlantillas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\EnviosForms\FormVerCuerpoMensaje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\EnviosForms\FormVerCuerpoMensaje.Designer.cs">
+      <DependentUpon>FormVerCuerpoMensaje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\EnviosForms\RegistroEnvios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\EnviosForms\RegistroEnvios.Designer.cs">
+      <DependentUpon>RegistroEnvios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\EnviosForms\SeleccionAdjuntos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\EnviosForms\SeleccionAdjuntos.Designer.cs">
+      <DependentUpon>SeleccionAdjuntos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\FormConexion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FormConexion.Designer.cs">
+      <DependentUpon>FormConexion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\MantenimientoForms\FormBorradoMultiple.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\MantenimientoForms\FormBorradoMultiple.Designer.cs">
+      <DependentUpon>FormBorradoMultiple.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\MantenimientoForms\FormMantenimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\MantenimientoForms\FormMantenimiento.Designer.cs">
+      <DependentUpon>FormMantenimiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Informes\DataSetInfComunidad.cs">
+      <DependentUpon>DataSetInfComunidad.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Informes\DataSetInfComunidad.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetInfComunidad.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Informes\DataSet_nuevo.cs">
+      <DependentUpon>DataSet_nuevo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Informes\DataSet_nuevo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet_nuevo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\PlanContableForms\FormPlanContable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\PlanContableForms\FormPlanContable.Designer.cs">
+      <DependentUpon>FormPlanContable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\FormPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FormPrincipal.Designer.cs">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\PanelControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\PanelControl.Designer.cs">
+      <DependentUpon>PanelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\PlanContableForms\FormPlanContableAlta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\PlanContableForms\FormPlanContableAlta.Designer.cs">
+      <DependentUpon>FormPlanContableAlta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Logica\FormEnvioCorreoSeguridad.resx">
+      <DependentUpon>FormEnvioCorreoSeguridad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Logica\FormLogBorrarComunidad.resx">
+      <DependentUpon>FormLogBorrarComunidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\BloquesForms\Bloques.resx">
+      <DependentUpon>Bloques.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\BloquesForms\CambiarSubcuota.resx">
+      <DependentUpon>CambiarSubcuota.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\BloquesForms\FormBloquesAlta.resx">
+      <DependentUpon>FormBloquesAlta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\BloquesForms\FormBloquesDetalles.resx">
+      <DependentUpon>FormBloquesDetalles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\BloquesForms\FormCambiarPartes.resx">
+      <DependentUpon>FormCambiarPartes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\BusquedaAvanzada.resx">
+      <DependentUpon>BusquedaAvanzada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CargosForms\CuentasBanco.resx">
+      <DependentUpon>CuentasBanco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CargosForms\FormAnyadirOrgano.resx">
+      <DependentUpon>FormAnyadirOrgano.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CargosForms\FormOrganos.resx">
+      <DependentUpon>FormOrganos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CargosForms\FormCargosAlta.resx">
+      <DependentUpon>FormCargosAlta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CargosForms\FormCargosEditar.resx">
+      <DependentUpon>FormCargosEditar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CargosForms\FormCargosFechaBaja.resx">
+      <DependentUpon>FormCargosFechaBaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CargosForms\FormCargos.resx">
+      <DependentUpon>FormCargos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CargosForms\FormNuevoCargos.resx">
+      <DependentUpon>FormNuevoCargos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CargosForms\Informes\FormVerInformeCargos.resx">
+      <DependentUpon>FormVerInformeCargos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CargosForms\Informes\ReportCargo.rdlc" />
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\Anticipos.resx">
+      <DependentUpon>Anticipos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\Comuneros.resx">
+      <DependentUpon>Comuneros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Comunidades.resx">
+      <DependentUpon>Comunidades.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\FormAltaComunero.resx">
+      <DependentUpon>FormAltaComunero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\FormComuneroAsociacones.resx">
+      <DependentUpon>FormComuneroAsociacones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\FormComuneroReglas.resx">
+      <DependentUpon>FormComuneroReglas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\FormComuneroReglasAlta.resx">
+      <DependentUpon>FormComuneroReglasAlta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\FormComuneroReglasDivision.resx">
+      <DependentUpon>FormComuneroReglasDivision.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\FormMovimientosComunero.resx">
+      <DependentUpon>FormMovimientosComunero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\InformeDeudas.rdlc" />
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\VistaInforme.resx">
+      <DependentUpon>VistaInforme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\Informes\InformeCuotas.rdlc" />
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\Informes\VisorInformeCuotas.resx">
+      <DependentUpon>VisorInformeCuotas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\FormCertificadoDeudasDivision.resx">
+      <DependentUpon>FormCertificadoDeudasDivision.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\FormSubcuotaManual.resx">
+      <DependentUpon>FormSubcuotaManual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\ReglasPago\FormAnyadirRegla.resx">
+      <DependentUpon>FormAnyadirRegla.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\ReglasPago\FormAnyadirReglaDetalle.resx">
+      <DependentUpon>FormAnyadirReglaDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\ReglasPago\FormReglasPago.resx">
+      <DependentUpon>FormReglasPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\FormEntradasFondos.resx">
+      <DependentUpon>FormEntradasFondos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\FormFondosDetalles.resx">
+      <DependentUpon>FormFondosDetalles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\FormIndenxarLiquidacion.resx">
+      <DependentUpon>FormIndenxarLiquidacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\FormIniciarFondo.resx">
+      <DependentUpon>FormIniciarFondo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\FormSalidasFondos.resx">
+      <DependentUpon>FormSalidasFondos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\Informes\InformeDeudasComunero\FormInformeDeudasComunero.resx">
+      <DependentUpon>FormInformeDeudasComunero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\Informes\InformeDeudasComunero\ReportDeudasComunero.rdlc" />
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\FormAnyadirNotaLiq.resx">
+      <DependentUpon>FormAnyadirNotaLiq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\FormGastosReparto.resx">
+      <DependentUpon>FormGastosReparto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\FormLiquidacionReparto.resx">
+      <DependentUpon>FormLiquidacionReparto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularRecibo\FormVerInformeParticularRecibo.resx">
+      <DependentUpon>FormVerInformeParticularRecibo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularRecibo\ReportInformeParticularRecibo.rdlc" />
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticular\FormVerInformeParticular.resx">
+      <DependentUpon>FormVerInformeParticular.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticular\ReportLiquidacionParticular.rdlc" />
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\FormVerInformeDetallado.resx">
+      <DependentUpon>FormVerInformeDetallado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\FormVerInformeResumen.resx">
+      <DependentUpon>FormVerInformeResumen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\ReportLiqDetallado.rdlc" />
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\ReportLiqResumen.rdlc" />
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormIngresoFondo.resx">
+      <DependentUpon>FormIngresoFondo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ProveedoresForms\FormAnyadirProveedor.resx">
+      <DependentUpon>FormAnyadirProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ProveedoresForms\FormInformeProveedores.resx">
+      <DependentUpon>FormInformeProveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ProveedoresForms\ReportProveedoresListado.rdlc" />
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\Recibos\FormNuevoRecibo.resx">
+      <DependentUpon>FormNuevoRecibo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\Recibos\FormRecibos.resx">
+      <DependentUpon>FormRecibos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ContenedorComunidad.resx">
+      <DependentUpon>ContenedorComunidad.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\Cuotas.resx">
+      <DependentUpon>Cuotas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasAlta.resx">
+      <DependentUpon>FormCuotasAlta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasDetalle.resx">
+      <DependentUpon>FormCuotasDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillaAlta.resx">
+      <DependentUpon>FormCuotasPlantillaAlta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillaManualAlta.resx">
+      <DependentUpon>FormCuotasPlantillaManualAlta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillaPptoAlta.resx">
+      <DependentUpon>FormCuotasPlantillaPptoAlta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillaPptoDetalle.resx">
+      <DependentUpon>FormCuotasPlantillaPptoDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillas.resx">
+      <DependentUpon>FormCuotasPlantillas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillaTipoDivAlta.resx">
+      <DependentUpon>FormCuotasPlantillaTipoDivAlta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillaManualDetalle.resx">
+      <DependentUpon>FormCuotasPlantillaManualDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\FormCuotasPlantillaTipoDivDetalle.resx">
+      <DependentUpon>FormCuotasPlantillaTipoDivDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\FormAltaAsociacion.resx">
+      <DependentUpon>FormAltaAsociacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\FormAltaDivisiones.resx">
+      <DependentUpon>FormAltaDivisiones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\FormCambiarEstadoDivision.resx">
+      <DependentUpon>FormCambiarEstadoDivision.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\FormDivisionesCuotas.resx">
+      <DependentUpon>FormDivisionesCuotas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\FormReasignarPagador.resx">
+      <DependentUpon>FormReasignarPagador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\EjerciciosForms\Ejercicios.resx">
+      <DependentUpon>Ejercicios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\EjerciciosForms\FormEjerciciosAlta.resx">
+      <DependentUpon>FormEjerciciosAlta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\FormFondos.resx">
+      <DependentUpon>FormFondos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\FormFondosAlta.resx">
+      <DependentUpon>FormFondosAlta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\FormLiquidacionesAlta.resx">
+      <DependentUpon>FormLiquidacionesAlta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\Liquidaciones.resx">
+      <DependentUpon>Liquidaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormCompensarAnticipos.resx">
+      <DependentUpon>FormCompensarAnticipos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormDetallesOperacion.resx">
+      <DependentUpon>FormDetallesOperacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesAddIVA.resx">
+      <DependentUpon>FormOperacionesAddIVA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesAjustarFavorita.resx">
+      <DependentUpon>FormOperacionesAjustarFavorita.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesCabeceraEdicion.resx">
+      <DependentUpon>FormOperacionesCabeceraEdicion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesComuneros.resx">
+      <DependentUpon>FormOperacionesComuneros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesEditReparto.resx">
+      <DependentUpon>FormOperacionesEditReparto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesEleccionFavorita.resx">
+      <DependentUpon>FormOperacionesEleccionFavorita.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesLiquidacion.resx">
+      <DependentUpon>FormOperacionesLiquidacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ProveedoresForms\FormOperacionesListadoProveedores.resx">
+      <DependentUpon>FormOperacionesListadoProveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesVencimientos.resx">
+      <DependentUpon>FormOperacionesVencimientos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormReasignarVencimiento%28Sin usar%29.resx">
+      <DependentUpon>FormReasignarVencimiento%28Sin usar%29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\OperacionesComuneros.resx">
+      <DependentUpon>OperacionesComuneros.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\RemesasForms\FormAnyadirRecibos.resx">
+      <DependentUpon>FormAnyadirRecibos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\RemesasForms\FormAnyadirRemesa.resx">
+      <DependentUpon>FormAnyadirRemesa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\RemesasForms\FormDetalleRemesa.resx">
+      <DependentUpon>FormDetalleRemesa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\RemesasForms\FormRemesas.resx">
+      <DependentUpon>FormRemesas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\TesoreriaForms\FormActualizarFechaCierre.resx">
+      <DependentUpon>FormActualizarFechaCierre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\TesoreriaForms\FormAsientoApertura.resx">
+      <DependentUpon>FormAsientoApertura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\TesoreriaForms\FormCrearCuentaComunidad.resx">
+      <DependentUpon>FormCrearCuentaComunidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\TesoreriaForms\FormDevolucionAbonoCuota.resx">
+      <DependentUpon>FormDevolucionAbonoCuota.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\TesoreriaForms\FormDevolucionIngreso.resx">
+      <DependentUpon>FormDevolucionIngreso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\TesoreriaForms\FormTesoreriaCasamiento.resx">
+      <DependentUpon>FormTesoreriaCasamiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FromOperacionesVer.resx">
+      <DependentUpon>FromOperacionesVer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\FormCuentasExistentes.resx">
+      <DependentUpon>FormCuentasExistentes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ProvisionesForms\FormNuevaSubcuenta.resx">
+      <DependentUpon>FormNuevaSubcuenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ProvisionesForms\FormProvisionesAlta.resx">
+      <DependentUpon>FormProvisionesAlta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ProvisionesForms\FormProvisiones.resx">
+      <DependentUpon>FormProvisiones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ProvisionesForms\FormProvisionesDotarAplicar1.resx">
+      <DependentUpon>FormProvisionesDotarAplicar1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ProvisionesForms\FormProvisionesDotarAplicar2.resx">
+      <DependentUpon>FormProvisionesDotarAplicar2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\TesoreriaForms\FormAccesoOperacionesTesoreria.resx">
+      <DependentUpon>FormAccesoOperacionesTesoreria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\TesoreriaForms\FormOperacionesTesoreria.resx">
+      <DependentUpon>FormOperacionesTesoreria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\TesoreriaForms\FormTesoreriaCompesaciones.resx">
+      <DependentUpon>FormTesoreriaCompesaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\TesoreriaForms\FormTraspasoES.resx">
+      <DependentUpon>FormTraspasoES.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\TesoreriaForms\FormVerVencimientos.resx">
+      <DependentUpon>FormVerVencimientos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\TesoreriaForms\Remesas.resx">
+      <DependentUpon>Remesas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\Recibos\VerReporte.resx">
+      <DependentUpon>VerReporte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\EnviosForms\CompletarEnvioForm.resx">
+      <DependentUpon>CompletarEnvioForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\TesoreriaForms\FormAccesoTesoreria.resx">
+      <DependentUpon>FormAccesoTesoreria.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\Divisiones.resx">
+      <DependentUpon>Divisiones.cs</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\FormFicha.resx">
+      <DependentUpon>FormFicha.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\OperacionesProveedores.resx">
+      <DependentUpon>OperacionesProveedores.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\TesoreriaForms\Tesoreria.resx">
+      <DependentUpon>Tesoreria.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\EntidadesForms\AddEntidad.resx">
+      <DependentUpon>AddEntidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\EnviosForms\Documentos.resx">
+      <DependentUpon>Documentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\EnviosForms\Envios.resx">
+      <DependentUpon>Envios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\EntidadesForms\FormBancos.resx">
+      <DependentUpon>FormBancos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\EntidadesForms\FormCategoria.resx">
+      <DependentUpon>FormCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\EntidadesForms\FormContacto.resx">
+      <DependentUpon>FormContacto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\EntidadesForms\FormCorreos.resx">
+      <DependentUpon>FormCorreos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\EntidadesForms\FormDirecciones.resx">
+      <DependentUpon>FormDirecciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\EntidadesForms\VerEntidad.resx">
+      <DependentUpon>VerEntidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\EntidadesForms\ComprobarEntidad.resx">
+      <DependentUpon>ComprobarEntidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\EntidadesForms\Entidades.resx">
+      <DependentUpon>Entidades.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\EntidadesForms\FormTelefono.resx">
+      <DependentUpon>FormTelefono.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\EnviosForms\FormSeleccionFromEnvio.resx">
+      <DependentUpon>FormSeleccionFromEnvio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\EnviosForms\FormSeleccionPlantillas.resx">
+      <DependentUpon>FormSeleccionPlantillas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\EnviosForms\FormVerCuerpoMensaje.resx">
+      <DependentUpon>FormVerCuerpoMensaje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\EnviosForms\RegistroEnvios.resx">
+      <DependentUpon>RegistroEnvios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\EnviosForms\SeleccionAdjuntos.resx">
+      <DependentUpon>SeleccionAdjuntos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FormConexion.resx">
+      <DependentUpon>FormConexion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\MantenimientoForms\FormBorradoMultiple.resx">
+      <DependentUpon>FormBorradoMultiple.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\MantenimientoForms\FormMantenimiento.resx">
+      <DependentUpon>FormMantenimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Informes\Report1.rdlc" />
+    <EmbeddedResource Include="Presentacion\PlanContableForms\FormPlanContable.resx">
+      <DependentUpon>FormPlanContable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FormPrincipal.es.resx">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FormPrincipal.resx">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\PanelControl.resx">
+      <DependentUpon>PanelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\PlanContableForms\FormPlanContableAlta.resx">
+      <DependentUpon>FormPlanContableAlta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="ClaveAppUrendes.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DataSetTodasTablas.xsc">
+      <DependentUpon>DataSetTodasTablas.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetTodasTablas.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetTodasTablas.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSetTodasTablas.xss">
+      <DependentUpon>DataSetTodasTablas.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Presentacion\ComunidadesForms\CargosForms\Informes\DataSetCargos.xsc">
+      <DependentUpon>DataSetCargos.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\CargosForms\Informes\DataSetCargos.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetCargos.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\CargosForms\Informes\DataSetCargos.xss">
+      <DependentUpon>DataSetCargos.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetDeudas.xsc">
+      <DependentUpon>DataSetDeudas.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetDeudas.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetDeudas.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetDeudas.xss">
+      <DependentUpon>DataSetDeudas.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetMovimientosComuneros.xsc">
+      <DependentUpon>DataSetMovimientosComuneros.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetMovimientosComuneros.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetMovimientosComuneros.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetMovimientosComuneros.xss">
+      <DependentUpon>DataSetMovimientosComuneros.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\CuotasForms\Informes\DataSetCuota.xsc">
+      <DependentUpon>DataSetCuota.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\CuotasForms\Informes\DataSetCuota.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetCuota.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\CuotasForms\Informes\DataSetCuota.xss">
+      <DependentUpon>DataSetCuota.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\Informes\InformeDeudasComunero\DataSetDeudasComunero.xsc">
+      <DependentUpon>DataSetDeudasComunero.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\Informes\InformeDeudasComunero\DataSetDeudasComunero.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetDeudasComunero.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\Informes\InformeDeudasComunero\DataSetDeudasComunero.xss">
+      <DependentUpon>DataSetDeudasComunero.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularRecibo\DataSetInfoEntidadxsd.xsc">
+      <DependentUpon>DataSetInfoEntidadxsd.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularRecibo\DataSetInfoEntidadxsd.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetInfoEntidadxsd.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularRecibo\DataSetInfoEntidadxsd.xss">
+      <DependentUpon>DataSetInfoEntidadxsd.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularRecibo\DataSetInformeParticularRecibo.xsc">
+      <DependentUpon>DataSetInformeParticularRecibo.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularRecibo\DataSetInformeParticularRecibo.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetInformeParticularRecibo.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularRecibo\DataSetInformeParticularRecibo.xss">
+      <DependentUpon>DataSetInformeParticularRecibo.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularRecibo\DataSetReparto.xsc">
+      <DependentUpon>DataSetReparto.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularRecibo\DataSetReparto.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetReparto.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularRecibo\DataSetReparto.xss">
+      <DependentUpon>DataSetReparto.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticular\InformeParticular.xsc">
+      <DependentUpon>InformeParticular.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticular\InformeParticular.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InformeParticular.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticular\InformeParticular.xss">
+      <DependentUpon>InformeParticular.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\DataSetLiqDetallado.xsc">
+      <DependentUpon>DataSetLiqDetallado.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\DataSetLiqDetallado.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetLiqDetallado.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\DataSetLiqDetallado.xss">
+      <DependentUpon>DataSetLiqDetallado.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\DataSetLiqInformacion.xsc">
+      <DependentUpon>DataSetLiqInformacion.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\DataSetLiqInformacion.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetLiqInformacion.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\DataSetLiqInformacion.xss">
+      <DependentUpon>DataSetLiqInformacion.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\DataSetLiqResumen.xsc">
+      <DependentUpon>DataSetLiqResumen.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\DataSetLiqResumen.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetLiqResumen.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\DataSetLiqResumen.xss">
+      <DependentUpon>DataSetLiqResumen.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ProveedoresForms\DataSetProveedores.xsc">
+      <DependentUpon>DataSetProveedores.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ProveedoresForms\DataSetProveedores.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetProveedores.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ProveedoresForms\DataSetProveedores.xss">
+      <DependentUpon>DataSetProveedores.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\Informes\DataSetInfComunidad.xsc">
+      <DependentUpon>DataSetInfComunidad.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\Informes\DataSetInfComunidad.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetInfComunidad.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\Informes\DataSetInfComunidad.xss">
+      <DependentUpon>DataSetInfComunidad.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\Informes\DataSet_nuevo.xsc">
+      <DependentUpon>DataSet_nuevo.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\Informes\DataSet_nuevo.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet_nuevo.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\Informes\DataSet_nuevo.xss">
+      <DependentUpon>DataSet_nuevo.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+    <Content Include="Logo Urendes - copia.png.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="ADODB">
+      <Guid>{2A75196C-D9EB-4129-B803-931327F72D5C}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="JRO">
+      <Guid>{AC3B8B4C-B6CA-11D1-9F31-00C04FC29D52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="CData.MySQL.System">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.ReportViewer.Common">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.ReportViewer.DataVisualization">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.ReportViewer.ProcessingObjectModel">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.SqlServer.Types">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="System.Data.CData.MySQL">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
