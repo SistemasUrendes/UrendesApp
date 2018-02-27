@@ -20,9 +20,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms.Informes 
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("DataSetMovimientos")]
+    [global::System.Xml.Serialization.XmlRootAttribute("DataSetMovimiento")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class DataSetMovimientos : global::System.Data.DataSet {
+    public partial class DataSetMovimiento : global::System.Data.DataSet {
         
         private MovimientosDataTable tableMovimientos;
         
@@ -30,7 +30,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms.Informes 
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public DataSetMovimientos() {
+        public DataSetMovimiento() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms.Informes 
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected DataSetMovimientos(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected DataSetMovimiento(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -127,7 +127,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms.Informes 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            DataSetMovimientos cln = ((DataSetMovimientos)(base.Clone()));
+            DataSetMovimiento cln = ((DataSetMovimiento)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -199,9 +199,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms.Informes 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "DataSetMovimientos";
+            this.DataSetName = "DataSetMovimiento";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/DataSetMovimientos.xsd";
+            this.Namespace = "http://tempuri.org/DataSetMovimiento.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableMovimientos = new MovimientosDataTable();
@@ -225,7 +225,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms.Informes 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            DataSetMovimientos ds = new DataSetMovimientos();
+            DataSetMovimiento ds = new DataSetMovimiento();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -302,8 +302,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms.Informes 
             private global::System.Data.DataColumn columnImpEnt;
             
             private global::System.Data.DataColumn columnImpSal;
-            
-            private global::System.Data.DataColumn columnDescripcionMovimiento;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -436,14 +434,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms.Informes 
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DescripcionMovimientoColumn {
-                get {
-                    return this.columnDescripcionMovimiento;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -479,7 +469,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms.Informes 
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MovimientosRow AddMovimientosRow(string IdDetMov, string IdMov, string DescripcionCuenta, string IdOpDet, string IdOp, string IdSubCuenta, string ES, string Descripcion, string Fecha, string IdRecibo, string ImpEnt, string ImpSal, string DescripcionMovimiento) {
+            public MovimientosRow AddMovimientosRow(string IdDetMov, string IdMov, string DescripcionCuenta, string IdOpDet, string IdOp, string IdSubCuenta, string ES, string Descripcion, string Fecha, string IdRecibo, string ImpEnt, string ImpSal) {
                 MovimientosRow rowMovimientosRow = ((MovimientosRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdDetMov,
@@ -493,8 +483,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms.Informes 
                         Fecha,
                         IdRecibo,
                         ImpEnt,
-                        ImpSal,
-                        DescripcionMovimiento};
+                        ImpSal};
                 rowMovimientosRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMovimientosRow);
                 return rowMovimientosRow;
@@ -529,7 +518,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms.Informes 
                 this.columnIdRecibo = base.Columns["IdRecibo"];
                 this.columnImpEnt = base.Columns["ImpEnt"];
                 this.columnImpSal = base.Columns["ImpSal"];
-                this.columnDescripcionMovimiento = base.Columns["DescripcionMovimiento"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -559,8 +547,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms.Informes 
                 base.Columns.Add(this.columnImpEnt);
                 this.columnImpSal = new global::System.Data.DataColumn("ImpSal", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnImpSal);
-                this.columnDescripcionMovimiento = new global::System.Data.DataColumn("DescripcionMovimiento", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDescripcionMovimiento);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -628,7 +614,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms.Informes 
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DataSetMovimientos ds = new DataSetMovimientos();
+                DataSetMovimiento ds = new DataSetMovimiento();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -895,23 +881,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms.Informes 
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string DescripcionMovimiento {
-                get {
-                    try {
-                        return ((string)(this[this.tableMovimientos.DescripcionMovimientoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'DescripcionMovimiento\' de la tabla \'Movimientos\' es DBNul" +
-                                "l.", e);
-                    }
-                }
-                set {
-                    this[this.tableMovimientos.DescripcionMovimientoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsIdDetMovNull() {
                 return this.IsNull(this.tableMovimientos.IdDetMovColumn);
             }
@@ -1052,18 +1021,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms.Informes 
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetImpSalNull() {
                 this[this.tableMovimientos.ImpSalColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDescripcionMovimientoNull() {
-                return this.IsNull(this.tableMovimientos.DescripcionMovimientoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDescripcionMovimientoNull() {
-                this[this.tableMovimientos.DescripcionMovimientoColumn] = global::System.Convert.DBNull;
             }
         }
         

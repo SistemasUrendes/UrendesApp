@@ -300,6 +300,9 @@
     <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\FormComuneroReglasDivision.Designer.cs">
       <DependentUpon>FormComuneroReglasDivision.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetMovimiento.cs">
+      <DependentUpon>DataSetMovimiento.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetMovimiento.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
