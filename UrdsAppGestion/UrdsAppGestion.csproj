@@ -57,7 +57,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Logo Urendes - copia.png.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Logo Urendes - copia.png.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>UrdsAppGestión.Program</StartupObject>
@@ -84,15 +84,10 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>ClaveAppUrendes.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CData.MySQL.System, Version=16.0.0.40, Culture=neutral, PublicKeyToken=cdc168f89cffe9cf" />
-    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
@@ -100,11 +95,10 @@
     <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="MySql.Data">
-      <HintPath>..\..\..\..\Downloads\Dlls MySQL\Dlls MySQL\MySql.Data.dll</HintPath>
+      <HintPath>\\Urenux\app\VisualStudio\CopiasApp\AppUrds(15_02_18)\UrdsAppGestion\bin\Debug\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.CData.MySQL, Version=16.0.0.40, Culture=neutral, PublicKeyToken=cdc168f89cffe9cf" />
     <Reference Include="System.Management" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
@@ -120,11 +114,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataSetTodasTablas.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetTodasTablas.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Logica\EnvioCorreo.cs" />
     <Compile Include="Logica\FormEnvioCorreoSeguridad.cs">
       <SubType>Form</SubType>
@@ -261,6 +250,12 @@
       <DependentUpon>Comunidades.cs</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\FormImprimirMovimientos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\FormImprimirMovimientos.Designer.cs">
+      <DependentUpon>FormImprimirMovimientos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\FormMovimientosComunero.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -305,11 +300,22 @@
     <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\FormComuneroReglasDivision.Designer.cs">
       <DependentUpon>FormComuneroReglasDivision.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetMovimiento.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetMovimiento.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\VistaInforme.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\VistaInforme.Designer.cs">
       <DependentUpon>VistaInforme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\VistaInformeMovimientos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\VistaInformeMovimientos.designer.cs">
+      <DependentUpon>VistaInformeMovimientos.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\CuotasForms\Informes\DataSetCuota.cs">
       <DependentUpon>DataSetCuota.xsd</DependentUpon>
@@ -1041,6 +1047,12 @@
     <Compile Include="Presentacion\MantenimientoForms\FormBorradoMultiple.Designer.cs">
       <DependentUpon>FormBorradoMultiple.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\MantenimientoForms\FormInsertarPendientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\MantenimientoForms\FormInsertarPendientes.Designer.cs">
+      <DependentUpon>FormInsertarPendientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\MantenimientoForms\FormMantenimiento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1172,12 +1184,19 @@
     <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\FormComuneroReglasDivision.resx">
       <DependentUpon>FormComuneroReglasDivision.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\FormImprimirMovimientos.resx">
+      <DependentUpon>FormImprimirMovimientos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\FormMovimientosComunero.resx">
       <DependentUpon>FormMovimientosComunero.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\InformeDeudas.rdlc" />
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\InformeMovimientos.rdlc" />
     <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\VistaInforme.resx">
       <DependentUpon>VistaInforme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\VistaInformeMovimientos.resx">
+      <DependentUpon>VistaInformeMovimientos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\Informes\InformeCuotas.rdlc" />
     <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\Informes\VisorInformeCuotas.resx">
@@ -1520,6 +1539,9 @@
     <EmbeddedResource Include="Presentacion\MantenimientoForms\FormBorradoMultiple.resx">
       <DependentUpon>FormBorradoMultiple.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\MantenimientoForms\FormInsertarPendientes.resx">
+      <DependentUpon>FormInsertarPendientes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\MantenimientoForms\FormMantenimiento.resx">
       <DependentUpon>FormMantenimiento.cs</DependentUpon>
     </EmbeddedResource>
@@ -1552,20 +1574,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="ClaveAppUrendes.pfx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="DataSetTodasTablas.xsc">
-      <DependentUpon>DataSetTodasTablas.xsd</DependentUpon>
-    </None>
-    <None Include="DataSetTodasTablas.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetTodasTablas.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DataSetTodasTablas.xss">
-      <DependentUpon>DataSetTodasTablas.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Presentacion\ComunidadesForms\CargosForms\Informes\DataSetCargos.xsc">
       <DependentUpon>DataSetCargos.xsd</DependentUpon>
@@ -1588,6 +1596,17 @@
     </None>
     <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetDeudas.xss">
       <DependentUpon>DataSetDeudas.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetMovimiento.xsc">
+      <DependentUpon>DataSetMovimiento.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetMovimiento.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetMovimiento.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetMovimiento.xss">
+      <DependentUpon>DataSetMovimiento.xsd</DependentUpon>
     </None>
     <None Include="Presentacion\ComunidadesForms\CuotasForms\Informes\DataSetCuota.xsc">
       <DependentUpon>DataSetCuota.xsd</DependentUpon>
@@ -1736,12 +1755,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="favicon.ico" />
-    <Content Include="Logo Urendes - copia.png.ico" />
+    <Content Include="Resources\favicon.ico" />
+    <Content Include="Resources\Logo Urendes - copia.png.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
@@ -1810,16 +1827,6 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <PublishFile Include="CData.MySQL.System">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>Assembly</FileType>
-    </PublishFile>
     <PublishFile Include="Microsoft.ReportViewer.Common">
       <Visible>False</Visible>
       <Group>
@@ -1851,16 +1858,6 @@
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.SqlServer.Types">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>Assembly</FileType>
-    </PublishFile>
-    <PublishFile Include="System.Data.CData.MySQL">
       <Visible>False</Visible>
       <Group>
       </Group>

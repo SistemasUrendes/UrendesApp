@@ -60,7 +60,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms
 
         private void button_imprimir_Click(object sender, EventArgs e)
         {
-
+            ComunerosForms.FormImprimirMovimientos nueva = new ComunerosForms.FormImprimirMovimientos(nombreComunero, idComunidad, idEntidad);
+            nueva.Show();
         }
     }
 }

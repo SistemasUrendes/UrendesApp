@@ -298,5 +298,11 @@ namespace UrdsAppGestión.Presentacion
             MantenimientoForms.FormBorradoMultiple nueva = new MantenimientoForms.FormBorradoMultiple();
             nueva.Show();
         }
+
+        private void button_insertarPendientes_Click(object sender, EventArgs e)
+        {
+            MantenimientoForms.FormInsertarPendientes nueva = new MantenimientoForms.FormInsertarPendientes();
+            nueva.Show();
+        }
     }
 }

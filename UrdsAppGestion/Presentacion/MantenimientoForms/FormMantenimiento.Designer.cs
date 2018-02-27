@@ -36,6 +36,7 @@
             this.textBox_fusionar_viejo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button_borradoMultiple = new System.Windows.Forms.Button();
+            this.button_insertarPendientes = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,11 +106,22 @@
             this.button_borradoMultiple.UseVisualStyleBackColor = true;
             this.button_borradoMultiple.Click += new System.EventHandler(this.button_borradoMultiple_Click);
             // 
+            // button_insertarPendientes
+            // 
+            this.button_insertarPendientes.Location = new System.Drawing.Point(163, 156);
+            this.button_insertarPendientes.Name = "button_insertarPendientes";
+            this.button_insertarPendientes.Size = new System.Drawing.Size(78, 60);
+            this.button_insertarPendientes.TabIndex = 3;
+            this.button_insertarPendientes.Text = "Insertar Pendientes";
+            this.button_insertarPendientes.UseVisualStyleBackColor = true;
+            this.button_insertarPendientes.Click += new System.EventHandler(this.button_insertarPendientes_Click);
+            // 
             // FormMantenimiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 560);
+            this.Controls.Add(this.button_insertarPendientes);
             this.Controls.Add(this.button_borradoMultiple);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -131,5 +143,6 @@
         private System.Windows.Forms.TextBox textBox_fusionar_viejo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button_borradoMultiple;
+        private System.Windows.Forms.Button button_insertarPendientes;
     }
 }

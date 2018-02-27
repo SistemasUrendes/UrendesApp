@@ -79,7 +79,6 @@
             // 
             // button_imprimir
             // 
-            this.button_imprimir.Enabled = false;
             this.button_imprimir.Location = new System.Drawing.Point(624, 14);
             this.button_imprimir.Name = "button_imprimir";
             this.button_imprimir.Size = new System.Drawing.Size(108, 23);
