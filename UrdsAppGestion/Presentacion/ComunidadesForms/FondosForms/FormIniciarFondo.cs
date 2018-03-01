@@ -61,7 +61,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
 
         private void button_fondoVacio_Click(object sender, EventArgs e)
         {
-            String sqlInsert = "INSERT INTO com_detallesfondo (IdFondo, IdEjercicio, Entradas, Salidas, SaldoInicial, SaldoActual, SaldoCierre) VALUES (" + idFondo + "," + comboBox_ejercicio.SelectedValue + ",0.00,0.00," + textBox_importe.Text + "," + textBox_importe.Text + ",0.00)";
+            String sqlInsert = "INSERT INTO com_detallesfondo (IdFondo, IdEjercicio, Entradas, Salidas, SaldoInicial, SaldoActual, SaldoCierre) VALUES (" + idFondo + "," + comboBox_ejercicio.SelectedValue + ",0.00,0.00,0.00,0.00,0.00)";
 
             Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
             form_anterior.cargarDatagrid();

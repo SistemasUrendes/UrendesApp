@@ -60,13 +60,12 @@
             // 
             // button_fondoVacio
             // 
-            this.button_fondoVacio.Location = new System.Drawing.Point(269, 20);
+            this.button_fondoVacio.Location = new System.Drawing.Point(289, 110);
             this.button_fondoVacio.Name = "button_fondoVacio";
             this.button_fondoVacio.Size = new System.Drawing.Size(60, 58);
             this.button_fondoVacio.TabIndex = 2;
             this.button_fondoVacio.Text = "Iniciar Fondo Vacio";
             this.button_fondoVacio.UseVisualStyleBackColor = true;
-            this.button_fondoVacio.Visible = false;
             this.button_fondoVacio.Click += new System.EventHandler(this.button_fondoVacio_Click);
             // 
             // button1_traspaso
@@ -102,6 +101,7 @@
             this.listBox_liquidaciones.FormattingEnabled = true;
             this.listBox_liquidaciones.Location = new System.Drawing.Point(123, 110);
             this.listBox_liquidaciones.Name = "listBox_liquidaciones";
+            this.listBox_liquidaciones.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBox_liquidaciones.Size = new System.Drawing.Size(120, 95);
             this.listBox_liquidaciones.TabIndex = 6;
             // 
@@ -118,7 +118,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(299, 294);
+            this.ClientSize = new System.Drawing.Size(408, 294);
             this.Controls.Add(this.listBox_liquidaciones);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button1_traspaso);

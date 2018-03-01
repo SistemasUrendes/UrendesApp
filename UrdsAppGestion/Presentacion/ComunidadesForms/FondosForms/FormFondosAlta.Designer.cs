@@ -58,7 +58,7 @@
             this.textBox_nombre.Location = new System.Drawing.Point(102, 54);
             this.textBox_nombre.Name = "textBox_nombre";
             this.textBox_nombre.Size = new System.Drawing.Size(218, 20);
-            this.textBox_nombre.TabIndex = 6;
+            this.textBox_nombre.TabIndex = 4;
             // 
             // button_Guardar
             // 
@@ -86,14 +86,14 @@
             this.maskedTextBox_idsucuenta.Mask = "19999";
             this.maskedTextBox_idsucuenta.Name = "maskedTextBox_idsucuenta";
             this.maskedTextBox_idsucuenta.Size = new System.Drawing.Size(60, 20);
-            this.maskedTextBox_idsucuenta.TabIndex = 9;
+            this.maskedTextBox_idsucuenta.TabIndex = 2;
             // 
             // button_seleccionar_boton
             // 
             this.button_seleccionar_boton.Location = new System.Drawing.Point(102, 19);
             this.button_seleccionar_boton.Name = "button_seleccionar_boton";
             this.button_seleccionar_boton.Size = new System.Drawing.Size(70, 23);
-            this.button_seleccionar_boton.TabIndex = 10;
+            this.button_seleccionar_boton.TabIndex = 1;
             this.button_seleccionar_boton.Text = "Seleccionar";
             this.button_seleccionar_boton.UseVisualStyleBackColor = true;
             this.button_seleccionar_boton.Click += new System.EventHandler(this.button_seleccionar_boton_Click);
@@ -120,7 +120,7 @@
             this.button_seleccionarbloque.Location = new System.Drawing.Point(102, 87);
             this.button_seleccionarbloque.Name = "button_seleccionarbloque";
             this.button_seleccionarbloque.Size = new System.Drawing.Size(70, 23);
-            this.button_seleccionarbloque.TabIndex = 13;
+            this.button_seleccionarbloque.TabIndex = 5;
             this.button_seleccionarbloque.Text = "Seleccionar";
             this.button_seleccionarbloque.UseVisualStyleBackColor = true;
             this.button_seleccionarbloque.Click += new System.EventHandler(this.button_seleccionarbloque_Click);
@@ -139,7 +139,7 @@
             this.textBox_subcuenta.Location = new System.Drawing.Point(236, 20);
             this.textBox_subcuenta.Name = "textBox_subcuenta";
             this.textBox_subcuenta.Size = new System.Drawing.Size(148, 20);
-            this.textBox_subcuenta.TabIndex = 15;
+            this.textBox_subcuenta.TabIndex = 3;
             // 
             // label1
             // 
@@ -157,7 +157,7 @@
             this.comboBox_tipoFondo.Location = new System.Drawing.Point(103, 122);
             this.comboBox_tipoFondo.Name = "comboBox_tipoFondo";
             this.comboBox_tipoFondo.Size = new System.Drawing.Size(121, 21);
-            this.comboBox_tipoFondo.TabIndex = 17;
+            this.comboBox_tipoFondo.TabIndex = 6;
             // 
             // FormFondosAlta
             // 

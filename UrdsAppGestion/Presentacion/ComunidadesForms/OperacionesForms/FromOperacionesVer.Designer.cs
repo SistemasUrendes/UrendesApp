@@ -87,6 +87,7 @@
             this.button_nueva_favorita = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button_70001 = new System.Windows.Forms.Button();
+            this.button_revisarPte = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_iva)).BeginInit();
@@ -689,11 +690,23 @@
             this.button_70001.Visible = false;
             this.button_70001.Click += new System.EventHandler(this.button_70001_Click);
             // 
+            // button_revisarPte
+            // 
+            this.button_revisarPte.Enabled = false;
+            this.button_revisarPte.Location = new System.Drawing.Point(466, 471);
+            this.button_revisarPte.Name = "button_revisarPte";
+            this.button_revisarPte.Size = new System.Drawing.Size(76, 23);
+            this.button_revisarPte.TabIndex = 25;
+            this.button_revisarPte.Text = "Revisar Pte.";
+            this.button_revisarPte.UseVisualStyleBackColor = true;
+            this.button_revisarPte.Click += new System.EventHandler(this.button_revisarPte_Click);
+            // 
             // FromOperacionesVer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(958, 675);
+            this.Controls.Add(this.button_revisarPte);
             this.Controls.Add(this.button_70001);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button_nueva_favorita);
@@ -799,5 +812,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button_70001;
+        private System.Windows.Forms.Button button_revisarPte;
     }
 }

@@ -45,8 +45,11 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
             comboBox_TipoLiquiacion.DataSource = Persistencia.SentenciasSQL.select(sqlTipo);
             comboBox_TipoLiquiacion.DisplayMember = "TipoLiq";
             comboBox_TipoLiquiacion.ValueMember = "IdTipoLiq";
+            
+            //CON FECHAS FILTRO FONDOS ELIMINADO POR AHORA
+            //String fondo = "SELECT com_detallesfondo.IdDetalleFondo, com_fondos.NombreFondo FROM(com_detallesfondo INNER JOIN com_fondos ON com_detallesfondo.IdFondo = com_fondos.IdFondo) INNER JOIN com_ejercicios ON com_detallesfondo.IdEjercicio = com_ejercicios.IdEjercicio WHERE(((com_fondos.IdComunidad) = " + id_comunidad_cargado + ") AND((com_ejercicios.FIni) <= '" + fechaHoy + "') AND ((com_ejercicios.FFin) >= '" + fechaHoy + "' ));";
 
-            String fondo = "SELECT com_detallesfondo.IdDetalleFondo, com_fondos.NombreFondo FROM(com_detallesfondo INNER JOIN com_fondos ON com_detallesfondo.IdFondo = com_fondos.IdFondo) INNER JOIN com_ejercicios ON com_detallesfondo.IdEjercicio = com_ejercicios.IdEjercicio WHERE(((com_fondos.IdComunidad) = " + id_comunidad_cargado + ") AND((com_ejercicios.FIni) <= '" + fechaHoy + "') AND ((com_ejercicios.FFin) >= '" + fechaHoy + "' ));";
+            String fondo = "SELECT com_detallesfondo.IdDetalleFondo, com_fondos.NombreFondo FROM(com_detallesfondo INNER JOIN com_fondos ON com_detallesfondo.IdFondo = com_fondos.IdFondo) INNER JOIN com_ejercicios ON com_detallesfondo.IdEjercicio = com_ejercicios.IdEjercicio WHERE(((com_fondos.IdComunidad) = " + id_comunidad_cargado + "));";
 
             comboBox_Fondo.DataSource = Persistencia.SentenciasSQL.select(fondo);
             comboBox_Fondo.DisplayMember = "NombreFondo";

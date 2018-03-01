@@ -83,8 +83,11 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             if (label_advertencia.Visible) {
                 button_guardar.Select();
             }
+            if (Login.getRol() == "Admin")
+            {
+                button_revisarPte.Enabled = true;
+            }
 
-            
 
         }
         public void cargarOperacion(String id_operacion) {
@@ -386,6 +389,39 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
                 FromOperacionesVer nueva = new FromOperacionesVer(OPCreaDT.Rows[0][0].ToString(), 3);
                 nueva.Show();
             }
+        }
+
+        private void button_revisarPte_Click(object sender, EventArgs e)
+        {
+            calcularPteVto();
+            MessageBox.Show("Recalculado");
+            cargarOperacion(id_operacion_cargado);
+        }
+        private void calcularPteVto()  {
+            
+            double totalDetOp = 0.00;
+            
+            for (int a = 0; a < dataGridView_vencimientos.Rows.Count; a++)
+            {
+                String sqlPteCorrecto = "SELECT com_opdetalles.IdOpDet, com_movimientos.ImpMovEnt, com_movimientos.ImpMovSal, com_dettiposmov.IdTipoMov FROM(((com_movimientos INNER JOIN com_detmovs ON com_movimientos.IdMov = com_detmovs.IdMov) INNER JOIN com_opdetalles ON com_detmovs.IdOpDet = com_opdetalles.IdOpDet) INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp) INNER JOIN com_dettiposmov ON com_movimientos.IdDetTipoMov = com_dettiposmov.IdDetTipoMov WHERE(((com_opdetalles.IdOpDet) = " + dataGridView_vencimientos.Rows[a].Cells[0].Value.ToString() + "));";
+
+                DataTable Pte = Persistencia.SentenciasSQL.select(sqlPteCorrecto);
+
+                if (Pte.Rows.Count > 0) {
+                    for (int b = 0; b < Pte.Rows.Count;b++ ) {
+                        if (Pte.Rows[b][3].ToString() == "1")
+                            totalDetOp = totalDetOp + Convert.ToDouble(Pte.Rows[b][1].ToString()) + Convert.ToDouble(Pte.Rows[b][2].ToString());
+                        else
+                            totalDetOp = totalDetOp + Convert.ToDouble(Pte.Rows[b][1].ToString()) - Convert.ToDouble(Pte.Rows[b][2].ToString());
+                    }
+                    //ACTUALIZO LA LINEA DEL VENCIMIENTO
+                    String insertarPte = "UPDATE com_opdetalles SET ImpOpDetPte=com_opdetalles.Importe - " + totalDetOp.ToString().Replace(",",".") + " WHERE IdOpDet = " + dataGridView_vencimientos.Rows[a].Cells[0].Value.ToString();
+                    Persistencia.SentenciasSQL.InsertarGenerico(insertarPte);
+                }
+            }
+            //ACTUALIZO EL PTE DE OP
+            String sqlUpdate = "UPDATE com_operaciones SET ImpOpPte=com_operaciones.ImpOp - " + totalDetOp.ToString().Replace(",",".") + " WHERE IdOp = " + id_operacion_cargado;
+            Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
         }
     }
 }
