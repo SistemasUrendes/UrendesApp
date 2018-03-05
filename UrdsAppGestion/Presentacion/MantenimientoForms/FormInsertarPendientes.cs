@@ -57,7 +57,8 @@ namespace UrdsAppGestión.Presentacion.MantenimientoForms
                 String idComunidad = dataGridView_Insertar.Rows[i].Cells[2].Value.ToString();
                 String fecha = Convert.ToDateTime(dataGridView_Insertar.Rows[i].Cells[0].Value.ToString()).ToString("yyyy-MM-dd");
                 String impOp = dataGridView_Insertar.Rows[i].Cells[4].Value.ToString().Replace(',', '.');
-                impOp = impOp.Substring(0, impOp.LastIndexOf(".") + 3);
+                
+                if (impOp.Contains(","))impOp = impOp.Substring(0, impOp.LastIndexOf(".") + 3);
                 String descripcion = dataGridView_Insertar.Rows[i].Cells[3].Value.ToString();
 
                 //CONSULTA PARA OBTENER IdEntidad CON IDComunidad SELECCIONADA DEL comboBox
@@ -156,7 +157,8 @@ namespace UrdsAppGestión.Presentacion.MantenimientoForms
                             if (i == 4)
                             {
                                 String cantidad = cells[i].ToString().Replace('.', ',');
-                                cantidad = cantidad.Substring(0, cantidad.LastIndexOf(",") + 3);
+                                //QUITAMOS LOS DECIMALES SOBRANTES SI ES NECESARIO
+                                if ( cantidad.Contains(",")) cantidad = cantidad.Substring(0, cantidad.LastIndexOf(",") + 3);
                                 total += Convert.ToDouble(cantidad);
                             }
                         }
@@ -204,10 +206,6 @@ namespace UrdsAppGestión.Presentacion.MantenimientoForms
             comboBox_cuota.DisplayMember = "Descripcion";
             comboBox_cuota.ValueMember = "IdCuota";
         }
-
-        private void dataGridView_Insertar_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        
     }
 }

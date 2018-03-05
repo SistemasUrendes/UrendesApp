@@ -119,7 +119,6 @@
             // 
             // button_nuevoCertificados
             // 
-            this.button_nuevoCertificados.Enabled = false;
             this.button_nuevoCertificados.Location = new System.Drawing.Point(777, 50);
             this.button_nuevoCertificados.Name = "button_nuevoCertificados";
             this.button_nuevoCertificados.Size = new System.Drawing.Size(102, 56);
@@ -127,6 +126,7 @@
             this.button_nuevoCertificados.TabStop = false;
             this.button_nuevoCertificados.Text = "Nuevo Certificados";
             this.button_nuevoCertificados.UseVisualStyleBackColor = true;
+            this.button_nuevoCertificados.Click += new System.EventHandler(this.button_nuevoCertificados_Click);
             // 
             // FormCertificadoDeudasDivision
             // 

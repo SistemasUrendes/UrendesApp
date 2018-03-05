@@ -38,13 +38,17 @@
             this.comboBox_IdComunidad = new System.Windows.Forms.ComboBox();
             this.buttonInsertar = new System.Windows.Forms.Button();
             this.dataGridView_Insertar = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Insertar)).BeginInit();
             this.SuspendLayout();
             // 
             // labelTotal
             // 
             this.labelTotal.AutoSize = true;
-            this.labelTotal.Location = new System.Drawing.Point(887, 481);
+            this.labelTotal.Location = new System.Drawing.Point(644, 577);
             this.labelTotal.Name = "labelTotal";
             this.labelTotal.Size = new System.Drawing.Size(0, 13);
             this.labelTotal.TabIndex = 19;
@@ -52,14 +56,14 @@
             // labelElementos
             // 
             this.labelElementos.AutoSize = true;
-            this.labelElementos.Location = new System.Drawing.Point(887, 452);
+            this.labelElementos.Location = new System.Drawing.Point(535, 577);
             this.labelElementos.Name = "labelElementos";
             this.labelElementos.Size = new System.Drawing.Size(0, 13);
             this.labelElementos.TabIndex = 18;
             // 
             // progressBar_insert
             // 
-            this.progressBar_insert.Location = new System.Drawing.Point(203, 520);
+            this.progressBar_insert.Location = new System.Drawing.Point(42, 572);
             this.progressBar_insert.Name = "progressBar_insert";
             this.progressBar_insert.Size = new System.Drawing.Size(442, 23);
             this.progressBar_insert.TabIndex = 17;
@@ -69,7 +73,7 @@
             // 
             this.comboBox_cuota.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_cuota.FormattingEnabled = true;
-            this.comboBox_cuota.Location = new System.Drawing.Point(874, 121);
+            this.comboBox_cuota.Location = new System.Drawing.Point(747, 43);
             this.comboBox_cuota.Name = "comboBox_cuota";
             this.comboBox_cuota.Size = new System.Drawing.Size(121, 21);
             this.comboBox_cuota.TabIndex = 16;
@@ -78,7 +82,7 @@
             // 
             this.comboBox_liquid.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_liquid.FormattingEnabled = true;
-            this.comboBox_liquid.Location = new System.Drawing.Point(874, 94);
+            this.comboBox_liquid.Location = new System.Drawing.Point(538, 43);
             this.comboBox_liquid.Name = "comboBox_liquid";
             this.comboBox_liquid.Size = new System.Drawing.Size(121, 21);
             this.comboBox_liquid.TabIndex = 15;
@@ -88,7 +92,7 @@
             // 
             this.comboBox_IdBloque.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_IdBloque.FormattingEnabled = true;
-            this.comboBox_IdBloque.Location = new System.Drawing.Point(874, 65);
+            this.comboBox_IdBloque.Location = new System.Drawing.Point(320, 43);
             this.comboBox_IdBloque.Name = "comboBox_IdBloque";
             this.comboBox_IdBloque.Size = new System.Drawing.Size(121, 21);
             this.comboBox_IdBloque.TabIndex = 14;
@@ -97,7 +101,7 @@
             // 
             this.comboBox_IdComunidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_IdComunidad.FormattingEnabled = true;
-            this.comboBox_IdComunidad.Location = new System.Drawing.Point(874, 35);
+            this.comboBox_IdComunidad.Location = new System.Drawing.Point(108, 43);
             this.comboBox_IdComunidad.Name = "comboBox_IdComunidad";
             this.comboBox_IdComunidad.Size = new System.Drawing.Size(121, 21);
             this.comboBox_IdComunidad.TabIndex = 13;
@@ -105,7 +109,7 @@
             // 
             // buttonInsertar
             // 
-            this.buttonInsertar.Location = new System.Drawing.Point(890, 175);
+            this.buttonInsertar.Location = new System.Drawing.Point(793, 572);
             this.buttonInsertar.Name = "buttonInsertar";
             this.buttonInsertar.Size = new System.Drawing.Size(75, 23);
             this.buttonInsertar.TabIndex = 12;
@@ -120,7 +124,7 @@
             this.dataGridView_Insertar.AllowUserToResizeRows = false;
             this.dataGridView_Insertar.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView_Insertar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Insertar.Location = new System.Drawing.Point(42, 35);
+            this.dataGridView_Insertar.Location = new System.Drawing.Point(42, 94);
             this.dataGridView_Insertar.MultiSelect = false;
             this.dataGridView_Insertar.Name = "dataGridView_Insertar";
             this.dataGridView_Insertar.ReadOnly = true;
@@ -128,14 +132,53 @@
             this.dataGridView_Insertar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_Insertar.Size = new System.Drawing.Size(826, 459);
             this.dataGridView_Insertar.TabIndex = 11;
-            this.dataGridView_Insertar.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Insertar_CellContentClick);
             this.dataGridView_Insertar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView_Insertar_KeyDown);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(706, 46);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Cuota:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(468, 46);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 13);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "Liquidación:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(274, 46);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(43, 13);
+            this.label3.TabIndex = 22;
+            this.label3.Text = "Bloque:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(39, 46);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 13);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "Comunidad:";
             // 
             // FormInsertarPendientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1036, 578);
+            this.ClientSize = new System.Drawing.Size(915, 620);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.labelTotal);
             this.Controls.Add(this.labelElementos);
             this.Controls.Add(this.progressBar_insert);
@@ -167,5 +210,9 @@
         private System.Windows.Forms.ComboBox comboBox_IdComunidad;
         private System.Windows.Forms.Button buttonInsertar;
         private System.Windows.Forms.DataGridView dataGridView_Insertar;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

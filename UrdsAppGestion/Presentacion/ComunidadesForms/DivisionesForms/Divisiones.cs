@@ -110,6 +110,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                 var hti = dataGridView_divisiones.HitTest(e.X, e.Y);
                 dataGridView_divisiones.ClearSelection();
                 dataGridView_divisiones.Rows[hti.RowIndex].Selected = true;
+                cargarDetallesDivisiones();
                 dataGridView_divisiones.Columns[hti.ColumnIndex].Selected = true;
                 dataGridView_divisiones.CurrentCell = this.dataGridView_divisiones[hti.ColumnIndex, hti.RowIndex];
                 nombre_columna = dataGridView_divisiones.CurrentCell.OwningColumn.Name;
@@ -374,7 +375,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
 
         private void certificadoDeDeudasToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FormCertificadoDeudasDivision nueva = new FormCertificadoDeudasDivision(dataGridView_detalles_divisiones.Rows[0].Cells[0].Value.ToString());
+            FormCertificadoDeudasDivision nueva = new FormCertificadoDeudasDivision(id_comunidad.ToString(),dataGridView_detalles_divisiones.Rows[0].Cells[0].Value.ToString(),dataGridView_divisiones.SelectedRows[0].Cells[2].Value.ToString(), dataGridView_divisiones.SelectedRows[0].Cells[6].Value.ToString(),nombreEntidadPpal(dataGridView_detalles_divisiones.Rows[0].Cells[0].Value.ToString()));
             nueva.Show();
         }
 
@@ -390,5 +391,13 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             }
             return total;
         }
+
+        public String nombreEntidadPpal(String idDivision)
+        {
+            String sql = "SELECT ctos_entidades.Entidad FROM ctos_entidades INNER JOIN (com_asociacion INNER JOIN com_comuneros ON com_asociacion.IdComunero = com_comuneros.IdComunero) ON ctos_entidades.IDEntidad = com_comuneros.IdEntidad WHERE(((com_asociacion.IdDivision) = " + idDivision + ") AND((com_asociacion.Ppal) = -1));";
+            DataTable id = Persistencia.SentenciasSQL.select(sql);
+            return id.Rows[0][0].ToString();
+        }
+
     }
 }

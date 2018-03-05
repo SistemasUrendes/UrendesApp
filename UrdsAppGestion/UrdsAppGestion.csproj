@@ -346,6 +346,20 @@
     <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\FormSubcuotaManual.Designer.cs">
       <DependentUpon>FormSubcuotaManual.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\DataSetDeudasDivision.cs">
+      <DependentUpon>DataSetDeudasDivision.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\DataSetDeudasDivision.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetDeudasDivision.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\VistaInformeDeudasDivision.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\VistaInformeDeudasDivision.Designer.cs">
+      <DependentUpon>VistaInformeDeudasDivision.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\ReglasPago\FormAnyadirRegla.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1211,6 +1225,10 @@
     <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\FormSubcuotaManual.resx">
       <DependentUpon>FormSubcuotaManual.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\InformeDeudasDivision.rdlc" />
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\VistaInformeDeudasDivision.resx">
+      <DependentUpon>VistaInformeDeudasDivision.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\ReglasPago\FormAnyadirRegla.resx">
       <DependentUpon>FormAnyadirRegla.cs</DependentUpon>
     </EmbeddedResource>
@@ -1621,6 +1639,17 @@
     </None>
     <None Include="Presentacion\ComunidadesForms\CuotasForms\Informes\DataSetCuota.xss">
       <DependentUpon>DataSetCuota.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\DataSetDeudasDivision.xsc">
+      <DependentUpon>DataSetDeudasDivision.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\DataSetDeudasDivision.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetDeudasDivision.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\DataSetDeudasDivision.xss">
+      <DependentUpon>DataSetDeudasDivision.xsd</DependentUpon>
     </None>
     <None Include="Presentacion\ComunidadesForms\Informes\InformeDeudasComunero\DataSetDeudasComunero.xsc">
       <DependentUpon>DataSetDeudasComunero.xsd</DependentUpon>
