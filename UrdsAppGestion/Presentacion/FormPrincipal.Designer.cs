@@ -45,6 +45,8 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.barrar_abajo_nombre = new System.Windows.Forms.ToolStripStatusLabel();
             this.barra_abajo_bbdd = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verTareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -56,6 +58,7 @@
             this.entidadesToolStripMenuItem,
             this.comunidadesToolStripMenuItem,
             this.proveedoresToolStripMenuItem,
+            this.tareasToolStripMenuItem,
             this.comunicadosGeneralesToolStripMenuItem,
             this.archivoToolStripMenuItem});
             resources.ApplyResources(this.menuStrip1, "menuStrip1");
@@ -157,6 +160,19 @@
             this.barra_abajo_bbdd.Name = "barra_abajo_bbdd";
             resources.ApplyResources(this.barra_abajo_bbdd, "barra_abajo_bbdd");
             // 
+            // tareasToolStripMenuItem
+            // 
+            this.tareasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.verTareasToolStripMenuItem});
+            this.tareasToolStripMenuItem.Name = "tareasToolStripMenuItem";
+            resources.ApplyResources(this.tareasToolStripMenuItem, "tareasToolStripMenuItem");
+            // 
+            // verTareasToolStripMenuItem
+            // 
+            this.verTareasToolStripMenuItem.Name = "verTareasToolStripMenuItem";
+            resources.ApplyResources(this.verTareasToolStripMenuItem, "verTareasToolStripMenuItem");
+            this.verTareasToolStripMenuItem.Click += new System.EventHandler(this.verTareasToolStripMenuItem_Click);
+            // 
             // FormPrincipal
             // 
             resources.ApplyResources(this, "$this");
@@ -195,6 +211,8 @@
         private System.Windows.Forms.ToolStripMenuItem comunicadosGeneralesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem planContableToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mantenimientoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tareasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verTareasToolStripMenuItem;
     }
 }
 

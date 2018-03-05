@@ -152,6 +152,18 @@
   <data name="proveedoresToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <data name="verTareasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="verTareasToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ver tareas</value>
+  </data>
+  <data name="tareasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 20</value>
+  </data>
+  <data name="tareasToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tareas</value>
+  </data>
   <data name="comunicadosGeneralesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 20</value>
   </data>
@@ -394,6 +406,18 @@
   </data>
   <data name="&gt;&gt;barra_abajo_bbdd.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tareasToolStripMenuItem.Name" xml:space="preserve">
+    <value>tareasToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;tareasToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;verTareasToolStripMenuItem.Name" xml:space="preserve">
+    <value>verTareasToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;verTareasToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FormPrincipal</value>

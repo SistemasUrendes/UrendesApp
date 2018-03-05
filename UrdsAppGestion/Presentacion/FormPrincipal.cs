@@ -167,5 +167,22 @@ namespace UrdsAppGestión {
             }
 
         }
+
+        private void verTareasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name == "Tareas").SingleOrDefault<Form>();
+            if (existe != null)
+            {
+                existe.WindowState = FormWindowState.Maximized;
+                existe.BringToFront();
+            }
+            else
+            {
+                Presentacion.Tareas.FormTareasPrincipal newMDIChild = new Presentacion.Tareas.FormTareasPrincipal();
+                newMDIChild.MdiParent = this;
+                newMDIChild.WindowState = FormWindowState.Maximized;
+                newMDIChild.Show();
+            }
+        }
     }
 }
