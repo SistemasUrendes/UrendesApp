@@ -27,8 +27,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
             comboBox_Filtro.SelectedItem = "Todos";
             cargarDatagrid();
 
-
-
             if (dataGridView_Fondos.Rows.Count > 0) {
                 cargarDatagridDetalles();
             }
@@ -59,8 +57,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
 
             dataGridView_detallesFondos.Columns["IdEjercicio"].Visible = false;
 
-            dataGridView_detallesFondos.Columns["SaldoActual"].HeaderText = "Resultado";
-            dataGridView_detallesFondos.Columns["SaldoCierre"].HeaderText = "Saldo Periodo";
+            dataGridView_detallesFondos.Columns["SaldoActual"].HeaderText = "Resultados";
+            
+            dataGridView_detallesFondos.Columns["SaldoCierre"].HeaderText = "SaldoCierre";
             
         }
 
@@ -69,17 +68,14 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
 
             fondos = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridView_Fondos.DataSource = fondos;
-
             dataGridView_Fondos.Columns["Descripcion"].Width = 150;
-
             dataGridView_Fondos.Columns["NombreFondo"].Width = 200;
-
             dataGridView_Fondos.Columns["Descripcion"].HeaderText = "Bloque";
             
         }
         public void cargarDatagridDetalles()
         {
-            String sqlSelect = "SELECT com_detallesfondo.IdDetalleFondo, com_fondos.NombreFondo, com_ejercicios.Ejercicio, com_detallesfondo.SaldoInicial, com_detallesfondo.Entradas, com_detallesfondo.Salidas, com_detallesfondo.SaldoActual, com_detallesfondo.SaldoCierre, com_ejercicios.IdEjercicio FROM(com_detallesfondo INNER JOIN com_fondos ON com_detallesfondo.IdFondo = com_fondos.IdFondo) INNER JOIN com_ejercicios ON com_detallesfondo.IdEjercicio = com_ejercicios.IdEjercicio WHERE com_detallesfondo.IdFondo = " + dataGridView_Fondos.SelectedRows[0].Cells[0].Value.ToString() + " ORDER BY IdDetalleFondo DESC";
+            String sqlSelect = "SELECT com_detallesfondo.IdDetalleFondo, com_fondos.NombreFondo, com_ejercicios.Ejercicio, com_detallesfondo.SaldoInicial, com_detallesfondo.Entradas, com_detallesfondo.Salidas, com_detallesfondo.SaldoActual, com_detallesfondo.SaldoCierre, com_ejercicios.IdEjercicio, com_detallesfondo.Cierre FROM(com_detallesfondo INNER JOIN com_fondos ON com_detallesfondo.IdFondo = com_fondos.IdFondo) INNER JOIN com_ejercicios ON com_detallesfondo.IdEjercicio = com_ejercicios.IdEjercicio WHERE com_detallesfondo.IdFondo = " + dataGridView_Fondos.SelectedRows[0].Cells[0].Value.ToString() + " ORDER BY Ejercicio DESC";
 
             dataGridView_detallesFondos.DataSource = Persistencia.SentenciasSQL.select(sqlSelect);
             ajustarDatagrid();
@@ -268,9 +264,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
             String sqlUpdate = "UPDATE com_detallesfondo SET Entradas=" + totalEntradas.ToString().Replace(",",".") + ", Salidas=" + totalSalidas.ToString().Replace(",", ".") + ", SaldoActual=" + saldo.ToString().Replace(",", ".") + " WHERE IdDetalleFondo = " + idDetalleFondo;
 
             Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
-
             cargarDatagridDetalles();
-
         }
 
         private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -289,14 +283,17 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
 
                 cargarDatagridDetalles();
             }
-
-
         }
 
         private void iniciarConResultadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormIniciarFondo nueva = new FormIniciarFondo(this, id_comunidad_cargado, dataGridView_Fondos.SelectedRows[0].Cells[0].Value.ToString(), dataGridView_detallesFondos.SelectedRows[0].Cells[6].Value.ToString().Replace(",","."), dataGridView_detallesFondos.SelectedRows[0].Cells[0].Value.ToString());
             nueva.Show();
+        }
+
+        private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

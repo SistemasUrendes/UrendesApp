@@ -60,14 +60,14 @@
             this.textBox_descripcion.Location = new System.Drawing.Point(88, 27);
             this.textBox_descripcion.Name = "textBox_descripcion";
             this.textBox_descripcion.Size = new System.Drawing.Size(127, 20);
-            this.textBox_descripcion.TabIndex = 2;
+            this.textBox_descripcion.TabIndex = 1;
             // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(275, 106);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
+            this.button1.TabIndex = 3;
             this.button1.Text = "Guardar";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -88,7 +88,7 @@
             this.textBox_CC.Mask = "CCCC CCCC CCCC CCCC CCCC CCCC";
             this.textBox_CC.Name = "textBox_CC";
             this.textBox_CC.Size = new System.Drawing.Size(210, 20);
-            this.textBox_CC.TabIndex = 7;
+            this.textBox_CC.TabIndex = 2;
             this.textBox_CC.Leave += new System.EventHandler(this.textBox_CC_Leave);
             // 
             // FormBancos

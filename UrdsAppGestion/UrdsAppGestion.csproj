@@ -27,8 +27,8 @@
     <UpdateUrl>\\Urenux\app\App\</UpdateUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>194</ApplicationRevision>
-    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
+    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationVersion>1.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -502,11 +502,23 @@
     <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\FormVerInformeResumen.Designer.cs">
       <DependentUpon>FormVerInformeResumen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormAbonarVencimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormAbonarVencimiento.Designer.cs">
+      <DependentUpon>FormAbonarVencimiento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormIngresoFondo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormIngresoFondo.Designer.cs">
       <DependentUpon>FormIngresoFondo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormLiqCerrarOp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormLiqCerrarOp.Designer.cs">
+      <DependentUpon>FormLiqCerrarOp.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\DataSetProveedores.cs">
       <DependentUpon>DataSetProveedores.xsd</DependentUpon>
@@ -1282,8 +1294,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\ReportLiqDetallado.rdlc" />
     <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\ReportLiqResumen.rdlc" />
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormAbonarVencimiento.resx">
+      <DependentUpon>FormAbonarVencimiento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormIngresoFondo.resx">
       <DependentUpon>FormIngresoFondo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormLiqCerrarOp.resx">
+      <DependentUpon>FormLiqCerrarOp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\ProveedoresForms\FormAnyadirProveedor.resx">
       <DependentUpon>FormAnyadirProveedor.cs</DependentUpon>

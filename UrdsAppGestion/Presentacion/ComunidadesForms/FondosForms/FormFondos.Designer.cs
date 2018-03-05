@@ -49,6 +49,7 @@
             this.calcularToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iniciarConResultadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Fondos)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_detallesFondos)).BeginInit();
@@ -198,42 +199,43 @@
             this.indexarLiquidaciónToolStripMenuItem,
             this.calcularToolStripMenuItem,
             this.eliminarToolStripMenuItem,
-            this.iniciarConResultadoToolStripMenuItem});
+            this.iniciarConResultadoToolStripMenuItem,
+            this.cerrarToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(185, 158);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(185, 180);
             // 
             // entradasToolStripMenuItem
             // 
             this.entradasToolStripMenuItem.Name = "entradasToolStripMenuItem";
-            this.entradasToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.entradasToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.entradasToolStripMenuItem.Text = "Entradas";
             this.entradasToolStripMenuItem.Click += new System.EventHandler(this.entradasToolStripMenuItem_Click);
             // 
             // salidasToolStripMenuItem
             // 
             this.salidasToolStripMenuItem.Name = "salidasToolStripMenuItem";
-            this.salidasToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.salidasToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.salidasToolStripMenuItem.Text = "Salidas";
             this.salidasToolStripMenuItem.Click += new System.EventHandler(this.salidasToolStripMenuItem_Click);
             // 
             // indexarLiquidaciónToolStripMenuItem
             // 
             this.indexarLiquidaciónToolStripMenuItem.Name = "indexarLiquidaciónToolStripMenuItem";
-            this.indexarLiquidaciónToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.indexarLiquidaciónToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.indexarLiquidaciónToolStripMenuItem.Text = "Indexar Liquidación";
             this.indexarLiquidaciónToolStripMenuItem.Click += new System.EventHandler(this.indexarLiquidaciónToolStripMenuItem_Click);
             // 
             // calcularToolStripMenuItem
             // 
             this.calcularToolStripMenuItem.Name = "calcularToolStripMenuItem";
-            this.calcularToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.calcularToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.calcularToolStripMenuItem.Text = "Calcular";
             this.calcularToolStripMenuItem.Click += new System.EventHandler(this.calcularToolStripMenuItem_Click);
             // 
             // eliminarToolStripMenuItem
             // 
             this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
-            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.eliminarToolStripMenuItem.Text = "Eliminar";
             this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
             // 
@@ -243,6 +245,13 @@
             this.iniciarConResultadoToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.iniciarConResultadoToolStripMenuItem.Text = "Iniciar con Resultado";
             this.iniciarConResultadoToolStripMenuItem.Click += new System.EventHandler(this.iniciarConResultadoToolStripMenuItem_Click);
+            // 
+            // cerrarToolStripMenuItem
+            // 
+            this.cerrarToolStripMenuItem.Name = "cerrarToolStripMenuItem";
+            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.cerrarToolStripMenuItem.Text = "Cerrar";
+            this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
             // 
             // FormFondos
             // 
@@ -294,5 +303,6 @@
         private System.Windows.Forms.ToolStripMenuItem calcularToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iniciarConResultadoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cerrarToolStripMenuItem;
     }
 }

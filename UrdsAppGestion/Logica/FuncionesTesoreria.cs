@@ -235,9 +235,8 @@ namespace UrdsAppGestión.Logica
             String sqlActMovCA = "UPDATE com_movimientos SET com_movimientos.MovDevol = " + dato + " WHERE (((com_movimientos.IdMov)=" + id_movActulizar + "));";
             Persistencia.SentenciasSQL.InsertarGenerico(sqlActMovCA);
         }
-        public static int CreoVencimiento(String id_op, String id_entidad, String fecha, String importe, String importePto)
+        public static int CreoVencimientoID(String id_op, String id_entidad, String fecha, String importe, String importePto)
         {
-
             //CREO VENCIMIENTO
             String sqlDetOp = "INSERT INTO com_opdetalles (IdOp, IdEntidad, Fecha, FechaPrev, Importe, ImpOpDetPte) VALUES (" + id_op + "," + id_entidad + ",'" + fecha + "','" + fecha + "'," + importe + ", " + importePto + ")";
 
@@ -539,7 +538,8 @@ namespace UrdsAppGestión.Logica
         {
             Persistencia.SentenciasSQL.InsertarGenerico("DELETE FROM com_operaciones WHERE IdOp =  " + idOperacion);
         }
-        public static void BorrarMovDevol(String idMovimiento) {
+        public static void BorrarMovDevol(String idMovimiento)
+        {
             String sqlActMovs, sqlBorraDets, sqlBorraMov;
 
             sqlActMovs = "UPDATE com_movimientos SET com_movimientos.MovDevol = Null WHERE com_movimientos.MovDevol =" + idMovimiento + ";";
@@ -553,24 +553,23 @@ namespace UrdsAppGestión.Logica
 
             Persistencia.SentenciasSQL.InsertarGenerico(sqlBorraMov);
         }
-        public static void EntradaAbonoRemesa(String idMovimiento,String idEjercicio, String idCuenta, String idEntidad, String fecha, String importe, String detalle, String idUser)
+        public static void EntradaAbonoRemesa(String idMovimiento, String idEjercicio, String idCuenta, String idEntidad, String fecha, String importe, String detalle, String idUser)
         {
             String IdOpDet = "";
             String fechaHoy = (Convert.ToDateTime(DateTime.Now)).ToString("yyyy-MM-dd");
 
             String sqlidOpDet = "SELECT IdOpDet FROM com_detmovs WHERE IdMov = " + idMovimiento;
             DataTable IdOpDetTodos = Persistencia.SentenciasSQL.select(sqlidOpDet);
-            if (IdOpDetTodos.Rows.Count > 0) {
+            if (IdOpDetTodos.Rows.Count > 0)
+            {
                 IdOpDet = IdOpDetTodos.Rows[0][0].ToString();
             }
 
-            String sqlInsert = "INSERT INTO com_movimientos (IdEjercicio, IdCuenta, IdDetTipoMov, IdEntidad, Fecha, Importe, Detalle, Fuser, IdUser, ImpMovEnt, ImpMovSal, ImpMovNeto) VALUES (" + idEjercicio + ", " + idCuenta + ",6," + idEntidad + ",'" + fecha + "'," + (Convert.ToDouble(importe) * -1).ToString().Replace(",",".") + ",'" + detalle + "','" + fechaHoy + "'," + idUser + ",0.00,0.00,0.00)";
+            String sqlInsert = "INSERT INTO com_movimientos (IdEjercicio, IdCuenta, IdDetTipoMov, IdEntidad, Fecha, Importe, Detalle, Fuser, IdUser, ImpMovEnt, ImpMovSal, ImpMovNeto) VALUES (" + idEjercicio + ", " + idCuenta + ",6," + idEntidad + ",'" + fecha + "'," + (Convert.ToDouble(importe) * -1).ToString().Replace(",", ".") + ",'" + detalle + "','" + fechaHoy + "'," + idUser + ",0.00,0.00,0.00)";
 
             int idMov = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsert);
 
-            CreaDetalleMovimiento(idMov.ToString(), IdOpDet, (Convert.ToDouble(importe) * -1).ToString().Replace(",","."));
-            
-
+            CreaDetalleMovimiento(idMov.ToString(), IdOpDet, (Convert.ToDouble(importe) * -1).ToString().Replace(",", "."));
         }
     }
 }

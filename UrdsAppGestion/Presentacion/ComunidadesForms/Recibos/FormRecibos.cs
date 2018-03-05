@@ -297,7 +297,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms
 
             ////////############## CREO VENCIMIENTO Y MOVIMIENTOS SOBRE LA OPERACION DE ABONO ##############//////////////////
 
-            int op_det = Logica.FuncionesTesoreria.CreoVencimiento(idOp, id_entidad, fechaHoy, Logica.FuncionesGenerales.ArreglarImportes(importe), Logica.FuncionesGenerales.ArreglarImportes(importe));
+            int op_det = Logica.FuncionesTesoreria.CreoVencimientoID(idOp, id_entidad, fechaHoy, Logica.FuncionesGenerales.ArreglarImportes(importe), Logica.FuncionesGenerales.ArreglarImportes(importe));
 
             //CREO EL RECIBO
             int id_recibo = Logica.FuncionesTesoreria.CreoReciboID(id_comunidad_cargado, id_entidad, fechaHoy, "-" + importe, "-" + importe, "Recibo de Abono");

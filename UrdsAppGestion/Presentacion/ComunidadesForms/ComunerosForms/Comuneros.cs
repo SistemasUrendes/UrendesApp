@@ -285,6 +285,11 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                     CargosForms.FormCargosAlta nuevo = (CargosForms.FormCargosAlta)existe;
                     nuevo.recibirComunero(dataGridView_comuneros.SelectedCells[0].Value.ToString(), dataGridView_comuneros.SelectedCells[2].Value.ToString());
                 }
+                if (nombre_form_anterior == "FormAbonarVencimiento")
+                {
+                    OperacionesForms.FormAbonarVencimiento nuevo = (OperacionesForms.FormAbonarVencimiento)existe;
+                    nuevo.recibirComunero(dataGridView_comuneros.SelectedCells[1].Value.ToString(), dataGridView_comuneros.SelectedCells[2].Value.ToString());
+                }
             }
             this.Close();
         }

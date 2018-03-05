@@ -122,7 +122,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
 
             ////////############################# CREO VENCIMIENTO NUEVO Y EL RECIBO ######################################//////////////////
 
-            int op_det = Logica.FuncionesTesoreria.CreoVencimiento(id_op_pasado, id_nueva_entidad, fechaHoy, Logica.FuncionesGenerales.ArreglarImportes(total_importe_vencimientos.ToString()), Logica.FuncionesGenerales.ArreglarImportes(total_importe_vencimientos.ToString()));
+            int op_det = Logica.FuncionesTesoreria.CreoVencimientoID(id_op_pasado, id_nueva_entidad, fechaHoy, Logica.FuncionesGenerales.ArreglarImportes(total_importe_vencimientos.ToString()), Logica.FuncionesGenerales.ArreglarImportes(total_importe_vencimientos.ToString()));
 
             //CREO EL RECIBO
             int id_recibo = Logica.FuncionesTesoreria.CreoReciboID(id_comunidad_cargado, id_nueva_entidad, fechaHoy, Logica.FuncionesGenerales.ArreglarImportes(total_importe_vencimientos.ToString()), Logica.FuncionesGenerales.ArreglarImportes(total_importe_vencimientos.ToString()), "Recibo reasignado");
@@ -173,7 +173,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
 
             ////////############## CREO VENCIMIENTO Y MOVIMIENTOS SOBRE LA OPERACION DE ABONO ##############//////////////////
 
-            int op_det = Logica.FuncionesTesoreria.CreoVencimiento(id_op_pasado, id_entidad, fechaHoy,"-" + Logica.FuncionesGenerales.ArreglarImportes(importe), "-" + Logica.FuncionesGenerales.ArreglarImportes(importe));
+            int op_det = Logica.FuncionesTesoreria.CreoVencimientoID(id_op_pasado, id_entidad, fechaHoy,"-" + Logica.FuncionesGenerales.ArreglarImportes(importe), "-" + Logica.FuncionesGenerales.ArreglarImportes(importe));
 
             //CREO EL RECIBO
             int id_recibo = Logica.FuncionesTesoreria.CreoReciboID(id_comunidad_cargado, id_entidad, fechaHoy,"-" + importe, "-" + importe,"Recibo de Abono");

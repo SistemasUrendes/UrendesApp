@@ -295,5 +295,11 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             OperacionesForms.FormIngresoFondo nueva = new OperacionesForms.FormIngresoFondo(this,id_comunidad_cargado);
             nueva.Show();
         }
+
+        private void abonarVencimientoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OperacionesForms.FormAbonarVencimiento nueva = new OperacionesForms.FormAbonarVencimiento(this, dataGridView_operaciones.SelectedRows[0].Cells[0].Value.ToString(),id_comunidad_cargado);
+            nueva.Show();
+        }
     }
 }

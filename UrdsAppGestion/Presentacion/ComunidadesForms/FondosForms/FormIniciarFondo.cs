@@ -61,7 +61,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
 
         private void button_fondoVacio_Click(object sender, EventArgs e)
         {
-            String sqlInsert = "INSERT INTO com_detallesfondo (IdFondo, IdEjercicio, Entradas, Salidas, SaldoInicial, SaldoActual, SaldoCierre) VALUES (" + idFondo + "," + comboBox_ejercicio.SelectedValue + ",0.00,0.00," + textBox_importe.Text + "," + textBox_importe.Text + ",0.00)";
+            String sqlInsert = "INSERT INTO com_detallesfondo (IdFondo, IdEjercicio, Entradas, Salidas, SaldoInicial, SaldoActual, SaldoCierre) VALUES (" + idFondo + "," + comboBox_ejercicio.SelectedValue + ",0.00,0.00,0.00,0.00,0.00)";
 
             Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
             form_anterior.cargarDatagrid();
@@ -145,7 +145,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
             String sqlInsertarLiquidacionDetEntrada = "INSERT INTO com_opdetliquidacion (IdOp, IdLiquidacion, Porcentaje, Importe) VALUES (" + idOpEntrada + "," + idLiquidacionEntrada + ",1," + ImporteResultado.Replace(',', '.') + ")";
             Persistencia.SentenciasSQL.InsertarGenerico(sqlInsertarLiquidacionDetEntrada);
 
-            String sqlInsert = "INSERT INTO com_detallesfondo (IdFondo, IdEjercicio, Entradas, Salidas, SaldoInicial, SaldoActual, SaldoCierre) VALUES (" + idFondo + "," + comboBox_ejercicio.SelectedValue + ",0.00,0.00," + ImporteResultado.Replace(',', '.') + ",0.00,0.00)";
+            String sqlInsert = "INSERT INTO com_detallesfondo (IdFondo, IdEjercicio, Entradas, Salidas, SaldoInicial, SaldoActual, SaldoCierre) VALUES (" + idFondo + "," + comboBox_ejercicio.SelectedValue + ",0.00,0.00," + ImporteResultado.Replace(',', '.') + "," + ImporteResultado.Replace(',', '.') + ",0.00)";
 
             int idDetalleNueva = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsert);
 
