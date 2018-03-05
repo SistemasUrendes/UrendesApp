@@ -27,7 +27,7 @@
     <UpdateUrl>\\Urenux\app\App\</UpdateUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -487,6 +487,12 @@
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\FormVerInformeResumen.Designer.cs">
       <DependentUpon>FormVerInformeResumen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormAbonarVencimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormAbonarVencimiento.Designer.cs">
+      <DependentUpon>FormAbonarVencimiento.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormIngresoFondo.cs">
       <SubType>Form</SubType>
@@ -1270,6 +1276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\ReportLiqDetallado.rdlc" />
     <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\Informes\ReportLiqResumen.rdlc" />
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormAbonarVencimiento.resx">
+      <DependentUpon>FormAbonarVencimiento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormIngresoFondo.resx">
       <DependentUpon>FormIngresoFondo.cs</DependentUpon>
     </EmbeddedResource>

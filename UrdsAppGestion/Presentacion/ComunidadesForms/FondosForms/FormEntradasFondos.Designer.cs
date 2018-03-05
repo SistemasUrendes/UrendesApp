@@ -49,14 +49,14 @@
             this.dataGridView_entradas.ReadOnly = true;
             this.dataGridView_entradas.RowHeadersVisible = false;
             this.dataGridView_entradas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_entradas.Size = new System.Drawing.Size(645, 516);
+            this.dataGridView_entradas.Size = new System.Drawing.Size(877, 516);
             this.dataGridView_entradas.TabIndex = 0;
             this.dataGridView_entradas.DoubleClick += new System.EventHandler(this.dataGridView_entradas_DoubleClick);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(310, 537);
+            this.label1.Location = new System.Drawing.Point(542, 537);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 13);
             this.label1.TabIndex = 1;
@@ -65,7 +65,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(482, 537);
+            this.label2.Location = new System.Drawing.Point(714, 537);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(85, 13);
             this.label2.TabIndex = 2;
@@ -73,7 +73,7 @@
             // 
             // textBox_importe
             // 
-            this.textBox_importe.Location = new System.Drawing.Point(388, 534);
+            this.textBox_importe.Location = new System.Drawing.Point(620, 534);
             this.textBox_importe.Name = "textBox_importe";
             this.textBox_importe.ReadOnly = true;
             this.textBox_importe.Size = new System.Drawing.Size(84, 20);
@@ -82,7 +82,7 @@
             // 
             // textBox_pendiente
             // 
-            this.textBox_pendiente.Location = new System.Drawing.Point(573, 534);
+            this.textBox_pendiente.Location = new System.Drawing.Point(805, 534);
             this.textBox_pendiente.Name = "textBox_pendiente";
             this.textBox_pendiente.ReadOnly = true;
             this.textBox_pendiente.Size = new System.Drawing.Size(84, 20);
@@ -93,7 +93,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(674, 571);
+            this.ClientSize = new System.Drawing.Size(901, 571);
             this.Controls.Add(this.textBox_pendiente);
             this.Controls.Add(this.textBox_importe);
             this.Controls.Add(this.label2);

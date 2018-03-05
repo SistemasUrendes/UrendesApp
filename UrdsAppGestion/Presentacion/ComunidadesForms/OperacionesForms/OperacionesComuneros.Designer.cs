@@ -59,6 +59,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button_fondo = new System.Windows.Forms.Button();
+            this.abonarVencimientoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_operaciones)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -231,10 +232,11 @@
             this.verMovimientosToolStripMenuItem,
             this.verOperacionesToolStripMenuItem,
             this.compensarToolStripMenuItem,
+            this.abonarVencimientoToolStripMenuItem,
             this.reasignarToolStripMenuItem,
             this.eliminarOperaciónToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(189, 136);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(189, 158);
             // 
             // marcarComoFavoritaToolStripMenuItem
             // 
@@ -345,6 +347,13 @@
             this.button_fondo.UseVisualStyleBackColor = true;
             this.button_fondo.Click += new System.EventHandler(this.button_fondo_Click);
             // 
+            // abonarVencimientoToolStripMenuItem
+            // 
+            this.abonarVencimientoToolStripMenuItem.Name = "abonarVencimientoToolStripMenuItem";
+            this.abonarVencimientoToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.abonarVencimientoToolStripMenuItem.Text = "Abonar Vencimiento";
+            this.abonarVencimientoToolStripMenuItem.Click += new System.EventHandler(this.abonarVencimientoToolStripMenuItem_Click);
+            // 
             // Operaciones_comuneros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -417,5 +426,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem eliminarOperaciónToolStripMenuItem;
         private System.Windows.Forms.Button button_fondo;
+        private System.Windows.Forms.ToolStripMenuItem abonarVencimientoToolStripMenuItem;
     }
 }

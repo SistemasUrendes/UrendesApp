@@ -235,9 +235,8 @@ namespace UrdsAppGestión.Logica
             String sqlActMovCA = "UPDATE com_movimientos SET com_movimientos.MovDevol = " + dato + " WHERE (((com_movimientos.IdMov)=" + id_movActulizar + "));";
             Persistencia.SentenciasSQL.InsertarGenerico(sqlActMovCA);
         }
-        public static int CreoVencimiento(String id_op, String id_entidad, String fecha, String importe, String importePto)
+        public static int CreoVencimientoID(String id_op, String id_entidad, String fecha, String importe, String importePto)
         {
-
             //CREO VENCIMIENTO
             String sqlDetOp = "INSERT INTO com_opdetalles (IdOp, IdEntidad, Fecha, FechaPrev, Importe, ImpOpDetPte) VALUES (" + id_op + "," + id_entidad + ",'" + fecha + "','" + fecha + "'," + importe + ", " + importePto + ")";
 
