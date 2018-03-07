@@ -36,6 +36,7 @@
             this.button_Editar = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.establecerPrincipalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cerrarEjercicioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Ejercicios)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -54,6 +55,7 @@
             this.dataGridView_Ejercicios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_Ejercicios.Size = new System.Drawing.Size(920, 442);
             this.dataGridView_Ejercicios.TabIndex = 0;
+            this.dataGridView_Ejercicios.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView_Ejercicios_MouseClick);
             // 
             // button_Añadir
             // 
@@ -90,15 +92,23 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.establecerPrincipalToolStripMenuItem});
+            this.establecerPrincipalToolStripMenuItem,
+            this.cerrarEjercicioToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(177, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(177, 48);
             // 
             // establecerPrincipalToolStripMenuItem
             // 
             this.establecerPrincipalToolStripMenuItem.Name = "establecerPrincipalToolStripMenuItem";
             this.establecerPrincipalToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.establecerPrincipalToolStripMenuItem.Text = "Establecer Principal";
+            // 
+            // cerrarEjercicioToolStripMenuItem
+            // 
+            this.cerrarEjercicioToolStripMenuItem.Name = "cerrarEjercicioToolStripMenuItem";
+            this.cerrarEjercicioToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.cerrarEjercicioToolStripMenuItem.Text = "Cerrar Ejercicio";
+            this.cerrarEjercicioToolStripMenuItem.Click += new System.EventHandler(this.cerrarEjercicioToolStripMenuItem_Click);
             // 
             // Ejercicios
             // 
@@ -129,5 +139,6 @@
         private System.Windows.Forms.Button button_Editar;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem establecerPrincipalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cerrarEjercicioToolStripMenuItem;
     }
 }

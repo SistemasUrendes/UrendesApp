@@ -88,6 +88,18 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
                 DataTable ultimaLiquidacion = Persistencia.SentenciasSQL.select(sqlUltimaLiquidacion);
                 if (ultimaLiquidacion.Rows.Count > 0)
                 {
+                    String sqlSelect = "SELECT SaldoActual FROM com_detallesfondo WHERE IdDetalleFondo = " + idDetalleFondoAnterior;
+                    DataTable saldo = Persistencia.SentenciasSQL.select(sqlSelect);
+                    String saldoResultado = "0.00";
+
+                    if (saldo.Rows.Count > 0)
+                    {
+                        saldoResultado = saldo.Rows[0][0].ToString();
+                    }
+
+                    String sqlUpdateAnterior = "UPDATE com_detallesfondo SET Resultado=0.00, SaldoActual=" + saldoResultado.ToString().Replace(",", ".") + ", SaldoCierre=" + saldoResultado.ToString().Replace(",", ".") + ",Cierre=-1 WHERE IdDetalleFondo = " + idDetalleFondoAnterior;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdateAnterior);
+
                     String descripcionSalida = "SALIDA TRASPASO FONDO";
                     String idLiquidacionSalida = ultimaLiquidacion.Rows[0][0].ToString();
 
@@ -106,6 +118,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
                     //LIQUIDACIONES
                     String sqlInsertarLiquidacionDet = "INSERT INTO com_opdetliquidacion (IdOp, IdLiquidacion, Porcentaje, Importe) VALUES (" + idOpSalida + "," + idLiquidacionSalida + ",1," + ImporteResultado.Replace(',', '.') + ")";
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlInsertarLiquidacionDet);
+
                 }
             }
 
@@ -145,7 +158,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
             String sqlInsertarLiquidacionDetEntrada = "INSERT INTO com_opdetliquidacion (IdOp, IdLiquidacion, Porcentaje, Importe) VALUES (" + idOpEntrada + "," + idLiquidacionEntrada + ",1," + ImporteResultado.Replace(',', '.') + ")";
             Persistencia.SentenciasSQL.InsertarGenerico(sqlInsertarLiquidacionDetEntrada);
 
-            String sqlInsert = "INSERT INTO com_detallesfondo (IdFondo, IdEjercicio, Entradas, Salidas, SaldoInicial, SaldoActual, SaldoCierre) VALUES (" + idFondo + "," + comboBox_ejercicio.SelectedValue + ",0.00,0.00," + ImporteResultado.Replace(',', '.') + "," + ImporteResultado.Replace(',', '.') + ",0.00)";
+            String sqlInsert = "INSERT INTO com_detallesfondo (IdFondo, IdEjercicio, Entradas, Salidas, SaldoInicial, Resultado, SaldoActual, SaldoCierre) VALUES (" + idFondo + "," + comboBox_ejercicio.SelectedValue + ",0.00,0.00," + ImporteResultado.Replace(',', '.') + ",0.00," + ImporteResultado.Replace(',', '.') + ",0.00)";
 
             int idDetalleNueva = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsert);
 
