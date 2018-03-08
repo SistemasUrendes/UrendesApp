@@ -56,7 +56,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
             listBox_liquidaciones.ValueMember = "IdLiquidacion";
             listBox_liquidaciones.DisplayMember = "Liquidacion";
 
-            textBox_importe.Text = ImporteResultado;
+            if (ImporteResultado != "")
+                textBox_importe.Text = ImporteResultado;
+            else
+                textBox_importe.Text = "0.00";
         }
 
         private void button_fondoVacio_Click(object sender, EventArgs e)
@@ -71,6 +74,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
 
         private void button1_traspaso_Click(object sender, EventArgs e)
         {
+            if (listBox_liquidaciones.SelectedItems.Count == 0) {
+                MessageBox.Show("Debes elegir una liquidación");
+                return;
+            }
             ImporteResultado = textBox_importe.Text;
             String idEntidadComunidad = (Persistencia.SentenciasSQL.select("SELECT IdEntidad FROM com_comunidades WHERE IdComunidad = " + idComunidad)).Rows[0][0].ToString();
 
@@ -88,17 +95,17 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
                 DataTable ultimaLiquidacion = Persistencia.SentenciasSQL.select(sqlUltimaLiquidacion);
                 if (ultimaLiquidacion.Rows.Count > 0)
                 {
-                    String sqlSelect = "SELECT SaldoActual FROM com_detallesfondo WHERE IdDetalleFondo = " + idDetalleFondoAnterior;
+                    String sqlSelect = "SELECT SaldoActual,Resultado FROM com_detallesfondo WHERE IdDetalleFondo = " + idDetalleFondoAnterior;
                     DataTable saldo = Persistencia.SentenciasSQL.select(sqlSelect);
                     String saldoResultado = "0.00";
+                    String Resultado = "0.00";
+
 
                     if (saldo.Rows.Count > 0)
                     {
                         saldoResultado = saldo.Rows[0][0].ToString();
+                        Resultado = saldo.Rows[0][1].ToString();
                     }
-
-                    String sqlUpdateAnterior = "UPDATE com_detallesfondo SET Resultado=0.00, SaldoActual=" + saldoResultado.ToString().Replace(",", ".") + ", SaldoCierre=" + saldoResultado.ToString().Replace(",", ".") + ",Cierre=-1 WHERE IdDetalleFondo = " + idDetalleFondoAnterior;
-                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdateAnterior);
 
                     String descripcionSalida = "SALIDA TRASPASO FONDO";
                     String idLiquidacionSalida = ultimaLiquidacion.Rows[0][0].ToString();
@@ -119,6 +126,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
                     String sqlInsertarLiquidacionDet = "INSERT INTO com_opdetliquidacion (IdOp, IdLiquidacion, Porcentaje, Importe) VALUES (" + idOpSalida + "," + idLiquidacionSalida + ",1," + ImporteResultado.Replace(',', '.') + ")";
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlInsertarLiquidacionDet);
 
+                    String sqlUpdateAnterior = "UPDATE com_detallesfondo SET Resultado = " + Resultado.ToString().Replace(",", ".") + ", SaldoCierre=" + saldoResultado.ToString().Replace(",", ".") + ",Cierre=-1 WHERE IdDetalleFondo = " + idDetalleFondoAnterior;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdateAnterior);
+
+
                 }
             }
 
@@ -138,6 +149,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
                 if (DateTime.Compare(Convert.ToDateTime(fechaLiq.Rows[0][0].ToString()),Convert.ToDateTime(FechaAnterior)) < 0) {
                     FechaAnterior = fechaLiq.Rows[0][0].ToString();
                     idLiquidacionEntrada = row[0].ToString();
+                }else {
+                    idLiquidacionEntrada = row[0].ToString();
                 }
             }
 
@@ -147,6 +160,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
             //IVA
             String sqlInsertIvaEntrada = "INSERT INTO com_opdetiva (IdOp, Base, IdIVA, IVA) VALUES (" + idOpEntrada + "," + ImporteResultado.Replace(',', '.') + ",1,0.00)";
             Persistencia.SentenciasSQL.InsertarGenerico(sqlInsertIvaEntrada);
+
             //REPARTO
             //BUSCO EL BLOQUE PRINCIPAL
             String sqlInsertRepartoEntrada = "INSERT INTO com_opdetbloques (IdOp, IdBloque, Porcentaje, Importe) VALUES (" + idOpEntrada + "," + IdBloque + ",1," + ImporteResultado.Replace(',', '.') + ")";

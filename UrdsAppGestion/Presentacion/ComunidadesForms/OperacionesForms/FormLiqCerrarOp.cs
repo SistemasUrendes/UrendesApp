@@ -47,7 +47,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             String fechaHoy = (Convert.ToDateTime(DateTime.Now)).ToString("yyyy-MM-dd");
             String idCuentaCom = Logica.FuncionesTesoreria.CuentaCompesaciones(idComunidad);
 
-            if (idCuentaCom == "")
+            if (idCuentaCom == "No")
             {
                 MessageBox.Show("Debes crear una cuenta de compesaciones para la comunidad");
                 return;

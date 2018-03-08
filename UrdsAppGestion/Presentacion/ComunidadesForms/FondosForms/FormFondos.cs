@@ -152,8 +152,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
 
         private void detallesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormFondosDetalles nueva = new FormFondosDetalles(id_comunidad_cargado, dataGridView_Fondos.SelectedRows[0].Cells[0].Value.ToString());
-            nueva.Show();
+
         }
 
         private void dataGridView_Fondos_MouseClick(object sender, MouseEventArgs e)
@@ -263,7 +262,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
 
             saldo = totalEntradas - totalSalidas;
 
-            String sqlUpdate = "UPDATE com_detallesfondo SET Entradas=" + totalEntradas.ToString().Replace(",",".") + ", Salidas=" + totalSalidas.ToString().Replace(",", ".") + ", SaldoActual=" + saldo.ToString().Replace(",", ".") + " + com_detallesfondo.SaldoInicial, Resultado=" + saldo.ToString().Replace(",", ".") + "   WHERE IdDetalleFondo = " + idDetalleFondo;
+            String sqlUpdate = "UPDATE com_detallesfondo SET Entradas=" + totalEntradas.ToString().Replace(",",".") + ", Salidas=" + totalSalidas.ToString().Replace(",", ".") + ", SaldoActual=" + saldo.ToString().Replace(",", ".") + " + com_detallesfondo.SaldoInicial, Resultado=" + saldo.ToString().Replace(",", ".") + " WHERE IdDetalleFondo = " + idDetalleFondo;
 
             Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
             cargarDatagridDetalles();
@@ -296,6 +295,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
         private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void informeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Informes.FormVerInformeCuentas nueva = new Informes.FormVerInformeCuentas(id_comunidad_cargado);
+            nueva.Show();
         }
     }
 }

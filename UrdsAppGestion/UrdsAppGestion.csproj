@@ -27,7 +27,7 @@
     <UpdateUrl>\\Urenux\app\App\</UpdateUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationRevision>10</ApplicationRevision>
     <ApplicationVersion>1.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -384,12 +384,6 @@
     <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormEntradasFondos.Designer.cs">
       <DependentUpon>FormEntradasFondos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormFondosDetalles.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormFondosDetalles.Designer.cs">
-      <DependentUpon>FormFondosDetalles.cs</DependentUpon>
-    </Compile>
     <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormIndenxarLiquidacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -407,6 +401,20 @@
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormSalidasFondos.Designer.cs">
       <DependentUpon>FormSalidasFondos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetFondosInforme.cs">
+      <DependentUpon>DataSetFondosInforme.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetFondosInforme.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetFondosInforme.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\Informes\FormVerInformeCuentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\Informes\FormVerInformeCuentas.Designer.cs">
+      <DependentUpon>FormVerInformeCuentas.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\Informes\InformeDeudasComunero\DataSetDeudasComunero.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1259,9 +1267,6 @@
     <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\FormEntradasFondos.resx">
       <DependentUpon>FormEntradasFondos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\FormFondosDetalles.resx">
-      <DependentUpon>FormFondosDetalles.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\FormIndenxarLiquidacion.resx">
       <DependentUpon>FormIndenxarLiquidacion.cs</DependentUpon>
     </EmbeddedResource>
@@ -1271,6 +1276,10 @@
     <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\FormSalidasFondos.resx">
       <DependentUpon>FormSalidasFondos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\Informes\FormVerInformeCuentas.resx">
+      <DependentUpon>FormVerInformeCuentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\Informes\ReportCuentas.rdlc" />
     <EmbeddedResource Include="Presentacion\ComunidadesForms\Informes\InformeDeudasComunero\FormInformeDeudasComunero.resx">
       <DependentUpon>FormInformeDeudasComunero.cs</DependentUpon>
     </EmbeddedResource>
@@ -1677,6 +1686,17 @@
     </None>
     <None Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\DataSetDeudasDivision.xss">
       <DependentUpon>DataSetDeudasDivision.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetFondosInforme.xsc">
+      <DependentUpon>DataSetFondosInforme.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetFondosInforme.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetFondosInforme.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetFondosInforme.xss">
+      <DependentUpon>DataSetFondosInforme.xsd</DependentUpon>
     </None>
     <None Include="Presentacion\ComunidadesForms\Informes\InformeDeudasComunero\DataSetDeudasComunero.xsc">
       <DependentUpon>DataSetDeudasComunero.xsd</DependentUpon>

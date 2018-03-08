@@ -37,9 +37,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView_Fondos = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.detallesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inciarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarFondoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.informeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView_detallesFondos = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -137,18 +137,11 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.detallesToolStripMenuItem,
             this.inciarToolStripMenuItem,
-            this.cerrarFondoToolStripMenuItem});
+            this.cerrarFondoToolStripMenuItem,
+            this.informeToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(144, 70);
-            // 
-            // detallesToolStripMenuItem
-            // 
-            this.detallesToolStripMenuItem.Name = "detallesToolStripMenuItem";
-            this.detallesToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.detallesToolStripMenuItem.Text = "Detalles";
-            this.detallesToolStripMenuItem.Click += new System.EventHandler(this.detallesToolStripMenuItem_Click);
             // 
             // inciarToolStripMenuItem
             // 
@@ -163,6 +156,13 @@
             this.cerrarFondoToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.cerrarFondoToolStripMenuItem.Text = "Cerrar Fondo";
             this.cerrarFondoToolStripMenuItem.Click += new System.EventHandler(this.cerrarFondoToolStripMenuItem_Click);
+            // 
+            // informeToolStripMenuItem
+            // 
+            this.informeToolStripMenuItem.Name = "informeToolStripMenuItem";
+            this.informeToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.informeToolStripMenuItem.Text = "Informe";
+            this.informeToolStripMenuItem.Click += new System.EventHandler(this.informeToolStripMenuItem_Click);
             // 
             // dataGridView_detallesFondos
             // 
@@ -202,7 +202,7 @@
             this.iniciarConResultadoToolStripMenuItem,
             this.cerrarToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(185, 180);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(185, 158);
             // 
             // entradasToolStripMenuItem
             // 
@@ -223,6 +223,7 @@
             this.indexarLiquidaciónToolStripMenuItem.Name = "indexarLiquidaciónToolStripMenuItem";
             this.indexarLiquidaciónToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.indexarLiquidaciónToolStripMenuItem.Text = "Indexar Liquidación";
+            this.indexarLiquidaciónToolStripMenuItem.Visible = false;
             this.indexarLiquidaciónToolStripMenuItem.Click += new System.EventHandler(this.indexarLiquidaciónToolStripMenuItem_Click);
             // 
             // calcularToolStripMenuItem
@@ -291,7 +292,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView_Fondos;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem detallesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inciarToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridView_detallesFondos;
         private System.Windows.Forms.Label label2;
@@ -304,5 +304,6 @@
         private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iniciarConResultadoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem informeToolStripMenuItem;
     }
 }

@@ -38,13 +38,13 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
                 if (nombre_form_anterior == "FormOperacionesLiquidacion")
                 {
                     OperacionesForms.FormOperacionesLiquidacion nuevo = (OperacionesForms.FormOperacionesLiquidacion)existe;
-                    nuevo.recogerBloque(dataGridView_Liquidaciones.SelectedCells[0].Value.ToString(), dataGridView_Liquidaciones.SelectedCells[8].Value.ToString());
+                    nuevo.recogerBloque(dataGridView_Liquidaciones.SelectedCells[0].Value.ToString(), dataGridView_Liquidaciones.SelectedCells[4].Value.ToString());
                 }
 
                 if (nombre_form_anterior == "FormProvisionesDotarAplicar2")
                 {
                     ProvisionesForms.FormProvisionesDotarAplicar2 nuevo = (ProvisionesForms.FormProvisionesDotarAplicar2)existe;
-                    nuevo.recogerBloque(dataGridView_Liquidaciones.SelectedCells[0].Value.ToString(), dataGridView_Liquidaciones.SelectedCells[8].Value.ToString());
+                    nuevo.recogerBloque(dataGridView_Liquidaciones.SelectedCells[0].Value.ToString(), dataGridView_Liquidaciones.SelectedCells[4].Value.ToString());
                 }
             }
             this.Close();
