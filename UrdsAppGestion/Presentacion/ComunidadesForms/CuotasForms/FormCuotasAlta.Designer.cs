@@ -51,6 +51,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.checkBox_fondo = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.checkBox_liquidable = new System.Windows.Forms.CheckBox();
+            this.comboBox_subcuenta = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // textBox_Cuota
@@ -100,7 +103,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(26, 200);
+            this.label3.Location = new System.Drawing.Point(26, 198);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(46, 13);
             this.label3.TabIndex = 6;
@@ -109,7 +112,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(26, 89);
+            this.label5.Location = new System.Drawing.Point(26, 90);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(64, 13);
             this.label5.TabIndex = 8;
@@ -126,14 +129,14 @@
             // 
             // textBox_FEmision
             // 
-            this.textBox_FEmision.Location = new System.Drawing.Point(132, 228);
+            this.textBox_FEmision.Location = new System.Drawing.Point(132, 252);
             this.textBox_FEmision.Name = "textBox_FEmision";
             this.textBox_FEmision.Size = new System.Drawing.Size(100, 20);
             this.textBox_FEmision.TabIndex = 11;
             // 
             // textBox_FVencimiento
             // 
-            this.textBox_FVencimiento.Location = new System.Drawing.Point(132, 255);
+            this.textBox_FVencimiento.Location = new System.Drawing.Point(132, 279);
             this.textBox_FVencimiento.Name = "textBox_FVencimiento";
             this.textBox_FVencimiento.Size = new System.Drawing.Size(100, 20);
             this.textBox_FVencimiento.TabIndex = 12;
@@ -141,7 +144,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(26, 231);
+            this.label6.Location = new System.Drawing.Point(26, 255);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 13);
             this.label6.TabIndex = 13;
@@ -150,7 +153,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(26, 258);
+            this.label7.Location = new System.Drawing.Point(26, 282);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(101, 13);
             this.label7.TabIndex = 14;
@@ -158,7 +161,7 @@
             // 
             // button_Guardar
             // 
-            this.button_Guardar.Location = new System.Drawing.Point(216, 293);
+            this.button_Guardar.Location = new System.Drawing.Point(218, 318);
             this.button_Guardar.Name = "button_Guardar";
             this.button_Guardar.Size = new System.Drawing.Size(75, 23);
             this.button_Guardar.TabIndex = 15;
@@ -168,7 +171,7 @@
             // 
             // button_Cancelar
             // 
-            this.button_Cancelar.Location = new System.Drawing.Point(297, 293);
+            this.button_Cancelar.Location = new System.Drawing.Point(299, 318);
             this.button_Cancelar.Name = "button_Cancelar";
             this.button_Cancelar.Size = new System.Drawing.Size(75, 23);
             this.button_Cancelar.TabIndex = 16;
@@ -205,7 +208,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(26, 145);
+            this.label9.Location = new System.Drawing.Point(26, 144);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(40, 13);
             this.label9.TabIndex = 20;
@@ -224,7 +227,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(26, 173);
+            this.label10.Location = new System.Drawing.Point(26, 171);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(84, 13);
             this.label10.TabIndex = 22;
@@ -232,7 +235,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(27, 292);
+            this.progressBar1.Location = new System.Drawing.Point(29, 317);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(170, 23);
             this.progressBar1.TabIndex = 23;
@@ -247,11 +250,43 @@
             this.checkBox_fondo.TabIndex = 24;
             this.checkBox_fondo.UseVisualStyleBackColor = true;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(26, 228);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(64, 13);
+            this.label4.TabIndex = 25;
+            this.label4.Text = "Liquidable : ";
+            // 
+            // checkBox_liquidable
+            // 
+            this.checkBox_liquidable.AutoSize = true;
+            this.checkBox_liquidable.Location = new System.Drawing.Point(343, 227);
+            this.checkBox_liquidable.Name = "checkBox_liquidable";
+            this.checkBox_liquidable.Size = new System.Drawing.Size(15, 14);
+            this.checkBox_liquidable.TabIndex = 26;
+            this.checkBox_liquidable.UseVisualStyleBackColor = true;
+            this.checkBox_liquidable.CheckedChanged += new System.EventHandler(this.checkBox_liquidable_CheckedChanged);
+            // 
+            // comboBox_subcuenta
+            // 
+            this.comboBox_subcuenta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_subcuenta.Enabled = false;
+            this.comboBox_subcuenta.FormattingEnabled = true;
+            this.comboBox_subcuenta.Location = new System.Drawing.Point(132, 225);
+            this.comboBox_subcuenta.Name = "comboBox_subcuenta";
+            this.comboBox_subcuenta.Size = new System.Drawing.Size(204, 21);
+            this.comboBox_subcuenta.TabIndex = 27;
+            // 
             // FormCuotasAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 327);
+            this.ClientSize = new System.Drawing.Size(384, 352);
+            this.Controls.Add(this.comboBox_subcuenta);
+            this.Controls.Add(this.checkBox_liquidable);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.checkBox_fondo);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label10);
@@ -309,5 +344,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.CheckBox checkBox_fondo;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox checkBox_liquidable;
+        private System.Windows.Forms.ComboBox comboBox_subcuenta;
     }
 }

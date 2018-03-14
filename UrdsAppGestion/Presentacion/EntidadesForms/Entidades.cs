@@ -46,7 +46,6 @@ namespace UrdsAppGestión.Presentacion
 
             general = Persistencia.SentenciasSQL.select(SentenciasSQL.SQL[1]);
 
-
             DataTable telefonos = Persistencia.SentenciasSQL.select("SELECT ctos_dettelf.IdEntidad, ctos_dettelf.Telefono FROM ctos_dettelf WHERE (((ctos_dettelf.Ppal)=-1)) GROUP BY ctos_dettelf.IdEntidad;");
 
             DataTable emails = Persistencia.SentenciasSQL.select("SELECT ctos_detemail.IdEntidad,ctos_detemail.Descripcion, ctos_detemail.Email FROM ctos_detemail WHERE (((ctos_detemail.Ppal)= -1 ))  GROUP BY ctos_detemail.IdEntidad");
@@ -58,6 +57,7 @@ namespace UrdsAppGestión.Presentacion
                          select new {
                              CustID = x.Field<int>("IDEntidad"),
                              ColX = x.Field<string>("Entidad"),
+                             entSinAcento = x.Field<string>("EntidadSinAcentos"),
                              ColY = (y == null) ? null : y.Field<string>("Telefono"),
                              cate = (x.Field<int?>("IdCategoria") == null) ? null : x.Field<int?>("IdCategoria")
                          };
@@ -67,10 +67,10 @@ namespace UrdsAppGestión.Presentacion
             newTable.Columns.Add("Entidad", typeof(string));
             newTable.Columns.Add("Telefono", typeof(string));
             newTable.Columns.Add("IdCategoria", typeof(int));
+            newTable.Columns.Add("EntidadSinAcentos", typeof(string));
 
             foreach (var rowInfo in result)
-                newTable.Rows.Add(rowInfo.CustID, rowInfo.ColX, rowInfo.ColY,rowInfo.cate);
-
+                newTable.Rows.Add(rowInfo.CustID, rowInfo.ColX, rowInfo.ColY,rowInfo.cate, rowInfo.entSinAcento);
 
             var result1 = from x in newTable.AsEnumerable()
                          join y in emails.AsEnumerable() on x.Field<int>("IDEntidad") equals y.Field<int>("IdEntidad")
@@ -80,6 +80,7 @@ namespace UrdsAppGestión.Presentacion
                          {
                              CustID = x.Field<int>("IDEntidad"),
                              ColX = x.Field<string>("Entidad"),
+                             entSinAcento = x.Field<string>("EntidadSinAcentos"),
                              tel = x.Field<string>("Telefono"),
                              correo = (y == null) ? null : y.Field<string>("Email"),
                              cate = (x.Field<int?>("IdCategoria") == null) ? null : x.Field<int?>("IdCategoria")
@@ -91,10 +92,10 @@ namespace UrdsAppGestión.Presentacion
             newTable.Columns.Add("Email", typeof(string));
             newTable.Columns.Add("Telefono", typeof(string));
             newTable.Columns.Add("IdCategoria", typeof(int));
+            newTable.Columns.Add("EntidadSinAcentos", typeof(string));
 
             foreach (var rowInfo in result1)
-                newTable.Rows.Add(rowInfo.CustID, rowInfo.ColX, rowInfo.correo,rowInfo.tel, rowInfo.cate);
-
+                newTable.Rows.Add(rowInfo.CustID, rowInfo.ColX, rowInfo.correo,rowInfo.tel, rowInfo.cate,rowInfo.entSinAcento);
 
             dataGridView1.DataSource = newTable;
             general = newTable;
@@ -104,8 +105,7 @@ namespace UrdsAppGestión.Presentacion
             dataGridView1.Columns[2].Width = 250;
             dataGridView1.Columns[3].Width = 100;
             dataGridView1.Columns[4].Visible = false;
-
-
+            dataGridView1.Columns[5].Visible = false;
 
         }
         private void enviarOtroForm() {
@@ -218,6 +218,7 @@ namespace UrdsAppGestión.Presentacion
             dataGridView1.Columns[6].Visible = false;
             dataGridView1.Columns[8].Visible = false;
             dataGridView1.Columns[4].Visible = false;
+            //dataGridView1.Columns["EntidadSinAcentos"].Visible = false;
 
             dataGridView1.Columns[0].Width = 50;
             dataGridView1.Columns[1].Width = 420;
@@ -228,7 +229,7 @@ namespace UrdsAppGestión.Presentacion
         private void textBox_buscar_nombre_KeyPress(object sender, KeyPressEventArgs e)
         {
             busqueda = general;
-            busqueda.DefaultView.RowFilter = "Entidad like '%" + textBox_buscar_nombre.Text + "%'";
+            busqueda.DefaultView.RowFilter = "EntidadSinAcentos like '%" + textBox_buscar_nombre.Text + "%'";
 
             dataGridView1.DataSource = busqueda;
             dataGridView1.Columns[0].Width = 50;
@@ -236,6 +237,7 @@ namespace UrdsAppGestión.Presentacion
             dataGridView1.Columns[2].Width = 250;
             dataGridView1.Columns[3].Width = 100;
             dataGridView1.Columns[4].Visible = false;
+            dataGridView1.Columns[5].Visible = false;
 
             if (e.KeyChar == (Char)Keys.Enter) {
                 if (dataGridView1.SelectedRows.Count == 1)

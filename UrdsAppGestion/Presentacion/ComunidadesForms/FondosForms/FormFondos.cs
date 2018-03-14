@@ -294,7 +294,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
 
         private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //ACTUALIZAR RESULTADO
+            String sqlUpdate = "UPDATE com_detallesfondo SET Cierre = -1 WHERE IdDetalleFondo = " + dataGridView_detallesFondos.SelectedRows[0].Cells[0].Value.ToString();
+            Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
 
+
+            cargarDatagridDetalles();
         }
 
         private void informeToolStripMenuItem_Click(object sender, EventArgs e)

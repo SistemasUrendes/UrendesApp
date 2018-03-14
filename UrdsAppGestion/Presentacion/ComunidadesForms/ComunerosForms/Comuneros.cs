@@ -48,7 +48,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             textBox_buscar.Select();
         }
         public void cargarComuneros() {
-            String sql = "SELECT com_comuneros.IdComunero,com_comuneros.IdEntidad, ctos_entidades.Entidad,com_comuneros.Activo, com_comuneros.Notas, com_comuneros.IdFormaPago, com_comuneros.IdDireccion, com_comuneros.IdCC, com_comuneros.IdEmail, com_comuneros.IdTipoCopia,com_divisiones.Division, com_comuneros.Asociaciones, com_comuneros.EnvioPostal, com_comuneros.EnvioEmail, com_comuneros.IVA FROM(com_comuneros INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_divisiones ON com_comuneros.IdDivPpal = com_divisiones.IdDivision WHERE(((com_comuneros.IdComunidad) = " + id_comunidad + ")) ORDER BY ctos_entidades.Entidad;";
+            String sql = "SELECT com_comuneros.IdComunero,com_comuneros.IdEntidad, ctos_entidades.Entidad,com_comuneros.Activo, com_comuneros.Notas, com_comuneros.IdFormaPago, com_comuneros.IdDireccion, com_comuneros.IdCC, com_comuneros.IdEmail, com_comuneros.IdTipoCopia,com_divisiones.Division, com_comuneros.Asociaciones, com_comuneros.EnvioPostal, com_comuneros.EnvioEmail, com_comuneros.IVA, ctos_entidades.EntidadSinAcentos FROM(com_comuneros INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_divisiones ON com_comuneros.IdDivPpal = com_divisiones.IdDivision WHERE(((com_comuneros.IdComunidad) = " + id_comunidad + ")) ORDER BY ctos_entidades.Entidad;";
 
             comuneros = Persistencia.SentenciasSQL.select(sql);
             dataGridView_comuneros.DataSource = comuneros;
@@ -66,6 +66,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             dataGridView_comuneros.Columns["EnvioEmail"].Visible = false;
             dataGridView_comuneros.Columns["IVA"].Visible = false;
             dataGridView_comuneros.Columns["Notas"].Visible = false;
+            dataGridView_comuneros.Columns["EntidadSinAcentos"].Visible = false;
 
             dataGridView_comuneros.Columns["IdComunero"].Width = 50;
             dataGridView_comuneros.Columns["IdEntidad"].Width = 50;
@@ -301,13 +302,13 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             if (textBox_buscar.TextLength < 2)
             {
                 DataTable busqueda = comuneros;
-                busqueda.DefaultView.RowFilter = "Entidad like '%%'";
+                busqueda.DefaultView.RowFilter = "EntidadSinAcentos like '%%'";
                 this.dataGridView_comuneros.DataSource = busqueda;
             }
             else
             {
                 DataTable busqueda = comuneros;
-                busqueda.DefaultView.RowFilter = "Entidad like '%" + textBox_buscar.Text + "%' OR Division like '%" + textBox_buscar.Text + "%'";
+                busqueda.DefaultView.RowFilter = "EntidadSinAcentos like '%" + textBox_buscar.Text + "%' OR Division like '%" + textBox_buscar.Text + "%'";
                 this.dataGridView_comuneros.DataSource = busqueda;
             }
             cargado = true;
@@ -346,7 +347,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
         public void recargoFiltro()
         {
             cargado = false;
-            String sql = "SELECT com_comuneros.IdComunero,com_comuneros.IdEntidad, ctos_entidades.Entidad,com_comuneros.Activo, com_comuneros.Notas, com_comuneros.IdFormaPago, com_comuneros.IdDireccion, com_comuneros.IdCC, com_comuneros.IdEmail, com_comuneros.IdTipoCopia,com_divisiones.Division, com_comuneros.Asociaciones, com_comuneros.EnvioPostal, com_comuneros.EnvioEmail, com_comuneros.IVA FROM(com_comuneros INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_divisiones ON com_comuneros.IdDivPpal = com_divisiones.IdDivision WHERE(((com_comuneros.IdComunidad) = " + id_comunidad + ")) ORDER BY ctos_entidades.Entidad;"; 
+            String sql = "SELECT com_comuneros.IdComunero,com_comuneros.IdEntidad, ctos_entidades.Entidad,com_comuneros.Activo, com_comuneros.Notas, com_comuneros.IdFormaPago, com_comuneros.IdDireccion, com_comuneros.IdCC, com_comuneros.IdEmail, com_comuneros.IdTipoCopia,com_divisiones.Division, com_comuneros.Asociaciones, com_comuneros.EnvioPostal, com_comuneros.EnvioEmail, com_comuneros.IVA,ctos_entidades.EntidadSinAcentos FROM(com_comuneros INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_divisiones ON com_comuneros.IdDivPpal = com_divisiones.IdDivision WHERE(((com_comuneros.IdComunidad) = " + id_comunidad + ")) ORDER BY ctos_entidades.Entidad;"; 
 
             comuneros = Persistencia.SentenciasSQL.select(sql);
             dataGridView_comuneros.DataSource = comuneros;

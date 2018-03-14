@@ -449,7 +449,7 @@ namespace UrdsAppGestión.Presentacion
                                 Entidad = Pagadores.Rows[0][1].ToString();
                             }
 
-                            String Liquidacion = (Persistencia.SentenciasSQL.select("SELECT LiqLargo FROM com_liquidaciones WHERE IdLiquidacion = " + idLiquidacion)).Rows[0][0].ToString();
+                            String Liquidacion = (Persistencia.SentenciasSQL.select("SELECT LiqLargo FROM com_liquidaciones WHERE IdLiquidacion = " + idLiquidacion)).Rows[0][0].ToString();                   
 
                             ComunidadesForms.LiquidacionesForms.InformeParticularRecibo.FormVerInformeParticularRecibo nueva = new ComunidadesForms.LiquidacionesForms.InformeParticularRecibo.FormVerInformeParticularRecibo(idLiquidacion, idcomunidad, idEntidad, Recibos.Rows[b][0].ToString(), Liquidacion);
 
@@ -458,7 +458,7 @@ namespace UrdsAppGestión.Presentacion
                                 out streamids, out warnings);
 
                             String nombre = "L" + idLiquidacion + "-R" + Recibos.Rows[b][0].ToString() + "-" + idEntidad + " " + nombreCortoLiqPasado + " " + Entidad + ".pdf";
-
+                        
                             using (FileStream fs = new FileStream(Ruta + @"\" + nombre, FileMode.Create))
                             {
                                 fs.Write(bytes, 0, bytes.Length);
@@ -647,7 +647,7 @@ namespace UrdsAppGestión.Presentacion
                 foreach (var fallo in fallos) {
                     total = total + "\n" + fallo.ToString();
                 }
-                e.Result = "Fallo al enviar Liquidación: " + total;
+                e.Result = "Fallo al enviar Liquidación: \nIdEntidades: " + total;
             }
             else
                 e.Result = "Liquidación enviada";

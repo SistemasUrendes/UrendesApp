@@ -42,7 +42,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.63229cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -59,10 +59,14 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!SaldoInicial.Value</Value>
-                              <Style />
+                              <Style>
+                                <Format>c</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>SaldoInicial1</rd:DefaultName>
@@ -94,10 +98,14 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Resultado.Value</Value>
-                              <Style />
+                              <Style>
+                                <Format>c</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Resultado</rd:DefaultName>
@@ -129,10 +137,14 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!SaldoInicial.Value + Fields!Resultado.Value</Value>
-                              <Style />
+                              <Style>
+                                <Format>c</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox21</rd:DefaultName>
@@ -179,10 +191,15 @@
                             <TextRuns>
                               <TextRun>
                                 <Value>=Fields!Ejercicio.Value</Value>
-                                <Style />
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                  <TextDecoration>Underline</TextDecoration>
+                                </Style>
                               </TextRun>
                             </TextRuns>
-                            <Style />
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
                           </Paragraph>
                         </Paragraphs>
                         <rd:DefaultName>Ejercicio</rd:DefaultName>
@@ -223,7 +240,7 @@
               <TablixMembers>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>5.70124cm</Size>
+                    <Size>7.38103cm</Size>
                     <CellContents>
                       <Textbox Name="IdFondo">
                         <CanGrow>true</CanGrow>
@@ -233,7 +250,9 @@
                             <TextRuns>
                               <TextRun>
                                 <Value>FONDOS ANTERIORES</Value>
-                                <Style />
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
                               </TextRun>
                             </TextRuns>
                             <Style />
@@ -259,7 +278,7 @@
                 </TablixMember>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>5.70124cm</Size>
+                    <Size>7.38103cm</Size>
                     <CellContents>
                       <Textbox Name="Textbox5">
                         <CanGrow>true</CanGrow>
@@ -269,7 +288,9 @@
                             <TextRuns>
                               <TextRun>
                                 <Value>RESULTADO EJERCICIO</Value>
-                                <Style />
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
                               </TextRun>
                             </TextRuns>
                             <Style />
@@ -295,7 +316,7 @@
                 </TablixMember>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>5.70124cm</Size>
+                    <Size>7.38103cm</Size>
                     <CellContents>
                       <Textbox Name="Textbox20">
                         <CanGrow>true</CanGrow>
@@ -305,7 +326,9 @@
                             <TextRuns>
                               <TextRun>
                                 <Value>FONDOS TOTALES COMUNIDAD</Value>
-                                <Style />
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
                               </TextRun>
                             </TextRuns>
                             <Style />
@@ -340,7 +363,7 @@
         <Top>5.87058cm</Top>
         <Left>1.26683cm</Left>
         <Height>2.4cm</Height>
-        <Width>8.20124cm</Width>
+        <Width>10.01332cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -404,7 +427,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Salidas.Value</Value>
-                              <Style />
+                              <Style>
+                                <Format>c</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -465,7 +490,6 @@
                       <PaddingBottom>2pt</PaddingBottom>
                     </Style>
                   </Textbox>
-                  <rd:Selected>true</rd:Selected>
                 </CellContents>
               </TablixHeader>
             </TablixMember>
@@ -582,7 +606,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Entradas.Value</Value>
-                              <Style />
+                              <Style>
+                                <Format>c</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
