@@ -52,7 +52,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (idTarea == null)
             {
                 habilitarEdicion();
-                comboBoxUsuario.SelectedValue = Login.getId();
             }
         }
 
@@ -60,31 +59,29 @@ namespace UrdsAppGestión.Presentacion.Tareas
         public void cargarCabecera()
         {
 
-            String sqlSelect = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tareas.IdEntidad, exp_tareas.Notas, exp_tareas.Ruta, exp_tareas.IdRbleTarea, exp_tareas.Frecuencia, exp_tareas.IdTipoTarea, exp_tareas.FFin, exp_tareas.FIni, exp_tareas.Coste, exp_tareas.Presupuesto, exp_tareas.RefSiniestro, exp_tareas.Seguro, exp_tareas.AcuerdoJunta, exp_tareas.FechaActaAcordado, exp_tareas.ProximaJunta , com_comunidades.Referencia , ctos_entidades.Entidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
+            String sqlSelect = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tareas.IdEntidad, exp_tareas.Notas, exp_tareas.Ruta, exp_tareas.IdTipoTarea, exp_tareas.FFin, exp_tareas.FIni, exp_tareas.Coste, exp_tareas.Presupuesto, exp_tareas.RefSiniestro, exp_tareas.Seguro, exp_tareas.AcuerdoJunta, exp_tareas.FechaActaAcordado, exp_tareas.ProximaJunta , com_comunidades.Referencia , ctos_entidades.Entidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
 
             tarea = Persistencia.SentenciasSQL.select(sqlSelect);
             
             textBoxIdTarea.Text = tarea.Rows[0][0].ToString();
             textBoxDescripcion.Text = tarea.Rows[0][1].ToString();
             idEntidad = tarea.Rows[0][2].ToString();
-            maskedTextBoxReferencia.Text = tarea.Rows[0][17].ToString();
-            textBoxEntidad.Text = tarea.Rows[0][18].ToString(); 
+            maskedTextBoxReferencia.Text = tarea.Rows[0][15].ToString();
+            textBoxEntidad.Text = tarea.Rows[0][16].ToString(); 
             textBoxNotas.Text = tarea.Rows[0][3].ToString();
             ruta = tarea.Rows[0][4].ToString().Trim('#');
             textBoxRuta.Text = ruta; 
-            comboBoxUsuario.SelectedValue = tarea.Rows[0][5].ToString();
-            textBoxFrecuencia.Text = tarea.Rows[0][6].ToString();
-            comboBoxTipo.SelectedValue =  tarea.Rows[0][7].ToString();
-            maskedTextBoxFFin.Text = tarea.Rows[0][8].ToString();
-            maskedTextBoxFIni.Text = tarea.Rows[0][9].ToString();
-            fInicio = tarea.Rows[0][9].ToString();
-            textBoxCoste.Text = tarea.Rows[0][10].ToString();
-            textBoxPtto.Text = tarea.Rows[0][11].ToString();
-            textBoxSiniestro.Text = tarea.Rows[0][12].ToString();
-            checkBoxSeguro.Checked = bool.Parse(tarea.Rows[0][13].ToString());
-            checkBoxAcuerdoJunta.Checked = bool.Parse(tarea.Rows[0][14].ToString());
-            if (tarea.Rows[0][15].ToString() != "00/00/0000") maskedTextBoxFechaActa.Text = tarea.Rows[0][15].ToString();
-            checkBoxProxJunta.Checked = bool.Parse(tarea.Rows[0][16].ToString());
+            comboBoxTipo.SelectedValue =  tarea.Rows[0][5].ToString();
+            maskedTextBoxFFin.Text = tarea.Rows[0][6].ToString();
+            maskedTextBoxFIni.Text = tarea.Rows[0][7].ToString();
+            fInicio = tarea.Rows[0][7].ToString();
+            textBoxCoste.Text = tarea.Rows[0][8].ToString();
+            textBoxPtto.Text = tarea.Rows[0][9].ToString();
+            textBoxSiniestro.Text = tarea.Rows[0][10].ToString();
+            checkBoxSeguro.Checked = bool.Parse(tarea.Rows[0][11].ToString());
+            checkBoxAcuerdoJunta.Checked = bool.Parse(tarea.Rows[0][12].ToString());
+            if (tarea.Rows[0][13].ToString() != "00/00/0000") maskedTextBoxFechaActa.Text = tarea.Rows[0][13].ToString();
+            checkBoxProxJunta.Checked = bool.Parse(tarea.Rows[0][14].ToString());
             
         }
 
@@ -94,8 +91,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBoxDescripcion.ReadOnly = true;
             maskedTextBoxReferencia.ReadOnly = true;
             textBoxNotas.ReadOnly = true;
-            comboBoxUsuario.Enabled = false;
-            textBoxFrecuencia.ReadOnly = true;
             comboBoxTipo.Enabled = false;
             maskedTextBoxFFin.ReadOnly = true;
             if (maskedTextBoxFFin.Text == "  /  /") maskedTextBoxFFin.Mask = "";
@@ -118,8 +113,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBoxDescripcion.ReadOnly = false;
             maskedTextBoxReferencia.ReadOnly = false;
             textBoxNotas.ReadOnly = false;
-            comboBoxUsuario.Enabled = true;
-            textBoxFrecuencia.ReadOnly = false;
             comboBoxTipo.Enabled = true;
             maskedTextBoxFFin.ReadOnly = false;
             maskedTextBoxFFin.Mask = "00/00/0000";
@@ -144,12 +137,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         public void rellenarComboBox()
         {
-            String sqlComboUser = "SELECT ctos_urendes.IdURD, ctos_urendes.Usuario, ctos_urendes.FBaja FROM ctos_urendes WHERE(((ctos_urendes.FBaja)Is Null))";
-            comboBoxUsuario.DataSource = Persistencia.SentenciasSQL.select(sqlComboUser);
-            comboBoxUsuario.DisplayMember = "Usuario";
-            comboBoxUsuario.ValueMember = "IdURD";
-
-
             String sqlComboTipo = "SELECT exp_tipostareas.IdTipoTarea, exp_tipostareas.TipoTarea FROM exp_tipostareas";
             comboBoxTipo.DataSource = Persistencia.SentenciasSQL.select(sqlComboTipo);
             comboBoxTipo.DisplayMember = "TipoTarea";
@@ -448,10 +435,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
         //AÑADIR O EDITAR TAREA
         private void addTarea()
         {
-            String idRbleTarea = comboBoxUsuario.SelectedValue.ToString();
             String idTipoTarea = comboBoxTipo.SelectedValue.ToString();
             String frecuencia = "";
-            if (textBoxFrecuencia.Text != "") frecuencia = textBoxFrecuencia.Text;
             String fIni = null;
             fInicio = maskedTextBoxFIni.Text;
             if (maskedTextBoxFIni.Text != "  /  /" && maskedTextBoxFIni.Text != "") fIni = Convert.ToDateTime(maskedTextBoxFIni.Text).ToString("yyyy-MM-dd");
@@ -479,7 +464,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (idTarea != null)
             {
                 String fixRuta = ruta.Replace(@"\", @"\\");
-                String sqlUpdate = "UPDATE exp_tareas SET IdEntidad = " + idEntidad + ",IdRbleTarea = " + idRbleTarea + ",IdTipoTarea = " + idTipoTarea + ",Frecuencia = '" + frecuencia + "',Descripción = '" + descripcion + "',Seguro = " + seguro + ",AcuerdoJunta = " + acuerdoJunta + ",RefSiniestro = '" + refSiniestro + "',ProximaJunta = " + proximaJunta + ",Notas = '" + notas + "' WHERE IdTarea = " + idTarea;
+                String sqlUpdate = "UPDATE exp_tareas SET IdEntidad = " + idEntidad + ",IdTipoTarea = " + idTipoTarea + ",Descripción = '" + descripcion + "',Seguro = " + seguro + ",AcuerdoJunta = " + acuerdoJunta + ",RefSiniestro = '" + refSiniestro + "',ProximaJunta = " + proximaJunta + ",Notas = '" + notas + "' WHERE IdTarea = " + idTarea;
                 Persistencia.SentenciasSQL.InsertarGenericoID(sqlUpdate);
                 if (fIni != null)
                 {
@@ -516,7 +501,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             //AÑADIR NUEVA TAREA
             else
             {
-                String sqlInsert = "INSERT INTO exp_tareas (IdEntidad,IdRbleTarea,IdTipoTarea,Frecuencia,Descripción,Seguro,AcuerdoJunta,ProximaJunta,RefSiniestro,Notas) VALUES (" + idEntidad + "," + idRbleTarea + "," + idTipoTarea + ",'" + frecuencia + "','" + descripcion + "'," + seguro + "," + acuerdoJunta + "," + proximaJunta + ",'" + refSiniestro + "','" + notas + "')";
+                String sqlInsert = "INSERT INTO exp_tareas (IdEntidad,IdTipoTarea,Descripción,Seguro,AcuerdoJunta,ProximaJunta,RefSiniestro,Notas) VALUES (" + idEntidad + "," + idTipoTarea + ",'" + frecuencia + "','" + descripcion + "'," + seguro + "," + acuerdoJunta + "," + proximaJunta + ",'" + refSiniestro + "','" + notas + "')";
 
                 idTarea = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsert).ToString();
 
