@@ -1134,11 +1134,35 @@
     <Compile Include="Presentacion\PlanContableForms\FormPlanContableAlta.Designer.cs">
       <DependentUpon>FormPlanContableAlta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarContacto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarContacto.Designer.cs">
+      <DependentUpon>FormInsertarContacto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarGestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarGestion.Designer.cs">
+      <DependentUpon>FormInsertarGestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarSeguimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarSeguimiento.Designer.cs">
+      <DependentUpon>FormInsertarSeguimiento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Tareas\FormTareasPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\Tareas\FormTareasPrincipal.Designer.cs">
       <DependentUpon>FormTareasPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormVerTarea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormVerTarea.Designer.cs">
+      <DependentUpon>FormVerTarea.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1609,8 +1633,20 @@
     <EmbeddedResource Include="Presentacion\PlanContableForms\FormPlanContableAlta.resx">
       <DependentUpon>FormPlanContableAlta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormInsertarContacto.resx">
+      <DependentUpon>FormInsertarContacto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormInsertarGestion.resx">
+      <DependentUpon>FormInsertarGestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormInsertarSeguimiento.resx">
+      <DependentUpon>FormInsertarSeguimiento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormTareasPrincipal.resx">
       <DependentUpon>FormTareasPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormVerTarea.resx">
+      <DependentUpon>FormVerTarea.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

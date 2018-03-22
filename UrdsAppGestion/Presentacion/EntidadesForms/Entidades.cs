@@ -170,6 +170,26 @@ namespace UrdsAppGestión.Presentacion
                     ComunidadesForms.ProveedoresForms.FormAnyadirProveedor nuevo = (ComunidadesForms.ProveedoresForms.FormAnyadirProveedor)existe;
                     nuevo.recibirEntidad(dataGridView1.SelectedCells[0].Value.ToString(), dataGridView1.SelectedCells[1].Value.ToString());
                 }
+                if (nombre_form_anterior == "FormTareasPrincipal")
+                {
+                    Tareas.FormTareasPrincipal nuevo = (Tareas.FormTareasPrincipal)existe;
+                    nuevo.recibirEntidad(dataGridView1.SelectedCells[0].Value.ToString());
+                }
+                if (nombre_form_anterior == "FormVerTarea")
+                {
+                    Tareas.FormVerTarea nuevo = (Tareas.FormVerTarea)existe;
+                    nuevo.recibirEntidad(dataGridView1.SelectedCells[0].Value.ToString());
+                }
+                if (nombre_form_anterior == "FormInsertarContacto")
+                {
+                    Tareas.FormInsertarContacto nuevo = (Tareas.FormInsertarContacto)existe;
+                    nuevo.recibirEntidad(dataGridView1.SelectedCells[0].Value.ToString());
+                }
+                if (nombre_form_anterior == "FormInsertarGestion")
+                {
+                    Tareas.FormInsertarGestion nuevo = (Tareas.FormInsertarGestion)existe;
+                    nuevo.recibirEntidad(dataGridView1.SelectedCells[0].Value.ToString());
+                }
             }
             this.Close();
         }

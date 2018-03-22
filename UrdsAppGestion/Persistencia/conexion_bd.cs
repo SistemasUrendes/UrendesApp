@@ -11,7 +11,7 @@ namespace UrdsAppGestión.Persistencia {
         private static String ip_servidor = "192.168.0.20";
         private static String user = "gestor";
         private static String password = "gestorurds";
-        private static String database = "urds";
+        private static String database = "miguel";
         private static String port = "3307";
 
         public static string Ip_servidor
