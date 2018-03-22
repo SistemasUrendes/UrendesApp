@@ -338,18 +338,11 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
 
             String strComunidad = (Persistencia.SentenciasSQL.select("SELECT ctos_entidades.NombreCorto FROM com_comunidades INNER JOIN ctos_entidades ON com_comunidades.IdEntidad = ctos_entidades.IDEntidad WHERE(((com_comunidades.IdComunidad) = " + id_comunidad_pasado + "));")).Rows[0][0].ToString();
 
-            String RutaComunidad = (Persistencia.SentenciasSQL.select("SELECT ctos_entidades.Ruta FROM ctos_entidades INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((com_comunidades.IdComunidad) = " + id_comunidad_pasado + "));")).Rows[0][0].ToString().Trim('#');
+            String sqlSelect = "SELECT Ruta FROM com_liquidaciones WHERE IdLiquidacion = " + id_liquidacion_pasado;
+            DataTable RutaLiq = Persistencia.SentenciasSQL.select(sqlSelect);
 
-            String anyo = Convert.ToDateTime((Persistencia.SentenciasSQL.select("SELECT FFin FROM com_liquidaciones WHERE IdLiquidacion = " + id_liquidacion_pasado)).Rows[0][0].ToString()).Year.ToString();
-            String path = @"\Liquidaciones\" + anyo + @"\";
-            fichero.SelectedPath = (RutaComunidad + path);
-
-            fichero.ShowNewFolderButton = false;
-
-            if (fichero.ShowDialog() == DialogResult.OK)
-            {
-                Rutas.Add(fichero.SelectedPath);
-
+            if (RutaLiq.Rows[0][0].ToString() != "") {
+                Rutas.Add(RutaLiq.Rows[0][0].ToString());
                 PanelControl existe = Application.OpenForms.OfType<PanelControl>().Where(pre => pre.Name == "PanelControl").SingleOrDefault<PanelControl>();
                 if (existe != null)
                 {
@@ -358,6 +351,28 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
 
                     existe.envioLiquidaciones(strComunidad, strLiquidacion, id_liquidacion_pasado, Rutas);
                     this.Close();
+                }
+            }
+            else {
+                String RutaComunidad = (Persistencia.SentenciasSQL.select("SELECT ctos_entidades.Ruta FROM ctos_entidades INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((com_comunidades.IdComunidad) = " + id_comunidad_pasado + "));")).Rows[0][0].ToString().Trim('#');
+
+                String anyo = Convert.ToDateTime((Persistencia.SentenciasSQL.select("SELECT FFin FROM com_liquidaciones WHERE IdLiquidacion = " + id_liquidacion_pasado)).Rows[0][0].ToString()).Year.ToString();
+                String path = @"\Liquidaciones\" + anyo + @"\";
+                fichero.SelectedPath = (RutaComunidad + path);
+                fichero.ShowNewFolderButton = false;
+
+                if (fichero.ShowDialog() == DialogResult.OK)
+                {
+                    Rutas.Add(fichero.SelectedPath);
+                    PanelControl existe = Application.OpenForms.OfType<PanelControl>().Where(pre => pre.Name == "PanelControl").SingleOrDefault<PanelControl>();
+                    if (existe != null)
+                    {
+                        existe.WindowState = FormWindowState.Normal;
+                        existe.BringToFront();
+
+                        existe.envioLiquidaciones(strComunidad, strLiquidacion, id_liquidacion_pasado, Rutas);
+                        this.Close();
+                    }
                 }
             }
         }
@@ -396,6 +411,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
             if (fichero.ShowDialog() == DialogResult.OK)
             {
                 Ruta = fichero.SelectedPath;
+                //GUARDO RUTA EN LA TABLA LIQUIDACIONES
+                String sqlUpdate = "UPDATE com_liquidaciones SET Ruta='" + @Ruta.Replace(@"\",@"\\") + "' WHERE IdLiquidacion = " + id_liquidacion_pasado;
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+
                 PanelControl existe = Application.OpenForms.OfType<PanelControl>().Where(pre => pre.Name == "PanelControl").SingleOrDefault<PanelControl>();
                 if (existe != null)
                 {

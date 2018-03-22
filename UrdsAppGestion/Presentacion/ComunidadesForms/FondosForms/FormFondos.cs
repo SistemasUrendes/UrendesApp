@@ -307,5 +307,11 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
             Informes.FormVerInformeCuentas nueva = new Informes.FormVerInformeCuentas(id_comunidad_cargado);
             nueva.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Informes.FormVerInformeCuentas nueva = new Informes.FormVerInformeCuentas(id_comunidad_cargado);
+            nueva.Show();
+        }
     }
 }

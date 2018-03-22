@@ -303,6 +303,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms.Informes {
             
             private global::System.Data.DataColumn columnResultado;
             
+            private global::System.Data.DataColumn columnNombre;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public FondosDataTable() {
@@ -434,6 +436,14 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NombreColumn {
+                get {
+                    return this.columnNombre;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -469,7 +479,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public FondosRow AddFondosRow(string IdFondo, string IdDetalleFondo, string IdEjercicio, string Ejercicio, string Entradas, string Salidas, string SaldoInicial, string SaldoActual, string SaldoCierre, string Cierre, string TipoFondo, string Resultado) {
+            public FondosRow AddFondosRow(string IdFondo, string IdDetalleFondo, string IdEjercicio, string Ejercicio, string Entradas, string Salidas, string SaldoInicial, string SaldoActual, string SaldoCierre, string Cierre, string TipoFondo, string Resultado, string Nombre) {
                 FondosRow rowFondosRow = ((FondosRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdFondo,
@@ -483,7 +493,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms.Informes {
                         SaldoCierre,
                         Cierre,
                         TipoFondo,
-                        Resultado};
+                        Resultado,
+                        Nombre};
                 rowFondosRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowFondosRow);
                 return rowFondosRow;
@@ -518,6 +529,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms.Informes {
                 this.columnCierre = base.Columns["Cierre"];
                 this.columnTipoFondo = base.Columns["TipoFondo"];
                 this.columnResultado = base.Columns["Resultado"];
+                this.columnNombre = base.Columns["Nombre"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -547,6 +559,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms.Informes {
                 base.Columns.Add(this.columnTipoFondo);
                 this.columnResultado = new global::System.Data.DataColumn("Resultado", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnResultado);
+                this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombre);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -881,6 +895,22 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Nombre {
+                get {
+                    try {
+                        return ((string)(this[this.tableFondos.NombreColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Nombre\' de la tabla \'Fondos\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableFondos.NombreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsIdFondoNull() {
                 return this.IsNull(this.tableFondos.IdFondoColumn);
             }
@@ -1021,6 +1051,18 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms.Informes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetResultadoNull() {
                 this[this.tableFondos.ResultadoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNombreNull() {
+                return this.IsNull(this.tableFondos.NombreColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNombreNull() {
+                this[this.tableFondos.NombreColumn] = global::System.Convert.DBNull;
             }
         }
         

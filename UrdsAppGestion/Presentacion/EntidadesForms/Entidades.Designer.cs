@@ -43,11 +43,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBox_telefono_buscar = new System.Windows.Forms.TextBox();
             this.MenuContextual = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copiarAlPortapapelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button_añadir_entidad = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button_enviar = new System.Windows.Forms.Button();
-            this.copiarAlPortapapelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.MenuContextual.SuspendLayout();
             this.SuspendLayout();
@@ -121,7 +121,7 @@
             // 
             // textBox_buscar_nombre
             // 
-            this.textBox_buscar_nombre.Location = new System.Drawing.Point(972, 13);
+            this.textBox_buscar_nombre.Location = new System.Drawing.Point(972, 10);
             this.textBox_buscar_nombre.Name = "textBox_buscar_nombre";
             this.textBox_buscar_nombre.Size = new System.Drawing.Size(176, 20);
             this.textBox_buscar_nombre.TabIndex = 7;
@@ -179,7 +179,14 @@
             this.MenuContextual.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copiarAlPortapapelesToolStripMenuItem});
             this.MenuContextual.Name = "Menu";
-            this.MenuContextual.Size = new System.Drawing.Size(193, 48);
+            this.MenuContextual.Size = new System.Drawing.Size(193, 26);
+            // 
+            // copiarAlPortapapelesToolStripMenuItem
+            // 
+            this.copiarAlPortapapelesToolStripMenuItem.Name = "copiarAlPortapapelesToolStripMenuItem";
+            this.copiarAlPortapapelesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.copiarAlPortapapelesToolStripMenuItem.Text = "Copiar al Portapapeles";
+            this.copiarAlPortapapelesToolStripMenuItem.Click += new System.EventHandler(this.copiarAlPortapapelesToolStripMenuItem_Click);
             // 
             // button_añadir_entidad
             // 
@@ -221,13 +228,6 @@
             this.button_enviar.UseVisualStyleBackColor = true;
             this.button_enviar.Visible = false;
             this.button_enviar.Click += new System.EventHandler(this.button_enviar_Click);
-            // 
-            // copiarAlPortapapelesToolStripMenuItem
-            // 
-            this.copiarAlPortapapelesToolStripMenuItem.Name = "copiarAlPortapapelesToolStripMenuItem";
-            this.copiarAlPortapapelesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.copiarAlPortapapelesToolStripMenuItem.Text = "Copiar al Portapapeles";
-            this.copiarAlPortapapelesToolStripMenuItem.Click += new System.EventHandler(this.copiarAlPortapapelesToolStripMenuItem_Click);
             // 
             // Entidades
             // 

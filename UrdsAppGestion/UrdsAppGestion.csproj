@@ -27,7 +27,7 @@
     <UpdateUrl>\\Urenux\app\App\</UpdateUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>15</ApplicationRevision>
+    <ApplicationRevision>17</ApplicationRevision>
     <ApplicationVersion>1.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -409,6 +409,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetFondosInforme.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetTotalesFondos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetTotalesFondos.xsd</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\FondosForms\Informes\FormVerInformeCuentas.cs">
       <SubType>Form</SubType>
@@ -1697,6 +1702,17 @@
     </None>
     <None Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetFondosInforme.xss">
       <DependentUpon>DataSetFondosInforme.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetTotalesFondos.xsc">
+      <DependentUpon>DataSetTotalesFondos.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetTotalesFondos.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetTotalesFondos.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetTotalesFondos.xss">
+      <DependentUpon>DataSetTotalesFondos.xsd</DependentUpon>
     </None>
     <None Include="Presentacion\ComunidadesForms\Informes\InformeDeudasComunero\DataSetDeudasComunero.xsc">
       <DependentUpon>DataSetDeudasComunero.xsd</DependentUpon>

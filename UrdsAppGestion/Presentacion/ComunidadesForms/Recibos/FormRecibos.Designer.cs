@@ -195,7 +195,7 @@
             // label_num
             // 
             this.label_num.AutoSize = true;
-            this.label_num.Location = new System.Drawing.Point(722, 86);
+            this.label_num.Location = new System.Drawing.Point(12, 597);
             this.label_num.Name = "label_num";
             this.label_num.Size = new System.Drawing.Size(106, 13);
             this.label_num.TabIndex = 16;
@@ -203,7 +203,7 @@
             // 
             // buttonVerRecibo
             // 
-            this.buttonVerRecibo.Location = new System.Drawing.Point(498, 81);
+            this.buttonVerRecibo.Location = new System.Drawing.Point(409, 81);
             this.buttonVerRecibo.Name = "buttonVerRecibo";
             this.buttonVerRecibo.Size = new System.Drawing.Size(75, 23);
             this.buttonVerRecibo.TabIndex = 17;
@@ -213,7 +213,7 @@
             // 
             // buttonImprimirRecibo
             // 
-            this.buttonImprimirRecibo.Location = new System.Drawing.Point(579, 81);
+            this.buttonImprimirRecibo.Location = new System.Drawing.Point(490, 81);
             this.buttonImprimirRecibo.Name = "buttonImprimirRecibo";
             this.buttonImprimirRecibo.Size = new System.Drawing.Size(75, 23);
             this.buttonImprimirRecibo.TabIndex = 18;
@@ -242,7 +242,7 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // FormRecibos
             // 

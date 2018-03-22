@@ -582,8 +582,8 @@ namespace UrdsAppGestión.Presentacion
                                     List<String> lista = new List<string>();
                                 lista.Add(fi.FullName);
                                 
-                               EnviarCorreo(destinatario, asunto, cuerpo, lista, "info@urendes.com");
-                               //EnviarCorreo("sistemas@urendes.com", asunto, cuerpo, lista, "info@urendes.com");
+                               //EnviarCorreo(destinatario, asunto, cuerpo, lista, "info@urendes.com");
+                               EnviarCorreo("sistemas@urendes.com", asunto, cuerpo, lista, "info@urendes.com");
                             }else {
                                 fallos.Add(IdEntidad.ToString());
                             }
@@ -611,8 +611,8 @@ namespace UrdsAppGestión.Presentacion
                                     List<String> lista = new List<string>();
                                     lista.Add(fi.FullName);
 
-                                    EnviarCorreo(destinatario, asunto, cuerpo, lista, "info@urendes.com");
-                                    //EnviarCorreo("sistemas@urendes.com", asunto, cuerpo, lista, "info@urendes.com");
+                                    //EnviarCorreo(destinatario, asunto, cuerpo, lista, "info@urendes.com");
+                                    EnviarCorreo("sistemas@urendes.com", asunto, cuerpo, lista, "info@urendes.com");
                                 }
                                 else  {
                                     fallos.Add(IdEntidad.ToString());
