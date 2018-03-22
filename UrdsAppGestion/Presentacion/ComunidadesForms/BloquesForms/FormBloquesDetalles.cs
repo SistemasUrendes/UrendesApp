@@ -400,10 +400,14 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.BloquesForms
         private void button1_Click(object sender, EventArgs e)
         {
             for (int a = 0; a < dataGridView_DetallesBloque.Rows.Count; a++)
-                dataGridView_DetallesBloque.Rows[a].Cells["Parte"].Value = "( " + Math.Round((Convert.ToDouble(dataGridView_DetallesBloque.Rows[a].Cells["Cuota"].Value))*100,4).ToString() + "% / " + Math.Round(total_cuotas*100,4) + "% )";
+            {
+                dataGridView_DetallesBloque.Rows[a].Cells["Parte"].Value = "( " + String.Format("{0:0.000}", Math.Round((Convert.ToDouble(dataGridView_DetallesBloque.Rows[a].Cells["Cuota"].Value)) * 100, 4)) + "% / " + String.Format("{0:#.00}", total_cuotas * 100) + "% )";
+
+            }
 
             label2.Visible = true;
         }
+
     }
 }
 

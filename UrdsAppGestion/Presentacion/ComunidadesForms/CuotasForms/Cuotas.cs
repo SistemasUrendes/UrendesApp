@@ -13,6 +13,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
     public partial class Cuotas : Form
     {
         String id_comunidad_cargado;
+        DataTable cuotas;
 
         public Cuotas(String id_comunidad_cargado)
         {
@@ -28,7 +29,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
         public void cargarDatagrid() {
             String SelectCuotas = "SELECT com_cuotas.IdCuota, com_cuotas.FEmision, com_cuotas.Descripcion, com_liquidaciones.Liquidacion, com_ejercicios.Ejercicio, com_metodoscuotas.Método, com_tipocuotas.TipoCuota, com_cuotas.FVto, com_cuotas.IdEstado FROM(((com_cuotas INNER JOIN com_liquidaciones ON com_cuotas.IdLiquidacion = com_liquidaciones.IdLiquidacion) INNER JOIN com_tipocuotas ON com_cuotas.IdTipoCuota = com_tipocuotas.IdTipoCuota) INNER JOIN com_ejercicios ON com_liquidaciones.IdEjercicio = com_ejercicios.IdEjercicio) INNER JOIN com_metodoscuotas ON com_ejercicios.IdMetodoCuota = com_metodoscuotas.IdMetodoCuota WHERE(((com_ejercicios.IdComunidad) = " + id_comunidad_cargado + ")) ORDER BY com_cuotas.FEmision DESC, com_cuotas.IdCuota DESC;";
 
-            DataTable cuotas = Persistencia.SentenciasSQL.select(SelectCuotas);
+            cuotas = Persistencia.SentenciasSQL.select(SelectCuotas);
             dataGridView_Cuotas.DataSource = cuotas;
 
         }
@@ -296,6 +297,22 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
 
             cargarDatagrid();
             MessageBox.Show("Cuota Abono Creada");
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_buscar.TextLength < 2)
+            {
+                DataTable busqueda = cuotas;
+                busqueda.DefaultView.RowFilter = "Descripcion like '%%'";
+                this.dataGridView_Cuotas.DataSource = busqueda;
+            }
+            else
+            {
+                DataTable busqueda = cuotas;
+                busqueda.DefaultView.RowFilter = "Descripcion like '%" + textBox_buscar.Text + "%'";
+                this.dataGridView_Cuotas.DataSource = busqueda;
+            }
         }
     }
 }

@@ -85,6 +85,7 @@
             // 
             // comboBox_estado
             // 
+            this.comboBox_estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_estado.FormattingEnabled = true;
             this.comboBox_estado.Items.AddRange(new object[] {
             "Pendiente",
@@ -160,7 +161,7 @@
             this.borrarFechaCertificaciónToolStripMenuItem,
             this.liquidarFondoToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 136);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 114);
             // 
             // abrirOperacionToolStripMenuItem
             // 
@@ -233,6 +234,7 @@
             // 
             // comboBox_certificado
             // 
+            this.comboBox_certificado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_certificado.FormattingEnabled = true;
             this.comboBox_certificado.Items.AddRange(new object[] {
             "Certificadas",
@@ -255,6 +257,7 @@
             // 
             // comboBoxestado
             // 
+            this.comboBoxestado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxestado.FormattingEnabled = true;
             this.comboBoxestado.Items.AddRange(new object[] {
             "Certificadas",
@@ -275,6 +278,7 @@
             // 
             // comboBox_filtrofecha
             // 
+            this.comboBox_filtrofecha.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_filtrofecha.FormattingEnabled = true;
             this.comboBox_filtrofecha.Items.AddRange(new object[] {
             "Operaciones",

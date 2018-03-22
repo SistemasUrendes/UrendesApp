@@ -56,5 +56,25 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.EjerciciosForms
                 cargarDatagrid();
             }
         }
+
+        private void cerrarEjercicioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String sqlUpdate = "UPDATE com_ejercicios SET C=-1 WHERE IdEjercicio = " + dataGridView_Ejercicios.SelectedRows[0].Cells[0].Value.ToString();
+            Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+            cargarDatagrid();
+        }
+
+        private void dataGridView_Ejercicios_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                var hti = dataGridView_Ejercicios.HitTest(e.X, e.Y);
+                dataGridView_Ejercicios.ClearSelection();
+                dataGridView_Ejercicios.Rows[hti.RowIndex].Selected = true;
+
+                contextMenuStrip1.Show(Cursor.Position);
+            }
+
+        }
     }
 }

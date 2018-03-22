@@ -304,5 +304,35 @@ namespace UrdsAppGestión.Presentacion
             MantenimientoForms.FormInsertarPendientes nueva = new MantenimientoForms.FormInsertarPendientes();
             nueva.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            String sqlSelect = "SELECT IDEntidad, Entidad FROM ctos_entidades";
+            DataTable tablaEntidades = Persistencia.SentenciasSQL.select(sqlSelect);
+            
+            for (int a = 0; a < tablaEntidades.Rows.Count; a++ ) {
+                String nombre = quitaAcentos(tablaEntidades.Rows[a][1].ToString());
+
+                String sqlUpdate = "UPDATE ctos_entidades SET EntidadSinAcentos='" + nombre.Replace("'","`") + "' WHERE IDEntidad = " + tablaEntidades.Rows[a][0].ToString();
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+            }
+            MessageBox.Show("Fin");
+            
+        }
+        private String quitaAcentos(String inputString)
+        {
+            var normalizedString = inputString.Normalize(NormalizationForm.FormD);
+            var sb = new StringBuilder();
+            for (int i = 0; i < normalizedString.Length; i++)
+            {
+                var uc = System.Globalization.CharUnicodeInfo.GetUnicodeCategory(normalizedString[i]);
+                if (uc != System.Globalization.UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(normalizedString[i]);
+                }
+            }
+            return (sb.ToString().Normalize(NormalizationForm.FormC));
+
+        }
     }
 }

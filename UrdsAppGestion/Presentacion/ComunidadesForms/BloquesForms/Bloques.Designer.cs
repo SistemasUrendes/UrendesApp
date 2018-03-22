@@ -53,7 +53,6 @@
             this.dataGridView_bloques.AllowUserToResizeRows = false;
             this.dataGridView_bloques.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_bloques.Location = new System.Drawing.Point(12, 69);
-            this.dataGridView_bloques.MultiSelect = false;
             this.dataGridView_bloques.Name = "dataGridView_bloques";
             this.dataGridView_bloques.ReadOnly = true;
             this.dataGridView_bloques.RowHeadersVisible = false;

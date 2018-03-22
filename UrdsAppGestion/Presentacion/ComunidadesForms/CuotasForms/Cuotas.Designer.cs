@@ -41,6 +41,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button_abonar = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox_buscar = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Cuotas)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -65,7 +67,7 @@
             // 
             // button_Añadir
             // 
-            this.button_Añadir.Location = new System.Drawing.Point(23, 38);
+            this.button_Añadir.Location = new System.Drawing.Point(23, 12);
             this.button_Añadir.Name = "button_Añadir";
             this.button_Añadir.Size = new System.Drawing.Size(54, 23);
             this.button_Añadir.TabIndex = 1;
@@ -75,7 +77,7 @@
             // 
             // button_Borrar
             // 
-            this.button_Borrar.Location = new System.Drawing.Point(83, 38);
+            this.button_Borrar.Location = new System.Drawing.Point(83, 12);
             this.button_Borrar.Name = "button_Borrar";
             this.button_Borrar.Size = new System.Drawing.Size(52, 23);
             this.button_Borrar.TabIndex = 3;
@@ -128,7 +130,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(141, 38);
+            this.button1.Location = new System.Drawing.Point(141, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(154, 23);
             this.button1.TabIndex = 9;
@@ -154,12 +156,31 @@
             this.progressBar1.TabIndex = 11;
             this.progressBar1.Visible = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(23, 44);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Buscar : ";
+            // 
+            // textBox_buscar
+            // 
+            this.textBox_buscar.Location = new System.Drawing.Point(78, 41);
+            this.textBox_buscar.Name = "textBox_buscar";
+            this.textBox_buscar.Size = new System.Drawing.Size(217, 20);
+            this.textBox_buscar.TabIndex = 13;
+            this.textBox_buscar.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // Cuotas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(969, 471);
             this.ControlBox = false;
+            this.Controls.Add(this.textBox_buscar);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button_abonar);
             this.Controls.Add(this.button1);
@@ -176,6 +197,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Cuotas)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -192,5 +214,7 @@
         private System.Windows.Forms.ToolStripMenuItem informeToolStripMenuItem;
         private System.Windows.Forms.Button button_abonar;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox_buscar;
     }
 }

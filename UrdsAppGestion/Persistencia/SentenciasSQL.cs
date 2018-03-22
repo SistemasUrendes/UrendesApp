@@ -16,7 +16,7 @@ namespace UrdsAppGestión.Persistencia
             //Form de Entidades.Hay más SQL dentro pero necesitan datos del formulario.
             "SELECT IdCategoria, IdGrupoCat,Descripcion FROM ctos_catentidades ORDER BY Descripcion;",
 
-            "SELECT ctos_entidades.IDEntidad, ctos_entidades.Entidad, ctos_entidades.NombreCorto, ctos_entidades.CIF, ctos_detallecat.IdCategoria FROM ctos_entidades LEFT JOIN ctos_detallecat ON ctos_entidades.IDEntidad = ctos_detallecat.IdEntidad ORDER BY ctos_entidades.Entidad;",
+            "SELECT ctos_entidades.IDEntidad, ctos_entidades.Entidad, ctos_entidades.NombreCorto, ctos_entidades.CIF, ctos_detallecat.IdCategoria, ctos_entidades.EntidadSinAcentos FROM ctos_entidades LEFT JOIN ctos_detallecat ON ctos_entidades.IDEntidad = ctos_detallecat.IdEntidad ORDER BY ctos_entidades.Entidad;",
 
             "SELECT IdCategoria, IdGrupoCat,Descripcion FROM ctos_catentidades ORDER BY Descripcion;", 
             //#############################################################################
@@ -48,17 +48,18 @@ namespace UrdsAppGestión.Persistencia
                 return dt;
             }
         }
-        public static int InsertEntidad(String entidad,String nombreCorto,String CIF,String Notas) {
+        public static int InsertEntidad(String entidad,String nombreCorto,String CIF,String Notas, String entidad_sinAcentos) {
 
             MySqlConnection conn = Persistencia.conexion_bd.abrir();
             conn.Open();
             MySqlCommand comm = conn.CreateCommand();
-            comm.CommandText = "INSERT INTO ctos_entidades(Entidad,NombreCorto,CIF,Notas) VALUES(@entidad, @NombreCorto,@CIF,@Notas)";
+            comm.CommandText = "INSERT INTO ctos_entidades(Entidad,NombreCorto,CIF,Notas,EntidadSinAcentos) VALUES(@entidad, @NombreCorto,@CIF,@Notas,@SinAcentos)";
 
             comm.Parameters.AddWithValue("@entidad", entidad);
             comm.Parameters.AddWithValue("@NombreCorto", nombreCorto);
             comm.Parameters.AddWithValue("@CIF", CIF);
             comm.Parameters.AddWithValue("@Notas", Notas);
+            comm.Parameters.AddWithValue("@SinAcentos", entidad_sinAcentos);
             comm.ExecuteNonQuery();
 
             conn.ClearAllPoolsAsync();
@@ -67,6 +68,7 @@ namespace UrdsAppGestión.Persistencia
 
             return (int)comm.LastInsertedId;
         }
+
         public static void InsertRuta(String IdTipoDoc,String fecha,String GeneralComunidades, String Descripcion, String Ruta) {
 
             MySqlConnection conn = Persistencia.conexion_bd.abrir();

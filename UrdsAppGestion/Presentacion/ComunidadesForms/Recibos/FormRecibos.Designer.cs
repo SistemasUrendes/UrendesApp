@@ -50,9 +50,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label_impriendo = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.abonarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_recibos)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView_recibos
@@ -197,7 +195,7 @@
             // label_num
             // 
             this.label_num.AutoSize = true;
-            this.label_num.Location = new System.Drawing.Point(722, 86);
+            this.label_num.Location = new System.Drawing.Point(12, 597);
             this.label_num.Name = "label_num";
             this.label_num.Size = new System.Drawing.Size(106, 13);
             this.label_num.TabIndex = 16;
@@ -205,7 +203,7 @@
             // 
             // buttonVerRecibo
             // 
-            this.buttonVerRecibo.Location = new System.Drawing.Point(498, 81);
+            this.buttonVerRecibo.Location = new System.Drawing.Point(409, 81);
             this.buttonVerRecibo.Name = "buttonVerRecibo";
             this.buttonVerRecibo.Size = new System.Drawing.Size(75, 23);
             this.buttonVerRecibo.TabIndex = 17;
@@ -215,7 +213,7 @@
             // 
             // buttonImprimirRecibo
             // 
-            this.buttonImprimirRecibo.Location = new System.Drawing.Point(579, 81);
+            this.buttonImprimirRecibo.Location = new System.Drawing.Point(490, 81);
             this.buttonImprimirRecibo.Name = "buttonImprimirRecibo";
             this.buttonImprimirRecibo.Size = new System.Drawing.Size(75, 23);
             this.buttonImprimirRecibo.TabIndex = 18;
@@ -243,18 +241,8 @@
             // 
             // contextMenuStrip1
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.abonarToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
-            // 
-            // abonarToolStripMenuItem
-            // 
-            this.abonarToolStripMenuItem.Enabled = false;
-            this.abonarToolStripMenuItem.Name = "abonarToolStripMenuItem";
-            this.abonarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.abonarToolStripMenuItem.Text = "Abonar";
-            this.abonarToolStripMenuItem.Click += new System.EventHandler(this.abonarToolStripMenuItem_Click);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // FormRecibos
             // 
@@ -287,7 +275,6 @@
             this.Text = "Recibos";
             this.Load += new System.EventHandler(this.FormRecibos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_recibos)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -315,6 +302,5 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label_impriendo;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem abonarToolStripMenuItem;
     }
 }

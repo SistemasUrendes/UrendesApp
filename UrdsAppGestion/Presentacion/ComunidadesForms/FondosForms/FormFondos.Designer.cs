@@ -37,9 +37,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView_Fondos = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.detallesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inciarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarFondoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.informeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView_detallesFondos = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -50,6 +50,7 @@
             this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iniciarConResultadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Fondos)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_detallesFondos)).BeginInit();
@@ -137,18 +138,11 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.detallesToolStripMenuItem,
             this.inciarToolStripMenuItem,
-            this.cerrarFondoToolStripMenuItem});
+            this.cerrarFondoToolStripMenuItem,
+            this.informeToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(144, 70);
-            // 
-            // detallesToolStripMenuItem
-            // 
-            this.detallesToolStripMenuItem.Name = "detallesToolStripMenuItem";
-            this.detallesToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.detallesToolStripMenuItem.Text = "Detalles";
-            this.detallesToolStripMenuItem.Click += new System.EventHandler(this.detallesToolStripMenuItem_Click);
             // 
             // inciarToolStripMenuItem
             // 
@@ -163,6 +157,13 @@
             this.cerrarFondoToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.cerrarFondoToolStripMenuItem.Text = "Cerrar Fondo";
             this.cerrarFondoToolStripMenuItem.Click += new System.EventHandler(this.cerrarFondoToolStripMenuItem_Click);
+            // 
+            // informeToolStripMenuItem
+            // 
+            this.informeToolStripMenuItem.Name = "informeToolStripMenuItem";
+            this.informeToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.informeToolStripMenuItem.Text = "Informe";
+            this.informeToolStripMenuItem.Click += new System.EventHandler(this.informeToolStripMenuItem_Click);
             // 
             // dataGridView_detallesFondos
             // 
@@ -202,7 +203,7 @@
             this.iniciarConResultadoToolStripMenuItem,
             this.cerrarToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(185, 180);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(185, 158);
             // 
             // entradasToolStripMenuItem
             // 
@@ -223,6 +224,7 @@
             this.indexarLiquidaciónToolStripMenuItem.Name = "indexarLiquidaciónToolStripMenuItem";
             this.indexarLiquidaciónToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.indexarLiquidaciónToolStripMenuItem.Text = "Indexar Liquidación";
+            this.indexarLiquidaciónToolStripMenuItem.Visible = false;
             this.indexarLiquidaciónToolStripMenuItem.Click += new System.EventHandler(this.indexarLiquidaciónToolStripMenuItem_Click);
             // 
             // calcularToolStripMenuItem
@@ -253,12 +255,23 @@
             this.cerrarToolStripMenuItem.Text = "Cerrar";
             this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(629, 15);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 8;
+            this.button4.Text = "Informe";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // FormFondos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(905, 551);
             this.ControlBox = false;
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridView_detallesFondos);
             this.Controls.Add(this.dataGridView_Fondos);
@@ -291,7 +304,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView_Fondos;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem detallesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inciarToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridView_detallesFondos;
         private System.Windows.Forms.Label label2;
@@ -304,5 +316,7 @@
         private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iniciarConResultadoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem informeToolStripMenuItem;
+        private System.Windows.Forms.Button button4;
     }
 }

@@ -312,7 +312,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
 
         private void abrirOperacionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OperacionesForms.FromOperacionesVer nueva = new OperacionesForms.FromOperacionesVer(id_comunidad_cargado,dataGridView_operacionesComuneros.SelectedCells[0].Value.ToString());
+            OperacionesForms.FromOperacionesVer nueva = new OperacionesForms.FromOperacionesVer(dataGridView_operacionesComuneros.SelectedCells[7].Value.ToString(),2);
             nueva.Show();
         }
 
@@ -359,7 +359,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
 
         private void dataGridView_operacionesComuneros_DoubleClick(object sender, EventArgs e)
         {
-            OperacionesForms.FromOperacionesVer nueva = new OperacionesForms.FromOperacionesVer(id_comunidad_cargado, dataGridView_operacionesComuneros.SelectedCells[0].Value.ToString());
+            OperacionesForms.FromOperacionesVer nueva = new OperacionesForms.FromOperacionesVer(dataGridView_operacionesComuneros.SelectedCells[7].Value.ToString(),2);
             nueva.Show();
         }
 

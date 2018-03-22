@@ -16,6 +16,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
         String id_comunidad_cargado = "0";
         Cuotas form_anterior;
         DateTime inicio;
+        String idSubcuenta = "70000";
         int tipoCreacion;
 
         public FormCuotasAlta(Cuotas form_anterior, String id_cuota_cargado, String id_comunidad_cargado)  {
@@ -124,6 +125,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
         private void button_Guardar_Click(object sender, EventArgs e)
         {
             String IdFondo = "NULL";
+            if (checkBox_liquidable.Checked) 
+                idSubcuenta = comboBox_subcuenta.SelectedValue.ToString();
+            
+
             this.Cursor = Cursors.WaitCursor;
             if (comboBox_Fondo.SelectedValue != null && checkBox_fondo.Checked) {
                 IdFondo = comboBox_Fondo.SelectedValue.ToString();
@@ -173,7 +178,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
             else {
                 MessageBox.Show("No se puede crear a cuota real");
             }
-            MessageBox.Show("Cuota Creada");
             this.Cursor = Cursors.Arrow;
             form_anterior.cargarDatagrid();
             this.Close();
@@ -297,7 +301,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
                     double segundosTotales = duracion.TotalSeconds;
                     int segundos = duracion.Seconds;
 
-                    MessageBox.Show("FIN => " + segundos.ToString() + " segundos.");
+                    MessageBox.Show("Cuota Creada (" + segundos.ToString() + "s)");
                 }
                 else
                 {
@@ -329,7 +333,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
                     double segundosTotales = duracion.TotalSeconds;
                     int segundos = duracion.Seconds;
 
-                    MessageBox.Show("FIN => " + segundos.ToString() + " segundos.");
+                    MessageBox.Show("Cuota Creada (" + segundos.ToString() + "s)");
                 }
                 else
                 {
@@ -341,7 +345,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
         private void creoCuotaFijaConDetalles(String id_cuota, String fecha) {
             String fechaAhora = (Convert.ToDateTime(DateTime.Now)).ToString("yyyy-MM-dd");
 
-            String sqlCreoCabecera = "INSERT INTO com_operaciones ( IdDivision, ImpOp, ImpOpPte, IdComunidad, IdEntidad, IdCuota, Fecha, IdSubCuenta, IdTipoReparto, IdURD, FAct, Documento, Descripcion )SELECT com_cuotamanualdet.IdDivision, Sum(com_cuotamanualdet.Importe) AS SumaDeImporte, Sum(com_cuotamanualdet.Importe)AS SumaDeImportePte, com_divisiones.IdComunidad, com_comuneros.IdEntidad, " + id_cuota + " AS Cuota, com_cuotamanualdet.Fecha AS FechaCuota, 70000 AS SubCuenta, 1 AS TipoReparto, " + Login.getId() + " AS Urds, '" + fechaAhora + "' AS FCrea, CONCAT ('C'," + id_cuota + ",'/',com_cuotamanualdet.IdDivision) AS Doc, com_cuotamanualdet.Referencia as descr FROM ((com_cuotamanualdet INNER JOIN com_asociacion ON com_cuotamanualdet.IdDivision = com_asociacion.IdDivision) INNER JOIN com_divisiones ON com_cuotamanualdet.IdDivision = com_divisiones.IdDivision) INNER JOIN com_comuneros ON com_asociacion.IdComunero = com_comuneros.IdComunero WHERE(((com_cuotamanualdet.IdCuotaManual) = " + comboBox_PlantillaCuota.SelectedValue.ToString() + ") AND ((com_asociacion.Ppal)=-1)) GROUP BY com_cuotamanualdet.IdDivision, com_divisiones.IdComunidad, com_comuneros.IdEntidad";
+            String sqlCreoCabecera = "INSERT INTO com_operaciones ( IdDivision, ImpOp, ImpOpPte, IdComunidad, IdEntidad, IdCuota, Fecha, IdSubCuenta, IdTipoReparto, IdURD, FAct, Documento, Descripcion )SELECT com_cuotamanualdet.IdDivision, Sum(com_cuotamanualdet.Importe) AS SumaDeImporte, Sum(com_cuotamanualdet.Importe)AS SumaDeImportePte, com_divisiones.IdComunidad, com_comuneros.IdEntidad, " + id_cuota + " AS Cuota, com_cuotamanualdet.Fecha AS FechaCuota, " + idSubcuenta + " AS SubCuenta, 1 AS TipoReparto, " + Login.getId() + " AS Urds, '" + fechaAhora + "' AS FCrea, CONCAT ('C'," + id_cuota + ",'/',com_cuotamanualdet.IdDivision) AS Doc, com_cuotamanualdet.Referencia as descr FROM ((com_cuotamanualdet INNER JOIN com_asociacion ON com_cuotamanualdet.IdDivision = com_asociacion.IdDivision) INNER JOIN com_divisiones ON com_cuotamanualdet.IdDivision = com_divisiones.IdDivision) INNER JOIN com_comuneros ON com_asociacion.IdComunero = com_comuneros.IdComunero WHERE(((com_cuotamanualdet.IdCuotaManual) = " + comboBox_PlantillaCuota.SelectedValue.ToString() + ") AND ((com_asociacion.Ppal)=-1)) GROUP BY com_cuotamanualdet.IdDivision, com_divisiones.IdComunidad, com_comuneros.IdEntidad";
             Persistencia.SentenciasSQL.InsertarGenerico(sqlCreoCabecera);
 
             //Crea Bloques
@@ -475,7 +479,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
         private void creoCuotaFija(String id_cuota,String fecha) {
             String fechaAhora = (Convert.ToDateTime(DateTime.Now)).ToString("yyyy-MM-dd");
 
-            String sqlCreoCabecera = "INSERT INTO com_operaciones ( IdDivision, ImpOp, ImpOpPte, IdComunidad, IdEntidad, IdCuota, Fecha, IdSubCuenta, IdTipoReparto, IdURD, FAct, Documento, Descripcion )SELECT com_cuotamanualdet.IdDivision, Sum(com_cuotamanualdet.Importe) AS SumaDeImporte, Sum(com_cuotamanualdet.Importe)AS SumaDeImportePte, com_divisiones.IdComunidad, com_comuneros.IdEntidad, " + id_cuota + " AS Cuota, '" + fecha + "' AS FechaCuota, 70000 AS SubCuenta, 1 AS TipoReparto, " + Login.getId() + " AS Urds, '" + fechaAhora + "' AS FCrea, CONCAT ('C'," + id_cuota + ",'/',com_cuotamanualdet.IdDivision) AS Doc, CONCAT ( com_divisiones.Division,' - ','" + textBox_Cuota.Text + "') as descr FROM ((com_cuotamanualdet INNER JOIN com_asociacion ON com_cuotamanualdet.IdDivision = com_asociacion.IdDivision) INNER JOIN com_divisiones ON com_cuotamanualdet.IdDivision = com_divisiones.IdDivision) INNER JOIN com_comuneros ON com_asociacion.IdComunero = com_comuneros.IdComunero WHERE(((com_cuotamanualdet.IdCuotaManual) = " + comboBox_PlantillaCuota.SelectedValue.ToString() + ") AND ((com_asociacion.Ppal)=-1)) GROUP BY com_cuotamanualdet.IdDivision, com_divisiones.IdComunidad, com_comuneros.IdEntidad";
+            String sqlCreoCabecera = "INSERT INTO com_operaciones ( IdDivision, ImpOp, ImpOpPte, IdComunidad, IdEntidad, IdCuota, Fecha, IdSubCuenta, IdTipoReparto, IdURD, FAct, Documento, Descripcion )SELECT com_cuotamanualdet.IdDivision, Sum(com_cuotamanualdet.Importe) AS SumaDeImporte, Sum(com_cuotamanualdet.Importe)AS SumaDeImportePte, com_divisiones.IdComunidad, com_comuneros.IdEntidad, " + id_cuota + " AS Cuota, '" + fecha + "' AS FechaCuota, " + idSubcuenta + " AS SubCuenta, 1 AS TipoReparto, " + Login.getId() + " AS Urds, '" + fechaAhora + "' AS FCrea, CONCAT ('C'," + id_cuota + ",'/',com_cuotamanualdet.IdDivision) AS Doc, CONCAT ( com_divisiones.Division,' - ','" + textBox_Cuota.Text + "') as descr FROM ((com_cuotamanualdet INNER JOIN com_asociacion ON com_cuotamanualdet.IdDivision = com_asociacion.IdDivision) INNER JOIN com_divisiones ON com_cuotamanualdet.IdDivision = com_divisiones.IdDivision) INNER JOIN com_comuneros ON com_asociacion.IdComunero = com_comuneros.IdComunero WHERE(((com_cuotamanualdet.IdCuotaManual) = " + comboBox_PlantillaCuota.SelectedValue.ToString() + ") AND ((com_asociacion.Ppal)=-1)) GROUP BY com_cuotamanualdet.IdDivision, com_divisiones.IdComunidad, com_comuneros.IdEntidad";
             Persistencia.SentenciasSQL.InsertarGenerico(sqlCreoCabecera);
 
             //Crea Bloques
@@ -662,6 +666,59 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
 
                 MessageBox.Show("Cuota Borrada");
             }
+        }
+
+        private void checkBox_liquidable_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_liquidable.Checked)
+            {
+                comboBox_subcuenta.Enabled = true;
+                comboBox_subcuenta.DataSource = NewMethod();
+                comboBox_subcuenta.ValueMember = "Key";
+                comboBox_subcuenta.DisplayMember = "Value";
+            }else {
+                comboBox_subcuenta.Enabled = false;
+            }
+        }
+
+        private BindingSource NewMethod()
+        {
+            DataTable table;
+            table = Persistencia.SentenciasSQL.select("SELECT IdSubcuenta, com_subcuentas.`TIT SUBCTA` FROM com_subcuentas WHERE IdSubcuenta >= 71000 AND IdSubcuenta <= 72000;");
+
+            DataRowCollection rows = table.Rows;
+
+            object[] cell;
+            Dictionary<int, string> dic = new Dictionary<int, string>();
+            BindingSource binding = new BindingSource();
+
+            foreach (DataRow item in rows)
+            {
+                cell = item.ItemArray;
+
+                dic.Add(Convert.ToInt32(cell[0]), cell[0].ToString() + " - " + cell[1].ToString());
+
+                cell = null;
+            }
+
+            binding.DataSource = dic;
+            return binding;
+        }
+        public static AutoCompleteStringCollection LoadAutoComplete()
+        {
+            DataTable table;
+            table = Persistencia.SentenciasSQL.select("SELECT IdSubcuenta, com_subcuentas.`TIT SUBCTA` FROM com_subcuentas WHERE IdSubcuenta >= 71000 AND IdSubcuenta <= 72000;");
+
+            DataTable dt = table;
+
+            AutoCompleteStringCollection stringCol = new AutoCompleteStringCollection();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                stringCol.Add(Convert.ToString(row["IdSubcuenta"]) + " - " + Convert.ToString(row["TIT SUBCTA"]));
+            }
+
+            return stringCol;
         }
     }
 }

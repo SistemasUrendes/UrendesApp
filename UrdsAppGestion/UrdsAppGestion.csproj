@@ -384,9 +384,7 @@
     <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormEntradasFondos.Designer.cs">
       <DependentUpon>FormEntradasFondos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormFondosDetalles.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormFondosDetalles.cs" />
     <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormFondosDetalles.Designer.cs">
       <DependentUpon>FormFondosDetalles.cs</DependentUpon>
     </Compile>

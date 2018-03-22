@@ -318,7 +318,7 @@ namespace UrdsAppGestión.Logica
             Persistencia.SentenciasSQL.InsertarGenerico(sqlBloq2);
 
             //INSERTO EL VENCIMIENTO EN LA OPERACION
-            String sqlDetOp2 = "INSERT INTO com_opdetalles (IdOp, IdEntidad, Fecha, FechaPrev, Importe,ImpOpDetPte) VALUES (" + opCA + "," + id_Entidad + ",'" + fecha + "','" + fecha + "'," + importe.ToString().Replace(',', '.') + "," + importe.ToString().Replace(',', '.') + ")";
+            String sqlDetOp2 = "INSERT INTO com_opdetalles (IdOp, IdEntidad, Fecha, FechaPrev, Importe,ImpOpDetPte) VALUES (" + opCA + "," + EntidadBanco + ",'" + fecha + "','" + fecha + "'," + importe.ToString().Replace(',', '.') + "," + importe.ToString().Replace(',', '.') + ")";
             Persistencia.SentenciasSQL.InsertarGenerico(sqlDetOp2);
 
             //INSERTO LA LIQUIDACION EN LA OPERACION ANTERIOR
