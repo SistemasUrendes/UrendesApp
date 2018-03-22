@@ -27,7 +27,7 @@
     <UpdateUrl>\\Urenux\app\App\</UpdateUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>17</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -384,6 +384,10 @@
     <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormEntradasFondos.Designer.cs">
       <DependentUpon>FormEntradasFondos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormFondosDetalles.cs" />
+    <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormFondosDetalles.Designer.cs">
+      <DependentUpon>FormFondosDetalles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormIndenxarLiquidacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -401,25 +405,6 @@
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormSalidasFondos.Designer.cs">
       <DependentUpon>FormSalidasFondos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetFondosInforme.cs">
-      <DependentUpon>DataSetFondosInforme.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetFondosInforme.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetFondosInforme.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetTotalesFondos.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetTotalesFondos.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\ComunidadesForms\FondosForms\Informes\FormVerInformeCuentas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\ComunidadesForms\FondosForms\Informes\FormVerInformeCuentas.Designer.cs">
-      <DependentUpon>FormVerInformeCuentas.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\Informes\InformeDeudasComunero\DataSetDeudasComunero.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1147,11 +1132,35 @@
     <Compile Include="Presentacion\PlanContableForms\FormPlanContableAlta.Designer.cs">
       <DependentUpon>FormPlanContableAlta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarContacto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarContacto.Designer.cs">
+      <DependentUpon>FormInsertarContacto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarGestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarGestion.Designer.cs">
+      <DependentUpon>FormInsertarGestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarSeguimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarSeguimiento.Designer.cs">
+      <DependentUpon>FormInsertarSeguimiento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Tareas\FormTareasPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\Tareas\FormTareasPrincipal.Designer.cs">
       <DependentUpon>FormTareasPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormVerTarea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormVerTarea.Designer.cs">
+      <DependentUpon>FormVerTarea.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1272,6 +1281,9 @@
     <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\FormEntradasFondos.resx">
       <DependentUpon>FormEntradasFondos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\FormFondosDetalles.resx">
+      <DependentUpon>FormFondosDetalles.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\FormIndenxarLiquidacion.resx">
       <DependentUpon>FormIndenxarLiquidacion.cs</DependentUpon>
     </EmbeddedResource>
@@ -1281,10 +1293,6 @@
     <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\FormSalidasFondos.resx">
       <DependentUpon>FormSalidasFondos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\Informes\FormVerInformeCuentas.resx">
-      <DependentUpon>FormVerInformeCuentas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\Informes\ReportCuentas.rdlc" />
     <EmbeddedResource Include="Presentacion\ComunidadesForms\Informes\InformeDeudasComunero\FormInformeDeudasComunero.resx">
       <DependentUpon>FormInformeDeudasComunero.cs</DependentUpon>
     </EmbeddedResource>
@@ -1623,8 +1631,20 @@
     <EmbeddedResource Include="Presentacion\PlanContableForms\FormPlanContableAlta.resx">
       <DependentUpon>FormPlanContableAlta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormInsertarContacto.resx">
+      <DependentUpon>FormInsertarContacto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormInsertarGestion.resx">
+      <DependentUpon>FormInsertarGestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormInsertarSeguimiento.resx">
+      <DependentUpon>FormInsertarSeguimiento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormTareasPrincipal.resx">
       <DependentUpon>FormTareasPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormVerTarea.resx">
+      <DependentUpon>FormVerTarea.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -1691,28 +1711,6 @@
     </None>
     <None Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\DataSetDeudasDivision.xss">
       <DependentUpon>DataSetDeudasDivision.xsd</DependentUpon>
-    </None>
-    <None Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetFondosInforme.xsc">
-      <DependentUpon>DataSetFondosInforme.xsd</DependentUpon>
-    </None>
-    <None Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetFondosInforme.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetFondosInforme.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetFondosInforme.xss">
-      <DependentUpon>DataSetFondosInforme.xsd</DependentUpon>
-    </None>
-    <None Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetTotalesFondos.xsc">
-      <DependentUpon>DataSetTotalesFondos.xsd</DependentUpon>
-    </None>
-    <None Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetTotalesFondos.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetTotalesFondos.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetTotalesFondos.xss">
-      <DependentUpon>DataSetTotalesFondos.xsd</DependentUpon>
     </None>
     <None Include="Presentacion\ComunidadesForms\Informes\InformeDeudasComunero\DataSetDeudasComunero.xsc">
       <DependentUpon>DataSetDeudasComunero.xsd</DependentUpon>
