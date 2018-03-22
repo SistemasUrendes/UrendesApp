@@ -1162,6 +1162,12 @@
     <Compile Include="Presentacion\Tareas\FormInsertarGestion.Designer.cs">
       <DependentUpon>FormInsertarGestion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarGrupo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarGrupo.Designer.cs">
+      <DependentUpon>FormInsertarGrupo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Tareas\FormInsertarSeguimiento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1655,6 +1661,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormInsertarGestion.resx">
       <DependentUpon>FormInsertarGestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormInsertarGrupo.resx">
+      <DependentUpon>FormInsertarGrupo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormInsertarSeguimiento.resx">
       <DependentUpon>FormInsertarSeguimiento.cs</DependentUpon>

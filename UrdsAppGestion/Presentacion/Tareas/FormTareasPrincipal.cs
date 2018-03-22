@@ -250,5 +250,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     contextMenuStrip1.Close();
                 }
         }
+
+        private void buttonGrupo_Click(object sender, EventArgs e)
+        {
+            Tareas.FormInsertarGrupo nueva = new FormInsertarGrupo();
+            nueva.Show();
+        }
     }
 }

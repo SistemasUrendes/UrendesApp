@@ -50,6 +50,7 @@
             this.buttonNuevaTarea = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.maskedTextBoxRefComunidad = new System.Windows.Forms.MaskedTextBox();
+            this.buttonGrupo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tareas)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -144,7 +145,7 @@
             this.toolStripMenuItem1,
             this.toolStripTextBoxFiltro});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(161, 101);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(161, 79);
             // 
             // toolStripMenuItemBorrar
             // 
@@ -241,12 +242,23 @@
             this.maskedTextBoxRefComunidad.ValidatingType = typeof(int);
             this.maskedTextBoxRefComunidad.Leave += new System.EventHandler(this.maskedTextBoxRefComunidad_Leave);
             // 
+            // buttonGrupo
+            // 
+            this.buttonGrupo.Location = new System.Drawing.Point(936, 38);
+            this.buttonGrupo.Name = "buttonGrupo";
+            this.buttonGrupo.Size = new System.Drawing.Size(100, 23);
+            this.buttonGrupo.TabIndex = 22;
+            this.buttonGrupo.Text = "Añadir Grupo";
+            this.buttonGrupo.UseVisualStyleBackColor = true;
+            this.buttonGrupo.Click += new System.EventHandler(this.buttonGrupo_Click);
+            // 
             // FormTareasPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1048, 665);
             this.ControlBox = false;
+            this.Controls.Add(this.buttonGrupo);
             this.Controls.Add(this.maskedTextBoxRefComunidad);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.buttonNuevaTarea);
@@ -296,5 +308,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemBorrar;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxRefComunidad;
+        private System.Windows.Forms.Button buttonGrupo;
     }
 }
