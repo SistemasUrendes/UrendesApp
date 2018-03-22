@@ -2,7 +2,7 @@
 {
 
 
-    partial class DataSetFondosInforme
+    partial class DataSetFondosInforme2
     {
     }
 }

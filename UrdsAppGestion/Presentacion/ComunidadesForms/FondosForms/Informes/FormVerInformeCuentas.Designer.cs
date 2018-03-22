@@ -34,7 +34,7 @@
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVerInformeCuentas));
             this.FondosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.DataSetFondosInforme = new UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms.Informes.DataSetFondosInforme();
+            this.DataSetFondosInforme = new UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms.Informes.DataSetFondosInforme2();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
@@ -97,7 +97,7 @@
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.BindingSource FondosBindingSource;
-        private DataSetFondosInforme DataSetFondosInforme;
+        private DataSetFondosInforme2 DataSetFondosInforme;
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.BindingSource bindingSource2;
     }
