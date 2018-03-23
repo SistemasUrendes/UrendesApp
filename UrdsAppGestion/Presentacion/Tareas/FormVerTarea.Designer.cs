@@ -127,7 +127,7 @@
             this.textBoxNotas.Multiline = true;
             this.textBoxNotas.Name = "textBoxNotas";
             this.textBoxNotas.Size = new System.Drawing.Size(561, 103);
-            this.textBoxNotas.TabIndex = 5;
+            this.textBoxNotas.TabIndex = 18;
             // 
             // textBoxRuta
             // 
@@ -138,6 +138,7 @@
             this.textBoxRuta.ReadOnly = true;
             this.textBoxRuta.Size = new System.Drawing.Size(537, 20);
             this.textBoxRuta.TabIndex = 19;
+            this.textBoxRuta.TabStop = false;
             this.textBoxRuta.Click += new System.EventHandler(this.textBoxRuta_Click);
             // 
             // maskedTextBoxFFin
@@ -282,7 +283,7 @@
             this.dataGridViewSeguimientos.ReadOnly = true;
             this.dataGridViewSeguimientos.RowHeadersVisible = false;
             this.dataGridViewSeguimientos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewSeguimientos.Size = new System.Drawing.Size(564, 253);
+            this.dataGridViewSeguimientos.Size = new System.Drawing.Size(563, 252);
             this.dataGridViewSeguimientos.TabIndex = 20;
             this.dataGridViewSeguimientos.TabStop = false;
             this.dataGridViewSeguimientos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSeguimientos_CellDoubleClick);
@@ -412,7 +413,7 @@
             // 
             // buttonAddSeguimiento
             // 
-            this.buttonAddSeguimiento.Location = new System.Drawing.Point(457, 12);
+            this.buttonAddSeguimiento.Location = new System.Drawing.Point(457, 10);
             this.buttonAddSeguimiento.Name = "buttonAddSeguimiento";
             this.buttonAddSeguimiento.Size = new System.Drawing.Size(115, 23);
             this.buttonAddSeguimiento.TabIndex = 22;
@@ -486,7 +487,7 @@
             this.buttonRuta.Location = new System.Drawing.Point(64, 307);
             this.buttonRuta.Name = "buttonRuta";
             this.buttonRuta.Size = new System.Drawing.Size(19, 19);
-            this.buttonRuta.TabIndex = 18;
+            this.buttonRuta.TabIndex = 19;
             this.buttonRuta.Text = "...";
             this.buttonRuta.UseVisualStyleBackColor = true;
             this.buttonRuta.Click += new System.EventHandler(this.buttonRuta_Click);
@@ -543,14 +544,14 @@
             this.tabPageContactos.Location = new System.Drawing.Point(4, 22);
             this.tabPageContactos.Name = "tabPageContactos";
             this.tabPageContactos.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageContactos.Size = new System.Drawing.Size(532, 547);
+            this.tabPageContactos.Size = new System.Drawing.Size(578, 299);
             this.tabPageContactos.TabIndex = 1;
             this.tabPageContactos.Text = "Contactos";
             this.tabPageContactos.UseVisualStyleBackColor = true;
             // 
             // buttonAddContacto
             // 
-            this.buttonAddContacto.Location = new System.Drawing.Point(322, 10);
+            this.buttonAddContacto.Location = new System.Drawing.Point(372, 10);
             this.buttonAddContacto.Name = "buttonAddContacto";
             this.buttonAddContacto.Size = new System.Drawing.Size(97, 23);
             this.buttonAddContacto.TabIndex = 24;
@@ -560,7 +561,7 @@
             // 
             // buttonEnviarMail
             // 
-            this.buttonEnviarMail.Location = new System.Drawing.Point(425, 10);
+            this.buttonEnviarMail.Location = new System.Drawing.Point(475, 10);
             this.buttonEnviarMail.Name = "buttonEnviarMail";
             this.buttonEnviarMail.Size = new System.Drawing.Size(97, 23);
             this.buttonEnviarMail.TabIndex = 25;
@@ -589,7 +590,7 @@
             this.dataGridViewContactos.ReadOnly = true;
             this.dataGridViewContactos.RowHeadersVisible = false;
             this.dataGridViewContactos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewContactos.Size = new System.Drawing.Size(513, 503);
+            this.dataGridViewContactos.Size = new System.Drawing.Size(563, 253);
             this.dataGridViewContactos.TabIndex = 0;
             this.dataGridViewContactos.TabStop = false;
             this.dataGridViewContactos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewContactos_CellDoubleClick);

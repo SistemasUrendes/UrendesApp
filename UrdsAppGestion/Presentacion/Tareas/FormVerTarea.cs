@@ -66,12 +66,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBoxIdTarea.Text = tarea.Rows[0][0].ToString();
             textBoxDescripcion.Text = tarea.Rows[0][1].ToString();
             idEntidad = tarea.Rows[0][2].ToString();
-            maskedTextBoxReferencia.Text = tarea.Rows[0][15].ToString();
-            textBoxEntidad.Text = tarea.Rows[0][16].ToString(); 
             textBoxNotas.Text = tarea.Rows[0][3].ToString();
             ruta = tarea.Rows[0][4].ToString().Trim('#');
-            textBoxRuta.Text = ruta; 
-            comboBoxTipo.SelectedValue =  tarea.Rows[0][5].ToString();
+            textBoxRuta.Text = ruta;
+            comboBoxTipo.SelectedValue = tarea.Rows[0][5].ToString();
             maskedTextBoxFFin.Text = tarea.Rows[0][6].ToString();
             maskedTextBoxFIni.Text = tarea.Rows[0][7].ToString();
             fInicio = tarea.Rows[0][7].ToString();
@@ -82,6 +80,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
             checkBoxAcuerdoJunta.Checked = bool.Parse(tarea.Rows[0][12].ToString());
             if (tarea.Rows[0][13].ToString() != "00/00/0000") maskedTextBoxFechaActa.Text = tarea.Rows[0][13].ToString();
             checkBoxProxJunta.Checked = bool.Parse(tarea.Rows[0][14].ToString());
+            maskedTextBoxReferencia.Text = tarea.Rows[0][15].ToString();
+            textBoxEntidad.Text = tarea.Rows[0][16].ToString();
+            
             
         }
 
@@ -436,7 +437,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void addTarea()
         {
             String idTipoTarea = comboBoxTipo.SelectedValue.ToString();
-            String frecuencia = "";
             String fIni = null;
             fInicio = maskedTextBoxFIni.Text;
             if (maskedTextBoxFIni.Text != "  /  /" && maskedTextBoxFIni.Text != "") fIni = Convert.ToDateTime(maskedTextBoxFIni.Text).ToString("yyyy-MM-dd");
@@ -464,7 +464,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (idTarea != null)
             {
                 String fixRuta = ruta.Replace(@"\", @"\\");
-                String sqlUpdate = "UPDATE exp_tareas SET IdEntidad = " + idEntidad + ",IdTipoTarea = " + idTipoTarea + ",Descripción = '" + descripcion + "',Seguro = " + seguro + ",AcuerdoJunta = " + acuerdoJunta + ",RefSiniestro = '" + refSiniestro + "',ProximaJunta = " + proximaJunta + ",Notas = '" + notas + "' WHERE IdTarea = " + idTarea;
+                String sqlUpdate = "UPDATE exp_tareas SET IdEntidad = " + idEntidad + ",IdRbleTarea = " + Login.getId() + ",IdTipoTarea = " + idTipoTarea + ",Descripción = '" + descripcion + "',Seguro = " + seguro + ",AcuerdoJunta = " + acuerdoJunta + ",RefSiniestro = '" + refSiniestro + "',ProximaJunta = " + proximaJunta + ",Notas = '" + notas + "' WHERE IdTarea = " + idTarea;
                 Persistencia.SentenciasSQL.InsertarGenericoID(sqlUpdate);
                 if (fIni != null)
                 {
@@ -501,8 +501,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             //AÑADIR NUEVA TAREA
             else
             {
-                String sqlInsert = "INSERT INTO exp_tareas (IdEntidad,IdTipoTarea,Descripción,Seguro,AcuerdoJunta,ProximaJunta,RefSiniestro,Notas) VALUES (" + idEntidad + "," + idTipoTarea + ",'" + frecuencia + "','" + descripcion + "'," + seguro + "," + acuerdoJunta + "," + proximaJunta + ",'" + refSiniestro + "','" + notas + "')";
-
+                String sqlInsert = "INSERT INTO exp_tareas (IdEntidad,IdRbleTarea,IdTipoTarea,Descripción,Seguro,AcuerdoJunta,ProximaJunta,RefSiniestro,Notas) VALUES (" + idEntidad + "," + Login.getId() + "," + idTipoTarea + ",'" + descripcion + "'," + seguro + "," + acuerdoJunta + "," + proximaJunta + ",'" + refSiniestro + "','" + notas + "')";
                 idTarea = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsert).ToString();
 
                 if (fIni != null)
