@@ -27,6 +27,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             maskedTextBox_inicio.Text = "01-01-" + DateTime.Now.Year;
             maskedTextBox_fin.Text = DateTime.Now.ToShortDateString();
             maskedTextBoxRefComunidad.Select();
+
         }
         public FormTareasPrincipal()
         {
@@ -42,7 +43,15 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         public void CargarTareas()
         {
-            String sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.Presupuesto as Ptto, exp_tareas.FFin, exp_tareas.Seguro, exp_tareas.RefSiniestro as Siniestro FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea ORDER BY exp_tareas.IdTarea DESC";
+            String sqlSelect;
+            if (id_comunidad == null)
+            {
+                sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.Presupuesto as Ptto, exp_tareas.FFin, exp_tareas.Seguro, exp_tareas.RefSiniestro as Siniestro FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea ORDER BY exp_tareas.IdTarea DESC";
+            }
+            else
+            {
+                sqlSelect = "SELECT exp_tareas.IdTarea AS Id, ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.Presupuesto AS Ptto, exp_tareas.FFin, exp_tareas.Seguro, exp_tareas.RefSiniestro AS Siniestro FROM((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea) INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((com_comunidades.IdComunidad) = " + id_comunidad + ")) ORDER BY exp_tareas.IdTarea DESC";
+            }
             tareas = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridView_tareas.DataSource = tareas;
             ajustarDatagrid();

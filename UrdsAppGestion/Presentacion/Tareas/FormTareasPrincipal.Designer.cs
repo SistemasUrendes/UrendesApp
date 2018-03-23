@@ -68,7 +68,7 @@
             this.dataGridView_tareas.ReadOnly = true;
             this.dataGridView_tareas.RowHeadersVisible = false;
             this.dataGridView_tareas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_tareas.Size = new System.Drawing.Size(1024, 606);
+            this.dataGridView_tareas.Size = new System.Drawing.Size(1024, 546);
             this.dataGridView_tareas.TabIndex = 0;
             this.dataGridView_tareas.TabStop = false;
             this.dataGridView_tareas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_tareas_CellDoubleClick);
@@ -256,7 +256,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1048, 665);
+            this.ClientSize = new System.Drawing.Size(1048, 637);
             this.ControlBox = false;
             this.Controls.Add(this.buttonGrupo);
             this.Controls.Add(this.maskedTextBoxRefComunidad);
