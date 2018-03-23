@@ -55,7 +55,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
         }
 
-
         public void cargarCabecera()
         {
 
