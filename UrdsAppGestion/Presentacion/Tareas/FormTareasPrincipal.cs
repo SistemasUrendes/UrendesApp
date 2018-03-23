@@ -15,11 +15,23 @@ namespace UrdsAppGestión.Presentacion.Tareas
         DataTable tareas;
         String id_entidad_nuevo;
         String nombre_columna;
+        String id_comunidad;
 
+        public FormTareasPrincipal(String id_comunidad)
+        {
+            InitializeComponent();
+            this.id_comunidad = id_comunidad;
+
+            CargarTareas();
+            RellenarComboBox();
+            maskedTextBox_inicio.Text = "01-01-" + DateTime.Now.Year;
+            maskedTextBox_fin.Text = DateTime.Now.ToShortDateString();
+            maskedTextBoxRefComunidad.Select();
+        }
         public FormTareasPrincipal()
         {
             InitializeComponent();
-            
+
             CargarTareas();
             RellenarComboBox();
             maskedTextBox_inicio.Text = "01-01-" + DateTime.Now.Year;

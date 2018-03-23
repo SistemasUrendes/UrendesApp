@@ -51,15 +51,10 @@
             this.fondosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.provisionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.remesasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.operacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.operacionesProveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.operacionesComunerosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.operacionesDivisionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tesoreríaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cuentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compensaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.remesasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.enviosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cuentasBancoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fichaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,6 +66,7 @@
             this.informesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.documentosYComunicacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,10 +77,9 @@
             this.comunerosToolStripMenuItem,
             this.proveedoresToolStripMenuItem,
             this.admnistraciónToolStripMenuItem,
-            this.operacionesToolStripMenuItem,
             this.tesoreríaToolStripMenuItem,
-            this.enviosToolStripMenuItem,
-            this.configuraciónToolStripMenuItem});
+            this.configuraciónToolStripMenuItem,
+            this.tareasToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1165, 24);
@@ -211,7 +206,7 @@
             // ejerciciosToolStripMenuItem
             // 
             this.ejerciciosToolStripMenuItem.Name = "ejerciciosToolStripMenuItem";
-            this.ejerciciosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ejerciciosToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.ejerciciosToolStripMenuItem.Text = "Ejercicios";
             this.ejerciciosToolStripMenuItem.Visible = false;
             this.ejerciciosToolStripMenuItem.Click += new System.EventHandler(this.ejerciciosToolStripMenuItem_Click);
@@ -219,7 +214,7 @@
             // liquidacionesToolStripMenuItem1
             // 
             this.liquidacionesToolStripMenuItem1.Name = "liquidacionesToolStripMenuItem1";
-            this.liquidacionesToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.liquidacionesToolStripMenuItem1.Size = new System.Drawing.Size(147, 22);
             this.liquidacionesToolStripMenuItem1.Text = "Liquidaciones";
             this.liquidacionesToolStripMenuItem1.Visible = false;
             this.liquidacionesToolStripMenuItem1.Click += new System.EventHandler(this.liquidacionesToolStripMenuItem1_Click);
@@ -227,7 +222,7 @@
             // cuotasToolStripMenuItem
             // 
             this.cuotasToolStripMenuItem.Name = "cuotasToolStripMenuItem";
-            this.cuotasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cuotasToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.cuotasToolStripMenuItem.Text = "Cuotas";
             this.cuotasToolStripMenuItem.Visible = false;
             this.cuotasToolStripMenuItem.Click += new System.EventHandler(this.cuotasToolStripMenuItem_Click);
@@ -235,7 +230,7 @@
             // deudasToolStripMenuItem
             // 
             this.deudasToolStripMenuItem.Name = "deudasToolStripMenuItem";
-            this.deudasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deudasToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.deudasToolStripMenuItem.Text = "Deudas";
             this.deudasToolStripMenuItem.Visible = false;
             this.deudasToolStripMenuItem.Click += new System.EventHandler(this.deudasToolStripMenuItem_Click);
@@ -243,56 +238,24 @@
             // fondosToolStripMenuItem
             // 
             this.fondosToolStripMenuItem.Name = "fondosToolStripMenuItem";
-            this.fondosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fondosToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.fondosToolStripMenuItem.Text = "Fondos";
             this.fondosToolStripMenuItem.Click += new System.EventHandler(this.fondosToolStripMenuItem_Click);
             // 
             // provisionesToolStripMenuItem
             // 
             this.provisionesToolStripMenuItem.Name = "provisionesToolStripMenuItem";
-            this.provisionesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.provisionesToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.provisionesToolStripMenuItem.Text = "Provisiones";
             this.provisionesToolStripMenuItem.Click += new System.EventHandler(this.provisionesToolStripMenuItem_Click);
             // 
             // remesasToolStripMenuItem
             // 
             this.remesasToolStripMenuItem.Name = "remesasToolStripMenuItem";
-            this.remesasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.remesasToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.remesasToolStripMenuItem.Text = "Remesas";
             this.remesasToolStripMenuItem.Visible = false;
             this.remesasToolStripMenuItem.Click += new System.EventHandler(this.remesasToolStripMenuItem_Click);
-            // 
-            // operacionesToolStripMenuItem
-            // 
-            this.operacionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.operacionesProveedoresToolStripMenuItem,
-            this.operacionesComunerosToolStripMenuItem,
-            this.operacionesDivisionesToolStripMenuItem});
-            this.operacionesToolStripMenuItem.Name = "operacionesToolStripMenuItem";
-            this.operacionesToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
-            this.operacionesToolStripMenuItem.Text = "Operaciones";
-            this.operacionesToolStripMenuItem.Visible = false;
-            // 
-            // operacionesProveedoresToolStripMenuItem
-            // 
-            this.operacionesProveedoresToolStripMenuItem.Name = "operacionesProveedoresToolStripMenuItem";
-            this.operacionesProveedoresToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-            this.operacionesProveedoresToolStripMenuItem.Text = "Operaciones Proveedores";
-            this.operacionesProveedoresToolStripMenuItem.Click += new System.EventHandler(this.operacionesProveedoresToolStripMenuItem_Click);
-            // 
-            // operacionesComunerosToolStripMenuItem
-            // 
-            this.operacionesComunerosToolStripMenuItem.Name = "operacionesComunerosToolStripMenuItem";
-            this.operacionesComunerosToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-            this.operacionesComunerosToolStripMenuItem.Text = "Vencimientos Comuneros";
-            this.operacionesComunerosToolStripMenuItem.Click += new System.EventHandler(this.operacionesComunerosToolStripMenuItem_Click);
-            // 
-            // operacionesDivisionesToolStripMenuItem
-            // 
-            this.operacionesDivisionesToolStripMenuItem.Name = "operacionesDivisionesToolStripMenuItem";
-            this.operacionesDivisionesToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-            this.operacionesDivisionesToolStripMenuItem.Text = "Gestión Deudas";
-            this.operacionesDivisionesToolStripMenuItem.Click += new System.EventHandler(this.operacionesDivisionesToolStripMenuItem_Click);
             // 
             // tesoreríaToolStripMenuItem
             // 
@@ -324,14 +287,6 @@
             this.remesasToolStripMenuItem1.Size = new System.Drawing.Size(154, 22);
             this.remesasToolStripMenuItem1.Text = "Remesas";
             this.remesasToolStripMenuItem1.Click += new System.EventHandler(this.remesasToolStripMenuItem1_Click);
-            // 
-            // enviosToolStripMenuItem
-            // 
-            this.enviosToolStripMenuItem.Name = "enviosToolStripMenuItem";
-            this.enviosToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
-            this.enviosToolStripMenuItem.Text = "Comunicaciones";
-            this.enviosToolStripMenuItem.Visible = false;
-            this.enviosToolStripMenuItem.Click += new System.EventHandler(this.enviosToolStripMenuItem_Click);
             // 
             // configuraciónToolStripMenuItem
             // 
@@ -416,6 +371,13 @@
             this.documentosYComunicacionesToolStripMenuItem.Text = "Documentos y Comunicados";
             this.documentosYComunicacionesToolStripMenuItem.Click += new System.EventHandler(this.documentosYComunicacionesToolStripMenuItem_Click);
             // 
+            // tareasToolStripMenuItem
+            // 
+            this.tareasToolStripMenuItem.Name = "tareasToolStripMenuItem";
+            this.tareasToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.tareasToolStripMenuItem.Text = "Tareas";
+            this.tareasToolStripMenuItem.Click += new System.EventHandler(this.tareasToolStripMenuItem_Click);
+            // 
             // ContenedorComunidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -439,7 +401,6 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tesoreríaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem enviosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem divisionesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configuraciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fichaToolStripMenuItem;
@@ -461,10 +422,6 @@
         private System.Windows.Forms.ToolStripMenuItem cargosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listadoToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem bloquesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem operacionesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem operacionesProveedoresToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem operacionesComunerosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem operacionesDivisionesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem remesasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vencimientosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem operacionesToolStripMenuItem1;
@@ -479,5 +436,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem anticiposToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tareasToolStripMenuItem;
     }
 }

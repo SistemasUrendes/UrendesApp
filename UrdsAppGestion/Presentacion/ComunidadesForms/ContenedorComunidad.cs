@@ -497,5 +497,22 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                 newMDIChild.Show();
             }
         }
+
+        private void tareasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name.Contains(nombre_comunidad + " Tareas ")).SingleOrDefault<Form>();
+            if (existe != null)
+            {
+                existe.WindowState = FormWindowState.Maximized;
+                existe.BringToFront();
+            }
+            else
+            {
+                Tareas.FormTareasPrincipal newMDIChild = new Tareas.FormTareasPrincipal(id_comunidad.ToString());
+                newMDIChild.MdiParent = this;
+                newMDIChild.WindowState = FormWindowState.Maximized;
+                newMDIChild.Show();
+            }
+        }
     }
 }
