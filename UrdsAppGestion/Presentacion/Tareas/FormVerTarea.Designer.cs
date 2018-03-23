@@ -37,8 +37,6 @@
             this.textBoxRuta = new System.Windows.Forms.TextBox();
             this.maskedTextBoxFFin = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBoxFIni = new System.Windows.Forms.MaskedTextBox();
-            this.textBoxCoste = new System.Windows.Forms.TextBox();
-            this.textBoxPtto = new System.Windows.Forms.TextBox();
             this.textBoxSiniestro = new System.Windows.Forms.TextBox();
             this.checkBoxSeguro = new System.Windows.Forms.CheckBox();
             this.checkBoxAcuerdoJunta = new System.Windows.Forms.CheckBox();
@@ -55,10 +53,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.buttonEditar = new System.Windows.Forms.Button();
             this.buttonGuardar = new System.Windows.Forms.Button();
             this.buttonAddGestion = new System.Windows.Forms.Button();
@@ -68,6 +63,7 @@
             this.toolStripMenuItemEliminarGestion = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCorreoResponsable = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCorreoSeguir = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemCorreoGrupo = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemEditarSeguimiento = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemEliminarSeguimiento = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,6 +80,12 @@
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemEditarContacto = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemEliminarContacto = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonCerrarGestion = new System.Windows.Forms.Button();
+            this.buttonEliminarTarea = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBoxCoste = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGestiones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSeguimientos)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -127,7 +129,7 @@
             this.textBoxNotas.Multiline = true;
             this.textBoxNotas.Name = "textBoxNotas";
             this.textBoxNotas.Size = new System.Drawing.Size(561, 103);
-            this.textBoxNotas.TabIndex = 18;
+            this.textBoxNotas.TabIndex = 15;
             // 
             // textBoxRuta
             // 
@@ -137,17 +139,17 @@
             this.textBoxRuta.Name = "textBoxRuta";
             this.textBoxRuta.ReadOnly = true;
             this.textBoxRuta.Size = new System.Drawing.Size(537, 20);
-            this.textBoxRuta.TabIndex = 19;
+            this.textBoxRuta.TabIndex = 17;
             this.textBoxRuta.TabStop = false;
             this.textBoxRuta.Click += new System.EventHandler(this.textBoxRuta_Click);
             // 
             // maskedTextBoxFFin
             // 
-            this.maskedTextBoxFFin.Location = new System.Drawing.Point(320, 136);
+            this.maskedTextBoxFFin.Location = new System.Drawing.Point(66, 163);
             this.maskedTextBoxFFin.Mask = "00/00/0000";
             this.maskedTextBoxFFin.Name = "maskedTextBoxFFin";
             this.maskedTextBoxFFin.Size = new System.Drawing.Size(66, 20);
-            this.maskedTextBoxFFin.TabIndex = 11;
+            this.maskedTextBoxFFin.TabIndex = 9;
             this.maskedTextBoxFFin.ValidatingType = typeof(System.DateTime);
             this.maskedTextBoxFFin.Leave += new System.EventHandler(this.maskedTextBoxFFin_Leave);
             // 
@@ -157,39 +159,25 @@
             this.maskedTextBoxFIni.Mask = "00/00/0000";
             this.maskedTextBoxFIni.Name = "maskedTextBoxFIni";
             this.maskedTextBoxFIni.Size = new System.Drawing.Size(65, 20);
-            this.maskedTextBoxFIni.TabIndex = 10;
+            this.maskedTextBoxFIni.TabIndex = 6;
             this.maskedTextBoxFIni.ValidatingType = typeof(System.DateTime);
             this.maskedTextBoxFIni.Leave += new System.EventHandler(this.maskedTextBoxFIni_Leave);
             // 
-            // textBoxCoste
-            // 
-            this.textBoxCoste.Location = new System.Drawing.Point(319, 109);
-            this.textBoxCoste.Name = "textBoxCoste";
-            this.textBoxCoste.Size = new System.Drawing.Size(100, 20);
-            this.textBoxCoste.TabIndex = 9;
-            // 
-            // textBoxPtto
-            // 
-            this.textBoxPtto.Location = new System.Drawing.Point(67, 160);
-            this.textBoxPtto.Name = "textBoxPtto";
-            this.textBoxPtto.Size = new System.Drawing.Size(100, 20);
-            this.textBoxPtto.TabIndex = 12;
-            // 
             // textBoxSiniestro
             // 
-            this.textBoxSiniestro.Location = new System.Drawing.Point(320, 163);
+            this.textBoxSiniestro.Location = new System.Drawing.Point(559, 107);
             this.textBoxSiniestro.Name = "textBoxSiniestro";
-            this.textBoxSiniestro.Size = new System.Drawing.Size(100, 20);
-            this.textBoxSiniestro.TabIndex = 13;
+            this.textBoxSiniestro.Size = new System.Drawing.Size(67, 20);
+            this.textBoxSiniestro.TabIndex = 10;
             // 
             // checkBoxSeguro
             // 
             this.checkBoxSeguro.AutoSize = true;
             this.checkBoxSeguro.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxSeguro.Location = new System.Drawing.Point(458, 109);
+            this.checkBoxSeguro.Location = new System.Drawing.Point(451, 110);
             this.checkBoxSeguro.Name = "checkBoxSeguro";
             this.checkBoxSeguro.Size = new System.Drawing.Size(63, 17);
-            this.checkBoxSeguro.TabIndex = 14;
+            this.checkBoxSeguro.TabIndex = 11;
             this.checkBoxSeguro.Text = "Seguro:";
             this.checkBoxSeguro.UseVisualStyleBackColor = true;
             // 
@@ -197,10 +185,10 @@
             // 
             this.checkBoxAcuerdoJunta.AutoSize = true;
             this.checkBoxAcuerdoJunta.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxAcuerdoJunta.Location = new System.Drawing.Point(458, 137);
+            this.checkBoxAcuerdoJunta.Location = new System.Drawing.Point(416, 138);
             this.checkBoxAcuerdoJunta.Name = "checkBoxAcuerdoJunta";
             this.checkBoxAcuerdoJunta.Size = new System.Drawing.Size(98, 17);
-            this.checkBoxAcuerdoJunta.TabIndex = 15;
+            this.checkBoxAcuerdoJunta.TabIndex = 12;
             this.checkBoxAcuerdoJunta.Text = "Acuerdo Junta:";
             this.checkBoxAcuerdoJunta.UseVisualStyleBackColor = true;
             // 
@@ -208,20 +196,20 @@
             // 
             this.checkBoxProxJunta.AutoSize = true;
             this.checkBoxProxJunta.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxProxJunta.Location = new System.Drawing.Point(458, 165);
+            this.checkBoxProxJunta.Location = new System.Drawing.Point(432, 166);
             this.checkBoxProxJunta.Name = "checkBoxProxJunta";
             this.checkBoxProxJunta.Size = new System.Drawing.Size(82, 17);
-            this.checkBoxProxJunta.TabIndex = 17;
+            this.checkBoxProxJunta.TabIndex = 14;
             this.checkBoxProxJunta.Text = "Prox. Junta:";
             this.checkBoxProxJunta.UseVisualStyleBackColor = true;
             // 
             // maskedTextBoxFechaActa
             // 
-            this.maskedTextBoxFechaActa.Location = new System.Drawing.Point(562, 133);
+            this.maskedTextBoxFechaActa.Location = new System.Drawing.Point(560, 136);
             this.maskedTextBoxFechaActa.Mask = "00/00/0000";
             this.maskedTextBoxFechaActa.Name = "maskedTextBoxFechaActa";
             this.maskedTextBoxFechaActa.Size = new System.Drawing.Size(66, 20);
-            this.maskedTextBoxFechaActa.TabIndex = 16;
+            this.maskedTextBoxFechaActa.TabIndex = 13;
             this.maskedTextBoxFechaActa.ValidatingType = typeof(System.DateTime);
             this.maskedTextBoxFechaActa.Leave += new System.EventHandler(this.maskedTextBoxFechaActa_Leave);
             // 
@@ -232,7 +220,7 @@
             this.comboBoxTipo.Location = new System.Drawing.Point(66, 106);
             this.comboBoxTipo.Name = "comboBoxTipo";
             this.comboBoxTipo.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxTipo.TabIndex = 8;
+            this.comboBoxTipo.TabIndex = 5;
             // 
             // label2
             // 
@@ -257,12 +245,12 @@
             this.dataGridViewGestiones.AllowUserToAddRows = false;
             this.dataGridViewGestiones.AllowUserToDeleteRows = false;
             this.dataGridViewGestiones.AllowUserToResizeRows = false;
-            this.dataGridViewGestiones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewGestiones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewGestiones.Location = new System.Drawing.Point(17, 379);
             this.dataGridViewGestiones.Name = "dataGridViewGestiones";
             this.dataGridViewGestiones.ReadOnly = true;
             this.dataGridViewGestiones.RowHeadersVisible = false;
+            this.dataGridViewGestiones.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewGestiones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewGestiones.Size = new System.Drawing.Size(1215, 198);
             this.dataGridViewGestiones.TabIndex = 19;
@@ -275,13 +263,14 @@
             // 
             this.dataGridViewSeguimientos.AllowUserToAddRows = false;
             this.dataGridViewSeguimientos.AllowUserToDeleteRows = false;
-            this.dataGridViewSeguimientos.AllowUserToResizeRows = false;
             this.dataGridViewSeguimientos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewSeguimientos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewSeguimientos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewSeguimientos.Location = new System.Drawing.Point(9, 39);
             this.dataGridViewSeguimientos.Name = "dataGridViewSeguimientos";
             this.dataGridViewSeguimientos.ReadOnly = true;
             this.dataGridViewSeguimientos.RowHeadersVisible = false;
+            this.dataGridViewSeguimientos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewSeguimientos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewSeguimientos.Size = new System.Drawing.Size(563, 252);
             this.dataGridViewSeguimientos.TabIndex = 20;
@@ -345,48 +334,21 @@
             this.label10.TabIndex = 30;
             this.label10.Text = "F. Inicio:";
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(32, 166);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(29, 13);
-            this.label11.TabIndex = 31;
-            this.label11.Text = "Ptto:";
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(277, 139);
+            this.label13.Location = new System.Drawing.Point(21, 166);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(36, 13);
             this.label13.TabIndex = 33;
             this.label13.Text = "F. Fin:";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(276, 112);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(37, 13);
-            this.label14.TabIndex = 34;
-            this.label14.Text = "Coste:";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(241, 166);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(73, 13);
-            this.label15.TabIndex = 35;
-            this.label15.Text = "Ref. Siniestro:";
             // 
             // buttonEditar
             // 
             this.buttonEditar.Location = new System.Drawing.Point(470, 13);
             this.buttonEditar.Name = "buttonEditar";
             this.buttonEditar.Size = new System.Drawing.Size(75, 23);
-            this.buttonEditar.TabIndex = 27;
+            this.buttonEditar.TabIndex = 22;
             this.buttonEditar.Text = "Editar";
             this.buttonEditar.UseVisualStyleBackColor = true;
             this.buttonEditar.Click += new System.EventHandler(this.buttonEditar_Click);
@@ -396,7 +358,7 @@
             this.buttonGuardar.Location = new System.Drawing.Point(551, 13);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(75, 23);
-            this.buttonGuardar.TabIndex = 26;
+            this.buttonGuardar.TabIndex = 21;
             this.buttonGuardar.Text = "Guardar";
             this.buttonGuardar.UseVisualStyleBackColor = true;
             this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
@@ -406,7 +368,7 @@
             this.buttonAddGestion.Location = new System.Drawing.Point(1132, 352);
             this.buttonAddGestion.Name = "buttonAddGestion";
             this.buttonAddGestion.Size = new System.Drawing.Size(95, 23);
-            this.buttonAddGestion.TabIndex = 20;
+            this.buttonAddGestion.TabIndex = 18;
             this.buttonAddGestion.Text = "Añadir Gestión";
             this.buttonAddGestion.UseVisualStyleBackColor = true;
             this.buttonAddGestion.Click += new System.EventHandler(this.buttonAddGestion_Click);
@@ -416,7 +378,7 @@
             this.buttonAddSeguimiento.Location = new System.Drawing.Point(457, 10);
             this.buttonAddSeguimiento.Name = "buttonAddSeguimiento";
             this.buttonAddSeguimiento.Size = new System.Drawing.Size(115, 23);
-            this.buttonAddSeguimiento.TabIndex = 22;
+            this.buttonAddSeguimiento.TabIndex = 20;
             this.buttonAddSeguimiento.Text = "Añadir Seguimiento";
             this.buttonAddSeguimiento.UseVisualStyleBackColor = true;
             this.buttonAddSeguimiento.Click += new System.EventHandler(this.buttonAddSeguimiento_Click);
@@ -427,9 +389,10 @@
             this.toolStripMenuItemEditarGestion,
             this.toolStripMenuItemEliminarGestion,
             this.toolStripMenuItemCorreoResponsable,
-            this.toolStripMenuItemCorreoSeguir});
+            this.toolStripMenuItemCorreoSeguir,
+            this.toolStripMenuItemCorreoGrupo});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(189, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(189, 114);
             // 
             // toolStripMenuItemEditarGestion
             // 
@@ -459,6 +422,13 @@
             this.toolStripMenuItemCorreoSeguir.Text = "Correo a Seguir";
             this.toolStripMenuItemCorreoSeguir.Click += new System.EventHandler(this.toolStripMenuItemCorreoSeguir_Click);
             // 
+            // toolStripMenuItemCorreoGrupo
+            // 
+            this.toolStripMenuItemCorreoGrupo.Name = "toolStripMenuItemCorreoGrupo";
+            this.toolStripMenuItemCorreoGrupo.Size = new System.Drawing.Size(188, 22);
+            this.toolStripMenuItemCorreoGrupo.Text = "Correo a Grupo";
+            this.toolStripMenuItemCorreoGrupo.Click += new System.EventHandler(this.toolStripMenuItemCorreoGrupo_Click);
+            // 
             // contextMenuStrip2
             // 
             this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -487,7 +457,7 @@
             this.buttonRuta.Location = new System.Drawing.Point(64, 307);
             this.buttonRuta.Name = "buttonRuta";
             this.buttonRuta.Size = new System.Drawing.Size(19, 19);
-            this.buttonRuta.TabIndex = 19;
+            this.buttonRuta.TabIndex = 16;
             this.buttonRuta.Text = "...";
             this.buttonRuta.UseVisualStyleBackColor = true;
             this.buttonRuta.Click += new System.EventHandler(this.buttonRuta_Click);
@@ -520,7 +490,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(586, 325);
-            this.tabControl1.TabIndex = 23;
+            this.tabControl1.TabIndex = 19;
             // 
             // tabPagSeguimientos
             // 
@@ -618,11 +588,70 @@
             this.toolStripMenuItemEliminarContacto.Text = "Eliminar";
             this.toolStripMenuItemEliminarContacto.Click += new System.EventHandler(this.toolStripMenuItemEliminarContacto_Click);
             // 
+            // buttonCerrarGestion
+            // 
+            this.buttonCerrarGestion.Location = new System.Drawing.Point(1051, 352);
+            this.buttonCerrarGestion.Name = "buttonCerrarGestion";
+            this.buttonCerrarGestion.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonCerrarGestion.Size = new System.Drawing.Size(75, 23);
+            this.buttonCerrarGestion.TabIndex = 36;
+            this.buttonCerrarGestion.Text = "Cerrar";
+            this.buttonCerrarGestion.UseVisualStyleBackColor = true;
+            this.buttonCerrarGestion.Click += new System.EventHandler(this.buttonCerrarGestion_Click);
+            // 
+            // buttonEliminarTarea
+            // 
+            this.buttonEliminarTarea.Location = new System.Drawing.Point(389, 12);
+            this.buttonEliminarTarea.Name = "buttonEliminarTarea";
+            this.buttonEliminarTarea.Size = new System.Drawing.Size(75, 23);
+            this.buttonEliminarTarea.TabIndex = 23;
+            this.buttonEliminarTarea.Text = "Eliminar";
+            this.buttonEliminarTarea.UseVisualStyleBackColor = true;
+            this.buttonEliminarTarea.Click += new System.EventHandler(this.buttonEliminarTarea_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(526, 111);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(27, 13);
+            this.label8.TabIndex = 37;
+            this.label8.Text = "Ref.";
+            // 
+            // textBoxCoste
+            // 
+            this.textBoxCoste.Location = new System.Drawing.Point(279, 108);
+            this.textBoxCoste.Name = "textBoxCoste";
+            this.textBoxCoste.Size = new System.Drawing.Size(100, 20);
+            this.textBoxCoste.TabIndex = 8;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(236, 111);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(37, 13);
+            this.label14.TabIndex = 34;
+            this.label14.Text = "Coste:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(516, 139);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(37, 13);
+            this.label11.TabIndex = 38;
+            this.label11.Text = "Fecha";
+            // 
             // FormVerTarea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1239, 625);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.buttonEliminarTarea);
+            this.Controls.Add(this.buttonCerrarGestion);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.maskedTextBoxReferencia);
             this.Controls.Add(this.textBoxEntidad);
@@ -630,10 +659,8 @@
             this.Controls.Add(this.buttonAddGestion);
             this.Controls.Add(this.buttonGuardar);
             this.Controls.Add(this.buttonEditar);
-            this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label7);
@@ -648,7 +675,6 @@
             this.Controls.Add(this.checkBoxAcuerdoJunta);
             this.Controls.Add(this.checkBoxSeguro);
             this.Controls.Add(this.textBoxSiniestro);
-            this.Controls.Add(this.textBoxPtto);
             this.Controls.Add(this.textBoxCoste);
             this.Controls.Add(this.maskedTextBoxFIni);
             this.Controls.Add(this.maskedTextBoxFFin);
@@ -687,8 +713,6 @@
         private System.Windows.Forms.TextBox textBoxRuta;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxFFin;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxFIni;
-        private System.Windows.Forms.TextBox textBoxCoste;
-        private System.Windows.Forms.TextBox textBoxPtto;
         private System.Windows.Forms.TextBox textBoxSiniestro;
         private System.Windows.Forms.CheckBox checkBoxSeguro;
         private System.Windows.Forms.CheckBox checkBoxAcuerdoJunta;
@@ -705,10 +729,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button buttonEditar;
         private System.Windows.Forms.Button buttonGuardar;
         private System.Windows.Forms.Button buttonAddGestion;
@@ -734,5 +755,12 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemEliminarContacto;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCorreoResponsable;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCorreoSeguir;
+        private System.Windows.Forms.Button buttonCerrarGestion;
+        private System.Windows.Forms.Button buttonEliminarTarea;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCorreoGrupo;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBoxCoste;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label11;
     }
 }

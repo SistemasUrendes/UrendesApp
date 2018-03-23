@@ -18,6 +18,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String idEntidad;
         String idGestion;
         String fInicio;
+        String fechaFin;
         DataTable tarea;
         DataTable gestion;
         DataTable seguimiento;
@@ -58,7 +59,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         public void cargarCabecera()
         {
 
-            String sqlSelect = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tareas.IdEntidad, exp_tareas.Notas, exp_tareas.Ruta, exp_tareas.IdTipoTarea, exp_tareas.FFin, exp_tareas.FIni, exp_tareas.Coste, exp_tareas.Presupuesto, exp_tareas.RefSiniestro, exp_tareas.Seguro, exp_tareas.AcuerdoJunta, exp_tareas.FechaActaAcordado, exp_tareas.ProximaJunta , com_comunidades.Referencia , ctos_entidades.Entidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
+            String sqlSelect = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tareas.IdEntidad, exp_tareas.Notas, exp_tareas.Ruta, exp_tareas.IdTipoTarea, exp_tareas.FFin, exp_tareas.FIni, exp_tareas.Coste, exp_tareas.RefSiniestro, exp_tareas.Seguro, exp_tareas.AcuerdoJunta, exp_tareas.FechaActaAcordado, exp_tareas.ProximaJunta , com_comunidades.Referencia , ctos_entidades.Entidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
 
             tarea = Persistencia.SentenciasSQL.select(sqlSelect);
             
@@ -70,24 +71,23 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBoxRuta.Text = ruta;
             comboBoxTipo.SelectedValue = tarea.Rows[0][5].ToString();
             maskedTextBoxFFin.Text = tarea.Rows[0][6].ToString();
+            fechaFin = tarea.Rows[0][6].ToString();
             maskedTextBoxFIni.Text = tarea.Rows[0][7].ToString();
             fInicio = tarea.Rows[0][7].ToString();
             textBoxCoste.Text = tarea.Rows[0][8].ToString();
-            textBoxPtto.Text = tarea.Rows[0][9].ToString();
-            textBoxSiniestro.Text = tarea.Rows[0][10].ToString();
-            checkBoxSeguro.Checked = bool.Parse(tarea.Rows[0][11].ToString());
-            checkBoxAcuerdoJunta.Checked = bool.Parse(tarea.Rows[0][12].ToString());
-            if (tarea.Rows[0][13].ToString() != "00/00/0000") maskedTextBoxFechaActa.Text = tarea.Rows[0][13].ToString();
-            checkBoxProxJunta.Checked = bool.Parse(tarea.Rows[0][14].ToString());
-            maskedTextBoxReferencia.Text = tarea.Rows[0][15].ToString();
-            textBoxEntidad.Text = tarea.Rows[0][16].ToString();
+            textBoxSiniestro.Text = tarea.Rows[0][9].ToString();
+            checkBoxSeguro.Checked = bool.Parse(tarea.Rows[0][10].ToString());
+            checkBoxAcuerdoJunta.Checked = bool.Parse(tarea.Rows[0][11].ToString());
+            if (tarea.Rows[0][12].ToString() != "00/00/0000") maskedTextBoxFechaActa.Text = tarea.Rows[0][12].ToString();
+            checkBoxProxJunta.Checked = bool.Parse(tarea.Rows[0][13].ToString());
+            maskedTextBoxReferencia.Text = tarea.Rows[0][14].ToString();
+            textBoxEntidad.Text = tarea.Rows[0][15].ToString();
             
             
         }
 
         public void bloquearEdicion()
         {
-            
             textBoxDescripcion.ReadOnly = true;
             maskedTextBoxReferencia.ReadOnly = true;
             textBoxNotas.ReadOnly = true;
@@ -97,7 +97,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             maskedTextBoxFIni.ReadOnly = true;
             if (maskedTextBoxFIni.Text == "  /  /") maskedTextBoxFIni.Mask = "";
             textBoxCoste.ReadOnly = true;
-            textBoxPtto.ReadOnly = true;
             textBoxSiniestro.ReadOnly = true;
             checkBoxSeguro.AutoCheck = false;
             checkBoxAcuerdoJunta.AutoCheck = false;
@@ -105,6 +104,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (maskedTextBoxFechaActa.Text == "  /  /") maskedTextBoxFechaActa.Mask = "";
             checkBoxProxJunta.AutoCheck = false;
             buttonEditar.Enabled = true;
+            buttonEliminarTarea.Enabled = true;
             buttonGuardar.Enabled = false;
         }
 
@@ -119,7 +119,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             maskedTextBoxFIni.ReadOnly = false;
             maskedTextBoxFIni.Mask = "00/00/0000";
             textBoxCoste.ReadOnly = false;
-            textBoxPtto.ReadOnly = false;
             textBoxSiniestro.ReadOnly = false;
             checkBoxSeguro.AutoCheck = true;
             checkBoxAcuerdoJunta.AutoCheck = true;
@@ -127,6 +126,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             maskedTextBoxFechaActa.Mask = "00/00/0000";
             checkBoxProxJunta.AutoCheck = true;
             buttonEditar.Enabled = false;
+            buttonEliminarTarea.Enabled = false;
             buttonGuardar.Enabled = true;
             if (textBoxEntidad.Text == "")
             {
@@ -147,9 +147,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         
         public void cargarGestiones()
         {
-            //String sqlSelect = "SELECT exp_gestiones.IdGestión as Id, exp_gestiones.Orden as Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_gestiones.Importante, exp_gestiones.FIni, exp_gestiones.FMax, exp_gestiones.FSeguir, exp_gestiones.FFin, exp_niveles.Nivel, exp_gestiones.Predecesoras FROM(exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel WHERE(((exp_gestiones.IdTarea) = " + idTarea  + "))";
-
-            String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_gestiones.Importante, exp_gestiones.FIni, exp_gestiones.FMax, exp_gestiones.FSeguir, exp_gestiones.FFin, exp_niveles.Nivel, ctos_entidades.Entidad AS `Espera de` FROM((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad WHERE(((exp_gestiones.IdTarea) = " + idTarea + "))";
+            String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_gestiones.Importante as S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS 'Fecha Límite',  exp_gestiones.FFin, ctos_entidades.Entidad AS `Espera de` FROM((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad WHERE(((exp_gestiones.IdTarea) = " + idTarea + "))";
 
 
             gestion = Persistencia.SentenciasSQL.select(sqlSelect);
@@ -163,6 +161,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
             seguimiento = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewSeguimientos.DataSource = seguimiento;
+            ajustarDatagridSeguimientos();
         }
 
         private void dataGridViewGestiones_SelectionChanged(object sender, EventArgs e)
@@ -175,6 +174,21 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 cargarSeguimientos();
             }
                 
+        }
+        private void ajustarDatagridSeguimientos()
+        {
+            if (dataGridViewSeguimientos.Rows.Count > 0)
+            {
+                dataGridViewSeguimientos.Columns[0].Visible = false;
+                dataGridViewSeguimientos.Columns[1].Visible = false;
+                dataGridViewSeguimientos.Columns["Tipo Seguimiento"].Width = 80;
+                dataGridViewSeguimientos.Columns["Fecha"].Width = 80;
+                dataGridViewSeguimientos.Columns["Usuario"].Width = 60;
+                dataGridViewSeguimientos.Columns["Notas"].Width = 340;
+                //dataGridViewSeguimientos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                dataGridViewSeguimientos.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                dataGridViewSeguimientos.AutoResizeColumn(dataGridViewSeguimientos.Columns["Notas"].Index, DataGridViewAutoSizeColumnMode.AllCells);
+            }
         }
 
         private void textBoxRuta_Click(object sender, EventArgs e)
@@ -189,17 +203,16 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (dataGridViewGestiones.Rows.Count > 0)
             {
-                dataGridViewGestiones.Columns["Id"].Width = 40;
-                dataGridViewGestiones.Columns["Ord"].Width = 25;
-                dataGridViewGestiones.Columns["Usuario"].Width = 45;
-                dataGridViewGestiones.Columns["Descripción"].Width = 90;
-                dataGridViewGestiones.Columns["Importante"].Width = 40;
-                dataGridViewGestiones.Columns["FIni"].Width = 60;
-                dataGridViewGestiones.Columns["FMax"].Width = 60;
-                dataGridViewGestiones.Columns["FSeguir"].Width = 60;
-                dataGridViewGestiones.Columns["FFin"].Width = 60;
-                dataGridViewGestiones.Columns["Nivel"].Width = 40;
-                dataGridViewGestiones.Columns["Espera de"].Width = 60; 
+                dataGridViewGestiones.Columns["Id"].Width = 70;
+                dataGridViewGestiones.Columns["Ord"].Visible = false;
+                dataGridViewGestiones.Columns["Usuario"].Width = 70;
+                dataGridViewGestiones.Columns["Descripción"].Width = 350;
+                dataGridViewGestiones.Columns["S"].Width = 30;
+                dataGridViewGestiones.Columns["FIni"].Width = 90;
+                dataGridViewGestiones.Columns["FAgenda"].Width = 90;
+                dataGridViewGestiones.Columns["Fecha límite"].Width = 95;
+                dataGridViewGestiones.Columns["FFin"].Width = 90;
+                dataGridViewGestiones.Columns["Espera de"].Width = 330; 
             }
         }
 
@@ -405,7 +418,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
                 else
                 {
-                    textBoxPtto.SelectAll();
+                    //textBoxPtto.SelectAll();
                 }
             }
             else if (Regex.IsMatch(maskedTextBoxFFin.Text, sPattern1))
@@ -419,7 +432,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
                 else
                 {
-                    textBoxPtto.SelectAll();
+                    //textBoxPtto.SelectAll();
                 }
             }
             else
@@ -441,8 +454,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (maskedTextBoxFIni.Text != "  /  /" && maskedTextBoxFIni.Text != "") fIni = Convert.ToDateTime(maskedTextBoxFIni.Text).ToString("yyyy-MM-dd");
             String descripcion = "";
             if (textBoxDescripcion.Text != "") descripcion = textBoxDescripcion.Text;
-            String presupuesto = DBNull.Value.ToString();
-            if (textBoxPtto.Text != "") presupuesto = textBoxPtto.Text;
             String coste = "";
             if (textBoxCoste.Text != "") coste = textBoxCoste.Text;
             String seguro = "0";
@@ -475,14 +486,15 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     sqlUpdate = "UPDATE exp_tareas SET FFin = '" + fFin + "' WHERE IdTarea = " + idTarea;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                 }
+                else if (fechaFin != null)
+                {
+                    fechaFin = null;
+                    sqlUpdate = "UPDATE exp_tareas SET FFin = NULL WHERE IdTarea = " + idTarea;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                }
                 if (coste != "")
                 {
                     sqlUpdate = "UPDATE exp_tareas SET Coste = " + coste + " WHERE IdTarea = " + idTarea;
-                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
-                }
-                if (presupuesto != "")
-                {
-                    sqlUpdate = "UPDATE exp_tareas SET Presupuesto = " + presupuesto + " WHERE IdTarea = " + idTarea;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                 }
                 if (fechaActaAcordado != null)
@@ -516,11 +528,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 if (coste != "")
                 {
                     sqlInsert = "UPDATE exp_tareas SET Coste = " + coste + " WHERE IdTarea = " + idTarea;
-                    Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
-                }
-                if (presupuesto != "")
-                {
-                    sqlInsert = "UPDATE exp_tareas SET Presupuesto = " + presupuesto + " WHERE IdTarea = " + idTarea;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
                 }
                 if (fechaActaAcordado != null)
@@ -583,8 +590,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 {
                     textBoxEntidad.Text = nombreReferencia();
                     textBoxEntidad.ForeColor = Color.Black;
-                    textBoxNotas.Focus();
-                    textBoxNotas.SelectAll();
+                    comboBoxTipo.Focus();
                 }
                 catch
                 {
@@ -756,11 +762,18 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void toolStripMenuItemCorreoSeguir_Click(object sender, EventArgs e)
         {
-            String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
-            
-            String sqlSelect = "SELECT ctos_detemail.Email FROM exp_gestiones INNER JOIN ctos_detemail ON exp_gestiones.IdEntidad = ctos_detemail.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_gestiones.IdGestión) = " + idGestion + "))";
-            String mail = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
-            System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\"" + generaAsunto() + "\"" );
+            if (dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString() != null)
+            {
+                String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
+
+                String sqlSelect = "SELECT ctos_detemail.Email FROM exp_gestiones INNER JOIN ctos_detemail ON exp_gestiones.IdEntidad = ctos_detemail.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_gestiones.IdGestión) = " + idGestion + "))";
+                String mail = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+                System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\"" + generaAsunto() + "\"");
+            }
+            else
+            {
+                MessageBox.Show("Asigne una persona a seguir para poder enviarle un correo");
+            }
         }
 
         private String generaAsunto()
@@ -776,5 +789,58 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
             return asunto;
         }
+
+        private void buttonCerrarGestion_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewGestiones.SelectedCells.Count > 0)
+            {
+                String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
+
+                String sqlUpdate = "UPDATE exp_gestiones SET FFin = '" + DateTime.Now.ToString("yyyy-MM-dd") + "' WHERE IdGestión = " + idGestion;
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                cargarGestiones();
+            }
+
+            String sqlSelect = "SELECT exp_tareas.IdTarea FROM exp_gestiones INNER JOIN exp_tareas ON exp_gestiones.IdTarea = exp_tareas.IdTarea WHERE(((exp_gestiones.FFin)Is Null) AND((exp_tareas.IdTarea) = " + idTarea + "));";
+
+            DataTable contador = Persistencia.SentenciasSQL.select(sqlSelect);
+            if (contador.Rows.Count == 0)
+            {
+                DialogResult resultado_message;
+                resultado_message = MessageBox.Show("¿Desea cerrar la tarea?", "Cerrar Tarea ", MessageBoxButtons.OKCancel);
+                if (resultado_message == System.Windows.Forms.DialogResult.OK)
+                {
+                    String sqlUpdate = "UPDATE exp_tareas SET FFin = '" + DateTime.Now.ToString("yyyy-MM-dd") + "' WHERE IdTarea = " + idTarea;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                    cargarCabecera();
+                    form_anterior.CargarTareas();
+                }
+            }     
+        }
+
+        private void buttonEliminarTarea_Click(object sender, EventArgs e)
+        {
+            if (idTarea != null)
+            {
+                DialogResult resultado_message;
+                resultado_message = MessageBox.Show("¿Desea borrar esta Tarea ?", "Borrar Tarea", MessageBoxButtons.OKCancel);
+                if (resultado_message == System.Windows.Forms.DialogResult.OK)
+                {
+                    String sqlBorrar = "DELETE FROM exp_tareas WHERE IdTarea = " + idTarea;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrar);
+                    form_anterior.CargarTareas();
+                    this.Close();
+                }
+            }
+        }
+
+        private void toolStripMenuItemCorreoGrupo_Click(object sender, EventArgs e)
+        {
+            String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
+            
+            Tareas.FormCorreoGrupo nueva = new FormCorreoGrupo(idGestion,idEntidad,idTarea, textBoxDescripcion.Text);
+            nueva.Show();
+        }
+        
     }
 }

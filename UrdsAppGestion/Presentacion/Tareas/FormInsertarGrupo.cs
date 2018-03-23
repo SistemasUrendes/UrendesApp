@@ -113,9 +113,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     String telefono = dataGridViewContactos.Rows[a].Cells[2].Value.ToString().Replace(" ", "");
                     dataGridViewContactos.Rows[a].Cells[2].Value = String.Format("{0:###-###-###}", double.Parse(telefono));
                 }
-                catch (Exception)
+                catch
                 {
-                    MessageBox.Show("Hay un teléfono incorrecto. ¡Revisar!");
                     continue;
                 }
             }
@@ -123,9 +122,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (dataGridViewContactos.Rows.Count > 0)
             {
                 dataGridViewContactos.Columns[0].Visible = false;
-                dataGridViewContactos.Columns["Nombre"].Width = 130;
-                dataGridViewContactos.Columns["Teléfono"].Width = 70;
-                dataGridViewContactos.Columns["Correo"].Width = 100;
+                dataGridViewContactos.Columns["Nombre"].Width = 150;
+                //dataGridViewContactos.Columns["Teléfono"].Width = 70;
+                dataGridViewContactos.Columns["Teléfono"].Visible = false;
+                dataGridViewContactos.Columns["Correo"].Width = 150;
             }
         }
 

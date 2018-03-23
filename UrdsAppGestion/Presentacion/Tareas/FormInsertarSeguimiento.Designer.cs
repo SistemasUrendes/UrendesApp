@@ -72,7 +72,7 @@
             this.textBoxNotas.Location = new System.Drawing.Point(12, 131);
             this.textBoxNotas.Multiline = true;
             this.textBoxNotas.Name = "textBoxNotas";
-            this.textBoxNotas.Size = new System.Drawing.Size(260, 80);
+            this.textBoxNotas.Size = new System.Drawing.Size(260, 191);
             this.textBoxNotas.TabIndex = 3;
             // 
             // label1
@@ -113,7 +113,7 @@
             // 
             // buttonGuardar
             // 
-            this.buttonGuardar.Location = new System.Drawing.Point(116, 226);
+            this.buttonGuardar.Location = new System.Drawing.Point(116, 328);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(75, 23);
             this.buttonGuardar.TabIndex = 4;
@@ -123,7 +123,7 @@
             // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(197, 226);
+            this.buttonCancelar.Location = new System.Drawing.Point(197, 328);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
             this.buttonCancelar.TabIndex = 5;
@@ -135,7 +135,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(284, 363);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonGuardar);
             this.Controls.Add(this.label4);
