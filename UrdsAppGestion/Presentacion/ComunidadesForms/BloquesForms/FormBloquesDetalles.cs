@@ -201,6 +201,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.BloquesForms
                         String sql = "UPDATE com_subcuotas SET Subcuota = " + (dataGridView_DetallesBloque.Rows[c].Cells["Subcuota"].Value.ToString()).Replace(",", ".") + ", Parte = '" + (dataGridView_DetallesBloque.Rows[c].Cells["Parte"].Value.ToString()).Replace(",", ".") + "' WHERE IdSubcuota = " + dataGridView_DetallesBloque.Rows[c].Cells[0].Value.ToString();
 
                         Persistencia.SentenciasSQL.InsertarGenerico(sql);
+                        campoCalculo();
                     }
                 }
                 if (id_divisiones != null)
@@ -217,6 +218,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.BloquesForms
                         }
                         String sql = "INSERT INTO com_subcuotas (IdDivision, IdBloque, Subcuota) VALUES (" + id_divisiones[a] + "," + id_bloque + "," + subcuota_division + ")";
                         Persistencia.SentenciasSQL.InsertarGenerico(sql);
+                        campoCalculo();
                     }
                 }
                 form_anterior.cargarBloques();
@@ -396,18 +398,15 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.BloquesForms
             sumarTotales();
             label2.Visible = true;
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
+        
+        private void campoCalculo() {
             for (int a = 0; a < dataGridView_DetallesBloque.Rows.Count; a++)
             {
                 dataGridView_DetallesBloque.Rows[a].Cells["Parte"].Value = "( " + String.Format("{0:0.000}", Math.Round((Convert.ToDouble(dataGridView_DetallesBloque.Rows[a].Cells["Cuota"].Value)) * 100, 4)) + "% / " + String.Format("{0:#.00}", total_cuotas * 100) + "% )";
 
             }
-
             label2.Visible = true;
         }
-
     }
 }
 

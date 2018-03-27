@@ -165,7 +165,7 @@
             // 
             // textBoxSiniestro
             // 
-            this.textBoxSiniestro.Location = new System.Drawing.Point(559, 107);
+            this.textBoxSiniestro.Location = new System.Drawing.Point(541, 107);
             this.textBoxSiniestro.Name = "textBoxSiniestro";
             this.textBoxSiniestro.Size = new System.Drawing.Size(67, 20);
             this.textBoxSiniestro.TabIndex = 10;
@@ -174,7 +174,7 @@
             // 
             this.checkBoxSeguro.AutoSize = true;
             this.checkBoxSeguro.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxSeguro.Location = new System.Drawing.Point(451, 110);
+            this.checkBoxSeguro.Location = new System.Drawing.Point(425, 109);
             this.checkBoxSeguro.Name = "checkBoxSeguro";
             this.checkBoxSeguro.Size = new System.Drawing.Size(63, 17);
             this.checkBoxSeguro.TabIndex = 11;
@@ -185,7 +185,7 @@
             // 
             this.checkBoxAcuerdoJunta.AutoSize = true;
             this.checkBoxAcuerdoJunta.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxAcuerdoJunta.Location = new System.Drawing.Point(416, 138);
+            this.checkBoxAcuerdoJunta.Location = new System.Drawing.Point(390, 137);
             this.checkBoxAcuerdoJunta.Name = "checkBoxAcuerdoJunta";
             this.checkBoxAcuerdoJunta.Size = new System.Drawing.Size(98, 17);
             this.checkBoxAcuerdoJunta.TabIndex = 12;
@@ -196,7 +196,7 @@
             // 
             this.checkBoxProxJunta.AutoSize = true;
             this.checkBoxProxJunta.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxProxJunta.Location = new System.Drawing.Point(432, 166);
+            this.checkBoxProxJunta.Location = new System.Drawing.Point(406, 165);
             this.checkBoxProxJunta.Name = "checkBoxProxJunta";
             this.checkBoxProxJunta.Size = new System.Drawing.Size(82, 17);
             this.checkBoxProxJunta.TabIndex = 14;
@@ -205,7 +205,7 @@
             // 
             // maskedTextBoxFechaActa
             // 
-            this.maskedTextBoxFechaActa.Location = new System.Drawing.Point(560, 136);
+            this.maskedTextBoxFechaActa.Location = new System.Drawing.Point(542, 136);
             this.maskedTextBoxFechaActa.Mask = "00/00/0000";
             this.maskedTextBoxFechaActa.Name = "maskedTextBoxFechaActa";
             this.maskedTextBoxFechaActa.Size = new System.Drawing.Size(66, 20);
@@ -612,7 +612,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(526, 111);
+            this.label8.Location = new System.Drawing.Point(508, 111);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(27, 13);
             this.label8.TabIndex = 37;
@@ -637,7 +637,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(516, 139);
+            this.label11.Location = new System.Drawing.Point(498, 139);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(37, 13);
             this.label11.TabIndex = 38;

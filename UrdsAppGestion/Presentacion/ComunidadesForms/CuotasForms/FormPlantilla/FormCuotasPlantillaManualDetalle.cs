@@ -62,6 +62,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
         }
         private void FormCuotasPlantillaManualDetalle_Load(object sender, EventArgs e)
         {
+            String sqlSelect = "SELECT com_cuotamanualdet.IdDetCuotaManual, com_divisiones.IdDivision, com_divisiones.Division, com_bloques.IdBloque, com_bloques.Descripcion, com_cuotamanualdet.Importe FROM(com_cuotamanualdet INNER JOIN com_divisiones ON com_cuotamanualdet.IdDivision = com_divisiones.IdDivision) INNER JOIN com_bloques ON com_cuotamanualdet.IdBloque = com_bloques.IdBloque WHERE com_cuotamanualdet.IdCuotaManual = " + id_plantilla_pasado;
+
+            dataGridView_PlantillaManual.DataSource = Persistencia.SentenciasSQL.select(sqlSelect);
+            dataGridView_PlantillaManual.Enabled = true;
 
         }
 
@@ -93,16 +97,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
 
         private void button_Guardar_Click(object sender, EventArgs e)
         {
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dataGridView_PlantillaManual.DataSource;
-            filas_pegadas = (DataTable)bs.DataSource;
+            if (dataGridView_PlantillaManual.Rows.Count > 0) {
+                for (int a = 0; a < dataGridView_PlantillaManual.Rows.Count; a++) {
 
-            for (int a = 0; a < filas_pegadas.Rows.Count; a++)  {
-                String sqlInsertDetallle = "INSERT INTO com_cuotamanualdet (IdCuotaManual, IdDivision, IdBloque, Fecha, Referencia, Importe) VALUES(" + filas_pegadas.Rows[a][0].ToString() + "," + filas_pegadas.Rows[a][1].ToString() + "," + filas_pegadas.Rows[a][2].ToString() + ",'" + filas_pegadas.Rows[a][3].ToString() + "','" + filas_pegadas.Rows[a][4].ToString() + "'," + filas_pegadas.Rows[a][5].ToString().Replace(',','.') + ")";
-                Persistencia.SentenciasSQL.InsertarGenerico(sqlInsertDetallle);
+                }
+
             }
-            MessageBox.Show("Todo Insertado");
-            this.Close();
         }
 
         private void button_Añadir_Click(object sender, EventArgs e)
@@ -111,14 +111,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
             nueva.Show();
         }
         public void anyadir_division(List<String> division) {
-            for (int a = 0; a < division.Count; a++)
-            {
-                DataRow row2 = filas_pegadas.NewRow();
-                row2[0] = division[a];
-                row2[1] = 0;
-                filas_pegadas.Rows.Add(row2);
-            }
-            actualizarDatagrid();
+           
         }
 
         private void button_Borrar_Click(object sender, EventArgs e)
@@ -134,19 +127,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
         private void button_Cancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void button_configurar_Click(object sender, EventArgs e)
-        {
-
-            foreach(TextBox columna in groupBox1.Controls.OfType<TextBox>()) {
-                if (columna.Text != null || columna.Text.Length > 0) {
-                    filas_pegadas.Columns.Add(columna.Text);
-                }
-            }
-
-            dataGridView_PlantillaManual.Enabled = true;
-            groupBox1.Visible = false;
         }
     }
 }
