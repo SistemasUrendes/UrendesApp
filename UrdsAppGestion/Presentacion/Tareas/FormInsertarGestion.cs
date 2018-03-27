@@ -60,7 +60,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 cargarGestion();
                 bloquearEdicion();
             }
-            //EDITAR GESTIÓN
+            //EDITAR GESTIÓN    
             else
             {
                 cargarGestion();
@@ -73,11 +73,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
             comboBoxUsuario.DataSource = Persistencia.SentenciasSQL.select(sqlComboUser);
             comboBoxUsuario.DisplayMember = "Usuario";
             comboBoxUsuario.ValueMember = "IdURD";
-
-            String sqlComboNivel = "SELECT exp_niveles.Nivel, exp_niveles.IdNivel FROM exp_niveles";
-            comboBoxNivel.DataSource = Persistencia.SentenciasSQL.select(sqlComboNivel);
-            comboBoxNivel.DisplayMember = "Nivel";
-            comboBoxNivel.ValueMember = "IdNivel";
+            
+            String SqlComboTipo = "SELECT exp_tipogestion.Descripcion, exp_tipogestion.IdTipoGestion FROM exp_tipogestion";
+            comboBoxTipoGestion.DataSource = Persistencia.SentenciasSQL.select(SqlComboTipo);
+            comboBoxTipoGestion.DisplayMember = "Descripcion";
+            comboBoxTipoGestion.ValueMember = "IdTipoGestion";
         }
 
         private void buttonGuardar_Click(object sender, EventArgs e)
@@ -87,10 +87,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void cargarGestion()
         {
-
-            //String sqlSelect = "SELECT exp_gestiones.Descripción, exp_gestiones.IdUser, exp_gestiones.FIni, exp_gestiones.FSeguir, exp_gestiones.FMax, exp_gestiones.FFin, exp_gestiones.Importante, exp_gestiones.IdNivel FROM exp_gestiones WHERE(((exp_gestiones.IdGestión) = " + idGestion +"))";
-
-            String sqlSelect = "SELECT exp_gestiones.Descripción, exp_gestiones.IdUser, exp_gestiones.FIni, exp_gestiones.FSeguir, exp_gestiones.FMax, exp_gestiones.FFin, exp_gestiones.Importante, exp_gestiones.IdNivel, ctos_entidades.Entidad FROM exp_gestiones LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
+            
+            String sqlSelect = "SELECT exp_gestiones.Descripción, exp_gestiones.IdUser, exp_gestiones.FIni, exp_gestiones.FSeguir, exp_gestiones.FMax, exp_gestiones.FFin, exp_gestiones.Importante, ctos_entidades.Entidad, exp_gestiones.IdTipoGestion FROM exp_gestiones LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
             infoGestion = Persistencia.SentenciasSQL.select(sqlSelect);
 
             textBoxDescripcion.Text = infoGestion.Rows[0][0].ToString();
@@ -100,8 +98,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
             maskedTextBoxFMax.Text = infoGestion.Rows[0][4].ToString();
             maskedTextBoxFFin.Text = infoGestion.Rows[0][5].ToString();
             checkBoxImportante.Checked = bool.Parse(infoGestion.Rows[0][6].ToString());
-            comboBoxNivel.SelectedValue = infoGestion.Rows[0][7].ToString();
-            textBoxEspera.Text = infoGestion.Rows[0][8].ToString();
+            textBoxEspera.Text = infoGestion.Rows[0][7].ToString();
+            if (infoGestion.Rows[0][8].ToString() != "" )comboBoxTipoGestion.SelectedValue = infoGestion.Rows[0][8].ToString();
         }
 
         private void bloquearEdicion()
@@ -117,7 +115,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             maskedTextBoxFFin.ReadOnly = true;
             if (maskedTextBoxFFin.Text == "  /  /") maskedTextBoxFFin.Mask = "";
             checkBoxImportante.AutoCheck = false;
-            comboBoxNivel.Enabled = false;
+            comboBoxTipoGestion.Enabled = false;
             buttonGuardar.Visible = false;
             buttonEntidad.Visible = false;
         }
@@ -138,7 +136,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
             else if (Regex.IsMatch(maskedTextBoxFInicio.Text, sPattern1))
             {
-                maskedTextBoxFMax.SelectAll();
+                maskedTextBoxFSeguir.SelectAll();
             }
             else
             {
@@ -161,7 +159,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
             else if (Regex.IsMatch(maskedTextBoxFMax.Text, sPattern1))
             {
-                maskedTextBoxFSeguir.SelectAll();
+                maskedTextBoxFFin.SelectAll();
             }
             else
             {
@@ -184,7 +182,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
             else if (Regex.IsMatch(maskedTextBoxFSeguir.Text, sPattern1))
             {
-                maskedTextBoxFFin.SelectAll();
+                maskedTextBoxFMax.SelectAll();
             }
             else
             {
@@ -227,16 +225,16 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String fFin = null;
             if (maskedTextBoxFInicio.Text != "  /  /" && maskedTextBoxFInicio.Text != "") fInicio = Convert.ToDateTime(maskedTextBoxFInicio.Text).ToString("yyyy-MM-dd");
             if (maskedTextBoxFSeguir.Text != "  /  /" && maskedTextBoxFSeguir.Text != "") fSeguir = Convert.ToDateTime(maskedTextBoxFSeguir.Text).ToString("yyyy-MM-dd");
-            if (maskedTextBoxFMax.Text != "  /  /" && maskedTextBoxFMax.Text != "") fMax = Convert.ToDateTime(maskedTextBoxFMax.Text).ToString("yyyy-MM-dd");
+            if (maskedTextBoxFMax.Text != "  /  /" && maskedTextBoxFMax.Text != "" && maskedTextBoxFMax.Text != "00/00/0000") fMax = Convert.ToDateTime(maskedTextBoxFMax.Text).ToString("yyyy-MM-dd");
             if (maskedTextBoxFFin.Text != "  /  /" && maskedTextBoxFFin.Text != "") fFin = Convert.ToDateTime(maskedTextBoxFFin.Text).ToString("yyyy-MM-dd");
             String importante = "0";
             if (checkBoxImportante.Checked) importante = "1";
-            String nivel = comboBoxNivel.SelectedValue.ToString();
+            String tipo = comboBoxTipoGestion.SelectedValue.ToString();
             String sqlInsert = "";
             String sqlUpdate = "";
             if (idGestion != null)
             {
-                sqlUpdate = "UPDATE exp_gestiones SET IdTarea = " + idTarea + ",Descripción = '" + descripcion + "',IdUser = " + usuario + ",Importante = " + importante + ",IdNivel = " + nivel + " WHERE IdGestión = " + idGestion;
+                sqlUpdate = "UPDATE exp_gestiones SET IdTarea = " + idTarea + ",Descripción = '" + descripcion + "',IdUser = " + usuario + ",Importante = " + importante + ",IdTipoGestion = " + tipo + " WHERE IdGestión = " + idGestion;
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                 if (fInicio != null)
                 {
@@ -263,10 +261,15 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     sqlUpdate = "UPDATE exp_gestiones SET IdEntidad = " + idEntidad + " WHERE IdGestión = " + idGestion;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                 }
+                if (importante == "1")
+                {
+                    tareaImportante();
+                    
+                }
             }
             else
             {
-                sqlInsert = "INSERT INTO exp_gestiones (IdTarea,Descripción,IdUser,Importante,IdNivel) VALUES (" + idTarea + ",'" + descripcion + "'," + usuario + "," + importante + "," + nivel + ")";
+                sqlInsert = "INSERT INTO exp_gestiones (IdTarea,Descripción,IdUser,Importante,IdTipoGestion) VALUES (" + idTarea + ",'" + descripcion + "'," + usuario + "," + importante + "," + tipo + ")";
 
                 idGestion = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsert).ToString();
                 if (fInicio != null)
@@ -293,6 +296,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 {
                     sqlUpdate = "UPDATE exp_gestiones SET IdEntidad = " + idEntidad + " WHERE IdGestión = " + idGestion;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                }
+                if (importante == "1")
+                {
+                    tareaImportante();
                 }
 
             }
@@ -321,5 +328,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBoxEspera.Text = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
         }
     
+        private void tareaImportante()
+        {
+            String sqlUpdate = "UPDATE exp_tareas SET Importante = -1 WHERE IdTarea = " + idTarea;
+            Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+            form_anterior.tareaImportanteGestion();
+        }
     }
 }

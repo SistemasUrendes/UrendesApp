@@ -44,16 +44,16 @@
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxDescripcion = new System.Windows.Forms.TextBox();
-            this.comboBoxNivel = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.textBoxEspera = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.buttonEntidad = new System.Windows.Forms.Button();
+            this.comboBoxTipoGestion = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // maskedTextBoxFInicio
             // 
-            this.maskedTextBoxFInicio.Location = new System.Drawing.Point(84, 188);
+            this.maskedTextBoxFInicio.Location = new System.Drawing.Point(84, 190);
             this.maskedTextBoxFInicio.Mask = "00/00/0000";
             this.maskedTextBoxFInicio.Name = "maskedTextBoxFInicio";
             this.maskedTextBoxFInicio.Size = new System.Drawing.Size(69, 20);
@@ -63,17 +63,17 @@
             // 
             // maskedTextBoxFSeguir
             // 
-            this.maskedTextBoxFSeguir.Location = new System.Drawing.Point(84, 240);
+            this.maskedTextBoxFSeguir.Location = new System.Drawing.Point(84, 215);
             this.maskedTextBoxFSeguir.Mask = "00/00/0000";
             this.maskedTextBoxFSeguir.Name = "maskedTextBoxFSeguir";
             this.maskedTextBoxFSeguir.Size = new System.Drawing.Size(69, 20);
-            this.maskedTextBoxFSeguir.TabIndex = 9;
+            this.maskedTextBoxFSeguir.TabIndex = 8;
             this.maskedTextBoxFSeguir.ValidatingType = typeof(System.DateTime);
             this.maskedTextBoxFSeguir.Leave += new System.EventHandler(this.maskedTextBoxFSeguir_Leave);
             // 
             // maskedTextBoxFFin
             // 
-            this.maskedTextBoxFFin.Location = new System.Drawing.Point(84, 266);
+            this.maskedTextBoxFFin.Location = new System.Drawing.Point(84, 268);
             this.maskedTextBoxFFin.Mask = "00/00/0000";
             this.maskedTextBoxFFin.Name = "maskedTextBoxFFin";
             this.maskedTextBoxFFin.Size = new System.Drawing.Size(69, 20);
@@ -83,11 +83,11 @@
             // 
             // maskedTextBoxFMax
             // 
-            this.maskedTextBoxFMax.Location = new System.Drawing.Point(84, 214);
+            this.maskedTextBoxFMax.Location = new System.Drawing.Point(84, 241);
             this.maskedTextBoxFMax.Mask = "00/00/0000";
             this.maskedTextBoxFMax.Name = "maskedTextBoxFMax";
             this.maskedTextBoxFMax.Size = new System.Drawing.Size(69, 20);
-            this.maskedTextBoxFMax.TabIndex = 8;
+            this.maskedTextBoxFMax.TabIndex = 9;
             this.maskedTextBoxFMax.ValidatingType = typeof(System.DateTime);
             this.maskedTextBoxFMax.Leave += new System.EventHandler(this.maskedTextBoxFMax_Leave);
             // 
@@ -112,7 +112,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 191);
+            this.label2.Location = new System.Drawing.Point(36, 193);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 13);
             this.label2.TabIndex = 7;
@@ -121,25 +121,25 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(41, 217);
+            this.label3.Location = new System.Drawing.Point(31, 244);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 13);
+            this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 8;
-            this.label3.Text = "FMax:";
+            this.label3.Text = "FLímite:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(32, 243);
+            this.label4.Location = new System.Drawing.Point(23, 218);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 13);
+            this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 9;
-            this.label4.Text = "FSeguir:";
+            this.label4.Text = "FAgenda:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(47, 269);
+            this.label5.Location = new System.Drawing.Point(47, 271);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(30, 13);
             this.label5.TabIndex = 10;
@@ -158,7 +158,7 @@
             // 
             // buttonGuardar
             // 
-            this.buttonGuardar.Location = new System.Drawing.Point(108, 301);
+            this.buttonGuardar.Location = new System.Drawing.Point(108, 303);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(75, 23);
             this.buttonGuardar.TabIndex = 11;
@@ -168,7 +168,7 @@
             // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(198, 301);
+            this.buttonCancelar.Location = new System.Drawing.Point(198, 303);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
             this.buttonCancelar.TabIndex = 12;
@@ -179,7 +179,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 73);
+            this.label6.Location = new System.Drawing.Point(11, 71);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(66, 13);
             this.label6.TabIndex = 14;
@@ -192,24 +192,6 @@
             this.textBoxDescripcion.Name = "textBoxDescripcion";
             this.textBoxDescripcion.Size = new System.Drawing.Size(191, 60);
             this.textBoxDescripcion.TabIndex = 2;
-            // 
-            // comboBoxNivel
-            // 
-            this.comboBoxNivel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxNivel.FormattingEnabled = true;
-            this.comboBoxNivel.Location = new System.Drawing.Point(84, 162);
-            this.comboBoxNivel.Name = "comboBoxNivel";
-            this.comboBoxNivel.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxNivel.TabIndex = 6;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(43, 165);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 13);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Nivel:";
             // 
             // textBoxEspera
             // 
@@ -239,16 +221,34 @@
             this.buttonEntidad.UseVisualStyleBackColor = true;
             this.buttonEntidad.Click += new System.EventHandler(this.buttonEntidad_Click);
             // 
+            // comboBoxTipoGestion
+            // 
+            this.comboBoxTipoGestion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTipoGestion.FormattingEnabled = true;
+            this.comboBoxTipoGestion.Location = new System.Drawing.Point(84, 163);
+            this.comboBoxTipoGestion.Name = "comboBoxTipoGestion";
+            this.comboBoxTipoGestion.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxTipoGestion.TabIndex = 20;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 166);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(70, 13);
+            this.label9.TabIndex = 21;
+            this.label9.Text = "Tipo Gestión:";
+            // 
             // FormInsertarGestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 336);
+            this.ClientSize = new System.Drawing.Size(292, 342);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.comboBoxTipoGestion);
             this.Controls.Add(this.buttonEntidad);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.textBoxEspera);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.comboBoxNivel);
             this.Controls.Add(this.textBoxDescripcion);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.buttonCancelar);
@@ -291,10 +291,10 @@
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxDescripcion;
-        private System.Windows.Forms.ComboBox comboBoxNivel;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBoxEspera;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button buttonEntidad;
+        private System.Windows.Forms.ComboBox comboBoxTipoGestion;
+        private System.Windows.Forms.Label label9;
     }
 }

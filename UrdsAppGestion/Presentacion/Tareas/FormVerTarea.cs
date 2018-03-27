@@ -59,7 +59,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         public void cargarCabecera()
         {
 
-            String sqlSelect = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tareas.IdEntidad, exp_tareas.Notas, exp_tareas.Ruta, exp_tareas.IdTipoTarea, exp_tareas.FFin, exp_tareas.FIni, exp_tareas.Coste, exp_tareas.RefSiniestro, exp_tareas.Seguro, exp_tareas.AcuerdoJunta, exp_tareas.FechaActaAcordado, exp_tareas.ProximaJunta , com_comunidades.Referencia , ctos_entidades.Entidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
+            String sqlSelect = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tareas.IdEntidad, exp_tareas.Notas, exp_tareas.Ruta, exp_tareas.IdTipoTarea, exp_tareas.FFin, exp_tareas.FIni, exp_tareas.Coste, exp_tareas.RefSiniestro, exp_tareas.Seguro, exp_tareas.AcuerdoJunta, exp_tareas.FechaActaAcordado, exp_tareas.ProximaJunta , com_comunidades.Referencia , ctos_entidades.Entidad, exp_tareas.Importante FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
 
             tarea = Persistencia.SentenciasSQL.select(sqlSelect);
             
@@ -82,7 +82,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             checkBoxProxJunta.Checked = bool.Parse(tarea.Rows[0][13].ToString());
             maskedTextBoxReferencia.Text = tarea.Rows[0][14].ToString();
             textBoxEntidad.Text = tarea.Rows[0][15].ToString();
-            
+            checkBoxImportante.Checked = bool.Parse(tarea.Rows[0][16].ToString());
             
         }
 
@@ -97,6 +97,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             maskedTextBoxFIni.ReadOnly = true;
             if (maskedTextBoxFIni.Text == "  /  /") maskedTextBoxFIni.Mask = "";
             textBoxCoste.ReadOnly = true;
+            checkBoxImportante.AutoCheck = false;
             textBoxSiniestro.ReadOnly = true;
             checkBoxSeguro.AutoCheck = false;
             checkBoxAcuerdoJunta.AutoCheck = false;
@@ -128,6 +129,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             buttonEditar.Enabled = false;
             buttonEliminarTarea.Enabled = false;
             buttonGuardar.Enabled = true;
+            checkBoxImportante.AutoCheck = true;
             if (textBoxEntidad.Text == "")
             {
                 textBoxEntidad.Text = "Pulsa espacio para Seleccionar Entidad";
@@ -147,7 +149,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
         
         public void cargarGestiones()
         {
-            String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_gestiones.Importante as S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS 'Fecha Límite',  exp_gestiones.FFin, ctos_entidades.Entidad AS `Espera de` FROM((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad WHERE(((exp_gestiones.IdTarea) = " + idTarea + "))";
+            //String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_gestiones.Importante as S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS 'Fecha Límite',  exp_gestiones.FFin, ctos_entidades.Entidad AS `Espera de` FROM((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad WHERE(((exp_gestiones.IdTarea) = " + idTarea + "))";
+            String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin, ctos_entidades.Entidad AS `Espera de` FROM(((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE(((exp_gestiones.IdTarea) = " + idTarea +"))";
 
 
             gestion = Persistencia.SentenciasSQL.select(sqlSelect);
@@ -193,7 +196,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void textBoxRuta_Click(object sender, EventArgs e)
         {
-            if (ruta != null)
+            if (ruta != "" && ruta != null)
             {
                 System.Diagnostics.Process.Start(@ruta);
             }
@@ -206,13 +209,15 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 dataGridViewGestiones.Columns["Id"].Width = 70;
                 dataGridViewGestiones.Columns["Ord"].Visible = false;
                 dataGridViewGestiones.Columns["Usuario"].Width = 70;
-                dataGridViewGestiones.Columns["Descripción"].Width = 350;
+                dataGridViewGestiones.Columns["Descripción"].Width = 290;
+                dataGridViewGestiones.Columns["Tipo Gestión"].Width = 120;
                 dataGridViewGestiones.Columns["S"].Width = 30;
                 dataGridViewGestiones.Columns["FIni"].Width = 90;
                 dataGridViewGestiones.Columns["FAgenda"].Width = 90;
                 dataGridViewGestiones.Columns["Fecha límite"].Width = 95;
                 dataGridViewGestiones.Columns["FFin"].Width = 90;
-                dataGridViewGestiones.Columns["Espera de"].Width = 330; 
+                dataGridViewGestiones.Columns["Espera de"].Width = 260;
+                
             }
         }
 
@@ -276,11 +281,15 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 var hti = dataGridViewGestiones.HitTest(e.X, e.Y);
-                dataGridViewGestiones.ClearSelection();
-                dataGridViewGestiones.Rows[hti.RowIndex].Selected = true;
-                dataGridViewGestiones.Columns[hti.ColumnIndex].Selected = true;
-                dataGridViewGestiones.CurrentCell = this.dataGridViewGestiones[hti.ColumnIndex, hti.RowIndex];
-                contextMenuStrip1.Show(Cursor.Position);
+                //EVITAR QUE COJA LA CABECERA
+                if (hti.RowIndex > -1)
+                {
+                    dataGridViewGestiones.ClearSelection();
+                    dataGridViewGestiones.Rows[hti.RowIndex].Selected = true;
+                    dataGridViewGestiones.Columns[hti.ColumnIndex].Selected = true;
+                    dataGridViewGestiones.CurrentCell = this.dataGridViewGestiones[hti.ColumnIndex, hti.RowIndex];
+                    contextMenuStrip1.Show(Cursor.Position);
+                }
             }
         }
 
@@ -289,11 +298,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 var hti = dataGridViewSeguimientos.HitTest(e.X, e.Y);
-                dataGridViewSeguimientos.ClearSelection();
-                dataGridViewSeguimientos.Rows[hti.RowIndex].Selected = true;
-                dataGridViewSeguimientos.Columns[hti.ColumnIndex].Selected = true;
-                dataGridViewSeguimientos.CurrentCell = this.dataGridViewSeguimientos[hti.ColumnIndex, hti.RowIndex];
-                contextMenuStrip2.Show(Cursor.Position);
+                if (hti.RowIndex > -1)
+                {
+                    dataGridViewSeguimientos.ClearSelection();
+                    dataGridViewSeguimientos.Rows[hti.RowIndex].Selected = true;
+                    dataGridViewSeguimientos.Columns[hti.ColumnIndex].Selected = true;
+                    dataGridViewSeguimientos.CurrentCell = this.dataGridViewSeguimientos[hti.ColumnIndex, hti.RowIndex];
+                    contextMenuStrip2.Show(Cursor.Position);
+                }
             }
         }
 
@@ -469,6 +481,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (maskedTextBoxFFin.Text != "  /  /" && maskedTextBoxFFin.Text != "") fFin = Convert.ToDateTime(maskedTextBoxFFin.Text).ToString("yyyy-MM-dd");
             String ruta = textBoxRuta.Text;
             String notas = textBoxNotas.Text;
+            String importante = "0";
+            if (checkBoxImportante.Checked) importante = "-1";
 
             //EDITAR TAREA
             if (idTarea != null)
@@ -507,7 +521,16 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     sqlUpdate = "UPDATE exp_tareas SET Ruta = '" + fixRuta + "' WHERE IdTarea = " + idTarea;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                 }
-
+                if (idTipoTarea == "2" || importante == "-1")
+                {
+                    sqlUpdate = "UPDATE exp_tareas SET Importante = -1 WHERE IdTarea = " + idTarea;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                }
+                if(importante == "0")
+                {
+                    sqlUpdate = "UPDATE exp_tareas SET Importante = 0 WHERE IdTarea = " + idTarea;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                }
             }
             //AÑADIR NUEVA TAREA
             else
@@ -533,6 +556,16 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 if (fechaActaAcordado != null)
                 {
                     sqlInsert = "UPDATE exp_tareas SET FechaActaAcordado = '" + fechaActaAcordado + "' WHERE IdTarea = " + idTarea;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+                }
+                if (idTipoTarea == "2" || importante == "-1")
+                {
+                    sqlInsert = "UPDATE exp_tareas SET Importante = -1 WHERE IdTarea = " + idTarea;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+                }
+                if (importante == "0")
+                {
+                    sqlInsert = "UPDATE exp_tareas SET Importante = 0 WHERE IdTarea = " + idTarea;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
                 }
             }
@@ -722,11 +755,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 var hti = dataGridViewContactos.HitTest(e.X, e.Y);
-                dataGridViewContactos.ClearSelection();
-                dataGridViewContactos.Rows[hti.RowIndex].Selected = true;
-                dataGridViewContactos.Columns[hti.ColumnIndex].Selected = true;
-                dataGridViewContactos.CurrentCell = this.dataGridViewContactos[hti.ColumnIndex, hti.RowIndex];
-                contextMenuStrip3.Show(Cursor.Position);
+                if (hti.RowIndex > -1)
+                {
+                    dataGridViewContactos.ClearSelection();
+                    dataGridViewContactos.Rows[hti.RowIndex].Selected = true;
+                    dataGridViewContactos.Columns[hti.ColumnIndex].Selected = true;
+                    dataGridViewContactos.CurrentCell = this.dataGridViewContactos[hti.ColumnIndex, hti.RowIndex];
+                    contextMenuStrip3.Show(Cursor.Position);
+                }
             }
         }
 
@@ -841,6 +877,19 @@ namespace UrdsAppGestión.Presentacion.Tareas
             Tareas.FormCorreoGrupo nueva = new FormCorreoGrupo(idGestion,idEntidad,idTarea, textBoxDescripcion.Text);
             nueva.Show();
         }
-        
+
+        private void comboBoxTipo_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (comboBoxTipo.SelectedValue.ToString() == "2")
+            {
+                checkBoxImportante.Checked = true;
+            }
+        }
+
+        public void tareaImportanteGestion()
+        {
+            cargarCabecera();
+            form_anterior.CargarTareas();
+        }
     }
 }
