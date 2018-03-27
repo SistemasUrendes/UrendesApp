@@ -51,6 +51,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.maskedTextBoxRefComunidad = new System.Windows.Forms.MaskedTextBox();
             this.buttonGrupo = new System.Windows.Forms.Button();
+            this.checkBoxProxJunta = new System.Windows.Forms.CheckBox();
+            this.checkBoxSeguro = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tareas)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -62,7 +64,7 @@
             this.dataGridView_tareas.AllowUserToOrderColumns = true;
             this.dataGridView_tareas.AllowUserToResizeRows = false;
             this.dataGridView_tareas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_tareas.Location = new System.Drawing.Point(12, 67);
+            this.dataGridView_tareas.Location = new System.Drawing.Point(6, 129);
             this.dataGridView_tareas.MultiSelect = false;
             this.dataGridView_tareas.Name = "dataGridView_tareas";
             this.dataGridView_tareas.ReadOnly = true;
@@ -78,32 +80,32 @@
             // 
             this.comboBox_Tipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Tipo.FormattingEnabled = true;
-            this.comboBox_Tipo.Location = new System.Drawing.Point(382, 13);
+            this.comboBox_Tipo.Location = new System.Drawing.Point(331, 41);
             this.comboBox_Tipo.Name = "comboBox_Tipo";
             this.comboBox_Tipo.Size = new System.Drawing.Size(121, 21);
-            this.comboBox_Tipo.TabIndex = 2;
+            this.comboBox_Tipo.TabIndex = 5;
             // 
             // textBox_Entidad
             // 
-            this.textBox_Entidad.Location = new System.Drawing.Point(169, 13);
+            this.textBox_Entidad.Location = new System.Drawing.Point(209, 13);
             this.textBox_Entidad.Name = "textBox_Entidad";
-            this.textBox_Entidad.Size = new System.Drawing.Size(175, 20);
-            this.textBox_Entidad.TabIndex = 1;
+            this.textBox_Entidad.Size = new System.Drawing.Size(243, 20);
+            this.textBox_Entidad.TabIndex = 2;
             this.textBox_Entidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Entidad_KeyPress);
             // 
             // comboBox_Estado
             // 
             this.comboBox_Estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Estado.FormattingEnabled = true;
-            this.comboBox_Estado.Location = new System.Drawing.Point(558, 13);
+            this.comboBox_Estado.Location = new System.Drawing.Point(331, 70);
             this.comboBox_Estado.Name = "comboBox_Estado";
             this.comboBox_Estado.Size = new System.Drawing.Size(121, 21);
-            this.comboBox_Estado.TabIndex = 3;
+            this.comboBox_Estado.TabIndex = 8;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(117, 16);
+            this.label1.Location = new System.Drawing.Point(163, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 13);
             this.label1.TabIndex = 5;
@@ -112,7 +114,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(509, 16);
+            this.label2.Location = new System.Drawing.Point(286, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 6;
@@ -121,7 +123,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(350, 16);
+            this.label3.Location = new System.Drawing.Point(298, 44);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 13);
             this.label3.TabIndex = 7;
@@ -129,10 +131,10 @@
             // 
             // button_Filtrar
             // 
-            this.button_Filtrar.Location = new System.Drawing.Point(961, 11);
+            this.button_Filtrar.Location = new System.Drawing.Point(476, 20);
             this.button_Filtrar.Name = "button_Filtrar";
-            this.button_Filtrar.Size = new System.Drawing.Size(75, 23);
-            this.button_Filtrar.TabIndex = 6;
+            this.button_Filtrar.Size = new System.Drawing.Size(84, 63);
+            this.button_Filtrar.TabIndex = 9;
             this.button_Filtrar.Text = "Filtrar";
             this.button_Filtrar.UseVisualStyleBackColor = true;
             this.button_Filtrar.Click += new System.EventHandler(this.button_Filtrar_Click);
@@ -179,17 +181,17 @@
             // 
             // maskedTextBox_fin
             // 
-            this.maskedTextBox_fin.Location = new System.Drawing.Point(878, 13);
+            this.maskedTextBox_fin.Location = new System.Drawing.Point(209, 42);
             this.maskedTextBox_fin.Mask = "00/00/0000";
             this.maskedTextBox_fin.Name = "maskedTextBox_fin";
             this.maskedTextBox_fin.Size = new System.Drawing.Size(71, 20);
-            this.maskedTextBox_fin.TabIndex = 5;
+            this.maskedTextBox_fin.TabIndex = 4;
             this.maskedTextBox_fin.ValidatingType = typeof(System.DateTime);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(836, 16);
+            this.label4.Location = new System.Drawing.Point(163, 44);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(36, 13);
             this.label4.TabIndex = 17;
@@ -198,7 +200,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(681, 16);
+            this.label5.Location = new System.Drawing.Point(8, 44);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 13);
             this.label5.TabIndex = 16;
@@ -206,19 +208,19 @@
             // 
             // maskedTextBox_inicio
             // 
-            this.maskedTextBox_inicio.Location = new System.Drawing.Point(759, 13);
+            this.maskedTextBox_inicio.Location = new System.Drawing.Point(86, 42);
             this.maskedTextBox_inicio.Mask = "00/00/0000";
             this.maskedTextBox_inicio.Name = "maskedTextBox_inicio";
             this.maskedTextBox_inicio.Size = new System.Drawing.Size(71, 20);
-            this.maskedTextBox_inicio.TabIndex = 4;
+            this.maskedTextBox_inicio.TabIndex = 3;
             this.maskedTextBox_inicio.ValidatingType = typeof(System.DateTime);
             // 
             // buttonNuevaTarea
             // 
-            this.buttonNuevaTarea.Location = new System.Drawing.Point(12, 38);
+            this.buttonNuevaTarea.Location = new System.Drawing.Point(6, 100);
             this.buttonNuevaTarea.Name = "buttonNuevaTarea";
             this.buttonNuevaTarea.Size = new System.Drawing.Size(75, 23);
-            this.buttonNuevaTarea.TabIndex = 18;
+            this.buttonNuevaTarea.TabIndex = 10;
             this.buttonNuevaTarea.Text = "Nueva";
             this.buttonNuevaTarea.UseVisualStyleBackColor = true;
             this.buttonNuevaTarea.Click += new System.EventHandler(this.buttonNuevaTarea_Click);
@@ -237,27 +239,51 @@
             this.maskedTextBoxRefComunidad.Location = new System.Drawing.Point(86, 13);
             this.maskedTextBoxRefComunidad.Mask = "999";
             this.maskedTextBoxRefComunidad.Name = "maskedTextBoxRefComunidad";
-            this.maskedTextBoxRefComunidad.Size = new System.Drawing.Size(25, 20);
-            this.maskedTextBoxRefComunidad.TabIndex = 21;
+            this.maskedTextBoxRefComunidad.Size = new System.Drawing.Size(45, 20);
+            this.maskedTextBoxRefComunidad.TabIndex = 1;
             this.maskedTextBoxRefComunidad.ValidatingType = typeof(int);
             this.maskedTextBoxRefComunidad.Leave += new System.EventHandler(this.maskedTextBoxRefComunidad_Leave);
             // 
             // buttonGrupo
             // 
-            this.buttonGrupo.Location = new System.Drawing.Point(936, 38);
+            this.buttonGrupo.Location = new System.Drawing.Point(930, 100);
             this.buttonGrupo.Name = "buttonGrupo";
             this.buttonGrupo.Size = new System.Drawing.Size(100, 23);
-            this.buttonGrupo.TabIndex = 22;
+            this.buttonGrupo.TabIndex = 11;
             this.buttonGrupo.Text = "Añadir Grupo";
             this.buttonGrupo.UseVisualStyleBackColor = true;
             this.buttonGrupo.Click += new System.EventHandler(this.buttonGrupo_Click);
+            // 
+            // checkBoxProxJunta
+            // 
+            this.checkBoxProxJunta.AutoSize = true;
+            this.checkBoxProxJunta.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBoxProxJunta.Location = new System.Drawing.Point(20, 72);
+            this.checkBoxProxJunta.Name = "checkBoxProxJunta";
+            this.checkBoxProxJunta.Size = new System.Drawing.Size(82, 17);
+            this.checkBoxProxJunta.TabIndex = 6;
+            this.checkBoxProxJunta.Text = "Prox. Junta:";
+            this.checkBoxProxJunta.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxSeguro
+            // 
+            this.checkBoxSeguro.AutoSize = true;
+            this.checkBoxSeguro.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBoxSeguro.Location = new System.Drawing.Point(159, 72);
+            this.checkBoxSeguro.Name = "checkBoxSeguro";
+            this.checkBoxSeguro.Size = new System.Drawing.Size(63, 17);
+            this.checkBoxSeguro.TabIndex = 7;
+            this.checkBoxSeguro.Text = "Seguro:";
+            this.checkBoxSeguro.UseVisualStyleBackColor = true;
             // 
             // FormTareasPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1048, 637);
+            this.ClientSize = new System.Drawing.Size(1042, 687);
             this.ControlBox = false;
+            this.Controls.Add(this.checkBoxSeguro);
+            this.Controls.Add(this.checkBoxProxJunta);
             this.Controls.Add(this.buttonGrupo);
             this.Controls.Add(this.maskedTextBoxRefComunidad);
             this.Controls.Add(this.label6);
@@ -278,6 +304,7 @@
             this.Name = "FormTareasPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tareas";
+            this.Load += new System.EventHandler(this.FormTareasPrincipal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tareas)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.contextMenuStrip1.PerformLayout();
@@ -309,5 +336,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxRefComunidad;
         private System.Windows.Forms.Button buttonGrupo;
+        private System.Windows.Forms.CheckBox checkBoxProxJunta;
+        private System.Windows.Forms.CheckBox checkBoxSeguro;
     }
 }
