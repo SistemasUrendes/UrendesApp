@@ -56,6 +56,7 @@
             this.dataGridView_plantillas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_plantillas.Size = new System.Drawing.Size(488, 351);
             this.dataGridView_plantillas.TabIndex = 0;
+            this.dataGridView_plantillas.DoubleClick += new System.EventHandler(this.dataGridView_plantillas_DoubleClick);
             this.dataGridView_plantillas.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView_plantillas_MouseClick);
             // 
             // button1
@@ -90,6 +91,7 @@
             // 
             // comboBox_TipodeCuota
             // 
+            this.comboBox_TipodeCuota.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_TipodeCuota.Enabled = false;
             this.comboBox_TipodeCuota.FormattingEnabled = true;
             this.comboBox_TipodeCuota.Items.AddRange(new object[] {

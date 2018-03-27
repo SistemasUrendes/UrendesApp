@@ -24,7 +24,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
         private void Cuotas_Load(object sender, EventArgs e)
         {
             cargarDatagrid();
-            comboBox_TipoPlantilla.SelectedItem = "Tipo División";
+            comboBox_TipoPlantilla.SelectedItem = "Manuales";
         }
         public void cargarDatagrid() {
             String SelectCuotas = "SELECT com_cuotas.IdCuota, com_cuotas.FEmision, com_cuotas.Descripcion, com_liquidaciones.Liquidacion, com_ejercicios.Ejercicio, com_metodoscuotas.Método, com_tipocuotas.TipoCuota, com_cuotas.FVto, com_cuotas.IdEstado FROM(((com_cuotas INNER JOIN com_liquidaciones ON com_cuotas.IdLiquidacion = com_liquidaciones.IdLiquidacion) INNER JOIN com_tipocuotas ON com_cuotas.IdTipoCuota = com_tipocuotas.IdTipoCuota) INNER JOIN com_ejercicios ON com_liquidaciones.IdEjercicio = com_ejercicios.IdEjercicio) INNER JOIN com_metodoscuotas ON com_ejercicios.IdMetodoCuota = com_metodoscuotas.IdMetodoCuota WHERE(((com_ejercicios.IdComunidad) = " + id_comunidad_cargado + ")) ORDER BY com_cuotas.FEmision DESC, com_cuotas.IdCuota DESC;";
@@ -115,7 +115,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
 
         private void button_IrAPlantillas_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Aun esta en fase de prueba");
             //Manuales
             //Presupuesto
             //Tipo División
@@ -273,7 +272,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
                         //}
 
                         //String strDesc = "Comp. Abono Cuota";
-
                         //// ENTRADA DEL NUEVO VENCIMIENTO
                         ////CREO LA CABECERA MOVIMIENTO
                         //int varMovSal = Logica.FuncionesTesoreria.CreaMovimiento(Logica.FuncionesTesoreria.ejercicioActivo(id_comunidad_cargado, fechaHoy), CuentaCompesacion, "15", vencimientosAntiguos.Rows[0][1].ToString(), fechaHoy, strDesc);

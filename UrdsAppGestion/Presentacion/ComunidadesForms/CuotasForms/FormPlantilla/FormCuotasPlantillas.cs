@@ -32,47 +32,32 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
         private void FormCuotasPlantillas_Load(object sender, EventArgs e)
         {
             cargarDatagrid();
-            comboBox_TipodeCuota.SelectedItem = filtro_pasado;
+            comboBox_TipodeCuota.SelectedItem = 1;
             cargarPrefiltro();
         }
         public void cargarDatagrid() {
             String sqlSelect = "SELECT IdCuotaManual, NombreCuotaManual, Abono, Activa FROM com_cuotamanual WHERE IdComunidad = " + id_comunidad_cargado;
             plantillas = Persistencia.SentenciasSQL.select(sqlSelect);
 
-
             dataGridView_plantillas.DataSource = plantillas;
             dataGridView_plantillas.Columns["Activa"].Width = 50;
             dataGridView_plantillas.Columns["NombreCuotaManual"].Width = 235;
-            dataGridView_plantillas.Columns["Abono"].Visible = false;
+            dataGridView_plantillas.Columns["Abono"].Visible = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show(dataGridView_plantillas.SelectedCells[1].Value.ToString());
-
-            //if (dataGridView_plantillas.SelectedCells[1].Value.ToString() == "Presupuesto") {
-            //    FormCuotasPlantillaPptoDetalle nueva = new FormCuotasPlantillaPptoDetalle(this,id_comunidad_cargado, dataGridView_plantillas.SelectedCells[0].Value.ToString());
-            //    nueva.Show();
-            //}else if(dataGridView_plantillas.SelectedCells[1].Value.ToString() == "Tipo División") {
-            //    FormCuotasPlantillaTipoDivDetalle nueva = new FormCuotasPlantillaTipoDivDetalle(this,id_comunidad_cargado,dataGridView_plantillas.SelectedCells[0].Value.ToString());
-            //    nueva.Show();
-
-            //}else if (dataGridView_plantillas.SelectedCells[1].Value.ToString() == "Cuota Fija") {
-                FormCuotasPlantillaManualDetalle nueva = new FormCuotasPlantillaManualDetalle(id_comunidad_cargado, dataGridView_plantillas.SelectedCells[0].Value.ToString());
-                nueva.Show();
-            //}
-
-            //FormCuotasPlantillaAlta nueva = new FormCuotasPlantillaAlta(this, id_comunidad_cargado,dataGridView_plantillas.SelectedCells[0].Value.ToString());
-            //nueva.Show();
+            FormCuotasPlantillaAlta nueva = new FormCuotasPlantillaAlta(this, id_comunidad_cargado, dataGridView_plantillas.SelectedCells[0].Value.ToString());
+            nueva.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             DialogResult resultado_message;
-            resultado_message = MessageBox.Show("¿Desea borrar esta Plantilla ?", "Borrar Plantilla", MessageBoxButtons.OKCancel);
+            resultado_message = MessageBox.Show("¿Desea borrar esta Plantilla Manual ?", "Borrar Plantilla", MessageBoxButtons.OKCancel);
             if (resultado_message == System.Windows.Forms.DialogResult.OK)
             {
-                String sqlBorrar = "DELETE FROM com_plantillacuotas WHERE IdPlantillaCuota =  " + dataGridView_plantillas.SelectedCells[0].Value.ToString();
+                String sqlBorrar = "DELETE FROM com_cuotamanual WHERE IdCuotaManual =  " + dataGridView_plantillas.SelectedCells[0].Value.ToString();
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrar);
                 cargarDatagrid();
             }
@@ -92,7 +77,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
 
         private void editarPlantillaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormCuotasPlantillaAlta nueva = new FormCuotasPlantillaAlta(this, id_comunidad_cargado, dataGridView_plantillas.SelectedCells[0].Value.ToString());
+            FormCuotasPlantillaManualDetalle nueva = new FormCuotasPlantillaManualDetalle(id_comunidad_cargado, dataGridView_plantillas.SelectedCells[0].Value.ToString());
             nueva.Show();
         }
          public void cargarPrefiltro() {
@@ -138,6 +123,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
             }
             
             this.dataGridView_plantillas.DataSource = busqueda;
+        }
+
+        private void dataGridView_plantillas_DoubleClick(object sender, EventArgs e)
+        {
+            FormCuotasPlantillaManualDetalle nueva = new FormCuotasPlantillaManualDetalle(id_comunidad_cargado, dataGridView_plantillas.SelectedCells[0].Value.ToString());
+            nueva.Show();
         }
     }
 }
