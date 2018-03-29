@@ -921,16 +921,15 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private String limpiaRuta (String r)
         {
-            String ruta = r;
-            if (ruta.Contains("#"))
+            String ruta;
+            if (r.Contains("#"))
             {
-                int primero = ruta.IndexOf("#")+1;
-                int segundo = ruta.LastIndexOf("#")-1;
-                this.ruta = ruta.Substring(primero, segundo);
-                return ruta.Substring(primero, segundo);
+                ruta = r.Split('#', '#')[1];
+                this.ruta = ruta;
+                return ruta;
             }
-            this.ruta = ruta;
-            return ruta;
+            this.ruta = r;
+            return r;
         }
     }
 }
