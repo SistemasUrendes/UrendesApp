@@ -386,7 +386,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
             }
             else if (tipoOperacion == "Entrada a Proveedor")
             {
-
                 //COJO LA FECHA
                 try { fechaMov = (Convert.ToDateTime(fecha_operacion_pasado)).ToString("yyyy-MM-dd"); }
                 catch { MessageBox.Show("Introduce una fecha valida en un pago"); return; }
@@ -398,21 +397,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
                 numMov = Logica.FuncionesTesoreria.CreaMovimiento(idEjercicio, id_cuenta_cargado, "2", id_entidad_pasado, fechaMov, "Ingreso a Proveedor");
 
             }
-            else if (tipoOperacion == "Entrada a Proveedor")
-            {
-                //COJO LA FECHA
-                try { fechaMov = (Convert.ToDateTime(fecha_operacion_pasado)).ToString("yyyy-MM-dd"); }
-                catch { MessageBox.Show("Introduce una fecha valida en un pago"); return; }
- 
-                //BUSCO EL EJERCICIO ACTIVO
-                String idEjercicio = Logica.FuncionesTesoreria.ejercicioActivo(id_comunidad_cargado, fechaMov);
-
-                //CREO CABECERA DEL MOVIMIENTO
-                numMov = Logica.FuncionesTesoreria.CreaMovimiento(idEjercicio, id_cuenta_cargado, "2", id_entidad_pasado, fechaMov, "Ingreso a Proveedor");
-
-            }
-
-                for (int a = 0; a < dataGridView_general.Rows.Count;a++) {
+            for (int a = 0; a < dataGridView_general.Rows.Count;a++) {
                 if (Convert.ToDouble(dataGridView_general.Rows[a].Cells[celdaAsignado].Value) != 0 && (Convert.ToDouble(dataGridView_general.Rows[a].Cells[celdaAsignado].Value) > 0)) {
                     if (tipoOperacion == "Pago")
                         pagarProveedor(a);
@@ -433,7 +418,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
                 AnticipoResto(numMov);
 
             if ((tipoOperacion == "Pago a Proveedor" || tipoOperacion == "Entrada a Proveedor") && crearAnticipo)
-                AnticipoRestoSalidaProveedor();
+                AnticipoRestoSalidaProveedor(numMov);
 
             if (form_anterior != null)
             {
@@ -456,21 +441,15 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
         private void pagarComunero(int indice) {
 
         }
-        private void AnticipoRestoSalidaProveedor() {
+        private void AnticipoRestoSalidaProveedor(int numMov) {
+
             String fechaMov = "";
             try { fechaMov = (Convert.ToDateTime(fecha_operacion_pasado)).ToString("yyyy-MM-dd"); }
             catch { MessageBox.Show("Introduce una fecha valida en un pago"); return; }
-
-            //BUSCO EL EJERCICIO ACTIVO
-            String idEjercicio = Logica.FuncionesTesoreria.ejercicioActivo(id_comunidad_cargado, fechaMov);
-
-            //CREO CABECERA DEL MOVIMIENTO
-            int numMov1 = Logica.FuncionesTesoreria.CreaMovimiento(idEjercicio, id_cuenta_cargado, "8",id_entidad_pasado,fechaMov, "Salida a Proveedor");
-
             double importeAsignado = Convert.ToDouble(textBox_operacion_disponible.Text.ToString().Replace('.', ','));
 
-            //ANTICIPO A COMUNERO
-            Logica.FuncionesTesoreria.AnticipoProveedor(id_comunidad_cargado, id_entidad_pasado, fechaMov, importeAsignado, numMov1);
+            //ANTICIPO A PROVEEDOR
+            Logica.FuncionesTesoreria.AnticipoProveedor(id_comunidad_cargado, id_entidad_pasado, fechaMov, importeAsignado, numMov);
         }
 
         private void AnticipoResto(int numMov)
