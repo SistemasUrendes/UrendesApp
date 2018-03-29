@@ -115,9 +115,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String fechaFin;
             String tipoTarea = comboBox_Tipo.SelectedValue.ToString();
             String proxJunta = "0";
-            if (checkBoxProxJunta.Checked) proxJunta = "1";
+            if (checkBoxProxJunta.Checked) proxJunta = "-1";
             String seguro = "0";
-            if (checkBoxSeguro.Checked) seguro = "1";
+            if (checkBoxSeguro.Checked) seguro = "-1";
 
             try
             {
@@ -287,19 +287,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void textBox_Entidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             tareas.DefaultView.RowFilter = "Entidad like '%" + textBox_Entidad.Text + "%' OR Descripción like '%" + textBox_Entidad.Text + "%'";
-            /*
-             *
-            if (e.KeyChar == (Char)Keys.Space || e.KeyChar == (Char)Keys.Enter)
-            {
-                Entidades nueva = new Entidades(this, this.Name);
-                nueva.ControlBox = true;
-                nueva.TopMost = true;
-                nueva.WindowState = FormWindowState.Normal;
-                nueva.StartPosition = FormStartPosition.CenterScreen;
-                nueva.textBox_buscar_nombre.Select();
-                nueva.Show();
-            }
-            */
+            
         }
 
         private void dataGridView_tareas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -311,7 +299,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 Tareas.FormVerTarea nueva = new FormVerTarea(this,idTarea);
                 nueva.Show();
             }
-            
         }
 
         private void buttonNuevaTarea_Click(object sender, EventArgs e)
@@ -341,11 +328,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private String nombreReferencia()
         {
-            String sql = "SELECT ctos_entidades.Entidad, com_comunidades.IdEntidad, ctos_entidades.NombreCorto FROM ctos_entidades INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((com_comunidades.Referencia) = " + maskedTextBoxRefComunidad.Text + "))";
-
+            //String sql = "SELECT ctos_entidades.Entidad, com_comunidades.IdEntidad, ctos_entidades.NombreCorto FROM ctos_entidades INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((com_comunidades.Referencia) = " + maskedTextBoxRefComunidad.Text + "))";
+            String sql = "SELECT ctos_entidades.Entidad, com_comunidades.IdEntidad, com_comunidades.IdComunidad FROM ctos_entidades INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((com_comunidades.Referencia) = " + maskedTextBoxRefComunidad.Text + "))";
+            
             DataTable entidad = Persistencia.SentenciasSQL.select(sql);
             id_entidad_nuevo = entidad.Rows[0][1].ToString();
-            tareas.DefaultView.RowFilter = "IDEntidad =" + entidad.Rows[0][1].ToString() ;
+            id_comunidad = entidad.Rows[0][2].ToString();
+            CargarTareas();
+            //tareas.DefaultView.RowFilter = "IDEntidad =" + entidad.Rows[0][1].ToString() ;
 
             return entidad.Rows[0][0].ToString();
         }
@@ -354,7 +344,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (maskedTextBoxRefComunidad.Text != "")
             {
-
                 try
                 {
                     textBox_Entidad.Text = nombreReferencia();
@@ -417,6 +406,16 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     MessageBox.Show("La tarea " + idTarea + " no existe!");
                 }
             }
+        }
+
+        private void comboBoxInformes_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            String sqlSelect = "SELECT ctos_entidades.IDEntidad, ctos_entidades.Entidad FROM ctos_entidades INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((com_comunidades.Referencia) = " + maskedTextBoxRefComunidad.Text + "))";
+            DataTable comunidad = Persistencia.SentenciasSQL.select(sqlSelect);
+            String idEntidad = comunidad.Rows[0][0].ToString();
+            String nombreComunidad = comunidad.Rows[0][1].ToString();
+            Tareas.Informes.VistaInformeSeguimiento nueva = new Informes.VistaInformeSeguimiento(idEntidad, nombreComunidad);
+            nueva.Show();
         }
     }
 }

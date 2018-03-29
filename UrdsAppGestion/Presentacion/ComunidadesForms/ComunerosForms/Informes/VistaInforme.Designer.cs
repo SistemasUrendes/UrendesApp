@@ -37,9 +37,11 @@
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.dataSetCargos1 = new UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms.Informes.DataSetCargos();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetCargos1)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer1
@@ -72,6 +74,11 @@
             this.reportViewer1.Size = new System.Drawing.Size(734, 713);
             this.reportViewer1.TabIndex = 0;
             // 
+            // dataSetCargos1
+            // 
+            this.dataSetCargos1.DataSetName = "DataSetCargos";
+            this.dataSetCargos1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // VistaInforme
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -86,6 +93,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetCargos1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -95,5 +103,6 @@
         private System.Windows.Forms.BindingSource bindingSource2;
         private System.Windows.Forms.BindingSource bindingSource3;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private CargosForms.Informes.DataSetCargos dataSetCargos1;
     }
 }

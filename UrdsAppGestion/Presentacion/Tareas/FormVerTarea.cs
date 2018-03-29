@@ -106,7 +106,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             buttonEditar.Enabled = true;
             buttonEliminarTarea.Enabled = true;
             buttonGuardar.Enabled = false;
-            buttonRuta.Enabled = false;
         }
 
         public void habilitarEdicion()
@@ -135,7 +134,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 textBoxEntidad.Text = "Pulsa espacio para Seleccionar Entidad";
                 textBoxEntidad.ForeColor = Color.Gray;
             }
-            buttonRuta.Enabled = true;
         }
 
         public void rellenarComboBox()
@@ -150,7 +148,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
         
         public void cargarGestiones()
         {
-            //String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_gestiones.Importante as S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS 'Fecha Límite',  exp_gestiones.FFin, ctos_entidades.Entidad AS `Espera de` FROM((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad WHERE(((exp_gestiones.IdTarea) = " + idTarea + "))";
             String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin, ctos_entidades.Entidad AS `Espera de` FROM(((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE(((exp_gestiones.IdTarea) = " + idTarea +"))";
 
 
@@ -478,13 +475,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String coste = "";
             if (textBoxCoste.Text != "") coste = textBoxCoste.Text;
             String seguro = "0";
-            if (checkBoxSeguro.Checked) seguro = "1";
+            if (checkBoxSeguro.Checked) seguro = "-1";
             String acuerdoJunta = "0";
-            if (checkBoxAcuerdoJunta.Checked) acuerdoJunta = "1";
+            if (checkBoxAcuerdoJunta.Checked) acuerdoJunta = "-1";
             String fechaActaAcordado = null;
             if (maskedTextBoxFechaActa.Text != "  /  /" && maskedTextBoxFechaActa.Text != "") fechaActaAcordado = Convert.ToDateTime(maskedTextBoxFechaActa.Text).ToString("yyyy-MM-dd");
             String proximaJunta = "0";
-            if (checkBoxProxJunta.Checked) proximaJunta = "1";
+            if (checkBoxProxJunta.Checked) proximaJunta = "-1";
             String refSiniestro = textBoxSiniestro.Text;
             String fFin = null;
             if (maskedTextBoxFFin.Text != "  /  /" && maskedTextBoxFFin.Text != "") fFin = Convert.ToDateTime(maskedTextBoxFFin.Text).ToString("yyyy-MM-dd");
@@ -654,7 +651,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
             else if (Regex.IsMatch(maskedTextBoxFechaActa.Text, sPattern1))
             {
-                checkBoxAcuerdoJunta.Checked = true;
+                checkBoxProxJunta.Checked = true;
             }
             else
             {
@@ -707,9 +704,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonEnviarMail_Click(object sender, EventArgs e)
         {
-            try //(dataGridViewContactos.SelectedRows[0].Cells[3] != null)
+            try 
             {
-                
                 String mail = dataGridViewContactos.SelectedRows[0].Cells[3].Value.ToString();
                 if (comprobarFormatoEmail(mail))
                 {
@@ -802,21 +798,35 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void toolStripMenuItemCorreoResponsable_Click(object sender, EventArgs e)
         {
             String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
-
+            
             String sqlSelect = "SELECT ctos_detemail.Email FROM(exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN ctos_detemail ON ctos_urendes.identidad = ctos_detemail.IdEntidad WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
             String mail = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
-            System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\"" + generaAsunto() + "\"");
+            if (mail != null)
+            {
+                System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\"" + generaAsunto() + "\"");
+            }
+            else
+            {
+                MessageBox.Show("El responsable seleccionado no tiene correo asociado.");
+            }
         }
 
         private void toolStripMenuItemCorreoSeguir_Click(object sender, EventArgs e)
         {
-            if (dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString() != null)
+            if (dataGridViewGestiones.SelectedRows[0].Cells[10].Value.ToString() != "")
             {
                 String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
 
                 String sqlSelect = "SELECT ctos_detemail.Email FROM exp_gestiones INNER JOIN ctos_detemail ON exp_gestiones.IdEntidad = ctos_detemail.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_gestiones.IdGestión) = " + idGestion + "))";
                 String mail = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
-                System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\"" + generaAsunto() + "\"");
+                if (mail != null)
+                {
+                    System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\"" + generaAsunto() + "\"");
+                }
+                else
+                {
+                    MessageBox.Show("La entidad seleccionada no tiene correo asociado.");
+                }
             }
             else
             {
@@ -930,6 +940,53 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
             this.ruta = r;
             return r;
+        }
+
+        private void textBoxTareaNueva_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (Char)Keys.Enter)
+            {
+                String idTarea = textBoxTareaNueva.Text.ToString();
+                if (existeTarea(idTarea))
+                {
+                    Tareas.FormVerTarea nueva = new FormVerTarea(form_anterior, idTarea);
+                    nueva.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("La tarea " + idTarea + " no existe!");
+                }
+            }
+        }
+
+        private Boolean existeTarea(String idTarea)
+        {
+            String sqlSelect = "SELECT exp_tareas.IdTarea FROM exp_tareas WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
+            DataTable tarea = Persistencia.SentenciasSQL.select(sqlSelect);
+            if (tarea.Rows.Count == 0)
+                return false;
+            return true;
+        }
+
+        private void toolStripMenuItemInfoEntidad_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewGestiones.SelectedRows[0].Cells[10].Value.ToString() != "")
+            {
+                String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
+
+                String sqlSelect = "SELECT exp_gestiones.IdEntidad FROM exp_gestiones WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
+
+                String idEntidad = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+                
+                EntidadesForms.VerEntidad nueva = new EntidadesForms.VerEntidad(Int32.Parse(idEntidad));
+                nueva.Show();
+
+            }
+            else
+            {
+                MessageBox.Show("Asigne una persona a seguir para poder ver la información");
+            }
         }
     }
 }

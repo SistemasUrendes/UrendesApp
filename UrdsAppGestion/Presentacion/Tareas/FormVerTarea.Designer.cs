@@ -87,6 +87,9 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.checkBoxImportante = new System.Windows.Forms.CheckBox();
+            this.textBoxTareaNueva = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.toolStripMenuItemInfoEntidad = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGestiones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSeguimientos)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -102,7 +105,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(14, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(179, 17);
             this.label1.TabIndex = 0;
@@ -370,7 +373,7 @@
             // 
             // buttonAddGestion
             // 
-            this.buttonAddGestion.Location = new System.Drawing.Point(1132, 352);
+            this.buttonAddGestion.Location = new System.Drawing.Point(1050, 352);
             this.buttonAddGestion.Name = "buttonAddGestion";
             this.buttonAddGestion.Size = new System.Drawing.Size(95, 23);
             this.buttonAddGestion.TabIndex = 18;
@@ -395,9 +398,10 @@
             this.toolStripMenuItemEliminarGestion,
             this.toolStripMenuItemCorreoResponsable,
             this.toolStripMenuItemCorreoSeguir,
-            this.toolStripMenuItemCorreoGrupo});
+            this.toolStripMenuItemCorreoGrupo,
+            this.toolStripMenuItemInfoEntidad});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(189, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(189, 136);
             // 
             // toolStripMenuItemEditarGestion
             // 
@@ -595,7 +599,7 @@
             // 
             // buttonCerrarGestion
             // 
-            this.buttonCerrarGestion.Location = new System.Drawing.Point(1051, 352);
+            this.buttonCerrarGestion.Location = new System.Drawing.Point(1151, 352);
             this.buttonCerrarGestion.Name = "buttonCerrarGestion";
             this.buttonCerrarGestion.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.buttonCerrarGestion.Size = new System.Drawing.Size(75, 23);
@@ -659,11 +663,37 @@
             this.checkBoxImportante.Text = "Importante:";
             this.checkBoxImportante.UseVisualStyleBackColor = true;
             // 
+            // textBoxTareaNueva
+            // 
+            this.textBoxTareaNueva.Location = new System.Drawing.Point(268, 15);
+            this.textBoxTareaNueva.Name = "textBoxTareaNueva";
+            this.textBoxTareaNueva.Size = new System.Drawing.Size(100, 20);
+            this.textBoxTareaNueva.TabIndex = 39;
+            this.textBoxTareaNueva.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxTareaNueva_KeyPress);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(206, 18);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(56, 13);
+            this.label12.TabIndex = 40;
+            this.label12.Text = "Ir a Tarea:";
+            // 
+            // toolStripMenuItemInfoEntidad
+            // 
+            this.toolStripMenuItemInfoEntidad.Name = "toolStripMenuItemInfoEntidad";
+            this.toolStripMenuItemInfoEntidad.Size = new System.Drawing.Size(188, 22);
+            this.toolStripMenuItemInfoEntidad.Text = "Ver Entidad";
+            this.toolStripMenuItemInfoEntidad.Click += new System.EventHandler(this.toolStripMenuItemInfoEntidad_Click);
+            // 
             // FormVerTarea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1239, 625);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.textBoxTareaNueva);
             this.Controls.Add(this.checkBoxImportante);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label8);
@@ -780,5 +810,8 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.CheckBox checkBoxImportante;
+        private System.Windows.Forms.TextBox textBoxTareaNueva;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemInfoEntidad;
     }
 }
