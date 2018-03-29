@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetSeguimiento" targetNamespace="http://tempuri.org/DataSetSeguimiento.xsd" xmlns:mstns="http://tempuri.org/DataSetSeguimiento.xsd" xmlns="http://tempuri.org/DataSetSeguimiento.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetSeguimiento" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetSeguimiento" msprop:Generator_UserDSName="DataSetSeguimiento">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdTarea" msprop:Generator_ColumnVarNameInTable="columnIdTarea" msprop:Generator_ColumnPropNameInRow="IdTarea" msprop:Generator_ColumnPropNameInTable="IdTareaColumn" msprop:Generator_UserColumnName="IdTarea" type="xs:string" minOccurs="0" />
+              <xs:element name="Descripción" msprop:Generator_ColumnVarNameInTable="columnDescripción" msprop:Generator_ColumnPropNameInRow="Descripción" msprop:Generator_ColumnPropNameInTable="DescripciónColumn" msprop:Generator_UserColumnName="Descripción" type="xs:string" minOccurs="0" />
+              <xs:element name="TipoTarea" msprop:Generator_ColumnVarNameInTable="columnTipoTarea" msprop:Generator_ColumnPropNameInRow="TipoTarea" msprop:Generator_ColumnPropNameInTable="TipoTareaColumn" msprop:Generator_UserColumnName="TipoTarea" type="xs:string" minOccurs="0" />
+              <xs:element name="FIni" msprop:Generator_ColumnVarNameInTable="columnFIni" msprop:Generator_ColumnPropNameInRow="FIni" msprop:Generator_ColumnPropNameInTable="FIniColumn" msprop:Generator_UserColumnName="FIni" type="xs:string" minOccurs="0" />
+              <xs:element name="FFin" msprop:Generator_ColumnVarNameInTable="columnFFin" msprop:Generator_ColumnPropNameInRow="FFin" msprop:Generator_ColumnPropNameInTable="FFinColumn" msprop:Generator_UserColumnName="FFin" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

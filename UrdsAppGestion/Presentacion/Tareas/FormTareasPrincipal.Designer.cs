@@ -55,6 +55,8 @@
             this.checkBoxSeguro = new System.Windows.Forms.CheckBox();
             this.textBoxTarea = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.comboBoxInformes = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tareas)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -149,7 +151,7 @@
             this.toolStripMenuItem1,
             this.toolStripTextBoxFiltro});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(161, 79);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(161, 101);
             // 
             // toolStripMenuItemBorrar
             // 
@@ -295,12 +297,35 @@
             this.label7.TabIndex = 22;
             this.label7.Text = "IdTarea:";
             // 
+            // comboBoxInformes
+            // 
+            this.comboBoxInformes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxInformes.FormattingEnabled = true;
+            this.comboBoxInformes.Items.AddRange(new object[] {
+            "En Seguimiento"});
+            this.comboBoxInformes.Location = new System.Drawing.Point(68, 10);
+            this.comboBoxInformes.Name = "comboBoxInformes";
+            this.comboBoxInformes.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxInformes.TabIndex = 23;
+            this.comboBoxInformes.SelectionChangeCommitted += new System.EventHandler(this.comboBoxInformes_SelectionChangeCommitted);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(12, 13);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(50, 13);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "Informes:";
+            // 
             // FormTareasPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1042, 665);
             this.ControlBox = false;
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.comboBoxInformes);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBoxTarea);
             this.Controls.Add(this.checkBoxSeguro);
@@ -360,5 +385,7 @@
         private System.Windows.Forms.CheckBox checkBoxSeguro;
         private System.Windows.Forms.TextBox textBoxTarea;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox comboBoxInformes;
+        private System.Windows.Forms.Label label9;
     }
 }

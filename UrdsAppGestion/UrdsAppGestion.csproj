@@ -1168,6 +1168,17 @@
     <Compile Include="Presentacion\Tareas\FormVerTarea.Designer.cs">
       <DependentUpon>FormVerTarea.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Tareas\Informes\DataSetSeguimiento.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetSeguimiento.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\Informes\VistaInformeSeguimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\Informes\VistaInformeSeguimiento.Designer.cs">
+      <DependentUpon>VistaInformeSeguimiento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Logica\FormEnvioCorreoSeguridad.resx">
@@ -1647,6 +1658,10 @@
     <EmbeddedResource Include="Presentacion\Tareas\FormVerTarea.resx">
       <DependentUpon>FormVerTarea.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\Informes\InformeSeguimiento.rdlc" />
+    <EmbeddedResource Include="Presentacion\Tareas\Informes\VistaInformeSeguimiento.resx">
+      <DependentUpon>VistaInformeSeguimiento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -1855,6 +1870,17 @@
     </None>
     <None Include="Presentacion\Informes\DataSet_nuevo.xss">
       <DependentUpon>DataSet_nuevo.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\Tareas\Informes\DataSetSeguimiento.xsc">
+      <DependentUpon>DataSetSeguimiento.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\Tareas\Informes\DataSetSeguimiento.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetSeguimiento.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\Tareas\Informes\DataSetSeguimiento.xss">
+      <DependentUpon>DataSetSeguimiento.xsd</DependentUpon>
     </None>
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
