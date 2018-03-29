@@ -24,7 +24,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms {
             cargarDatagrid();
         }
         public void cargarDatagrid() {
-            String sql = "SELECT com_asociacion.IdAsociacion, com_divisiones.Division, com_asociacion.Participacion FROM com_asociacion INNER JOIN com_divisiones ON com_asociacion.IdDivision = com_divisiones.IdDivision WHERE com_asociacion.IdComunero = " + id_comunero_cargado;
+            String sql = "SELECT com_asociacion.IdAsociacion, com_divisiones.Division, com_asociacion.Participacion, com_asociacion.FechaBaja FROM com_asociacion INNER JOIN com_divisiones ON com_asociacion.IdDivision = com_divisiones.IdDivision WHERE(((com_asociacion.IdComunero) = " + id_comunero_cargado + ") AND((com_asociacion.FechaBaja)Is Null));";
             dataGridView_ListaAsociaciones.DataSource = Persistencia.SentenciasSQL.select(sql);
 
         }

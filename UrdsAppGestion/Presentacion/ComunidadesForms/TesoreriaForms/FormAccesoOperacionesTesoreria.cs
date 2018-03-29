@@ -59,7 +59,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
 
         private void textBox_entidad_DoubleClick(object sender, EventArgs e)
         {
-            if (tipo_operacion == "Entrada a Proveedor")
+            if (tipo_operacion == "Entrada a Proveedor" || tipo_operacion == "Salida a Proveedor")
             {
                 Entidades nueva = new Entidades(this, this.Name);
                 nueva.ControlBox = true;
@@ -102,7 +102,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
                 nueva.Show();
             }else if (e.KeyChar == (Char)Keys.Space)
             {
-                if (tipo_operacion == "Entrada a Proveedor")
+                if (tipo_operacion == "Entrada a Proveedor" || tipo_operacion == "Pago a Proveedor")
                 {
                     Entidades nueva = new Entidades(this, this.Name);
                     nueva.ControlBox = true;

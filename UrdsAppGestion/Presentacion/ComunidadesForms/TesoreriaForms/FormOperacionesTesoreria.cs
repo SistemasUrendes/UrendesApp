@@ -403,7 +403,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
                 //COJO LA FECHA
                 try { fechaMov = (Convert.ToDateTime(fecha_operacion_pasado)).ToString("yyyy-MM-dd"); }
                 catch { MessageBox.Show("Introduce una fecha valida en un pago"); return; }
-
+ 
                 //BUSCO EL EJERCICIO ACTIVO
                 String idEjercicio = Logica.FuncionesTesoreria.ejercicioActivo(id_comunidad_cargado, fechaMov);
 
@@ -429,12 +429,11 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
                     }
                 }
             }
-            if ((tipoOperacion == "Ingreso a Comuneros" || tipoOperacion == "Entrada a Proveedor") && crearAnticipo)
+            if (tipoOperacion == "Ingreso a Comuneros" && crearAnticipo)
                 AnticipoResto(numMov);
 
-            if (tipoOperacion == "Pago a Proveedor" && crearAnticipo)
+            if ((tipoOperacion == "Pago a Proveedor" || tipoOperacion == "Entrada a Proveedor") && crearAnticipo)
                 AnticipoRestoSalidaProveedor();
-
 
             if (form_anterior != null)
             {
