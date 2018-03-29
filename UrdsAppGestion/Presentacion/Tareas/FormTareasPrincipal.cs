@@ -27,13 +27,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
             filtroComunidad();
             maskedTextBox_inicio.Text = "01-01-" + DateTime.Now.Year;
             maskedTextBox_fin.Text = DateTime.Now.ToShortDateString();
-            maskedTextBoxRefComunidad.Select();
+            textBoxTarea.Select();
 
 
         }
         public FormTareasPrincipal()
         {
-            InitializeComponent();
+            InitializeComponent();      
 
             CargarTareas();
             RellenarComboBox();
@@ -48,15 +48,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String sqlSelect;
             if (id_comunidad == null)
             {
-                //sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.Presupuesto as Ptto, exp_tareas.FFin, exp_tareas.Seguro, exp_tareas.RefSiniestro as Siniestro FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea ORDER BY exp_tareas.IdTarea DESC";
-
-                sqlSelect = "SELECT exp_tareas.IdTarea AS Id, ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.Seguro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tareas.FFin)Is Null)) ORDER BY exp_tareas.Importante, exp_tareas.FIni";
+                sqlSelect = "SELECT exp_tareas.IdTarea AS Id, ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tareas.FFin)Is Null)) ORDER BY exp_tareas.Importante, exp_tareas.FIni";
             }
             else
             {
-                //sqlSelect = "SELECT exp_tareas.IdTarea AS Id, ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.Presupuesto AS Ptto, exp_tareas.FFin, exp_tareas.Seguro, exp_tareas.RefSiniestro AS Siniestro FROM((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea) INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((com_comunidades.IdComunidad) = " + id_comunidad + ")) ORDER BY exp_tareas.IdTarea DESC";
-
-                sqlSelect = "SELECT exp_tareas.IdTarea AS Id, ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.Seguro, ctos_entidades.IDEntidad FROM((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea) INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((exp_tareas.FFin)Is Null) AND((com_comunidades.IdComunidad) = " + id_comunidad + ")) ORDER BY exp_tareas.Importante, exp_tareas.FIni";
+                
+                sqlSelect = "SELECT exp_tareas.IdTarea AS Id, ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea) INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((exp_tareas.FFin)Is Null) AND((com_comunidades.IdComunidad) = " + id_comunidad + ")) ORDER BY exp_tareas.Importante, exp_tareas.FIni";
             }
             tareas = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridView_tareas.DataSource = tareas;
@@ -73,7 +70,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 dataGridView_tareas.Columns["Descripción"].Width = 350;
                 dataGridView_tareas.Columns["FIni"].Width = 90;
                 dataGridView_tareas.Columns["FFin"].Width = 90;
-                dataGridView_tareas.Columns["Seguro"].Width = 90;
+                dataGridView_tareas.Columns["RefSiniestro"].Width = 90;
                 dataGridView_tareas.Columns["IDEntidad"].Visible = false;
 
             }
@@ -81,12 +78,21 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         public void RellenarComboBox()
         {
+            DataTable tipos;
             String sqlComboTipo = "SELECT exp_tipostareas.TipoTarea, exp_tipostareas.IdTipoTarea FROM exp_tipostareas";
-            comboBox_Tipo.DataSource = Persistencia.SentenciasSQL.select(sqlComboTipo);
+            tipos = Persistencia.SentenciasSQL.select(sqlComboTipo);
+            DataRow filatodas = tipos.NewRow();
+
+            filatodas["TipoTarea"] = "Todos";
+            filatodas["IdTipoTarea"] = 0;
+            tipos.Rows.InsertAt(filatodas, 0);
+            comboBox_Tipo.DataSource = tipos;
             comboBox_Tipo.DisplayMember = "TipoTarea";
             comboBox_Tipo.ValueMember = "IdTipoTarea";
 
-            List<String> estados = new List<String> { "Abierta","Cerrada","Todas" };
+           
+
+            List<String> estados = new List<String> { "Todas","Abierta","Cerrada" };
             comboBox_Estado.DataSource = estados;
             
         }
@@ -108,6 +114,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String fechaInicio;
             String fechaFin;
             String tipoTarea = comboBox_Tipo.SelectedValue.ToString();
+            String proxJunta = "0";
+            if (checkBoxProxJunta.Checked) proxJunta = "1";
+            String seguro = "0";
+            if (checkBoxSeguro.Checked) seguro = "1";
+
             try
             {
                 fechaInicio = (Convert.ToDateTime(maskedTextBox_inicio.Text)).ToString("yyyy-MM-dd");
@@ -122,19 +133,43 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (id_entidad_nuevo != null) {
                 String sqlSelect = "";
                 //ESTADO "ABIERTA"
-                if (comboBox_Estado.SelectedIndex == 0)
+                if (comboBox_Estado.SelectedIndex == 1)
                 {
-                    sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.Seguro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((ctos_entidades.IDEntidad) = " + id_entidad_nuevo + ") AND((exp_tipostareas.IdTipoTarea) = " + tipoTarea + ") AND ((exp_tareas.FFin) Is Null) AND exp_tareas.FIni >= '" + fechaInicio + "' AND exp_tareas.FIni <= '" + fechaFin + "' AND (exp_tareas.FFin <= '" + fechaFin + "' OR exp_tareas.FFin Is Null)) ORDER BY exp_tareas.IdTarea DESC";
+                    //TIPO ESPECÍFICO DE TAREA
+                    if (tipoTarea != "0")
+                    {
+                        sqlSelect = "SELECT exp_tareas.IdTarea AS Id, ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tareas.FIni) >= '" + fechaInicio + "' And(exp_tareas.FIni) <= '" + fechaFin + "') AND((exp_tareas.FFin)Is Null And((exp_tareas.FFin) <= '" + fechaFin + "' Or(exp_tareas.FFin) Is Null)) AND((ctos_entidades.IDEntidad) = " + id_entidad_nuevo + ") AND((exp_tipostareas.IdTipoTarea) = " + tipoTarea + ") AND((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ")) ORDER BY exp_tareas.IdTarea DESC";
+                    }
+                    //TODOS LOS TIPOS DE TAREA
+                    else
+                    {
+                        sqlSelect = "SELECT exp_tareas.IdTarea AS Id, ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tareas.FIni) >= '" + fechaInicio + "' And(exp_tareas.FIni) <= '" + fechaFin + "') AND((exp_tareas.FFin)Is Null And((exp_tareas.FFin) <= '" + fechaFin + "' Or(exp_tareas.FFin) Is Null)) AND((ctos_entidades.IDEntidad) = " + id_entidad_nuevo + ") AND((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ")) ORDER BY exp_tareas.IdTarea DESC";
+                    }
+
                 }
                 //ESTADO "CERRADA"
-                else if (comboBox_Estado.SelectedIndex == 1)
+                else if (comboBox_Estado.SelectedIndex == 2)
                 {
-                    sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.Seguro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((ctos_entidades.IDEntidad) = " + id_entidad_nuevo + ") AND((exp_tipostareas.IdTipoTarea) = " + tipoTarea + ") AND ((exp_tareas.FFin) Is Not Null) AND exp_tareas.FIni >= '" + fechaInicio + "' AND exp_tareas.FIni <= '" + fechaFin + "' AND (exp_tareas.FFin <= '" + fechaFin + "' OR exp_tareas.FFin Is Null)) ORDER BY exp_tareas.IdTarea DESC";
+                    if (tipoTarea != "0")
+                    {
+                        sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((ctos_entidades.IDEntidad) = " + id_entidad_nuevo + ") AND((exp_tipostareas.IdTipoTarea) = " + tipoTarea + ") AND ((exp_tareas.FFin) Is Not Null) AND exp_tareas.FIni >= '" + fechaInicio + "' AND exp_tareas.FIni <= '" + fechaFin + "' AND (exp_tareas.FFin <= '" + fechaFin + "' OR exp_tareas.FFin Is Null) AND((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ")) ORDER BY exp_tareas.IdTarea DESC";
+                    }
+                    else
+                    {
+                        sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((ctos_entidades.IDEntidad) = " + id_entidad_nuevo + ") AND ((exp_tareas.FFin) Is Not Null) AND exp_tareas.FIni >= '" + fechaInicio + "' AND exp_tareas.FIni <= '" + fechaFin + "' AND (exp_tareas.FFin <= '" + fechaFin + "' OR exp_tareas.FFin Is Null) AND((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ")) ORDER BY exp_tareas.IdTarea DESC";
+                    }
                 }
                 //ESTADO "TODAS"
                 else
                 {
-                    sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni,exp_tareas.FFin, exp_tareas.Seguro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((ctos_entidades.IDEntidad) = " + id_entidad_nuevo + ") AND((exp_tipostareas.IdTipoTarea) = " + tipoTarea + ") AND exp_tareas.FIni >= '" + fechaInicio + "' AND exp_tareas.FIni <= '" + fechaFin + "' AND (exp_tareas.FFin <= '" + fechaFin + "' OR exp_tareas.FFin Is Null)) ORDER BY exp_tareas.IdTarea DESC ";
+                    if (tipoTarea != "0")
+                    {
+                        sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni,exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((ctos_entidades.IDEntidad) = " + id_entidad_nuevo + ") AND((exp_tipostareas.IdTipoTarea) = " + tipoTarea + ") AND exp_tareas.FIni >= '" + fechaInicio + "' AND exp_tareas.FIni <= '" + fechaFin + "' AND (exp_tareas.FFin <= '" + fechaFin + "' OR exp_tareas.FFin Is Null) AND((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ")) ORDER BY exp_tareas.IdTarea DESC ";
+                    }
+                    else
+                    {
+                        sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni,exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((ctos_entidades.IDEntidad) = " + id_entidad_nuevo + ") AND exp_tareas.FIni >= '" + fechaInicio + "' AND exp_tareas.FIni <= '" + fechaFin + "' AND (exp_tareas.FFin <= '" + fechaFin + "' OR exp_tareas.FFin Is Null) AND((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ")) ORDER BY exp_tareas.IdTarea DESC ";
+                    }
                 }
                 tareas = Persistencia.SentenciasSQL.select(sqlSelect);
                 dataGridView_tareas.DataSource = tareas;
@@ -144,19 +179,42 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 String sqlSelect = "";
                 //ESTADO "ABIERTA"
-                if (comboBox_Estado.SelectedIndex == 0)
+                if (comboBox_Estado.SelectedIndex == 1)
                 {
-                    sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.Seguro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tipostareas.IdTipoTarea) = " + tipoTarea + ") AND ((exp_tareas.FFin) Is Null) AND exp_tareas.FIni >= '" + fechaInicio + "' AND exp_tareas.FIni <= '" + fechaFin + "' AND (exp_tareas.FFin <= '" + fechaFin + "' OR exp_tareas.FFin Is Null)) ORDER BY exp_tareas.IdTarea DESC";
+                    //TIPO ESPECÍFICO DE TAREA
+                    if (tipoTarea != "0")
+                    {
+                        sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tipostareas.IdTipoTarea) = " + tipoTarea + ") AND ((exp_tareas.FFin) Is Null) AND exp_tareas.FIni >= '" + fechaInicio + "' AND exp_tareas.FIni <= '" + fechaFin + "' AND (exp_tareas.FFin <= '" + fechaFin + "' OR exp_tareas.FFin Is Null) AND((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ")) ORDER BY exp_tareas.IdTarea DESC";
+                    }
+                    //TODOS LOS TIPOS DE TAREA
+                    else
+                    {
+                        sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tareas.FFin) Is Null) AND exp_tareas.FIni >= '" + fechaInicio + "' AND exp_tareas.FIni <= '" + fechaFin + "' AND (exp_tareas.FFin <= '" + fechaFin + "' OR exp_tareas.FFin Is Null) AND((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ")) ORDER BY exp_tareas.IdTarea DESC";
+                    }
                 }
                 //ESTADO "CERRADA"
-                else if (comboBox_Estado.SelectedIndex == 1)
+                else if (comboBox_Estado.SelectedIndex == 2)
                 {
-                    sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.Seguro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tipostareas.IdTipoTarea) = " + tipoTarea + ") AND ((exp_tareas.FFin) Is Not Null) AND exp_tareas.FIni >= '" + fechaInicio + "' AND exp_tareas.FIni <= '" + fechaFin + "' AND (exp_tareas.FFin <= '" + fechaFin + "' OR exp_tareas.FFin Is Null)) ORDER BY exp_tareas.IdTarea DESC";
+                    if (tipoTarea != "0")
+                    {
+                        sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tipostareas.IdTipoTarea) = " + tipoTarea + ") AND ((exp_tareas.FFin) Is Not Null) AND exp_tareas.FIni >= '" + fechaInicio + "' AND exp_tareas.FIni <= '" + fechaFin + "' AND (exp_tareas.FFin <= '" + fechaFin + "' OR exp_tareas.FFin Is Null) AND((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ")) ORDER BY exp_tareas.IdTarea DESC";
+                    }
+                    else
+                    {
+                        sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tareas.FFin) Is Not Null) AND exp_tareas.FIni >= '" + fechaInicio + "' AND exp_tareas.FIni <= '" + fechaFin + "' AND (exp_tareas.FFin <= '" + fechaFin + "' OR exp_tareas.FFin Is Null) AND((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ")) ORDER BY exp_tareas.IdTarea DESC";
+                    }
                 }
                 //ESTADO "TODAS"
                 else
                 {
-                    sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni,exp_tareas.FFin, exp_tareas.Seguro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tipostareas.IdTipoTarea) = " + tipoTarea + ") AND exp_tareas.FIni >= '" + fechaInicio + "' AND exp_tareas.FIni <= '" + fechaFin + "' AND (exp_tareas.FFin <= '" + fechaFin + "' OR exp_tareas.FFin Is Null)) ORDER BY exp_tareas.IdTarea DESC ";
+                    if (tipoTarea != "0")
+                    {
+                        sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni,exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tipostareas.IdTipoTarea) = " + tipoTarea + ") AND exp_tareas.FIni >= '" + fechaInicio + "' AND exp_tareas.FIni <= '" + fechaFin + "' AND (exp_tareas.FFin <= '" + fechaFin + "' OR exp_tareas.FFin Is Null) AND((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ")) ORDER BY exp_tareas.IdTarea DESC ";
+                    }
+                    else
+                    {
+                        sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni,exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(exp_tareas.FIni >= '" + fechaInicio + "' AND exp_tareas.FIni <= '" + fechaFin + "' AND (exp_tareas.FFin <= '" + fechaFin + "' OR exp_tareas.FFin Is Null) AND((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ")) ORDER BY exp_tareas.IdTarea DESC ";
+                    }
                 }
                 tareas = Persistencia.SentenciasSQL.select(sqlSelect);
                 dataGridView_tareas.DataSource = tareas;
@@ -179,7 +237,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     dataGridView_tareas.Columns[hti.ColumnIndex].Selected = true;
                     dataGridView_tareas.CurrentCell = this.dataGridView_tareas[hti.ColumnIndex, hti.RowIndex];
                     nombre_columna = dataGridView_tareas.CurrentCell.OwningColumn.Name;
-                    if (nombre_columna != "Seguro" && nombre_columna != "Ptto" && nombre_columna != "Fini" && nombre_columna != "Ffin")
+                    if (nombre_columna != "Fini" && nombre_columna != "Ffin")
                     {
                         contextMenuStrip1.Show(Cursor.Position);
                     }
@@ -190,13 +248,25 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void toolStripTextBoxFiltro_TextChanged(object sender, EventArgs e)
         {
             String filtro;
-            if (toolStripTextBoxFiltro.TextLength == 0)
+            if (toolStripTextBoxFiltro.TextLength == 1)
             {
                 DataTable busqueda = tareas;
                 busqueda.DefaultView.RowFilter = string.Empty;
                 this.dataGridView_tareas.DataSource = busqueda;
+                
+                if (nombre_columna != "Id")
+                {
+                    filtro = nombre_columna + " like '%" + toolStripTextBoxFiltro.Text.ToUpper().ToString() + "%'";
+
+                }
+                else
+                {
+                    filtro = string.Format("[{0}] >= '{1}'", nombre_columna, toolStripTextBoxFiltro.Text.ToUpper().ToString());
+                }
+                busqueda.DefaultView.RowFilter = filtro;
+                this.dataGridView_tareas.DataSource = busqueda;
             }
-            else
+            else if (toolStripTextBoxFiltro.TextLength > 1)
             {
                 DataTable busqueda = tareas;
 
@@ -211,9 +281,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
                 busqueda.DefaultView.RowFilter = filtro;
                 this.dataGridView_tareas.DataSource = busqueda;
-
-                
-
             }
         }
 
@@ -325,10 +392,31 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBox_Entidad.Text = nombreReferencia();
 
         }
-
-        private void FormTareasPrincipal_Load(object sender, EventArgs e)
+        
+        private Boolean existeTarea(String idTarea)
         {
+            String sqlSelect = "SELECT exp_tareas.IdTarea FROM exp_tareas WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
+            DataTable tarea = Persistencia.SentenciasSQL.select(sqlSelect);
+            if (tarea.Rows.Count == 0)
+                return false;           
+            return true;       
+        }
 
+        private void textBoxTarea_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (Char)Keys.Enter)
+            {
+                String idTarea = textBoxTarea.Text.ToString();
+                if (existeTarea(idTarea))
+                {
+                    Tareas.FormVerTarea nueva = new FormVerTarea(this, idTarea);
+                    nueva.Show();
+                }
+                else
+                {
+                    MessageBox.Show("La tarea " + idTarea + " no existe!");
+                }
+            }
         }
     }
 }

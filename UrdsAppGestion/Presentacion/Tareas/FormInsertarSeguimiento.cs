@@ -123,12 +123,29 @@ namespace UrdsAppGestión.Presentacion.Tareas
             comboBoxTipoSeguimiento.Enabled = false;
             maskedTextBoxFecha.ReadOnly = true;
             textBoxNotas.ReadOnly = true;
+            buttonEditar.Visible = true;
+            buttonGuardar.Visible = false;
+
         }
 
+        private void habilitarEdicion()
+        {
+            comboBoxUsuario.Enabled = true;
+            comboBoxTipoSeguimiento.Enabled = true;
+            maskedTextBoxFecha.ReadOnly = false;
+            textBoxNotas.ReadOnly = false;
+            buttonEditar.Visible = false;
+            buttonGuardar.Visible = true;
+
+        }
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-        
+
+        private void buttonEditar_Click(object sender, EventArgs e)
+        {
+            habilitarEdicion();
+        }
     }
 }

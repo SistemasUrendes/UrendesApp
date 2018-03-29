@@ -49,11 +49,12 @@
             this.buttonEntidad = new System.Windows.Forms.Button();
             this.comboBoxTipoGestion = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.buttonEditar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // maskedTextBoxFInicio
             // 
-            this.maskedTextBoxFInicio.Location = new System.Drawing.Point(84, 190);
+            this.maskedTextBoxFInicio.Location = new System.Drawing.Point(88, 190);
             this.maskedTextBoxFInicio.Mask = "00/00/0000";
             this.maskedTextBoxFInicio.Name = "maskedTextBoxFInicio";
             this.maskedTextBoxFInicio.Size = new System.Drawing.Size(69, 20);
@@ -63,7 +64,7 @@
             // 
             // maskedTextBoxFSeguir
             // 
-            this.maskedTextBoxFSeguir.Location = new System.Drawing.Point(84, 215);
+            this.maskedTextBoxFSeguir.Location = new System.Drawing.Point(88, 215);
             this.maskedTextBoxFSeguir.Mask = "00/00/0000";
             this.maskedTextBoxFSeguir.Name = "maskedTextBoxFSeguir";
             this.maskedTextBoxFSeguir.Size = new System.Drawing.Size(69, 20);
@@ -73,7 +74,7 @@
             // 
             // maskedTextBoxFFin
             // 
-            this.maskedTextBoxFFin.Location = new System.Drawing.Point(84, 268);
+            this.maskedTextBoxFFin.Location = new System.Drawing.Point(88, 268);
             this.maskedTextBoxFFin.Mask = "00/00/0000";
             this.maskedTextBoxFFin.Name = "maskedTextBoxFFin";
             this.maskedTextBoxFFin.Size = new System.Drawing.Size(69, 20);
@@ -83,7 +84,7 @@
             // 
             // maskedTextBoxFMax
             // 
-            this.maskedTextBoxFMax.Location = new System.Drawing.Point(84, 241);
+            this.maskedTextBoxFMax.Location = new System.Drawing.Point(88, 241);
             this.maskedTextBoxFMax.Mask = "00/00/0000";
             this.maskedTextBoxFMax.Name = "maskedTextBoxFMax";
             this.maskedTextBoxFMax.Size = new System.Drawing.Size(69, 20);
@@ -95,7 +96,7 @@
             // 
             this.comboBoxUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUsuario.FormattingEnabled = true;
-            this.comboBoxUsuario.Location = new System.Drawing.Point(83, 18);
+            this.comboBoxUsuario.Location = new System.Drawing.Point(87, 18);
             this.comboBoxUsuario.Name = "comboBoxUsuario";
             this.comboBoxUsuario.Size = new System.Drawing.Size(121, 21);
             this.comboBoxUsuario.TabIndex = 0;
@@ -103,7 +104,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 21);
+            this.label1.Location = new System.Drawing.Point(35, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 13);
             this.label1.TabIndex = 6;
@@ -112,44 +113,44 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 193);
+            this.label2.Location = new System.Drawing.Point(13, 193);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.Size = new System.Drawing.Size(68, 13);
             this.label2.TabIndex = 7;
-            this.label2.Text = "FInicio:";
+            this.label2.Text = "Fecha Inicio:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(31, 244);
+            this.label3.Location = new System.Drawing.Point(9, 244);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 13);
+            this.label3.Size = new System.Drawing.Size(72, 13);
             this.label3.TabIndex = 8;
-            this.label3.Text = "FLímite:";
+            this.label3.Text = "Fecha Límite:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(23, 218);
+            this.label4.Location = new System.Drawing.Point(1, 218);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 13);
+            this.label4.Size = new System.Drawing.Size(80, 13);
             this.label4.TabIndex = 9;
-            this.label4.Text = "FAgenda:";
+            this.label4.Text = "Fecha Agenda:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(47, 271);
+            this.label5.Location = new System.Drawing.Point(24, 271);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(30, 13);
+            this.label5.Size = new System.Drawing.Size(57, 13);
             this.label5.TabIndex = 10;
-            this.label5.Text = "FFin:";
+            this.label5.Text = "Fecha Fin:";
             // 
             // checkBoxImportante
             // 
             this.checkBoxImportante.AutoSize = true;
             this.checkBoxImportante.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxImportante.Location = new System.Drawing.Point(18, 139);
+            this.checkBoxImportante.Location = new System.Drawing.Point(20, 139);
             this.checkBoxImportante.Name = "checkBoxImportante";
             this.checkBoxImportante.Size = new System.Drawing.Size(79, 17);
             this.checkBoxImportante.TabIndex = 5;
@@ -179,7 +180,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 71);
+            this.label6.Location = new System.Drawing.Point(15, 71);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(66, 13);
             this.label6.TabIndex = 14;
@@ -187,7 +188,7 @@
             // 
             // textBoxDescripcion
             // 
-            this.textBoxDescripcion.Location = new System.Drawing.Point(83, 47);
+            this.textBoxDescripcion.Location = new System.Drawing.Point(87, 47);
             this.textBoxDescripcion.Multiline = true;
             this.textBoxDescripcion.Name = "textBoxDescripcion";
             this.textBoxDescripcion.Size = new System.Drawing.Size(191, 60);
@@ -195,7 +196,7 @@
             // 
             // textBoxEspera
             // 
-            this.textBoxEspera.Location = new System.Drawing.Point(83, 113);
+            this.textBoxEspera.Location = new System.Drawing.Point(87, 113);
             this.textBoxEspera.Name = "textBoxEspera";
             this.textBoxEspera.ReadOnly = true;
             this.textBoxEspera.Size = new System.Drawing.Size(158, 20);
@@ -205,7 +206,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(5, 116);
+            this.label8.Location = new System.Drawing.Point(8, 116);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(73, 13);
             this.label8.TabIndex = 19;
@@ -225,25 +226,36 @@
             // 
             this.comboBoxTipoGestion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTipoGestion.FormattingEnabled = true;
-            this.comboBoxTipoGestion.Location = new System.Drawing.Point(84, 163);
+            this.comboBoxTipoGestion.Location = new System.Drawing.Point(88, 163);
             this.comboBoxTipoGestion.Name = "comboBoxTipoGestion";
-            this.comboBoxTipoGestion.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxTipoGestion.Size = new System.Drawing.Size(157, 21);
             this.comboBoxTipoGestion.TabIndex = 20;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 166);
+            this.label9.Location = new System.Drawing.Point(11, 166);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(70, 13);
             this.label9.TabIndex = 21;
             this.label9.Text = "Tipo Gestión:";
+            // 
+            // buttonEditar
+            // 
+            this.buttonEditar.Location = new System.Drawing.Point(24, 303);
+            this.buttonEditar.Name = "buttonEditar";
+            this.buttonEditar.Size = new System.Drawing.Size(75, 23);
+            this.buttonEditar.TabIndex = 22;
+            this.buttonEditar.Text = "Editar";
+            this.buttonEditar.UseVisualStyleBackColor = true;
+            this.buttonEditar.Click += new System.EventHandler(this.buttonEditar_Click);
             // 
             // FormInsertarGestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 342);
+            this.Controls.Add(this.buttonEditar);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.comboBoxTipoGestion);
             this.Controls.Add(this.buttonEntidad);
@@ -296,5 +308,6 @@
         private System.Windows.Forms.Button buttonEntidad;
         private System.Windows.Forms.ComboBox comboBoxTipoGestion;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button buttonEditar;
     }
 }

@@ -87,7 +87,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.checkBoxImportante = new System.Windows.Forms.CheckBox();
-            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGestiones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSeguimientos)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -131,7 +130,7 @@
             this.textBoxNotas.Multiline = true;
             this.textBoxNotas.Name = "textBoxNotas";
             this.textBoxNotas.Size = new System.Drawing.Size(561, 103);
-            this.textBoxNotas.TabIndex = 15;
+            this.textBoxNotas.TabIndex = 13;
             // 
             // textBoxRuta
             // 
@@ -147,7 +146,7 @@
             // 
             // maskedTextBoxFFin
             // 
-            this.maskedTextBoxFFin.Location = new System.Drawing.Point(66, 163);
+            this.maskedTextBoxFFin.Location = new System.Drawing.Point(196, 136);
             this.maskedTextBoxFFin.Mask = "00/00/0000";
             this.maskedTextBoxFFin.Name = "maskedTextBoxFFin";
             this.maskedTextBoxFFin.Size = new System.Drawing.Size(66, 20);
@@ -167,19 +166,21 @@
             // 
             // textBoxSiniestro
             // 
-            this.textBoxSiniestro.Location = new System.Drawing.Point(541, 107);
+            this.textBoxSiniestro.Location = new System.Drawing.Point(360, 107);
             this.textBoxSiniestro.Name = "textBoxSiniestro";
-            this.textBoxSiniestro.Size = new System.Drawing.Size(67, 20);
-            this.textBoxSiniestro.TabIndex = 13;
+            this.textBoxSiniestro.Size = new System.Drawing.Size(124, 20);
+            this.textBoxSiniestro.TabIndex = 10;
+            this.textBoxSiniestro.Leave += new System.EventHandler(this.textBoxSiniestro_Leave);
             // 
             // checkBoxSeguro
             // 
             this.checkBoxSeguro.AutoSize = true;
             this.checkBoxSeguro.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxSeguro.Location = new System.Drawing.Point(425, 109);
+            this.checkBoxSeguro.Location = new System.Drawing.Point(501, 109);
             this.checkBoxSeguro.Name = "checkBoxSeguro";
             this.checkBoxSeguro.Size = new System.Drawing.Size(63, 17);
             this.checkBoxSeguro.TabIndex = 10;
+            this.checkBoxSeguro.TabStop = false;
             this.checkBoxSeguro.Text = "Seguro:";
             this.checkBoxSeguro.UseVisualStyleBackColor = true;
             // 
@@ -187,10 +188,11 @@
             // 
             this.checkBoxAcuerdoJunta.AutoSize = true;
             this.checkBoxAcuerdoJunta.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxAcuerdoJunta.Location = new System.Drawing.Point(390, 137);
+            this.checkBoxAcuerdoJunta.Location = new System.Drawing.Point(466, 139);
             this.checkBoxAcuerdoJunta.Name = "checkBoxAcuerdoJunta";
             this.checkBoxAcuerdoJunta.Size = new System.Drawing.Size(98, 17);
-            this.checkBoxAcuerdoJunta.TabIndex = 11;
+            this.checkBoxAcuerdoJunta.TabIndex = 12;
+            this.checkBoxAcuerdoJunta.TabStop = false;
             this.checkBoxAcuerdoJunta.Text = "Acuerdo Junta:";
             this.checkBoxAcuerdoJunta.UseVisualStyleBackColor = true;
             // 
@@ -198,20 +200,20 @@
             // 
             this.checkBoxProxJunta.AutoSize = true;
             this.checkBoxProxJunta.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxProxJunta.Location = new System.Drawing.Point(406, 165);
+            this.checkBoxProxJunta.Location = new System.Drawing.Point(482, 165);
             this.checkBoxProxJunta.Name = "checkBoxProxJunta";
             this.checkBoxProxJunta.Size = new System.Drawing.Size(82, 17);
-            this.checkBoxProxJunta.TabIndex = 12;
+            this.checkBoxProxJunta.TabIndex = 13;
             this.checkBoxProxJunta.Text = "Prox. Junta:";
             this.checkBoxProxJunta.UseVisualStyleBackColor = true;
             // 
             // maskedTextBoxFechaActa
             // 
-            this.maskedTextBoxFechaActa.Location = new System.Drawing.Point(542, 136);
+            this.maskedTextBoxFechaActa.Location = new System.Drawing.Point(360, 134);
             this.maskedTextBoxFechaActa.Mask = "00/00/0000";
             this.maskedTextBoxFechaActa.Name = "maskedTextBoxFechaActa";
             this.maskedTextBoxFechaActa.Size = new System.Drawing.Size(66, 20);
-            this.maskedTextBoxFechaActa.TabIndex = 14;
+            this.maskedTextBoxFechaActa.TabIndex = 11;
             this.maskedTextBoxFechaActa.ValidatingType = typeof(System.DateTime);
             this.maskedTextBoxFechaActa.Leave += new System.EventHandler(this.maskedTextBoxFechaActa_Leave);
             // 
@@ -340,7 +342,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(21, 166);
+            this.label13.Location = new System.Drawing.Point(151, 139);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(36, 13);
             this.label13.TabIndex = 33;
@@ -604,7 +606,7 @@
             // 
             // buttonEliminarTarea
             // 
-            this.buttonEliminarTarea.Location = new System.Drawing.Point(389, 12);
+            this.buttonEliminarTarea.Location = new System.Drawing.Point(389, 13);
             this.buttonEliminarTarea.Name = "buttonEliminarTarea";
             this.buttonEliminarTarea.Size = new System.Drawing.Size(75, 23);
             this.buttonEliminarTarea.TabIndex = 23;
@@ -615,7 +617,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(508, 111);
+            this.label8.Location = new System.Drawing.Point(327, 112);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(27, 13);
             this.label8.TabIndex = 37;
@@ -623,7 +625,7 @@
             // 
             // textBoxCoste
             // 
-            this.textBoxCoste.Location = new System.Drawing.Point(279, 108);
+            this.textBoxCoste.Location = new System.Drawing.Point(65, 163);
             this.textBoxCoste.Name = "textBoxCoste";
             this.textBoxCoste.Size = new System.Drawing.Size(100, 20);
             this.textBoxCoste.TabIndex = 8;
@@ -631,7 +633,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(236, 111);
+            this.label14.Location = new System.Drawing.Point(22, 166);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(37, 13);
             this.label14.TabIndex = 34;
@@ -640,37 +642,28 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(498, 139);
+            this.label11.Location = new System.Drawing.Point(285, 139);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(37, 13);
+            this.label11.Size = new System.Drawing.Size(69, 13);
             this.label11.TabIndex = 38;
-            this.label11.Text = "Fecha";
+            this.label11.Text = "Fecha Junta:";
             // 
             // checkBoxImportante
             // 
             this.checkBoxImportante.AutoSize = true;
             this.checkBoxImportante.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxImportante.Location = new System.Drawing.Point(279, 139);
+            this.checkBoxImportante.Location = new System.Drawing.Point(293, 165);
             this.checkBoxImportante.Name = "checkBoxImportante";
-            this.checkBoxImportante.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxImportante.TabIndex = 9;
+            this.checkBoxImportante.Size = new System.Drawing.Size(79, 17);
+            this.checkBoxImportante.TabIndex = 12;
+            this.checkBoxImportante.Text = "Importante:";
             this.checkBoxImportante.UseVisualStyleBackColor = true;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(213, 139);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(60, 13);
-            this.label12.TabIndex = 40;
-            this.label12.Text = "Importante:";
             // 
             // FormVerTarea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1239, 625);
-            this.Controls.Add(this.label12);
             this.Controls.Add(this.checkBoxImportante);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label8);
@@ -787,6 +780,5 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.CheckBox checkBoxImportante;
-        private System.Windows.Forms.Label label12;
     }
 }

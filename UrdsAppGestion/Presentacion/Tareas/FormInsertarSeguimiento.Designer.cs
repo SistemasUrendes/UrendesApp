@@ -39,6 +39,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.buttonGuardar = new System.Windows.Forms.Button();
             this.buttonCancelar = new System.Windows.Forms.Button();
+            this.buttonEditar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // comboBoxUsuario
@@ -131,11 +132,22 @@
             this.buttonCancelar.UseVisualStyleBackColor = true;
             this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
             // 
+            // buttonEditar
+            // 
+            this.buttonEditar.Location = new System.Drawing.Point(35, 328);
+            this.buttonEditar.Name = "buttonEditar";
+            this.buttonEditar.Size = new System.Drawing.Size(75, 23);
+            this.buttonEditar.TabIndex = 8;
+            this.buttonEditar.Text = "Editar";
+            this.buttonEditar.UseVisualStyleBackColor = true;
+            this.buttonEditar.Click += new System.EventHandler(this.buttonEditar_Click);
+            // 
             // FormInsertarSeguimiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 363);
+            this.Controls.Add(this.buttonEditar);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonGuardar);
             this.Controls.Add(this.label4);
@@ -168,5 +180,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonGuardar;
         private System.Windows.Forms.Button buttonCancelar;
+        private System.Windows.Forms.Button buttonEditar;
     }
 }

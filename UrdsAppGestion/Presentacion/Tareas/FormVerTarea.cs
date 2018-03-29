@@ -67,8 +67,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBoxDescripcion.Text = tarea.Rows[0][1].ToString();
             idEntidad = tarea.Rows[0][2].ToString();
             textBoxNotas.Text = tarea.Rows[0][3].ToString();
-            ruta = tarea.Rows[0][4].ToString().Trim('#');
-            textBoxRuta.Text = ruta;
+            textBoxRuta.Text = limpiaRuta(tarea.Rows[0][4].ToString());
             comboBoxTipo.SelectedValue = tarea.Rows[0][5].ToString();
             maskedTextBoxFFin.Text = tarea.Rows[0][6].ToString();
             fechaFin = tarea.Rows[0][6].ToString();
@@ -107,6 +106,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             buttonEditar.Enabled = true;
             buttonEliminarTarea.Enabled = true;
             buttonGuardar.Enabled = false;
+            buttonRuta.Enabled = false;
         }
 
         public void habilitarEdicion()
@@ -135,6 +135,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 textBoxEntidad.Text = "Pulsa espacio para Seleccionar Entidad";
                 textBoxEntidad.ForeColor = Color.Gray;
             }
+            buttonRuta.Enabled = true;
         }
 
         public void rellenarComboBox()
@@ -198,7 +199,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (ruta != "" && ruta != null)
             {
-                System.Diagnostics.Process.Start(@ruta);
+                try
+                {
+                    System.Diagnostics.Process.Start(@ruta);
+                }
+                catch
+                {
+                    MessageBox.Show("No se encuentra la carpeta");
+                }
             }
         }
 
@@ -273,6 +281,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 String sqlBorrar = "DELETE FROM exp_gestiones WHERE IdGestión = " + idGestion;
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrar);
                 cargarGestiones();
+                cargarSeguimientos();
             }
         }
 
@@ -375,7 +384,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonRuta_Click(object sender, EventArgs e)
         {
-            if (ruta == null)
+            if (ruta == null || ruta == "")
             {
                 if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
                 addTarea();
@@ -430,7 +439,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
                 else
                 {
-                    //textBoxPtto.SelectAll();
+                    textBoxCoste.SelectAll();
                 }
             }
             else if (Regex.IsMatch(maskedTextBoxFFin.Text, sPattern1))
@@ -444,7 +453,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
                 else
                 {
-                    //textBoxPtto.SelectAll();
+                    textBoxCoste.SelectAll();
                 }
             }
             else
@@ -635,20 +644,21 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void maskedTextBoxFechaActa_Leave(object sender, EventArgs e)
         {
-            if (maskedTextBoxFFin.Text != "  /  /" && maskedTextBoxFFin.Text != "")
-            {
-                string sPattern = "^\\d{2}/\\d{2}/$";
-                string sPattern1 = "^\\d{2}/\\d{2}/\\d{4}$";
+            string sPattern = "^\\d{2}/\\d{2}/$";
+            string sPattern1 = "^\\d{2}/\\d{2}/\\d{4}$";
 
-                if (Regex.IsMatch(maskedTextBoxFechaActa.Text, sPattern))
-                {
-                    maskedTextBoxFechaActa.Text = maskedTextBoxFechaActa.Text + DateTime.Now.Year;
-                }
-                else if (Regex.IsMatch(maskedTextBoxFechaActa.Text, sPattern1))
-                {
-                    checkBoxProxJunta.Focus();
-                }
-                else
+            if (Regex.IsMatch(maskedTextBoxFechaActa.Text, sPattern))
+            {
+                maskedTextBoxFechaActa.Text = maskedTextBoxFechaActa.Text + DateTime.Now.Year;
+                checkBoxProxJunta.Checked = true;
+            }
+            else if (Regex.IsMatch(maskedTextBoxFechaActa.Text, sPattern1))
+            {
+                checkBoxAcuerdoJunta.Checked = true;
+            }
+            else
+            {
+                if (maskedTextBoxFechaActa.Text != "  /  /" && maskedTextBoxFechaActa.Text != "")
                 {
                     maskedTextBoxFechaActa.Focus();
                     maskedTextBoxFechaActa.SelectAll();
@@ -656,7 +666,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
         }
 
-        public void cargarContactos()
+        
+                
+    public void cargarContactos()
         {
             //String sqlSelect = "SELECT exp_contactos.IdDetEntTarea,If(exp_contactos.IdEntidad is Not Null,ctos_entidades.Entidad,exp_contactos.Nombre) AS Nombre , If (exp_contactos.IdEntidad is Not Null,ctos_dettelf.Telefono,exp_contactos.Tel) AS Teléfono, If (exp_contactos.IdEntidad is Not Null,ctos_detemail.Email,exp_contactos.Correo) AS Correo FROM((exp_contactos LEFT JOIN ctos_entidades ON exp_contactos.IdEntidad = ctos_entidades.IDEntidad)  LEFT JOIN ctos_detemail ON exp_contactos.IdMail = ctos_detemail.IdEmail) LEFT JOIN ctos_dettelf ON exp_contactos.IdTelf = ctos_dettelf.IdDetTelf WHERE(((exp_contactos.IdTarea) = " + idTarea + "))";
             String sqlSelect = "SELECT exp_contactos.IdDetEntTarea, exp_contactos.Nombre, exp_contactos.Tel AS Teléfono, exp_contactos.Correo FROM exp_contactos WHERE(((exp_contactos.IdTarea) = " + idTarea + "))";
@@ -828,30 +840,37 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonCerrarGestion_Click(object sender, EventArgs e)
         {
-            if (dataGridViewGestiones.SelectedCells.Count > 0)
+            if (idTarea == null)
             {
-                String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
-
-                String sqlUpdate = "UPDATE exp_gestiones SET FFin = '" + DateTime.Now.ToString("yyyy-MM-dd") + "' WHERE IdGestión = " + idGestion;
-                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
-                cargarGestiones();
+                MessageBox.Show("Guarda la tarea primero");
             }
-
-            String sqlSelect = "SELECT exp_tareas.IdTarea FROM exp_gestiones INNER JOIN exp_tareas ON exp_gestiones.IdTarea = exp_tareas.IdTarea WHERE(((exp_gestiones.FFin)Is Null) AND((exp_tareas.IdTarea) = " + idTarea + "));";
-
-            DataTable contador = Persistencia.SentenciasSQL.select(sqlSelect);
-            if (contador.Rows.Count == 0)
+            else
             {
-                DialogResult resultado_message;
-                resultado_message = MessageBox.Show("¿Desea cerrar la tarea?", "Cerrar Tarea ", MessageBoxButtons.OKCancel);
-                if (resultado_message == System.Windows.Forms.DialogResult.OK)
+                if (dataGridViewGestiones.SelectedCells.Count > 0)
                 {
-                    String sqlUpdate = "UPDATE exp_tareas SET FFin = '" + DateTime.Now.ToString("yyyy-MM-dd") + "' WHERE IdTarea = " + idTarea;
+                    String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
+
+                    String sqlUpdate = "UPDATE exp_gestiones SET FFin = '" + DateTime.Now.ToString("yyyy-MM-dd") + "' WHERE IdGestión = " + idGestion;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
-                    cargarCabecera();
-                    form_anterior.CargarTareas();
+                    cargarGestiones();
                 }
-            }     
+
+                String sqlSelect = "SELECT exp_tareas.IdTarea FROM exp_gestiones INNER JOIN exp_tareas ON exp_gestiones.IdTarea = exp_tareas.IdTarea WHERE(((exp_gestiones.FFin)Is Null) AND((exp_tareas.IdTarea) = " + idTarea + "));";
+
+                DataTable contador = Persistencia.SentenciasSQL.select(sqlSelect);
+                if (contador.Rows.Count == 0)
+                {
+                    DialogResult resultado_message;
+                    resultado_message = MessageBox.Show("¿Desea cerrar la tarea?", "Cerrar Tarea ", MessageBoxButtons.OKCancel);
+                    if (resultado_message == System.Windows.Forms.DialogResult.OK)
+                    {
+                        String sqlUpdate = "UPDATE exp_tareas SET FFin = '" + DateTime.Now.ToString("yyyy-MM-dd") + "' WHERE IdTarea = " + idTarea;
+                        Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                        cargarCabecera();
+                        form_anterior.CargarTareas();
+                    }
+                }
+            }
         }
 
         private void buttonEliminarTarea_Click(object sender, EventArgs e)
@@ -890,6 +909,28 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             cargarCabecera();
             form_anterior.CargarTareas();
+        }
+        
+        private void textBoxSiniestro_Leave(object sender, EventArgs e)
+        {
+            if (textBoxSiniestro.Text != "")
+            {
+                checkBoxSeguro.Checked = true;
+            }
+        }
+
+        private String limpiaRuta (String r)
+        {
+            String ruta = r;
+            if (ruta.Contains("#"))
+            {
+                int primero = ruta.IndexOf("#")+1;
+                int segundo = ruta.LastIndexOf("#")-1;
+                this.ruta = ruta.Substring(primero, segundo);
+                return ruta.Substring(primero, segundo);
+            }
+            this.ruta = ruta;
+            return ruta;
         }
     }
 }

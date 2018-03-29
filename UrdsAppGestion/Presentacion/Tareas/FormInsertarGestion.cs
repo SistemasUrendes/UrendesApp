@@ -52,6 +52,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             //NUEVA GESTIÓN
             if (idGestion == null)
             {
+                habilitarEdicion();
                 comboBoxUsuario.SelectedValue = Login.getId();
             }
             //VER GESTIÓN
@@ -63,6 +64,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             //EDITAR GESTIÓN    
             else
             {
+                habilitarEdicion();
                 cargarGestion();
             }
         }
@@ -118,6 +120,22 @@ namespace UrdsAppGestión.Presentacion.Tareas
             comboBoxTipoGestion.Enabled = false;
             buttonGuardar.Visible = false;
             buttonEntidad.Visible = false;
+            buttonEditar.Visible = true;
+        }
+
+        private void habilitarEdicion()
+        {
+            textBoxDescripcion.ReadOnly = false;
+            comboBoxUsuario.Enabled = true;
+            maskedTextBoxFInicio.ReadOnly = false;
+            maskedTextBoxFSeguir.ReadOnly = false;
+            maskedTextBoxFMax.ReadOnly = false;
+            maskedTextBoxFFin.ReadOnly = false;
+            checkBoxImportante.AutoCheck = true;
+            comboBoxTipoGestion.Enabled = true;
+            buttonGuardar.Visible = true;
+            buttonEntidad.Visible = true;
+            buttonEditar.Visible = false;
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)
@@ -333,6 +351,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String sqlUpdate = "UPDATE exp_tareas SET Importante = -1 WHERE IdTarea = " + idTarea;
             Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
             form_anterior.tareaImportanteGestion();
+        }
+
+        private void buttonEditar_Click(object sender, EventArgs e)
+        {
+            habilitarEdicion();
         }
     }
 }
