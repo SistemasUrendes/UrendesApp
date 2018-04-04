@@ -17,6 +17,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
         String nombre_form_cargado = "";
         Form form_anterior = null;
         DataTable newTable = new DataTable();
+        DataTable newTable2 = new DataTable();
 
         public FormOperacionesListadoProveedores(String id_comunidad_cargado)
         {
@@ -42,56 +43,81 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
         public void cargarDatagrid()
         {
             newTable = new DataTable();
-            String sqlSelectProveedores = "SELECT ctos_entidades.IDEntidad, com_bloques.Descripcion AS Bloque, ctos_catentidades.Descripcion, ctos_entidades.Entidad, com_proveedores.Servicio, ctos_dettelf.Telefono, ctos_detemail.Email, com_proveedores.IdProveedor FROM((((ctos_entidades INNER JOIN com_proveedores ON ctos_entidades.IDEntidad = com_proveedores.IdEntidad) INNER JOIN ctos_catentidades ON com_proveedores.IdCategoria = ctos_catentidades.IdCategoria) INNER JOIN ctos_dettelf ON ctos_entidades.IDEntidad = ctos_dettelf.IdEntidad) LEFT JOIN ctos_detemail ON ctos_entidades.IDEntidad = ctos_detemail.IdEntidad) LEFT JOIN com_bloques ON com_proveedores.IdBloque = com_bloques.IdBloque WHERE(((com_proveedores.IdComunidad) = " + id_comunidad_cargado + ") AND((ctos_dettelf.Ppal) = -1)) ORDER BY ctos_entidades.Entidad;";
+            newTable2 = new DataTable();
+
+            String sqlSelectProveedores = "SELECT com_proveedores.IdProveedor, com_bloques.Descripcion as Bloque, ctos_catentidades.Descripcion, com_proveedores.IdEntidad, ctos_entidades.Entidad, com_proveedores.Servicio FROM((com_proveedores LEFT JOIN com_bloques ON com_proveedores.IdBloque = com_bloques.IdBloque) INNER JOIN ctos_entidades ON com_proveedores.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN ctos_catentidades ON com_proveedores.IdCategoria = ctos_catentidades.IdCategoria WHERE(((com_proveedores.IdComunidad) = " + id_comunidad_cargado + "));";
 
             proveedores = Persistencia.SentenciasSQL.select(sqlSelectProveedores);
 
-            DataTable correos = Persistencia.SentenciasSQL.select("SELECT IdEntidad, Email FROM ctos_detemail");
+            DataTable correos = Persistencia.SentenciasSQL.select("SELECT IdEntidad, Email FROM ctos_detemail WHERE Ppal = -1");
 
+            var result = from x in proveedores.AsEnumerable()
+                         join y in correos.AsEnumerable() on x.Field<int>("IdEntidad") equals y.Field<int>("IdEntidad")
+                         into xy
+                         from y in xy.DefaultIfEmpty()
+                         select new
+                         {
+                             ID = x.Field<int>("IdProveedor"),
+                             Field1 = x.Field<string>("Bloque"),
+                             Field2 = x.Field<string>("Descripcion"),
+                             Field3 = x.Field<int>("IdEntidad"),
+                             Field4 = x.Field<string>("Entidad"),
+                             Field5 = x.Field<string>("Servicio"),
+                             Field6 = (y == null) ? null : y.Field<string>("Email")
+                         };
 
-            var query =
-                from tbl1 in proveedores.AsEnumerable()
-                join tbl2 in correos.AsEnumerable() on tbl1["IDEntidad"] equals tbl2["IdEntidad"]
-                group tbl1 by tbl1.Field<int>("IDEntidad") into IdGroup
-                let row = IdGroup.First()
-                select new
-                {
-                    ID = IdGroup.Key,
-                    Field1 = row["Descripcion"],
-                    Field2 = row["Entidad"],
-                    Field3 = row["Servicio"],
-                    Field4 = (row["Telefono"].ToString() == "" ? "No" : row["Telefono"]),
-                    Field5 = (row["Email"].ToString() == "" ? "No" : row["Email"]),
-                    Field6 = row["Bloque"],
-                    Field7 = row["IdProveedor"]
-                };
-
-            newTable.Columns.Add("IdEntidad", typeof(int));
+            newTable.Columns.Add("IdProveedor", typeof(int));
             newTable.Columns.Add("Bloque", typeof(string));
             newTable.Columns.Add("Descripcion", typeof(string));
+            newTable.Columns.Add("IdEntidad", typeof(int));
             newTable.Columns.Add("Entidad", typeof(string));
             newTable.Columns.Add("Servicio", typeof(string));
-            newTable.Columns.Add("Telefono", typeof(string));
             newTable.Columns.Add("Email", typeof(string));
-            newTable.Columns.Add("IdProveedor", typeof(int));
 
+            foreach (var rowInfo in result)
+                newTable.Rows.Add(rowInfo.ID, rowInfo.Field1, rowInfo.Field2, rowInfo.Field3, rowInfo.Field4, rowInfo.Field5, rowInfo.Field6);
 
-            foreach (var rowInfo in query)
-                newTable.Rows.Add(rowInfo.ID, rowInfo.Field6, rowInfo.Field1, rowInfo.Field2, rowInfo.Field3, rowInfo.Field4, rowInfo.Field5, rowInfo.Field7);
+            String sqlSelectTel = "SELECT ctos_dettelf.IdEntidad, ctos_dettelf.Telefono FROM ctos_dettelf WHERE(((ctos_dettelf.Ppal) = -1));";
+            DataTable telefonos = Persistencia.SentenciasSQL.select(sqlSelectTel);
 
-            dataGridView_proveedores.DataSource = newTable;
+            var result2 = from x in newTable.AsEnumerable()
+                         join y in telefonos.AsEnumerable() on x.Field<int>("IdEntidad") equals y.Field<int>("IdEntidad")
+                         into xy
+                         from y in xy.DefaultIfEmpty()
+                         select new
+                         {
+                             ID = x.Field<int>("IdProveedor"),
+                             Field1 = x.Field<string>("Bloque"),
+                             Field2 = x.Field<string>("Descripcion"),
+                             Field3 = x.Field<int>("IdEntidad"),
+                             Field4 = x.Field<string>("Entidad"),
+                             Field5 = x.Field<string>("Servicio"),
+                             Field6 = x.Field<string>("Email"),
+                             Field7 = (y == null) ? null : y.Field<string>("Telefono")
+                         };
+
+            newTable2.Columns.Add("IdProveedor", typeof(int));
+            newTable2.Columns.Add("Bloque", typeof(string));
+            newTable2.Columns.Add("Descripcion", typeof(string));
+            newTable2.Columns.Add("IdEntidad", typeof(int));
+            newTable2.Columns.Add("Entidad", typeof(string));
+            newTable2.Columns.Add("Servicio", typeof(string));
+            newTable2.Columns.Add("Email", typeof(string));
+            newTable2.Columns.Add("Telefono", typeof(string));
+
+            foreach (var rowInfo in result2)
+                newTable2.Rows.Add(rowInfo.ID, rowInfo.Field1, rowInfo.Field2, rowInfo.Field3, rowInfo.Field4, rowInfo.Field5, rowInfo.Field6, rowInfo.Field7);
+
+            dataGridView_proveedores.DataSource = newTable2;
 
             dataGridView_proveedores.Columns[0].Width = 40;
             dataGridView_proveedores.Columns[1].Width = 100;
             dataGridView_proveedores.Columns[2].Width = 180;
-            dataGridView_proveedores.Columns[3].Width = 250;
-            dataGridView_proveedores.Columns[4].Width = 270;
-            dataGridView_proveedores.Columns[6].Width = 200;
-            dataGridView_proveedores.Columns[7].Visible = false;
+            dataGridView_proveedores.Columns[3].Visible = false;
+            dataGridView_proveedores.Columns[4].Width = 250;
+            dataGridView_proveedores.Columns[5].Width = 250;
+            dataGridView_proveedores.Columns[6].Width = 180;
 
-
-            
-            //dataGridView_proveedores.DataSource = proveedores;
         }
 
         private void button_enviar_Click(object sender, EventArgs e)
@@ -172,7 +198,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
         private void comboBox_informes_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (comboBox_informes.SelectedIndex == 0) {
-                ProveedoresForms.FormInformeProveedores nueva = new ProveedoresForms.FormInformeProveedores(newTable,id_comunidad_cargado);
+                ProveedoresForms.FormInformeProveedores nueva = new ProveedoresForms.FormInformeProveedores(newTable2,id_comunidad_cargado);
                 nueva.Show();
             }
         }
