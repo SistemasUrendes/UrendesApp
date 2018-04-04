@@ -410,6 +410,19 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void comboBoxInformes_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            String fechaInicio;
+            String fechaFin;
+            try
+            {
+                fechaInicio = (Convert.ToDateTime(maskedTextBox_inicio.Text)).ToString("yyyy-MM-dd");
+                fechaFin = (Convert.ToDateTime(maskedTextBox_fin.Text)).ToString("yyyy-MM-dd");
+
+            }
+            catch
+            {
+                MessageBox.Show("Comprueba la fecha");
+                return;
+            }
             String sqlSelect = "SELECT ctos_entidades.IDEntidad, ctos_entidades.Entidad FROM ctos_entidades INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((com_comunidades.Referencia) = " + maskedTextBoxRefComunidad.Text + "))";
             DataTable comunidad = Persistencia.SentenciasSQL.select(sqlSelect);
             String idEntidad = comunidad.Rows[0][0].ToString();

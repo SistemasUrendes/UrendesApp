@@ -289,6 +289,14 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes {
             
             private global::System.Data.DataColumn columnFFin;
             
+            private global::System.Data.DataColumn columnAcuerdoJunta;
+            
+            private global::System.Data.DataColumn columnImportante;
+            
+            private global::System.Data.DataColumn columnProximaJunta;
+            
+            private global::System.Data.DataColumn columnSeguro;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public DataTable1DataTable() {
@@ -364,6 +372,38 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AcuerdoJuntaColumn {
+                get {
+                    return this.columnAcuerdoJunta;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ImportanteColumn {
+                get {
+                    return this.columnImportante;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ProximaJuntaColumn {
+                get {
+                    return this.columnProximaJunta;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SeguroColumn {
+                get {
+                    return this.columnSeguro;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -399,14 +439,18 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string IdTarea, string Descripción, string TipoTarea, string FIni, string FFin) {
+            public DataTable1Row AddDataTable1Row(string IdTarea, string Descripción, string TipoTarea, string FIni, string FFin, string AcuerdoJunta, string Importante, string ProximaJunta, string Seguro) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdTarea,
                         Descripción,
                         TipoTarea,
                         FIni,
-                        FFin};
+                        FFin,
+                        AcuerdoJunta,
+                        Importante,
+                        ProximaJunta,
+                        Seguro};
                 rowDataTable1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable1Row);
                 return rowDataTable1Row;
@@ -434,6 +478,10 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes {
                 this.columnTipoTarea = base.Columns["TipoTarea"];
                 this.columnFIni = base.Columns["FIni"];
                 this.columnFFin = base.Columns["FFin"];
+                this.columnAcuerdoJunta = base.Columns["AcuerdoJunta"];
+                this.columnImportante = base.Columns["Importante"];
+                this.columnProximaJunta = base.Columns["ProximaJunta"];
+                this.columnSeguro = base.Columns["Seguro"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -449,6 +497,14 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes {
                 base.Columns.Add(this.columnFIni);
                 this.columnFFin = new global::System.Data.DataColumn("FFin", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFFin);
+                this.columnAcuerdoJunta = new global::System.Data.DataColumn("AcuerdoJunta", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAcuerdoJunta);
+                this.columnImportante = new global::System.Data.DataColumn("Importante", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnImportante);
+                this.columnProximaJunta = new global::System.Data.DataColumn("ProximaJunta", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProximaJunta);
+                this.columnSeguro = new global::System.Data.DataColumn("Seguro", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSeguro);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -671,6 +727,70 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string AcuerdoJunta {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.AcuerdoJuntaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'AcuerdoJunta\' de la tabla \'DataTable1\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.AcuerdoJuntaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Importante {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.ImportanteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Importante\' de la tabla \'DataTable1\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.ImportanteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ProximaJunta {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.ProximaJuntaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ProximaJunta\' de la tabla \'DataTable1\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.ProximaJuntaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Seguro {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.SeguroColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Seguro\' de la tabla \'DataTable1\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.SeguroColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsIdTareaNull() {
                 return this.IsNull(this.tableDataTable1.IdTareaColumn);
             }
@@ -727,6 +847,54 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetFFinNull() {
                 this[this.tableDataTable1.FFinColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAcuerdoJuntaNull() {
+                return this.IsNull(this.tableDataTable1.AcuerdoJuntaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAcuerdoJuntaNull() {
+                this[this.tableDataTable1.AcuerdoJuntaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsImportanteNull() {
+                return this.IsNull(this.tableDataTable1.ImportanteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetImportanteNull() {
+                this[this.tableDataTable1.ImportanteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsProximaJuntaNull() {
+                return this.IsNull(this.tableDataTable1.ProximaJuntaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetProximaJuntaNull() {
+                this[this.tableDataTable1.ProximaJuntaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSeguroNull() {
+                return this.IsNull(this.tableDataTable1.SeguroColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSeguroNull() {
+                this[this.tableDataTable1.SeguroColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -64,6 +64,7 @@
             this.toolStripMenuItemCorreoResponsable = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCorreoSeguir = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCorreoGrupo = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemInfoEntidad = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemEditarSeguimiento = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemEliminarSeguimiento = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,7 +90,7 @@
             this.checkBoxImportante = new System.Windows.Forms.CheckBox();
             this.textBoxTareaNueva = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.toolStripMenuItemInfoEntidad = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemAddSeguimiento = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGestiones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSeguimientos)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -395,13 +396,14 @@
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemEditarGestion,
-            this.toolStripMenuItemEliminarGestion,
+            this.toolStripMenuItemAddSeguimiento,
             this.toolStripMenuItemCorreoResponsable,
             this.toolStripMenuItemCorreoSeguir,
             this.toolStripMenuItemCorreoGrupo,
-            this.toolStripMenuItemInfoEntidad});
+            this.toolStripMenuItemInfoEntidad,
+            this.toolStripMenuItemEliminarGestion});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(189, 136);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(189, 180);
             // 
             // toolStripMenuItemEditarGestion
             // 
@@ -437,6 +439,13 @@
             this.toolStripMenuItemCorreoGrupo.Size = new System.Drawing.Size(188, 22);
             this.toolStripMenuItemCorreoGrupo.Text = "Correo a Grupo";
             this.toolStripMenuItemCorreoGrupo.Click += new System.EventHandler(this.toolStripMenuItemCorreoGrupo_Click);
+            // 
+            // toolStripMenuItemInfoEntidad
+            // 
+            this.toolStripMenuItemInfoEntidad.Name = "toolStripMenuItemInfoEntidad";
+            this.toolStripMenuItemInfoEntidad.Size = new System.Drawing.Size(188, 22);
+            this.toolStripMenuItemInfoEntidad.Text = "Ver Entidad";
+            this.toolStripMenuItemInfoEntidad.Click += new System.EventHandler(this.toolStripMenuItemInfoEntidad_Click);
             // 
             // contextMenuStrip2
             // 
@@ -680,12 +689,12 @@
             this.label12.TabIndex = 40;
             this.label12.Text = "Ir a Tarea:";
             // 
-            // toolStripMenuItemInfoEntidad
+            // toolStripMenuItemAddSeguimiento
             // 
-            this.toolStripMenuItemInfoEntidad.Name = "toolStripMenuItemInfoEntidad";
-            this.toolStripMenuItemInfoEntidad.Size = new System.Drawing.Size(188, 22);
-            this.toolStripMenuItemInfoEntidad.Text = "Ver Entidad";
-            this.toolStripMenuItemInfoEntidad.Click += new System.EventHandler(this.toolStripMenuItemInfoEntidad_Click);
+            this.toolStripMenuItemAddSeguimiento.Name = "toolStripMenuItemAddSeguimiento";
+            this.toolStripMenuItemAddSeguimiento.Size = new System.Drawing.Size(188, 22);
+            this.toolStripMenuItemAddSeguimiento.Text = "Añadir Seguimiento";
+            this.toolStripMenuItemAddSeguimiento.Click += new System.EventHandler(this.toolStripMenuItemAddSeguimiento_Click);
             // 
             // FormVerTarea
             // 
@@ -813,5 +822,6 @@
         private System.Windows.Forms.TextBox textBoxTareaNueva;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemInfoEntidad;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAddSeguimiento;
     }
 }

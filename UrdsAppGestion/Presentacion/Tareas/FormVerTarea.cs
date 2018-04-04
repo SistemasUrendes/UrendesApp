@@ -244,7 +244,15 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (idTarea == null)
             {
-                MessageBox.Show("Guarda la tarea para poder añadir una Gestión");
+                if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
+                addTarea();
+                textBoxIdTarea.Text = idTarea;
+                bloquearEdicion();
+                form_anterior.CargarTareas();
+
+                Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, fInicio);
+                nueva.Show();
+                //MessageBox.Show("Guarda la tarea para poder añadir una Gestión");
             }
             else
             {
@@ -987,6 +995,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 MessageBox.Show("Asigne una persona a seguir para poder ver la información");
             }
+        }
+
+        private void toolStripMenuItemAddSeguimiento_Click(object sender, EventArgs e)
+        {
+            String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
+            Tareas.FormInsertarSeguimiento nueva = new FormInsertarSeguimiento(this, idGestion);
+            nueva.Show();
         }
     }
 }
