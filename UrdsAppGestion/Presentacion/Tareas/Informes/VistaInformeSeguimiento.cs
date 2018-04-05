@@ -134,6 +134,7 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes
                 if (comboBoxEstado.SelectedIndex == 1)
                 {
                     String comm1 = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tipostareas.TipoTarea, DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni,  DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin, exp_tareas.AcuerdoJunta, exp_tareas.Importante, exp_tareas.ProximaJunta, (SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea=exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado, exp_tareas.Seguro FROM exp_tareas INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE((exp_tareas.IdEntidad) = " + idEntidad + ") AND (exp_tareas.FFin) Is Null";
+                    fechaInicio = "Tareas Abiertas";
                     bindingSource1.DataSource = null;
                     tabla = Persistencia.SentenciasSQL.select(comm1);
                     bindingSource1.DataSource = tabla;
@@ -144,6 +145,7 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes
                 else if (comboBoxEstado.SelectedIndex == 2)
                 {
                     String comm1 = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tipostareas.TipoTarea, DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni,  DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin, exp_tareas.AcuerdoJunta, exp_tareas.Importante, exp_tareas.ProximaJunta, (SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea=exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado, exp_tareas.Seguro FROM exp_tareas INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE((exp_tareas.IdEntidad) = " + idEntidad + ") AND (exp_tareas.FFin) Is Not Null";
+                    fechaInicio = "Tareas Cerradas";
                     bindingSource1.DataSource = null;
                     tabla = Persistencia.SentenciasSQL.select(comm1);
                     bindingSource1.DataSource = tabla;
