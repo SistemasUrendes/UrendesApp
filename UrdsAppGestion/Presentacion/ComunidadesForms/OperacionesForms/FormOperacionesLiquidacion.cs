@@ -103,8 +103,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
                             row.DefaultCellStyle.BackColor = Color.Red;
                             row.ReadOnly = true;
                             row.DefaultCellStyle.ForeColor = Color.White;
-                            //dataGridView_liquidacion.Enabled = false;
-                            //button_guardar.Enabled = false;
+                            dataGridView_liquidacion.Enabled = false;
+                            button_guardar.Enabled = false;
                         }
                         dataGridView_liquidacion.Rows.Add(row);
 
@@ -309,6 +309,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
                 var hti = dataGridView_liquidacion.HitTest(e.X, e.Y);
                 dataGridView_liquidacion.ClearSelection();
                 dataGridView_liquidacion.Rows[hti.RowIndex].Selected = true;
+                nueva.comboBox_filtro.Visible = false;
+                nueva.comboBox_informes.Visible = false;
+                nueva.label1.Visible = false;
+                nueva.label2.Visible = false;
                 nueva.Show();
             }
         }

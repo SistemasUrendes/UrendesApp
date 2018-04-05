@@ -423,5 +423,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             String sqlUpdate = "UPDATE com_operaciones SET ImpOpPte=com_operaciones.ImpOp - " + totalDetOp.ToString().Replace(",",".") + " WHERE IdOp = " + id_operacion_cargado;
             Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

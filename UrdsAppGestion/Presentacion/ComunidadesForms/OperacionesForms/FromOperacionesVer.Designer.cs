@@ -51,7 +51,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -88,6 +87,10 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button_70001 = new System.Windows.Forms.Button();
             this.button_revisarPte = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataGridView_expedientes = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_iva)).BeginInit();
@@ -98,19 +101,21 @@
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_liquidacion)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_expedientes)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.textBox_expediente);
+            this.groupBox1.Controls.Add(this.tabControl1);
             this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.textBox_reparto);
-            this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.comboBox_porcentage_retencion);
             this.groupBox1.Controls.Add(this.textBox_base_retencion);
             this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.textBox_notas);
             this.groupBox1.Controls.Add(this.textBox_imppte);
             this.groupBox1.Controls.Add(this.textBox_importe);
             this.groupBox1.Controls.Add(this.textBox_descripcion);
@@ -122,7 +127,6 @@
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
@@ -134,11 +138,12 @@
             this.groupBox1.Size = new System.Drawing.Size(851, 199);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // textBox_expediente
             // 
             this.textBox_expediente.Enabled = false;
-            this.textBox_expediente.Location = new System.Drawing.Point(303, 158);
+            this.textBox_expediente.Location = new System.Drawing.Point(739, 177);
             this.textBox_expediente.Name = "textBox_expediente";
             this.textBox_expediente.ReadOnly = true;
             this.textBox_expediente.Size = new System.Drawing.Size(85, 20);
@@ -147,7 +152,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(231, 161);
+            this.label16.Location = new System.Drawing.Point(670, 181);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(66, 13);
             this.label16.TabIndex = 25;
@@ -156,7 +161,7 @@
             // textBox_reparto
             // 
             this.textBox_reparto.Enabled = false;
-            this.textBox_reparto.Location = new System.Drawing.Point(119, 158);
+            this.textBox_reparto.Location = new System.Drawing.Point(675, 282);
             this.textBox_reparto.Name = "textBox_reparto";
             this.textBox_reparto.ReadOnly = true;
             this.textBox_reparto.Size = new System.Drawing.Size(100, 20);
@@ -165,7 +170,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(31, 161);
+            this.label15.Location = new System.Drawing.Point(597, 285);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(75, 13);
             this.label15.TabIndex = 23;
@@ -174,25 +179,25 @@
             // textBox1
             // 
             this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(645, 125);
+            this.textBox1.Location = new System.Drawing.Point(372, 158);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(91, 20);
+            this.textBox1.Size = new System.Drawing.Size(68, 20);
             this.textBox1.TabIndex = 22;
             // 
             // comboBox_porcentage_retencion
             // 
             this.comboBox_porcentage_retencion.Enabled = false;
             this.comboBox_porcentage_retencion.FormattingEnabled = true;
-            this.comboBox_porcentage_retencion.Location = new System.Drawing.Point(562, 124);
+            this.comboBox_porcentage_retencion.Location = new System.Drawing.Point(238, 157);
             this.comboBox_porcentage_retencion.Name = "comboBox_porcentage_retencion";
-            this.comboBox_porcentage_retencion.Size = new System.Drawing.Size(72, 21);
+            this.comboBox_porcentage_retencion.Size = new System.Drawing.Size(60, 21);
             this.comboBox_porcentage_retencion.TabIndex = 21;
             // 
             // textBox_base_retencion
             // 
             this.textBox_base_retencion.Enabled = false;
-            this.textBox_base_retencion.Location = new System.Drawing.Point(469, 125);
+            this.textBox_base_retencion.Location = new System.Drawing.Point(119, 158);
             this.textBox_base_retencion.Name = "textBox_base_retencion";
             this.textBox_base_retencion.ReadOnly = true;
             this.textBox_base_retencion.Size = new System.Drawing.Size(86, 20);
@@ -201,7 +206,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(642, 105);
+            this.label11.Location = new System.Drawing.Point(304, 161);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(62, 13);
             this.label11.TabIndex = 19;
@@ -210,20 +215,20 @@
             // textBox_notas
             // 
             this.textBox_notas.Enabled = false;
-            this.textBox_notas.Location = new System.Drawing.Point(434, 36);
+            this.textBox_notas.Location = new System.Drawing.Point(5, 5);
             this.textBox_notas.Multiline = true;
             this.textBox_notas.Name = "textBox_notas";
             this.textBox_notas.ReadOnly = true;
-            this.textBox_notas.Size = new System.Drawing.Size(325, 55);
+            this.textBox_notas.Size = new System.Drawing.Size(364, 117);
             this.textBox_notas.TabIndex = 18;
             // 
             // textBox_imppte
             // 
             this.textBox_imppte.Enabled = false;
-            this.textBox_imppte.Location = new System.Drawing.Point(288, 132);
+            this.textBox_imppte.Location = new System.Drawing.Point(356, 131);
             this.textBox_imppte.Name = "textBox_imppte";
             this.textBox_imppte.ReadOnly = true;
-            this.textBox_imppte.Size = new System.Drawing.Size(100, 20);
+            this.textBox_imppte.Size = new System.Drawing.Size(85, 20);
             this.textBox_imppte.TabIndex = 17;
             // 
             // textBox_importe
@@ -232,7 +237,7 @@
             this.textBox_importe.Location = new System.Drawing.Point(119, 132);
             this.textBox_importe.Name = "textBox_importe";
             this.textBox_importe.ReadOnly = true;
-            this.textBox_importe.Size = new System.Drawing.Size(100, 20);
+            this.textBox_importe.Size = new System.Drawing.Size(86, 20);
             this.textBox_importe.TabIndex = 16;
             // 
             // textBox_descripcion
@@ -241,25 +246,25 @@
             this.textBox_descripcion.Location = new System.Drawing.Point(119, 105);
             this.textBox_descripcion.Name = "textBox_descripcion";
             this.textBox_descripcion.ReadOnly = true;
-            this.textBox_descripcion.Size = new System.Drawing.Size(269, 20);
+            this.textBox_descripcion.Size = new System.Drawing.Size(321, 20);
             this.textBox_descripcion.TabIndex = 15;
             // 
             // textBox_documento
             // 
             this.textBox_documento.Enabled = false;
-            this.textBox_documento.Location = new System.Drawing.Point(273, 78);
+            this.textBox_documento.Location = new System.Drawing.Point(270, 78);
             this.textBox_documento.Name = "textBox_documento";
             this.textBox_documento.ReadOnly = true;
-            this.textBox_documento.Size = new System.Drawing.Size(115, 20);
+            this.textBox_documento.Size = new System.Drawing.Size(170, 20);
             this.textBox_documento.TabIndex = 14;
             // 
             // textBox_descripcion_cuenta
             // 
             this.textBox_descripcion_cuenta.Enabled = false;
-            this.textBox_descripcion_cuenta.Location = new System.Drawing.Point(188, 51);
+            this.textBox_descripcion_cuenta.Location = new System.Drawing.Point(185, 51);
             this.textBox_descripcion_cuenta.Name = "textBox_descripcion_cuenta";
             this.textBox_descripcion_cuenta.ReadOnly = true;
-            this.textBox_descripcion_cuenta.Size = new System.Drawing.Size(200, 20);
+            this.textBox_descripcion_cuenta.Size = new System.Drawing.Size(255, 20);
             this.textBox_descripcion_cuenta.TabIndex = 13;
             // 
             // maskedTextBox_fecha
@@ -288,7 +293,7 @@
             this.textBox_entidad.Location = new System.Drawing.Point(119, 24);
             this.textBox_entidad.Name = "textBox_entidad";
             this.textBox_entidad.ReadOnly = true;
-            this.textBox_entidad.Size = new System.Drawing.Size(269, 20);
+            this.textBox_entidad.Size = new System.Drawing.Size(321, 20);
             this.textBox_entidad.TabIndex = 10;
             // 
             // label10
@@ -303,34 +308,25 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(582, 105);
+            this.label9.Location = new System.Drawing.Point(213, 161);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(15, 13);
+            this.label9.Size = new System.Drawing.Size(21, 13);
             this.label9.TabIndex = 8;
-            this.label9.Text = "%";
+            this.label9.Text = "% :";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(466, 105);
+            this.label8.Location = new System.Drawing.Point(31, 161);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(89, 13);
             this.label8.TabIndex = 7;
             this.label8.Text = "Base Retención :";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(431, 20);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(41, 13);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Notas :";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(231, 135);
+            this.label6.Location = new System.Drawing.Point(304, 134);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(46, 13);
             this.label6.TabIndex = 5;
@@ -568,7 +564,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(403, 20);
+            this.label13.Location = new System.Drawing.Point(379, 20);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(108, 13);
             this.label13.TabIndex = 14;
@@ -576,10 +572,10 @@
             // 
             // textBox_ultima_modificacion
             // 
-            this.textBox_ultima_modificacion.Location = new System.Drawing.Point(512, 16);
+            this.textBox_ultima_modificacion.Location = new System.Drawing.Point(488, 16);
             this.textBox_ultima_modificacion.Name = "textBox_ultima_modificacion";
             this.textBox_ultima_modificacion.ReadOnly = true;
-            this.textBox_ultima_modificacion.Size = new System.Drawing.Size(103, 20);
+            this.textBox_ultima_modificacion.Size = new System.Drawing.Size(127, 20);
             this.textBox_ultima_modificacion.TabIndex = 15;
             // 
             // textBox_usuario
@@ -701,13 +697,59 @@
             this.button_revisarPte.UseVisualStyleBackColor = true;
             this.button_revisarPte.Click += new System.EventHandler(this.button_revisarPte_Click);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(462, 24);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(383, 154);
+            this.tabControl1.TabIndex = 27;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.textBox_notas);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(375, 128);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Notas";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.dataGridView_expedientes);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(375, 128);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Expedientes";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView_expedientes
+            // 
+            this.dataGridView_expedientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_expedientes.Location = new System.Drawing.Point(6, 8);
+            this.dataGridView_expedientes.MultiSelect = false;
+            this.dataGridView_expedientes.Name = "dataGridView_expedientes";
+            this.dataGridView_expedientes.ReadOnly = true;
+            this.dataGridView_expedientes.RowHeadersVisible = false;
+            this.dataGridView_expedientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_expedientes.Size = new System.Drawing.Size(363, 114);
+            this.dataGridView_expedientes.TabIndex = 0;
+            // 
             // FromOperacionesVer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(958, 675);
             this.Controls.Add(this.button_revisarPte);
+            this.Controls.Add(this.textBox_reparto);
             this.Controls.Add(this.button_70001);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button_nueva_favorita);
             this.Controls.Add(this.button_nuevaOperacion);
@@ -748,6 +790,11 @@
             this.groupBox6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_liquidacion)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_expedientes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -765,7 +812,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -813,5 +859,9 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button_70001;
         private System.Windows.Forms.Button button_revisarPte;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.DataGridView dataGridView_expedientes;
     }
 }
