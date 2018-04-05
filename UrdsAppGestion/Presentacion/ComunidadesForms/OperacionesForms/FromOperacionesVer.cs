@@ -87,8 +87,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             {
                 button_revisarPte.Enabled = true;
             }
-
-
         }
         public void cargarOperacion(String id_operacion) {
 
@@ -116,6 +114,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
                 textBox_notas.Text = fila.Rows[0]["Notas"].ToString();
                 textBox_ultima_modificacion.Text = fila.Rows[0]["FAct"].ToString();
                 textBox_expediente.Text = fila.Rows[0]["IdExpte"].ToString();
+                
+                //CARGO LOS EXPEDIENTES
+                cargarExpedientes();
 
                 try
                 {
@@ -237,16 +238,15 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
 
         private void button_guardar_Click(object sender, EventArgs e)
         {
-            
-                String sqlGuardarOperacion = "UPDATE com_operaciones SET Guardada='Si' WHERE IdOp = " + id_operacion_cargado;
-                Persistencia.SentenciasSQL.InsertarGenerico(sqlGuardarOperacion);
+            String sqlGuardarOperacion = "UPDATE com_operaciones SET Guardada='Si' WHERE IdOp = " + id_operacion_cargado;
+            Persistencia.SentenciasSQL.InsertarGenerico(sqlGuardarOperacion);
 
-                button_guardar.BackColor = SystemColors.Control;
-                button_guardar.ForeColor = Color.Black;
-                label_advertencia.Visible = false;
-                button_cancelar.Text = "Cerrar";
-                button_guardar.Visible = false;
-                button_cancelar.Location = new Point(button_cancelar.Location.X + 85, button_cancelar.Location.Y);
+            button_guardar.BackColor = SystemColors.Control;
+            button_guardar.ForeColor = Color.Black;
+            label_advertencia.Visible = false;
+            button_cancelar.Text = "Cerrar";
+            button_guardar.Visible = false;
+            button_cancelar.Location = new Point(button_cancelar.Location.X + 85, button_cancelar.Location.Y);
 
             try
             {
@@ -424,9 +424,31 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void button_añadirExpedientes_Click(object sender, EventArgs e)
         {
+            Tareas.FormTareasPrincipal nueva = new Tareas.FormTareasPrincipal(id_comunidad_cargado);
+            nueva.ControlBox = true;
+            nueva.TopMost = true;
+            nueva.WindowState = FormWindowState.Normal;
+            nueva.StartPosition = FormStartPosition.CenterScreen;
+            nueva.Show();
+        }
+        public void recibirTarea(String id_tarea)
+        {
+            //GUARDO EN LA TABLA OPERACIONES_TAREAS LA NUEVA TAREA.
+            String sqlInsert = "INSERT INTO exp_operacionTarea (IdTarea, IdOperacion) VALUES (" + id_tarea + "," + id_operacion_cargado + ")";
+            Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+            cargarExpedientes();
+        }
+        public void cargarExpedientes() {
 
+            String sqlExpedientes = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción FROM exp_operacionTarea INNER JOIN exp_tareas ON exp_operacionTarea.IdTarea = exp_tareas.IdTarea WHERE (((exp_operacionTarea.IdOperacion) = " + id_operacion_cargado + "));";
+
+            DataTable expedientes = Persistencia.SentenciasSQL.select(sqlExpedientes);
+            if (expedientes.Rows.Count > 0)
+            {
+                dataGridView_expedientes.DataSource = expedientes;
+            }
         }
     }
 }

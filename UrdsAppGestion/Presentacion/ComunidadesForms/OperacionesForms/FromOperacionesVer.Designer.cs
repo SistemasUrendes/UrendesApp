@@ -32,14 +32,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FromOperacionesVer));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox_expediente = new System.Windows.Forms.TextBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBox_notas = new System.Windows.Forms.TextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataGridView_expedientes = new System.Windows.Forms.DataGridView();
             this.label16 = new System.Windows.Forms.Label();
-            this.textBox_reparto = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBox_porcentage_retencion = new System.Windows.Forms.ComboBox();
             this.textBox_base_retencion = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox_notas = new System.Windows.Forms.TextBox();
             this.textBox_imppte = new System.Windows.Forms.TextBox();
             this.textBox_importe = new System.Windows.Forms.TextBox();
             this.textBox_descripcion = new System.Windows.Forms.TextBox();
@@ -57,6 +59,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox_reparto = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView_iva = new System.Windows.Forms.DataGridView();
@@ -87,11 +91,12 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button_70001 = new System.Windows.Forms.Button();
             this.button_revisarPte = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dataGridView_expedientes = new System.Windows.Forms.DataGridView();
+            this.button_añadirExpedientes = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_expedientes)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_iva)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -101,14 +106,11 @@
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_liquidacion)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_expedientes)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button_añadirExpedientes);
             this.groupBox1.Controls.Add(this.textBox_expediente);
             this.groupBox1.Controls.Add(this.tabControl1);
             this.groupBox1.Controls.Add(this.label16);
@@ -138,7 +140,6 @@
             this.groupBox1.Size = new System.Drawing.Size(851, 199);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // textBox_expediente
             // 
@@ -149,6 +150,60 @@
             this.textBox_expediente.Size = new System.Drawing.Size(85, 20);
             this.textBox_expediente.TabIndex = 26;
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(462, 24);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(383, 154);
+            this.tabControl1.TabIndex = 27;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.textBox_notas);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(375, 128);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Notas";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // textBox_notas
+            // 
+            this.textBox_notas.Enabled = false;
+            this.textBox_notas.Location = new System.Drawing.Point(5, 5);
+            this.textBox_notas.Multiline = true;
+            this.textBox_notas.Name = "textBox_notas";
+            this.textBox_notas.ReadOnly = true;
+            this.textBox_notas.Size = new System.Drawing.Size(364, 117);
+            this.textBox_notas.TabIndex = 18;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.dataGridView_expedientes);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(375, 128);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Expedientes";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView_expedientes
+            // 
+            this.dataGridView_expedientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_expedientes.Location = new System.Drawing.Point(6, 8);
+            this.dataGridView_expedientes.MultiSelect = false;
+            this.dataGridView_expedientes.Name = "dataGridView_expedientes";
+            this.dataGridView_expedientes.ReadOnly = true;
+            this.dataGridView_expedientes.RowHeadersVisible = false;
+            this.dataGridView_expedientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_expedientes.Size = new System.Drawing.Size(363, 114);
+            this.dataGridView_expedientes.TabIndex = 0;
+            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -157,24 +212,6 @@
             this.label16.Size = new System.Drawing.Size(66, 13);
             this.label16.TabIndex = 25;
             this.label16.Text = "Expediente :";
-            // 
-            // textBox_reparto
-            // 
-            this.textBox_reparto.Enabled = false;
-            this.textBox_reparto.Location = new System.Drawing.Point(675, 282);
-            this.textBox_reparto.Name = "textBox_reparto";
-            this.textBox_reparto.ReadOnly = true;
-            this.textBox_reparto.Size = new System.Drawing.Size(100, 20);
-            this.textBox_reparto.TabIndex = 24;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(597, 285);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(75, 13);
-            this.label15.TabIndex = 23;
-            this.label15.Text = "Tipo Reparto :";
             // 
             // textBox1
             // 
@@ -211,16 +248,6 @@
             this.label11.Size = new System.Drawing.Size(62, 13);
             this.label11.TabIndex = 19;
             this.label11.Text = "Retención :";
-            // 
-            // textBox_notas
-            // 
-            this.textBox_notas.Enabled = false;
-            this.textBox_notas.Location = new System.Drawing.Point(5, 5);
-            this.textBox_notas.Multiline = true;
-            this.textBox_notas.Name = "textBox_notas";
-            this.textBox_notas.ReadOnly = true;
-            this.textBox_notas.Size = new System.Drawing.Size(364, 117);
-            this.textBox_notas.TabIndex = 18;
             // 
             // textBox_imppte
             // 
@@ -376,6 +403,24 @@
             this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Entidad :";
+            // 
+            // textBox_reparto
+            // 
+            this.textBox_reparto.Enabled = false;
+            this.textBox_reparto.Location = new System.Drawing.Point(675, 282);
+            this.textBox_reparto.Name = "textBox_reparto";
+            this.textBox_reparto.ReadOnly = true;
+            this.textBox_reparto.Size = new System.Drawing.Size(100, 20);
+            this.textBox_reparto.TabIndex = 24;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(597, 285);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(75, 13);
+            this.label15.TabIndex = 23;
+            this.label15.Text = "Tipo Reparto :";
             // 
             // button1
             // 
@@ -697,49 +742,15 @@
             this.button_revisarPte.UseVisualStyleBackColor = true;
             this.button_revisarPte.Click += new System.EventHandler(this.button_revisarPte_Click);
             // 
-            // tabControl1
+            // button_añadirExpedientes
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(462, 24);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(383, 154);
-            this.tabControl1.TabIndex = 27;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.textBox_notas);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(375, 128);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Notas";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.dataGridView_expedientes);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(375, 128);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Expedientes";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView_expedientes
-            // 
-            this.dataGridView_expedientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_expedientes.Location = new System.Drawing.Point(6, 8);
-            this.dataGridView_expedientes.MultiSelect = false;
-            this.dataGridView_expedientes.Name = "dataGridView_expedientes";
-            this.dataGridView_expedientes.ReadOnly = true;
-            this.dataGridView_expedientes.RowHeadersVisible = false;
-            this.dataGridView_expedientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_expedientes.Size = new System.Drawing.Size(363, 114);
-            this.dataGridView_expedientes.TabIndex = 0;
+            this.button_añadirExpedientes.Location = new System.Drawing.Point(739, 22);
+            this.button_añadirExpedientes.Name = "button_añadirExpedientes";
+            this.button_añadirExpedientes.Size = new System.Drawing.Size(104, 23);
+            this.button_añadirExpedientes.TabIndex = 1;
+            this.button_añadirExpedientes.Text = "Añadir Expediente";
+            this.button_añadirExpedientes.UseVisualStyleBackColor = true;
+            this.button_añadirExpedientes.Click += new System.EventHandler(this.button_añadirExpedientes_Click);
             // 
             // FromOperacionesVer
             // 
@@ -781,6 +792,11 @@
             this.Load += new System.EventHandler(this.FromOperacionesVer_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_expedientes)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_iva)).EndInit();
             this.groupBox3.ResumeLayout(false);
@@ -790,11 +806,6 @@
             this.groupBox6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_liquidacion)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_expedientes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -863,5 +874,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView dataGridView_expedientes;
+        private System.Windows.Forms.Button button_añadirExpedientes;
     }
 }

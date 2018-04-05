@@ -27,6 +27,11 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
         private void FormCargos_Load(object sender, EventArgs e)
         {
             cargardatagrid();
+
+            //MUESTRO LOS VIGENTES NADA MAS CARGAR
+            DataTable busqueda = cargos1;
+            busqueda.DefaultView.RowFilter = "FFin is Null";
+            dataGridView_ListadeCargos.DataSource = busqueda;
         }
         public void cargardatagrid() {
             String sqlSelect = "SELECT com_cargoscom.IdCargoCom, com_cargos.Cargo, com_organos.Nombre, ctos_entidades.Entidad, com_comuneros.IdEntidad, com_divisiones.Division, com_cargoscom.FInicio, com_cargoscom.FFin FROM(com_divisiones RIGHT JOIN(((com_cargos INNER JOIN com_cargoscom ON com_cargos.IdCargo = com_cargoscom.IdCargo) INNER JOIN com_comuneros ON com_cargoscom.IdComunero = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) ON com_divisiones.IdDivision = com_comuneros.IdDivPpal) LEFT JOIN com_organos ON com_cargos.IdOrgano = com_organos.IdOrgano GROUP BY com_cargoscom.IdCargoCom, com_cargos.Cargo, com_organos.Nombre, ctos_entidades.Entidad, com_comuneros.IdEntidad, com_divisiones.Division, com_cargoscom.FInicio, com_cargoscom.FFin, com_cargoscom.IdComunidad HAVING(((com_cargoscom.IdComunidad) = " + id_comunidad_cargado + "));";
