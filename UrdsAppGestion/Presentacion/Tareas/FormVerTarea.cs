@@ -54,6 +54,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 habilitarEdicion();
             }
+            if (ruta != "")
+            {
+                textBoxRuta.Cursor = Cursors.Hand;
+            }
         }
 
         public void cargarCabecera()
@@ -194,10 +198,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 dataGridViewSeguimientos.Columns["Tipo Seguimiento"].Visible = false;
                 dataGridViewSeguimientos.Columns["Fecha"].Width = 80;
                 dataGridViewSeguimientos.Columns["Usuario"].Width = 60;
-                dataGridViewSeguimientos.Columns["Notas"].Width = 420;//340 con TipoSeguimiento
+                dataGridViewSeguimientos.Columns["Notas"].Width = 423;
                 //dataGridViewSeguimientos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                 dataGridViewSeguimientos.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-                dataGridViewSeguimientos.AutoResizeColumn(dataGridViewSeguimientos.Columns["Notas"].Index, DataGridViewAutoSizeColumnMode.AllCells);
+                //dataGridViewSeguimientos.AutoResizeColumn(dataGridViewSeguimientos.Columns["Notas"].Index, DataGridViewAutoSizeColumnMode.AllCells);
             }
         }
 
@@ -432,11 +436,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
 
 
+
                     //LA CARPETA DE LA RUTA YA ESTÁ CREADA
                     if (System.IO.Directory.Exists(ruta))
                     {
                         MessageBox.Show("La Carpeta de la tarea ya existe!");
                         textBoxRuta.Text = ruta;
+                        textBoxRuta.Cursor = Cursors.Hand;
                     }
                     //LA CARPETA DE LA COMUNIDAD EXISTE
                     else if (System.IO.Directory.Exists(rutaCheck))
@@ -444,6 +450,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                         System.IO.Directory.CreateDirectory(ruta);
                         textBoxRuta.Text = ruta;
                         addTarea();
+                        textBoxRuta.Cursor = Cursors.Hand;
                     }
                     //LA CARPETA DE LA COMUNIDAD NO EXISTE
                     else
