@@ -138,8 +138,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         public void rellenarComboBox()
         {
+            DataTable tipos;
             String sqlComboTipo = "SELECT exp_tipostareas.IdTipoTarea, exp_tipostareas.TipoTarea FROM exp_tipostareas";
-            comboBoxTipo.DataSource = Persistencia.SentenciasSQL.select(sqlComboTipo);
+            tipos = Persistencia.SentenciasSQL.select(sqlComboTipo);
+            DataRow filavacio = tipos.NewRow();
+            filavacio["TipoTarea"] = "";
+            filavacio["IdTipoTarea"] = 0;
+            tipos.Rows.InsertAt(filavacio, 0);
+            comboBoxTipo.DataSource = tipos;
             comboBoxTipo.DisplayMember = "TipoTarea";
             comboBoxTipo.ValueMember = "IdTipoTarea";
 
@@ -158,7 +164,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         public void cargarSeguimientos()
         {
-            String sqlSelect = "SELECT exp_notas.IdNota, exp_notas.IdGestión, exp_tiposeguimiento.`Tipo Seguimiento`, exp_notas.Fecha, ctos_urendes.Usuario, exp_notas.Notas FROM(exp_tiposeguimiento INNER JOIN exp_notas ON exp_tiposeguimiento.IdTipoSeg = exp_notas.IdTipoSeg) INNER JOIN ctos_urendes ON exp_notas.IdURD = ctos_urendes.IdURD WHERE(((exp_notas.IdGestión) = " + idGestion + ")) ORDER BY exp_notas.Fecha DESC";
+            String sqlSelect = "SELECT exp_notas.IdNota, exp_notas.IdGestión, exp_tiposeguimiento.`Tipo Seguimiento`, exp_notas.Fecha, ctos_urendes.Usuario, exp_notas.Notas FROM(exp_tiposeguimiento RIGHT JOIN exp_notas ON exp_tiposeguimiento.IdTipoSeg = exp_notas.IdTipoSeg) INNER JOIN ctos_urendes ON exp_notas.IdURD = ctos_urendes.IdURD WHERE(((exp_notas.IdGestión) = " + idGestion + ")) ORDER BY exp_notas.Fecha DESC";
+
+            
 
             seguimiento = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewSeguimientos.DataSource = seguimiento;
@@ -182,10 +190,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 dataGridViewSeguimientos.Columns[0].Visible = false;
                 dataGridViewSeguimientos.Columns[1].Visible = false;
-                dataGridViewSeguimientos.Columns["Tipo Seguimiento"].Width = 80;
+                //dataGridViewSeguimientos.Columns["Tipo Seguimiento"].Width = 80;
+                dataGridViewSeguimientos.Columns["Tipo Seguimiento"].Visible = false;
                 dataGridViewSeguimientos.Columns["Fecha"].Width = 80;
                 dataGridViewSeguimientos.Columns["Usuario"].Width = 60;
-                dataGridViewSeguimientos.Columns["Notas"].Width = 340;
+                dataGridViewSeguimientos.Columns["Notas"].Width = 420;//340 con TipoSeguimiento
                 //dataGridViewSeguimientos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                 dataGridViewSeguimientos.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                 dataGridViewSeguimientos.AutoResizeColumn(dataGridViewSeguimientos.Columns["Notas"].Index, DataGridViewAutoSizeColumnMode.AllCells);
@@ -228,11 +237,19 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
-            if (maskedTextBoxReferencia.Text != "")idEntidad = entidadReferencia();
-            addTarea();
-            textBoxIdTarea.Text = idTarea;
-            bloquearEdicion();
-            form_anterior.CargarTareas();
+            if (comboBoxTipo.SelectedValue.ToString() == "0")
+            {
+                MessageBox.Show("Selecciona un tipo de Tarea!");
+                return;
+            }
+            else
+            {
+                if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
+                addTarea();
+                textBoxIdTarea.Text = idTarea;
+                bloquearEdicion();
+                form_anterior.CargarTareas();
+            }
         }
 
         private void buttonEditar_Click(object sender, EventArgs e)
@@ -244,15 +261,21 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (idTarea == null)
             {
-                if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
-                addTarea();
-                textBoxIdTarea.Text = idTarea;
-                bloquearEdicion();
-                form_anterior.CargarTareas();
-
-                Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, fInicio);
-                nueva.Show();
-                //MessageBox.Show("Guarda la tarea para poder añadir una Gestión");
+                if (comboBoxTipo.SelectedValue.ToString() == "0")
+                {
+                    MessageBox.Show("Selecciona un tipo de Tarea!");
+                    return;
+                }
+                else
+                {
+                    if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
+                    addTarea();
+                    textBoxIdTarea.Text = idTarea;
+                    bloquearEdicion();
+                    form_anterior.CargarTareas();
+                    Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, fInicio);
+                    nueva.Show();
+                }
             }
             else
             {
@@ -391,37 +414,44 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (ruta == null || ruta == "")
             {
-                if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
-                addTarea();
-                textBoxIdTarea.Text = idTarea;
-                form_anterior.CargarTareas();
-
-                String tarea = idTarea + " " + textBoxDescripcion.Text;
-                String rutaCheck = rutaEntidad().Trim('#');
-                ruta = @rutaCheck + @"\EXPEDIENTES\" + tarea;
-                
-
-                
-                //LA CARPETA DE LA RUTA YA ESTÁ CREADA
-                if (System.IO.Directory.Exists(ruta))
+                if (comboBoxTipo.SelectedValue.ToString() == "0")
                 {
-                    MessageBox.Show("La Carpeta de la tarea ya existe!");
-                    textBoxRuta.Text = ruta;
+                    MessageBox.Show("Selecciona un tipo de Tarea!");
+                    return;
                 }
-                //LA CARPETA DE LA COMUNIDAD EXISTE
-                else if (System.IO.Directory.Exists(rutaCheck))
-                {
-                    System.IO.Directory.CreateDirectory(ruta);
-                    textBoxRuta.Text = ruta;
-                    addTarea();
-                }
-                //LA CARPETA DE LA COMUNIDAD NO EXISTE
                 else
                 {
-                    MessageBox.Show("No se encuentra la carpeta de la comunidad, contacte con el administrador");
-                    ruta = "";
-                }
+                    if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
+                    addTarea();
+                    textBoxIdTarea.Text = idTarea;
+                    form_anterior.CargarTareas();
 
+                    String tarea = idTarea + " " + textBoxDescripcion.Text;
+                    String rutaCheck = rutaEntidad().Trim('#');
+                    ruta = @rutaCheck + @"\EXPEDIENTES\" + tarea;
+
+
+
+                    //LA CARPETA DE LA RUTA YA ESTÁ CREADA
+                    if (System.IO.Directory.Exists(ruta))
+                    {
+                        MessageBox.Show("La Carpeta de la tarea ya existe!");
+                        textBoxRuta.Text = ruta;
+                    }
+                    //LA CARPETA DE LA COMUNIDAD EXISTE
+                    else if (System.IO.Directory.Exists(rutaCheck))
+                    {
+                        System.IO.Directory.CreateDirectory(ruta);
+                        textBoxRuta.Text = ruta;
+                        addTarea();
+                    }
+                    //LA CARPETA DE LA COMUNIDAD NO EXISTE
+                    else
+                    {
+                        MessageBox.Show("No se encuentra la carpeta de la comunidad, contacte con el administrador");
+                        ruta = "";
+                    }
+                }
             }
         }
 
@@ -1001,6 +1031,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
             Tareas.FormInsertarSeguimiento nueva = new FormInsertarSeguimiento(this, idGestion);
+            nueva.Show();
+        }
+
+        private void buttonAddTipoGestion_Click(object sender, EventArgs e)
+        {
+            Tareas.FormInsertarTipoGestion nueva = new FormInsertarTipoGestion();
             nueva.Show();
         }
     }

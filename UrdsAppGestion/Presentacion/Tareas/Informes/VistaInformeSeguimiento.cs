@@ -20,10 +20,10 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes
         {
             InitializeComponent();
             this.idEntidad = idEntidad;
-            //String comm1 = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tipostareas.TipoTarea, DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni, DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin FROM exp_tareas INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tareas.IdEntidad) = " + idEntidad + ") AND((exp_tareas.Importante) = -1)) ORDER BY exp_tareas.FIni";
 
-            String comm1 = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tipostareas.TipoTarea, DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni,  DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin, exp_tareas.AcuerdoJunta, exp_tareas.Importante, exp_tareas.ProximaJunta, exp_tareas.Seguro FROM exp_tareas INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE((exp_tareas.IdEntidad) = " + idEntidad + ")";
+            String comm1 = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tipostareas.TipoTarea, DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni,  DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin, exp_tareas.AcuerdoJunta, exp_tareas.Importante, exp_tareas.ProximaJunta, (SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea=exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado, exp_tareas.Seguro FROM exp_tareas INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE((exp_tareas.IdEntidad) = " + idEntidad + ")";
             
+
             bindingSource1.DataSource = null;
             tabla = Persistencia.SentenciasSQL.select(comm1);
             bindingSource1.DataSource = tabla;
@@ -31,8 +31,11 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes
             ReportParameter parametro = new ReportParameter("nombreComunidad", nombreComunidad);
             this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro });
             
-            ReportParameter parametro2 = new ReportParameter("fecha", "Sin filtro fecha");
+            ReportParameter parametro2 = new ReportParameter("fechaini", "");
             this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro2 });
+            ReportParameter parametro3 = new ReportParameter("fechafin", "");
+            this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro3 });
+
 
             this.reportViewer1.RefreshReport();
 
@@ -46,50 +49,123 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes
         
         private void buttonFiltrar_Click(object sender, EventArgs e)
         {
-            String fechaInicio = maskedTextBox_inicio.Text;
-            String fechaFin = maskedTextBox_fin.Text;
-            String fecha = "Sin filtro de fecha";
+            String fechaInicio1 = maskedTextBox_FIni1.Text;
+            String fechaInicio2 = maskedTextBox_FIni2.Text;
+            String fechaFin1 = maskedTextBox_FFin1.Text;
+            String fechaFin2 = maskedTextBox_FFin2.Text;
+            String fechaInicio = "";
+            String fechaFin = "";
             Boolean AcuerdoJunta = checkBoxAcuerdoJunta.Checked;
             Boolean Importante = checkBoxImportante.Checked;
             Boolean ProximaJunta = checkBoxProximaJunta.Checked;
             Boolean Seguro = checkBoxSeguro.Checked;
-            String filtroBusqueda = "";
-            
-            if (fechaInicio != "  /  /" && fechaFin != "  /  /")
+            String fechaFin1Conv;
+            String fechaFin2Conv;
+            String fechaInicio1Conv;
+            String fechaInicio2Conv;
+
+            if (fechaInicio1 != "  /  /" && fechaInicio2 != "  /  /" && fechaFin1 != "  /  /" && fechaFin2 != "  /  /")
             {
-                String fechaInicioConv;
-                String fechaFinConv;
                 try
                 {
-                    fechaInicioConv = (Convert.ToDateTime(maskedTextBox_inicio.Text)).ToString("yyyy-MM-dd");
-                    fechaFinConv = (Convert.ToDateTime(maskedTextBox_fin.Text)).ToString("yyyy-MM-dd");
-
+                    fechaFin1Conv = (Convert.ToDateTime(maskedTextBox_FFin1.Text)).ToString("yyyy-MM-dd");
+                    fechaFin2Conv = (Convert.ToDateTime(maskedTextBox_FFin2.Text)).ToString("yyyy-MM-dd");
+                    fechaInicio1Conv = (Convert.ToDateTime(maskedTextBox_FIni1.Text)).ToString("yyyy-MM-dd");
+                    fechaInicio2Conv = (Convert.ToDateTime(maskedTextBox_FIni2.Text)).ToString("yyyy-MM-dd");
                 }
                 catch
                 {
                     MessageBox.Show("Comprueba la fecha");
                     return;
                 }
-                fecha = "Entre " + fechaInicio + " y " + fechaFin;
-                String comm1 = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tipostareas.TipoTarea, DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni,  DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin, exp_tareas.AcuerdoJunta, exp_tareas.Importante, exp_tareas.ProximaJunta, exp_tareas.Seguro FROM exp_tareas INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE((exp_tareas.IdEntidad) = " + idEntidad + ") AND ((exp_tareas.FIni) >= '" + fechaInicioConv + "' And(exp_tareas.FIni) <= '" + fechaFinConv + "') AND((exp_tareas.FFin)Is Null And((exp_tareas.FFin) <= '" + fechaFinConv + "' Or(exp_tareas.FFin) Is Null))";
+                fechaFin = "F.Fin " + fechaFin1 + " a " + fechaFin2;
+                fechaInicio = "F.Inicio " + fechaInicio1 + " a " + fechaInicio2;
+
+                String comm1 = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tipostareas.TipoTarea, DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni,  DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin, exp_tareas.AcuerdoJunta, exp_tareas.Importante, exp_tareas.ProximaJunta, (SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea=exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado, exp_tareas.Seguro FROM exp_tareas INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE((exp_tareas.IdEntidad) = " + idEntidad + ") AND ((exp_tareas.FFin) >= '" + fechaFin1Conv + "' And(exp_tareas.FFin) <= '" + fechaFin2Conv + "') AND  ((exp_tareas.FIni) >= '" + fechaInicio1Conv + "' And(exp_tareas.FIni) <= '" + fechaInicio2Conv + "')";
 
                 bindingSource1.DataSource = null;
                 tabla = Persistencia.SentenciasSQL.select(comm1);
                 bindingSource1.DataSource = tabla;
                 this.reportViewer1.RefreshReport();
-
             }
-            if (fechaInicio == "  /  /" || fechaFin == "  /  /" )
+            else if (fechaFin1 != "  /  /" && fechaFin2 != "  /  /")
             {
-                if (AcuerdoJunta == true || Importante == true || ProximaJunta == true || Seguro == true) filtroBusqueda += "Filtro ";
+                try
+                {
+                    fechaFin1Conv = (Convert.ToDateTime(maskedTextBox_FFin1.Text)).ToString("yyyy-MM-dd");
+                    fechaFin2Conv = (Convert.ToDateTime(maskedTextBox_FFin2.Text)).ToString("yyyy-MM-dd");
+                }
+                catch
+                {
+                    MessageBox.Show("Comprueba la fecha");
+                    return;
+                }
+                fechaFin = "F.Fin" + fechaFin1 + " a " + fechaFin2;
+                String comm1 = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tipostareas.TipoTarea, DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni,  DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin, exp_tareas.AcuerdoJunta, exp_tareas.Importante, exp_tareas.ProximaJunta, (SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea=exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado, exp_tareas.Seguro FROM exp_tareas INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE((exp_tareas.IdEntidad) = " + idEntidad + ") AND ((exp_tareas.FFin) >= '" + fechaFin1Conv + "' And(exp_tareas.FFin) <= '" + fechaFin2Conv + "')";
+
+                bindingSource1.DataSource = null;
+                tabla = Persistencia.SentenciasSQL.select(comm1);
+                bindingSource1.DataSource = tabla;
+                this.reportViewer1.RefreshReport();
             }
+            else if (fechaInicio1 != "  /  /" && fechaInicio2 != "  /  /")
+            {
+                try
+                {
+                    fechaInicio1Conv = (Convert.ToDateTime(maskedTextBox_FIni1.Text)).ToString("yyyy-MM-dd");
+                    fechaInicio2Conv = (Convert.ToDateTime(maskedTextBox_FIni2.Text)).ToString("yyyy-MM-dd");
+                }
+                catch
+                {
+                    MessageBox.Show("Comprueba la fecha");
+                    return;
+                }
+                fechaInicio = "F.Inicio " + fechaInicio1 + " a " + fechaInicio2;
+                String comm1 = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tipostareas.TipoTarea, DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni,  DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin, exp_tareas.AcuerdoJunta, exp_tareas.Importante, exp_tareas.ProximaJunta, (SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea=exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado, exp_tareas.Seguro FROM exp_tareas INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE((exp_tareas.IdEntidad) = " + idEntidad + ") AND ((exp_tareas.FIni) >= '" + fechaInicio1Conv + "' And(exp_tareas.FIni) <= '" + fechaInicio2Conv + "')";
+
+                bindingSource1.DataSource = null;
+                tabla = Persistencia.SentenciasSQL.select(comm1);
+                bindingSource1.DataSource = tabla;
+                this.reportViewer1.RefreshReport();
+            }
+            else
+            {
+                //ABIERTAS
+                if (comboBoxEstado.SelectedIndex == 1)
+                {
+                    String comm1 = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tipostareas.TipoTarea, DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni,  DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin, exp_tareas.AcuerdoJunta, exp_tareas.Importante, exp_tareas.ProximaJunta, (SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea=exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado, exp_tareas.Seguro FROM exp_tareas INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE((exp_tareas.IdEntidad) = " + idEntidad + ") AND (exp_tareas.FFin) Is Null";
+                    bindingSource1.DataSource = null;
+                    tabla = Persistencia.SentenciasSQL.select(comm1);
+                    bindingSource1.DataSource = tabla;
+                    this.reportViewer1.RefreshReport();
+
+                }
+                //CERRADAS
+                else if (comboBoxEstado.SelectedIndex == 2)
+                {
+                    String comm1 = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tipostareas.TipoTarea, DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni,  DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin, exp_tareas.AcuerdoJunta, exp_tareas.Importante, exp_tareas.ProximaJunta, (SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea=exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado, exp_tareas.Seguro FROM exp_tareas INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE((exp_tareas.IdEntidad) = " + idEntidad + ") AND (exp_tareas.FFin) Is Not Null";
+                    bindingSource1.DataSource = null;
+                    tabla = Persistencia.SentenciasSQL.select(comm1);
+                    bindingSource1.DataSource = tabla;
+                    this.reportViewer1.RefreshReport();
+
+                }
+                //TODAS
+                else
+                {
+                    String comm1 = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tipostareas.TipoTarea, DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni,  DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin, exp_tareas.AcuerdoJunta, exp_tareas.Importante, exp_tareas.ProximaJunta, (SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea=exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado, exp_tareas.Seguro FROM exp_tareas INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE((exp_tareas.IdEntidad) = " + idEntidad + ")";
+                    bindingSource1.DataSource = null;
+                    tabla = Persistencia.SentenciasSQL.select(comm1);
+                    bindingSource1.DataSource = tabla;
+                    this.reportViewer1.RefreshReport();
+                }
+            }
+            
             filtro = tabla;
             bindingSource1.DataSource = tabla;
             String cadenaFiltro = "";
-            if (AcuerdoJunta == true || Importante == true || ProximaJunta == true || Seguro == true) filtroBusqueda += "con ";
             if (AcuerdoJunta == true)
             {
-                filtroBusqueda += "Acuerdo Junta";
                 cadenaFiltro = "AcuerdoJunta <> 0";
                 bindingSource1.DataSource = filtro;
             }
@@ -99,9 +175,7 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes
                 if (AcuerdoJunta == true)
                 {
                     cadenaFiltro += " AND ";
-                    filtroBusqueda += " y ";
                 }
-                filtroBusqueda += "Seguimiento"; 
                 cadenaFiltro += "Importante <> 0";
             }
             if (ProximaJunta == true)
@@ -109,27 +183,25 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes
                 if (AcuerdoJunta == true || Importante == true)
                 {
                     cadenaFiltro += " AND ";
-                    filtroBusqueda += " y ";
                 }
-                filtroBusqueda += "Próxima Junta";
                 cadenaFiltro += "ProximaJunta <> 0";
             }
             if (Seguro == true)
             {
                 if (AcuerdoJunta == true || Importante == true || ProximaJunta == true)
                 {
-                    filtroBusqueda += " y ";
                     cadenaFiltro += " AND ";
                 }
-                filtroBusqueda += "Seguro";
                 cadenaFiltro += "Seguro <> 0";
             }
             filtro.DefaultView.RowFilter = cadenaFiltro;
             bindingSource1.DataSource = filtro;
 
+            ReportParameter parametroini = new ReportParameter("fechaini", fechaInicio);
+            this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametroini });
 
-            ReportParameter parametro = new ReportParameter("fecha", fecha);
-            this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro });
+            ReportParameter parametrofin = new ReportParameter("fechafin", fechaFin);
+            this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametrofin });
 
             ReportParameter parametro1 = new ReportParameter("facuerdoJunta", AcuerdoJunta.ToString());
             this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro1 });
@@ -146,5 +218,6 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes
             this.reportViewer1.RefreshReport();
             
         }
+        
     }
 }

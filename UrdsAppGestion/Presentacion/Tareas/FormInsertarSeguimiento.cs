@@ -52,12 +52,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
             //NUEVO SEGUIMIENTO
             if (idSeguimiento == null)
             {
+                habilitarEdicion();
                 comboBoxUsuario.SelectedValue = Login.getId();
                 maskedTextBoxFecha.Text = string.Format("{0:dd/MM/yyyy HH:mm:ss}", DateTime.Now);
             }
             //EDITAR SEGUIMIENTO
             else if (edicion)
             {
+                habilitarEdicion();
                 cargarSeguimiento();
             }
             //VER SEGUIMIENTO
@@ -74,9 +76,15 @@ namespace UrdsAppGestión.Presentacion.Tareas
             comboBoxUsuario.DataSource = Persistencia.SentenciasSQL.select(sqlComboUser);
             comboBoxUsuario.DisplayMember = "Usuario";
             comboBoxUsuario.ValueMember = "IdURD";
-
-            String sqlComboNivel = "SELECT exp_tiposeguimiento.IdTipoSeg, exp_tiposeguimiento.`Tipo Seguimiento` FROM exp_tiposeguimiento";
-            comboBoxTipoSeguimiento.DataSource = Persistencia.SentenciasSQL.select(sqlComboNivel);
+            
+            DataTable tipos;
+            String sqlTipoSeg = "SELECT exp_tiposeguimiento.IdTipoSeg, exp_tiposeguimiento.`Tipo Seguimiento` FROM exp_tiposeguimiento";
+            tipos = Persistencia.SentenciasSQL.select(sqlTipoSeg);
+            DataRow filavacio = tipos.NewRow();
+            filavacio["Tipo Seguimiento"] = "";
+            filavacio["IdTipoSeg"] = 0;
+            tipos.Rows.InsertAt(filavacio, 0);
+            comboBoxTipoSeguimiento.DataSource = tipos;
             comboBoxTipoSeguimiento.DisplayMember = "Tipo Seguimiento";
             comboBoxTipoSeguimiento.ValueMember = "IdTipoSeg";
         }
@@ -88,8 +96,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String notas = textBoxNotas.Text;
             String usuario = comboBoxUsuario.SelectedValue.ToString();
             String fecha = Convert.ToDateTime(maskedTextBoxFecha.Text).ToString("yyyy-MM-dd HH:mm:ss");
-            String tipoSeguimiento = comboBoxTipoSeguimiento.SelectedValue.ToString();
-
+            String tipoSeguimiento = "NULL";
+            if (comboBoxTipoSeguimiento.SelectedValue.ToString() != "0")
+            {
+                tipoSeguimiento = comboBoxTipoSeguimiento.SelectedValue.ToString();
+            }
+            
             if (idSeguimiento == null)
             {
                 String sqlInsert = "INSERT INTO exp_notas (IdGestión,IdTipoSeg,Fecha,IdURD,Notas) VALUES (" + idGestion + "," + tipoSeguimiento + ",'" + fecha + "'," + usuario + ",'" + notas + "')";
