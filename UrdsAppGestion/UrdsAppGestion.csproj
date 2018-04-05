@@ -1156,6 +1156,12 @@
     <Compile Include="Presentacion\Tareas\FormInsertarSeguimiento.Designer.cs">
       <DependentUpon>FormInsertarSeguimiento.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarTipoGestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarTipoGestion.Designer.cs">
+      <DependentUpon>FormInsertarTipoGestion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Tareas\FormTareasPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1651,6 +1657,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormInsertarSeguimiento.resx">
       <DependentUpon>FormInsertarSeguimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormInsertarTipoGestion.resx">
+      <DependentUpon>FormInsertarTipoGestion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormTareasPrincipal.resx">
       <DependentUpon>FormTareasPrincipal.cs</DependentUpon>

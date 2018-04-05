@@ -39,10 +39,16 @@
             this.checkBoxImportante = new System.Windows.Forms.CheckBox();
             this.checkBoxSeguro = new System.Windows.Forms.CheckBox();
             this.buttonFiltrar = new System.Windows.Forms.Button();
-            this.maskedTextBox_fin = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox_FFin2 = new System.Windows.Forms.MaskedTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.maskedTextBox_inicio = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox_FFin1 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox_FIni2 = new System.Windows.Forms.MaskedTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.maskedTextBox_FIni1 = new System.Windows.Forms.MaskedTextBox();
+            this.comboBoxEstado = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetSeguimiento1)).BeginInit();
             this.SuspendLayout();
@@ -54,7 +60,7 @@
             reportDataSource1.Value = this.bindingSource1;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "UrdsAppGestión.Presentacion.Tareas.Informes.InformeSeguimiento.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(19, 54);
+            this.reportViewer1.Location = new System.Drawing.Point(19, 74);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ShowBackButton = false;
             this.reportViewer1.ShowContextMenu = false;
@@ -78,10 +84,10 @@
             // 
             this.checkBoxAcuerdoJunta.AutoSize = true;
             this.checkBoxAcuerdoJunta.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxAcuerdoJunta.Location = new System.Drawing.Point(658, 16);
+            this.checkBoxAcuerdoJunta.Location = new System.Drawing.Point(684, 24);
             this.checkBoxAcuerdoJunta.Name = "checkBoxAcuerdoJunta";
             this.checkBoxAcuerdoJunta.Size = new System.Drawing.Size(98, 17);
-            this.checkBoxAcuerdoJunta.TabIndex = 1;
+            this.checkBoxAcuerdoJunta.TabIndex = 5;
             this.checkBoxAcuerdoJunta.Text = "Acuerdo Junta:";
             this.checkBoxAcuerdoJunta.UseVisualStyleBackColor = true;
             // 
@@ -89,10 +95,10 @@
             // 
             this.checkBoxProximaJunta.AutoSize = true;
             this.checkBoxProximaJunta.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxProximaJunta.Location = new System.Drawing.Point(878, 16);
+            this.checkBoxProximaJunta.Location = new System.Drawing.Point(885, 24);
             this.checkBoxProximaJunta.Name = "checkBoxProximaJunta";
             this.checkBoxProximaJunta.Size = new System.Drawing.Size(82, 17);
-            this.checkBoxProximaJunta.TabIndex = 2;
+            this.checkBoxProximaJunta.TabIndex = 7;
             this.checkBoxProximaJunta.Text = "Prox. Junta:";
             this.checkBoxProximaJunta.UseVisualStyleBackColor = true;
             // 
@@ -100,10 +106,10 @@
             // 
             this.checkBoxImportante.AutoSize = true;
             this.checkBoxImportante.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxImportante.Location = new System.Drawing.Point(773, 16);
+            this.checkBoxImportante.Location = new System.Drawing.Point(794, 24);
             this.checkBoxImportante.Name = "checkBoxImportante";
             this.checkBoxImportante.Size = new System.Drawing.Size(79, 17);
-            this.checkBoxImportante.TabIndex = 3;
+            this.checkBoxImportante.TabIndex = 6;
             this.checkBoxImportante.Text = "Importante:";
             this.checkBoxImportante.UseVisualStyleBackColor = true;
             // 
@@ -111,36 +117,36 @@
             // 
             this.checkBoxSeguro.AutoSize = true;
             this.checkBoxSeguro.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxSeguro.Location = new System.Drawing.Point(982, 16);
+            this.checkBoxSeguro.Location = new System.Drawing.Point(979, 24);
             this.checkBoxSeguro.Name = "checkBoxSeguro";
             this.checkBoxSeguro.Size = new System.Drawing.Size(63, 17);
-            this.checkBoxSeguro.TabIndex = 4;
+            this.checkBoxSeguro.TabIndex = 8;
             this.checkBoxSeguro.Text = "Seguro:";
             this.checkBoxSeguro.UseVisualStyleBackColor = true;
             // 
             // buttonFiltrar
             // 
-            this.buttonFiltrar.Location = new System.Drawing.Point(1066, 11);
+            this.buttonFiltrar.Location = new System.Drawing.Point(1066, 9);
             this.buttonFiltrar.Name = "buttonFiltrar";
-            this.buttonFiltrar.Size = new System.Drawing.Size(75, 23);
-            this.buttonFiltrar.TabIndex = 5;
+            this.buttonFiltrar.Size = new System.Drawing.Size(75, 46);
+            this.buttonFiltrar.TabIndex = 9;
             this.buttonFiltrar.Text = "Filtrar";
             this.buttonFiltrar.UseVisualStyleBackColor = true;
             this.buttonFiltrar.Click += new System.EventHandler(this.buttonFiltrar_Click);
             // 
-            // maskedTextBox_fin
+            // maskedTextBox_FFin2
             // 
-            this.maskedTextBox_fin.Location = new System.Drawing.Point(581, 14);
-            this.maskedTextBox_fin.Mask = "00/00/0000";
-            this.maskedTextBox_fin.Name = "maskedTextBox_fin";
-            this.maskedTextBox_fin.Size = new System.Drawing.Size(71, 20);
-            this.maskedTextBox_fin.TabIndex = 19;
-            this.maskedTextBox_fin.ValidatingType = typeof(System.DateTime);
+            this.maskedTextBox_FFin2.Location = new System.Drawing.Point(597, 35);
+            this.maskedTextBox_FFin2.Mask = "00/00/0000";
+            this.maskedTextBox_FFin2.Name = "maskedTextBox_FFin2";
+            this.maskedTextBox_FFin2.Size = new System.Drawing.Size(71, 20);
+            this.maskedTextBox_FFin2.TabIndex = 4;
+            this.maskedTextBox_FFin2.ValidatingType = typeof(System.DateTime);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(539, 17);
+            this.label4.Location = new System.Drawing.Point(549, 39);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(36, 13);
             this.label4.TabIndex = 21;
@@ -149,30 +155,94 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(384, 18);
+            this.label5.Location = new System.Drawing.Point(368, 39);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 13);
+            this.label5.Size = new System.Drawing.Size(86, 13);
             this.label5.TabIndex = 20;
-            this.label5.Text = "Fecha desde:";
+            this.label5.Text = "Fecha fin desde:";
             // 
-            // maskedTextBox_inicio
+            // maskedTextBox_FFin1
             // 
-            this.maskedTextBox_inicio.Location = new System.Drawing.Point(462, 14);
-            this.maskedTextBox_inicio.Mask = "00/00/0000";
-            this.maskedTextBox_inicio.Name = "maskedTextBox_inicio";
-            this.maskedTextBox_inicio.Size = new System.Drawing.Size(71, 20);
-            this.maskedTextBox_inicio.TabIndex = 18;
-            this.maskedTextBox_inicio.ValidatingType = typeof(System.DateTime);
+            this.maskedTextBox_FFin1.Location = new System.Drawing.Point(466, 35);
+            this.maskedTextBox_FFin1.Mask = "00/00/0000";
+            this.maskedTextBox_FFin1.Name = "maskedTextBox_FFin1";
+            this.maskedTextBox_FFin1.Size = new System.Drawing.Size(71, 20);
+            this.maskedTextBox_FFin1.TabIndex = 3;
+            this.maskedTextBox_FFin1.ValidatingType = typeof(System.DateTime);
+            // 
+            // maskedTextBox_FIni2
+            // 
+            this.maskedTextBox_FIni2.Location = new System.Drawing.Point(597, 9);
+            this.maskedTextBox_FIni2.Mask = "00/00/0000";
+            this.maskedTextBox_FIni2.Name = "maskedTextBox_FIni2";
+            this.maskedTextBox_FIni2.Size = new System.Drawing.Size(71, 20);
+            this.maskedTextBox_FIni2.TabIndex = 2;
+            this.maskedTextBox_FIni2.ValidatingType = typeof(System.DateTime);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(549, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(36, 13);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "hasta:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(355, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(99, 13);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "Fecha inicio desde:";
+            // 
+            // maskedTextBox_FIni1
+            // 
+            this.maskedTextBox_FIni1.Location = new System.Drawing.Point(466, 9);
+            this.maskedTextBox_FIni1.Mask = "00/00/0000";
+            this.maskedTextBox_FIni1.Name = "maskedTextBox_FIni1";
+            this.maskedTextBox_FIni1.Size = new System.Drawing.Size(71, 20);
+            this.maskedTextBox_FIni1.TabIndex = 1;
+            this.maskedTextBox_FIni1.ValidatingType = typeof(System.DateTime);
+            // 
+            // comboBoxEstado
+            // 
+            this.comboBoxEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxEstado.FormattingEnabled = true;
+            this.comboBoxEstado.Items.AddRange(new object[] {
+            "Todas",
+            "Abiertas",
+            "Cerradas"});
+            this.comboBoxEstado.Location = new System.Drawing.Point(212, 20);
+            this.comboBoxEstado.Name = "comboBoxEstado";
+            this.comboBoxEstado.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxEstado.TabIndex = 26;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(163, 25);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(43, 13);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "Estado:";
             // 
             // VistaInformeSeguimiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1155, 757);
-            this.Controls.Add(this.maskedTextBox_fin);
+            this.ClientSize = new System.Drawing.Size(1155, 777);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.comboBoxEstado);
+            this.Controls.Add(this.maskedTextBox_FIni2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.maskedTextBox_FIni1);
+            this.Controls.Add(this.maskedTextBox_FFin2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.maskedTextBox_inicio);
+            this.Controls.Add(this.maskedTextBox_FFin1);
             this.Controls.Add(this.buttonFiltrar);
             this.Controls.Add(this.checkBoxSeguro);
             this.Controls.Add(this.checkBoxImportante);
@@ -201,9 +271,15 @@
         private System.Windows.Forms.CheckBox checkBoxImportante;
         private System.Windows.Forms.CheckBox checkBoxSeguro;
         private System.Windows.Forms.Button buttonFiltrar;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox_fin;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox_FFin2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox_inicio;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox_FFin1;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox_FIni2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox_FIni1;
+        private System.Windows.Forms.ComboBox comboBoxEstado;
+        private System.Windows.Forms.Label label6;
     }
 }

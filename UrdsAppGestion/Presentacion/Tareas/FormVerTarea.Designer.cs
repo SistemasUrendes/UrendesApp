@@ -60,11 +60,12 @@
             this.buttonAddSeguimiento = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemEditarGestion = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemEliminarGestion = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemAddSeguimiento = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCorreoResponsable = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCorreoSeguir = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCorreoGrupo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemInfoEntidad = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemEliminarGestion = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemEditarSeguimiento = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemEliminarSeguimiento = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,7 +91,7 @@
             this.checkBoxImportante = new System.Windows.Forms.CheckBox();
             this.textBoxTareaNueva = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.toolStripMenuItemAddSeguimiento = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonAddTipoGestion = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGestiones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSeguimientos)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -403,7 +404,7 @@
             this.toolStripMenuItemInfoEntidad,
             this.toolStripMenuItemEliminarGestion});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(189, 180);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(189, 158);
             // 
             // toolStripMenuItemEditarGestion
             // 
@@ -412,12 +413,12 @@
             this.toolStripMenuItemEditarGestion.Text = "Editar";
             this.toolStripMenuItemEditarGestion.Click += new System.EventHandler(this.toolStripMenuItemEditarGestion_Click);
             // 
-            // toolStripMenuItemEliminarGestion
+            // toolStripMenuItemAddSeguimiento
             // 
-            this.toolStripMenuItemEliminarGestion.Name = "toolStripMenuItemEliminarGestion";
-            this.toolStripMenuItemEliminarGestion.Size = new System.Drawing.Size(188, 22);
-            this.toolStripMenuItemEliminarGestion.Text = "Eliminar";
-            this.toolStripMenuItemEliminarGestion.Click += new System.EventHandler(this.toolStripMenuItemEliminarGestion_Click);
+            this.toolStripMenuItemAddSeguimiento.Name = "toolStripMenuItemAddSeguimiento";
+            this.toolStripMenuItemAddSeguimiento.Size = new System.Drawing.Size(188, 22);
+            this.toolStripMenuItemAddSeguimiento.Text = "Añadir Seguimiento";
+            this.toolStripMenuItemAddSeguimiento.Click += new System.EventHandler(this.toolStripMenuItemAddSeguimiento_Click);
             // 
             // toolStripMenuItemCorreoResponsable
             // 
@@ -446,6 +447,13 @@
             this.toolStripMenuItemInfoEntidad.Size = new System.Drawing.Size(188, 22);
             this.toolStripMenuItemInfoEntidad.Text = "Ver Entidad";
             this.toolStripMenuItemInfoEntidad.Click += new System.EventHandler(this.toolStripMenuItemInfoEntidad_Click);
+            // 
+            // toolStripMenuItemEliminarGestion
+            // 
+            this.toolStripMenuItemEliminarGestion.Name = "toolStripMenuItemEliminarGestion";
+            this.toolStripMenuItemEliminarGestion.Size = new System.Drawing.Size(188, 22);
+            this.toolStripMenuItemEliminarGestion.Text = "Eliminar";
+            this.toolStripMenuItemEliminarGestion.Click += new System.EventHandler(this.toolStripMenuItemEliminarGestion_Click);
             // 
             // contextMenuStrip2
             // 
@@ -689,18 +697,22 @@
             this.label12.TabIndex = 40;
             this.label12.Text = "Ir a Tarea:";
             // 
-            // toolStripMenuItemAddSeguimiento
+            // buttonAddTipoGestion
             // 
-            this.toolStripMenuItemAddSeguimiento.Name = "toolStripMenuItemAddSeguimiento";
-            this.toolStripMenuItemAddSeguimiento.Size = new System.Drawing.Size(188, 22);
-            this.toolStripMenuItemAddSeguimiento.Text = "Añadir Seguimiento";
-            this.toolStripMenuItemAddSeguimiento.Click += new System.EventHandler(this.toolStripMenuItemAddSeguimiento_Click);
+            this.buttonAddTipoGestion.Location = new System.Drawing.Point(1151, 583);
+            this.buttonAddTipoGestion.Name = "buttonAddTipoGestion";
+            this.buttonAddTipoGestion.Size = new System.Drawing.Size(75, 23);
+            this.buttonAddTipoGestion.TabIndex = 41;
+            this.buttonAddTipoGestion.Text = "Añadir Tipo";
+            this.buttonAddTipoGestion.UseVisualStyleBackColor = true;
+            this.buttonAddTipoGestion.Click += new System.EventHandler(this.buttonAddTipoGestion_Click);
             // 
             // FormVerTarea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1239, 625);
+            this.Controls.Add(this.buttonAddTipoGestion);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.textBoxTareaNueva);
             this.Controls.Add(this.checkBoxImportante);
@@ -823,5 +835,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemInfoEntidad;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAddSeguimiento;
+        private System.Windows.Forms.Button buttonAddTipoGestion;
     }
 }

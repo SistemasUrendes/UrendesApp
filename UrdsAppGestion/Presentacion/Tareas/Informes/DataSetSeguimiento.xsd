@@ -12,7 +12,7 @@
   <xs:element name="DataSetSeguimiento" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetSeguimiento" msprop:Generator_UserDSName="DataSetSeguimiento">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IdTarea" msprop:Generator_ColumnVarNameInTable="columnIdTarea" msprop:Generator_ColumnPropNameInRow="IdTarea" msprop:Generator_ColumnPropNameInTable="IdTareaColumn" msprop:Generator_UserColumnName="IdTarea" type="xs:string" minOccurs="0" />
@@ -24,6 +24,7 @@
               <xs:element name="Importante" msprop:Generator_ColumnVarNameInTable="columnImportante" msprop:Generator_ColumnPropNameInRow="Importante" msprop:Generator_ColumnPropNameInTable="ImportanteColumn" msprop:Generator_UserColumnName="Importante" type="xs:string" minOccurs="0" />
               <xs:element name="ProximaJunta" msprop:Generator_ColumnVarNameInTable="columnProximaJunta" msprop:Generator_ColumnPropNameInRow="ProximaJunta" msprop:Generator_ColumnPropNameInTable="ProximaJuntaColumn" msprop:Generator_UserColumnName="ProximaJunta" type="xs:string" minOccurs="0" />
               <xs:element name="Seguro" msprop:Generator_ColumnVarNameInTable="columnSeguro" msprop:Generator_ColumnPropNameInRow="Seguro" msprop:Generator_ColumnPropNameInTable="SeguroColumn" msprop:Generator_UserColumnName="Seguro" type="xs:string" minOccurs="0" />
+              <xs:element name="Estado" msprop:Generator_ColumnVarNameInTable="columnEstado" msprop:Generator_ColumnPropNameInRow="Estado" msprop:Generator_ColumnPropNameInTable="EstadoColumn" msprop:Generator_UserColumnName="Estado" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
