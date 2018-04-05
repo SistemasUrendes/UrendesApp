@@ -1132,6 +1132,12 @@
     <Compile Include="Presentacion\Tareas\FormCorreoGrupo.Designer.cs">
       <DependentUpon>FormCorreoGrupo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Tareas\FormFiltroAvanzado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormFiltroAvanzado.Designer.cs">
+      <DependentUpon>FormFiltroAvanzado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Tareas\FormInsertarContacto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1645,6 +1651,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormCorreoGrupo.resx">
       <DependentUpon>FormCorreoGrupo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormFiltroAvanzado.resx">
+      <DependentUpon>FormFiltroAvanzado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormInsertarContacto.resx">
       <DependentUpon>FormInsertarContacto.cs</DependentUpon>
