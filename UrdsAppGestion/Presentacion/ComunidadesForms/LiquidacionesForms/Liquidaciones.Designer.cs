@@ -110,7 +110,7 @@
             this.abrirLiquidaciónToolStripMenuItem,
             this.añadirNotaToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(177, 180);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(177, 158);
             // 
             // verGastosToolStripMenuItem
             // 
@@ -258,13 +258,13 @@
         private System.Windows.Forms.ToolStripMenuItem verRepartoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem establecerPrincipalToolStripMenuItem;
         private System.Windows.Forms.Button button_enviar;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox_filtro;
         private System.Windows.Forms.ToolStripMenuItem cerrarLiquidaciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitarPrincipalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem abrirLiquidaciónToolStripMenuItem;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox_informes;
         private System.Windows.Forms.ToolStripMenuItem añadirNotaToolStripMenuItem;
+        public System.Windows.Forms.ComboBox comboBox_filtro;
+        public System.Windows.Forms.ComboBox comboBox_informes;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label label2;
     }
 }
