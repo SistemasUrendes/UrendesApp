@@ -16,27 +16,20 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes
         String idEntidad;
         DataTable tabla;
         DataTable filtro;
-        public VistaInformeSeguimiento(String idEntidad,String nombreComunidad)
+        public VistaInformeSeguimiento(String idEntidad,String nombreComunidad,DataTable tabla,String Fini1,String Fini2,String FFin1,String FFin2,String Acuerdo,String Importante,String Proxima,  String Seguro)
         {
             InitializeComponent();
             this.idEntidad = idEntidad;
-
-            String comm1 = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tipostareas.TipoTarea, DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni,  DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin, exp_tareas.AcuerdoJunta, exp_tareas.Importante, exp_tareas.ProximaJunta, (SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea=exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado, exp_tareas.Seguro FROM exp_tareas INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE((exp_tareas.IdEntidad) = " + idEntidad + ")";
+            this.tabla = tabla;
+            //String comm1 = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tipostareas.TipoTarea, DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni,  DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin, exp_tareas.AcuerdoJunta, exp_tareas.Importante, exp_tareas.ProximaJunta, (SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea=exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado, exp_tareas.Seguro FROM exp_tareas INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE((exp_tareas.IdEntidad) = " + idEntidad + ")";
             
 
-            bindingSource1.DataSource = null;
-            tabla = Persistencia.SentenciasSQL.select(comm1);
+            //bindingSource1.DataSource = null;
+            //tabla = Persistencia.SentenciasSQL.select(comm1);
+
             bindingSource1.DataSource = tabla;
-
-            ReportParameter parametro = new ReportParameter("nombreComunidad", nombreComunidad);
-            this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro });
+            updateParametros(nombreComunidad,Fini1,Fini2,FFin1,FFin2,Acuerdo,Importante,Proxima,Seguro);
             
-            ReportParameter parametro2 = new ReportParameter("fechaini", "");
-            this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro2 });
-            ReportParameter parametro3 = new ReportParameter("fechafin", "");
-            this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro3 });
-
-
             this.reportViewer1.RefreshReport();
 
         }
@@ -46,7 +39,39 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes
 
             this.reportViewer1.RefreshReport();
         }
-        
+
+        private void updateParametros(String nombreComunidad,String Fini1, String Fini2, String FFin1, String FFin2, String Acuerdo, String Importante, String Proxima, String Seguro)
+        {
+
+            ReportParameter parametro = new ReportParameter("nombreComunidad", nombreComunidad);
+            this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro });
+            
+            ReportParameter parametro1 = new ReportParameter("ffechaini1", Fini1);
+            this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro1 });
+
+            ReportParameter parametro2 = new ReportParameter("ffechaini2", Fini2);
+            this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro2 });
+            
+            ReportParameter parametro3 = new ReportParameter("ffechafin1", Fini1);
+            this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro3 });
+
+            ReportParameter parametro4 = new ReportParameter("ffechafin2", FFin2);
+            this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro4 });
+            
+            ReportParameter parametro5 = new ReportParameter("facuerdoJunta", Acuerdo);
+            this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro5 });
+
+            ReportParameter parametro6 = new ReportParameter("fimportante", Importante);
+            this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro6 });
+
+            ReportParameter parametro7 = new ReportParameter("fproximaJunta", Proxima);
+            this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro7 });
+
+            ReportParameter parametro8 = new ReportParameter("fseguro", Seguro);
+            this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro8 });
+            
+        }
+        /*
         private void buttonFiltrar_Click(object sender, EventArgs e)
         {
             String fechaInicio1 = maskedTextBox_FIni1.Text;
@@ -220,6 +245,6 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes
             this.reportViewer1.RefreshReport();
             
         }
-        
+        */
     }
 }

@@ -17,16 +17,16 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="IdTarea">
-          <DataField>IdTarea</DataField>
+        <Field Name="Id">
+          <DataField>Id</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Descripción">
-          <DataField>Descripción</DataField>
+        <Field Name="Entidad">
+          <DataField>Entidad</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TipoTarea">
-          <DataField>TipoTarea</DataField>
+        <Field Name="T">
+          <DataField>T</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="FIni">
@@ -37,16 +37,16 @@
           <DataField>FFin</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="AcuerdoJunta">
-          <DataField>AcuerdoJunta</DataField>
+        <Field Name="A">
+          <DataField>A</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Importante">
-          <DataField>Importante</DataField>
+        <Field Name="I">
+          <DataField>I</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ProximaJunta">
-          <DataField>ProximaJunta</DataField>
+        <Field Name="P">
+          <DataField>P</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Seguro">
@@ -55,6 +55,10 @@
         </Field>
         <Field Name="Estado">
           <DataField>Estado</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Descripción">
+          <DataField>Descripción</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
@@ -123,7 +127,7 @@
                   <Width>0.7cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>12.14525cm</Width>
+                  <Width>10.92178cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>3.88653cm</Width>
@@ -144,7 +148,7 @@
                   <Width>0.7cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.7cm</Width>
+                  <Width>3.41303cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -160,9 +164,9 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=IIf(Fields!TipoTarea.Value = "Administración", "A",IIf(Fields!TipoTarea.Value = "Incidencias","I","M"))</Value>
+                                  <Value>=Fields!T.Value</Value>
                                   <Style>
-                                    <FontWeight>=IIf(Fields!TipoTarea.Value = "Incidencias","Bold","Normal")</FontWeight>
+                                    <FontWeight>=IIf(Fields!T.Value = "I","Bold","Normal")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -177,7 +181,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=IIf(Fields!TipoTarea.Value = "Incidencias","LightGrey","Transparent")</BackgroundColor>
+                            <BackgroundColor>=IIf(Fields!T.Value = "I","LightGrey","Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -188,7 +192,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Descripción1">
+                        <Textbox Name="Descripción">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -197,20 +201,20 @@
                                 <TextRun>
                                   <Value>=Fields!Descripción.Value</Value>
                                   <Style>
-                                    <FontWeight>=IIf(Fields!TipoTarea.Value = "Incidencias","Bold","Normal")</FontWeight>
+                                    <FontWeight>=IIf(Fields!T.Value = "I","Bold","Normal")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Descripción1</rd:DefaultName>
+                          <rd:DefaultName>Descripción</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=IIf(Fields!TipoTarea.Value = "Incidencias","LightGrey","Transparent")</BackgroundColor>
+                            <BackgroundColor>=IIf(Fields!T.Value = "I","LightGrey","Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -230,7 +234,7 @@
                                 <TextRun>
                                   <Value>=Fields!Estado.Value</Value>
                                   <Style>
-                                    <FontWeight>=IIf(Fields!TipoTarea.Value = "Incidencias","Bold","Normal")</FontWeight>
+                                    <FontWeight>=IIf(Fields!T.Value = "I","Bold","Normal")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -243,7 +247,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=IIf(Fields!TipoTarea.Value = "Incidencias","LightGrey","Transparent")</BackgroundColor>
+                            <BackgroundColor>=IIf(Fields!T.Value = "I","LightGrey","Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -263,7 +267,7 @@
                                 <TextRun>
                                   <Value>=Fields!FIni.Value</Value>
                                   <Style>
-                                    <FontWeight>=IIf(Fields!TipoTarea.Value = "Incidencias","Bold","Normal")</FontWeight>
+                                    <FontWeight>=IIf(Fields!T.Value = "I","Bold","Normal")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -278,7 +282,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=IIf(Fields!TipoTarea.Value = "Incidencias","LightGrey","Transparent")</BackgroundColor>
+                            <BackgroundColor>=IIf(Fields!T.Value = "I","LightGrey","Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -298,7 +302,7 @@
                                 <TextRun>
                                   <Value>=Fields!FFin.Value</Value>
                                   <Style>
-                                    <FontWeight>=IIf(Fields!TipoTarea.Value = "Incidencias","Bold","Normal")</FontWeight>
+                                    <FontWeight>=IIf(Fields!T.Value = "I","Bold","Normal")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -313,7 +317,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=IIf(Fields!TipoTarea.Value = "Incidencias","LightGrey","Transparent")</BackgroundColor>
+                            <BackgroundColor>=IIf(Fields!T.Value = "I","LightGrey","Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -324,17 +328,17 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="AcuerdoJunta">
+                        <Textbox Name="A">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=IIf( Fields!AcuerdoJunta.Value, Chr(82), "")</Value>
+                                  <Value>=IIF(Fields!A.Value,Chr(82),"")</Value>
                                   <Style>
                                     <FontFamily>Wingdings 2</FontFamily>
-                                    <FontWeight>=IIf(Fields!TipoTarea.Value = "Incidencias","Bold","Normal")</FontWeight>
+                                    <FontWeight>=IIf(Fields!T.Value = "I","Bold","Normal")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -343,13 +347,13 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>AcuerdoJunta</rd:DefaultName>
+                          <rd:DefaultName>A</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=IIf(Fields!TipoTarea.Value = "Incidencias","LightGrey","Transparent")</BackgroundColor>
+                            <BackgroundColor>=IIf(Fields!T.Value = "I","LightGrey","Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -360,17 +364,17 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Importante">
+                        <Textbox Name="I">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=IIf( Fields!Importante.Value, Chr(82), "")</Value>
+                                  <Value>=IIF(Fields!I.Value,Chr(82),"")</Value>
                                   <Style>
                                     <FontFamily>Wingdings 2</FontFamily>
-                                    <FontWeight>=IIf(Fields!TipoTarea.Value = "Incidencias","Bold","Normal")</FontWeight>
+                                    <FontWeight>=IIf(Fields!T.Value = "I","Bold","Normal")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -379,13 +383,13 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Importante</rd:DefaultName>
+                          <rd:DefaultName>I</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=IIf(Fields!TipoTarea.Value = "Incidencias","LightGrey","Transparent")</BackgroundColor>
+                            <BackgroundColor>=IIf(Fields!T.Value = "I","LightGrey","Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -396,17 +400,17 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="ProximaJunta">
+                        <Textbox Name="P">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=IIf( Fields!ProximaJunta.Value, Chr(82), "")</Value>
+                                  <Value>=IIF(Fields!P.Value,Chr(82),"")</Value>
                                   <Style>
                                     <FontFamily>Wingdings 2</FontFamily>
-                                    <FontWeight>=IIf(Fields!TipoTarea.Value = "Incidencias","Bold","Normal")</FontWeight>
+                                    <FontWeight>=IIf(Fields!T.Value = "I","Bold","Normal")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -415,13 +419,13 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>ProximaJunta</rd:DefaultName>
+                          <rd:DefaultName>P</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=IIf(Fields!TipoTarea.Value = "Incidencias","LightGrey","Transparent")</BackgroundColor>
+                            <BackgroundColor>=IIf(Fields!T.Value = "I","LightGrey","Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -439,10 +443,9 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=IIf( Fields!Seguro.Value, Chr(82), "")</Value>
+                                  <Value>=Fields!Seguro.Value</Value>
                                   <Style>
-                                    <FontFamily>Wingdings 2</FontFamily>
-                                    <FontWeight>=IIf(Fields!TipoTarea.Value = "Incidencias","Bold","Normal")</FontWeight>
+                                    <FontWeight>=IIf(Fields!T.Value = "I","Bold","Normal")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -457,7 +460,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=IIf(Fields!TipoTarea.Value = "Incidencias","LightGrey","Transparent")</BackgroundColor>
+                            <BackgroundColor>=IIf(Fields!T.Value = "I","LightGrey","Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -482,7 +485,7 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>Cat.</Value>
+                                <Value>T</Value>
                                 <Style>
                                   <FontWeight>Bold</FontWeight>
                                 </Style>
@@ -508,7 +511,7 @@
                           <PaddingRight>1pt</PaddingRight>
                           <PaddingTop>1pt</PaddingTop>
                           <PaddingBottom>1pt</PaddingBottom>
-                          <WritingMode>Rotate270</WritingMode>
+                          <WritingMode>Horizontal</WritingMode>
                         </Style>
                       </Textbox>
                     </CellContents>
@@ -694,20 +697,7 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>Junta</Value>
-                                <Style>
-                                  <FontWeight>Bold</FontWeight>
-                                </Style>
-                              </TextRun>
-                            </TextRuns>
-                            <Style>
-                              <TextAlign>Center</TextAlign>
-                            </Style>
-                          </Paragraph>
-                          <Paragraph>
-                            <TextRuns>
-                              <TextRun>
-                                <Value />
+                                <Value>A</Value>
                                 <Style>
                                   <FontWeight>Bold</FontWeight>
                                 </Style>
@@ -732,7 +722,7 @@
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
                           <PaddingBottom>2pt</PaddingBottom>
-                          <WritingMode>Rotate270</WritingMode>
+                          <WritingMode>Horizontal</WritingMode>
                         </Style>
                       </Textbox>
                     </CellContents>
@@ -749,7 +739,7 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>Imp.</Value>
+                                <Value>I</Value>
                                 <Style>
                                   <FontWeight>Bold</FontWeight>
                                 </Style>
@@ -774,7 +764,7 @@
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
                           <PaddingBottom>2pt</PaddingBottom>
-                          <WritingMode>Rotate270</WritingMode>
+                          <WritingMode>Horizontal</WritingMode>
                         </Style>
                       </Textbox>
                     </CellContents>
@@ -791,7 +781,7 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>Próxima</Value>
+                                <Value>P</Value>
                                 <Style>
                                   <FontWeight>Bold</FontWeight>
                                 </Style>
@@ -816,7 +806,7 @@
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
                           <PaddingBottom>2pt</PaddingBottom>
-                          <WritingMode>Rotate270</WritingMode>
+                          <WritingMode>Horizontal</WritingMode>
                         </Style>
                       </Textbox>
                     </CellContents>
@@ -826,7 +816,7 @@
                   <TablixHeader>
                     <Size>0.62646cm</Size>
                     <CellContents>
-                      <Textbox Name="Textbox10">
+                      <Textbox Name="Textbox4">
                         <CanGrow>true</CanGrow>
                         <KeepTogether>true</KeepTogether>
                         <Paragraphs>
@@ -844,7 +834,7 @@
                             </Style>
                           </Paragraph>
                         </Paragraphs>
-                        <rd:DefaultName>Textbox10</rd:DefaultName>
+                        <rd:DefaultName>Textbox4</rd:DefaultName>
                         <Style>
                           <Border>
                             <Color>LightGrey</Color>
@@ -858,7 +848,7 @@
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
                           <PaddingBottom>2pt</PaddingBottom>
-                          <WritingMode>Rotate270</WritingMode>
+                          <WritingMode>Horizontal</WritingMode>
                         </Style>
                       </Textbox>
                     </CellContents>
@@ -869,29 +859,29 @@
             <TablixRowHierarchy>
               <TablixMembers>
                 <TablixMember>
-                  <Group Name="IdTarea">
+                  <Group Name="Id">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!IdTarea.Value</GroupExpression>
+                      <GroupExpression>=Fields!Id.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!IdTarea.Value</Value>
+                      <Value>=Fields!Id.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
                     <Size>1.1417cm</Size>
                     <CellContents>
-                      <Textbox Name="IdTarea1">
+                      <Textbox Name="Id">
                         <CanGrow>true</CanGrow>
                         <KeepTogether>true</KeepTogether>
                         <Paragraphs>
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>=Fields!IdTarea.Value</Value>
+                                <Value>=Fields!Id.Value</Value>
                                 <Style>
-                                  <FontWeight>=IIf(Fields!TipoTarea.Value = "Incidencias","Bold","Normal")</FontWeight>
+                                  <FontWeight>=IIf(Fields!T.Value = "I","Bold","Normal")</FontWeight>
                                 </Style>
                               </TextRun>
                             </TextRuns>
@@ -900,13 +890,13 @@
                             </Style>
                           </Paragraph>
                         </Paragraphs>
-                        <rd:DefaultName>IdTarea1</rd:DefaultName>
+                        <rd:DefaultName>Id</rd:DefaultName>
                         <Style>
                           <Border>
                             <Color>LightGrey</Color>
                             <Style>Solid</Style>
                           </Border>
-                          <BackgroundColor>=IIf(Fields!TipoTarea.Value = "Incidencias","LightGrey","Transparent")</BackgroundColor>
+                          <BackgroundColor>=IIf(Fields!T.Value = "I","LightGrey","Transparent")</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -922,7 +912,7 @@
             <Top>2.27486cm</Top>
             <Left>0.73766cm</Left>
             <Height>1.25292cm</Height>
-            <Width>24.67348cm</Width>
+            <Width>26.16304cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1247,7 +1237,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=SUM(IIF(Fields!Seguro.Value = "true", 1, 0))</Value>
+                    <Value>=SUM(IIF(Fields!Seguro.Value like "", 0, 1))</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -1258,7 +1248,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox27</rd:DefaultName>
             <Top>3.66889cm</Top>
-            <Left>24.71113cm</Left>
+            <Left>23.48767cm</Left>
             <Height>0.6cm</Height>
             <Width>0.7cm</Width>
             <ZIndex>11</ZIndex>
@@ -1279,7 +1269,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=SUM(IIF(Fields!ProximaJunta.Value = "true", 1, 0))</Value>
+                    <Value>=SUM(IIF(Fields!P.Value = "true", 1, 0))</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -1290,7 +1280,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox27</rd:DefaultName>
             <Top>3.66889cm</Top>
-            <Left>24.01113cm</Left>
+            <Left>22.78767cm</Left>
             <Height>0.6cm</Height>
             <Width>0.7cm</Width>
             <ZIndex>12</ZIndex>
@@ -1311,7 +1301,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=SUM(IIF(Fields!Importante.Value = "true", 1, 0))</Value>
+                    <Value>=SUM(IIF(Fields!I.Value = "true", 1, 0))</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -1322,7 +1312,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox27</rd:DefaultName>
             <Top>3.66889cm</Top>
-            <Left>23.31113cm</Left>
+            <Left>22.08767cm</Left>
             <Height>0.6cm</Height>
             <Width>0.7cm</Width>
             <ZIndex>13</ZIndex>
@@ -1343,7 +1333,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=SUM(IIF(Fields!AcuerdoJunta.Value = "true", 1, 0))</Value>
+                    <Value>=SUM(IIF(Fields!A.Value = "true", 1, 0))</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -1354,7 +1344,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox27</rd:DefaultName>
             <Top>3.66889cm</Top>
-            <Left>22.61113cm</Left>
+            <Left>21.38767cm</Left>
             <Height>0.6cm</Height>
             <Width>0.7cm</Width>
             <ZIndex>14</ZIndex>
@@ -1384,7 +1374,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox34</rd:DefaultName>
             <Top>3.66889cm</Top>
-            <Left>16.95222cm</Left>
+            <Left>15.72876cm</Left>
             <Height>0.6cm</Height>
             <Width>2.96312cm</Width>
             <ZIndex>15</ZIndex>
@@ -1405,7 +1395,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>="Incidencias: " &amp; SUM(IIF(Fields!TipoTarea.Value = "Incidencias", 1, 0))</Value>
+                    <Value>="Incidencias: " &amp; SUM(IIF(Fields!T.Value = "I", 1, 0))</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -1414,7 +1404,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox36</rd:DefaultName>
             <Top>3.66889cm</Top>
-            <Left>19.97002cm</Left>
+            <Left>18.74656cm</Left>
             <Height>0.6cm</Height>
             <Width>2.57772cm</Width>
             <ZIndex>16</ZIndex>
@@ -1428,25 +1418,25 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="fechaini">
+          <Textbox Name="ffechaini1">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Parameters!fechaini.Value</Value>
+                    <Value>=Parameters!ffechaini1.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>fechaini</rd:DefaultName>
-            <Top>0.48162cm</Top>
-            <Left>13.48808cm</Left>
+            <rd:DefaultName>ffechaini1</rd:DefaultName>
+            <Top>0.44634cm</Top>
+            <Left>15.13981cm</Left>
             <Height>0.6cm</Height>
-            <Width>5.89959cm</Width>
+            <Width>2.5cm</Width>
             <ZIndex>17</ZIndex>
             <Style>
               <Border>
@@ -1458,26 +1448,86 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="fechafin">
+          <Textbox Name="ffechaini2">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Parameters!fechafin.Value</Value>
+                    <Value>=Parameters!ffechaini2.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>fechafin</rd:DefaultName>
-            <Top>0.48162cm</Top>
-            <Left>19.56406cm</Left>
+            <rd:DefaultName>ffechaini2</rd:DefaultName>
+            <Top>0.44634cm</Top>
+            <Left>17.8162cm</Left>
             <Height>0.6cm</Height>
-            <Width>5.92033cm</Width>
+            <Width>2.5cm</Width>
             <ZIndex>18</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="ffechafin1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!ffechafin1.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>ffechafin1</rd:DefaultName>
+            <Top>0.44634cm</Top>
+            <Left>21.72431cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.5cm</Width>
+            <ZIndex>19</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="ffechafin2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!ffechafin2.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>ffechafin2</rd:DefaultName>
+            <Top>0.44634cm</Top>
+            <Left>24.36542cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.5cm</Width>
+            <ZIndex>20</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1492,7 +1542,7 @@
         <Height>2.35997in</Height>
         <Style />
       </Body>
-      <Width>10.70769in</Width>
+      <Width>10.71305in</Width>
       <Page>
         <PageHeader>
           <Height>2.54cm</Height>
@@ -1659,12 +1709,6 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="fechaini">
-      <DataType>String</DataType>
-      <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
     <ReportParameter Name="facuerdoJunta">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
@@ -1689,7 +1733,25 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="fechafin">
+    <ReportParameter Name="ffechaini1">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ffechaini2">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ffechafin1">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ffechafin2">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>

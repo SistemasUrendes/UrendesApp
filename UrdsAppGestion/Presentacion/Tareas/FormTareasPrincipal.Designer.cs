@@ -280,7 +280,7 @@
             this.comboBoxInformes.Size = new System.Drawing.Size(121, 21);
             this.comboBoxInformes.TabIndex = 23;
             this.comboBoxInformes.Visible = false;
-            this.comboBoxInformes.SelectionChangeCommitted += new System.EventHandler(this.comboBoxInformes_SelectionChangeCommitted);
+           
             // 
             // label9
             // 
@@ -294,7 +294,7 @@
             // 
             // buttonReset
             // 
-            this.buttonReset.Location = new System.Drawing.Point(1056, 38);
+            this.buttonReset.Location = new System.Drawing.Point(1056, 36);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Size = new System.Drawing.Size(84, 23);
             this.buttonReset.TabIndex = 27;

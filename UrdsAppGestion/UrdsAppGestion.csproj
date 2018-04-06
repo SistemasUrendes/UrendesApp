@@ -1180,6 +1180,9 @@
     <Compile Include="Presentacion\Tareas\FormVerTarea.Designer.cs">
       <DependentUpon>FormVerTarea.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Tareas\Informes\DataSetSeguimiento.cs">
+      <DependentUpon>DataSetSeguimiento.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Tareas\Informes\DataSetSeguimiento.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
