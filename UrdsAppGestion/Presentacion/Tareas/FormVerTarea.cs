@@ -158,7 +158,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         
         public void cargarGestiones()
         {
-            String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin, ctos_entidades.Entidad AS `Espera de` FROM(((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE(((exp_gestiones.IdTarea) = " + idTarea +"))";
+            String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin, ctos_entidades.Entidad AS `Espera de` FROM(((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE(((exp_gestiones.IdTarea) = " + idTarea +")) ORDER BY exp_gestiones.FIni DESC";
 
 
             gestion = Persistencia.SentenciasSQL.select(sqlSelect);
@@ -696,7 +696,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
             else if (Regex.IsMatch(maskedTextBoxFechaActa.Text, sPattern1))
             {
-                checkBoxProxJunta.Checked = true;
+                checkBoxAcuerdoJunta.Checked = true;
             }
             else
             {

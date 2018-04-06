@@ -19,6 +19,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String idEntidad;
         DataTable infoGestion;
         FormVerTarea form_anterior;
+        String sfInicio;
+        String sfSeguir;
+        String sfMax;
+        String sfFin;
 
         public FormInsertarGestion(FormVerTarea form_anterior,String idTarea,String fInicio)
         {
@@ -102,6 +106,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
             checkBoxImportante.Checked = bool.Parse(infoGestion.Rows[0][6].ToString());
             textBoxEspera.Text = infoGestion.Rows[0][7].ToString();
             if (infoGestion.Rows[0][8].ToString() != "" )comboBoxTipoGestion.SelectedValue = infoGestion.Rows[0][8].ToString();
+            sfInicio = infoGestion.Rows[0][2].ToString();
+            sfSeguir = infoGestion.Rows[0][3].ToString();
+            if (infoGestion.Rows[0][4].ToString() != "00/00/0000") sfMax = infoGestion.Rows[0][4].ToString();
+            else sfMax = "";
+            sfFin = maskedTextBoxFFin.Text = infoGestion.Rows[0][5].ToString();
+
         }
 
         private void bloquearEdicion()
@@ -128,9 +138,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBoxDescripcion.ReadOnly = false;
             comboBoxUsuario.Enabled = true;
             maskedTextBoxFInicio.ReadOnly = false;
+            maskedTextBoxFInicio.Mask = "00/00/0000";
             maskedTextBoxFSeguir.ReadOnly = false;
+            maskedTextBoxFSeguir.Mask = "00/00/0000";
             maskedTextBoxFMax.ReadOnly = false;
+            maskedTextBoxFMax.Mask = "00/00/0000";
             maskedTextBoxFFin.ReadOnly = false;
+            maskedTextBoxFFin.Mask = "00/00/0000";
             checkBoxImportante.AutoCheck = true;
             comboBoxTipoGestion.Enabled = true;
             buttonGuardar.Visible = true;
@@ -241,15 +255,17 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String fSeguir = null;
             String fMax = null;
             String fFin = null;
-            if (maskedTextBoxFInicio.Text != "  /  /" && maskedTextBoxFInicio.Text != "") fInicio = Convert.ToDateTime(maskedTextBoxFInicio.Text).ToString("yyyy-MM-dd");
-            if (maskedTextBoxFSeguir.Text != "  /  /" && maskedTextBoxFSeguir.Text != "") fSeguir = Convert.ToDateTime(maskedTextBoxFSeguir.Text).ToString("yyyy-MM-dd");
+            if (maskedTextBoxFInicio.Text != "  /  /" && maskedTextBoxFInicio.Text != "" && maskedTextBoxFInicio.Text != "00/00/0000") fInicio = Convert.ToDateTime(maskedTextBoxFInicio.Text).ToString("yyyy-MM-dd");
+            
+            if (maskedTextBoxFSeguir.Text != "  /  /" && maskedTextBoxFSeguir.Text != "" && maskedTextBoxFSeguir.Text != "00/00/0000") fSeguir = Convert.ToDateTime(maskedTextBoxFSeguir.Text).ToString("yyyy-MM-dd");
             if (maskedTextBoxFMax.Text != "  /  /" && maskedTextBoxFMax.Text != "" && maskedTextBoxFMax.Text != "00/00/0000") fMax = Convert.ToDateTime(maskedTextBoxFMax.Text).ToString("yyyy-MM-dd");
-            if (maskedTextBoxFFin.Text != "  /  /" && maskedTextBoxFFin.Text != "") fFin = Convert.ToDateTime(maskedTextBoxFFin.Text).ToString("yyyy-MM-dd");
+            if (maskedTextBoxFFin.Text != "  /  /" && maskedTextBoxFFin.Text != "" && maskedTextBoxFFin.Text != "00/00/0000") fFin = Convert.ToDateTime(maskedTextBoxFFin.Text).ToString("yyyy-MM-dd");
             String importante = "0";
             if (checkBoxImportante.Checked) importante = "1";
             String tipo = comboBoxTipoGestion.SelectedValue.ToString();
             String sqlInsert = "";
             String sqlUpdate = "";
+            
             if (idGestion != null)
             {
                 sqlUpdate = "UPDATE exp_gestiones SET IdTarea = " + idTarea + ",Descripción = '" + descripcion + "',IdUser = " + usuario + ",Importante = " + importante + ",IdTipoGestion = " + tipo + " WHERE IdGestión = " + idGestion;
@@ -259,9 +275,19 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     sqlUpdate = "UPDATE exp_gestiones SET FIni = '" + fInicio + "' WHERE IdGestión = " + idGestion;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                 }
+                else if (sfInicio != "")
+                {
+                    sqlUpdate = "UPDATE exp_gestiones SET FIni = NULL WHERE IdGestión = " + idGestion;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                }
                 if (fSeguir != null)
                 {
                     sqlUpdate = "UPDATE exp_gestiones SET FSeguir = '" + fSeguir + "' WHERE IdGestión = " + idGestion;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                }
+                else if (sfSeguir != "")
+                {
+                    sqlUpdate = "UPDATE exp_gestiones SET FSeguir = NULL WHERE IdGestión = " + idGestion;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                 }
                 if (fMax != null)
@@ -269,9 +295,19 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     sqlUpdate = "UPDATE exp_gestiones SET FMax = '" + fMax + "' WHERE IdGestión = " + idGestion;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                 }
+                else if (sfMax != "")
+                {
+                    sqlUpdate = "UPDATE exp_gestiones SET FMax = NULL WHERE IdGestión = " + idGestion;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                }
                 if (fFin != null)
                 {
                     sqlUpdate = "UPDATE exp_gestiones SET FFin = '" + fFin + "' WHERE IdGestión = " + idGestion;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                }
+                else if (sfFin != "")
+                {
+                    sqlUpdate = "UPDATE exp_gestiones SET FFin = NULL WHERE IdGestión = " + idGestion;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                 }
                 if (idEntidad != null)

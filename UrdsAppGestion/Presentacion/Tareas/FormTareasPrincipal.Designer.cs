@@ -54,7 +54,7 @@
             this.comboBoxInformes = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.buttonReset = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxImportante = new System.Windows.Forms.CheckBox();
             this.maskedTextBox_FIni2 = new System.Windows.Forms.MaskedTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.maskedTextBox_FIni1 = new System.Windows.Forms.MaskedTextBox();
@@ -249,7 +249,7 @@
             this.checkBoxSeguro.Name = "checkBoxSeguro";
             this.checkBoxSeguro.Size = new System.Drawing.Size(63, 17);
             this.checkBoxSeguro.TabIndex = 8;
-            this.checkBoxSeguro.Text = "&Seguro:";
+            this.checkBoxSeguro.Text = "Seguro:";
             this.checkBoxSeguro.UseVisualStyleBackColor = true;
             // 
             // textBoxTarea
@@ -302,17 +302,17 @@
             this.buttonReset.UseVisualStyleBackColor = true;
             this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
-            // checkBox1
+            // checkBoxImportante
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBox1.Location = new System.Drawing.Point(669, 71);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(79, 17);
-            this.checkBox1.TabIndex = 32;
-            this.checkBox1.Text = "&Importante:";
-            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBoxImportante.AutoSize = true;
+            this.checkBoxImportante.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBoxImportante.Location = new System.Drawing.Point(669, 71);
+            this.checkBoxImportante.Name = "checkBoxImportante";
+            this.checkBoxImportante.Size = new System.Drawing.Size(79, 17);
+            this.checkBoxImportante.TabIndex = 32;
+            this.checkBoxImportante.Text = "&Importante:";
+            this.checkBoxImportante.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBoxImportante.UseVisualStyleBackColor = true;
             // 
             // maskedTextBox_FIni2
             // 
@@ -423,7 +423,7 @@
             this.Controls.Add(this.maskedTextBox_FFin2);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.maskedTextBox_FFin1);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.checkBoxImportante);
             this.Controls.Add(this.buttonReset);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.comboBoxInformes);
@@ -481,7 +481,7 @@
         private System.Windows.Forms.ComboBox comboBoxInformes;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button buttonReset;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBoxImportante;
         private System.Windows.Forms.MaskedTextBox maskedTextBox_FIni2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.MaskedTextBox maskedTextBox_FIni1;
