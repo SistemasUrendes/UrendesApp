@@ -16,6 +16,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String id_entidad;
         String nombre_columna;
         String id_comunidad;
+        Form form_
 
         public FormTareasPrincipal(String id_comunidad)
         {
@@ -27,6 +28,17 @@ namespace UrdsAppGestión.Presentacion.Tareas
             filtroComunidad();
             textBoxTarea.Select();
                 
+        }
+        public FormTareasPrincipal(this,String id_comunidad)
+        {
+            InitializeComponent();
+            this.id_comunidad = id_comunidad;
+
+            RellenarComboBox();
+            CargarTareas();
+            filtroComunidad();
+            textBoxTarea.Select();
+
         }
         public FormTareasPrincipal()
         {
