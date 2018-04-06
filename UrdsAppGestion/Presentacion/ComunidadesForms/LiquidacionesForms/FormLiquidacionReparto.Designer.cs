@@ -68,7 +68,7 @@
             this.dataGridView_reparto.ReadOnly = true;
             this.dataGridView_reparto.RowHeadersVisible = false;
             this.dataGridView_reparto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_reparto.Size = new System.Drawing.Size(265, 129);
+            this.dataGridView_reparto.Size = new System.Drawing.Size(274, 129);
             this.dataGridView_reparto.TabIndex = 0;
             this.dataGridView_reparto.Visible = false;
             // 
@@ -99,7 +99,6 @@
             this.dataGridView2.AllowUserToResizeRows = false;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(18, 58);
-            this.dataGridView2.MultiSelect = false;
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersVisible = false;
@@ -177,14 +176,13 @@
             this.dataGridView_bloques.AllowUserToOrderColumns = true;
             this.dataGridView_bloques.AllowUserToResizeRows = false;
             this.dataGridView_bloques.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_bloques.Enabled = false;
             this.dataGridView_bloques.Location = new System.Drawing.Point(760, 58);
             this.dataGridView_bloques.MultiSelect = false;
             this.dataGridView_bloques.Name = "dataGridView_bloques";
             this.dataGridView_bloques.ReadOnly = true;
             this.dataGridView_bloques.RowHeadersVisible = false;
             this.dataGridView_bloques.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_bloques.Size = new System.Drawing.Size(265, 150);
+            this.dataGridView_bloques.Size = new System.Drawing.Size(274, 150);
             this.dataGridView_bloques.TabIndex = 14;
             // 
             // buttonaPdf
@@ -235,7 +233,7 @@
             // 
             this.groupBox_liqrec.Controls.Add(this.button_imprimirNuevos);
             this.groupBox_liqrec.Controls.Add(this.button_enviarTodos);
-            this.groupBox_liqrec.Location = new System.Drawing.Point(814, 231);
+            this.groupBox_liqrec.Location = new System.Drawing.Point(820, 231);
             this.groupBox_liqrec.Name = "groupBox_liqrec";
             this.groupBox_liqrec.Size = new System.Drawing.Size(153, 97);
             this.groupBox_liqrec.TabIndex = 20;
