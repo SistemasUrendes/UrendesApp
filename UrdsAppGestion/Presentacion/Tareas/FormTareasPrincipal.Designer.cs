@@ -138,7 +138,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 13);
             this.label3.TabIndex = 7;
-            this.label3.Text = "Tipo:";
+            this.label3.Text = "&Tipo:";
             // 
             // button_Filtrar
             // 
