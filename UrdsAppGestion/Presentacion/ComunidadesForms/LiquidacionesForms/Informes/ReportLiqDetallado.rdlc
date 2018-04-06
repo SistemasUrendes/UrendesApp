@@ -703,6 +703,7 @@
                         <PaddingTop>2pt</PaddingTop>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -836,6 +837,7 @@
                               <Value>=Fields!Fecha.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>=CDate(Fields!Fecha.Value)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1440,7 +1442,7 @@
                           <Value>=Fields!Entidad.Value</Value>
                         </SortExpression>
                         <SortExpression>
-                          <Value>=Fields!Fecha.Value</Value>
+                          <Value>=CDate(Fields!Fecha.Value)</Value>
                         </SortExpression>
                       </SortExpressions>
                     </TablixMember>
