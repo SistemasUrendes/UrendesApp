@@ -426,7 +426,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
 
         private void button_añadirExpedientes_Click(object sender, EventArgs e)
         {
-            Tareas.FormTareasPrincipal nueva = new Tareas.FormTareasPrincipal(id_comunidad_cargado);
+            Tareas.FormTareasPrincipal nueva = new Tareas.FormTareasPrincipal(this,id_comunidad_cargado);
             nueva.ControlBox = true;
             nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;

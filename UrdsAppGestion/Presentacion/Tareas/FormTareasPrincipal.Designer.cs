@@ -65,6 +65,7 @@
             this.comboBoxAdmComunidad = new System.Windows.Forms.ComboBox();
             this.checkBoxAcuerdoJunta = new System.Windows.Forms.CheckBox();
             this.buttonImprimir = new System.Windows.Forms.Button();
+            this.button_enviar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tareas)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -280,7 +281,6 @@
             this.comboBoxInformes.Size = new System.Drawing.Size(121, 21);
             this.comboBoxInformes.TabIndex = 23;
             this.comboBoxInformes.Visible = false;
-           
             // 
             // label9
             // 
@@ -407,12 +407,25 @@
             this.buttonImprimir.UseVisualStyleBackColor = true;
             this.buttonImprimir.Click += new System.EventHandler(this.buttonImprimir_Click);
             // 
+            // button_enviar
+            // 
+            this.button_enviar.Location = new System.Drawing.Point(271, 65);
+            this.button_enviar.Name = "button_enviar";
+            this.button_enviar.Size = new System.Drawing.Size(75, 23);
+            this.button_enviar.TabIndex = 45;
+            this.button_enviar.Text = "Enviar";
+            this.button_enviar.UseMnemonic = false;
+            this.button_enviar.UseVisualStyleBackColor = true;
+            this.button_enviar.Visible = false;
+            this.button_enviar.Click += new System.EventHandler(this.button_enviar_Click);
+            // 
             // FormTareasPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1152, 665);
             this.ControlBox = false;
+            this.Controls.Add(this.button_enviar);
             this.Controls.Add(this.buttonImprimir);
             this.Controls.Add(this.checkBoxAcuerdoJunta);
             this.Controls.Add(this.label11);
@@ -447,6 +460,7 @@
             this.Name = "FormTareasPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tareas";
+            this.Load += new System.EventHandler(this.FormTareasPrincipal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tareas)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.contextMenuStrip1.PerformLayout();
@@ -492,5 +506,6 @@
         private System.Windows.Forms.ComboBox comboBoxAdmComunidad;
         private System.Windows.Forms.CheckBox checkBoxAcuerdoJunta;
         private System.Windows.Forms.Button buttonImprimir;
+        private System.Windows.Forms.Button button_enviar;
     }
 }

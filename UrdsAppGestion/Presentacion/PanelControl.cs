@@ -541,6 +541,7 @@ namespace UrdsAppGestión.Presentacion
             String strLiquidacion = (String)genericlist[1];
             String idLiquidacion = (String)genericlist[2];
             List<String> Rutas = (List<String>)genericlist[3];
+            Boolean encontrado = false;
 
             if (Thread.CurrentThread.Name == null)
                 Thread.CurrentThread.Name = numero_procesos.ToString();
@@ -556,8 +557,18 @@ namespace UrdsAppGestión.Presentacion
                 //PREPARO EL IDENTIDAD PARA VER QUE TIPO DE ENVIO
                 String nombreFichero = fi.Name;
                 String entidad = fi.Name.Split('-')[2];
-                entidad = entidad.Split(' ')[0];        
-                
+                entidad = entidad.Split(' ')[0];
+
+                //if (entidad != "2137" && !encontrado)
+                //{
+                //    continue;
+                //}
+                //else if (entidad == "2137") {
+                //    encontrado = true;
+                //    MessageBox.Show(entidad);
+                //    continue;
+                //}
+
                 //BUSCO COMO QUIERE EL ENVIO
                 if (entidad != "" && int.TryParse(entidad, out IdEntidad))
                 {

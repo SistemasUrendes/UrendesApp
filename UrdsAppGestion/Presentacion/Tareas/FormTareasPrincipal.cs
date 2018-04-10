@@ -22,47 +22,42 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             InitializeComponent();
             this.id_comunidad = id_comunidad;
-            
-            RellenarComboBox();
-            CargarTareas();
-            filtroComunidad();
             textBoxTarea.Select();
-                
         }
         
         public FormTareasPrincipal(Form form_anterior,String id_comunidad)
         {
             InitializeComponent();
             this.id_comunidad = id_comunidad;
-
             this.form_anterior = form_anterior;
-            RellenarComboBox();
-            CargarTareas();
-            filtroComunidad();
             textBoxTarea.Select();
-
         }
         
         public FormTareasPrincipal()
         {
             InitializeComponent();
-            RellenarComboBox();
-            CargarTareas();
             maskedTextBoxRefComunidad.Select();
         }
-        
-        
+        private void FormTareasPrincipal_Load(object sender, EventArgs e)
+        {
+            RellenarComboBox();
+            CargarTareas();
+            filtroComunidad();
+
+            if (form_anterior != null) {
+                button_enviar.Visible = true;
+            }
+
+        }
 
         public void CargarTareas()
         {
             String sqlSelect;
-            if (id_comunidad == null)
-            {
+            if (id_comunidad == null)  {
                 sqlSelect = "SELECT exp_tareas.IdTarea AS Id, ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.Corto AS T, exp_tareas.Descripción, DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni, DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin,  ctos_entidades.IDEntidad, exp_tareas.AcuerdoJunta AS A, exp_tareas.Importante AS I, exp_tareas.ProximaJunta AS P, exp_tareas.RefSiniestro AS Seguro FROM((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea) INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE((com_comunidades.IdGestor = " + Login.getId() + ") OR ((com_comunidades.IdGestor2) = " + Login.getId() + ")) ORDER BY exp_tareas.IdTarea DESC";
                 comboBoxAdmComunidad.SelectedValue = Login.getId();
             }
-            else
-            {
+            else  {
                 sqlSelect = "SELECT exp_tareas.IdTarea AS Id, ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.Corto AS T, exp_tareas.Descripción,DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni, DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin,  ctos_entidades.IDEntidad, exp_tareas.AcuerdoJunta AS A, exp_tareas.Importante AS I, exp_tareas.ProximaJunta as P, exp_tareas.RefSiniestro AS Seguro FROM((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea) INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(com_comunidades.IdComunidad = " + id_comunidad + ") ORDER BY exp_tareas.IdTarea DESC";
             }
             tareas = Persistencia.SentenciasSQL.select(sqlSelect);
@@ -609,6 +604,20 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 MessageBox.Show("Selecciona una comunidad para mostrar el informe");
             }
             
+        }
+
+        private void button_enviar_Click(object sender, EventArgs e)
+        {
+            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name.Contains(form_anterior.Name)).SingleOrDefault<Form>();
+            if (existe != null)
+            {
+                if (form_anterior.Name == "FromOperacionesVer")
+                {
+                    ComunidadesForms.OperacionesForms.FromOperacionesVer nuevo = (ComunidadesForms.OperacionesForms.FromOperacionesVer)existe;
+                    nuevo.recibirTarea(dataGridView_tareas.SelectedCells[0].Value.ToString());
+                }
+            }
+            this.Close();
         }
     }
 }
