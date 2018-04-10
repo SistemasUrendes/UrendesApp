@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,6 +16,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String idGestion;
         String idSeguimiento;
         Boolean edicion;
+        String fechaCompleta;
         FormVerTarea form_anterior;
         DataTable infoSeguimiento;
 
@@ -54,7 +56,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 habilitarEdicion();
                 comboBoxUsuario.SelectedValue = Login.getId();
-                maskedTextBoxFecha.Text = string.Format("{0:dd/MM/yyyy HH:mm:ss}", DateTime.Now);
+                //maskedTextBoxFecha.Text = string.Format("{0:dd/MM/yyyy HH:mm:ss}", DateTime.Now);
+                maskedTextBoxFecha.Text = DateTime.Now.ToShortDateString();
             }
             //EDITAR SEGUIMIENTO
             else if (edicion)
@@ -95,7 +98,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
             //VALORES DE LA QUERY DE INSERCIÓN
             String notas = textBoxNotas.Text;
             String usuario = comboBoxUsuario.SelectedValue.ToString();
-            String fecha = Convert.ToDateTime(maskedTextBoxFecha.Text).ToString("yyyy-MM-dd HH:mm:ss");
+            //String fecha = Convert.ToDateTime(maskedTextBoxFecha.Text).ToString("yyyy-MM-dd HH:mm:ss");
+            String fecha = Convert.ToDateTime(maskedTextBoxFecha.Text).ToString("yyyy-MM-dd");
             String tipoSeguimiento = "NULL";
             if (comboBoxTipoSeguimiento.SelectedValue.ToString() != "0")
             {
@@ -123,8 +127,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String sqlSelect = "SELECT exp_notas.IdTipoSeg, exp_notas.Fecha, exp_notas.IdURD, exp_notas.Notas FROM exp_notas WHERE(((exp_notas.IdNota) = " + idSeguimiento + "))";
             infoSeguimiento = Persistencia.SentenciasSQL.select(sqlSelect);
 
-            comboBoxTipoSeguimiento.SelectedValue = infoSeguimiento.Rows[0][0].ToString();
-            maskedTextBoxFecha.Text = Convert.ToDateTime(infoSeguimiento.Rows[0][1]).ToString("dd-MM-yyyy HH:mm:ss");
+            if (infoSeguimiento.Rows[0][0].ToString() == "") { comboBoxTipoSeguimiento.SelectedIndex = 0; }
+            else { comboBoxTipoSeguimiento.SelectedValue = infoSeguimiento.Rows[0][0].ToString(); }
+            maskedTextBoxFecha.Text = Convert.ToDateTime(infoSeguimiento.Rows[0][1]).ToString("dd-MM-yyyy");
             comboBoxUsuario.SelectedValue = infoSeguimiento.Rows[0][2].ToString();
             textBoxNotas.Text = infoSeguimiento.Rows[0][3].ToString();
         }
@@ -158,6 +163,30 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void buttonEditar_Click(object sender, EventArgs e)
         {
             habilitarEdicion();
+        }
+
+        private void maskedTextBoxFecha_Leave(object sender, EventArgs e)
+        {
+            string sPattern = "^\\d{2}/\\d{2}/$";
+            string sPattern1 = "^\\d{2}/\\d{2}/\\d{4}$";
+
+            if (Regex.IsMatch(maskedTextBoxFecha.Text, sPattern))
+            {
+                maskedTextBoxFecha.Text = maskedTextBoxFecha.Text + DateTime.Now.Year;
+            }
+            else if (Regex.IsMatch(maskedTextBoxFecha.Text, sPattern1))
+            {
+                textBoxNotas.Focus();
+                textBoxNotas.SelectAll();
+            }
+            else
+            {
+                if (maskedTextBoxFecha.Text != "  /  /" && maskedTextBoxFecha.Text != "")
+                {
+                    maskedTextBoxFecha.Focus();
+                    maskedTextBoxFecha.SelectAll();
+                }
+            }
         }
     }
 }
