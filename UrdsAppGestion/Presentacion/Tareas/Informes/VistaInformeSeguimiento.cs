@@ -52,7 +52,7 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes
             ReportParameter parametro2 = new ReportParameter("ffechaini2", Fini2);
             this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro2 });
             
-            ReportParameter parametro3 = new ReportParameter("ffechafin1", Fini1);
+            ReportParameter parametro3 = new ReportParameter("ffechafin1", FFin1);
             this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro3 });
 
             ReportParameter parametro4 = new ReportParameter("ffechafin2", FFin2);

@@ -143,7 +143,6 @@
             this.textBoxRuta.ForeColor = System.Drawing.Color.Blue;
             this.textBoxRuta.Location = new System.Drawing.Point(89, 307);
             this.textBoxRuta.Name = "textBoxRuta";
-            this.textBoxRuta.ReadOnly = true;
             this.textBoxRuta.Size = new System.Drawing.Size(537, 20);
             this.textBoxRuta.TabIndex = 17;
             this.textBoxRuta.TabStop = false;

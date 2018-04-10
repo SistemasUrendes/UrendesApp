@@ -54,10 +54,11 @@
             // maskedTextBoxFecha
             // 
             this.maskedTextBoxFecha.Location = new System.Drawing.Point(94, 88);
-            this.maskedTextBoxFecha.Mask = "00/00/0000 00:00:00";
+            this.maskedTextBoxFecha.Mask = "00/00/0000";
             this.maskedTextBoxFecha.Name = "maskedTextBoxFecha";
-            this.maskedTextBoxFecha.Size = new System.Drawing.Size(111, 20);
+            this.maskedTextBoxFecha.Size = new System.Drawing.Size(69, 20);
             this.maskedTextBoxFecha.TabIndex = 2;
+            this.maskedTextBoxFecha.Leave += new System.EventHandler(this.maskedTextBoxFecha_Leave);
             // 
             // comboBoxTipoSeguimiento
             // 

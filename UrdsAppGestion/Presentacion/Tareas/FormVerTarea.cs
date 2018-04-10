@@ -110,6 +110,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             buttonEditar.Enabled = true;
             buttonEliminarTarea.Enabled = true;
             buttonGuardar.Enabled = false;
+            textBoxRuta.ReadOnly = true;
         }
 
         public void habilitarEdicion()
@@ -133,6 +134,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             buttonEliminarTarea.Enabled = false;
             buttonGuardar.Enabled = true;
             checkBoxImportante.AutoCheck = true;
+            textBoxRuta.ReadOnly = false;
             if (textBoxEntidad.Text == "")
             {
                 textBoxEntidad.Text = "Pulsa espacio para Seleccionar Entidad";
@@ -168,8 +170,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         public void cargarSeguimientos()
         {
-            String sqlSelect = "SELECT exp_notas.IdNota, exp_notas.IdGestión, exp_tiposeguimiento.`Tipo Seguimiento`, exp_notas.Fecha, ctos_urendes.Usuario, exp_notas.Notas FROM(exp_tiposeguimiento RIGHT JOIN exp_notas ON exp_tiposeguimiento.IdTipoSeg = exp_notas.IdTipoSeg) INNER JOIN ctos_urendes ON exp_notas.IdURD = ctos_urendes.IdURD WHERE(((exp_notas.IdGestión) = " + idGestion + ")) ORDER BY exp_notas.Fecha DESC";
 
+            //String sqlSelect = "SELECT exp_notas.IdNota, exp_notas.IdGestión, exp_tiposeguimiento.`Tipo Seguimiento`, exp_notas.Fecha, ctos_urendes.Usuario, exp_notas.Notas FROM(exp_tiposeguimiento RIGHT JOIN exp_notas ON exp_tiposeguimiento.IdTipoSeg = exp_notas.IdTipoSeg) INNER JOIN ctos_urendes ON exp_notas.IdURD = ctos_urendes.IdURD WHERE(((exp_notas.IdGestión) = " + idGestion + ")) ORDER BY exp_notas.Fecha DESC";
+
+            String sqlSelect = "SELECT exp_notas.IdNota, exp_notas.IdGestión, exp_tiposeguimiento.`Tipo Seguimiento`,CAST(exp_notas.Fecha AS DATE) AS Fecha, ctos_urendes.Usuario, exp_notas.Notas FROM(exp_tiposeguimiento RIGHT JOIN exp_notas ON exp_tiposeguimiento.IdTipoSeg = exp_notas.IdTipoSeg) INNER JOIN ctos_urendes ON exp_notas.IdURD = ctos_urendes.IdURD WHERE(((exp_notas.IdGestión) = " + idGestion + ")) ORDER BY exp_notas.IdNota DESC";
             
 
             seguimiento = Persistencia.SentenciasSQL.select(sqlSelect);
@@ -194,14 +198,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 dataGridViewSeguimientos.Columns[0].Visible = false;
                 dataGridViewSeguimientos.Columns[1].Visible = false;
-                //dataGridViewSeguimientos.Columns["Tipo Seguimiento"].Width = 80;
                 dataGridViewSeguimientos.Columns["Tipo Seguimiento"].Visible = false;
                 dataGridViewSeguimientos.Columns["Fecha"].Width = 80;
                 dataGridViewSeguimientos.Columns["Usuario"].Width = 60;
                 dataGridViewSeguimientos.Columns["Notas"].Width = 423;
-                //dataGridViewSeguimientos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-                dataGridViewSeguimientos.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-                //dataGridViewSeguimientos.AutoResizeColumn(dataGridViewSeguimientos.Columns["Notas"].Index, DataGridViewAutoSizeColumnMode.AllCells);
+                dataGridViewSeguimientos.Columns["Notas"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             }
         }
 
