@@ -45,7 +45,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (idTarea != null)
             {
                 cargarCabecera();
-                cargarGestiones();
+                comboBoxEstadoGestion.SelectedIndex = 0;
+                cargarTodosSeguimientos();
                 cargarContactos();
                 bloquearEdicion();
             }
@@ -160,12 +161,42 @@ namespace UrdsAppGestión.Presentacion.Tareas
         
         public void cargarGestiones()
         {
-            String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin, ctos_entidades.Entidad AS `Espera de` FROM(((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE(((exp_gestiones.IdTarea) = " + idTarea +")) ORDER BY exp_gestiones.FIni DESC";
-
-
+            /*
+            String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin, ctos_entidades.Entidad AS `Espera de` FROM(((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE(((exp_gestiones.IdTarea) = " + idTarea + ")) ORDER BY exp_gestiones.FIni DESC,exp_gestiones.FFin ASC";
+            
             gestion = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewGestiones.DataSource = gestion;
             ajustarDatagridGestiones();
+             */
+
+            String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin, ctos_entidades.Entidad AS `Espera de` FROM(((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE(((exp_gestiones.IdTarea) = " + idTarea + ")";
+
+
+            //Abiertas
+            if (comboBoxEstadoGestion.SelectedIndex == 0)
+            {
+                sqlSelect += " AND exp_gestiones.FFin IS Null";
+            }
+            //Cerradas
+            else if (comboBoxEstadoGestion.SelectedIndex == 1)
+            {
+                sqlSelect += " AND exp_gestiones.FFin IS Not Null";
+            }
+
+            sqlSelect += ") ORDER BY exp_gestiones.FIni DESC,exp_gestiones.FFin ASC";
+            gestion = Persistencia.SentenciasSQL.select(sqlSelect);
+            dataGridViewGestiones.DataSource = gestion;
+            ajustarDatagridGestiones();
+        }
+
+        public void cargarTodosSeguimientos()
+        {
+            String sqlSelect = "SELECT exp_notas.IdNota, exp_notas.IdGestión,CAST(exp_notas.Fecha AS DATE) AS Fecha, ctos_urendes.Usuario, exp_notas.Notas FROM exp_tareas INNER JOIN (((exp_tiposeguimiento RIGHT JOIN exp_notas ON exp_tiposeguimiento.IdTipoSeg = exp_notas.IdTipoSeg) INNER JOIN ctos_urendes ON exp_notas.IdURD = ctos_urendes.IdURD) INNER JOIN exp_gestiones ON exp_notas.IdGestión = exp_gestiones.IdGestión) ON exp_tareas.IdTarea = exp_gestiones.IdTarea WHERE(((exp_tareas.IdTarea) = " + idTarea + ")) ORDER BY exp_notas.IdNota DESC";
+
+
+            seguimiento = Persistencia.SentenciasSQL.select(sqlSelect);
+            dataGridViewSeguimientos.DataSource = seguimiento;
+            ajustarDatagridSeguimientos();
         }
 
         public void cargarSeguimientos()
@@ -173,7 +204,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
             //String sqlSelect = "SELECT exp_notas.IdNota, exp_notas.IdGestión, exp_tiposeguimiento.`Tipo Seguimiento`, exp_notas.Fecha, ctos_urendes.Usuario, exp_notas.Notas FROM(exp_tiposeguimiento RIGHT JOIN exp_notas ON exp_tiposeguimiento.IdTipoSeg = exp_notas.IdTipoSeg) INNER JOIN ctos_urendes ON exp_notas.IdURD = ctos_urendes.IdURD WHERE(((exp_notas.IdGestión) = " + idGestion + ")) ORDER BY exp_notas.Fecha DESC";
 
-            String sqlSelect = "SELECT exp_notas.IdNota, exp_notas.IdGestión, exp_tiposeguimiento.`Tipo Seguimiento`,CAST(exp_notas.Fecha AS DATE) AS Fecha, ctos_urendes.Usuario, exp_notas.Notas FROM(exp_tiposeguimiento RIGHT JOIN exp_notas ON exp_tiposeguimiento.IdTipoSeg = exp_notas.IdTipoSeg) INNER JOIN ctos_urendes ON exp_notas.IdURD = ctos_urendes.IdURD WHERE(((exp_notas.IdGestión) = " + idGestion + ")) ORDER BY exp_notas.IdNota DESC";
+            String sqlSelect = "SELECT exp_notas.IdNota,CAST(exp_notas.Fecha AS DATE) AS Fecha, exp_notas.IdGestión, ctos_urendes.Usuario, exp_notas.Notas FROM(exp_tiposeguimiento RIGHT JOIN exp_notas ON exp_tiposeguimiento.IdTipoSeg = exp_notas.IdTipoSeg) INNER JOIN ctos_urendes ON exp_notas.IdURD = ctos_urendes.IdURD WHERE(((exp_notas.IdGestión) = " + idGestion + ")) ORDER BY exp_notas.IdNota DESC";
             
 
             seguimiento = Persistencia.SentenciasSQL.select(sqlSelect);
@@ -197,8 +228,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (dataGridViewSeguimientos.Rows.Count > 0)
             {
                 dataGridViewSeguimientos.Columns[0].Visible = false;
-                dataGridViewSeguimientos.Columns[1].Visible = false;
-                dataGridViewSeguimientos.Columns["Tipo Seguimiento"].Visible = false;
+                dataGridViewSeguimientos.Columns["IdGestión"].Width = 50;
                 dataGridViewSeguimientos.Columns["Fecha"].Width = 80;
                 dataGridViewSeguimientos.Columns["Usuario"].Width = 60;
                 dataGridViewSeguimientos.Columns["Notas"].Width = 423;
@@ -208,11 +238,23 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void textBoxRuta_Click(object sender, EventArgs e)
         {
-            if (ruta != "" && ruta != null)
+            
+            if (ruta != "" && ruta != null && textBoxRuta.Text == "")
             {
                 try
                 {
                     System.Diagnostics.Process.Start(@ruta);
+                }
+                catch
+                {
+                    MessageBox.Show("No se encuentra la carpeta");
+                }
+            }
+            else if (textBoxRuta.Text != "")
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(@textBoxRuta.Text);
                 }
                 catch
                 {
@@ -254,6 +296,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 textBoxIdTarea.Text = idTarea;
                 bloquearEdicion();
                 form_anterior.CargarTareas();
+
             }
         }
 
@@ -273,9 +316,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
                 else
                 {
+                    
                     if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
                     addTarea();
                     textBoxIdTarea.Text = idTarea;
+                    comboBoxEstadoGestion.SelectedIndex = 0;
                     bloquearEdicion();
                     form_anterior.CargarTareas();
                     Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, fInicio);
@@ -284,6 +329,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
             else
             {
+                comboBoxEstadoGestion.SelectedIndex = 0;
                 Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, fInicio);
                 nueva.Show();
             }
@@ -313,6 +359,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 String sqlBorrar = "DELETE FROM exp_gestiones WHERE IdGestión = " + idGestion;
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrar);
+
                 cargarGestiones();
                 cargarSeguimientos();
             }
@@ -417,7 +464,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonRuta_Click(object sender, EventArgs e)
         {
-            if (ruta == null || ruta == "")
+            if ((ruta == null || ruta == "") && textBoxRuta.Text == "")
             {
                 if (comboBoxTipo.SelectedValue.ToString() == "0")
                 {
@@ -458,6 +505,55 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     {
                         MessageBox.Show("No se encuentra la carpeta de la comunidad, contacte con el administrador");
                         ruta = "";
+                    }
+                }
+            }
+            else
+            {
+                DialogResult resultado_message;
+                resultado_message = MessageBox.Show("¿Ya existe una ruta, desea sobreescribirla?", "Crear nueva ruta ", MessageBoxButtons.OKCancel);
+                if (resultado_message == System.Windows.Forms.DialogResult.OK)
+                {
+                    if (comboBoxTipo.SelectedValue.ToString() == "0")
+                    {
+                        MessageBox.Show("Selecciona un tipo de Tarea!");
+                        return;
+                    }
+                    else
+                    {
+                        if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
+                        addTarea();
+                        textBoxIdTarea.Text = idTarea;
+                        form_anterior.CargarTareas();
+
+                        String tarea = idTarea + " " + textBoxDescripcion.Text;
+                        String rutaCheck = rutaEntidad().Trim('#');
+                        ruta = @rutaCheck + @"\EXPEDIENTES\" + tarea;
+
+
+
+
+                        //LA CARPETA DE LA RUTA YA ESTÁ CREADA
+                        if (System.IO.Directory.Exists(ruta))
+                        {
+                            MessageBox.Show("La Carpeta de la tarea ya existe!");
+                            textBoxRuta.Text = ruta;
+                            textBoxRuta.Cursor = Cursors.Hand;
+                        }
+                        //LA CARPETA DE LA COMUNIDAD EXISTE
+                        else if (System.IO.Directory.Exists(rutaCheck))
+                        {
+                            System.IO.Directory.CreateDirectory(ruta);
+                            textBoxRuta.Text = ruta;
+                            addTarea();
+                            textBoxRuta.Cursor = Cursors.Hand;
+                        }
+                        //LA CARPETA DE LA COMUNIDAD NO EXISTE
+                        else
+                        {
+                            MessageBox.Show("No se encuentra la carpeta de la comunidad, contacte con el administrador");
+                            ruta = "";
+                        }
                     }
                 }
             }
@@ -587,6 +683,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             //AÑADIR NUEVA TAREA
             else
             {
+                String fixRuta = ruta.Replace(@"\", @"\\");
                 String sqlInsert = "INSERT INTO exp_tareas (IdEntidad,IdRbleTarea,IdTipoTarea,Descripción,Seguro,AcuerdoJunta,ProximaJunta,RefSiniestro,Notas) VALUES (" + idEntidad + "," + Login.getId() + "," + idTipoTarea + ",'" + descripcion + "'," + seguro + "," + acuerdoJunta + "," + proximaJunta + ",'" + refSiniestro + "','" + notas + "')";
                 idTarea = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsert).ToString();
 
@@ -618,6 +715,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 if (importante == "0")
                 {
                     sqlInsert = "UPDATE exp_tareas SET Importante = 0 WHERE IdTarea = " + idTarea;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+                }
+                if (ruta != null)
+                {
+                    sqlInsert = "UPDATE exp_tareas SET Ruta = '" + fixRuta + "' WHERE IdTarea = " + idTarea;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
                 }
             }
@@ -846,9 +948,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
             
             String sqlSelect = "SELECT ctos_detemail.Email FROM(exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN ctos_detemail ON ctos_urendes.identidad = ctos_detemail.IdEntidad WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
-            String mail = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
-            if (mail != null)
+            DataTable tablamail = Persistencia.SentenciasSQL.select(sqlSelect);
+            if (tablamail.Rows.Count > 0)
             {
+                String mail = tablamail.Rows[0][0].ToString();
                 System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\"" + generaAsunto() + "\"");
             }
             else
@@ -864,11 +967,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
 
                 String sqlSelect = "SELECT ctos_detemail.Email FROM exp_gestiones INNER JOIN ctos_detemail ON exp_gestiones.IdEntidad = ctos_detemail.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_gestiones.IdGestión) = " + idGestion + "))";
-                String mail = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
-                if (mail != null)
+                DataTable tablamail = Persistencia.SentenciasSQL.select(sqlSelect);
+                if (tablamail.Rows.Count > 0)
                 {
+                    String mail = tablamail.Rows[0][0].ToString();
                     System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\"" + generaAsunto() + "\"");
                 }
+                
                 else
                 {
                     MessageBox.Show("La entidad seleccionada no tiene correo asociado.");
@@ -902,6 +1007,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
             else
             {
+                addTarea();
+                bloquearEdicion();
+                form_anterior.CargarTareas();
+
                 if (dataGridViewGestiones.SelectedCells.Count > 0)
                 {
                     String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
@@ -1046,6 +1155,16 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             Tareas.FormInsertarTipoGestion nueva = new FormInsertarTipoGestion();
             nueva.Show();
+        }
+
+        private void comboBoxEstadoGestion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cargarGestiones();
+        }
+
+        private void buttonTodosSeguimientos_Click(object sender, EventArgs e)
+        {
+            cargarTodosSeguimientos();
         }
     }
 }

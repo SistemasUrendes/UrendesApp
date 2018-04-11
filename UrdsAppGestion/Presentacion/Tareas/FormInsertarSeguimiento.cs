@@ -80,16 +80,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             comboBoxUsuario.DisplayMember = "Usuario";
             comboBoxUsuario.ValueMember = "IdURD";
             
-            DataTable tipos;
-            String sqlTipoSeg = "SELECT exp_tiposeguimiento.IdTipoSeg, exp_tiposeguimiento.`Tipo Seguimiento` FROM exp_tiposeguimiento";
-            tipos = Persistencia.SentenciasSQL.select(sqlTipoSeg);
-            DataRow filavacio = tipos.NewRow();
-            filavacio["Tipo Seguimiento"] = "";
-            filavacio["IdTipoSeg"] = 0;
-            tipos.Rows.InsertAt(filavacio, 0);
-            comboBoxTipoSeguimiento.DataSource = tipos;
-            comboBoxTipoSeguimiento.DisplayMember = "Tipo Seguimiento";
-            comboBoxTipoSeguimiento.ValueMember = "IdTipoSeg";
         }
 
         private void buttonGuardar_Click(object sender, EventArgs e)
@@ -100,20 +90,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String usuario = comboBoxUsuario.SelectedValue.ToString();
             //String fecha = Convert.ToDateTime(maskedTextBoxFecha.Text).ToString("yyyy-MM-dd HH:mm:ss");
             String fecha = Convert.ToDateTime(maskedTextBoxFecha.Text).ToString("yyyy-MM-dd");
-            String tipoSeguimiento = "NULL";
-            if (comboBoxTipoSeguimiento.SelectedValue.ToString() != "0")
-            {
-                tipoSeguimiento = comboBoxTipoSeguimiento.SelectedValue.ToString();
-            }
-            
             if (idSeguimiento == null)
             {
-                String sqlInsert = "INSERT INTO exp_notas (IdGestión,IdTipoSeg,Fecha,IdURD,Notas) VALUES (" + idGestion + "," + tipoSeguimiento + ",'" + fecha + "'," + usuario + ",'" + notas + "')";
+                String sqlInsert = "INSERT INTO exp_notas (IdGestión,Fecha,IdURD,Notas) VALUES (" + idGestion + ",'" + fecha + "'," + usuario + ",'" + notas + "')";
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
             }
             else
             {
-                String sqlUpdate = "UPDATE exp_notas SET Notas = '" + notas + "',IdURD = " + usuario + ",Fecha = '" + fecha + "',IdTipoSeg = " + tipoSeguimiento + " WHERE IdNota = " + idSeguimiento;
+                String sqlUpdate = "UPDATE exp_notas SET Notas = '" + notas + "',IdURD = " + usuario + ",Fecha = '" + fecha + "' WHERE IdNota = " + idSeguimiento;
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
             }    
 
@@ -124,20 +108,18 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void cargarSeguimiento()
         {
-            String sqlSelect = "SELECT exp_notas.IdTipoSeg, exp_notas.Fecha, exp_notas.IdURD, exp_notas.Notas FROM exp_notas WHERE(((exp_notas.IdNota) = " + idSeguimiento + "))";
+            String sqlSelect = "SELECT exp_notas.Fecha, exp_notas.IdURD, exp_notas.Notas FROM exp_notas WHERE(((exp_notas.IdNota) = " + idSeguimiento + "))";
             infoSeguimiento = Persistencia.SentenciasSQL.select(sqlSelect);
 
-            if (infoSeguimiento.Rows[0][0].ToString() == "") { comboBoxTipoSeguimiento.SelectedIndex = 0; }
-            else { comboBoxTipoSeguimiento.SelectedValue = infoSeguimiento.Rows[0][0].ToString(); }
-            maskedTextBoxFecha.Text = Convert.ToDateTime(infoSeguimiento.Rows[0][1]).ToString("dd-MM-yyyy");
-            comboBoxUsuario.SelectedValue = infoSeguimiento.Rows[0][2].ToString();
-            textBoxNotas.Text = infoSeguimiento.Rows[0][3].ToString();
+            
+            maskedTextBoxFecha.Text = Convert.ToDateTime(infoSeguimiento.Rows[0][0]).ToString("dd-MM-yyyy");
+            comboBoxUsuario.SelectedValue = infoSeguimiento.Rows[0][1].ToString();
+            textBoxNotas.Text = infoSeguimiento.Rows[0][2].ToString();
         }
 
         private void bloquearEdicion()
         {
             comboBoxUsuario.Enabled = false;
-            comboBoxTipoSeguimiento.Enabled = false;
             maskedTextBoxFecha.ReadOnly = true;
             textBoxNotas.ReadOnly = true;
             buttonEditar.Visible = true;
@@ -148,7 +130,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void habilitarEdicion()
         {
             comboBoxUsuario.Enabled = true;
-            comboBoxTipoSeguimiento.Enabled = true;
             maskedTextBoxFecha.ReadOnly = false;
             textBoxNotas.ReadOnly = false;
             buttonEditar.Visible = false;
