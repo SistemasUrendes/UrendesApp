@@ -23,6 +23,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String sfSeguir;
         String sfMax;
         String sfFin;
+        String oldEntidad;
 
         public FormInsertarGestion(FormVerTarea form_anterior,String idTarea,String fInicio)
         {
@@ -105,6 +106,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             maskedTextBoxFFin.Text = infoGestion.Rows[0][5].ToString();
             checkBoxImportante.Checked = bool.Parse(infoGestion.Rows[0][6].ToString());
             textBoxEspera.Text = infoGestion.Rows[0][7].ToString();
+            oldEntidad = infoGestion.Rows[0][7].ToString();
             if (infoGestion.Rows[0][8].ToString() != "" )comboBoxTipoGestion.SelectedValue = infoGestion.Rows[0][8].ToString();
             sfInicio = infoGestion.Rows[0][2].ToString();
             sfSeguir = infoGestion.Rows[0][3].ToString();
@@ -131,6 +133,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             buttonGuardar.Visible = false;
             buttonEntidad.Visible = false;
             buttonEditar.Visible = true;
+            textBoxEspera.ReadOnly = true;
         }
 
         private void habilitarEdicion()
@@ -150,6 +153,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             buttonGuardar.Visible = true;
             buttonEntidad.Visible = true;
             buttonEditar.Visible = false;
+            textBoxEspera.ReadOnly = false;
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)
@@ -310,15 +314,20 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     sqlUpdate = "UPDATE exp_gestiones SET FFin = NULL WHERE IdGestión = " + idGestion;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                 }
-                if (idEntidad != null)
+                if ((idEntidad != null && textBoxEspera.Text == "") || (oldEntidad != "" && textBoxEspera.Text == ""))
+                {
+                    sqlUpdate = "UPDATE exp_gestiones SET IdEntidad = null WHERE IdGestión = " + idGestion;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                }
+                else if (idEntidad != null)
                 {
                     sqlUpdate = "UPDATE exp_gestiones SET IdEntidad = " + idEntidad + " WHERE IdGestión = " + idGestion;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                 }
+                
                 if (importante == "1")
                 {
                     tareaImportante();
-                    
                 }
             }
             else

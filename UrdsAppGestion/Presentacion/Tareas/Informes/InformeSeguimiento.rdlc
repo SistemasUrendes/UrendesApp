@@ -999,10 +999,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>facuerdoJunta</rd:DefaultName>
-            <Top>1.14512cm</Top>
-            <Left>16.3585cm</Left>
+            <Top>1.1169cm</Top>
+            <Left>13.48808cm</Left>
             <Height>0.6cm</Height>
-            <Width>0.75375cm</Width>
+            <Width>0.5cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -1031,10 +1031,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>fimportante</rd:DefaultName>
-            <Top>1.14512cm</Top>
-            <Left>19.38767cm</Left>
+            <Top>1.1169cm</Top>
+            <Left>17.15106cm</Left>
             <Height>0.6cm</Height>
-            <Width>0.70083cm</Width>
+            <Width>0.5cm</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -1063,10 +1063,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>fproximaJunta</rd:DefaultName>
-            <Top>1.14512cm</Top>
-            <Left>22.44044cm</Left>
+            <Top>1.1169cm</Top>
+            <Left>20.152cm</Left>
             <Height>0.6cm</Height>
-            <Width>0.62146cm</Width>
+            <Width>0.5cm</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -1095,10 +1095,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>fseguro</rd:DefaultName>
-            <Top>1.14512cm</Top>
-            <Left>24.71113cm</Left>
+            <Top>1.1169cm</Top>
+            <Left>23.26651cm</Left>
             <Height>0.6cm</Height>
-            <Width>0.59687cm</Width>
+            <Width>0.5cm</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -1117,7 +1117,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Acuerdo Junta:</Value>
+                    <Value>Acuerdo Junta</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -1125,8 +1125,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox22</rd:DefaultName>
-            <Top>1.08162cm</Top>
-            <Left>13.48808cm</Left>
+            <Top>1.1169cm</Top>
+            <Left>13.98808cm</Left>
             <Height>0.6cm</Height>
             <Width>2.87042cm</Width>
             <ZIndex>7</ZIndex>
@@ -1147,7 +1147,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Importante:</Value>
+                    <Value>Importante</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -1155,8 +1155,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox22</rd:DefaultName>
-            <Top>1.08162cm</Top>
-            <Left>17.16517cm</Left>
+            <Top>1.1169cm</Top>
+            <Left>17.62611cm</Left>
             <Height>0.6cm</Height>
             <Width>2.2225cm</Width>
             <ZIndex>8</ZIndex>
@@ -1177,7 +1177,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Prox. Junta:</Value>
+                    <Value>Prox. Junta</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -1185,8 +1185,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox22</rd:DefaultName>
-            <Top>1.08162cm</Top>
-            <Left>20.0885cm</Left>
+            <Top>1.1169cm</Top>
+            <Left>20.652cm</Left>
             <Height>0.6cm</Height>
             <Width>2.35194cm</Width>
             <ZIndex>9</ZIndex>
@@ -1207,7 +1207,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Seguro:</Value>
+                    <Value>Seguro</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -1215,8 +1215,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox22</rd:DefaultName>
-            <Top>1.08162cm</Top>
-            <Left>23.0619cm</Left>
+            <Top>1.1169cm</Top>
+            <Left>23.76651cm</Left>
             <Height>0.6cm</Height>
             <Width>1.64924cm</Width>
             <ZIndex>10</ZIndex>

@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVerTarea));
-            this.label1 = new System.Windows.Forms.Label();
             this.textBoxIdTarea = new System.Windows.Forms.TextBox();
             this.textBoxDescripcion = new System.Windows.Forms.TextBox();
             this.textBoxNotas = new System.Windows.Forms.TextBox();
@@ -92,6 +91,9 @@
             this.textBoxTareaNueva = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.buttonAddTipoGestion = new System.Windows.Forms.Button();
+            this.dataSetCargos1 = new UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms.Informes.DataSetCargos();
+            this.comboBoxEstadoGestion = new System.Windows.Forms.ComboBox();
+            this.buttonTodosSeguimientos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGestiones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSeguimientos)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -101,17 +103,8 @@
             this.tabPageContactos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContactos)).BeginInit();
             this.contextMenuStrip3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetCargos1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(14, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(179, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "DETALLES DE TAREAS";
             // 
             // textBoxIdTarea
             // 
@@ -126,7 +119,7 @@
             // 
             this.textBoxDescripcion.Location = new System.Drawing.Point(135, 49);
             this.textBoxDescripcion.Name = "textBoxDescripcion";
-            this.textBoxDescripcion.Size = new System.Drawing.Size(491, 20);
+            this.textBoxDescripcion.Size = new System.Drawing.Size(429, 20);
             this.textBoxDescripcion.TabIndex = 2;
             // 
             // textBoxNotas
@@ -134,7 +127,7 @@
             this.textBoxNotas.Location = new System.Drawing.Point(65, 197);
             this.textBoxNotas.Multiline = true;
             this.textBoxNotas.Name = "textBoxNotas";
-            this.textBoxNotas.Size = new System.Drawing.Size(561, 103);
+            this.textBoxNotas.Size = new System.Drawing.Size(499, 103);
             this.textBoxNotas.TabIndex = 13;
             // 
             // textBoxRuta
@@ -143,7 +136,7 @@
             this.textBoxRuta.ForeColor = System.Drawing.Color.Blue;
             this.textBoxRuta.Location = new System.Drawing.Point(89, 307);
             this.textBoxRuta.Name = "textBoxRuta";
-            this.textBoxRuta.Size = new System.Drawing.Size(537, 20);
+            this.textBoxRuta.Size = new System.Drawing.Size(475, 20);
             this.textBoxRuta.TabIndex = 17;
             this.textBoxRuta.TabStop = false;
             this.textBoxRuta.Click += new System.EventHandler(this.textBoxRuta_Click);
@@ -281,7 +274,7 @@
             this.dataGridViewSeguimientos.RowHeadersVisible = false;
             this.dataGridViewSeguimientos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewSeguimientos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewSeguimientos.Size = new System.Drawing.Size(563, 252);
+            this.dataGridViewSeguimientos.Size = new System.Drawing.Size(643, 252);
             this.dataGridViewSeguimientos.TabIndex = 20;
             this.dataGridViewSeguimientos.TabStop = false;
             this.dataGridViewSeguimientos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSeguimientos_CellDoubleClick);
@@ -354,7 +347,7 @@
             // 
             // buttonEditar
             // 
-            this.buttonEditar.Location = new System.Drawing.Point(470, 13);
+            this.buttonEditar.Location = new System.Drawing.Point(327, 13);
             this.buttonEditar.Name = "buttonEditar";
             this.buttonEditar.Size = new System.Drawing.Size(75, 23);
             this.buttonEditar.TabIndex = 22;
@@ -364,7 +357,7 @@
             // 
             // buttonGuardar
             // 
-            this.buttonGuardar.Location = new System.Drawing.Point(551, 13);
+            this.buttonGuardar.Location = new System.Drawing.Point(489, 13);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(75, 23);
             this.buttonGuardar.TabIndex = 21;
@@ -374,7 +367,7 @@
             // 
             // buttonAddGestion
             // 
-            this.buttonAddGestion.Location = new System.Drawing.Point(1050, 352);
+            this.buttonAddGestion.Location = new System.Drawing.Point(1056, 349);
             this.buttonAddGestion.Name = "buttonAddGestion";
             this.buttonAddGestion.Size = new System.Drawing.Size(95, 23);
             this.buttonAddGestion.TabIndex = 18;
@@ -384,10 +377,10 @@
             // 
             // buttonAddSeguimiento
             // 
-            this.buttonAddSeguimiento.Location = new System.Drawing.Point(457, 10);
+            this.buttonAddSeguimiento.Location = new System.Drawing.Point(537, 11);
             this.buttonAddSeguimiento.Name = "buttonAddSeguimiento";
             this.buttonAddSeguimiento.Size = new System.Drawing.Size(115, 23);
-            this.buttonAddSeguimiento.TabIndex = 20;
+            this.buttonAddSeguimiento.TabIndex = 21;
             this.buttonAddSeguimiento.Text = "Añadir Seguimiento";
             this.buttonAddSeguimiento.UseVisualStyleBackColor = true;
             this.buttonAddSeguimiento.Click += new System.EventHandler(this.buttonAddSeguimiento_Click);
@@ -492,7 +485,7 @@
             this.textBoxEntidad.Location = new System.Drawing.Point(135, 74);
             this.textBoxEntidad.Name = "textBoxEntidad";
             this.textBoxEntidad.ReadOnly = true;
-            this.textBoxEntidad.Size = new System.Drawing.Size(491, 20);
+            this.textBoxEntidad.Size = new System.Drawing.Size(429, 20);
             this.textBoxEntidad.TabIndex = 4;
             this.textBoxEntidad.Text = "Pulsa espacio para Seleccionar Entidad";
             this.textBoxEntidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxEntidad_KeyPress);
@@ -511,21 +504,22 @@
             // 
             this.tabControl1.Controls.Add(this.tabPagSeguimientos);
             this.tabControl1.Controls.Add(this.tabPageContactos);
-            this.tabControl1.Location = new System.Drawing.Point(650, 13);
+            this.tabControl1.Location = new System.Drawing.Point(570, 13);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(586, 325);
+            this.tabControl1.Size = new System.Drawing.Size(666, 325);
             this.tabControl1.TabIndex = 19;
             // 
             // tabPagSeguimientos
             // 
+            this.tabPagSeguimientos.Controls.Add(this.buttonTodosSeguimientos);
             this.tabPagSeguimientos.Controls.Add(this.label5);
             this.tabPagSeguimientos.Controls.Add(this.dataGridViewSeguimientos);
             this.tabPagSeguimientos.Controls.Add(this.buttonAddSeguimiento);
             this.tabPagSeguimientos.Location = new System.Drawing.Point(4, 22);
             this.tabPagSeguimientos.Name = "tabPagSeguimientos";
             this.tabPagSeguimientos.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPagSeguimientos.Size = new System.Drawing.Size(578, 299);
+            this.tabPagSeguimientos.Size = new System.Drawing.Size(658, 299);
             this.tabPagSeguimientos.TabIndex = 0;
             this.tabPagSeguimientos.Text = "Seguimientos";
             this.tabPagSeguimientos.UseVisualStyleBackColor = true;
@@ -539,14 +533,14 @@
             this.tabPageContactos.Location = new System.Drawing.Point(4, 22);
             this.tabPageContactos.Name = "tabPageContactos";
             this.tabPageContactos.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageContactos.Size = new System.Drawing.Size(578, 299);
+            this.tabPageContactos.Size = new System.Drawing.Size(658, 299);
             this.tabPageContactos.TabIndex = 1;
             this.tabPageContactos.Text = "Contactos";
             this.tabPageContactos.UseVisualStyleBackColor = true;
             // 
             // buttonAddContacto
             // 
-            this.buttonAddContacto.Location = new System.Drawing.Point(372, 10);
+            this.buttonAddContacto.Location = new System.Drawing.Point(452, 10);
             this.buttonAddContacto.Name = "buttonAddContacto";
             this.buttonAddContacto.Size = new System.Drawing.Size(97, 23);
             this.buttonAddContacto.TabIndex = 24;
@@ -556,7 +550,7 @@
             // 
             // buttonEnviarMail
             // 
-            this.buttonEnviarMail.Location = new System.Drawing.Point(475, 10);
+            this.buttonEnviarMail.Location = new System.Drawing.Point(555, 10);
             this.buttonEnviarMail.Name = "buttonEnviarMail";
             this.buttonEnviarMail.Size = new System.Drawing.Size(97, 23);
             this.buttonEnviarMail.TabIndex = 25;
@@ -585,7 +579,7 @@
             this.dataGridViewContactos.ReadOnly = true;
             this.dataGridViewContactos.RowHeadersVisible = false;
             this.dataGridViewContactos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewContactos.Size = new System.Drawing.Size(563, 253);
+            this.dataGridViewContactos.Size = new System.Drawing.Size(643, 253);
             this.dataGridViewContactos.TabIndex = 0;
             this.dataGridViewContactos.TabStop = false;
             this.dataGridViewContactos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewContactos_CellDoubleClick);
@@ -615,7 +609,7 @@
             // 
             // buttonCerrarGestion
             // 
-            this.buttonCerrarGestion.Location = new System.Drawing.Point(1151, 352);
+            this.buttonCerrarGestion.Location = new System.Drawing.Point(1157, 349);
             this.buttonCerrarGestion.Name = "buttonCerrarGestion";
             this.buttonCerrarGestion.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.buttonCerrarGestion.Size = new System.Drawing.Size(75, 23);
@@ -626,11 +620,11 @@
             // 
             // buttonEliminarTarea
             // 
-            this.buttonEliminarTarea.Location = new System.Drawing.Point(389, 13);
+            this.buttonEliminarTarea.Location = new System.Drawing.Point(408, 13);
             this.buttonEliminarTarea.Name = "buttonEliminarTarea";
             this.buttonEliminarTarea.Size = new System.Drawing.Size(75, 23);
             this.buttonEliminarTarea.TabIndex = 23;
-            this.buttonEliminarTarea.Text = "Eliminar";
+            this.buttonEliminarTarea.Text = "Borrar";
             this.buttonEliminarTarea.UseVisualStyleBackColor = true;
             this.buttonEliminarTarea.Click += new System.EventHandler(this.buttonEliminarTarea_Click);
             // 
@@ -681,7 +675,7 @@
             // 
             // textBoxTareaNueva
             // 
-            this.textBoxTareaNueva.Location = new System.Drawing.Point(268, 15);
+            this.textBoxTareaNueva.Location = new System.Drawing.Point(66, 16);
             this.textBoxTareaNueva.Name = "textBoxTareaNueva";
             this.textBoxTareaNueva.Size = new System.Drawing.Size(100, 20);
             this.textBoxTareaNueva.TabIndex = 39;
@@ -690,7 +684,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(206, 18);
+            this.label12.Location = new System.Drawing.Point(4, 19);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(56, 13);
             this.label12.TabIndex = 40;
@@ -698,7 +692,7 @@
             // 
             // buttonAddTipoGestion
             // 
-            this.buttonAddTipoGestion.Location = new System.Drawing.Point(1151, 583);
+            this.buttonAddTipoGestion.Location = new System.Drawing.Point(1157, 583);
             this.buttonAddTipoGestion.Name = "buttonAddTipoGestion";
             this.buttonAddTipoGestion.Size = new System.Drawing.Size(75, 23);
             this.buttonAddTipoGestion.TabIndex = 41;
@@ -706,11 +700,41 @@
             this.buttonAddTipoGestion.UseVisualStyleBackColor = true;
             this.buttonAddTipoGestion.Click += new System.EventHandler(this.buttonAddTipoGestion_Click);
             // 
+            // dataSetCargos1
+            // 
+            this.dataSetCargos1.DataSetName = "DataSetCargos";
+            this.dataSetCargos1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // comboBoxEstadoGestion
+            // 
+            this.comboBoxEstadoGestion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxEstadoGestion.FormattingEnabled = true;
+            this.comboBoxEstadoGestion.Items.AddRange(new object[] {
+            "Abiertas",
+            "Cerradas",
+            "Todas"});
+            this.comboBoxEstadoGestion.Location = new System.Drawing.Point(952, 350);
+            this.comboBoxEstadoGestion.Name = "comboBoxEstadoGestion";
+            this.comboBoxEstadoGestion.Size = new System.Drawing.Size(98, 21);
+            this.comboBoxEstadoGestion.TabIndex = 42;
+            this.comboBoxEstadoGestion.SelectedIndexChanged += new System.EventHandler(this.comboBoxEstadoGestion_SelectedIndexChanged);
+            // 
+            // buttonTodosSeguimientos
+            // 
+            this.buttonTodosSeguimientos.Location = new System.Drawing.Point(403, 11);
+            this.buttonTodosSeguimientos.Name = "buttonTodosSeguimientos";
+            this.buttonTodosSeguimientos.Size = new System.Drawing.Size(128, 23);
+            this.buttonTodosSeguimientos.TabIndex = 20;
+            this.buttonTodosSeguimientos.Text = "Todos los Seguimientos";
+            this.buttonTodosSeguimientos.UseVisualStyleBackColor = true;
+            this.buttonTodosSeguimientos.Click += new System.EventHandler(this.buttonTodosSeguimientos_Click);
+            // 
             // FormVerTarea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1239, 625);
+            this.Controls.Add(this.comboBoxEstadoGestion);
             this.Controls.Add(this.buttonAddTipoGestion);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.textBoxTareaNueva);
@@ -749,7 +773,6 @@
             this.Controls.Add(this.textBoxNotas);
             this.Controls.Add(this.textBoxDescripcion);
             this.Controls.Add(this.textBoxIdTarea);
-            this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormVerTarea";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -766,14 +789,13 @@
             this.tabPageContactos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContactos)).EndInit();
             this.contextMenuStrip3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetCargos1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxIdTarea;
         private System.Windows.Forms.TextBox textBoxDescripcion;
         private System.Windows.Forms.TextBox textBoxNotas;
@@ -835,5 +857,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemInfoEntidad;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAddSeguimiento;
         private System.Windows.Forms.Button buttonAddTipoGestion;
+        private ComunidadesForms.CargosForms.Informes.DataSetCargos dataSetCargos1;
+        private System.Windows.Forms.ComboBox comboBoxEstadoGestion;
+        private System.Windows.Forms.Button buttonTodosSeguimientos;
     }
 }
