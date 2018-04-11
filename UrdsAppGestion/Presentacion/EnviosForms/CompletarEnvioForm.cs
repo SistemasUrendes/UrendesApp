@@ -429,11 +429,11 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.EnviosForms
                     email.Attachments.Add(new Attachment(@adjuntos[a]));
 
             SmtpClient smtp = new SmtpClient();
-            smtp.Host = "hl316.hosteurope.es";
-            smtp.Port = 587;
-            smtp.EnableSsl = true;
+            smtp.Host = "urendes.com";
+            smtp.Port = 26;
+            smtp.EnableSsl = false;
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("admin@envios.urendes.com", "#.Urds16");
+            smtp.Credentials = new NetworkCredential("sistemas@urendes.com", "#.Urds16");
 
             try
             {
