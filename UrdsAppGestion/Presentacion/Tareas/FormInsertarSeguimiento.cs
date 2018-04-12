@@ -16,7 +16,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String idGestion;
         String idSeguimiento;
         Boolean edicion;
-        String fechaCompleta;
         FormVerTarea form_anterior;
         DataTable infoSeguimiento;
 

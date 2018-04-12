@@ -50,6 +50,16 @@
             this.comboBoxTipoGestion = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.buttonEditar = new System.Windows.Forms.Button();
+            this.buttonAgenda5 = new System.Windows.Forms.Button();
+            this.buttonLimite5 = new System.Windows.Forms.Button();
+            this.buttonAgenda15 = new System.Windows.Forms.Button();
+            this.buttonLimite15 = new System.Windows.Forms.Button();
+            this.buttonAgenda30 = new System.Windows.Forms.Button();
+            this.buttonLimite30 = new System.Windows.Forms.Button();
+            this.buttonInicio5 = new System.Windows.Forms.Button();
+            this.buttonInicio15 = new System.Windows.Forms.Button();
+            this.buttonInicio30 = new System.Windows.Forms.Button();
+            this.buttonFinNow = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // maskedTextBoxFInicio
@@ -74,7 +84,7 @@
             // 
             // maskedTextBoxFFin
             // 
-            this.maskedTextBoxFFin.Location = new System.Drawing.Point(88, 268);
+            this.maskedTextBoxFFin.Location = new System.Drawing.Point(88, 266);
             this.maskedTextBoxFFin.Mask = "00/00/0000";
             this.maskedTextBoxFFin.Name = "maskedTextBoxFFin";
             this.maskedTextBoxFFin.Size = new System.Drawing.Size(69, 20);
@@ -113,7 +123,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 193);
+            this.label2.Location = new System.Drawing.Point(13, 194);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 13);
             this.label2.TabIndex = 7;
@@ -122,7 +132,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 244);
+            this.label3.Location = new System.Drawing.Point(9, 245);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 13);
             this.label3.TabIndex = 8;
@@ -131,7 +141,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1, 218);
+            this.label4.Location = new System.Drawing.Point(1, 219);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(80, 13);
             this.label4.TabIndex = 9;
@@ -140,7 +150,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(24, 271);
+            this.label5.Location = new System.Drawing.Point(24, 270);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 13);
             this.label5.TabIndex = 10;
@@ -250,11 +260,121 @@
             this.buttonEditar.UseVisualStyleBackColor = true;
             this.buttonEditar.Click += new System.EventHandler(this.buttonEditar_Click);
             // 
+            // buttonAgenda5
+            // 
+            this.buttonAgenda5.Location = new System.Drawing.Point(164, 215);
+            this.buttonAgenda5.Name = "buttonAgenda5";
+            this.buttonAgenda5.Size = new System.Drawing.Size(29, 20);
+            this.buttonAgenda5.TabIndex = 23;
+            this.buttonAgenda5.Text = "5";
+            this.buttonAgenda5.UseVisualStyleBackColor = true;
+            this.buttonAgenda5.Click += new System.EventHandler(this.buttonAgenda5_Click);
+            // 
+            // buttonLimite5
+            // 
+            this.buttonLimite5.Location = new System.Drawing.Point(164, 241);
+            this.buttonLimite5.Name = "buttonLimite5";
+            this.buttonLimite5.Size = new System.Drawing.Size(29, 20);
+            this.buttonLimite5.TabIndex = 25;
+            this.buttonLimite5.Text = "5";
+            this.buttonLimite5.UseVisualStyleBackColor = true;
+            this.buttonLimite5.Click += new System.EventHandler(this.buttonLimite5_Click);
+            // 
+            // buttonAgenda15
+            // 
+            this.buttonAgenda15.Location = new System.Drawing.Point(198, 215);
+            this.buttonAgenda15.Name = "buttonAgenda15";
+            this.buttonAgenda15.Size = new System.Drawing.Size(36, 20);
+            this.buttonAgenda15.TabIndex = 28;
+            this.buttonAgenda15.Text = "15";
+            this.buttonAgenda15.UseVisualStyleBackColor = true;
+            this.buttonAgenda15.Click += new System.EventHandler(this.buttonAgenda15_Click);
+            // 
+            // buttonLimite15
+            // 
+            this.buttonLimite15.Location = new System.Drawing.Point(198, 241);
+            this.buttonLimite15.Name = "buttonLimite15";
+            this.buttonLimite15.Size = new System.Drawing.Size(36, 20);
+            this.buttonLimite15.TabIndex = 29;
+            this.buttonLimite15.Text = "15";
+            this.buttonLimite15.UseVisualStyleBackColor = true;
+            this.buttonLimite15.Click += new System.EventHandler(this.buttonLimite15_Click);
+            // 
+            // buttonAgenda30
+            // 
+            this.buttonAgenda30.Location = new System.Drawing.Point(236, 215);
+            this.buttonAgenda30.Name = "buttonAgenda30";
+            this.buttonAgenda30.Size = new System.Drawing.Size(36, 20);
+            this.buttonAgenda30.TabIndex = 32;
+            this.buttonAgenda30.Text = "30";
+            this.buttonAgenda30.UseVisualStyleBackColor = true;
+            this.buttonAgenda30.Click += new System.EventHandler(this.buttonAgenda30_Click);
+            // 
+            // buttonLimite30
+            // 
+            this.buttonLimite30.Location = new System.Drawing.Point(236, 241);
+            this.buttonLimite30.Name = "buttonLimite30";
+            this.buttonLimite30.Size = new System.Drawing.Size(36, 20);
+            this.buttonLimite30.TabIndex = 33;
+            this.buttonLimite30.Text = "30";
+            this.buttonLimite30.UseVisualStyleBackColor = true;
+            this.buttonLimite30.Click += new System.EventHandler(this.buttonLimite30_Click);
+            // 
+            // buttonInicio5
+            // 
+            this.buttonInicio5.Location = new System.Drawing.Point(164, 190);
+            this.buttonInicio5.Name = "buttonInicio5";
+            this.buttonInicio5.Size = new System.Drawing.Size(29, 20);
+            this.buttonInicio5.TabIndex = 24;
+            this.buttonInicio5.Text = "5";
+            this.buttonInicio5.UseVisualStyleBackColor = true;
+            this.buttonInicio5.Click += new System.EventHandler(this.buttonInicio5_Click);
+            // 
+            // buttonInicio15
+            // 
+            this.buttonInicio15.Location = new System.Drawing.Point(198, 190);
+            this.buttonInicio15.Name = "buttonInicio15";
+            this.buttonInicio15.Size = new System.Drawing.Size(36, 20);
+            this.buttonInicio15.TabIndex = 27;
+            this.buttonInicio15.Text = "15";
+            this.buttonInicio15.UseVisualStyleBackColor = true;
+            this.buttonInicio15.Click += new System.EventHandler(this.buttonInicio15_Click);
+            // 
+            // buttonInicio30
+            // 
+            this.buttonInicio30.Location = new System.Drawing.Point(236, 190);
+            this.buttonInicio30.Name = "buttonInicio30";
+            this.buttonInicio30.Size = new System.Drawing.Size(36, 20);
+            this.buttonInicio30.TabIndex = 31;
+            this.buttonInicio30.Text = "30";
+            this.buttonInicio30.UseVisualStyleBackColor = true;
+            this.buttonInicio30.Click += new System.EventHandler(this.buttonInicio30_Click);
+            // 
+            // buttonFinNow
+            // 
+            this.buttonFinNow.Location = new System.Drawing.Point(164, 266);
+            this.buttonFinNow.Name = "buttonFinNow";
+            this.buttonFinNow.Size = new System.Drawing.Size(108, 20);
+            this.buttonFinNow.TabIndex = 34;
+            this.buttonFinNow.Text = "Hoy";
+            this.buttonFinNow.UseVisualStyleBackColor = true;
+            this.buttonFinNow.Click += new System.EventHandler(this.buttonFinNow_Click);
+            // 
             // FormInsertarGestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 342);
+            this.Controls.Add(this.buttonFinNow);
+            this.Controls.Add(this.buttonLimite30);
+            this.Controls.Add(this.buttonAgenda30);
+            this.Controls.Add(this.buttonInicio30);
+            this.Controls.Add(this.buttonLimite15);
+            this.Controls.Add(this.buttonAgenda15);
+            this.Controls.Add(this.buttonInicio15);
+            this.Controls.Add(this.buttonLimite5);
+            this.Controls.Add(this.buttonInicio5);
+            this.Controls.Add(this.buttonAgenda5);
             this.Controls.Add(this.buttonEditar);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.comboBoxTipoGestion);
@@ -309,5 +429,15 @@
         private System.Windows.Forms.ComboBox comboBoxTipoGestion;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button buttonEditar;
+        private System.Windows.Forms.Button buttonAgenda5;
+        private System.Windows.Forms.Button buttonLimite5;
+        private System.Windows.Forms.Button buttonAgenda15;
+        private System.Windows.Forms.Button buttonLimite15;
+        private System.Windows.Forms.Button buttonAgenda30;
+        private System.Windows.Forms.Button buttonLimite30;
+        private System.Windows.Forms.Button buttonInicio5;
+        private System.Windows.Forms.Button buttonInicio15;
+        private System.Windows.Forms.Button buttonInicio30;
+        private System.Windows.Forms.Button buttonFinNow;
     }
 }

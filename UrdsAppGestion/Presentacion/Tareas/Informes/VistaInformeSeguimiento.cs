@@ -15,7 +15,6 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes
     {
         String idEntidad;
         DataTable tabla;
-        DataTable filtro;
         public VistaInformeSeguimiento(String idEntidad,String nombreComunidad,DataTable tabla,String Fini1,String Fini2,String FFin1,String FFin2,String Acuerdo,String Importante,String Proxima,  String Seguro)
         {
             InitializeComponent();
