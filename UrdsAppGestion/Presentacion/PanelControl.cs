@@ -103,7 +103,7 @@ namespace UrdsAppGestión.Presentacion
 
             for (int i = 0; i < lista_correos.Count; i++)  {
 
-               //String destinatario = "alex.cremeria@gmail.com";
+               //String destinatario = "sistemas@urendes.com";
                String destinatario = lista_correos[i].Correo;
 
                 //if (destinatario != "sandrapenavinuesa@hotmail.com" && !encontrado) {
@@ -215,27 +215,34 @@ namespace UrdsAppGestión.Presentacion
                 if (System.IO.File.Exists(@adjuntos[a]))
                     email.Attachments.Add(new Attachment(@adjuntos[a]));
 
-            SmtpClient smtp = new SmtpClient();
+            /*SmtpClient smtp = new SmtpClient();
             smtp.Host = "hl316.hosteurope.es";
             smtp.Port = 587;
             smtp.EnableSsl = true;
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("admin@envios.urendes.com", "#.Urds16");
+            smtp.Credentials = new NetworkCredential("admin@envios.urendes.com", "#.Urds16");*/
+
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "urendes.com";
+            smtp.Port = 25;
+            smtp.EnableSsl = false;
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new NetworkCredential("info@urendes.com", "gfty0307");
 
             try {
                 smtp.Send(email);
                 numero_Correos++;
                 if (numero_Correos == 10) {
-                    Thread.Sleep(20000);
+                    Thread.Sleep(3000);
                     numero_Correos = 0;
                 }
 
-                Thread.Sleep(20000);
+                Thread.Sleep(1000);
                 email.Dispose();
             }
             catch (Exception) {
                 //MessageBox.Show(e.Message);
-                Thread.Sleep(10000);
+                Thread.Sleep(50000);
                 smtp.Send(email);
                 email.Dispose();
             }

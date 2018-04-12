@@ -431,7 +431,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.EnviosForms
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "urendes.com";
             smtp.Port = 26;
-            smtp.EnableSsl = false;
+            smtp.EnableSsl = true;
             smtp.UseDefaultCredentials = false;
             smtp.Credentials = new NetworkCredential("sistemas@urendes.com", "#.Urds16");
 
