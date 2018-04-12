@@ -53,7 +53,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void FormInsertarGestion_Load(object sender, EventArgs e)
         {
             rellenarComboBox();
-            maskedTextBoxFInicio.Text = fInicio;
+            maskedTextBoxFInicio.Text = DateTime.Now.ToShortDateString();
             //NUEVA GESTIÓN
             if (idGestion == null)
             {
@@ -134,6 +134,16 @@ namespace UrdsAppGestión.Presentacion.Tareas
             buttonEntidad.Visible = false;
             buttonEditar.Visible = true;
             textBoxEspera.ReadOnly = true;
+            buttonAgenda5.Visible = false;
+            buttonAgenda15.Visible = false;
+            buttonAgenda30.Visible = false;
+            buttonInicio5.Visible = false;
+            buttonInicio15.Visible = false;
+            buttonInicio30.Visible = false;
+            buttonLimite5.Visible = false;
+            buttonLimite15.Visible = false;
+            buttonLimite30.Visible = false;
+            buttonFinNow.Visible = false;
         }
 
         private void habilitarEdicion()
@@ -154,6 +164,16 @@ namespace UrdsAppGestión.Presentacion.Tareas
             buttonEntidad.Visible = true;
             buttonEditar.Visible = false;
             textBoxEspera.ReadOnly = false;
+            buttonAgenda5.Visible = true;
+            buttonAgenda15.Visible = true;
+            buttonAgenda30.Visible = true;
+            buttonInicio5.Visible = true;
+            buttonInicio15.Visible = true;
+            buttonInicio30.Visible = true;
+            buttonLimite5.Visible = true;
+            buttonLimite15.Visible = true;
+            buttonLimite30.Visible = true;
+            buttonFinNow.Visible = true;
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)
@@ -248,7 +268,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
             }
         }
-        
+
 
         private void guardarGestion()
         {
@@ -272,7 +292,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             
             if (idGestion != null)
             {
-                sqlUpdate = "UPDATE exp_gestiones SET IdTarea = " + idTarea + ",Descripción = '" + descripcion + "',IdUser = " + usuario + ",Importante = " + importante + ",IdTipoGestion = " + tipo + " WHERE IdGestión = " + idGestion;
+                sqlUpdate = "UPDATE exp_gestiones SET Descripción = '" + descripcion + "',IdUser = " + usuario + ",Importante = " + importante + ",IdTipoGestion = " + tipo + " WHERE IdGestión = " + idGestion;
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                 if (fInicio != null)
                 {
@@ -401,6 +421,110 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void buttonEditar_Click(object sender, EventArgs e)
         {
             habilitarEdicion();
+        }
+
+        private void buttonInicio5_Click(object sender, EventArgs e)
+        {
+            maskedTextBoxFInicio.Text = DateTime.Now.AddDays(5).ToShortDateString();
+        }
+
+        private void buttonAgenda5_Click(object sender, EventArgs e)
+        {
+            if (maskedTextBoxFInicio.Text == "  /  /")
+            {
+                maskedTextBoxFInicio.Text = DateTime.Now.ToShortDateString();
+                maskedTextBoxFSeguir.Text = DateTime.Now.AddDays(5).ToShortDateString();
+            }
+            else
+            {
+                DateTime dateini = Convert.ToDateTime(maskedTextBoxFInicio.Text);
+                maskedTextBoxFSeguir.Text = dateini.AddDays(5).ToShortDateString();
+            }
+        }
+
+        private void buttonLimite5_Click(object sender, EventArgs e)
+        {
+            if (maskedTextBoxFInicio.Text == "  /  /")
+            {
+                maskedTextBoxFInicio.Text = DateTime.Now.ToShortDateString();
+                maskedTextBoxFMax.Text = DateTime.Now.AddDays(5).ToShortDateString();
+            }
+            else
+            {
+                DateTime dateini = Convert.ToDateTime(maskedTextBoxFInicio.Text);
+                maskedTextBoxFMax.Text = dateini.AddDays(5).ToShortDateString();
+            }
+        }
+
+        private void buttonInicio15_Click(object sender, EventArgs e)
+        {
+            maskedTextBoxFInicio.Text = DateTime.Now.AddDays(15).ToShortDateString();
+        }
+
+        private void buttonAgenda15_Click(object sender, EventArgs e)
+        {
+            if (maskedTextBoxFInicio.Text == "  /  /")
+            {
+                maskedTextBoxFInicio.Text = DateTime.Now.ToShortDateString();
+                maskedTextBoxFSeguir.Text = DateTime.Now.AddDays(15).ToShortDateString();
+            }
+            else
+            {
+                DateTime dateini = Convert.ToDateTime(maskedTextBoxFInicio.Text);
+                maskedTextBoxFSeguir.Text = dateini.AddDays(15).ToShortDateString();
+            }
+        }
+
+        private void buttonLimite15_Click(object sender, EventArgs e)
+        {
+            if (maskedTextBoxFInicio.Text == "  /  /")
+            {
+                maskedTextBoxFInicio.Text = DateTime.Now.ToShortDateString();
+                maskedTextBoxFMax.Text = DateTime.Now.AddDays(15).ToShortDateString();
+            }
+            else
+            {
+                DateTime dateini = Convert.ToDateTime(maskedTextBoxFInicio.Text);
+                maskedTextBoxFMax.Text = dateini.AddDays(15).ToShortDateString();
+            }
+        }
+
+        private void buttonInicio30_Click(object sender, EventArgs e)
+        {
+            maskedTextBoxFInicio.Text = DateTime.Now.AddDays(30).ToShortDateString();
+        }
+
+        private void buttonAgenda30_Click(object sender, EventArgs e)
+        {
+            if (maskedTextBoxFInicio.Text == "  /  /")
+            {
+                maskedTextBoxFInicio.Text = DateTime.Now.ToShortDateString();
+                maskedTextBoxFSeguir.Text = DateTime.Now.AddDays(30).ToShortDateString();
+            }
+            else
+            {
+                DateTime dateini = Convert.ToDateTime(maskedTextBoxFInicio.Text);
+                maskedTextBoxFSeguir.Text = dateini.AddDays(30).ToShortDateString();
+            }
+        }
+
+        private void buttonLimite30_Click(object sender, EventArgs e)
+        {
+            if (maskedTextBoxFInicio.Text == "  /  /")
+            {
+                maskedTextBoxFInicio.Text = DateTime.Now.ToShortDateString();
+                maskedTextBoxFMax.Text = DateTime.Now.AddDays(30).ToShortDateString();
+            }
+            else
+            {
+                DateTime dateini = Convert.ToDateTime(maskedTextBoxFInicio.Text);
+                maskedTextBoxFMax.Text = dateini.AddDays(30).ToShortDateString();
+            }
+        }
+
+        private void buttonFinNow_Click(object sender, EventArgs e)
+        {
+            maskedTextBoxFFin.Text = DateTime.Now.ToShortDateString();
         }
     }
 }

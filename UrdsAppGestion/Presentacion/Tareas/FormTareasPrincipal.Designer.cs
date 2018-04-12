@@ -218,6 +218,7 @@
             this.maskedTextBoxRefComunidad.Size = new System.Drawing.Size(31, 20);
             this.maskedTextBoxRefComunidad.TabIndex = 2;
             this.maskedTextBoxRefComunidad.ValidatingType = typeof(int);
+            this.maskedTextBoxRefComunidad.DoubleClick += new System.EventHandler(this.maskedTextBoxRefComunidad_DoubleClick);
             this.maskedTextBoxRefComunidad.Leave += new System.EventHandler(this.maskedTextBoxRefComunidad_Leave);
             // 
             // buttonGrupo

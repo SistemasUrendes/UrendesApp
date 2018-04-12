@@ -45,7 +45,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (idTarea != null)
             {
                 cargarCabecera();
-                comboBoxEstadoGestion.SelectedIndex = 0;
+                comboBoxEstadoGestion.SelectedIndex = 2; //TODAS
                 cargarTodosSeguimientos();
                 cargarContactos();
                 bloquearEdicion();
@@ -320,7 +320,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
                     addTarea();
                     textBoxIdTarea.Text = idTarea;
-                    comboBoxEstadoGestion.SelectedIndex = 0;
+                    comboBoxEstadoGestion.SelectedIndex = 2;
                     bloquearEdicion();
                     form_anterior.CargarTareas();
                     Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, fInicio);
@@ -329,7 +329,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
             else
             {
-                comboBoxEstadoGestion.SelectedIndex = 0;
+                comboBoxEstadoGestion.SelectedIndex = 2;
                 Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, fInicio);
                 nueva.Show();
             }
@@ -952,7 +952,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (tablamail.Rows.Count > 0)
             {
                 String mail = tablamail.Rows[0][0].ToString();
-                System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\"" + generaAsunto() + "\"");
+                System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\"" + generaAsunto() + "\",body= Este expediente requiere de su atención.");
             }
             else
             {
@@ -1029,7 +1029,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     resultado_message = MessageBox.Show("¿Desea cerrar la tarea?", "Cerrar Tarea ", MessageBoxButtons.OKCancel);
                     if (resultado_message == System.Windows.Forms.DialogResult.OK)
                     {
-                        String sqlUpdate = "UPDATE exp_tareas SET FFin = '" + DateTime.Now.ToString("yyyy-MM-dd") + "' WHERE IdTarea = " + idTarea;
+                        String sqlUpdate = "UPDATE exp_tareas SET FFin = '" + DateTime.Now.ToString("yyyy-MM-dd") + "',Importante = 0 WHERE IdTarea = " + idTarea;
                         Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                         cargarCabecera();
                         form_anterior.CargarTareas();
