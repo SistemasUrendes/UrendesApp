@@ -51,6 +51,7 @@
             this.verMovimientosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verOperacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compensarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.abonarVencimientoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reasignarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarOperaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label8 = new System.Windows.Forms.Label();
@@ -59,7 +60,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button_fondo = new System.Windows.Forms.Button();
-            this.abonarVencimientoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_operaciones)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -267,6 +267,13 @@
             this.compensarToolStripMenuItem.Text = "Compensar";
             this.compensarToolStripMenuItem.Click += new System.EventHandler(this.compensarToolStripMenuItem_Click);
             // 
+            // abonarVencimientoToolStripMenuItem
+            // 
+            this.abonarVencimientoToolStripMenuItem.Name = "abonarVencimientoToolStripMenuItem";
+            this.abonarVencimientoToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.abonarVencimientoToolStripMenuItem.Text = "Abonar Vencimiento";
+            this.abonarVencimientoToolStripMenuItem.Click += new System.EventHandler(this.abonarVencimientoToolStripMenuItem_Click);
+            // 
             // reasignarToolStripMenuItem
             // 
             this.reasignarToolStripMenuItem.Name = "reasignarToolStripMenuItem";
@@ -339,20 +346,13 @@
             // 
             // button_fondo
             // 
-            this.button_fondo.Location = new System.Drawing.Point(1041, 74);
+            this.button_fondo.Location = new System.Drawing.Point(1041, 91);
             this.button_fondo.Name = "button_fondo";
-            this.button_fondo.Size = new System.Drawing.Size(103, 44);
+            this.button_fondo.Size = new System.Drawing.Size(103, 27);
             this.button_fondo.TabIndex = 26;
-            this.button_fondo.Text = "Ingreso/Abono Fondo";
+            this.button_fondo.Text = "Otros Ingresos";
             this.button_fondo.UseVisualStyleBackColor = true;
             this.button_fondo.Click += new System.EventHandler(this.button_fondo_Click);
-            // 
-            // abonarVencimientoToolStripMenuItem
-            // 
-            this.abonarVencimientoToolStripMenuItem.Name = "abonarVencimientoToolStripMenuItem";
-            this.abonarVencimientoToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.abonarVencimientoToolStripMenuItem.Text = "Abonar Vencimiento";
-            this.abonarVencimientoToolStripMenuItem.Click += new System.EventHandler(this.abonarVencimientoToolStripMenuItem_Click);
             // 
             // Operaciones_comuneros
             // 

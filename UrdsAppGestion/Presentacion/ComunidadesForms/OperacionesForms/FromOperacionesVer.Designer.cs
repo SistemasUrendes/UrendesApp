@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FromOperacionesVer));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button_añadirExpedientes = new System.Windows.Forms.Button();
             this.textBox_expediente = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -91,7 +92,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button_70001 = new System.Windows.Forms.Button();
             this.button_revisarPte = new System.Windows.Forms.Button();
-            this.button_añadirExpedientes = new System.Windows.Forms.Button();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.eliminarExpedienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -106,6 +108,7 @@
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_liquidacion)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -140,6 +143,16 @@
             this.groupBox1.Size = new System.Drawing.Size(851, 199);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // button_añadirExpedientes
+            // 
+            this.button_añadirExpedientes.Location = new System.Drawing.Point(739, 22);
+            this.button_añadirExpedientes.Name = "button_añadirExpedientes";
+            this.button_añadirExpedientes.Size = new System.Drawing.Size(104, 23);
+            this.button_añadirExpedientes.TabIndex = 1;
+            this.button_añadirExpedientes.Text = "Añadir Expediente";
+            this.button_añadirExpedientes.UseVisualStyleBackColor = true;
+            this.button_añadirExpedientes.Click += new System.EventHandler(this.button_añadirExpedientes_Click);
             // 
             // textBox_expediente
             // 
@@ -194,6 +207,8 @@
             // 
             // dataGridView_expedientes
             // 
+            this.dataGridView_expedientes.AllowUserToAddRows = false;
+            this.dataGridView_expedientes.AllowUserToDeleteRows = false;
             this.dataGridView_expedientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_expedientes.Location = new System.Drawing.Point(6, 8);
             this.dataGridView_expedientes.MultiSelect = false;
@@ -203,6 +218,7 @@
             this.dataGridView_expedientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_expedientes.Size = new System.Drawing.Size(363, 114);
             this.dataGridView_expedientes.TabIndex = 0;
+            this.dataGridView_expedientes.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView_expedientes_MouseClick);
             // 
             // label16
             // 
@@ -742,15 +758,19 @@
             this.button_revisarPte.UseVisualStyleBackColor = true;
             this.button_revisarPte.Click += new System.EventHandler(this.button_revisarPte_Click);
             // 
-            // button_añadirExpedientes
+            // contextMenuStrip2
             // 
-            this.button_añadirExpedientes.Location = new System.Drawing.Point(739, 22);
-            this.button_añadirExpedientes.Name = "button_añadirExpedientes";
-            this.button_añadirExpedientes.Size = new System.Drawing.Size(104, 23);
-            this.button_añadirExpedientes.TabIndex = 1;
-            this.button_añadirExpedientes.Text = "Añadir Expediente";
-            this.button_añadirExpedientes.UseVisualStyleBackColor = true;
-            this.button_añadirExpedientes.Click += new System.EventHandler(this.button_añadirExpedientes_Click);
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eliminarExpedienteToolStripMenuItem});
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(178, 26);
+            // 
+            // eliminarExpedienteToolStripMenuItem
+            // 
+            this.eliminarExpedienteToolStripMenuItem.Name = "eliminarExpedienteToolStripMenuItem";
+            this.eliminarExpedienteToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.eliminarExpedienteToolStripMenuItem.Text = "Eliminar Expediente";
+            this.eliminarExpedienteToolStripMenuItem.Click += new System.EventHandler(this.eliminarExpedienteToolStripMenuItem_Click);
             // 
             // FromOperacionesVer
             // 
@@ -806,6 +826,7 @@
             this.groupBox6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_liquidacion)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            this.contextMenuStrip2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -875,5 +896,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView dataGridView_expedientes;
         private System.Windows.Forms.Button button_añadirExpedientes;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem eliminarExpedienteToolStripMenuItem;
     }
 }

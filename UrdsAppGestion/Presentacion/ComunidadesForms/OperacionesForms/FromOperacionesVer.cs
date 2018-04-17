@@ -442,13 +442,35 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
         }
         public void cargarExpedientes() {
 
-            String sqlExpedientes = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción FROM exp_operacionTarea INNER JOIN exp_tareas ON exp_operacionTarea.IdTarea = exp_tareas.IdTarea WHERE (((exp_operacionTarea.IdOperacion) = " + id_operacion_cargado + "));";
+            String sqlExpedientes = "SELECT IdOperacionTarea, exp_tareas.IdTarea, exp_tareas.Descripción FROM exp_operacionTarea INNER JOIN exp_tareas ON exp_operacionTarea.IdTarea = exp_tareas.IdTarea WHERE (((exp_operacionTarea.IdOperacion) = " + id_operacion_cargado + "));";
 
             DataTable expedientes = Persistencia.SentenciasSQL.select(sqlExpedientes);
             if (expedientes.Rows.Count > 0)
             {
                 dataGridView_expedientes.DataSource = expedientes;
+                dataGridView_expedientes.Columns[0].Visible = false;
+                dataGridView_expedientes.Columns[1].Width = 60;
+                dataGridView_expedientes.Columns[2].Width = 300;
             }
+        }
+
+        private void dataGridView_expedientes_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                var hti = dataGridView_expedientes.HitTest(e.X, e.Y);
+                dataGridView_expedientes.ClearSelection();
+                dataGridView_expedientes.Rows[hti.RowIndex].Selected = true;
+
+                contextMenuStrip2.Show(Cursor.Position);
+            }
+        }
+
+        private void eliminarExpedienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String sqlDelete = "DELETE FROM exp_operacionTarea WHERE IdOperacionTarea = " + dataGridView_expedientes.SelectedRows[0].Cells[0].Value.ToString();
+            Persistencia.SentenciasSQL.InsertarGenerico(sqlDelete);
+            cargarExpedientes();
         }
     }
 }

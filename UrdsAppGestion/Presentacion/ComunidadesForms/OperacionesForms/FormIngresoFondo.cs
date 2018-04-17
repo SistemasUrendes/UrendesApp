@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -33,7 +34,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
                 comboBox_liquidación.SelectedIndex = 0;
                 cargarLiquidaciones();
             }else {
-                MessageBox.Show("Crea primero un fondo");
+                checkBox_fondo.Checked = false;
             }
         }
         private void cargarCombos() {
@@ -46,8 +47,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
 
         private void cargarLiquidaciones () {
 
-            String sqlSelectLiq = "SELECT com_liquidaciones.IdLiquidacion, com_liquidaciones.Liquidacion FROM(com_liquidaciones INNER JOIN com_detallesfondo ON com_liquidaciones.IdDetalleFondo = com_detallesfondo.IdDetalleFondo) INNER JOIN com_fondos ON com_detallesfondo.IdFondo = com_fondos.IdFondo WHERE(((com_fondos.IdComunidad) = " + id_comunidad + "));";
-            ;
+            String sqlSelectLiq = "SELECT com_liquidaciones.IdLiquidacion, com_liquidaciones.Liquidacion FROM com_liquidaciones INNER JOIN com_ejercicios ON com_liquidaciones.IdEjercicio = com_ejercicios.IdEjercicio WHERE(((com_ejercicios.IdComunidad) = " + id_comunidad + ") AND((com_ejercicios.C) <> -1) AND((com_liquidaciones.Cerrada) <> -1));";
+
             DataTable liquidaciones = Persistencia.SentenciasSQL.select(sqlSelectLiq);
             comboBox_liquidación.DataSource = liquidaciones;
             comboBox_liquidación.DisplayMember = "Liquidacion";
@@ -102,7 +103,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             String fecha_actualizacion = (Convert.ToDateTime(DateTime.Now)).ToString("yyyy-MM-dd hh:mm:ss");
             
             //CREO OPERACIÓN
-            String sqlInsertOp = "INSERT INTO com_operaciones (IdComunidad, IdEntidad, IdSubCuenta, IdTipoReparto, Fecha, Documento, Descripcion, IdEstado, ImpOp, ImpOpPte, NumMov, Guardada, IdURD, FAct) VALUES (" + id_comunidad + "," + id_entidad_nueva + "," + comboBox_subcuenta.SelectedItem.ToString() + ",1,'" + fecha + "','" + ((DataRowView)comboBox_fondos.SelectedItem)["NombreFondo"].ToString() + "','" + textBox_descripcion.Text + "',1," + Logica.FuncionesGenerales.ArreglarImportes(textBox_importe.Text) + "," + Logica.FuncionesGenerales.ArreglarImportes(textBox_importe.Text) + ",0,'No'," + Presentacion.Login.getId() + ",'" + fecha_actualizacion + "')";
+            String sqlInsertOp = "INSERT INTO com_operaciones (IdComunidad, IdEntidad, IdSubCuenta, IdTipoReparto, Fecha, Descripcion, IdEstado, ImpOp, ImpOpPte, NumMov, Guardada, IdURD, FAct) VALUES (" + id_comunidad + "," + id_entidad_nueva + "," + comboBox_subcuenta.SelectedItem.ToString().Split('-')[0] + ",1,'" + fecha + "','" + textBox_descripcion.Text + "',1," + Logica.FuncionesGenerales.ArreglarImportes(textBox_importe.Text) + "," + Logica.FuncionesGenerales.ArreglarImportes(textBox_importe.Text) + ",0,'No'," + Presentacion.Login.getId() + ",'" + fecha_actualizacion + "')";
 
             int op = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsertOp);
 
@@ -130,7 +131,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             this.Close();
             MessageBox.Show("Se ha generado el Recibo y debes informarlo");
             
-            //ACTUALIZAR FONDO
             
 
             FromOperacionesVer nueva = new FromOperacionesVer(op.ToString(), 1, id_comunidad);
@@ -141,6 +141,26 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void maskedTextBox_fecha_Leave(object sender, EventArgs e)
+        {
+            string sPattern = "^\\d{2}/\\d{2}/$";
+            string sPattern1 = "^\\d{2}/\\d{2}/\\d{4}$";
+
+            if (Regex.IsMatch(maskedTextBox_fecha.Text, sPattern))
+            {
+                maskedTextBox_fecha.Text = maskedTextBox_fecha.Text + DateTime.Now.Year;
+            }
+            else if (Regex.IsMatch(maskedTextBox_fecha.Text, sPattern1))
+            {
+                button_guardar.Select();
+            }
+            else
+            {
+                maskedTextBox_fecha.Focus();
+                maskedTextBox_fecha.Select();
+            }
         }
     }
 }

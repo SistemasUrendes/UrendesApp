@@ -433,7 +433,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.EnviosForms
             smtp.Port = 26;
             smtp.EnableSsl = true;
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("sistemas@urendes.com", "#.Urds16");
+            smtp.Credentials = new NetworkCredential("no-replay@envios.urendes.com", "TwTtdo3T[Sw&");
 
             try
             {

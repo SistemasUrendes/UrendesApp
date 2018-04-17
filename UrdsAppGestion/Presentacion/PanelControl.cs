@@ -195,6 +195,8 @@ namespace UrdsAppGestión.Presentacion
         }
         private void EnviarCorreo(String destinatario, String Asunto, String Cuerpo, List<String> adjuntos,String from)
         {
+            //destinatario = "sistemas@urendes.com";
+
             //Sustituir \n por <br>
             Cuerpo = Cuerpo.Replace("\n", "<br>");
 
@@ -215,33 +217,28 @@ namespace UrdsAppGestión.Presentacion
                 if (System.IO.File.Exists(@adjuntos[a]))
                     email.Attachments.Add(new Attachment(@adjuntos[a]));
 
-            /*SmtpClient smtp = new SmtpClient();
-            smtp.Host = "hl316.hosteurope.es";
-            smtp.Port = 587;
-            smtp.EnableSsl = true;
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("admin@envios.urendes.com", "#.Urds16");*/
-
             SmtpClient smtp = new SmtpClient();
-            smtp.Host = "urendes.com";
-            smtp.Port = 25;
+            smtp.Host = "mail.urendes.com";
+            smtp.Port = 26;
             smtp.EnableSsl = false;
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("info@urendes.com", "gfty0307");
+            smtp.Credentials = new NetworkCredential("no-replay@envios.urendes.com", "TwTtdo3T[Sw&");
 
-            try {
+            try
+            {
                 smtp.Send(email);
                 numero_Correos++;
-                if (numero_Correos == 10) {
-                    Thread.Sleep(3000);
+                if (numero_Correos == 10)
+                {
+                    Thread.Sleep(20000);
                     numero_Correos = 0;
                 }
 
-                Thread.Sleep(1000);
+                Thread.Sleep(12000);
                 email.Dispose();
             }
-            catch (Exception) {
-                //MessageBox.Show(e.Message);
+            catch (Exception e) {
+                MessageBox.Show(e.Message);
                 Thread.Sleep(50000);
                 smtp.Send(email);
                 email.Dispose();

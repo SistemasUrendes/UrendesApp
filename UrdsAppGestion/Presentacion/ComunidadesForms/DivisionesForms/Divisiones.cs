@@ -48,7 +48,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                 MessageBox.Show("No hay divisiones");
         }
         public void cargarDivisiones () {
-            String sql = "SELECT com_divisiones.IdDivision, com_divisiones.IdComunidad, com_divisiones.Division, com_divisiones.Finca, com_divisiones.Orden, com_divisiones.IdTipoDiv, com_tipodivs.TipoDivision, com_divisiones.Cuota, com_divisiones.Excluido, com_divisiones.Notas FROM com_divisiones INNER JOIN com_tipodivs ON com_divisiones.IdTipoDiv = com_tipodivs.IdTipoDiv GROUP BY com_divisiones.IdDivision, com_divisiones.IdComunidad, com_divisiones.Division, com_divisiones.Finca, com_divisiones.Orden, com_divisiones.IdTipoDiv, com_tipodivs.TipoDivision, com_divisiones.Cuota, com_divisiones.Excluido, com_divisiones.Notas, com_divisiones.Division, com_divisiones.IdComunidad HAVING(((com_divisiones.IdComunidad) = " + id_comunidad + ")) ORDER BY com_divisiones.Orden, com_divisiones.Division;";
+            String sql = "SELECT com_divisiones.IdDivision, com_divisiones.IdComunidad, com_divisiones.Division, com_divisiones.Finca, com_divisiones.Orden, com_divisiones.IdTipoDiv, com_tipodivs.TipoDivision, com_divisiones.Cuota, com_divisiones.Excluido, com_divisiones.Notas, com_asociacion.IdComunero FROM(com_divisiones INNER JOIN com_tipodivs ON com_divisiones.IdTipoDiv = com_tipodivs.IdTipoDiv) INNER JOIN com_asociacion ON com_divisiones.IdDivision = com_asociacion.IdDivision GROUP BY com_divisiones.IdDivision, com_divisiones.IdComunidad, com_divisiones.Division, com_divisiones.Finca, com_divisiones.Orden, com_divisiones.IdTipoDiv, com_tipodivs.TipoDivision, com_divisiones.Cuota, com_divisiones.Excluido, com_divisiones.Notas, com_divisiones.Division, com_divisiones.IdComunidad, com_asociacion.IdComunero, com_asociacion.Ppal HAVING(((com_divisiones.IdComunidad) = " + id_comunidad + ") AND((com_asociacion.Ppal) = -1)) ORDER BY com_divisiones.Orden, com_divisiones.Division; ";
+
+
             divisiones = Persistencia.SentenciasSQL.select(sql);
 
             if (divisiones.Rows.Count > 0)  {
