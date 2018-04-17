@@ -184,84 +184,78 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 sqlSelect += " AND (com_comunidades.IdComunidad = " + id_comunidad + ")";
             }
-            else if (id_entidad == "1")
+            else if (id_entidad != null)
             {
-                sqlSelect += " AND (ctos_entidades.IDEntidad = 1)";
+                sqlSelect += " AND (ctos_entidades.IDEntidad = " + id_entidad  + ")";
             }
-            /*
-            if (id_comunidad == null && id_entidad != "1" && (fechaInicio1 != "" || fechaInicio2 != "" || fechaFin1 != "" || fechaFin2 != "" || acuerdo != "0" || seguro != "0" || importante != "0" || proxJunta != "0" || tipo != "0" || estado != "0" || gestor != "0" ))
-            {
-                sqlSelect += " WHERE ";
-            }
-            */
             //FECHAS
             if (fechaInicio1 != "")
             {
-                if (id_comunidad != null || id_entidad == "1") sqlSelect += " AND ";
-                sqlSelect += "(exp_tareas.FIni >= '" + fechaInicio1  + "')";
+                //if (id_comunidad != null || id_entidad != null) sqlSelect += " AND ";
+                sqlSelect += " AND (exp_tareas.FIni >= '" + fechaInicio1  + "')";
             }
             if (fechaInicio2 != "")
             {
-                if (id_comunidad != null || id_entidad == "1" || fechaInicio1 != "") sqlSelect += " AND ";
-                sqlSelect += "(exp_tareas.FIni <= '" + fechaInicio2 + "')";
+                //if (id_comunidad != null || id_entidad != null || fechaInicio1 != "") sqlSelect += " AND ";
+                sqlSelect += " AND (exp_tareas.FIni <= '" + fechaInicio2 + "')";
             }
             if (fechaFin1 != "")
             {
-                if (id_comunidad != null || id_entidad == "1" || fechaInicio1 != "" || fechaInicio2 != "") sqlSelect += " AND ";
-                sqlSelect += "(exp_tareas.FFin >= '" + fechaFin1 + "') AND (exp_tareas.FFin Is Not Null)";
+                //if (id_comunidad != null || id_entidad != null || fechaInicio1 != "" || fechaInicio2 != "") sqlSelect += " AND ";
+                sqlSelect += " AND (exp_tareas.FFin >= '" + fechaFin1 + "') AND (exp_tareas.FFin Is Not Null)";
             }
             if (fechaFin2 != "")
             {
-                if (id_comunidad != null || id_entidad == "1" || fechaInicio1 != "" || fechaInicio2 != "" || fechaFin1 != "") sqlSelect += " AND ";
-                sqlSelect += "(exp_tareas.FFin <= '" + fechaFin2 + "')";
+                //if (id_comunidad != null || id_entidad != null || fechaInicio1 != "" || fechaInicio2 != "" || fechaFin1 != "") sqlSelect += " AND ";
+                sqlSelect += " AND (exp_tareas.FFin <= '" + fechaFin2 + "')";
                 if (fechaFin1 == "") sqlSelect += " AND (exp_tareas.FFin Is Not Null)";
             }
             //CHECKBOX
             if(acuerdo == "1")
             {
-                if (id_comunidad != null || id_entidad == "1" || fechaInicio1 != "" || fechaInicio2 != "" || fechaFin1 != "" || fechaFin2 != "") sqlSelect += " AND ";
-                sqlSelect += "(exp_tareas.AcuerdoJunta = -1)";
+                //if (id_comunidad != null || id_entidad != null || fechaInicio1 != "" || fechaInicio2 != "" || fechaFin1 != "" || fechaFin2 != "") sqlSelect += " AND ";
+                sqlSelect += " AND (exp_tareas.AcuerdoJunta = -1)";
             }
             if(seguro == "1")
             {
-                if (id_comunidad != null || id_entidad == "1" || fechaInicio1 != "" || fechaInicio2 != "" || fechaFin1 != "" || fechaFin2 != "" || acuerdo != "0") sqlSelect += " AND ";
-                sqlSelect += "((exp_tareas.Seguro = -1) OR (exp_tareas.RefSiniestro Is Not Null))";
+                //if (id_comunidad != null || id_entidad != null || fechaInicio1 != "" || fechaInicio2 != "" || fechaFin1 != "" || fechaFin2 != "" || acuerdo != "0") sqlSelect += " AND ";
+                sqlSelect += " AND ((exp_tareas.Seguro = -1) OR (exp_tareas.RefSiniestro Is Not Null))";
             }
             if(importante == "1")
             {
-                if (id_comunidad != null || id_entidad == "1" || fechaInicio1 != "" || fechaInicio2 != "" || fechaFin1 != "" || fechaFin2 != "" || acuerdo != "0" || seguro != "0") sqlSelect += " AND ";
-                sqlSelect += "(exp_tareas.Importante = -1)";
+                //if (id_comunidad != null || id_entidad != null || fechaInicio1 != "" || fechaInicio2 != "" || fechaFin1 != "" || fechaFin2 != "" || acuerdo != "0" || seguro != "0") sqlSelect += " AND ";
+                sqlSelect += " AND (exp_tareas.Importante = -1)";
             }
             if(proxJunta == "1")
             {
-                if (id_comunidad != null || id_entidad == "1" || fechaInicio1 != "" || fechaInicio2 != "" || fechaFin1 != "" || fechaFin2 != "" || acuerdo != "0" || seguro != "0" || importante != "0") sqlSelect += " AND ";
-                sqlSelect += "(exp_tareas.ProximaJunta = -1)";
+                //if (id_comunidad != null || id_entidad != null || fechaInicio1 != "" || fechaInicio2 != "" || fechaFin1 != "" || fechaFin2 != "" || acuerdo != "0" || seguro != "0" || importante != "0") sqlSelect += " AND ";
+                sqlSelect += " AND (exp_tareas.ProximaJunta = -1)";
             }
             //COMBOBOX
             if (tipo != "0")
             {
-                if (id_comunidad != null || id_entidad == "1" || fechaInicio1 != "" || fechaInicio2 != "" || fechaFin1 != "" || fechaFin2 != "" || acuerdo != "0" || seguro != "0" || importante != "0" || proxJunta != "0") sqlSelect += " AND ";
-                sqlSelect += "(exp_tareas.IdTipoTarea = " + tipo + ")";
+                //if (id_comunidad != null || id_entidad != null || fechaInicio1 != "" || fechaInicio2 != "" || fechaFin1 != "" || fechaFin2 != "" || acuerdo != "0" || seguro != "0" || importante != "0" || proxJunta != "0") sqlSelect += " AND ";
+                sqlSelect += " AND (exp_tareas.IdTipoTarea = " + tipo + ")";
             }
             if (estado != "0")
             {
                 //ABIERTAS
                 if (estado == "1")
                 {
-                    if (id_comunidad != null || id_entidad == "1" || fechaInicio1 != "" || fechaInicio2 != "" || fechaFin1 != "" || fechaFin2 != "" || acuerdo != "0" || seguro != "0" || importante != "0" || proxJunta != "0" || tipo != "0") sqlSelect += " AND ";
-                    sqlSelect += "(exp_tareas.FFin Is Null)";
+                    //if (id_comunidad != null || id_entidad != null || fechaInicio1 != "" || fechaInicio2 != "" || fechaFin1 != "" || fechaFin2 != "" || acuerdo != "0" || seguro != "0" || importante != "0" || proxJunta != "0" || tipo != "0") sqlSelect += " AND ";
+                    sqlSelect += " AND (exp_tareas.FFin Is Null)";
                 }
                 //CERRADAS
                 else if (estado == "2")
                 {
-                    if (id_comunidad != null || id_entidad == "1" || fechaInicio1 != "" || fechaInicio2 != "" || fechaFin1 != "" || fechaFin2 != "" || acuerdo != "0" || seguro != "0" || importante != "0" || proxJunta != "0" || tipo != "0") sqlSelect += " AND ";
-                    sqlSelect += "(exp_tareas.FFin Is Not Null)";
+                    //if (id_comunidad != null || id_entidad != null || fechaInicio1 != "" || fechaInicio2 != "" || fechaFin1 != "" || fechaFin2 != "" || acuerdo != "0" || seguro != "0" || importante != "0" || proxJunta != "0" || tipo != "0") sqlSelect += " AND ";
+                    sqlSelect += " AND (exp_tareas.FFin Is Not Null)";
                 }
             }
             if (gestor != "0" && id_comunidad == null && id_entidad == null)
             {
-                if (id_comunidad != null || id_entidad == "1" || fechaInicio1 != "" || fechaInicio2 != "" || fechaFin1 != "" || fechaFin2 != "" || acuerdo != "0" || seguro != "0" || importante != "0" || proxJunta != "0" || tipo != "0" || estado != "0") sqlSelect += " AND ";
-                sqlSelect += "(com_comunidades.IdGestor = " + gestor + " OR com_comunidades.IdGestor2 = " + gestor + ")";
+                //if (id_comunidad != null || id_entidad != null || fechaInicio1 != "" || fechaInicio2 != "" || fechaFin1 != "" || fechaFin2 != "" || acuerdo != "0" || seguro != "0" || importante != "0" || proxJunta != "0" || tipo != "0" || estado != "0") sqlSelect += " AND ";
+                sqlSelect += " AND (com_comunidades.IdGestor = " + gestor + " OR com_comunidades.IdGestor2 = " + gestor + ")";
             }
 
             sqlSelect += " ORDER BY exp_tareas.FIni ASC";
@@ -271,125 +265,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             ajustarDatagrid();
 
         }
-
-
-        //public void aplicarFiltroTabla()
-        //{
-        //    //String fechaInicio;
-        //    //String fechaFin;
-        //    String tipoTarea = comboBox_Tipo.SelectedValue.ToString();
-        //    String proxJunta = "0";
-        //    if (checkBoxProxJunta.Checked) proxJunta = "-1";
-        //    String seguro = "0";
-        //    if (checkBoxSeguro.Checked) seguro = "-1";
-
-        //    /*
-        //    try
-        //    {
-        //        fechaInicio = (Convert.ToDateTime(maskedTextBox_inicio.Text)).ToString("yyyy-MM-dd");
-        //        fechaFin = (Convert.ToDateTime(maskedTextBox_fin.Text)).ToString("yyyy-MM-dd");
-
-        //    }
-        //    catch
-        //    {
-        //        MessageBox.Show("Comprueba la fecha");
-        //        return;
-        //    }
-        //    */
-        //    if (id_entidad_nuevo != null) {
-        //        String sqlSelect = "";
-        //        //ESTADO "ABIERTA"
-        //        if (comboBox_Estado.SelectedIndex == 1)
-        //        {
-        //            //TIPO ESPECÍFICO DE TAREA
-        //            if (tipoTarea != "0")
-        //            {
-        //                //sqlSelect = "SELECT exp_tareas.IdTarea AS Id, ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tareas.FIni) >= '" + fechaInicio + "' And(exp_tareas.FIni) <= '" + fechaFin + "') AND((exp_tareas.FFin)Is Null And((exp_tareas.FFin) <= '" + fechaFin + "' Or(exp_tareas.FFin) Is Null)) AND((ctos_entidades.IDEntidad) = " + id_entidad_nuevo + ") AND((exp_tipostareas.IdTipoTarea) = " + tipoTarea + ") AND((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ")) ORDER BY exp_tareas.IdTarea DESC";
-
-        //                sqlSelect = "SELECT exp_tareas.IdTarea AS Id, ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((ctos_entidades.IDEntidad) = " + id_entidad_nuevo + ") AND((exp_tipostareas.IdTipoTarea) = " + tipoTarea + ") AND((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ") AND (exp_tareas.FFin) Is Null) ORDER BY exp_tareas.IdTarea DESC";
-        //            }
-        //            //TODOS LOS TIPOS DE TAREA
-        //            else
-        //            {
-        //                sqlSelect = "SELECT exp_tareas.IdTarea AS Id, ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((ctos_entidades.IDEntidad) = " + id_entidad_nuevo + ") AND((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ") AND (exp_tareas.FFin) Is Null) ORDER BY exp_tareas.IdTarea DESC";
-        //            }
-
-        //        }
-        //        //ESTADO "CERRADA"
-        //        else if (comboBox_Estado.SelectedIndex == 2)
-        //        {
-        //            if (tipoTarea != "0")
-        //            {
-        //                sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ") AND (exp_tareas.FFin) Is not Null) ORDER BY exp_tareas.IdTarea DESC";
-        //            }
-        //            else
-        //            {
-        //                sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((ctos_entidades.IDEntidad) = " + id_entidad_nuevo + ") AND((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ") AND (exp_tareas.FFin) Is Not Null) ORDER BY exp_tareas.IdTarea DESC";
-        //            }
-        //        }
-        //        //ESTADO "TODAS"
-        //        else
-        //        {
-        //            if (tipoTarea != "0")
-        //            {
-        //                sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni,exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((ctos_entidades.IDEntidad) = " + id_entidad_nuevo + ") AND((exp_tipostareas.IdTipoTarea) = " + tipoTarea + ") AND((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ")) ORDER BY exp_tareas.IdTarea DESC ";
-        //            }
-        //            else
-        //            {
-        //                sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni,exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((ctos_entidades.IDEntidad) = " + id_entidad_nuevo + ") AND((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ")) ORDER BY exp_tareas.IdTarea DESC ";
-        //            }
-        //        }
-        //        tareas = Persistencia.SentenciasSQL.select(sqlSelect);
-        //        dataGridView_tareas.DataSource = tareas;
-        //        ajustarDatagrid();
-        //    }
-        //    else
-        //    {
-        //        String sqlSelect = "";
-        //        //ESTADO "ABIERTA"
-        //        if (comboBox_Estado.SelectedIndex == 1)
-        //        {
-        //            //TIPO ESPECÍFICO DE TAREA
-        //            if (tipoTarea != "0")
-        //            {
-        //                sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tipostareas.IdTipoTarea) = " + tipoTarea + ") AND((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ") AND (exp_tareas.FFin) Is Null) ORDER BY exp_tareas.IdTarea DESC";
-        //            }
-        //            //TODOS LOS TIPOS DE TAREA
-        //            else
-        //            {
-        //                sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ") AND (exp_tareas.FFin) Is Null) ORDER BY exp_tareas.IdTarea DESC";
-        //            }
-        //        }
-        //        //ESTADO "CERRADA"
-        //        else if (comboBox_Estado.SelectedIndex == 2)
-        //        {
-        //            if (tipoTarea != "0")
-        //            {
-        //                sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tipostareas.IdTipoTarea) = " + tipoTarea + ") AND ((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ") AND (exp_tareas.FFin) Is Not Null) ORDER BY exp_tareas.IdTarea DESC";
-        //            }
-        //            else
-        //            {
-        //                sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni, exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tareas.ProximaJunta) = " + proxJunta + ") AND ((exp_tareas.Seguro) = " + seguro + ") AND (exp_tareas.FFin) Is Not Null) ORDER BY exp_tareas.IdTarea DESC";
-        //            }
-        //        }
-        //        //ESTADO "TODAS"
-        //        else
-        //        {
-        //            if (tipoTarea != "0")
-        //            {
-        //                sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni,exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tipostareas.IdTipoTarea) = " + tipoTarea + ") AND ((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ")) ORDER BY exp_tareas.IdTarea DESC ";
-        //            }
-        //            else
-        //            {
-        //                sqlSelect = "SELECT exp_tareas.IdTarea as Id, ctos_entidades.NombreCorto as Entidad, exp_tipostareas.TipoTarea, exp_tareas.Descripción, exp_tareas.FIni,exp_tareas.FFin, exp_tareas.RefSiniestro, ctos_entidades.IDEntidad FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tareas.ProximaJunta) = " + proxJunta + ") AND((exp_tareas.Seguro) = " + seguro + ")) ORDER BY exp_tareas.IdTarea DESC ";
-        //            }
-        //        }
-        //        tareas = Persistencia.SentenciasSQL.select(sqlSelect);
-        //        dataGridView_tareas.DataSource = tareas;
-        //        ajustarDatagrid();
-        //        //tareas.DefaultView.RowFilter = "Entidad like '%" + textBox_Entidad.Text + "%' OR Descripción like '%" + textBox_Entidad.Text + "%'";
-        //    }
-        //}
 
         private void dataGridView_tareas_MouseClick(object sender, MouseEventArgs e)
         {
@@ -505,9 +380,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
             //URENDES
             if (maskedTextBoxRefComunidad.Text == "000" || maskedTextBoxRefComunidad.Text == "00" || maskedTextBoxRefComunidad.Text == "0")
             {
-                id_entidad = "1";
+                id_entidad = "1178";
                 CargarTareas();
-                return "URENDES INGENIERIA Y OBRAS, S.L.";
+                return "ADMINISTRACIONES URENDES, S.L.";
             }
             else
             {
@@ -547,12 +422,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
         }
 
-        private void buttonGrupo_Click(object sender, EventArgs e)
-        {
-            Tareas.FormInsertarGrupo nueva = new FormInsertarGrupo();
-            nueva.Show();
-        }
-
         private void filtroComunidad()
         {
             String sqlSelect = "SELECT com_comunidades.Referencia FROM com_comunidades WHERE(((com_comunidades.IdComunidad) = " + id_comunidad + "))";
@@ -586,17 +455,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
             }
         }
-        /*
-        private void comboBoxInformes_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            String sqlSelect = "SELECT ctos_entidades.IDEntidad, ctos_entidades.Entidad FROM ctos_entidades INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((com_comunidades.Referencia) = " + maskedTextBoxRefComunidad.Text + "))";
-            DataTable comunidad = Persistencia.SentenciasSQL.select(sqlSelect);
-            String idEntidad = comunidad.Rows[0][0].ToString();
-            String nombreComunidad = comunidad.Rows[0][1].ToString();
-            Tareas.Informes.VistaInformeSeguimiento nueva = new Informes.VistaInformeSeguimiento(idEntidad, nombreComunidad);
-            nueva.Show();
-        }
-        */
 
         private void buttonReset_Click(object sender, EventArgs e)
         {
@@ -676,5 +534,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             maskedTextBoxRefComunidad.Text = referencia;
             textBox_Entidad.Text = nombreReferencia();
         }
+        
     }
 }

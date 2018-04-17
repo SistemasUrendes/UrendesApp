@@ -378,6 +378,12 @@
     <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\ReglasPago\FormReglasPago.Designer.cs">
       <DependentUpon>FormReglasPago.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ElementosForms\FormElementos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ElementosForms\FormElementos.Designer.cs">
+      <DependentUpon>FormElementos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormEntradasFondos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -908,6 +914,12 @@
     <Compile Include="Presentacion\ComunidadesForms\Recibos\VerReporte.Designer.cs">
       <DependentUpon>VerReporte.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\EntidadesForms\FormInsertarGrupo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\FormInsertarGrupo.Designer.cs">
+      <DependentUpon>FormInsertarGrupo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\EnviosForms\CompletarEnvioForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1138,23 +1150,29 @@
     <Compile Include="Presentacion\Tareas\FormFiltroAvanzado.Designer.cs">
       <DependentUpon>FormFiltroAvanzado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Tareas\FormGestionesPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormGestionesPrincipal.Designer.cs">
+      <DependentUpon>FormGestionesPrincipal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Tareas\FormInsertarContacto.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\Tareas\FormInsertarContacto.Designer.cs">
       <DependentUpon>FormInsertarContacto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarElemento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarElemento.Designer.cs">
+      <DependentUpon>FormInsertarElemento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Tareas\FormInsertarGestion.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\Tareas\FormInsertarGestion.Designer.cs">
       <DependentUpon>FormInsertarGestion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\Tareas\FormInsertarGrupo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\Tareas\FormInsertarGrupo.Designer.cs">
-      <DependentUpon>FormInsertarGrupo.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Tareas\FormInsertarSeguimiento.cs">
       <SubType>Form</SubType>
@@ -1315,6 +1333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\ReglasPago\FormReglasPago.resx">
       <DependentUpon>FormReglasPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ElementosForms\FormElementos.resx">
+      <DependentUpon>FormElementos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\FormEntradasFondos.resx">
       <DependentUpon>FormEntradasFondos.cs</DependentUpon>
@@ -1553,6 +1574,9 @@
     <EmbeddedResource Include="Presentacion\ComunidadesForms\Recibos\VerReporte.resx">
       <DependentUpon>VerReporte.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\EntidadesForms\FormInsertarGrupo.resx">
+      <DependentUpon>FormInsertarGrupo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\EnviosForms\CompletarEnvioForm.resx">
       <DependentUpon>CompletarEnvioForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1664,14 +1688,17 @@
     <EmbeddedResource Include="Presentacion\Tareas\FormFiltroAvanzado.resx">
       <DependentUpon>FormFiltroAvanzado.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormGestionesPrincipal.resx">
+      <DependentUpon>FormGestionesPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormInsertarContacto.resx">
       <DependentUpon>FormInsertarContacto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormInsertarElemento.resx">
+      <DependentUpon>FormInsertarElemento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormInsertarGestion.resx">
       <DependentUpon>FormInsertarGestion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\Tareas\FormInsertarGrupo.resx">
-      <DependentUpon>FormInsertarGrupo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormInsertarSeguimiento.resx">
       <DependentUpon>FormInsertarSeguimiento.cs</DependentUpon>

@@ -73,11 +73,18 @@
             this.maskedTextBoxReferencia = new System.Windows.Forms.MaskedTextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPagSeguimientos = new System.Windows.Forms.TabPage();
+            this.buttonTodosSeguimientos = new System.Windows.Forms.Button();
             this.tabPageContactos = new System.Windows.Forms.TabPage();
             this.buttonAddContacto = new System.Windows.Forms.Button();
             this.buttonEnviarMail = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.dataGridViewContactos = new System.Windows.Forms.DataGridView();
+            this.tabPageElementos = new System.Windows.Forms.TabPage();
+            this.labelRuta = new System.Windows.Forms.Label();
+            this.buttonAddElementoPrincipal = new System.Windows.Forms.Button();
+            this.buttonInicio = new System.Windows.Forms.Button();
+            this.buttonAtras = new System.Windows.Forms.Button();
+            this.treeViewElementos = new System.Windows.Forms.TreeView();
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemEditarContacto = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemEliminarContacto = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,7 +100,10 @@
             this.buttonAddTipoGestion = new System.Windows.Forms.Button();
             this.dataSetCargos1 = new UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms.Informes.DataSetCargos();
             this.comboBoxEstadoGestion = new System.Windows.Forms.ComboBox();
-            this.buttonTodosSeguimientos = new System.Windows.Forms.Button();
+            this.contextMenuStrip4 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.añadirElementoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelElementoSeleccionado = new System.Windows.Forms.Label();
+            this.buttonAddElementoTarea = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGestiones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSeguimientos)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -102,8 +112,10 @@
             this.tabPagSeguimientos.SuspendLayout();
             this.tabPageContactos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContactos)).BeginInit();
+            this.tabPageElementos.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetCargos1)).BeginInit();
+            this.contextMenuStrip4.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxIdTarea
@@ -504,6 +516,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPagSeguimientos);
             this.tabControl1.Controls.Add(this.tabPageContactos);
+            this.tabControl1.Controls.Add(this.tabPageElementos);
             this.tabControl1.Location = new System.Drawing.Point(570, 13);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -523,6 +536,16 @@
             this.tabPagSeguimientos.TabIndex = 0;
             this.tabPagSeguimientos.Text = "Seguimientos";
             this.tabPagSeguimientos.UseVisualStyleBackColor = true;
+            // 
+            // buttonTodosSeguimientos
+            // 
+            this.buttonTodosSeguimientos.Location = new System.Drawing.Point(403, 11);
+            this.buttonTodosSeguimientos.Name = "buttonTodosSeguimientos";
+            this.buttonTodosSeguimientos.Size = new System.Drawing.Size(128, 23);
+            this.buttonTodosSeguimientos.TabIndex = 20;
+            this.buttonTodosSeguimientos.Text = "Todos los Seguimientos";
+            this.buttonTodosSeguimientos.UseVisualStyleBackColor = true;
+            this.buttonTodosSeguimientos.Click += new System.EventHandler(this.buttonTodosSeguimientos_Click);
             // 
             // tabPageContactos
             // 
@@ -584,6 +607,72 @@
             this.dataGridViewContactos.TabStop = false;
             this.dataGridViewContactos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewContactos_CellDoubleClick);
             this.dataGridViewContactos.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewContactos_MouseClick);
+            // 
+            // tabPageElementos
+            // 
+            this.tabPageElementos.Controls.Add(this.buttonAddElementoTarea);
+            this.tabPageElementos.Controls.Add(this.labelElementoSeleccionado);
+            this.tabPageElementos.Controls.Add(this.labelRuta);
+            this.tabPageElementos.Controls.Add(this.buttonAddElementoPrincipal);
+            this.tabPageElementos.Controls.Add(this.buttonInicio);
+            this.tabPageElementos.Controls.Add(this.buttonAtras);
+            this.tabPageElementos.Controls.Add(this.treeViewElementos);
+            this.tabPageElementos.Location = new System.Drawing.Point(4, 22);
+            this.tabPageElementos.Name = "tabPageElementos";
+            this.tabPageElementos.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageElementos.Size = new System.Drawing.Size(658, 299);
+            this.tabPageElementos.TabIndex = 2;
+            this.tabPageElementos.Text = "Elementos";
+            this.tabPageElementos.UseVisualStyleBackColor = true;
+            // 
+            // labelRuta
+            // 
+            this.labelRuta.AutoSize = true;
+            this.labelRuta.Location = new System.Drawing.Point(12, 41);
+            this.labelRuta.Name = "labelRuta";
+            this.labelRuta.Size = new System.Drawing.Size(0, 13);
+            this.labelRuta.TabIndex = 20;
+            // 
+            // buttonAddElementoPrincipal
+            // 
+            this.buttonAddElementoPrincipal.Location = new System.Drawing.Point(127, 12);
+            this.buttonAddElementoPrincipal.Name = "buttonAddElementoPrincipal";
+            this.buttonAddElementoPrincipal.Size = new System.Drawing.Size(23, 23);
+            this.buttonAddElementoPrincipal.TabIndex = 19;
+            this.buttonAddElementoPrincipal.Text = "+";
+            this.buttonAddElementoPrincipal.UseVisualStyleBackColor = true;
+            this.buttonAddElementoPrincipal.Click += new System.EventHandler(this.buttonAddElementoPrincipal_Click);
+            // 
+            // buttonInicio
+            // 
+            this.buttonInicio.Location = new System.Drawing.Point(15, 12);
+            this.buttonInicio.Name = "buttonInicio";
+            this.buttonInicio.Size = new System.Drawing.Size(75, 23);
+            this.buttonInicio.TabIndex = 18;
+            this.buttonInicio.Text = "Inicio";
+            this.buttonInicio.UseVisualStyleBackColor = true;
+            this.buttonInicio.Click += new System.EventHandler(this.buttonInicio_Click);
+            // 
+            // buttonAtras
+            // 
+            this.buttonAtras.Location = new System.Drawing.Point(96, 12);
+            this.buttonAtras.Name = "buttonAtras";
+            this.buttonAtras.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonAtras.Size = new System.Drawing.Size(25, 23);
+            this.buttonAtras.TabIndex = 17;
+            this.buttonAtras.Text = "◀";
+            this.buttonAtras.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonAtras.UseVisualStyleBackColor = true;
+            this.buttonAtras.Click += new System.EventHandler(this.buttonAtras_Click);
+            // 
+            // treeViewElementos
+            // 
+            this.treeViewElementos.Location = new System.Drawing.Point(15, 61);
+            this.treeViewElementos.Name = "treeViewElementos";
+            this.treeViewElementos.Size = new System.Drawing.Size(494, 206);
+            this.treeViewElementos.TabIndex = 16;
+            this.treeViewElementos.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewElementos_NodeMouseClick);
+            this.treeViewElementos.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewElementos_NodeMouseDoubleClick);
             // 
             // contextMenuStrip3
             // 
@@ -719,15 +808,37 @@
             this.comboBoxEstadoGestion.TabIndex = 42;
             this.comboBoxEstadoGestion.SelectedIndexChanged += new System.EventHandler(this.comboBoxEstadoGestion_SelectedIndexChanged);
             // 
-            // buttonTodosSeguimientos
+            // contextMenuStrip4
             // 
-            this.buttonTodosSeguimientos.Location = new System.Drawing.Point(403, 11);
-            this.buttonTodosSeguimientos.Name = "buttonTodosSeguimientos";
-            this.buttonTodosSeguimientos.Size = new System.Drawing.Size(128, 23);
-            this.buttonTodosSeguimientos.TabIndex = 20;
-            this.buttonTodosSeguimientos.Text = "Todos los Seguimientos";
-            this.buttonTodosSeguimientos.UseVisualStyleBackColor = true;
-            this.buttonTodosSeguimientos.Click += new System.EventHandler(this.buttonTodosSeguimientos_Click);
+            this.contextMenuStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.añadirElementoToolStripMenuItem});
+            this.contextMenuStrip4.Name = "contextMenuStrip4";
+            this.contextMenuStrip4.Size = new System.Drawing.Size(163, 26);
+            // 
+            // añadirElementoToolStripMenuItem
+            // 
+            this.añadirElementoToolStripMenuItem.Name = "añadirElementoToolStripMenuItem";
+            this.añadirElementoToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.añadirElementoToolStripMenuItem.Text = "Añadir Elemento";
+            this.añadirElementoToolStripMenuItem.Click += new System.EventHandler(this.añadirElementoToolStripMenuItem_Click);
+            // 
+            // labelElementoSeleccionado
+            // 
+            this.labelElementoSeleccionado.AutoSize = true;
+            this.labelElementoSeleccionado.Location = new System.Drawing.Point(252, 17);
+            this.labelElementoSeleccionado.Name = "labelElementoSeleccionado";
+            this.labelElementoSeleccionado.Size = new System.Drawing.Size(0, 13);
+            this.labelElementoSeleccionado.TabIndex = 21;
+            // 
+            // buttonAddElementoTarea
+            // 
+            this.buttonAddElementoTarea.Location = new System.Drawing.Point(156, 12);
+            this.buttonAddElementoTarea.Name = "buttonAddElementoTarea";
+            this.buttonAddElementoTarea.Size = new System.Drawing.Size(90, 23);
+            this.buttonAddElementoTarea.TabIndex = 22;
+            this.buttonAddElementoTarea.Text = "Añadir a tarea";
+            this.buttonAddElementoTarea.UseVisualStyleBackColor = true;
+            this.buttonAddElementoTarea.Click += new System.EventHandler(this.buttonAddElementoTarea_Click);
             // 
             // FormVerTarea
             // 
@@ -788,8 +899,11 @@
             this.tabPageContactos.ResumeLayout(false);
             this.tabPageContactos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContactos)).EndInit();
+            this.tabPageElementos.ResumeLayout(false);
+            this.tabPageElementos.PerformLayout();
             this.contextMenuStrip3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataSetCargos1)).EndInit();
+            this.contextMenuStrip4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -860,5 +974,15 @@
         private ComunidadesForms.CargosForms.Informes.DataSetCargos dataSetCargos1;
         private System.Windows.Forms.ComboBox comboBoxEstadoGestion;
         private System.Windows.Forms.Button buttonTodosSeguimientos;
+        private System.Windows.Forms.TabPage tabPageElementos;
+        private System.Windows.Forms.Label labelRuta;
+        private System.Windows.Forms.Button buttonAddElementoPrincipal;
+        private System.Windows.Forms.Button buttonInicio;
+        private System.Windows.Forms.Button buttonAtras;
+        private System.Windows.Forms.TreeView treeViewElementos;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip4;
+        private System.Windows.Forms.ToolStripMenuItem añadirElementoToolStripMenuItem;
+        private System.Windows.Forms.Label labelElementoSeleccionado;
+        private System.Windows.Forms.Button buttonAddElementoTarea;
     }
 }

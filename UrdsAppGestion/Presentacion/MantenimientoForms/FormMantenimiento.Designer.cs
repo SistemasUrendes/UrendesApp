@@ -140,6 +140,7 @@
             this.Name = "FormMantenimiento";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mantenimiento";
+            this.Load += new System.EventHandler(this.FormMantenimiento_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

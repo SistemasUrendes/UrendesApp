@@ -139,6 +139,24 @@
   <data name="comunidadesToolStripMenuItem.Text" xml:space="preserve">
     <value>Comunidades</value>
   </data>
+  <data name="verTareasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="verTareasToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ver tareas</value>
+  </data>
+  <data name="verGestionesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="verGestionesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ver Gestiones</value>
+  </data>
+  <data name="tareasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 20</value>
+  </data>
+  <data name="tareasToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tareas</value>
+  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="proveedoresToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -151,18 +169,6 @@
   </data>
   <data name="proveedoresToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
-  </data>
-  <data name="verTareasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="verTareasToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ver tareas</value>
-  </data>
-  <data name="tareasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 20</value>
-  </data>
-  <data name="tareasToolStripMenuItem.Text" xml:space="preserve">
-    <value>Tareas</value>
   </data>
   <data name="comunicadosGeneralesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 20</value>
@@ -347,6 +353,18 @@
   <data name="&gt;&gt;proveedoresToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;tareasToolStripMenuItem.Name" xml:space="preserve">
+    <value>tareasToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;tareasToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;verTareasToolStripMenuItem.Name" xml:space="preserve">
+    <value>verTareasToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;verTareasToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;comunicadosGeneralesToolStripMenuItem.Name" xml:space="preserve">
     <value>comunicadosGeneralesToolStripMenuItem</value>
   </data>
@@ -407,16 +425,10 @@
   <data name="&gt;&gt;barra_abajo_bbdd.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tareasToolStripMenuItem.Name" xml:space="preserve">
-    <value>tareasToolStripMenuItem</value>
+  <data name="&gt;&gt;verGestionesToolStripMenuItem.Name" xml:space="preserve">
+    <value>verGestionesToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;tareasToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;verTareasToolStripMenuItem.Name" xml:space="preserve">
-    <value>verTareasToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;verTareasToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;verGestionesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

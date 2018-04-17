@@ -34,6 +34,8 @@
             this.entidadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comunidadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verTareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comunicadosGeneralesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.planContableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,8 +47,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.barrar_abajo_nombre = new System.Windows.Forms.ToolStripStatusLabel();
             this.barra_abajo_bbdd = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verTareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verGestionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -57,8 +58,8 @@
             this.panelToolStripMenuItem,
             this.entidadesToolStripMenuItem,
             this.comunidadesToolStripMenuItem,
-            this.proveedoresToolStripMenuItem,
             this.tareasToolStripMenuItem,
+            this.proveedoresToolStripMenuItem,
             this.comunicadosGeneralesToolStripMenuItem,
             this.archivoToolStripMenuItem});
             resources.ApplyResources(this.menuStrip1, "menuStrip1");
@@ -86,6 +87,20 @@
             // 
             resources.ApplyResources(this.proveedoresToolStripMenuItem, "proveedoresToolStripMenuItem");
             this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
+            // 
+            // tareasToolStripMenuItem
+            // 
+            this.tareasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.verTareasToolStripMenuItem,
+            this.verGestionesToolStripMenuItem});
+            this.tareasToolStripMenuItem.Name = "tareasToolStripMenuItem";
+            resources.ApplyResources(this.tareasToolStripMenuItem, "tareasToolStripMenuItem");
+            // 
+            // verTareasToolStripMenuItem
+            // 
+            this.verTareasToolStripMenuItem.Name = "verTareasToolStripMenuItem";
+            resources.ApplyResources(this.verTareasToolStripMenuItem, "verTareasToolStripMenuItem");
+            this.verTareasToolStripMenuItem.Click += new System.EventHandler(this.verTareasToolStripMenuItem_Click);
             // 
             // comunicadosGeneralesToolStripMenuItem
             // 
@@ -160,18 +175,11 @@
             this.barra_abajo_bbdd.Name = "barra_abajo_bbdd";
             resources.ApplyResources(this.barra_abajo_bbdd, "barra_abajo_bbdd");
             // 
-            // tareasToolStripMenuItem
+            // verGestionesToolStripMenuItem
             // 
-            this.tareasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.verTareasToolStripMenuItem});
-            this.tareasToolStripMenuItem.Name = "tareasToolStripMenuItem";
-            resources.ApplyResources(this.tareasToolStripMenuItem, "tareasToolStripMenuItem");
-            // 
-            // verTareasToolStripMenuItem
-            // 
-            this.verTareasToolStripMenuItem.Name = "verTareasToolStripMenuItem";
-            resources.ApplyResources(this.verTareasToolStripMenuItem, "verTareasToolStripMenuItem");
-            this.verTareasToolStripMenuItem.Click += new System.EventHandler(this.verTareasToolStripMenuItem_Click);
+            this.verGestionesToolStripMenuItem.Name = "verGestionesToolStripMenuItem";
+            resources.ApplyResources(this.verGestionesToolStripMenuItem, "verGestionesToolStripMenuItem");
+            this.verGestionesToolStripMenuItem.Click += new System.EventHandler(this.verGestionesToolStripMenuItem_Click);
             // 
             // FormPrincipal
             // 
@@ -213,6 +221,7 @@
         private System.Windows.Forms.ToolStripMenuItem mantenimientoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tareasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verTareasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verGestionesToolStripMenuItem;
     }
 }
 

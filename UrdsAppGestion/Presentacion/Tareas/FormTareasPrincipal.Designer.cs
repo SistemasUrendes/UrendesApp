@@ -46,13 +46,10 @@
             this.buttonNuevaTarea = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.maskedTextBoxRefComunidad = new System.Windows.Forms.MaskedTextBox();
-            this.buttonGrupo = new System.Windows.Forms.Button();
             this.checkBoxProxJunta = new System.Windows.Forms.CheckBox();
             this.checkBoxSeguro = new System.Windows.Forms.CheckBox();
             this.textBoxTarea = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBoxInformes = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.buttonReset = new System.Windows.Forms.Button();
             this.checkBoxImportante = new System.Windows.Forms.CheckBox();
             this.maskedTextBox_FIni2 = new System.Windows.Forms.MaskedTextBox();
@@ -221,17 +218,6 @@
             this.maskedTextBoxRefComunidad.DoubleClick += new System.EventHandler(this.maskedTextBoxRefComunidad_DoubleClick);
             this.maskedTextBoxRefComunidad.Leave += new System.EventHandler(this.maskedTextBoxRefComunidad_Leave);
             // 
-            // buttonGrupo
-            // 
-            this.buttonGrupo.Location = new System.Drawing.Point(6, 39);
-            this.buttonGrupo.Name = "buttonGrupo";
-            this.buttonGrupo.Size = new System.Drawing.Size(100, 23);
-            this.buttonGrupo.TabIndex = 11;
-            this.buttonGrupo.Text = "Añadir Grupo";
-            this.buttonGrupo.UseVisualStyleBackColor = true;
-            this.buttonGrupo.Visible = false;
-            this.buttonGrupo.Click += new System.EventHandler(this.buttonGrupo_Click);
-            // 
             // checkBoxProxJunta
             // 
             this.checkBoxProxJunta.AutoSize = true;
@@ -270,28 +256,6 @@
             this.label7.Size = new System.Drawing.Size(47, 13);
             this.label7.TabIndex = 22;
             this.label7.Text = "IdTarea:";
-            // 
-            // comboBoxInformes
-            // 
-            this.comboBoxInformes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxInformes.FormattingEnabled = true;
-            this.comboBoxInformes.Items.AddRange(new object[] {
-            "En Seguimiento"});
-            this.comboBoxInformes.Location = new System.Drawing.Point(68, 10);
-            this.comboBoxInformes.Name = "comboBoxInformes";
-            this.comboBoxInformes.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxInformes.TabIndex = 23;
-            this.comboBoxInformes.Visible = false;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 13);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(50, 13);
-            this.label9.TabIndex = 25;
-            this.label9.Text = "Informes:";
-            this.label9.Visible = false;
             // 
             // buttonReset
             // 
@@ -439,13 +403,10 @@
             this.Controls.Add(this.maskedTextBox_FFin1);
             this.Controls.Add(this.checkBoxImportante);
             this.Controls.Add(this.buttonReset);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.comboBoxInformes);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBoxTarea);
             this.Controls.Add(this.checkBoxSeguro);
             this.Controls.Add(this.checkBoxProxJunta);
-            this.Controls.Add(this.buttonGrupo);
             this.Controls.Add(this.maskedTextBoxRefComunidad);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.buttonNuevaTarea);
@@ -488,13 +449,10 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemBorrar;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxRefComunidad;
-        private System.Windows.Forms.Button buttonGrupo;
         private System.Windows.Forms.CheckBox checkBoxProxJunta;
         private System.Windows.Forms.CheckBox checkBoxSeguro;
         private System.Windows.Forms.TextBox textBoxTarea;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBoxInformes;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button buttonReset;
         private System.Windows.Forms.CheckBox checkBoxImportante;
         private System.Windows.Forms.MaskedTextBox maskedTextBox_FIni2;
