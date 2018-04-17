@@ -469,5 +469,11 @@ namespace UrdsAppGestión.Presentacion
                 Clipboard.SetDataObject(dataGridView1.SelectedRows[0].Cells[3].Value.ToString());
 
         }
+
+        private void buttonAddGrupo_Click(object sender, EventArgs e)
+        {
+            EntidadesForms.FormInsertarGrupo nueva = new EntidadesForms.FormInsertarGrupo();
+            nueva.Show();
+        }
     }
 }

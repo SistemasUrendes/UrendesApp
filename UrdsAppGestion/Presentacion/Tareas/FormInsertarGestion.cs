@@ -137,9 +137,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             buttonAgenda5.Visible = false;
             buttonAgenda15.Visible = false;
             buttonAgenda30.Visible = false;
-            buttonInicio5.Visible = false;
-            buttonInicio15.Visible = false;
-            buttonInicio30.Visible = false;
             buttonLimite5.Visible = false;
             buttonLimite15.Visible = false;
             buttonLimite30.Visible = false;
@@ -167,9 +164,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             buttonAgenda5.Visible = true;
             buttonAgenda15.Visible = true;
             buttonAgenda30.Visible = true;
-            buttonInicio5.Visible = true;
-            buttonInicio15.Visible = true;
-            buttonInicio30.Visible = true;
             buttonLimite5.Visible = true;
             buttonLimite15.Visible = true;
             buttonLimite30.Visible = true;
@@ -422,102 +416,81 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             habilitarEdicion();
         }
-
-        private void buttonInicio5_Click(object sender, EventArgs e)
-        {
-            maskedTextBoxFInicio.Text = DateTime.Now.AddDays(5).ToShortDateString();
-        }
-
+        
         private void buttonAgenda5_Click(object sender, EventArgs e)
         {
-            if (maskedTextBoxFInicio.Text == "  /  /")
+            if (maskedTextBoxFSeguir.Text == "  /  /")
             {
-                maskedTextBoxFInicio.Text = DateTime.Now.ToShortDateString();
                 maskedTextBoxFSeguir.Text = DateTime.Now.AddDays(5).ToShortDateString();
             }
             else
             {
-                DateTime dateini = Convert.ToDateTime(maskedTextBoxFInicio.Text);
+                DateTime dateini = Convert.ToDateTime(maskedTextBoxFSeguir.Text);
                 maskedTextBoxFSeguir.Text = dateini.AddDays(5).ToShortDateString();
             }
         }
 
         private void buttonLimite5_Click(object sender, EventArgs e)
         {
-            if (maskedTextBoxFInicio.Text == "  /  /")
+            if (maskedTextBoxFMax.Text == "  /  /")
             {
-                maskedTextBoxFInicio.Text = DateTime.Now.ToShortDateString();
                 maskedTextBoxFMax.Text = DateTime.Now.AddDays(5).ToShortDateString();
             }
             else
             {
-                DateTime dateini = Convert.ToDateTime(maskedTextBoxFInicio.Text);
+                DateTime dateini = Convert.ToDateTime(maskedTextBoxFMax.Text);
                 maskedTextBoxFMax.Text = dateini.AddDays(5).ToShortDateString();
             }
         }
-
-        private void buttonInicio15_Click(object sender, EventArgs e)
-        {
-            maskedTextBoxFInicio.Text = DateTime.Now.AddDays(15).ToShortDateString();
-        }
-
+        
         private void buttonAgenda15_Click(object sender, EventArgs e)
         {
-            if (maskedTextBoxFInicio.Text == "  /  /")
+            if (maskedTextBoxFSeguir.Text == "  /  /")
             {
-                maskedTextBoxFInicio.Text = DateTime.Now.ToShortDateString();
                 maskedTextBoxFSeguir.Text = DateTime.Now.AddDays(15).ToShortDateString();
             }
             else
             {
-                DateTime dateini = Convert.ToDateTime(maskedTextBoxFInicio.Text);
+                DateTime dateini = Convert.ToDateTime(maskedTextBoxFSeguir.Text);
                 maskedTextBoxFSeguir.Text = dateini.AddDays(15).ToShortDateString();
             }
         }
 
         private void buttonLimite15_Click(object sender, EventArgs e)
         {
-            if (maskedTextBoxFInicio.Text == "  /  /")
+            if (maskedTextBoxFMax.Text == "  /  /")
             {
-                maskedTextBoxFInicio.Text = DateTime.Now.ToShortDateString();
                 maskedTextBoxFMax.Text = DateTime.Now.AddDays(15).ToShortDateString();
             }
             else
             {
-                DateTime dateini = Convert.ToDateTime(maskedTextBoxFInicio.Text);
+                DateTime dateini = Convert.ToDateTime(maskedTextBoxFMax.Text);
                 maskedTextBoxFMax.Text = dateini.AddDays(15).ToShortDateString();
             }
         }
 
-        private void buttonInicio30_Click(object sender, EventArgs e)
-        {
-            maskedTextBoxFInicio.Text = DateTime.Now.AddDays(30).ToShortDateString();
-        }
-
         private void buttonAgenda30_Click(object sender, EventArgs e)
         {
-            if (maskedTextBoxFInicio.Text == "  /  /")
+            if (maskedTextBoxFSeguir.Text == "  /  /")
             {
-                maskedTextBoxFInicio.Text = DateTime.Now.ToShortDateString();
                 maskedTextBoxFSeguir.Text = DateTime.Now.AddDays(30).ToShortDateString();
             }
             else
             {
-                DateTime dateini = Convert.ToDateTime(maskedTextBoxFInicio.Text);
+                DateTime dateini = Convert.ToDateTime(maskedTextBoxFSeguir.Text);
                 maskedTextBoxFSeguir.Text = dateini.AddDays(30).ToShortDateString();
             }
         }
 
         private void buttonLimite30_Click(object sender, EventArgs e)
         {
-            if (maskedTextBoxFInicio.Text == "  /  /")
+            if (maskedTextBoxFMax.Text == "  /  /")
             {
-                maskedTextBoxFInicio.Text = DateTime.Now.ToShortDateString();
                 maskedTextBoxFMax.Text = DateTime.Now.AddDays(30).ToShortDateString();
             }
             else
             {
-                DateTime dateini = Convert.ToDateTime(maskedTextBoxFInicio.Text);
+                DateTime dateini = Convert.ToDateTime(maskedTextBoxFMax.Text);
                 maskedTextBoxFMax.Text = dateini.AddDays(30).ToShortDateString();
             }
         }

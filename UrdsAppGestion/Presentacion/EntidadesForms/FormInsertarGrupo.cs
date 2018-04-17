@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UrdsAppGestión.Presentacion.Tareas
+namespace UrdsAppGestión.Presentacion.EntidadesForms
 {
     public partial class FormInsertarGrupo : Form
     {
@@ -18,14 +18,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
         public FormInsertarGrupo()
         {
             InitializeComponent();
-            
+
         }
 
         private void FormInsertarGrupo_Load(object sender, EventArgs e)
         {
             rellenarCombobox();
             cargarDatagrid();
-            
+
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 {
                     String nombre = textBoxNombre.Text;
                     String idComunidad = comboBoxComunidad.SelectedValue.ToString();
-                    String sqlInsert = "INSERT INTO exp_catcontactos (Nombre,IdComunidad) VALUES ('" + nombre + "'," + idComunidad + ")" ;
+                    String sqlInsert = "INSERT INTO exp_catcontactos (Nombre,IdComunidad) VALUES ('" + nombre + "'," + idComunidad + ")";
                     idGrupo = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsert).ToString();
                     String sqlUpdate;
                     String idContacto;
@@ -157,7 +157,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
             }
             if (!yaExisteEnGrupo())
-            { 
+            {
                 //CLONA LA LÍNEA SELECCIONADA PARA AÑADIR EN EL GRUPO
                 DataGridViewRow row = new DataGridViewRow();
                 row = (DataGridViewRow)dataGridViewContactos.SelectedRows[0].Clone();
@@ -191,7 +191,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     }
                 }
             }
-                return false;
+            return false;
         }
     }
 }

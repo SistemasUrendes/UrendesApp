@@ -13,29 +13,40 @@ namespace UrdsAppGestión.Presentacion.Tareas
 {
     public partial class FormVerTarea : Form
     {
-        String idTarea;
-        String ruta;
-        String idEntidad;
-        String idGestion;
-        String fInicio;
-        String fechaFin;
-        DataTable tarea;
-        DataTable gestion;
-        DataTable seguimiento;
-        DataTable contactos;
-        FormTareasPrincipal form_anterior;
+        private String idTarea;
+        private String ruta;
+        private String idEntidad;
+        private String idGestion;
+        private String fInicio;
+        private String fechaFin;
+        private DataTable tarea;
+        private DataTable gestion;
+        private DataTable seguimiento;
+        private DataTable contactos;
+        private FormTareasPrincipal form_anterior;
+        private int idComunidad;
+        private String elemento;
+        private List<String> idElementosAtras;
+        private List<String> nombreElementosAtras;
+
 
         public FormVerTarea(FormTareasPrincipal form_anterior, String idTarea)
         {
             InitializeComponent();
             this.idTarea = idTarea;
             this.form_anterior = form_anterior;
+            idElementosAtras = new List<String>();
+            nombreElementosAtras = new List<String>();
+            idComunidad = 0;
         }
 
         public FormVerTarea(FormTareasPrincipal form_anterior)
         {
             InitializeComponent();
             this.form_anterior = form_anterior;
+            idElementosAtras = new List<String>();
+            nombreElementosAtras = new List<String>();
+            idComunidad = 0;
         }
 
         private void FormVerTarea_Load(object sender, EventArgs e)
@@ -64,8 +75,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
         public void cargarCabecera()
         {
 
-            String sqlSelect = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tareas.IdEntidad, exp_tareas.Notas, exp_tareas.Ruta, exp_tareas.IdTipoTarea, exp_tareas.FFin, exp_tareas.FIni, exp_tareas.Coste, exp_tareas.RefSiniestro, exp_tareas.Seguro, exp_tareas.AcuerdoJunta, exp_tareas.FechaActaAcordado, exp_tareas.ProximaJunta , com_comunidades.Referencia , ctos_entidades.Entidad, exp_tareas.Importante FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
+            //String sqlSelect = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tareas.IdEntidad, exp_tareas.Notas, exp_tareas.Ruta, exp_tareas.IdTipoTarea, exp_tareas.FFin, exp_tareas.FIni, exp_tareas.Coste, exp_tareas.RefSiniestro, exp_tareas.Seguro, exp_tareas.AcuerdoJunta, exp_tareas.FechaActaAcordado, exp_tareas.ProximaJunta , com_comunidades.Referencia , ctos_entidades.Entidad, exp_tareas.Importante, exp_tareas.IdElemento FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
 
+            String sqlSelect = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tareas.IdEntidad, exp_tareas.Notas, exp_tareas.Ruta, exp_tareas.IdTipoTarea, exp_tareas.FFin, exp_tareas.FIni, exp_tareas.Coste, exp_tareas.RefSiniestro, exp_tareas.Seguro, exp_tareas.AcuerdoJunta, exp_tareas.FechaActaAcordado, exp_tareas.ProximaJunta, com_comunidades.Referencia, ctos_entidades.Entidad, exp_tareas.Importante, exp_tareas.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre FROM((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad) LEFT JOIN exp_elementos ON exp_tareas.IdElemento = exp_elementos.IdElemento WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
             tarea = Persistencia.SentenciasSQL.select(sqlSelect);
             
             textBoxIdTarea.Text = tarea.Rows[0][0].ToString();
@@ -85,9 +97,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (tarea.Rows[0][12].ToString() != "00/00/0000") maskedTextBoxFechaActa.Text = tarea.Rows[0][12].ToString();
             checkBoxProxJunta.Checked = bool.Parse(tarea.Rows[0][13].ToString());
             maskedTextBoxReferencia.Text = tarea.Rows[0][14].ToString();
+            if (maskedTextBoxReferencia.Text != "") nombreReferencia();
             textBoxEntidad.Text = tarea.Rows[0][15].ToString();
             checkBoxImportante.Checked = bool.Parse(tarea.Rows[0][16].ToString());
-            
+            String elePadre = tarea.Rows[0][18].ToString();
+            elemento = tarea.Rows[0][17].ToString();
+            if (elePadre != "") rellenarElementoSelect(elePadre);
+            labelElementoSeleccionado.Text = "Elemento: " + tarea.Rows[0][19].ToString();
+
         }
 
         public void bloquearEdicion()
@@ -284,9 +301,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
-            if (comboBoxTipo.SelectedValue.ToString() == "0")
+            if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
             {
-                MessageBox.Show("Selecciona un tipo de Tarea!");
+                MessageBox.Show("Los campos Descripción,Entidad,Tipo y FechaInicio son obligatorios!");
                 return;
             }
             else
@@ -309,9 +326,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (idTarea == null)
             {
-                if (comboBoxTipo.SelectedValue.ToString() == "0")
+                if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
                 {
-                    MessageBox.Show("Selecciona un tipo de Tarea!");
+                    MessageBox.Show("Los campos Descripción,Entidad,Tipo y FechaInicio son obligatorios!");
                     return;
                 }
                 else
@@ -464,49 +481,47 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonRuta_Click(object sender, EventArgs e)
         {
-            if ((ruta == null || ruta == "") && textBoxRuta.Text == "")
+            if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
             {
-                if (comboBoxTipo.SelectedValue.ToString() == "0")
+                MessageBox.Show("Los campos Descripción,Entidad,Tipo y FechaInicio son obligatorios!");
+                return;
+            }
+            else if ((ruta == null || ruta == "") && textBoxRuta.Text == "")
+            {
+                if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
+                addTarea();
+                textBoxIdTarea.Text = idTarea;
+                form_anterior.CargarTareas();
+
+                String tarea = idTarea + " " + textBoxDescripcion.Text;
+                String rutaCheck = rutaEntidad().Trim('#');
+                ruta = @rutaCheck + @"\EXPEDIENTES\" + tarea;
+
+
+
+
+                //LA CARPETA DE LA RUTA YA ESTÁ CREADA
+                if (System.IO.Directory.Exists(ruta))
                 {
-                    MessageBox.Show("Selecciona un tipo de Tarea!");
-                    return;
+                    MessageBox.Show("La Carpeta de la tarea ya existe!");
+                    textBoxRuta.Text = ruta;
+                    textBoxRuta.Cursor = Cursors.Hand;
                 }
+                //LA CARPETA DE LA COMUNIDAD EXISTE
+                else if (System.IO.Directory.Exists(rutaCheck))
+                {
+                    System.IO.Directory.CreateDirectory(ruta);
+                    textBoxRuta.Text = ruta;
+                    addTarea();
+                    textBoxRuta.Cursor = Cursors.Hand;
+                }
+                //LA CARPETA DE LA COMUNIDAD NO EXISTE
                 else
                 {
-                    if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
-                    addTarea();
-                    textBoxIdTarea.Text = idTarea;
-                    form_anterior.CargarTareas();
-
-                    String tarea = idTarea + " " + textBoxDescripcion.Text;
-                    String rutaCheck = rutaEntidad().Trim('#');
-                    ruta = @rutaCheck + @"\EXPEDIENTES\" + tarea;
-
-
-
-
-                    //LA CARPETA DE LA RUTA YA ESTÁ CREADA
-                    if (System.IO.Directory.Exists(ruta))
-                    {
-                        MessageBox.Show("La Carpeta de la tarea ya existe!");
-                        textBoxRuta.Text = ruta;
-                        textBoxRuta.Cursor = Cursors.Hand;
-                    }
-                    //LA CARPETA DE LA COMUNIDAD EXISTE
-                    else if (System.IO.Directory.Exists(rutaCheck))
-                    {
-                        System.IO.Directory.CreateDirectory(ruta);
-                        textBoxRuta.Text = ruta;
-                        addTarea();
-                        textBoxRuta.Cursor = Cursors.Hand;
-                    }
-                    //LA CARPETA DE LA COMUNIDAD NO EXISTE
-                    else
-                    {
-                        MessageBox.Show("No se encuentra la carpeta de la comunidad, contacte con el administrador");
-                        ruta = "";
-                    }
+                    MessageBox.Show("No se encuentra la carpeta de la comunidad, contacte con el administrador");
+                    ruta = "";
                 }
+                
             }
             else
             {
@@ -608,6 +623,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
         //AÑADIR O EDITAR TAREA
         private void addTarea()
         {
+            if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
+            {
+                MessageBox.Show("Los campos Descripción,Entidad,Tipo y FechaInicio son obligatorios!");
+                return;
+            }
             String idTipoTarea = comboBoxTipo.SelectedValue.ToString();
             String fIni = null;
             fInicio = maskedTextBoxFIni.Text;
@@ -740,8 +760,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private String nombreReferencia()
         {
-            String sql = "SELECT ctos_entidades.Entidad FROM ctos_entidades INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((com_comunidades.Referencia) = " + maskedTextBoxReferencia.Text + "))";
+            String sql = "SELECT ctos_entidades.Entidad,com_comunidades.IdComunidad FROM ctos_entidades INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((com_comunidades.Referencia) = " + maskedTextBoxReferencia.Text + "))";
             DataTable entidad = Persistencia.SentenciasSQL.select(sql);
+            idComunidad = Int32.Parse(entidad.Rows[0][1].ToString());
+            rellenarTreeViewInicio();
             return entidad.Rows[0][0].ToString();
         }
 
@@ -1164,7 +1186,208 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonTodosSeguimientos_Click(object sender, EventArgs e)
         {
-            cargarTodosSeguimientos();
+            if (idTarea != null) cargarTodosSeguimientos();
         }
+
+        //ELEMENTOS
+
+        public void rellenarTreeViewInicio()
+        {
+            updateRuta();
+            treeViewElementos.Nodes.Clear();
+            DataTable elementos;
+            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripción FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = 0) AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
+            elementos = Persistencia.SentenciasSQL.select(sqlSelect);
+
+            foreach (DataRow row in elementos.Rows)
+            {
+                TreeNode node = new TreeNode();
+                node.Text = row["Nombre"].ToString() + " : " + row["Descripción"].ToString();
+                node.Tag = row["IdElemento"].ToString();
+                treeViewElementos.Nodes.Add(node);
+                rellenarSubElementos((int)row["IdElemento"], node);
+            }
+        }
+        public void rellenarElementoSelect(String IdElemento)
+        {
+            treeViewElementos.Nodes.Clear();
+            DataTable elementos;
+            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripción FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = " + IdElemento + ") AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
+            elementos = Persistencia.SentenciasSQL.select(sqlSelect);
+
+            foreach (DataRow row in elementos.Rows)
+            {
+                if (row["IdElemento"].ToString() == elemento)
+                {
+                    TreeNode node = new TreeNode();
+                    node.Text = row["Nombre"].ToString() + " : " + row["Descripción"].ToString();
+                    node.Tag = row["IdElemento"];
+                    treeViewElementos.Nodes.Add(node);
+                    rellenarSubElementos((int)row["IdElemento"], node);
+                }
+            }
+        }
+
+        public void rellenarTreeView(String IdElemento)
+        {
+            treeViewElementos.Nodes.Clear();
+            DataTable elementos;
+            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripción FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = " + IdElemento + ") AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
+            elementos = Persistencia.SentenciasSQL.select(sqlSelect);
+
+            foreach (DataRow row in elementos.Rows)
+            {
+                TreeNode node = new TreeNode();
+                node.Text = row["Nombre"].ToString() + " : " + row["Descripción"].ToString();
+                node.Tag = row["IdElemento"];
+                treeViewElementos.Nodes.Add(node);
+                rellenarSubElementos((int)row["IdElemento"], node);
+            }
+        }
+
+        private void rellenarSubElementos(int idElemento, TreeNode node)
+        {
+            DataTable subElementos;
+            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripción FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = " + idElemento + ") AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
+            subElementos = Persistencia.SentenciasSQL.select(sqlSelect);
+
+            if (subElementos.Rows.Count == 0) { return; }
+
+            foreach (DataRow row in subElementos.Rows)
+            {
+                TreeNode subNode = new TreeNode();
+                subNode.Text = row["Nombre"].ToString() + " : " + row["Descripción"].ToString();
+                subNode.Tag = row["IdElemento"].ToString();
+                node.Nodes.Add(subNode);
+            }
+        }
+
+        private void treeViewElementos_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripción FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = " + e.Node.Tag.ToString() + ") AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
+            DataTable subElementos = Persistencia.SentenciasSQL.select(sqlSelect);
+            if (subElementos.Rows.Count > 0)
+            {
+                idElementosAtras.Add(e.Node.Tag.ToString());
+                nombreElementosAtras.Add(e.Node.Text.ToString());
+                rellenarTreeView(e.Node.Tag.ToString());
+                updateRuta();
+            }
+        }
+
+        private void buttonAtras_Click(object sender, EventArgs e)
+        {
+            if (idElementosAtras.Count > 1)
+            {
+                idElementosAtras.RemoveAt(idElementosAtras.Count - 1);
+                nombreElementosAtras.RemoveAt(nombreElementosAtras.Count - 1);
+                rellenarTreeView(idElementosAtras.ElementAt(idElementosAtras.Count - 1));
+                updateRuta();
+            }
+            else
+            {
+                if (idElementosAtras.Count == 1)
+                {
+                    idElementosAtras.RemoveAt(idElementosAtras.Count - 1);
+                    nombreElementosAtras.RemoveAt(nombreElementosAtras.Count - 1);
+                    updateRuta();
+                }
+                rellenarTreeViewInicio();
+            }
+        }
+
+        private void buttonInicio_Click(object sender, EventArgs e)
+        {
+            idElementosAtras.Clear();
+            nombreElementosAtras.Clear();
+            rellenarTreeViewInicio();
+        }
+
+        private void treeViewElementos_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                treeViewElementos.SelectedNode = e.Node;
+                if (e.Node != null)
+                {
+                    contextMenuStrip4.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void buttonAddElementoPrincipal_Click(object sender, EventArgs e)
+        {
+            if (idElementosAtras.Count > 0)
+            {
+                int idElementoAnt = Int32.Parse(idElementosAtras.ElementAt(idElementosAtras.Count - 1));
+                String nombrecompleto = nombreElementosAtras.ElementAt(nombreElementosAtras.Count - 1);
+                String nombre = nombrecompleto.Substring(0, nombrecompleto.IndexOf(":"));
+                Tareas.FormInsertarElemento nueva = new Tareas.FormInsertarElemento(this, idElementoAnt, idComunidad, nombre);
+                nueva.Show();
+            }
+            else
+            {
+                Tareas.FormInsertarElemento nueva = new Tareas.FormInsertarElemento(this, 0, idComunidad, "Inicio");
+                nueva.Show();
+            }
+
+        }
+
+        private void añadirElementoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int idElementoAnt = Int32.Parse(treeViewElementos.SelectedNode.Tag.ToString());
+            String nombrecompleto = treeViewElementos.SelectedNode.Text.ToString();
+            String nombre = nombrecompleto.Substring(0, nombrecompleto.IndexOf(":"));
+            Tareas.FormInsertarElemento nueva = new Tareas.FormInsertarElemento(this, idElementoAnt, idComunidad, nombre);
+            nueva.Show();
+        }
+
+        private void updateRuta()
+        {
+            String ruta = "Inicio";
+
+            foreach (String nombrecompleto in nombreElementosAtras)
+            {
+                String nombre = nombrecompleto.Substring(0, nombrecompleto.IndexOf(":"));
+                ruta += " > " + nombre;
+            }
+            if (ruta.Length > 100)
+            {
+                String ruta2 = ruta;
+                ruta = ".../";
+                ruta += ruta.Substring(ruta.Length - 90);
+            }
+            labelRuta.Text = ruta;
+        }
+
+        private void buttonAddElementoTarea_Click(object sender, EventArgs e)
+        {
+            if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0 ))
+            {
+                MessageBox.Show("Los campos Descripción,Entidad,Tipo y FechaInicio son obligatorios!");
+                return;
+            }
+            else if (tarea == null)
+            {
+                if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
+                addTarea();
+                textBoxIdTarea.Text = idTarea;
+                bloquearEdicion();
+                form_anterior.CargarTareas();
+            }
+            TreeNode node = treeViewElementos.SelectedNode;
+            if (node != null)
+            {
+                String sqlUpdate = "UPDATE exp_tareas SET IdElemento = '" + node.Tag.ToString() + "' WHERE IdTarea = " + idTarea;
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                String nombrecompleto = node.Text.ToString();
+                labelElementoSeleccionado.Text = "Elemento: " + nombrecompleto.Substring(0, nombrecompleto.IndexOf(":"));
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un elemento para poder añadirlo a la tarea");
+            }
+        }
+        
     }
 }

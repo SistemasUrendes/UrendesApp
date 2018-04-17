@@ -67,6 +67,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.documentosYComunicacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.elementosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -300,7 +301,8 @@
             this.cuotasToolStripMenuItem1,
             this.informesToolStripMenuItem,
             this.toolStripSeparator2,
-            this.documentosYComunicacionesToolStripMenuItem});
+            this.documentosYComunicacionesToolStripMenuItem,
+            this.elementosToolStripMenuItem});
             this.configuraciónToolStripMenuItem.Name = "configuraciónToolStripMenuItem";
             this.configuraciónToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
             this.configuraciónToolStripMenuItem.Text = "Administración";
@@ -378,6 +380,13 @@
             this.tareasToolStripMenuItem.Text = "Tareas";
             this.tareasToolStripMenuItem.Click += new System.EventHandler(this.tareasToolStripMenuItem_Click);
             // 
+            // elementosToolStripMenuItem
+            // 
+            this.elementosToolStripMenuItem.Name = "elementosToolStripMenuItem";
+            this.elementosToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.elementosToolStripMenuItem.Text = "Elementos";
+            this.elementosToolStripMenuItem.Click += new System.EventHandler(this.elementosToolStripMenuItem_Click);
+            // 
             // ContenedorComunidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -437,5 +446,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem anticiposToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tareasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem elementosToolStripMenuItem;
     }
 }

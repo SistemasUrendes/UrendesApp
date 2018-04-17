@@ -14,10 +14,14 @@ namespace UrdsAppGestión.Presentacion
     {
         DataTable tabla_revisar;
 
-
         public FormMantenimiento()
         {
             InitializeComponent();
+        }
+
+        private void FormMantenimiento_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void button_fusionar_Click(object sender, EventArgs e)
@@ -334,5 +338,6 @@ namespace UrdsAppGestión.Presentacion
             return (sb.ToString().Normalize(NormalizationForm.FormC));
 
         }
+        
     }
 }

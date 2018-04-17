@@ -184,5 +184,11 @@ namespace UrdsAppGestión {
                 newMDIChild.Show();
             }
         }
+
+        private void verGestionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Presentacion.Tareas.FormGestionesPrincipal nueva = new Presentacion.Tareas.FormGestionesPrincipal();
+            nueva.Show();
+        }
     }
 }

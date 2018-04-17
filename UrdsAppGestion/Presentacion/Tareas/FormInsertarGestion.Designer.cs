@@ -56,9 +56,6 @@
             this.buttonLimite15 = new System.Windows.Forms.Button();
             this.buttonAgenda30 = new System.Windows.Forms.Button();
             this.buttonLimite30 = new System.Windows.Forms.Button();
-            this.buttonInicio5 = new System.Windows.Forms.Button();
-            this.buttonInicio15 = new System.Windows.Forms.Button();
-            this.buttonInicio30 = new System.Windows.Forms.Button();
             this.buttonFinNow = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -320,36 +317,6 @@
             this.buttonLimite30.UseVisualStyleBackColor = true;
             this.buttonLimite30.Click += new System.EventHandler(this.buttonLimite30_Click);
             // 
-            // buttonInicio5
-            // 
-            this.buttonInicio5.Location = new System.Drawing.Point(164, 190);
-            this.buttonInicio5.Name = "buttonInicio5";
-            this.buttonInicio5.Size = new System.Drawing.Size(29, 20);
-            this.buttonInicio5.TabIndex = 24;
-            this.buttonInicio5.Text = "5";
-            this.buttonInicio5.UseVisualStyleBackColor = true;
-            this.buttonInicio5.Click += new System.EventHandler(this.buttonInicio5_Click);
-            // 
-            // buttonInicio15
-            // 
-            this.buttonInicio15.Location = new System.Drawing.Point(198, 190);
-            this.buttonInicio15.Name = "buttonInicio15";
-            this.buttonInicio15.Size = new System.Drawing.Size(36, 20);
-            this.buttonInicio15.TabIndex = 27;
-            this.buttonInicio15.Text = "15";
-            this.buttonInicio15.UseVisualStyleBackColor = true;
-            this.buttonInicio15.Click += new System.EventHandler(this.buttonInicio15_Click);
-            // 
-            // buttonInicio30
-            // 
-            this.buttonInicio30.Location = new System.Drawing.Point(236, 190);
-            this.buttonInicio30.Name = "buttonInicio30";
-            this.buttonInicio30.Size = new System.Drawing.Size(36, 20);
-            this.buttonInicio30.TabIndex = 31;
-            this.buttonInicio30.Text = "30";
-            this.buttonInicio30.UseVisualStyleBackColor = true;
-            this.buttonInicio30.Click += new System.EventHandler(this.buttonInicio30_Click);
-            // 
             // buttonFinNow
             // 
             this.buttonFinNow.Location = new System.Drawing.Point(164, 266);
@@ -368,12 +335,9 @@
             this.Controls.Add(this.buttonFinNow);
             this.Controls.Add(this.buttonLimite30);
             this.Controls.Add(this.buttonAgenda30);
-            this.Controls.Add(this.buttonInicio30);
             this.Controls.Add(this.buttonLimite15);
             this.Controls.Add(this.buttonAgenda15);
-            this.Controls.Add(this.buttonInicio15);
             this.Controls.Add(this.buttonLimite5);
-            this.Controls.Add(this.buttonInicio5);
             this.Controls.Add(this.buttonAgenda5);
             this.Controls.Add(this.buttonEditar);
             this.Controls.Add(this.label9);
@@ -435,9 +399,6 @@
         private System.Windows.Forms.Button buttonLimite15;
         private System.Windows.Forms.Button buttonAgenda30;
         private System.Windows.Forms.Button buttonLimite30;
-        private System.Windows.Forms.Button buttonInicio5;
-        private System.Windows.Forms.Button buttonInicio15;
-        private System.Windows.Forms.Button buttonInicio30;
         private System.Windows.Forms.Button buttonFinNow;
     }
 }
