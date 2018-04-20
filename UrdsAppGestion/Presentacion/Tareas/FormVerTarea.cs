@@ -774,9 +774,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private String nombreReferencia()
         {
-            String sql = "SELECT ctos_entidades.Entidad,com_comunidades.IdComunidad FROM ctos_entidades INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((com_comunidades.Referencia) = " + maskedTextBoxReferencia.Text + "))";
+            String sql = "SELECT ctos_entidades.Entidad,com_comunidades.IdComunidad,com_comunidades.IdEntidad FROM ctos_entidades INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((com_comunidades.Referencia) = " + maskedTextBoxReferencia.Text + "))";
             DataTable entidad = Persistencia.SentenciasSQL.select(sql);
             idComunidad = Int32.Parse(entidad.Rows[0][1].ToString());
+            idEntidad = entidad.Rows[0][2].ToString();
             rellenarTreeViewInicio();
             return entidad.Rows[0][0].ToString();
         }
@@ -1492,20 +1493,28 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void labelRutaLink_DoubleClick(object sender, EventArgs e)
         {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            ListBox listBox1 = new ListBox();
 
-            String rutaCheck = rutaEntidad().Trim('#');
-            //String ruta = ruta = @rutaCheck + @"\EXPEDIENTES\";
-            folderBrowserDialog.RootFolder = Environment.SpecialFolder.Desktop;
-            folderBrowserDialog.SelectedPath = rutaCheck;
-            SendKeys.Send("{TAB}{TAB}{RIGHT}{RIGHT}{RIGHT}{RIGHT}");
-            DialogResult result = folderBrowserDialog.ShowDialog();
-            if (result == DialogResult.OK)
+            if (idEntidad == null)
             {
-                string foldername = folderBrowserDialog.SelectedPath;
-                textBoxRuta.Text = foldername;
-                textBoxRuta.Cursor = Cursors.Hand;
+                MessageBox.Show("Selecciona una entidad primero!");
+            }
+            else
+            {
+                FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+                ListBox listBox1 = new ListBox();
+
+                String rutaCheck = rutaEntidad().Trim('#');
+                //String ruta = ruta = @rutaCheck + @"\EXPEDIENTES\";
+                folderBrowserDialog.RootFolder = Environment.SpecialFolder.Desktop;
+                folderBrowserDialog.SelectedPath = rutaCheck;
+                SendKeys.Send("{TAB}{TAB}{RIGHT}{RIGHT}{RIGHT}{RIGHT}");
+                DialogResult result = folderBrowserDialog.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    string foldername = folderBrowserDialog.SelectedPath;
+                    textBoxRuta.Text = foldername;
+                    textBoxRuta.Cursor = Cursors.Hand;
+                }
             }
         }
         
