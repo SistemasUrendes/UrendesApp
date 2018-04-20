@@ -187,8 +187,20 @@ namespace UrdsAppGestión {
 
         private void verGestionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Presentacion.Tareas.FormGestionesPrincipal nueva = new Presentacion.Tareas.FormGestionesPrincipal();
-            nueva.Show();
+
+            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name == "Gestiones").SingleOrDefault<Form>();
+            if (existe != null)
+            {
+                existe.WindowState = FormWindowState.Maximized;
+                existe.BringToFront();
+            }
+            else
+            {
+                Presentacion.Tareas.FormGestionesPrincipal newMDIChild = new Presentacion.Tareas.FormGestionesPrincipal();
+                newMDIChild.MdiParent = this;
+                newMDIChild.WindowState = FormWindowState.Maximized;
+                newMDIChild.Show();
+            }
         }
     }
 }

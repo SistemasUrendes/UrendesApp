@@ -63,6 +63,7 @@
             this.checkBoxAcuerdoJunta = new System.Windows.Forms.CheckBox();
             this.buttonImprimir = new System.Windows.Forms.Button();
             this.button_enviar = new System.Windows.Forms.Button();
+            this.labelCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tareas)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -79,7 +80,7 @@
             this.dataGridView_tareas.ReadOnly = true;
             this.dataGridView_tareas.RowHeadersVisible = false;
             this.dataGridView_tareas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_tareas.Size = new System.Drawing.Size(1134, 546);
+            this.dataGridView_tareas.Size = new System.Drawing.Size(1134, 538);
             this.dataGridView_tareas.TabIndex = 0;
             this.dataGridView_tareas.TabStop = false;
             this.dataGridView_tareas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_tareas_CellDoubleClick);
@@ -376,7 +377,7 @@
             // 
             this.button_enviar.Location = new System.Drawing.Point(271, 65);
             this.button_enviar.Name = "button_enviar";
-            this.button_enviar.Size = new System.Drawing.Size(75, 23);
+            this.button_enviar.Size = new System.Drawing.Size(81, 23);
             this.button_enviar.TabIndex = 45;
             this.button_enviar.Text = "Enviar";
             this.button_enviar.UseMnemonic = false;
@@ -384,12 +385,21 @@
             this.button_enviar.Visible = false;
             this.button_enviar.Click += new System.EventHandler(this.button_enviar_Click);
             // 
+            // labelCount
+            // 
+            this.labelCount.AutoSize = true;
+            this.labelCount.Location = new System.Drawing.Point(3, 643);
+            this.labelCount.Name = "labelCount";
+            this.labelCount.Size = new System.Drawing.Size(0, 13);
+            this.labelCount.TabIndex = 46;
+            // 
             // FormTareasPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1152, 665);
             this.ControlBox = false;
+            this.Controls.Add(this.labelCount);
             this.Controls.Add(this.button_enviar);
             this.Controls.Add(this.buttonImprimir);
             this.Controls.Add(this.checkBoxAcuerdoJunta);
@@ -466,5 +476,6 @@
         private System.Windows.Forms.CheckBox checkBoxAcuerdoJunta;
         private System.Windows.Forms.Button buttonImprimir;
         private System.Windows.Forms.Button button_enviar;
+        private System.Windows.Forms.Label labelCount;
     }
 }

@@ -190,6 +190,11 @@ namespace UrdsAppGestión.Presentacion
                     Tareas.FormInsertarGestion nuevo = (Tareas.FormInsertarGestion)existe;
                     nuevo.recibirEntidad(dataGridView1.SelectedCells[0].Value.ToString());
                 }
+                if (nombre_form_anterior == "FormGestionesPrincipal")
+                {
+                    Tareas.FormGestionesPrincipal nuevo = (Tareas.FormGestionesPrincipal)existe;
+                    nuevo.recibirEntidad(dataGridView1.SelectedCells[0].Value.ToString());
+                }
             }
             this.Close();
         }

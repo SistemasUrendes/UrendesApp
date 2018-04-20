@@ -47,7 +47,7 @@
             this.comboBoxUsuario.Location = new System.Drawing.Point(94, 16);
             this.comboBoxUsuario.Name = "comboBoxUsuario";
             this.comboBoxUsuario.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxUsuario.TabIndex = 0;
+            this.comboBoxUsuario.TabIndex = 3;
             // 
             // maskedTextBoxFecha
             // 
@@ -55,7 +55,7 @@
             this.maskedTextBoxFecha.Mask = "00/00/0000";
             this.maskedTextBoxFecha.Name = "maskedTextBoxFecha";
             this.maskedTextBoxFecha.Size = new System.Drawing.Size(69, 20);
-            this.maskedTextBoxFecha.TabIndex = 2;
+            this.maskedTextBoxFecha.TabIndex = 4;
             this.maskedTextBoxFecha.Leave += new System.EventHandler(this.maskedTextBoxFecha_Leave);
             // 
             // textBoxNotas
@@ -64,7 +64,7 @@
             this.textBoxNotas.Multiline = true;
             this.textBoxNotas.Name = "textBoxNotas";
             this.textBoxNotas.Size = new System.Drawing.Size(260, 191);
-            this.textBoxNotas.TabIndex = 3;
+            this.textBoxNotas.TabIndex = 0;
             // 
             // label1
             // 
@@ -98,7 +98,7 @@
             this.buttonGuardar.Location = new System.Drawing.Point(116, 286);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(75, 23);
-            this.buttonGuardar.TabIndex = 4;
+            this.buttonGuardar.TabIndex = 1;
             this.buttonGuardar.Text = "Guardar";
             this.buttonGuardar.UseVisualStyleBackColor = true;
             this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
@@ -108,7 +108,7 @@
             this.buttonCancelar.Location = new System.Drawing.Point(197, 286);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancelar.TabIndex = 5;
+            this.buttonCancelar.TabIndex = 2;
             this.buttonCancelar.Text = "Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = true;
             this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
@@ -119,6 +119,7 @@
             this.buttonEditar.Name = "buttonEditar";
             this.buttonEditar.Size = new System.Drawing.Size(75, 23);
             this.buttonEditar.TabIndex = 8;
+            this.buttonEditar.TabStop = false;
             this.buttonEditar.Text = "Editar";
             this.buttonEditar.UseVisualStyleBackColor = true;
             this.buttonEditar.Click += new System.EventHandler(this.buttonEditar_Click);
