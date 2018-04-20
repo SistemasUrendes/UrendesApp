@@ -39,6 +39,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textbox_cif = new System.Windows.Forms.MaskedTextBox();
             this.button_volver = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox_ruta = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // textBox_nombre_largo
@@ -54,18 +56,18 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(37, 45);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 13);
+            this.label1.Size = new System.Drawing.Size(86, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Nombre Entidad";
+            this.label1.Text = "Nombre Entidad:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(37, 74);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 13);
+            this.label2.Size = new System.Drawing.Size(75, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Nombre Corto";
+            this.label2.Text = "Nombre Corto:";
             // 
             // textBox_nombre_corto
             // 
@@ -77,7 +79,7 @@
             // 
             // button_guardar
             // 
-            this.button_guardar.Location = new System.Drawing.Point(308, 225);
+            this.button_guardar.Location = new System.Drawing.Point(308, 249);
             this.button_guardar.Name = "button_guardar";
             this.button_guardar.Size = new System.Drawing.Size(75, 23);
             this.button_guardar.TabIndex = 4;
@@ -99,18 +101,18 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(37, 132);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.Size = new System.Drawing.Size(38, 13);
             this.label3.TabIndex = 7;
-            this.label3.Text = "Notas";
+            this.label3.Text = "Notas:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(37, 103);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(23, 13);
+            this.label4.Size = new System.Drawing.Size(26, 13);
             this.label4.TabIndex = 6;
-            this.label4.Text = "CIF";
+            this.label4.Text = "CIF:";
             // 
             // textbox_cif
             // 
@@ -123,7 +125,7 @@
             // 
             // button_volver
             // 
-            this.button_volver.Location = new System.Drawing.Point(389, 225);
+            this.button_volver.Location = new System.Drawing.Point(389, 249);
             this.button_volver.Name = "button_volver";
             this.button_volver.Size = new System.Drawing.Size(75, 23);
             this.button_volver.TabIndex = 10;
@@ -131,11 +133,29 @@
             this.button_volver.UseVisualStyleBackColor = true;
             this.button_volver.Click += new System.EventHandler(this.button_volver_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(37, 219);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(33, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Ruta:";
+            // 
+            // textBox_ruta
+            // 
+            this.textBox_ruta.Location = new System.Drawing.Point(126, 216);
+            this.textBox_ruta.Name = "textBox_ruta";
+            this.textBox_ruta.Size = new System.Drawing.Size(338, 20);
+            this.textBox_ruta.TabIndex = 12;
+            // 
             // AddEntidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(503, 263);
+            this.ClientSize = new System.Drawing.Size(503, 284);
+            this.Controls.Add(this.textBox_ruta);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.button_volver);
             this.Controls.Add(this.textbox_cif);
             this.Controls.Add(this.textBox_notas);
@@ -169,5 +189,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.MaskedTextBox textbox_cif;
         private System.Windows.Forms.Button button_volver;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox_ruta;
     }
 }

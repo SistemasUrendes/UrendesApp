@@ -103,6 +103,7 @@
             // 
             // textBox_referencia
             // 
+            this.textBox_referencia.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox_referencia.Location = new System.Drawing.Point(143, 36);
             this.textBox_referencia.Name = "textBox_referencia";
             this.textBox_referencia.Size = new System.Drawing.Size(179, 20);

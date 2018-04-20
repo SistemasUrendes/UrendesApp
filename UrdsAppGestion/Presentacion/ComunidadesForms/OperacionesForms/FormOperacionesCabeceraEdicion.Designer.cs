@@ -32,9 +32,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboBox_tipo_reparto = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox_expediente = new System.Windows.Forms.MaskedTextBox();
             this.textBox_importe = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.button_com = new System.Windows.Forms.Button();
             this.button_prov = new System.Windows.Forms.Button();
             this.textBox_retencion = new System.Windows.Forms.TextBox();
@@ -56,6 +54,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox_expediente = new System.Windows.Forms.MaskedTextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -111,16 +111,6 @@
             this.label12.TabIndex = 29;
             this.label12.Text = "Tipo de Reparto :";
             // 
-            // textBox_expediente
-            // 
-            this.textBox_expediente.Location = new System.Drawing.Point(101, 337);
-            this.textBox_expediente.Mask = "9999999";
-            this.textBox_expediente.Name = "textBox_expediente";
-            this.textBox_expediente.Size = new System.Drawing.Size(176, 20);
-            this.textBox_expediente.TabIndex = 40;
-            this.textBox_expediente.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.textBox_expediente.Visible = false;
-            // 
             // textBox_importe
             // 
             this.textBox_importe.Location = new System.Drawing.Point(104, 139);
@@ -129,16 +119,6 @@
             this.textBox_importe.TabIndex = 8;
             this.textBox_importe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textBox_importe.TextChanged += new System.EventHandler(this.textBox_importe_TextChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(35, 340);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(69, 13);
-            this.label6.TabIndex = 26;
-            this.label6.Text = "Expediente : ";
-            this.label6.Visible = false;
             // 
             // button_com
             // 
@@ -208,6 +188,7 @@
             // 
             // textBox_descripcion
             // 
+            this.textBox_descripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox_descripcion.Location = new System.Drawing.Point(104, 111);
             this.textBox_descripcion.Name = "textBox_descripcion";
             this.textBox_descripcion.Size = new System.Drawing.Size(328, 20);
@@ -215,6 +196,7 @@
             // 
             // textBox_documento
             // 
+            this.textBox_documento.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox_documento.Location = new System.Drawing.Point(258, 81);
             this.textBox_documento.Name = "textBox_documento";
             this.textBox_documento.Size = new System.Drawing.Size(174, 20);
@@ -332,6 +314,26 @@
             this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Entidad :";
+            // 
+            // textBox_expediente
+            // 
+            this.textBox_expediente.Location = new System.Drawing.Point(101, 337);
+            this.textBox_expediente.Mask = "9999999";
+            this.textBox_expediente.Name = "textBox_expediente";
+            this.textBox_expediente.Size = new System.Drawing.Size(176, 20);
+            this.textBox_expediente.TabIndex = 40;
+            this.textBox_expediente.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox_expediente.Visible = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(35, 340);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(69, 13);
+            this.label6.TabIndex = 26;
+            this.label6.Text = "Expediente : ";
+            this.label6.Visible = false;
             // 
             // button1
             // 

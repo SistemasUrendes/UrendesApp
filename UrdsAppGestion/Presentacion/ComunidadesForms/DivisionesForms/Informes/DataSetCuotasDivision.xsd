@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetCuotasDivision" targetNamespace="http://tempuri.org/DataSetCuotasDivision.xsd" xmlns:mstns="http://tempuri.org/DataSetCuotasDivision.xsd" xmlns="http://tempuri.org/DataSetCuotasDivision.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetCuotasDivision" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetCuotasDivision" msprop:Generator_UserDSName="DataSetCuotasDivision">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CuotasDivision" msprop:Generator_TableClassName="CuotasDivisionDataTable" msprop:Generator_TableVarName="tableCuotasDivision" msprop:Generator_TablePropName="CuotasDivision" msprop:Generator_RowDeletingName="CuotasDivisionRowDeleting" msprop:Generator_RowChangingName="CuotasDivisionRowChanging" msprop:Generator_RowEvHandlerName="CuotasDivisionRowChangeEventHandler" msprop:Generator_RowDeletedName="CuotasDivisionRowDeleted" msprop:Generator_UserTableName="CuotasDivision" msprop:Generator_RowChangedName="CuotasDivisionRowChanged" msprop:Generator_RowEvArgName="CuotasDivisionRowChangeEvent" msprop:Generator_RowClassName="CuotasDivisionRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdComunidad" msprop:Generator_ColumnVarNameInTable="columnIdComunidad" msprop:Generator_ColumnPropNameInRow="IdComunidad" msprop:Generator_ColumnPropNameInTable="IdComunidadColumn" msprop:Generator_UserColumnName="IdComunidad" type="xs:string" minOccurs="0" />
+              <xs:element name="IdDivision" msprop:Generator_ColumnVarNameInTable="columnIdDivision" msprop:Generator_ColumnPropNameInRow="IdDivision" msprop:Generator_ColumnPropNameInTable="IdDivisionColumn" msprop:Generator_UserColumnName="IdDivision" type="xs:string" minOccurs="0" />
+              <xs:element name="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_UserColumnName="Fecha" type="xs:string" minOccurs="0" />
+              <xs:element name="Entidad" msprop:Generator_ColumnVarNameInTable="columnEntidad" msprop:Generator_ColumnPropNameInRow="Entidad" msprop:Generator_ColumnPropNameInTable="EntidadColumn" msprop:Generator_UserColumnName="Entidad" type="xs:string" minOccurs="0" />
+              <xs:element name="Descripcion" msprop:Generator_ColumnVarNameInTable="columnDescripcion" msprop:Generator_ColumnPropNameInRow="Descripcion" msprop:Generator_ColumnPropNameInTable="DescripcionColumn" msprop:Generator_UserColumnName="Descripcion" type="xs:string" minOccurs="0" />
+              <xs:element name="ImpOp" msprop:Generator_ColumnVarNameInTable="columnImpOp" msprop:Generator_ColumnPropNameInRow="ImpOp" msprop:Generator_ColumnPropNameInTable="ImpOpColumn" msprop:Generator_UserColumnName="ImpOp" type="xs:string" minOccurs="0" />
+              <xs:element name="IdOp" msprop:Generator_ColumnVarNameInTable="columnIdOp" msprop:Generator_ColumnPropNameInRow="IdOp" msprop:Generator_ColumnPropNameInTable="IdOpColumn" msprop:Generator_UserColumnName="IdOp" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -48,18 +48,19 @@ namespace UrdsAppGestión.Persistencia
                 return dt;
             }
         }
-        public static int InsertEntidad(String entidad,String nombreCorto,String CIF,String Notas, String entidad_sinAcentos) {
+        public static int InsertEntidad(String entidad,String nombreCorto,String CIF,String Notas, String entidad_sinAcentos, String Ruta) {
 
             MySqlConnection conn = Persistencia.conexion_bd.abrir();
             conn.Open();
             MySqlCommand comm = conn.CreateCommand();
-            comm.CommandText = "INSERT INTO ctos_entidades(Entidad,NombreCorto,CIF,Notas,EntidadSinAcentos) VALUES(@entidad, @NombreCorto,@CIF,@Notas,@SinAcentos)";
+            comm.CommandText = "INSERT INTO ctos_entidades(Entidad,NombreCorto,CIF,Notas,EntidadSinAcentos,Ruta) VALUES(@entidad, @NombreCorto,@CIF,@Notas,@SinAcentos,@Ruta)";
 
             comm.Parameters.AddWithValue("@entidad", entidad);
             comm.Parameters.AddWithValue("@NombreCorto", nombreCorto);
             comm.Parameters.AddWithValue("@CIF", CIF);
             comm.Parameters.AddWithValue("@Notas", Notas);
             comm.Parameters.AddWithValue("@SinAcentos", entidad_sinAcentos);
+            comm.Parameters.AddWithValue("@Ruta", Ruta);
             comm.ExecuteNonQuery();
 
             conn.ClearAllPoolsAsync();
@@ -123,18 +124,19 @@ namespace UrdsAppGestión.Persistencia
 
             return (int)comm.LastInsertedId;
         }
-        public static Boolean ActualizarEntidad(int idEntidad,String entidad, String nombreCorto, String CIF, String Notas) {
+        public static Boolean ActualizarEntidad(int idEntidad,String entidad, String nombreCorto, String CIF, String Notas, String Ruta) {
             try
             {
                 MySqlConnection conn = Persistencia.conexion_bd.abrir();
                 conn.Open();
                 MySqlCommand comm = conn.CreateCommand();
-                comm.CommandText = "UPDATE ctos_entidades SET Entidad = @entidad,NombreCorto = @NombreCorto,CIF = @CIF,Notas = @Notas WHERE IDEntidad = @idEntidad";
+                comm.CommandText = "UPDATE ctos_entidades SET Entidad = @entidad,NombreCorto = @NombreCorto,CIF = @CIF,Notas = @Notas, Ruta = @Ruta  WHERE IDEntidad = @idEntidad";
                 comm.Parameters.AddWithValue("@idEntidad", idEntidad);
                 comm.Parameters.AddWithValue("@entidad", entidad);
                 comm.Parameters.AddWithValue("@NombreCorto", nombreCorto);
                 comm.Parameters.AddWithValue("@CIF", CIF);
                 comm.Parameters.AddWithValue("@Notas", Notas);
+                comm.Parameters.AddWithValue("@Ruta", Ruta);
                 comm.ExecuteNonQuery();
                 return true;
 

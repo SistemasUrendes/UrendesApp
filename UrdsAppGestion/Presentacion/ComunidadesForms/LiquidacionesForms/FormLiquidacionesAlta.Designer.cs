@@ -50,6 +50,7 @@
             // 
             // textBox_liquidacion
             // 
+            this.textBox_liquidacion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox_liquidacion.Location = new System.Drawing.Point(148, 62);
             this.textBox_liquidacion.Name = "textBox_liquidacion";
             this.textBox_liquidacion.Size = new System.Drawing.Size(203, 20);
@@ -178,6 +179,7 @@
             // 
             // textBox_liq_corto
             // 
+            this.textBox_liq_corto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox_liq_corto.Location = new System.Drawing.Point(148, 89);
             this.textBox_liq_corto.Name = "textBox_liq_corto";
             this.textBox_liq_corto.Size = new System.Drawing.Size(203, 20);

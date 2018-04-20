@@ -218,11 +218,18 @@ namespace UrdsAppGestión.Presentacion
                     email.Attachments.Add(new Attachment(@adjuntos[a]));
 
             SmtpClient smtp = new SmtpClient();
-            smtp.Host = "mail.urendes.com";
-            smtp.Port = 26;
-            smtp.EnableSsl = false;
+            smtp.Host = "hl316.hosteurope.es";
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("no-replay@envios.urendes.com", "TwTtdo3T[Sw&");
+            smtp.Credentials = new NetworkCredential("admin@envios.urendes.com", "#.Urds16");
+
+            /*SmtpClient smtp = new SmtpClient();
+            smtp.Host = "cp5023.webempresa.eu";
+            smtp.Port = 465;
+            //smtp.EnableTls = true;
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new NetworkCredential("sistemas@urendes.com", "#.Urds16");*/
 
             try
             {
@@ -234,7 +241,7 @@ namespace UrdsAppGestión.Presentacion
                     numero_Correos = 0;
                 }
 
-                Thread.Sleep(12000);
+                Thread.Sleep(20000);
                 email.Dispose();
             }
             catch (Exception e) {
@@ -545,7 +552,7 @@ namespace UrdsAppGestión.Presentacion
             String strLiquidacion = (String)genericlist[1];
             String idLiquidacion = (String)genericlist[2];
             List<String> Rutas = (List<String>)genericlist[3];
-            Boolean encontrado = false;
+            //Boolean encontrado = false;
 
             if (Thread.CurrentThread.Name == null)
                 Thread.CurrentThread.Name = numero_procesos.ToString();

@@ -58,6 +58,7 @@
             // 
             // textBox_Cuota
             // 
+            this.textBox_Cuota.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox_Cuota.Location = new System.Drawing.Point(132, 60);
             this.textBox_Cuota.Name = "textBox_Cuota";
             this.textBox_Cuota.Size = new System.Drawing.Size(204, 20);

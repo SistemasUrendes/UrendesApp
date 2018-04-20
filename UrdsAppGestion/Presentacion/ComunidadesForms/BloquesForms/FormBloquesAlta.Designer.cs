@@ -43,6 +43,7 @@
             // 
             // textBox_Bloque
             // 
+            this.textBox_Bloque.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox_Bloque.Location = new System.Drawing.Point(84, 30);
             this.textBox_Bloque.Name = "textBox_Bloque";
             this.textBox_Bloque.Size = new System.Drawing.Size(192, 20);

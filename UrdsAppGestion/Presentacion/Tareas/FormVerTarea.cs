@@ -511,9 +511,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 String rutaCheck = rutaEntidad().Trim('#');
                 ruta = @rutaCheck + @"\EXPEDIENTES\" + tarea;
 
-
-
-
                 //LA CARPETA DE LA RUTA YA ESTÁ CREADA
                 if (System.IO.Directory.Exists(ruta))
                 {
@@ -559,13 +556,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
                         String rutaCheck = rutaEntidad().Trim('#');
                         ruta = @rutaCheck + @"\EXPEDIENTES\" + tarea;
 
-
-
-
                         //LA CARPETA DE LA RUTA YA ESTÁ CREADA
                         if (System.IO.Directory.Exists(ruta))
                         {
-                            MessageBox.Show("La Carpeta de la tarea ya existe!");
+                            MessageBox.Show("¡La Carpeta de la tarea ya existe!");
                             textBoxRuta.Text = ruta;
                             textBoxRuta.Cursor = Cursors.Hand;
                         }
