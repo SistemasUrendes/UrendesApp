@@ -472,5 +472,16 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             Persistencia.SentenciasSQL.InsertarGenerico(sqlDelete);
             cargarExpedientes();
         }
+
+        private void dataGridView_expedientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            String idTarea = dataGridView_expedientes.SelectedRows[0].Cells["IdTarea"].Value.ToString();
+            Tareas.FormVerTarea nueva = new Tareas.FormVerTarea(idTarea);
+            nueva.ControlBox = true;
+            nueva.TopMost = true;
+            nueva.WindowState = FormWindowState.Normal;
+            nueva.StartPosition = FormStartPosition.CenterScreen;
+            nueva.Show();
+        }
     }
 }

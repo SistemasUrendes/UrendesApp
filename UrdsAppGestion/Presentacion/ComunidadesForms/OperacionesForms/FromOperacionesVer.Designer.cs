@@ -218,6 +218,7 @@
             this.dataGridView_expedientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_expedientes.Size = new System.Drawing.Size(363, 114);
             this.dataGridView_expedientes.TabIndex = 0;
+            this.dataGridView_expedientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_expedientes_CellDoubleClick);
             this.dataGridView_expedientes.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView_expedientes_MouseClick);
             // 
             // label16

@@ -27,6 +27,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
             edicion = true;
         }
 
+        public FormInsertarSeguimiento(String idGestion)
+        {
+            InitializeComponent();
+            this.idGestion = idGestion;
+            edicion = true;
+        }
+
         public FormInsertarSeguimiento(FormVerTarea form_anterior, String idGestion,String idSeguimiento)
         {
             InitializeComponent();
@@ -57,6 +64,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 comboBoxUsuario.SelectedValue = Login.getId();
                 //maskedTextBoxFecha.Text = string.Format("{0:dd/MM/yyyy HH:mm:ss}", DateTime.Now);
                 maskedTextBoxFecha.Text = DateTime.Now.ToShortDateString();
+
             }
             //EDITAR SEGUIMIENTO
             else if (edicion)
@@ -101,7 +109,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }    
 
             //ACTUALIZAR DATAGRID SEGUIMIENTOS DE FormVerTarea
-            form_anterior.cargarSeguimientos();
+            if (form_anterior != null) form_anterior.cargarSeguimientos();
             this.Close();
         }
 

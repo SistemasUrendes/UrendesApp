@@ -49,7 +49,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.labelRutaLink = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -80,13 +80,20 @@
             this.label17 = new System.Windows.Forms.Label();
             this.dataGridViewContactos = new System.Windows.Forms.DataGridView();
             this.tabPageElementos = new System.Windows.Forms.TabPage();
+            this.buttonAddElementoTarea = new System.Windows.Forms.Button();
+            this.labelElementoSeleccionado = new System.Windows.Forms.Label();
             this.labelRuta = new System.Windows.Forms.Label();
             this.buttonAddElementoPrincipal = new System.Windows.Forms.Button();
             this.buttonInicio = new System.Windows.Forms.Button();
             this.buttonAtras = new System.Windows.Forms.Button();
             this.treeViewElementos = new System.Windows.Forms.TreeView();
+            this.tabPageExpedientes = new System.Windows.Forms.TabPage();
+            this.buttonAddExpediente = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dataGridViewExpedientes = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemEditarContacto = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemCopiarPortapapelesContacto = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemEliminarContacto = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonCerrarGestion = new System.Windows.Forms.Button();
             this.buttonEliminarTarea = new System.Windows.Forms.Button();
@@ -102,8 +109,8 @@
             this.comboBoxEstadoGestion = new System.Windows.Forms.ComboBox();
             this.contextMenuStrip4 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.añadirElementoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.labelElementoSeleccionado = new System.Windows.Forms.Label();
-            this.buttonAddElementoTarea = new System.Windows.Forms.Button();
+            this.contextMenuStrip5 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.borrarExpedienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGestiones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSeguimientos)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -113,9 +120,12 @@
             this.tabPageContactos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContactos)).BeginInit();
             this.tabPageElementos.SuspendLayout();
+            this.tabPageExpedientes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewExpedientes)).BeginInit();
             this.contextMenuStrip3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetCargos1)).BeginInit();
             this.contextMenuStrip4.SuspendLayout();
+            this.contextMenuStrip5.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxIdTarea
@@ -321,14 +331,16 @@
             this.label6.TabIndex = 26;
             this.label6.Text = "Notas:";
             // 
-            // label7
+            // labelRutaLink
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(21, 310);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(33, 13);
-            this.label7.TabIndex = 27;
-            this.label7.Text = "Ruta:";
+            this.labelRutaLink.AutoSize = true;
+            this.labelRutaLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRutaLink.Location = new System.Drawing.Point(21, 310);
+            this.labelRutaLink.Name = "labelRutaLink";
+            this.labelRutaLink.Size = new System.Drawing.Size(33, 13);
+            this.labelRutaLink.TabIndex = 27;
+            this.labelRutaLink.Text = "Ruta:";
+            this.labelRutaLink.DoubleClick += new System.EventHandler(this.labelRutaLink_DoubleClick);
             // 
             // label9
             // 
@@ -517,6 +529,7 @@
             this.tabControl1.Controls.Add(this.tabPagSeguimientos);
             this.tabControl1.Controls.Add(this.tabPageContactos);
             this.tabControl1.Controls.Add(this.tabPageElementos);
+            this.tabControl1.Controls.Add(this.tabPageExpedientes);
             this.tabControl1.Location = new System.Drawing.Point(570, 13);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -625,6 +638,24 @@
             this.tabPageElementos.Text = "Elementos";
             this.tabPageElementos.UseVisualStyleBackColor = true;
             // 
+            // buttonAddElementoTarea
+            // 
+            this.buttonAddElementoTarea.Location = new System.Drawing.Point(156, 12);
+            this.buttonAddElementoTarea.Name = "buttonAddElementoTarea";
+            this.buttonAddElementoTarea.Size = new System.Drawing.Size(90, 23);
+            this.buttonAddElementoTarea.TabIndex = 22;
+            this.buttonAddElementoTarea.Text = "Añadir a tarea";
+            this.buttonAddElementoTarea.UseVisualStyleBackColor = true;
+            this.buttonAddElementoTarea.Click += new System.EventHandler(this.buttonAddElementoTarea_Click);
+            // 
+            // labelElementoSeleccionado
+            // 
+            this.labelElementoSeleccionado.AutoSize = true;
+            this.labelElementoSeleccionado.Location = new System.Drawing.Point(252, 17);
+            this.labelElementoSeleccionado.Name = "labelElementoSeleccionado";
+            this.labelElementoSeleccionado.Size = new System.Drawing.Size(0, 13);
+            this.labelElementoSeleccionado.TabIndex = 21;
+            // 
             // labelRuta
             // 
             this.labelRuta.AutoSize = true;
@@ -674,25 +705,82 @@
             this.treeViewElementos.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewElementos_NodeMouseClick);
             this.treeViewElementos.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewElementos_NodeMouseDoubleClick);
             // 
+            // tabPageExpedientes
+            // 
+            this.tabPageExpedientes.Controls.Add(this.buttonAddExpediente);
+            this.tabPageExpedientes.Controls.Add(this.label1);
+            this.tabPageExpedientes.Controls.Add(this.dataGridViewExpedientes);
+            this.tabPageExpedientes.Location = new System.Drawing.Point(4, 22);
+            this.tabPageExpedientes.Name = "tabPageExpedientes";
+            this.tabPageExpedientes.Size = new System.Drawing.Size(658, 299);
+            this.tabPageExpedientes.TabIndex = 3;
+            this.tabPageExpedientes.Text = "Expedientes";
+            this.tabPageExpedientes.UseVisualStyleBackColor = true;
+            // 
+            // buttonAddExpediente
+            // 
+            this.buttonAddExpediente.Location = new System.Drawing.Point(539, 8);
+            this.buttonAddExpediente.Name = "buttonAddExpediente";
+            this.buttonAddExpediente.Size = new System.Drawing.Size(113, 23);
+            this.buttonAddExpediente.TabIndex = 28;
+            this.buttonAddExpediente.Text = "Añadir Expediente";
+            this.buttonAddExpediente.UseVisualStyleBackColor = true;
+            this.buttonAddExpediente.Click += new System.EventHandler(this.buttonAddExpediente_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(75, 15);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "Expedientes";
+            // 
+            // dataGridViewExpedientes
+            // 
+            this.dataGridViewExpedientes.AllowUserToAddRows = false;
+            this.dataGridViewExpedientes.AllowUserToDeleteRows = false;
+            this.dataGridViewExpedientes.AllowUserToResizeRows = false;
+            this.dataGridViewExpedientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewExpedientes.Location = new System.Drawing.Point(9, 37);
+            this.dataGridViewExpedientes.Name = "dataGridViewExpedientes";
+            this.dataGridViewExpedientes.ReadOnly = true;
+            this.dataGridViewExpedientes.RowHeadersVisible = false;
+            this.dataGridViewExpedientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewExpedientes.Size = new System.Drawing.Size(643, 253);
+            this.dataGridViewExpedientes.TabIndex = 27;
+            this.dataGridViewExpedientes.TabStop = false;
+            this.dataGridViewExpedientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewExpedientes_CellDoubleClick);
+            this.dataGridViewExpedientes.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewExpedientes_MouseClick);
+            // 
             // contextMenuStrip3
             // 
             this.contextMenuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemEditarContacto,
+            this.toolStripMenuItemCopiarPortapapelesContacto,
             this.toolStripMenuItemEliminarContacto});
             this.contextMenuStrip3.Name = "contextMenuStrip3";
-            this.contextMenuStrip3.Size = new System.Drawing.Size(118, 48);
+            this.contextMenuStrip3.Size = new System.Drawing.Size(193, 70);
             // 
             // toolStripMenuItemEditarContacto
             // 
             this.toolStripMenuItemEditarContacto.Name = "toolStripMenuItemEditarContacto";
-            this.toolStripMenuItemEditarContacto.Size = new System.Drawing.Size(117, 22);
+            this.toolStripMenuItemEditarContacto.Size = new System.Drawing.Size(192, 22);
             this.toolStripMenuItemEditarContacto.Text = "Editar";
             this.toolStripMenuItemEditarContacto.Click += new System.EventHandler(this.toolStripMenuItemEditarContacto_Click);
+            // 
+            // toolStripMenuItemCopiarPortapapelesContacto
+            // 
+            this.toolStripMenuItemCopiarPortapapelesContacto.Name = "toolStripMenuItemCopiarPortapapelesContacto";
+            this.toolStripMenuItemCopiarPortapapelesContacto.Size = new System.Drawing.Size(192, 22);
+            this.toolStripMenuItemCopiarPortapapelesContacto.Text = "Copiar al Portapapeles";
+            this.toolStripMenuItemCopiarPortapapelesContacto.Click += new System.EventHandler(this.toolStripMenuItemCopiarPortapapelesContacto_Click);
             // 
             // toolStripMenuItemEliminarContacto
             // 
             this.toolStripMenuItemEliminarContacto.Name = "toolStripMenuItemEliminarContacto";
-            this.toolStripMenuItemEliminarContacto.Size = new System.Drawing.Size(117, 22);
+            this.toolStripMenuItemEliminarContacto.Size = new System.Drawing.Size(192, 22);
             this.toolStripMenuItemEliminarContacto.Text = "Eliminar";
             this.toolStripMenuItemEliminarContacto.Click += new System.EventHandler(this.toolStripMenuItemEliminarContacto_Click);
             // 
@@ -822,23 +910,19 @@
             this.añadirElementoToolStripMenuItem.Text = "Añadir Elemento";
             this.añadirElementoToolStripMenuItem.Click += new System.EventHandler(this.añadirElementoToolStripMenuItem_Click);
             // 
-            // labelElementoSeleccionado
+            // contextMenuStrip5
             // 
-            this.labelElementoSeleccionado.AutoSize = true;
-            this.labelElementoSeleccionado.Location = new System.Drawing.Point(252, 17);
-            this.labelElementoSeleccionado.Name = "labelElementoSeleccionado";
-            this.labelElementoSeleccionado.Size = new System.Drawing.Size(0, 13);
-            this.labelElementoSeleccionado.TabIndex = 21;
+            this.contextMenuStrip5.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.borrarExpedienteToolStripMenuItem});
+            this.contextMenuStrip5.Name = "contextMenuStrip5";
+            this.contextMenuStrip5.Size = new System.Drawing.Size(178, 26);
             // 
-            // buttonAddElementoTarea
+            // borrarExpedienteToolStripMenuItem
             // 
-            this.buttonAddElementoTarea.Location = new System.Drawing.Point(156, 12);
-            this.buttonAddElementoTarea.Name = "buttonAddElementoTarea";
-            this.buttonAddElementoTarea.Size = new System.Drawing.Size(90, 23);
-            this.buttonAddElementoTarea.TabIndex = 22;
-            this.buttonAddElementoTarea.Text = "Añadir a tarea";
-            this.buttonAddElementoTarea.UseVisualStyleBackColor = true;
-            this.buttonAddElementoTarea.Click += new System.EventHandler(this.buttonAddElementoTarea_Click);
+            this.borrarExpedienteToolStripMenuItem.Name = "borrarExpedienteToolStripMenuItem";
+            this.borrarExpedienteToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.borrarExpedienteToolStripMenuItem.Text = "Eliminar Expediente";
+            this.borrarExpedienteToolStripMenuItem.Click += new System.EventHandler(this.borrarExpedienteToolStripMenuItem_Click);
             // 
             // FormVerTarea
             // 
@@ -865,7 +949,7 @@
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.labelRutaLink);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dataGridViewGestiones);
@@ -901,9 +985,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContactos)).EndInit();
             this.tabPageElementos.ResumeLayout(false);
             this.tabPageElementos.PerformLayout();
+            this.tabPageExpedientes.ResumeLayout(false);
+            this.tabPageExpedientes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewExpedientes)).EndInit();
             this.contextMenuStrip3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataSetCargos1)).EndInit();
             this.contextMenuStrip4.ResumeLayout(false);
+            this.contextMenuStrip5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -929,7 +1017,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label labelRutaLink;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label13;
@@ -984,5 +1072,12 @@
         private System.Windows.Forms.ToolStripMenuItem añadirElementoToolStripMenuItem;
         private System.Windows.Forms.Label labelElementoSeleccionado;
         private System.Windows.Forms.Button buttonAddElementoTarea;
+        private System.Windows.Forms.TabPage tabPageExpedientes;
+        private System.Windows.Forms.Button buttonAddExpediente;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dataGridViewExpedientes;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip5;
+        private System.Windows.Forms.ToolStripMenuItem borrarExpedienteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCopiarPortapapelesContacto;
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace UrdsAppGestión.Presentacion.Tareas
 {
@@ -28,6 +29,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private String elemento;
         private List<String> idElementosAtras;
         private List<String> nombreElementosAtras;
+        private String columnaContacto;
 
 
         public FormVerTarea(FormTareasPrincipal form_anterior, String idTarea)
@@ -35,6 +37,15 @@ namespace UrdsAppGestión.Presentacion.Tareas
             InitializeComponent();
             this.idTarea = idTarea;
             this.form_anterior = form_anterior;
+            idElementosAtras = new List<String>();
+            nombreElementosAtras = new List<String>();
+            idComunidad = 0;
+        }
+
+        public FormVerTarea(String idTarea)
+        {
+            InitializeComponent();
+            this.idTarea = idTarea;
             idElementosAtras = new List<String>();
             nombreElementosAtras = new List<String>();
             idComunidad = 0;
@@ -59,6 +70,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 comboBoxEstadoGestion.SelectedIndex = 2; //TODAS
                 cargarTodosSeguimientos();
                 cargarContactos();
+                cargarExpedientes();
                 bloquearEdicion();
             }
             //NUEVA TAREA
@@ -129,6 +141,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             buttonEliminarTarea.Enabled = true;
             buttonGuardar.Enabled = false;
             textBoxRuta.ReadOnly = true;
+            labelRutaLink.Enabled = false;
         }
 
         public void habilitarEdicion()
@@ -153,6 +166,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             buttonGuardar.Enabled = true;
             checkBoxImportante.AutoCheck = true;
             textBoxRuta.ReadOnly = false;
+            labelRutaLink.Enabled = true;
             if (textBoxEntidad.Text == "")
             {
                 textBoxEntidad.Text = "Pulsa espacio para Seleccionar Entidad";
@@ -312,7 +326,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 addTarea();
                 textBoxIdTarea.Text = idTarea;
                 bloquearEdicion();
-                form_anterior.CargarTareas();
+                if (form_anterior != null) form_anterior.CargarTareas();
 
             }
         }
@@ -339,7 +353,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     textBoxIdTarea.Text = idTarea;
                     comboBoxEstadoGestion.SelectedIndex = 2;
                     bloquearEdicion();
-                    form_anterior.CargarTareas();
+                    if (form_anterior != null) form_anterior.CargarTareas();
                     Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, fInicio);
                     nueva.Show();
                 }
@@ -491,7 +505,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
                 addTarea();
                 textBoxIdTarea.Text = idTarea;
-                form_anterior.CargarTareas();
+                if (form_anterior != null) form_anterior.CargarTareas();
 
                 String tarea = idTarea + " " + textBoxDescripcion.Text;
                 String rutaCheck = rutaEntidad().Trim('#');
@@ -536,7 +550,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                         if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
                         addTarea();
                         textBoxIdTarea.Text = idTarea;
-                        form_anterior.CargarTareas();
+                        if (form_anterior != null) form_anterior.CargarTareas();
 
                         String tarea = idTarea + " " + textBoxDescripcion.Text;
                         String rutaCheck = rutaEntidad().Trim('#');
@@ -933,6 +947,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     dataGridViewContactos.Rows[hti.RowIndex].Selected = true;
                     dataGridViewContactos.Columns[hti.ColumnIndex].Selected = true;
                     dataGridViewContactos.CurrentCell = this.dataGridViewContactos[hti.ColumnIndex, hti.RowIndex];
+                    columnaContacto = dataGridViewContactos.CurrentCell.OwningColumn.Name;
                     contextMenuStrip3.Show(Cursor.Position);
                 }
             }
@@ -943,6 +958,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String idContacto = dataGridViewContactos.SelectedRows[0].Cells[0].Value.ToString();
             Tareas.FormInsertarContacto nueva = new FormInsertarContacto(this, idTarea, idContacto);
             nueva.Show();
+        }
+        
+        private void toolStripMenuItemCopiarPortapapelesContacto_Click(object sender, EventArgs e)
+        {
+            String textSelect = dataGridViewContactos.SelectedRows[0].Cells[columnaContacto].Value.ToString();
+            System.Windows.Forms.Clipboard.SetText(textSelect);
         }
 
         private void toolStripMenuItemEliminarContacto_Click(object sender, EventArgs e)
@@ -1025,7 +1046,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 addTarea();
                 bloquearEdicion();
-                form_anterior.CargarTareas();
+                if (form_anterior != null) form_anterior.CargarTareas();
 
                 if (dataGridViewGestiones.SelectedCells.Count > 0)
                 {
@@ -1048,7 +1069,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                         String sqlUpdate = "UPDATE exp_tareas SET FFin = '" + DateTime.Now.ToString("yyyy-MM-dd") + "',Importante = 0 WHERE IdTarea = " + idTarea;
                         Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                         cargarCabecera();
-                        form_anterior.CargarTareas();
+                        if (form_anterior != null) form_anterior.CargarTareas();
                     }
                 }
             }
@@ -1064,7 +1085,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 {
                     String sqlBorrar = "DELETE FROM exp_tareas WHERE IdTarea = " + idTarea;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrar);
-                    form_anterior.CargarTareas();
+                    if (form_anterior != null) form_anterior.CargarTareas();
                     this.Close();
                 }
             }
@@ -1089,7 +1110,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         public void tareaImportanteGestion()
         {
             cargarCabecera();
-            form_anterior.CargarTareas();
+            if (form_anterior != null) form_anterior.CargarTareas();
         }
         
         private void textBoxSiniestro_Leave(object sender, EventArgs e)
@@ -1120,7 +1141,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 String idTarea = textBoxTareaNueva.Text.ToString();
                 if (existeTarea(idTarea))
                 {
-                    Tareas.FormVerTarea nueva = new FormVerTarea(form_anterior, idTarea);
+                    Tareas.FormVerTarea nueva;
+                    if (form_anterior != null) nueva = new FormVerTarea(form_anterior, idTarea);
+                    else nueva = new FormVerTarea(idTarea);
                     nueva.Show();
                     this.Close();
                 }
@@ -1367,7 +1390,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 addTarea();
                 textBoxIdTarea.Text = idTarea;
                 bloquearEdicion();
-                form_anterior.CargarTareas();
+                if (form_anterior != null) form_anterior.CargarTareas();
             }
             TreeNode node = treeViewElementos.SelectedNode;
             if (node != null)
@@ -1380,6 +1403,103 @@ namespace UrdsAppGestión.Presentacion.Tareas
             else
             {
                 MessageBox.Show("Debe seleccionar un elemento para poder añadirlo a la tarea");
+            }
+        }
+
+        public void cargarExpedientes()
+        {
+            String sqlExpedientes1 = "SELECT exp_tareaRel.IdTareaRel, exp_tareas.IdTarea, exp_tareas.Descripción FROM exp_tareas INNER JOIN exp_tareaRel ON exp_tareas.IdTarea = exp_tareaRel.IdTarea_2 WHERE(((exp_tareaRel.IdTarea_1) = " + idTarea + "))";
+
+            String sqlExpedientes2 = "SELECT exp_tareaRel.IdTareaRel, exp_tareas.IdTarea, exp_tareas.Descripción FROM exp_tareas INNER JOIN exp_tareaRel ON exp_tareas.IdTarea = exp_tareaRel.IdTarea_1 WHERE(((exp_tareaRel.IdTarea_2) = " + idTarea + "))";
+
+            DataTable expedientes1 = Persistencia.SentenciasSQL.select(sqlExpedientes1);
+            DataTable expedientes2 = Persistencia.SentenciasSQL.select(sqlExpedientes2);
+            DataTable expedientes = expedientes1;
+            expedientes.Merge(expedientes2);
+
+            if (expedientes.Rows.Count > 0)
+            {
+                dataGridViewExpedientes.DataSource = expedientes;
+                dataGridViewExpedientes.Columns["IdTareaRel"].Visible = false;
+                dataGridViewExpedientes.Columns["IdTarea"].Width = 60;
+                dataGridViewExpedientes.Columns["Descripción"].Width = 580;
+            }
+            if (expedientes.Rows.Count != 0) tabPageExpedientes.Text = "Expedientes (" + expedientes.Rows.Count + ")";
+            else tabPageExpedientes.Text = "Expedientes";
+
+        }
+        private void buttonAddExpediente_Click(object sender, EventArgs e)
+        {
+            Tareas.FormTareasPrincipal nueva = new Tareas.FormTareasPrincipal(this, idComunidad.ToString());
+            nueva.ControlBox = true;
+            nueva.TopMost = true;
+            nueva.WindowState = FormWindowState.Normal;
+            nueva.StartPosition = FormStartPosition.CenterScreen;
+            nueva.Show();
+        }
+        
+        public void recibirTarea(String idTareaRecibido)
+        {
+            String sqlInsert = "INSERT INTO exp_tareaRel (IdTarea_1, IdTarea_2) VALUES (" + idTarea + "," + idTareaRecibido + ")";
+            Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+            cargarExpedientes();
+        }
+
+        private void dataGridViewExpedientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            String idTarea = dataGridViewExpedientes.SelectedRows[0].Cells["IdTarea"].Value.ToString();
+            FormVerTarea nueva = new FormVerTarea(idTarea);
+            nueva.Show();
+        }
+
+        private void borrarExpedienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String idTareaRel = dataGridViewExpedientes.SelectedRows[0].Cells["IdTareaRel"].Value.ToString();
+
+            DialogResult resultado_message;
+            resultado_message = MessageBox.Show("¿Desea borrar este Expediente ?", "Borrar Expediente", MessageBoxButtons.OKCancel);
+            if (resultado_message == System.Windows.Forms.DialogResult.OK)
+            {
+                String sqlBorrar = "DELETE FROM exp_tareaRel WHERE IdTareaRel = " + idTareaRel;
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrar);
+
+                cargarExpedientes();
+            }
+        }
+
+        private void dataGridViewExpedientes_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                var hti = dataGridViewExpedientes.HitTest(e.X, e.Y);
+                //EVITAR QUE COJA LA CABECERA
+                if (hti.RowIndex > -1)
+                {
+                    dataGridViewExpedientes.ClearSelection();
+                    dataGridViewExpedientes.Rows[hti.RowIndex].Selected = true;
+                    dataGridViewExpedientes.Columns[hti.ColumnIndex].Selected = true;
+                    dataGridViewExpedientes.CurrentCell = this.dataGridViewExpedientes[hti.ColumnIndex, hti.RowIndex];
+                    contextMenuStrip5.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void labelRutaLink_DoubleClick(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            ListBox listBox1 = new ListBox();
+
+            String rutaCheck = rutaEntidad().Trim('#');
+            //String ruta = ruta = @rutaCheck + @"\EXPEDIENTES\";
+            folderBrowserDialog.RootFolder = Environment.SpecialFolder.Desktop;
+            folderBrowserDialog.SelectedPath = rutaCheck;
+            SendKeys.Send("{TAB}{TAB}{RIGHT}{RIGHT}{RIGHT}{RIGHT}");
+            DialogResult result = folderBrowserDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string foldername = folderBrowserDialog.SelectedPath;
+                textBoxRuta.Text = foldername;
+                textBoxRuta.Cursor = Cursors.Hand;
             }
         }
         

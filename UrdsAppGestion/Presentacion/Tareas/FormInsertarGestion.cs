@@ -49,6 +49,20 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.idGestion = idGestion;
         }
 
+        public FormInsertarGestion(String idGestion,String idTarea)
+        {
+            InitializeComponent();
+            this.idTarea = idTarea;
+            this.idGestion = idGestion;
+        }
+
+        public FormInsertarGestion(String idGestion)
+        {
+            InitializeComponent();
+            this.idGestion = idGestion;
+        }
+
+
 
         private void FormInsertarGestion_Load(object sender, EventArgs e)
         {
@@ -382,7 +396,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
 
             //ACTUALIZAR DATAGRID GESTIONES DE FormVerTarea
-            form_anterior.cargarGestiones();
+            if (form_anterior != null )form_anterior.cargarGestiones();
             this.Close();
 
         }
@@ -409,7 +423,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             String sqlUpdate = "UPDATE exp_tareas SET Importante = -1 WHERE IdTarea = " + idTarea;
             Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
-            form_anterior.tareaImportanteGestion();
+            if (form_anterior != null) form_anterior.tareaImportanteGestion();
         }
 
         private void buttonEditar_Click(object sender, EventArgs e)
