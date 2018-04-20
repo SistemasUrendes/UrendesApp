@@ -36,6 +36,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_total = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.textBox_buscar = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_detalles_remesa)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,16 +94,15 @@
             this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Total Remesa : ";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // textBox_total
             // 
             this.textBox_total.Location = new System.Drawing.Point(1035, 586);
             this.textBox_total.Name = "textBox_total";
+            this.textBox_total.ReadOnly = true;
             this.textBox_total.Size = new System.Drawing.Size(112, 20);
             this.textBox_total.TabIndex = 5;
             this.textBox_total.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.textBox_total.TextChanged += new System.EventHandler(this.textBox_total_TextChanged);
             // 
             // button1
             // 
@@ -113,11 +114,30 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // textBox_buscar
+            // 
+            this.textBox_buscar.Location = new System.Drawing.Point(67, 36);
+            this.textBox_buscar.Name = "textBox_buscar";
+            this.textBox_buscar.Size = new System.Drawing.Size(235, 20);
+            this.textBox_buscar.TabIndex = 7;
+            this.textBox_buscar.TextChanged += new System.EventHandler(this.textBox_buscar_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 39);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Buscar : ";
+            // 
             // FormDetalleRemesa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1159, 620);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBox_buscar);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox_total);
             this.Controls.Add(this.label1);
@@ -146,5 +166,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox_total;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox_buscar;
+        private System.Windows.Forms.Label label2;
     }
 }

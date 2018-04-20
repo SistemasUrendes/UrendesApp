@@ -15,6 +15,8 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
         public int id_entidad_cargado = 0;
         Label labeldescripcion;
         Button boton_borrar;
+        String ruta = "";
+
         public VerEntidad(int id_entidad_cargado)
         {
             this.id_entidad_cargado = id_entidad_cargado;
@@ -96,7 +98,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
         }
         public void cargoCabecera()
         {
-            String sqlCabecera = "SELECT Entidad,NombreCorto,CIF,Notas,FechaRevision,UserRevision FROM ctos_entidades WHERE IDEntidad = " + id_entidad_cargado;
+            String sqlCabecera = "SELECT Entidad,NombreCorto,CIF,Notas,FechaRevision,UserRevision,Ruta FROM ctos_entidades WHERE IDEntidad = " + id_entidad_cargado;
             DataTable entidad = Persistencia.SentenciasSQL.select(sqlCabecera);
             if (entidad.Rows.Count > 0)
             {
@@ -106,6 +108,12 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
                 label_revision.Text = entidad.Rows[0]["FechaRevision"].ToString() + " - " + entidad.Rows[0]["UserRevision"].ToString();
                 if (entidad.Rows[0]["NOTAS"].ToString() != "NULL")
                     textBox_notas.Text = entidad.Rows[0]["NOTAS"].ToString();
+
+                if (entidad.Rows[0]["Ruta"].ToString() != "NULL")  {
+                    textBox_ruta.Text = entidad.Rows[0]["Ruta"].ToString().Trim('#');
+                    ruta = entidad.Rows[0]["Ruta"].ToString().Trim('#');
+                }
+
             }
             else
                 MessageBox.Show("No existe esa entidad en la base de datos");
@@ -139,9 +147,8 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
 
                 if (dataGridView_telefonos.Rows.Count > 0 && dataGridView_telefonos.SelectedCells[4].Value.ToString() == "True")
                     id_actualizar_principal = (int)dataGridView_telefonos.Rows[0].Cells[0].Value;
-                //MessageBox.Show(dataGridView_telefonos.SelectedCells[0].Value.ToString());
                 String sqlBorrarTel = "DELETE FROM ctos_dettelf WHERE IdDetTelf = " + (int)dataGridView_telefonos.SelectedCells[0].Value;
-                //MessageBox.Show(sqlBorrarTel);
+
                 if (Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrarTel))
                 {
                     if (id_actualizar_principal != 0)
@@ -201,9 +208,6 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
             dataGridView_bancos.Columns[2].Width = 200;
             dataGridView_bancos.Columns[3].Width = 253;
             dataGridView_bancos.Columns[5].Width = 40;
-
-
-
 
         }
         public void cargoCategorias()
@@ -378,7 +382,6 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
 
             dataGridView_contactos.Columns[0].Visible = false;
             dataGridView_contactos.Columns[1].Visible = false;
-            //dataGridView_contactos.Columns[0].Visible = false;
         }
 
         private void button_editar_contacto_Click(object sender, EventArgs e)
@@ -489,6 +492,18 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
         {
             FormDirecciones nueva = new FormDirecciones(this, dataGridView_direcciones.SelectedCells[0].Value.ToString(), id_entidad_cargado,true);
             nueva.Show();
+        }
+
+        private void textBox_ruta_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(@ruta);
+            }
+            catch
+            {
+                MessageBox.Show("No se encuentra la carpeta");
+            }
         }
     }
 }

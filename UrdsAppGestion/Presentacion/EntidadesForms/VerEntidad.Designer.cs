@@ -79,6 +79,8 @@
             this.copiarCorreoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copiarCuentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox_ruta = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_correos)).BeginInit();
@@ -663,11 +665,33 @@
             this.copiarCuentaToolStripMenuItem.Text = "Copiar Cuenta";
             this.copiarCuentaToolStripMenuItem.Click += new System.EventHandler(this.copiarCuentaToolStripMenuItem_Click);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(57, 577);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(36, 13);
+            this.label8.TabIndex = 24;
+            this.label8.Text = "Ruta :";
+            // 
+            // textBox_ruta
+            // 
+            this.textBox_ruta.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.textBox_ruta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_ruta.Location = new System.Drawing.Point(60, 593);
+            this.textBox_ruta.Name = "textBox_ruta";
+            this.textBox_ruta.ReadOnly = true;
+            this.textBox_ruta.Size = new System.Drawing.Size(561, 20);
+            this.textBox_ruta.TabIndex = 25;
+            this.textBox_ruta.Click += new System.EventHandler(this.textBox_ruta_Click);
+            // 
             // VerEntidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(666, 583);
+            this.ClientSize = new System.Drawing.Size(666, 632);
+            this.Controls.Add(this.textBox_ruta);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.button_revisado);
             this.Controls.Add(this.label_revision);
             this.Controls.Add(this.label4);
@@ -761,5 +785,7 @@
         private System.Windows.Forms.ToolStripMenuItem copiarCorreoToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip3;
         private System.Windows.Forms.ToolStripMenuItem copiarCuentaToolStripMenuItem;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBox_ruta;
     }
 }

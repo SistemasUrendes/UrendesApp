@@ -36,7 +36,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
                 textBox_nombre_largo.Text = this.nombre_largo;
                 textBox_nombre_corto.Text = this.nombre_corto;
             }else {
-                String sql = "SELECT Entidad,NombreCorto,CIF,Notas FROM ctos_entidades WHERE IDEntidad = " + id_entidad;
+                String sql = "SELECT Entidad,NombreCorto,CIF,Notas,Ruta FROM ctos_entidades WHERE IDEntidad = " + id_entidad;
                 DataTable entidad_modificar = Persistencia.SentenciasSQL.select(sql);
                 if (entidad_modificar.Rows.Count > 0)
                 {
@@ -44,6 +44,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
                     textBox_nombre_corto.Text = entidad_modificar.Rows[0]["NombreCorto"].ToString();
                     textbox_cif.Text = entidad_modificar.Rows[0]["CIF"].ToString();
                     textBox_notas.Text = entidad_modificar.Rows[0]["NOTAS"].ToString();
+                    textBox_ruta.Text = entidad_modificar.Rows[0]["Ruta"].ToString();
                 }
                 else
                     MessageBox.Show("Ha ocurrido un error al cargar la entidad");
@@ -71,7 +72,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
             {
                 if (comprobarCampos())
                 {
-                    int id = Persistencia.SentenciasSQL.InsertEntidad(textBox_nombre_largo.Text, textBox_nombre_corto.Text, textbox_cif.Text, textBox_notas.Text,quitaAcentos(textBox_nombre_largo.Text));
+                    int id = Persistencia.SentenciasSQL.InsertEntidad(textBox_nombre_largo.Text, textBox_nombre_corto.Text, textbox_cif.Text, textBox_notas.Text,quitaAcentos(textBox_nombre_largo.Text), textBox_ruta.Text);
                     VerEntidad nueva = new VerEntidad(id);
                     this.Close();
                     nueva.Show();
@@ -80,7 +81,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
                     MessageBox.Show("Revisa los campos de Entidad y Nombre Corto.\n\nNo pueden estar vacios.");
             }else {
                 if (comprobarCampos()) {
-                    if (Persistencia.SentenciasSQL.ActualizarEntidad(id_entidad,textBox_nombre_largo.Text, textBox_nombre_corto.Text, textbox_cif.Text, textBox_notas.Text)) {
+                    if (Persistencia.SentenciasSQL.ActualizarEntidad(id_entidad,textBox_nombre_largo.Text, textBox_nombre_corto.Text, textbox_cif.Text, textBox_notas.Text,textBox_ruta.Text)) {
                         VerEntidad nueva = new VerEntidad(id_entidad);
                         MessageBox.Show("Actualizado");
                         this.Close();

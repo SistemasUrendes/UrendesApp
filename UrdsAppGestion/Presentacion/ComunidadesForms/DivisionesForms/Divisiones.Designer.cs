@@ -56,6 +56,8 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.verEntidadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBox_informes = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_divisiones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_detalles_divisiones)).BeginInit();
             this.contextMenuStrip2.SuspendLayout();
@@ -311,12 +313,36 @@
             this.label4.TabIndex = 26;
             this.label4.Text = "Total : ";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(544, 30);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 13);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "Informes :";
+            // 
+            // comboBox_informes
+            // 
+            this.comboBox_informes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_informes.FormattingEnabled = true;
+            this.comboBox_informes.Items.AddRange(new object[] {
+            "Cuotas Emitidas",
+            "Bloques Junta"});
+            this.comboBox_informes.Location = new System.Drawing.Point(598, 26);
+            this.comboBox_informes.Name = "comboBox_informes";
+            this.comboBox_informes.Size = new System.Drawing.Size(196, 21);
+            this.comboBox_informes.TabIndex = 28;
+            this.comboBox_informes.SelectionChangeCommitted += new System.EventHandler(this.comboBox_informes_SelectionChangeCommitted);
+            // 
             // Divisiones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(834, 619);
             this.ControlBox = false;
+            this.Controls.Add(this.comboBox_informes);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox_buscar);
@@ -375,5 +401,7 @@
         public System.Windows.Forms.DataGridView dataGridView_divisiones;
         public System.Windows.Forms.TextBox textBox_buscar;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboBox_informes;
     }
 }

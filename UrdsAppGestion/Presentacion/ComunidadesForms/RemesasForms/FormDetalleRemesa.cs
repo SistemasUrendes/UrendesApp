@@ -221,14 +221,20 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.RemesasForms
             MessageBox.Show("Comprueba la fecha en el EXCEL");
         }
 
-        private void textBox_total_TextChanged(object sender, EventArgs e)
+        private void textBox_buscar_TextChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            if (textBox_buscar.TextLength < 2)
+            {
+                DataTable busqueda = detallesRemesas;
+                busqueda.DefaultView.RowFilter = "Entidad like '%%'";
+                this.dataGridView_detalles_remesa.DataSource = busqueda;
+            }
+            else
+            {
+                DataTable busqueda = detallesRemesas;
+                busqueda.DefaultView.RowFilter = "Entidad like '%" + textBox_buscar.Text + "%' OR Referencia like '%" + textBox_buscar.Text + "%' ";
+                this.dataGridView_detalles_remesa.DataSource = busqueda;
+            }
         }
     }
 }
