@@ -38,19 +38,23 @@
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.buttonGuardar = new System.Windows.Forms.Button();
             this.buttonEntidad = new System.Windows.Forms.Button();
+            this.buttonProveedores = new System.Windows.Forms.Button();
+            this.buttonComuneros = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxNotas = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // textBoxNombre
             // 
-            this.textBoxNombre.Location = new System.Drawing.Point(65, 24);
+            this.textBoxNombre.Location = new System.Drawing.Point(65, 37);
             this.textBoxNombre.Name = "textBoxNombre";
-            this.textBoxNombre.Size = new System.Drawing.Size(175, 20);
+            this.textBoxNombre.Size = new System.Drawing.Size(203, 20);
             this.textBoxNombre.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 27);
+            this.label1.Location = new System.Drawing.Point(12, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 1;
@@ -59,7 +63,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 58);
+            this.label2.Location = new System.Drawing.Point(7, 71);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 2;
@@ -68,7 +72,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 89);
+            this.label3.Location = new System.Drawing.Point(18, 102);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 13);
             this.label3.TabIndex = 3;
@@ -76,7 +80,7 @@
             // 
             // textBoxCorreo
             // 
-            this.textBoxCorreo.Location = new System.Drawing.Point(65, 86);
+            this.textBoxCorreo.Location = new System.Drawing.Point(65, 99);
             this.textBoxCorreo.Name = "textBoxCorreo";
             this.textBoxCorreo.Size = new System.Drawing.Size(204, 20);
             this.textBoxCorreo.TabIndex = 2;
@@ -84,15 +88,14 @@
             // 
             // maskedTextBoxTelefono
             // 
-            this.maskedTextBoxTelefono.Location = new System.Drawing.Point(65, 55);
-            this.maskedTextBoxTelefono.Mask = "000-000-000";
+            this.maskedTextBoxTelefono.Location = new System.Drawing.Point(65, 68);
             this.maskedTextBoxTelefono.Name = "maskedTextBoxTelefono";
             this.maskedTextBoxTelefono.Size = new System.Drawing.Size(70, 20);
             this.maskedTextBoxTelefono.TabIndex = 1;
             // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(193, 132);
+            this.buttonCancelar.Location = new System.Drawing.Point(193, 236);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
             this.buttonCancelar.TabIndex = 4;
@@ -102,7 +105,7 @@
             // 
             // buttonGuardar
             // 
-            this.buttonGuardar.Location = new System.Drawing.Point(112, 132);
+            this.buttonGuardar.Location = new System.Drawing.Point(112, 236);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(75, 23);
             this.buttonGuardar.TabIndex = 3;
@@ -112,7 +115,7 @@
             // 
             // buttonEntidad
             // 
-            this.buttonEntidad.Location = new System.Drawing.Point(246, 24);
+            this.buttonEntidad.Location = new System.Drawing.Point(146, 12);
             this.buttonEntidad.Name = "buttonEntidad";
             this.buttonEntidad.Size = new System.Drawing.Size(23, 20);
             this.buttonEntidad.TabIndex = 5;
@@ -120,11 +123,52 @@
             this.buttonEntidad.UseVisualStyleBackColor = true;
             this.buttonEntidad.Click += new System.EventHandler(this.buttonEntidad_Click);
             // 
+            // buttonProveedores
+            // 
+            this.buttonProveedores.Location = new System.Drawing.Point(193, 12);
+            this.buttonProveedores.Name = "buttonProveedores";
+            this.buttonProveedores.Size = new System.Drawing.Size(23, 20);
+            this.buttonProveedores.TabIndex = 6;
+            this.buttonProveedores.Text = "P";
+            this.buttonProveedores.UseVisualStyleBackColor = true;
+            this.buttonProveedores.Click += new System.EventHandler(this.buttonProveedores_Click);
+            // 
+            // buttonComuneros
+            // 
+            this.buttonComuneros.Location = new System.Drawing.Point(245, 11);
+            this.buttonComuneros.Name = "buttonComuneros";
+            this.buttonComuneros.Size = new System.Drawing.Size(23, 20);
+            this.buttonComuneros.TabIndex = 7;
+            this.buttonComuneros.Text = "C";
+            this.buttonComuneros.UseVisualStyleBackColor = true;
+            this.buttonComuneros.Click += new System.EventHandler(this.buttonComuneros_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(18, 135);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Notas:";
+            // 
+            // textBoxNotas
+            // 
+            this.textBoxNotas.Location = new System.Drawing.Point(65, 132);
+            this.textBoxNotas.Multiline = true;
+            this.textBoxNotas.Name = "textBoxNotas";
+            this.textBoxNotas.Size = new System.Drawing.Size(203, 98);
+            this.textBoxNotas.TabIndex = 10;
+            // 
             // FormInsertarContacto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(285, 175);
+            this.ClientSize = new System.Drawing.Size(285, 271);
+            this.Controls.Add(this.textBoxNotas);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.buttonComuneros);
+            this.Controls.Add(this.buttonProveedores);
             this.Controls.Add(this.buttonEntidad);
             this.Controls.Add(this.buttonGuardar);
             this.Controls.Add(this.buttonCancelar);
@@ -155,5 +199,9 @@
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Button buttonGuardar;
         private System.Windows.Forms.Button buttonEntidad;
+        private System.Windows.Forms.Button buttonProveedores;
+        private System.Windows.Forms.Button buttonComuneros;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBoxNotas;
     }
 }

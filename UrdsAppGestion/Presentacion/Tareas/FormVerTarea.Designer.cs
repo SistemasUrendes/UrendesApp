@@ -79,14 +79,6 @@
             this.buttonEnviarMail = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.dataGridViewContactos = new System.Windows.Forms.DataGridView();
-            this.tabPageElementos = new System.Windows.Forms.TabPage();
-            this.buttonAddElementoTarea = new System.Windows.Forms.Button();
-            this.labelElementoSeleccionado = new System.Windows.Forms.Label();
-            this.labelRuta = new System.Windows.Forms.Label();
-            this.buttonAddElementoPrincipal = new System.Windows.Forms.Button();
-            this.buttonInicio = new System.Windows.Forms.Button();
-            this.buttonAtras = new System.Windows.Forms.Button();
-            this.treeViewElementos = new System.Windows.Forms.TreeView();
             this.tabPageExpedientes = new System.Windows.Forms.TabPage();
             this.buttonAddExpediente = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -107,10 +99,11 @@
             this.buttonAddTipoGestion = new System.Windows.Forms.Button();
             this.dataSetCargos1 = new UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms.Informes.DataSetCargos();
             this.comboBoxEstadoGestion = new System.Windows.Forms.ComboBox();
-            this.contextMenuStrip4 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.añadirElementoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip5 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.borrarExpedienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonBloque = new System.Windows.Forms.Button();
+            this.textBoxElemento = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGestiones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSeguimientos)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -119,12 +112,10 @@
             this.tabPagSeguimientos.SuspendLayout();
             this.tabPageContactos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContactos)).BeginInit();
-            this.tabPageElementos.SuspendLayout();
             this.tabPageExpedientes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewExpedientes)).BeginInit();
             this.contextMenuStrip3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetCargos1)).BeginInit();
-            this.contextMenuStrip4.SuspendLayout();
             this.contextMenuStrip5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -146,7 +137,7 @@
             // 
             // textBoxNotas
             // 
-            this.textBoxNotas.Location = new System.Drawing.Point(65, 197);
+            this.textBoxNotas.Location = new System.Drawing.Point(63, 218);
             this.textBoxNotas.Multiline = true;
             this.textBoxNotas.Name = "textBoxNotas";
             this.textBoxNotas.Size = new System.Drawing.Size(499, 103);
@@ -156,7 +147,7 @@
             // 
             this.textBoxRuta.BackColor = System.Drawing.SystemColors.ControlLight;
             this.textBoxRuta.ForeColor = System.Drawing.Color.Blue;
-            this.textBoxRuta.Location = new System.Drawing.Point(89, 307);
+            this.textBoxRuta.Location = new System.Drawing.Point(87, 328);
             this.textBoxRuta.Name = "textBoxRuta";
             this.textBoxRuta.Size = new System.Drawing.Size(475, 20);
             this.textBoxRuta.TabIndex = 17;
@@ -165,7 +156,7 @@
             // 
             // maskedTextBoxFFin
             // 
-            this.maskedTextBoxFFin.Location = new System.Drawing.Point(196, 136);
+            this.maskedTextBoxFFin.Location = new System.Drawing.Point(194, 157);
             this.maskedTextBoxFFin.Mask = "00/00/0000";
             this.maskedTextBoxFFin.Name = "maskedTextBoxFFin";
             this.maskedTextBoxFFin.Size = new System.Drawing.Size(66, 20);
@@ -175,7 +166,7 @@
             // 
             // maskedTextBoxFIni
             // 
-            this.maskedTextBoxFIni.Location = new System.Drawing.Point(67, 136);
+            this.maskedTextBoxFIni.Location = new System.Drawing.Point(65, 157);
             this.maskedTextBoxFIni.Mask = "00/00/0000";
             this.maskedTextBoxFIni.Name = "maskedTextBoxFIni";
             this.maskedTextBoxFIni.Size = new System.Drawing.Size(65, 20);
@@ -185,7 +176,7 @@
             // 
             // textBoxSiniestro
             // 
-            this.textBoxSiniestro.Location = new System.Drawing.Point(360, 107);
+            this.textBoxSiniestro.Location = new System.Drawing.Point(358, 128);
             this.textBoxSiniestro.Name = "textBoxSiniestro";
             this.textBoxSiniestro.Size = new System.Drawing.Size(124, 20);
             this.textBoxSiniestro.TabIndex = 10;
@@ -195,7 +186,7 @@
             // 
             this.checkBoxSeguro.AutoSize = true;
             this.checkBoxSeguro.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxSeguro.Location = new System.Drawing.Point(501, 109);
+            this.checkBoxSeguro.Location = new System.Drawing.Point(499, 130);
             this.checkBoxSeguro.Name = "checkBoxSeguro";
             this.checkBoxSeguro.Size = new System.Drawing.Size(63, 17);
             this.checkBoxSeguro.TabIndex = 10;
@@ -207,7 +198,7 @@
             // 
             this.checkBoxAcuerdoJunta.AutoSize = true;
             this.checkBoxAcuerdoJunta.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxAcuerdoJunta.Location = new System.Drawing.Point(466, 139);
+            this.checkBoxAcuerdoJunta.Location = new System.Drawing.Point(464, 160);
             this.checkBoxAcuerdoJunta.Name = "checkBoxAcuerdoJunta";
             this.checkBoxAcuerdoJunta.Size = new System.Drawing.Size(98, 17);
             this.checkBoxAcuerdoJunta.TabIndex = 12;
@@ -219,7 +210,7 @@
             // 
             this.checkBoxProxJunta.AutoSize = true;
             this.checkBoxProxJunta.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxProxJunta.Location = new System.Drawing.Point(482, 165);
+            this.checkBoxProxJunta.Location = new System.Drawing.Point(480, 186);
             this.checkBoxProxJunta.Name = "checkBoxProxJunta";
             this.checkBoxProxJunta.Size = new System.Drawing.Size(82, 17);
             this.checkBoxProxJunta.TabIndex = 13;
@@ -228,7 +219,7 @@
             // 
             // maskedTextBoxFechaActa
             // 
-            this.maskedTextBoxFechaActa.Location = new System.Drawing.Point(360, 134);
+            this.maskedTextBoxFechaActa.Location = new System.Drawing.Point(358, 155);
             this.maskedTextBoxFechaActa.Mask = "00/00/0000";
             this.maskedTextBoxFechaActa.Name = "maskedTextBoxFechaActa";
             this.maskedTextBoxFechaActa.Size = new System.Drawing.Size(66, 20);
@@ -240,7 +231,7 @@
             // 
             this.comboBoxTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTipo.FormattingEnabled = true;
-            this.comboBoxTipo.Location = new System.Drawing.Point(66, 106);
+            this.comboBoxTipo.Location = new System.Drawing.Point(65, 126);
             this.comboBoxTipo.Name = "comboBoxTipo";
             this.comboBoxTipo.Size = new System.Drawing.Size(121, 21);
             this.comboBoxTipo.TabIndex = 5;
@@ -270,7 +261,7 @@
             this.dataGridViewGestiones.AllowUserToDeleteRows = false;
             this.dataGridViewGestiones.AllowUserToResizeRows = false;
             this.dataGridViewGestiones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewGestiones.Location = new System.Drawing.Point(17, 379);
+            this.dataGridViewGestiones.Location = new System.Drawing.Point(17, 390);
             this.dataGridViewGestiones.Name = "dataGridViewGestiones";
             this.dataGridViewGestiones.ReadOnly = true;
             this.dataGridViewGestiones.RowHeadersVisible = false;
@@ -306,7 +297,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(14, 352);
+            this.label4.Location = new System.Drawing.Point(12, 363);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 15);
             this.label4.TabIndex = 24;
@@ -325,7 +316,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(21, 200);
+            this.label6.Location = new System.Drawing.Point(19, 221);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 13);
             this.label6.TabIndex = 26;
@@ -335,7 +326,7 @@
             // 
             this.labelRutaLink.AutoSize = true;
             this.labelRutaLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRutaLink.Location = new System.Drawing.Point(21, 310);
+            this.labelRutaLink.Location = new System.Drawing.Point(19, 331);
             this.labelRutaLink.Name = "labelRutaLink";
             this.labelRutaLink.Size = new System.Drawing.Size(33, 13);
             this.labelRutaLink.TabIndex = 27;
@@ -345,7 +336,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(30, 112);
+            this.label9.Location = new System.Drawing.Point(28, 133);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(31, 13);
             this.label9.TabIndex = 29;
@@ -354,7 +345,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(14, 139);
+            this.label10.Location = new System.Drawing.Point(12, 160);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(47, 13);
             this.label10.TabIndex = 30;
@@ -363,7 +354,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(151, 139);
+            this.label13.Location = new System.Drawing.Point(149, 160);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(36, 13);
             this.label13.TabIndex = 33;
@@ -391,7 +382,7 @@
             // 
             // buttonAddGestion
             // 
-            this.buttonAddGestion.Location = new System.Drawing.Point(1056, 349);
+            this.buttonAddGestion.Location = new System.Drawing.Point(1056, 360);
             this.buttonAddGestion.Name = "buttonAddGestion";
             this.buttonAddGestion.Size = new System.Drawing.Size(95, 23);
             this.buttonAddGestion.TabIndex = 18;
@@ -461,7 +452,7 @@
             // 
             this.toolStripMenuItemInfoEntidad.Name = "toolStripMenuItemInfoEntidad";
             this.toolStripMenuItemInfoEntidad.Size = new System.Drawing.Size(188, 22);
-            this.toolStripMenuItemInfoEntidad.Text = "Ver Entidad";
+            this.toolStripMenuItemInfoEntidad.Text = "Ver Espera De";
             this.toolStripMenuItemInfoEntidad.Click += new System.EventHandler(this.toolStripMenuItemInfoEntidad_Click);
             // 
             // toolStripMenuItemEliminarGestion
@@ -496,7 +487,7 @@
             // buttonRuta
             // 
             this.buttonRuta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRuta.Location = new System.Drawing.Point(64, 307);
+            this.buttonRuta.Location = new System.Drawing.Point(62, 328);
             this.buttonRuta.Name = "buttonRuta";
             this.buttonRuta.Size = new System.Drawing.Size(19, 19);
             this.buttonRuta.TabIndex = 16;
@@ -528,7 +519,6 @@
             // 
             this.tabControl1.Controls.Add(this.tabPagSeguimientos);
             this.tabControl1.Controls.Add(this.tabPageContactos);
-            this.tabControl1.Controls.Add(this.tabPageElementos);
             this.tabControl1.Controls.Add(this.tabPageExpedientes);
             this.tabControl1.Location = new System.Drawing.Point(570, 13);
             this.tabControl1.Name = "tabControl1";
@@ -609,6 +599,7 @@
             this.dataGridViewContactos.AllowUserToAddRows = false;
             this.dataGridViewContactos.AllowUserToDeleteRows = false;
             this.dataGridViewContactos.AllowUserToResizeRows = false;
+            this.dataGridViewContactos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewContactos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewContactos.Location = new System.Drawing.Point(9, 39);
             this.dataGridViewContactos.Name = "dataGridViewContactos";
@@ -620,90 +611,6 @@
             this.dataGridViewContactos.TabStop = false;
             this.dataGridViewContactos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewContactos_CellDoubleClick);
             this.dataGridViewContactos.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewContactos_MouseClick);
-            // 
-            // tabPageElementos
-            // 
-            this.tabPageElementos.Controls.Add(this.buttonAddElementoTarea);
-            this.tabPageElementos.Controls.Add(this.labelElementoSeleccionado);
-            this.tabPageElementos.Controls.Add(this.labelRuta);
-            this.tabPageElementos.Controls.Add(this.buttonAddElementoPrincipal);
-            this.tabPageElementos.Controls.Add(this.buttonInicio);
-            this.tabPageElementos.Controls.Add(this.buttonAtras);
-            this.tabPageElementos.Controls.Add(this.treeViewElementos);
-            this.tabPageElementos.Location = new System.Drawing.Point(4, 22);
-            this.tabPageElementos.Name = "tabPageElementos";
-            this.tabPageElementos.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageElementos.Size = new System.Drawing.Size(658, 299);
-            this.tabPageElementos.TabIndex = 2;
-            this.tabPageElementos.Text = "Elementos";
-            this.tabPageElementos.UseVisualStyleBackColor = true;
-            // 
-            // buttonAddElementoTarea
-            // 
-            this.buttonAddElementoTarea.Location = new System.Drawing.Point(156, 12);
-            this.buttonAddElementoTarea.Name = "buttonAddElementoTarea";
-            this.buttonAddElementoTarea.Size = new System.Drawing.Size(90, 23);
-            this.buttonAddElementoTarea.TabIndex = 22;
-            this.buttonAddElementoTarea.Text = "Añadir a tarea";
-            this.buttonAddElementoTarea.UseVisualStyleBackColor = true;
-            this.buttonAddElementoTarea.Click += new System.EventHandler(this.buttonAddElementoTarea_Click);
-            // 
-            // labelElementoSeleccionado
-            // 
-            this.labelElementoSeleccionado.AutoSize = true;
-            this.labelElementoSeleccionado.Location = new System.Drawing.Point(252, 17);
-            this.labelElementoSeleccionado.Name = "labelElementoSeleccionado";
-            this.labelElementoSeleccionado.Size = new System.Drawing.Size(0, 13);
-            this.labelElementoSeleccionado.TabIndex = 21;
-            // 
-            // labelRuta
-            // 
-            this.labelRuta.AutoSize = true;
-            this.labelRuta.Location = new System.Drawing.Point(12, 41);
-            this.labelRuta.Name = "labelRuta";
-            this.labelRuta.Size = new System.Drawing.Size(0, 13);
-            this.labelRuta.TabIndex = 20;
-            // 
-            // buttonAddElementoPrincipal
-            // 
-            this.buttonAddElementoPrincipal.Location = new System.Drawing.Point(127, 12);
-            this.buttonAddElementoPrincipal.Name = "buttonAddElementoPrincipal";
-            this.buttonAddElementoPrincipal.Size = new System.Drawing.Size(23, 23);
-            this.buttonAddElementoPrincipal.TabIndex = 19;
-            this.buttonAddElementoPrincipal.Text = "+";
-            this.buttonAddElementoPrincipal.UseVisualStyleBackColor = true;
-            this.buttonAddElementoPrincipal.Click += new System.EventHandler(this.buttonAddElementoPrincipal_Click);
-            // 
-            // buttonInicio
-            // 
-            this.buttonInicio.Location = new System.Drawing.Point(15, 12);
-            this.buttonInicio.Name = "buttonInicio";
-            this.buttonInicio.Size = new System.Drawing.Size(75, 23);
-            this.buttonInicio.TabIndex = 18;
-            this.buttonInicio.Text = "Inicio";
-            this.buttonInicio.UseVisualStyleBackColor = true;
-            this.buttonInicio.Click += new System.EventHandler(this.buttonInicio_Click);
-            // 
-            // buttonAtras
-            // 
-            this.buttonAtras.Location = new System.Drawing.Point(96, 12);
-            this.buttonAtras.Name = "buttonAtras";
-            this.buttonAtras.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonAtras.Size = new System.Drawing.Size(25, 23);
-            this.buttonAtras.TabIndex = 17;
-            this.buttonAtras.Text = "◀";
-            this.buttonAtras.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonAtras.UseVisualStyleBackColor = true;
-            this.buttonAtras.Click += new System.EventHandler(this.buttonAtras_Click);
-            // 
-            // treeViewElementos
-            // 
-            this.treeViewElementos.Location = new System.Drawing.Point(15, 61);
-            this.treeViewElementos.Name = "treeViewElementos";
-            this.treeViewElementos.Size = new System.Drawing.Size(494, 206);
-            this.treeViewElementos.TabIndex = 16;
-            this.treeViewElementos.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewElementos_NodeMouseClick);
-            this.treeViewElementos.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewElementos_NodeMouseDoubleClick);
             // 
             // tabPageExpedientes
             // 
@@ -786,7 +693,7 @@
             // 
             // buttonCerrarGestion
             // 
-            this.buttonCerrarGestion.Location = new System.Drawing.Point(1157, 349);
+            this.buttonCerrarGestion.Location = new System.Drawing.Point(1157, 360);
             this.buttonCerrarGestion.Name = "buttonCerrarGestion";
             this.buttonCerrarGestion.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.buttonCerrarGestion.Size = new System.Drawing.Size(75, 23);
@@ -808,7 +715,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(327, 112);
+            this.label8.Location = new System.Drawing.Point(325, 133);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(27, 13);
             this.label8.TabIndex = 37;
@@ -816,7 +723,7 @@
             // 
             // textBoxCoste
             // 
-            this.textBoxCoste.Location = new System.Drawing.Point(65, 163);
+            this.textBoxCoste.Location = new System.Drawing.Point(65, 184);
             this.textBoxCoste.Name = "textBoxCoste";
             this.textBoxCoste.Size = new System.Drawing.Size(100, 20);
             this.textBoxCoste.TabIndex = 8;
@@ -824,7 +731,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(22, 166);
+            this.label14.Location = new System.Drawing.Point(20, 187);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(37, 13);
             this.label14.TabIndex = 34;
@@ -833,7 +740,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(285, 139);
+            this.label11.Location = new System.Drawing.Point(283, 160);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(69, 13);
             this.label11.TabIndex = 38;
@@ -843,7 +750,7 @@
             // 
             this.checkBoxImportante.AutoSize = true;
             this.checkBoxImportante.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxImportante.Location = new System.Drawing.Point(293, 165);
+            this.checkBoxImportante.Location = new System.Drawing.Point(291, 186);
             this.checkBoxImportante.Name = "checkBoxImportante";
             this.checkBoxImportante.Size = new System.Drawing.Size(79, 17);
             this.checkBoxImportante.TabIndex = 12;
@@ -852,7 +759,7 @@
             // 
             // textBoxTareaNueva
             // 
-            this.textBoxTareaNueva.Location = new System.Drawing.Point(66, 16);
+            this.textBoxTareaNueva.Location = new System.Drawing.Point(65, 16);
             this.textBoxTareaNueva.Name = "textBoxTareaNueva";
             this.textBoxTareaNueva.Size = new System.Drawing.Size(100, 20);
             this.textBoxTareaNueva.TabIndex = 39;
@@ -861,7 +768,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(4, 19);
+            this.label12.Location = new System.Drawing.Point(3, 19);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(56, 13);
             this.label12.TabIndex = 40;
@@ -869,7 +776,7 @@
             // 
             // buttonAddTipoGestion
             // 
-            this.buttonAddTipoGestion.Location = new System.Drawing.Point(1157, 583);
+            this.buttonAddTipoGestion.Location = new System.Drawing.Point(1157, 594);
             this.buttonAddTipoGestion.Name = "buttonAddTipoGestion";
             this.buttonAddTipoGestion.Size = new System.Drawing.Size(75, 23);
             this.buttonAddTipoGestion.TabIndex = 41;
@@ -890,25 +797,11 @@
             "Abiertas",
             "Cerradas",
             "Todas"});
-            this.comboBoxEstadoGestion.Location = new System.Drawing.Point(952, 350);
+            this.comboBoxEstadoGestion.Location = new System.Drawing.Point(952, 361);
             this.comboBoxEstadoGestion.Name = "comboBoxEstadoGestion";
             this.comboBoxEstadoGestion.Size = new System.Drawing.Size(98, 21);
             this.comboBoxEstadoGestion.TabIndex = 42;
             this.comboBoxEstadoGestion.SelectedIndexChanged += new System.EventHandler(this.comboBoxEstadoGestion_SelectedIndexChanged);
-            // 
-            // contextMenuStrip4
-            // 
-            this.contextMenuStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.añadirElementoToolStripMenuItem});
-            this.contextMenuStrip4.Name = "contextMenuStrip4";
-            this.contextMenuStrip4.Size = new System.Drawing.Size(163, 26);
-            // 
-            // añadirElementoToolStripMenuItem
-            // 
-            this.añadirElementoToolStripMenuItem.Name = "añadirElementoToolStripMenuItem";
-            this.añadirElementoToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.añadirElementoToolStripMenuItem.Text = "Añadir Elemento";
-            this.añadirElementoToolStripMenuItem.Click += new System.EventHandler(this.añadirElementoToolStripMenuItem_Click);
             // 
             // contextMenuStrip5
             // 
@@ -924,11 +817,41 @@
             this.borrarExpedienteToolStripMenuItem.Text = "Eliminar Expediente";
             this.borrarExpedienteToolStripMenuItem.Click += new System.EventHandler(this.borrarExpedienteToolStripMenuItem_Click);
             // 
+            // buttonBloque
+            // 
+            this.buttonBloque.Location = new System.Drawing.Point(486, 100);
+            this.buttonBloque.Name = "buttonBloque";
+            this.buttonBloque.Size = new System.Drawing.Size(78, 21);
+            this.buttonBloque.TabIndex = 43;
+            this.buttonBloque.Text = "Seleccionar";
+            this.buttonBloque.UseVisualStyleBackColor = true;
+            this.buttonBloque.Click += new System.EventHandler(this.buttonBloque_Click);
+            // 
+            // textBoxElemento
+            // 
+            this.textBoxElemento.Location = new System.Drawing.Point(65, 101);
+            this.textBoxElemento.Name = "textBoxElemento";
+            this.textBoxElemento.ReadOnly = true;
+            this.textBoxElemento.Size = new System.Drawing.Size(415, 20);
+            this.textBoxElemento.TabIndex = 44;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(5, 104);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(54, 13);
+            this.label7.TabIndex = 45;
+            this.label7.Text = "Elemento:";
+            // 
             // FormVerTarea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1239, 625);
+            this.ClientSize = new System.Drawing.Size(1239, 652);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.textBoxElemento);
+            this.Controls.Add(this.buttonBloque);
             this.Controls.Add(this.comboBoxEstadoGestion);
             this.Controls.Add(this.buttonAddTipoGestion);
             this.Controls.Add(this.label12);
@@ -983,14 +906,11 @@
             this.tabPageContactos.ResumeLayout(false);
             this.tabPageContactos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContactos)).EndInit();
-            this.tabPageElementos.ResumeLayout(false);
-            this.tabPageElementos.PerformLayout();
             this.tabPageExpedientes.ResumeLayout(false);
             this.tabPageExpedientes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewExpedientes)).EndInit();
             this.contextMenuStrip3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataSetCargos1)).EndInit();
-            this.contextMenuStrip4.ResumeLayout(false);
             this.contextMenuStrip5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1062,16 +982,6 @@
         private ComunidadesForms.CargosForms.Informes.DataSetCargos dataSetCargos1;
         private System.Windows.Forms.ComboBox comboBoxEstadoGestion;
         private System.Windows.Forms.Button buttonTodosSeguimientos;
-        private System.Windows.Forms.TabPage tabPageElementos;
-        private System.Windows.Forms.Label labelRuta;
-        private System.Windows.Forms.Button buttonAddElementoPrincipal;
-        private System.Windows.Forms.Button buttonInicio;
-        private System.Windows.Forms.Button buttonAtras;
-        private System.Windows.Forms.TreeView treeViewElementos;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip4;
-        private System.Windows.Forms.ToolStripMenuItem añadirElementoToolStripMenuItem;
-        private System.Windows.Forms.Label labelElementoSeleccionado;
-        private System.Windows.Forms.Button buttonAddElementoTarea;
         private System.Windows.Forms.TabPage tabPageExpedientes;
         private System.Windows.Forms.Button buttonAddExpediente;
         private System.Windows.Forms.Label label1;
@@ -1079,5 +989,8 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip5;
         private System.Windows.Forms.ToolStripMenuItem borrarExpedienteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCopiarPortapapelesContacto;
+        private System.Windows.Forms.Button buttonBloque;
+        private System.Windows.Forms.TextBox textBoxElemento;
+        private System.Windows.Forms.Label label7;
     }
 }

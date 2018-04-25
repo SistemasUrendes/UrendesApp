@@ -37,6 +37,7 @@
             this.treeViewElementos = new System.Windows.Forms.TreeView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.añadirElementoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonEnviar = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -103,11 +104,23 @@
             this.añadirElementoToolStripMenuItem.Text = "Añadir Elemento";
             this.añadirElementoToolStripMenuItem.Click += new System.EventHandler(this.añadirElementoToolStripMenuItem_Click);
             // 
+            // buttonEnviar
+            // 
+            this.buttonEnviar.Location = new System.Drawing.Point(430, 11);
+            this.buttonEnviar.Name = "buttonEnviar";
+            this.buttonEnviar.Size = new System.Drawing.Size(75, 23);
+            this.buttonEnviar.TabIndex = 21;
+            this.buttonEnviar.Text = "Enviar";
+            this.buttonEnviar.UseVisualStyleBackColor = true;
+            this.buttonEnviar.Visible = false;
+            this.buttonEnviar.Click += new System.EventHandler(this.buttonEnviar_Click);
+            // 
             // FormElementos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(541, 518);
+            this.Controls.Add(this.buttonEnviar);
             this.Controls.Add(this.labelRuta);
             this.Controls.Add(this.buttonAddElementoPrincipal);
             this.Controls.Add(this.buttonInicio);
@@ -133,5 +146,6 @@
         private System.Windows.Forms.TreeView treeViewElementos;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem añadirElementoToolStripMenuItem;
+        private System.Windows.Forms.Button buttonEnviar;
     }
 }

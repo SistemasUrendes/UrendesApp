@@ -16,6 +16,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String idEntidad;
         String idEntidadEspera;
         String nombre_columna;
+
         public FormGestionesPrincipal()
         {
             InitializeComponent();
@@ -33,11 +34,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String sqlSelect;
             if (idEntidad != null)
             {
-                sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.IdTarea, com_comunidades.Referencia AS Ref, ctos_urendes.Usuario,exp_tareas.Descripción AS Tareas, exp_gestiones.Descripción, ctos_entidades.Entidad AS `Espera de`, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS I, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `FLímite`, exp_gestiones.FFin FROM(com_comunidades RIGHT JOIN(ctos_urendes INNER JOIN((exp_gestiones INNER JOIN exp_tareas ON exp_gestiones.IdTarea = exp_tareas.IdTarea) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) ON ctos_urendes.IdURD = exp_gestiones.IdUser) ON com_comunidades.IdEntidad = exp_tareas.IdEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE ((com_comunidades.FBaja) Is Null) AND (exp_gestiones.IdUser = " + Login.getId() + ") AND (exp_gestiones.FSeguir > '" + DateTime.Now.ToString("yyyy-MM-dd") + "') AND (exp_tareas.IdEntidad = " + idEntidad + ") AND exp_gestiones.FFin is null ORDER BY exp_gestiones.FSeguir";
+                sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.IdTarea, com_comunidades.Referencia AS Ref, ctos_urendes.Usuario,exp_tareas.Descripción AS Tareas, exp_gestiones.Descripción, ctos_entidades.Entidad AS `Espera de`,exp_gestiones.TipoContacto AS T, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS I, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `FLímite`, exp_gestiones.FFin, exp_tareas.IdEntidad FROM(com_comunidades RIGHT JOIN(ctos_urendes INNER JOIN((exp_gestiones INNER JOIN exp_tareas ON exp_gestiones.IdTarea = exp_tareas.IdTarea) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) ON ctos_urendes.IdURD = exp_gestiones.IdUser) ON com_comunidades.IdEntidad = exp_tareas.IdEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE ((com_comunidades.FBaja) Is Null) AND (exp_gestiones.IdUser = " + Login.getId() + ") AND (exp_gestiones.FSeguir > '" + DateTime.Now.ToString("yyyy-MM-dd") + "') AND (exp_tareas.IdEntidad = " + idEntidad + ") AND exp_gestiones.FFin is null ORDER BY exp_gestiones.FSeguir";
             }
             else
             {
-                sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.IdTarea, com_comunidades.Referencia AS Ref, ctos_urendes.Usuario,exp_tareas.Descripción AS Tareas, exp_gestiones.Descripción, ctos_entidades.Entidad AS `Espera de`, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS I, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `FLímite`, exp_gestiones.FFin FROM(com_comunidades RIGHT JOIN(ctos_urendes INNER JOIN((exp_gestiones INNER JOIN exp_tareas ON exp_gestiones.IdTarea = exp_tareas.IdTarea) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) ON ctos_urendes.IdURD = exp_gestiones.IdUser) ON com_comunidades.IdEntidad = exp_tareas.IdEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE ((com_comunidades.FBaja) Is Null) AND (exp_gestiones.IdUser = " + Login.getId() + ") AND (exp_gestiones.FSeguir > '" + DateTime.Now.ToString("yyyy-MM-dd") + "') AND exp_gestiones.FFin is null ORDER BY exp_gestiones.FSeguir";                
+                sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.IdTarea, com_comunidades.Referencia AS Ref, ctos_urendes.Usuario,exp_tareas.Descripción AS Tareas, exp_gestiones.Descripción, ctos_entidades.Entidad AS `Espera de`,exp_gestiones.TipoContacto AS T, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS I, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `FLímite`, exp_gestiones.FFin , exp_tareas.IdEntidad FROM(com_comunidades RIGHT JOIN(ctos_urendes INNER JOIN((exp_gestiones INNER JOIN exp_tareas ON exp_gestiones.IdTarea = exp_tareas.IdTarea) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) ON ctos_urendes.IdURD = exp_gestiones.IdUser) ON com_comunidades.IdEntidad = exp_tareas.IdEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE ((com_comunidades.FBaja) Is Null) AND (exp_gestiones.IdUser = " + Login.getId() + ") AND (exp_gestiones.FSeguir > '" + DateTime.Now.ToString("yyyy-MM-dd") + "') AND exp_gestiones.FFin is null ORDER BY exp_gestiones.FSeguir";                
             }
             comboBoxResponsable.SelectedValue = Login.getId();
             tablaGestiones = Persistencia.SentenciasSQL.select(sqlSelect);
@@ -52,6 +53,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 dataGridViewGestiones.Columns["Id"].Width = 45;
                 dataGridViewGestiones.Columns["Usuario"].Visible = false;
+                dataGridViewGestiones.Columns["IdEntidad"].Visible = false;
                 dataGridViewGestiones.Columns["IdTarea"].Visible = false;
                 dataGridViewGestiones.Columns["Descripción"].Width = 240;
                 dataGridViewGestiones.Columns["Ref"].Width = 30;
@@ -63,7 +65,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 dataGridViewGestiones.Columns["FAgenda"].Width = 70;
                 dataGridViewGestiones.Columns["Flímite"].Width = 70;
                 dataGridViewGestiones.Columns["FFin"].Width = 70;
-                dataGridViewGestiones.Columns["Espera de"].Width = 200;
+                dataGridViewGestiones.Columns["Espera de"].Width = 180;
+                dataGridViewGestiones.Columns["T"].Width = 20;
             }
         }
 
@@ -126,12 +129,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String tipo = comboBox_Tipo.SelectedValue.ToString();
             String estado = comboBox_Estado.SelectedIndex.ToString();
             String responsable = comboBoxResponsable.SelectedValue.ToString();
+            
 
-
-
-            //sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.IdTarea, com_comunidades.Referencia AS Ref, ctos_urendes.Usuario, exp_tareas.Descripción as Tareas, exp_gestiones.Descripción, ctos_entidades.Entidad AS `Espera de`, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS I, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `FLímite`, exp_gestiones.FFin FROM ctos_urendes INNER JOIN ((((exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion) INNER JOIN exp_tareas ON exp_gestiones.IdTarea = exp_tareas.IdTarea) RIGHT JOIN com_comunidades ON exp_tareas.IdEntidad = com_comunidades.IdEntidad) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) ON ctos_urendes.IdURD = exp_gestiones.IdUser WHERE ((com_comunidades.FBaja) Is Null)";
-
-            sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.IdTarea, com_comunidades.Referencia AS Ref, ctos_urendes.Usuario,exp_tareas.Descripción AS Tareas, exp_gestiones.Descripción, ctos_entidades.Entidad AS `Espera de`, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS I, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `FLímite`, exp_gestiones.FFin FROM(com_comunidades RIGHT JOIN(ctos_urendes INNER JOIN((exp_gestiones INNER JOIN exp_tareas ON exp_gestiones.IdTarea = exp_tareas.IdTarea) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) ON ctos_urendes.IdURD = exp_gestiones.IdUser) ON com_comunidades.IdEntidad = exp_tareas.IdEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE ((com_comunidades.FBaja) Is Null)";
+            sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.IdTarea, com_comunidades.Referencia AS Ref, ctos_urendes.Usuario,exp_tareas.Descripción AS Tareas, exp_gestiones.Descripción, ctos_entidades.Entidad AS `Espera de`,exp_gestiones.TipoContacto AS T, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS I, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `FLímite`, exp_gestiones.FFin , exp_tareas.IdEntidad FROM(com_comunidades RIGHT JOIN(ctos_urendes INNER JOIN((exp_gestiones INNER JOIN exp_tareas ON exp_gestiones.IdTarea = exp_tareas.IdTarea) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) ON ctos_urendes.IdURD = exp_gestiones.IdUser) ON com_comunidades.IdEntidad = exp_tareas.IdEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE ((com_comunidades.FBaja) Is Null)";
 
             
             if (idEntidad != null)
@@ -379,7 +379,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
             string idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
             String sqlSelect = "SELECT exp_gestiones.IdTarea FROM exp_gestiones WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
             String idTarea = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
-            FormInsertarGestion nueva = new FormInsertarGestion(idGestion, idTarea);
+            String idEntidad = dataGridViewGestiones.SelectedRows[0].Cells["IdEntidad"].Value.ToString();
+            int idComunidad = comunidadConEntidad(idEntidad);
+            FormInsertarGestion nueva = new FormInsertarGestion(idGestion, idTarea, idComunidad);
             nueva.Show();
         }
 
@@ -401,8 +403,18 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 if (dataGridViewGestiones.SelectedCells.Count > 0)
                 {
                     string idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
-                    FormInsertarGestion nueva = new FormInsertarGestion(idGestion);
-                    nueva.Show();
+                    if (dataGridViewGestiones.SelectedRows[0].Cells["Ref"].Value.ToString() != "")
+                    {
+                        String idEntidad = dataGridViewGestiones.SelectedRows[0].Cells["IdEntidad"].Value.ToString();
+                        int idComunidad = comunidadConEntidad(idEntidad);
+                        FormInsertarGestion nueva = new FormInsertarGestion(idGestion, idComunidad);
+                        nueva.Show();
+                    }
+                    else
+                    {
+                        FormInsertarGestion nueva = new FormInsertarGestion(idGestion);
+                        nueva.Show();
+                    }
                 }
             }
         }
@@ -430,6 +442,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.dataGridViewGestiones.DataSource = busqueda;
             labelCount.Text = "Elementos: " + busqueda.Rows.Count.ToString();
             ajustarDatagrid();
+        }
+
+        private int comunidadConEntidad(String idEntidad)
+        {
+            String sqlSelect = "SELECT com_comunidades.IdComunidad FROM ctos_entidades INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((ctos_entidades.IDEntidad) = " + idEntidad + "))";
+            String Idcomunidad = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+            return Int32.Parse(Idcomunidad);
         }
     }
 }

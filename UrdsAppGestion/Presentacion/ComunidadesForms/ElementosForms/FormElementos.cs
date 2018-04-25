@@ -15,6 +15,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
         private int idComunidad;
         List<String> idElementosAtras;
         List<String> nombreElementosAtras;
+        Tareas.FormVerTarea form_anterior;
 
         public FormElementos(int idComunidad)
         {
@@ -24,9 +25,19 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
             this.idComunidad = idComunidad;
         }
 
+        public FormElementos(Tareas.FormVerTarea form_anterior, int idComunidad)
+        {
+            InitializeComponent();
+            idElementosAtras = new List<String>();
+            nombreElementosAtras = new List<String>();
+            this.idComunidad = idComunidad;
+            this.form_anterior = form_anterior;
+        }
+
         private void FormElementos_Load(object sender, EventArgs e)
         {
             rellenarTreeViewInicio();
+            if (form_anterior != null) buttonEnviar.Visible = true;
         }
 
 
@@ -143,11 +154,20 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
                 String nombrecompleto = nombreElementosAtras.ElementAt(nombreElementosAtras.Count - 1);
                 String nombre = nombrecompleto.Substring(0, nombrecompleto.IndexOf(":"));
                 Tareas.FormInsertarElemento nueva = new Tareas.FormInsertarElemento(this, idElementoAnt, idComunidad, nombre);
+                nueva.ControlBox = true;
+                nueva.TopMost = true;
+                nueva.WindowState = FormWindowState.Normal;
+                nueva.StartPosition = FormStartPosition.CenterScreen;
                 nueva.Show();
             }
             else
             {
                 Tareas.FormInsertarElemento nueva = new Tareas.FormInsertarElemento(this, 0, idComunidad, "Inicio");
+                nueva.ControlBox = true;
+                nueva.TopMost = true;
+                nueva.WindowState = FormWindowState.Normal;
+                nueva.StartPosition = FormStartPosition.CenterScreen;
+                
                 nueva.Show();
             }
 
@@ -159,6 +179,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
             String nombrecompleto = treeViewElementos.SelectedNode.Text.ToString();
             String nombre = nombrecompleto.Substring(0, nombrecompleto.IndexOf(":"));
             Tareas.FormInsertarElemento nueva = new Tareas.FormInsertarElemento(this, idElementoAnt, idComunidad, nombre);
+            nueva.ControlBox = true;
+            nueva.TopMost = true;
+            nueva.WindowState = FormWindowState.Normal;
+            nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
         }
 
@@ -180,5 +204,21 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
             labelRuta.Text = ruta;
         }
 
+        private void buttonEnviar_Click(object sender, EventArgs e)
+        {
+            TreeNode node = treeViewElementos.SelectedNode;
+            if (node != null)
+            {
+                String nombrecompleto = node.Text.ToString();
+                String nombre = nombrecompleto.Substring(0, nombrecompleto.IndexOf(":"));
+                form_anterior.recibirElemento(node.Tag.ToString(),nombre);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un elemento para poder añadirlo a la tarea");
+            }
+            
+        }
     }
 }
