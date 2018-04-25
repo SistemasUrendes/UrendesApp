@@ -35,13 +35,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_buscar = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.verEntidadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.añadirBloqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarProveedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox_informes = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.verEntidadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_proveedores)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -100,7 +100,14 @@
             this.editarToolStripMenuItem,
             this.eliminarProveedorToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(175, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(175, 92);
+            // 
+            // verEntidadToolStripMenuItem
+            // 
+            this.verEntidadToolStripMenuItem.Name = "verEntidadToolStripMenuItem";
+            this.verEntidadToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.verEntidadToolStripMenuItem.Text = "Ver Entidad";
+            this.verEntidadToolStripMenuItem.Click += new System.EventHandler(this.verEntidadToolStripMenuItem_Click);
             // 
             // añadirBloqueToolStripMenuItem
             // 
@@ -153,13 +160,6 @@
             this.button1.Text = "Añadir";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // verEntidadToolStripMenuItem
-            // 
-            this.verEntidadToolStripMenuItem.Name = "verEntidadToolStripMenuItem";
-            this.verEntidadToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.verEntidadToolStripMenuItem.Text = "Ver Entidad";
-            this.verEntidadToolStripMenuItem.Click += new System.EventHandler(this.verEntidadToolStripMenuItem_Click);
             // 
             // FormOperacionesListadoProveedores
             // 

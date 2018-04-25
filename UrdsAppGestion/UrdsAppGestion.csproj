@@ -1218,6 +1218,12 @@
     <Compile Include="Presentacion\Tareas\FormTareasPrincipal.Designer.cs">
       <DependentUpon>FormTareasPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Tareas\FormVerContactos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormVerContactos.Designer.cs">
+      <DependentUpon>FormVerContactos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Tareas\FormVerTarea.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1738,6 +1744,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormTareasPrincipal.resx">
       <DependentUpon>FormTareasPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormVerContactos.resx">
+      <DependentUpon>FormVerContactos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormVerTarea.resx">
       <DependentUpon>FormVerTarea.cs</DependentUpon>

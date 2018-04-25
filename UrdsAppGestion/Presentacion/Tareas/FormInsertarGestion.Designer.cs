@@ -46,7 +46,6 @@
             this.textBoxDescripcion = new System.Windows.Forms.TextBox();
             this.textBoxEspera = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.buttonEntidad = new System.Windows.Forms.Button();
             this.comboBoxTipoGestion = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.buttonEditar = new System.Windows.Forms.Button();
@@ -57,11 +56,13 @@
             this.buttonAgenda30 = new System.Windows.Forms.Button();
             this.buttonLimite30 = new System.Windows.Forms.Button();
             this.buttonFinNow = new System.Windows.Forms.Button();
+            this.comboBoxEspera = new System.Windows.Forms.ComboBox();
+            this.buttonEspera = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // maskedTextBoxFInicio
             // 
-            this.maskedTextBoxFInicio.Location = new System.Drawing.Point(88, 190);
+            this.maskedTextBoxFInicio.Location = new System.Drawing.Point(88, 219);
             this.maskedTextBoxFInicio.Mask = "00/00/0000";
             this.maskedTextBoxFInicio.Name = "maskedTextBoxFInicio";
             this.maskedTextBoxFInicio.Size = new System.Drawing.Size(69, 20);
@@ -71,7 +72,7 @@
             // 
             // maskedTextBoxFSeguir
             // 
-            this.maskedTextBoxFSeguir.Location = new System.Drawing.Point(88, 215);
+            this.maskedTextBoxFSeguir.Location = new System.Drawing.Point(88, 244);
             this.maskedTextBoxFSeguir.Mask = "00/00/0000";
             this.maskedTextBoxFSeguir.Name = "maskedTextBoxFSeguir";
             this.maskedTextBoxFSeguir.Size = new System.Drawing.Size(69, 20);
@@ -81,7 +82,7 @@
             // 
             // maskedTextBoxFFin
             // 
-            this.maskedTextBoxFFin.Location = new System.Drawing.Point(88, 266);
+            this.maskedTextBoxFFin.Location = new System.Drawing.Point(88, 295);
             this.maskedTextBoxFFin.Mask = "00/00/0000";
             this.maskedTextBoxFFin.Name = "maskedTextBoxFFin";
             this.maskedTextBoxFFin.Size = new System.Drawing.Size(69, 20);
@@ -91,7 +92,7 @@
             // 
             // maskedTextBoxFMax
             // 
-            this.maskedTextBoxFMax.Location = new System.Drawing.Point(88, 241);
+            this.maskedTextBoxFMax.Location = new System.Drawing.Point(88, 270);
             this.maskedTextBoxFMax.Mask = "00/00/0000";
             this.maskedTextBoxFMax.Name = "maskedTextBoxFMax";
             this.maskedTextBoxFMax.Size = new System.Drawing.Size(69, 20);
@@ -120,7 +121,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 194);
+            this.label2.Location = new System.Drawing.Point(13, 223);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 13);
             this.label2.TabIndex = 7;
@@ -129,7 +130,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 245);
+            this.label3.Location = new System.Drawing.Point(9, 274);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 13);
             this.label3.TabIndex = 8;
@@ -138,7 +139,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1, 219);
+            this.label4.Location = new System.Drawing.Point(1, 248);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(80, 13);
             this.label4.TabIndex = 9;
@@ -147,7 +148,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(24, 270);
+            this.label5.Location = new System.Drawing.Point(24, 299);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 13);
             this.label5.TabIndex = 10;
@@ -157,7 +158,7 @@
             // 
             this.checkBoxImportante.AutoSize = true;
             this.checkBoxImportante.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxImportante.Location = new System.Drawing.Point(20, 139);
+            this.checkBoxImportante.Location = new System.Drawing.Point(20, 168);
             this.checkBoxImportante.Name = "checkBoxImportante";
             this.checkBoxImportante.Size = new System.Drawing.Size(79, 17);
             this.checkBoxImportante.TabIndex = 5;
@@ -166,7 +167,7 @@
             // 
             // buttonGuardar
             // 
-            this.buttonGuardar.Location = new System.Drawing.Point(108, 303);
+            this.buttonGuardar.Location = new System.Drawing.Point(108, 332);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(75, 23);
             this.buttonGuardar.TabIndex = 11;
@@ -176,7 +177,7 @@
             // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(198, 303);
+            this.buttonCancelar.Location = new System.Drawing.Point(198, 332);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
             this.buttonCancelar.TabIndex = 12;
@@ -203,37 +204,27 @@
             // 
             // textBoxEspera
             // 
-            this.textBoxEspera.Location = new System.Drawing.Point(87, 113);
+            this.textBoxEspera.Location = new System.Drawing.Point(87, 142);
             this.textBoxEspera.Name = "textBoxEspera";
             this.textBoxEspera.ReadOnly = true;
-            this.textBoxEspera.Size = new System.Drawing.Size(158, 20);
+            this.textBoxEspera.Size = new System.Drawing.Size(191, 20);
             this.textBoxEspera.TabIndex = 3;
             this.textBoxEspera.TabStop = false;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(8, 116);
+            this.label8.Location = new System.Drawing.Point(8, 145);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(73, 13);
             this.label8.TabIndex = 19;
             this.label8.Text = "En espera de:";
             // 
-            // buttonEntidad
-            // 
-            this.buttonEntidad.Location = new System.Drawing.Point(247, 113);
-            this.buttonEntidad.Name = "buttonEntidad";
-            this.buttonEntidad.Size = new System.Drawing.Size(25, 20);
-            this.buttonEntidad.TabIndex = 4;
-            this.buttonEntidad.Text = "E";
-            this.buttonEntidad.UseVisualStyleBackColor = true;
-            this.buttonEntidad.Click += new System.EventHandler(this.buttonEntidad_Click);
-            // 
             // comboBoxTipoGestion
             // 
             this.comboBoxTipoGestion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTipoGestion.FormattingEnabled = true;
-            this.comboBoxTipoGestion.Location = new System.Drawing.Point(88, 163);
+            this.comboBoxTipoGestion.Location = new System.Drawing.Point(88, 192);
             this.comboBoxTipoGestion.Name = "comboBoxTipoGestion";
             this.comboBoxTipoGestion.Size = new System.Drawing.Size(157, 21);
             this.comboBoxTipoGestion.TabIndex = 20;
@@ -241,7 +232,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(11, 166);
+            this.label9.Location = new System.Drawing.Point(11, 195);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(70, 13);
             this.label9.TabIndex = 21;
@@ -249,7 +240,7 @@
             // 
             // buttonEditar
             // 
-            this.buttonEditar.Location = new System.Drawing.Point(24, 303);
+            this.buttonEditar.Location = new System.Drawing.Point(24, 332);
             this.buttonEditar.Name = "buttonEditar";
             this.buttonEditar.Size = new System.Drawing.Size(75, 23);
             this.buttonEditar.TabIndex = 22;
@@ -259,7 +250,7 @@
             // 
             // buttonAgenda5
             // 
-            this.buttonAgenda5.Location = new System.Drawing.Point(164, 215);
+            this.buttonAgenda5.Location = new System.Drawing.Point(164, 244);
             this.buttonAgenda5.Name = "buttonAgenda5";
             this.buttonAgenda5.Size = new System.Drawing.Size(29, 20);
             this.buttonAgenda5.TabIndex = 23;
@@ -269,7 +260,7 @@
             // 
             // buttonLimite5
             // 
-            this.buttonLimite5.Location = new System.Drawing.Point(164, 241);
+            this.buttonLimite5.Location = new System.Drawing.Point(164, 270);
             this.buttonLimite5.Name = "buttonLimite5";
             this.buttonLimite5.Size = new System.Drawing.Size(29, 20);
             this.buttonLimite5.TabIndex = 25;
@@ -279,7 +270,7 @@
             // 
             // buttonAgenda15
             // 
-            this.buttonAgenda15.Location = new System.Drawing.Point(198, 215);
+            this.buttonAgenda15.Location = new System.Drawing.Point(198, 244);
             this.buttonAgenda15.Name = "buttonAgenda15";
             this.buttonAgenda15.Size = new System.Drawing.Size(36, 20);
             this.buttonAgenda15.TabIndex = 28;
@@ -289,7 +280,7 @@
             // 
             // buttonLimite15
             // 
-            this.buttonLimite15.Location = new System.Drawing.Point(198, 241);
+            this.buttonLimite15.Location = new System.Drawing.Point(198, 270);
             this.buttonLimite15.Name = "buttonLimite15";
             this.buttonLimite15.Size = new System.Drawing.Size(36, 20);
             this.buttonLimite15.TabIndex = 29;
@@ -299,7 +290,7 @@
             // 
             // buttonAgenda30
             // 
-            this.buttonAgenda30.Location = new System.Drawing.Point(236, 215);
+            this.buttonAgenda30.Location = new System.Drawing.Point(236, 244);
             this.buttonAgenda30.Name = "buttonAgenda30";
             this.buttonAgenda30.Size = new System.Drawing.Size(36, 20);
             this.buttonAgenda30.TabIndex = 32;
@@ -309,7 +300,7 @@
             // 
             // buttonLimite30
             // 
-            this.buttonLimite30.Location = new System.Drawing.Point(236, 241);
+            this.buttonLimite30.Location = new System.Drawing.Point(236, 270);
             this.buttonLimite30.Name = "buttonLimite30";
             this.buttonLimite30.Size = new System.Drawing.Size(36, 20);
             this.buttonLimite30.TabIndex = 33;
@@ -319,7 +310,7 @@
             // 
             // buttonFinNow
             // 
-            this.buttonFinNow.Location = new System.Drawing.Point(164, 266);
+            this.buttonFinNow.Location = new System.Drawing.Point(164, 295);
             this.buttonFinNow.Name = "buttonFinNow";
             this.buttonFinNow.Size = new System.Drawing.Size(108, 20);
             this.buttonFinNow.TabIndex = 34;
@@ -327,11 +318,38 @@
             this.buttonFinNow.UseVisualStyleBackColor = true;
             this.buttonFinNow.Click += new System.EventHandler(this.buttonFinNow_Click);
             // 
+            // comboBoxEspera
+            // 
+            this.comboBoxEspera.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxEspera.FormattingEnabled = true;
+            this.comboBoxEspera.Items.AddRange(new object[] {
+            "Entidad",
+            "Comunero",
+            "Proveedor",
+            "Org. Gobierno",
+            "Contactos"});
+            this.comboBoxEspera.Location = new System.Drawing.Point(87, 114);
+            this.comboBoxEspera.Name = "comboBoxEspera";
+            this.comboBoxEspera.Size = new System.Drawing.Size(158, 21);
+            this.comboBoxEspera.TabIndex = 35;
+            // 
+            // buttonEspera
+            // 
+            this.buttonEspera.Location = new System.Drawing.Point(251, 113);
+            this.buttonEspera.Name = "buttonEspera";
+            this.buttonEspera.Size = new System.Drawing.Size(27, 22);
+            this.buttonEspera.TabIndex = 36;
+            this.buttonEspera.Text = ">";
+            this.buttonEspera.UseVisualStyleBackColor = true;
+            this.buttonEspera.Click += new System.EventHandler(this.buttonEspera_Click);
+            // 
             // FormInsertarGestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 342);
+            this.ClientSize = new System.Drawing.Size(292, 370);
+            this.Controls.Add(this.buttonEspera);
+            this.Controls.Add(this.comboBoxEspera);
             this.Controls.Add(this.buttonFinNow);
             this.Controls.Add(this.buttonLimite30);
             this.Controls.Add(this.buttonAgenda30);
@@ -342,7 +360,6 @@
             this.Controls.Add(this.buttonEditar);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.comboBoxTipoGestion);
-            this.Controls.Add(this.buttonEntidad);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.textBoxEspera);
             this.Controls.Add(this.textBoxDescripcion);
@@ -389,7 +406,6 @@
         private System.Windows.Forms.TextBox textBoxDescripcion;
         private System.Windows.Forms.TextBox textBoxEspera;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button buttonEntidad;
         private System.Windows.Forms.ComboBox comboBoxTipoGestion;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button buttonEditar;
@@ -400,5 +416,7 @@
         private System.Windows.Forms.Button buttonAgenda30;
         private System.Windows.Forms.Button buttonLimite30;
         private System.Windows.Forms.Button buttonFinNow;
+        private System.Windows.Forms.ComboBox comboBoxEspera;
+        private System.Windows.Forms.Button buttonEspera;
     }
 }

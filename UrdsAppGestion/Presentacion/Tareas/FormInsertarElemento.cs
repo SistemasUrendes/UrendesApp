@@ -55,7 +55,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
             Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
             if (form_anterior1 != null) form_anterior1.rellenarTreeView(idElementoAnt.ToString());
-            else if (form_anterior2 != null) form_anterior2.rellenarTreeView(idElementoAnt.ToString());
 
             this.Close();
         }

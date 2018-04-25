@@ -291,6 +291,16 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                     OperacionesForms.FormAbonarVencimiento nuevo = (OperacionesForms.FormAbonarVencimiento)existe;
                     nuevo.recibirComunero(dataGridView_comuneros.SelectedCells[1].Value.ToString(), dataGridView_comuneros.SelectedCells[2].Value.ToString());
                 }
+                if (nombre_form_anterior == "FormInsertarContacto")
+                {
+                    Tareas.FormInsertarContacto nuevo = (Tareas.FormInsertarContacto)existe;
+                    nuevo.recibirComunero(dataGridView_comuneros.SelectedCells[0].Value.ToString());
+                }
+                if (nombre_form_anterior == "FormInsertarGestion")
+                {
+                    Tareas.FormInsertarGestion nuevo = (Tareas.FormInsertarGestion)existe;
+                    nuevo.recibirComunero(dataGridView_comuneros.SelectedCells[1].Value.ToString());
+                }
             }
             this.Close();
         }

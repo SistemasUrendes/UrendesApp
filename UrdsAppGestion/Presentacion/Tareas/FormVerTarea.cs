@@ -26,10 +26,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private DataTable contactos;
         private FormTareasPrincipal form_anterior;
         private int idComunidad;
-        private String elemento;
-        private List<String> idElementosAtras;
-        private List<String> nombreElementosAtras;
         private String columnaContacto;
+        private String idElemento;
 
 
         public FormVerTarea(FormTareasPrincipal form_anterior, String idTarea)
@@ -37,8 +35,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             InitializeComponent();
             this.idTarea = idTarea;
             this.form_anterior = form_anterior;
-            idElementosAtras = new List<String>();
-            nombreElementosAtras = new List<String>();
             idComunidad = 0;
         }
 
@@ -46,8 +42,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             InitializeComponent();
             this.idTarea = idTarea;
-            idElementosAtras = new List<String>();
-            nombreElementosAtras = new List<String>();
             idComunidad = 0;
         }
 
@@ -55,8 +49,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             InitializeComponent();
             this.form_anterior = form_anterior;
-            idElementosAtras = new List<String>();
-            nombreElementosAtras = new List<String>();
             idComunidad = 0;
         }
 
@@ -89,7 +81,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
             //String sqlSelect = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tareas.IdEntidad, exp_tareas.Notas, exp_tareas.Ruta, exp_tareas.IdTipoTarea, exp_tareas.FFin, exp_tareas.FIni, exp_tareas.Coste, exp_tareas.RefSiniestro, exp_tareas.Seguro, exp_tareas.AcuerdoJunta, exp_tareas.FechaActaAcordado, exp_tareas.ProximaJunta , com_comunidades.Referencia , ctos_entidades.Entidad, exp_tareas.Importante, exp_tareas.IdElemento FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
 
-            String sqlSelect = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tareas.IdEntidad, exp_tareas.Notas, exp_tareas.Ruta, exp_tareas.IdTipoTarea, exp_tareas.FFin, exp_tareas.FIni, exp_tareas.Coste, exp_tareas.RefSiniestro, exp_tareas.Seguro, exp_tareas.AcuerdoJunta, exp_tareas.FechaActaAcordado, exp_tareas.ProximaJunta, com_comunidades.Referencia, ctos_entidades.Entidad, exp_tareas.Importante, exp_tareas.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre FROM((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad) LEFT JOIN exp_elementos ON exp_tareas.IdElemento = exp_elementos.IdElemento WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
+            String sqlSelect = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tareas.IdEntidad, exp_tareas.Notas, exp_tareas.Ruta, exp_tareas.IdTipoTarea, exp_tareas.FFin, exp_tareas.FIni, exp_tareas.Coste, exp_tareas.RefSiniestro, exp_tareas.Seguro, exp_tareas.AcuerdoJunta, exp_tareas.FechaActaAcordado, exp_tareas.ProximaJunta, com_comunidades.Referencia, ctos_entidades.Entidad, exp_tareas.Importante, exp_elementos.Nombre FROM((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad) LEFT JOIN exp_elementos ON exp_tareas.IdElemento = exp_elementos.IdElemento WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
             tarea = Persistencia.SentenciasSQL.select(sqlSelect);
             
             textBoxIdTarea.Text = tarea.Rows[0][0].ToString();
@@ -112,10 +104,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (maskedTextBoxReferencia.Text != "") nombreReferencia();
             textBoxEntidad.Text = tarea.Rows[0][15].ToString();
             checkBoxImportante.Checked = bool.Parse(tarea.Rows[0][16].ToString());
-            String elePadre = tarea.Rows[0][18].ToString();
-            elemento = tarea.Rows[0][17].ToString();
-            if (elePadre != "") rellenarElementoSelect(elePadre);
-            labelElementoSeleccionado.Text = "Elemento: " + tarea.Rows[0][19].ToString();
+            textBoxElemento.Text = tarea.Rows[0][17].ToString();
 
         }
 
@@ -142,6 +131,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             buttonGuardar.Enabled = false;
             textBoxRuta.ReadOnly = true;
             labelRutaLink.Enabled = false;
+            buttonBloque.Visible = false;
         }
 
         public void habilitarEdicion()
@@ -167,6 +157,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             checkBoxImportante.AutoCheck = true;
             textBoxRuta.ReadOnly = false;
             labelRutaLink.Enabled = true;
+            buttonBloque.Visible = true;
             if (textBoxEntidad.Text == "")
             {
                 textBoxEntidad.Text = "Pulsa espacio para Seleccionar Entidad";
@@ -192,16 +183,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
         
         public void cargarGestiones()
         {
-            /*
-            String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin, ctos_entidades.Entidad AS `Espera de` FROM(((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE(((exp_gestiones.IdTarea) = " + idTarea + ")) ORDER BY exp_gestiones.FIni DESC,exp_gestiones.FFin ASC";
-            
-            gestion = Persistencia.SentenciasSQL.select(sqlSelect);
-            dataGridViewGestiones.DataSource = gestion;
-            ajustarDatagridGestiones();
-             */
 
-            String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin, ctos_entidades.Entidad AS `Espera de` FROM(((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE(((exp_gestiones.IdTarea) = " + idTarea + ")";
+            //String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin,ctos_entidades.Entidad AS `Espera de`, exp_gestiones.TipoContacto as T FROM(((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE(((exp_gestiones.IdTarea) = " + idTarea + ")";
 
+            String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin,If(exp_gestiones.TipoContacto = 'T',exp_contactos.Nombre , ctos_entidades.Entidad) AS `Espera de`, exp_gestiones.TipoContacto AS T FROM exp_contactos RIGHT JOIN ((((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion) ON exp_contactos.IdDetEntTarea = exp_gestiones.IdEntidad WHERE(((exp_gestiones.IdTarea) = " + idTarea + ")";
 
             //Abiertas
             if (comboBoxEstadoGestion.SelectedIndex == 0)
@@ -232,8 +217,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         public void cargarSeguimientos()
         {
-
-            //String sqlSelect = "SELECT exp_notas.IdNota, exp_notas.IdGestión, exp_tiposeguimiento.`Tipo Seguimiento`, exp_notas.Fecha, ctos_urendes.Usuario, exp_notas.Notas FROM(exp_tiposeguimiento RIGHT JOIN exp_notas ON exp_tiposeguimiento.IdTipoSeg = exp_notas.IdTipoSeg) INNER JOIN ctos_urendes ON exp_notas.IdURD = ctos_urendes.IdURD WHERE(((exp_notas.IdGestión) = " + idGestion + ")) ORDER BY exp_notas.Fecha DESC";
 
             String sqlSelect = "SELECT exp_notas.IdNota,CAST(exp_notas.Fecha AS DATE) AS Fecha, exp_notas.IdGestión, ctos_urendes.Usuario, exp_notas.Notas FROM(exp_tiposeguimiento RIGHT JOIN exp_notas ON exp_tiposeguimiento.IdTipoSeg = exp_notas.IdTipoSeg) INNER JOIN ctos_urendes ON exp_notas.IdURD = ctos_urendes.IdURD WHERE(((exp_notas.IdGestión) = " + idGestion + ")) ORDER BY exp_notas.IdNota DESC";
             
@@ -308,8 +291,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 dataGridViewGestiones.Columns["FAgenda"].Width = 90;
                 dataGridViewGestiones.Columns["Fecha límite"].Width = 95;
                 dataGridViewGestiones.Columns["FFin"].Width = 90;
-                dataGridViewGestiones.Columns["Espera de"].Width = 260;
-                
+                dataGridViewGestiones.Columns["Espera de"].Width = 240;
+                dataGridViewGestiones.Columns["T"].Width = 20;
+                dataGridViewGestiones.Columns["T"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
         }
 
@@ -354,14 +338,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     comboBoxEstadoGestion.SelectedIndex = 2;
                     bloquearEdicion();
                     if (form_anterior != null) form_anterior.CargarTareas();
-                    Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, fInicio);
+                    Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, fInicio,idComunidad);
                     nueva.Show();
                 }
             }
             else
             {
                 comboBoxEstadoGestion.SelectedIndex = 2;
-                Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, fInicio);
+                Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, fInicio, idComunidad);
                 nueva.Show();
             }
         }
@@ -468,7 +452,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void toolStripMenuItemEditarGestion_Click(object sender, EventArgs e)
         {
             String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
-            Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea,idGestion,fInicio);
+            Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea,idGestion,fInicio, idComunidad);
             nueva.Show();
         }
 
@@ -481,7 +465,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void dataGridViewGestiones_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this,idGestion);
+            Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this,idGestion, idComunidad);
             nueva.Show();
         }
 
@@ -707,6 +691,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     sqlUpdate = "UPDATE exp_tareas SET Importante = 0 WHERE IdTarea = " + idTarea;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                 }
+                if (idElemento != null)
+                {
+                    sqlUpdate = "UPDATE exp_tareas SET IdElemento = '" + idElemento +"' WHERE IdTarea = " + idTarea;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                }
             }
             //AÑADIR NUEVA TAREA
             else
@@ -750,6 +739,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     sqlInsert = "UPDATE exp_tareas SET Ruta = '" + fixRuta + "' WHERE IdTarea = " + idTarea;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
                 }
+                if (idElemento != null)
+                {
+                    sqlInsert = "UPDATE exp_tareas SET IdElemento = '" + idElemento + "' WHERE IdTarea = " + idTarea;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+                }
             }
         }
         public String rutaEntidad()
@@ -772,7 +766,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             DataTable entidad = Persistencia.SentenciasSQL.select(sql);
             idComunidad = Int32.Parse(entidad.Rows[0][1].ToString());
             idEntidad = entidad.Rows[0][2].ToString();
-            rellenarTreeViewInicio();
             return entidad.Rows[0][0].ToString();
         }
 
@@ -847,7 +840,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
     public void cargarContactos()
         {
             //String sqlSelect = "SELECT exp_contactos.IdDetEntTarea,If(exp_contactos.IdEntidad is Not Null,ctos_entidades.Entidad,exp_contactos.Nombre) AS Nombre , If (exp_contactos.IdEntidad is Not Null,ctos_dettelf.Telefono,exp_contactos.Tel) AS Teléfono, If (exp_contactos.IdEntidad is Not Null,ctos_detemail.Email,exp_contactos.Correo) AS Correo FROM((exp_contactos LEFT JOIN ctos_entidades ON exp_contactos.IdEntidad = ctos_entidades.IDEntidad)  LEFT JOIN ctos_detemail ON exp_contactos.IdMail = ctos_detemail.IdEmail) LEFT JOIN ctos_dettelf ON exp_contactos.IdTelf = ctos_dettelf.IdDetTelf WHERE(((exp_contactos.IdTarea) = " + idTarea + "))";
-            String sqlSelect = "SELECT exp_contactos.IdDetEntTarea, exp_contactos.Nombre, exp_contactos.Tel AS Teléfono, exp_contactos.Correo FROM exp_contactos WHERE(((exp_contactos.IdTarea) = " + idTarea + "))";
+            String sqlSelect = "SELECT exp_contactos.IdDetEntTarea, exp_contactos.Nombre, exp_contactos.Tel AS Teléfono, exp_contactos.Correo, exp_contactos.Notas, exp_contactos.Proveedor as P, exp_contactos.Comunero as C,exp_contactos.Entidad as E  FROM exp_contactos WHERE(((exp_contactos.IdTarea) = " + idTarea + "))";
 
             contactos = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewContactos.DataSource = contactos;
@@ -875,9 +868,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (dataGridViewContactos.Rows.Count > 0)
             {
                 dataGridViewContactos.Columns[0].Visible = false;
-                dataGridViewContactos.Columns["Nombre"].Width = 255;
+                dataGridViewContactos.Columns["Nombre"].Width = 200;
                 dataGridViewContactos.Columns["Teléfono"].Width = 75;
-                dataGridViewContactos.Columns["Correo"].Width = 180;
+                dataGridViewContactos.Columns["Correo"].Width = 160;
+                dataGridViewContactos.Columns["P"].Width = 30;
+                dataGridViewContactos.Columns["C"].Width = 30;
+                dataGridViewContactos.Columns["E"].Width = 30;
+                dataGridViewContactos.Columns["Notas"].Width = 110;
+                dataGridViewContactos.Columns["Notas"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             }
         }
 
@@ -925,7 +923,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
             else
             {
-                Tareas.FormInsertarContacto nueva = new FormInsertarContacto(this, idTarea);
+                Tareas.FormInsertarContacto nueva = new FormInsertarContacto(this, idTarea,idComunidad.ToString());
                 nueva.Show();
             }
         }
@@ -933,7 +931,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void dataGridViewContactos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             String idContacto = dataGridViewContactos.SelectedRows[0].Cells[0].Value.ToString();
-            Tareas.FormInsertarContacto nueva = new FormInsertarContacto(this, idTarea, idContacto,false);
+            Tareas.FormInsertarContacto nueva = new FormInsertarContacto(this, idTarea, idContacto,idComunidad.ToString(), false);
             nueva.Show();
         }
 
@@ -957,7 +955,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void toolStripMenuItemEditarContacto_Click(object sender, EventArgs e)
         {
             String idContacto = dataGridViewContactos.SelectedRows[0].Cells[0].Value.ToString();
-            Tareas.FormInsertarContacto nueva = new FormInsertarContacto(this, idTarea, idContacto);
+            Tareas.FormInsertarContacto nueva = new FormInsertarContacto(this, idTarea, idContacto,idComunidad.ToString());
             nueva.Show();
         }
         
@@ -1002,19 +1000,39 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (dataGridViewGestiones.SelectedRows[0].Cells[10].Value.ToString() != "")
             {
-                String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
-
-                String sqlSelect = "SELECT ctos_detemail.Email FROM exp_gestiones INNER JOIN ctos_detemail ON exp_gestiones.IdEntidad = ctos_detemail.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_gestiones.IdGestión) = " + idGestion + "))";
-                DataTable tablamail = Persistencia.SentenciasSQL.select(sqlSelect);
-                if (tablamail.Rows.Count > 0)
+                if (dataGridViewGestiones.SelectedRows[0].Cells[11].Value.ToString() != "T")
                 {
-                    String mail = tablamail.Rows[0][0].ToString();
-                    System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\"" + generaAsunto() + "\"");
+                    String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
+
+                    String sqlSelect = "SELECT ctos_detemail.Email FROM exp_gestiones INNER JOIN ctos_detemail ON exp_gestiones.IdEntidad = ctos_detemail.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_gestiones.IdGestión) = " + idGestion + "))";
+                    DataTable tablamail = Persistencia.SentenciasSQL.select(sqlSelect);
+                    if (tablamail.Rows.Count > 0)
+                    {
+                        String mail = tablamail.Rows[0][0].ToString();
+                        System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\"" + generaAsunto() + "\"");
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("La entidad seleccionada no tiene correo asociado.");
+                    }
                 }
-                
                 else
                 {
-                    MessageBox.Show("La entidad seleccionada no tiene correo asociado.");
+                    String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
+
+                    String sqlSelect = "SELECT exp_contactos.Correo FROM exp_contactos INNER JOIN exp_gestiones ON exp_contactos.IdDetEntTarea = exp_gestiones.IdEntidad WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
+                    DataTable tablamail = Persistencia.SentenciasSQL.select(sqlSelect);
+                    if (tablamail.Rows.Count > 0)
+                    {
+                        String mail = tablamail.Rows[0][0].ToString();
+                        System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\"" + generaAsunto() + "\"");
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("El contacto selecionado no tiene correo asociado.");
+                    }
                 }
             }
             else
@@ -1025,15 +1043,28 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private String generaAsunto()
         {
-            String sqlSelect = "SELECT ctos_entidades.NombreCorto, com_comunidades.Referencia FROM ctos_entidades INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((ctos_entidades.IDEntidad) = " + idEntidad + "))";
-            DataTable comunidad = Persistencia.SentenciasSQL.select(sqlSelect);
-
             String asunto = "";
-            asunto += comunidad.Rows[0][0].ToString();//Nombre corto
-            asunto += " - ( Ref. " + comunidad.Rows[0][1].ToString(); //Referencia comunidad
-            asunto += " / " + idTarea; //IdTarea
-            asunto += ") " + textBoxDescripcion.Text; //Descripción
+            if (idComunidad != 0)
+            {
+                String sqlSelect = "SELECT ctos_entidades.NombreCorto, com_comunidades.Referencia FROM ctos_entidades INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((ctos_entidades.IDEntidad) = " + idEntidad + "))";
+                DataTable comunidad = Persistencia.SentenciasSQL.select(sqlSelect);
+                
+                asunto += comunidad.Rows[0][0].ToString();//Nombre corto
+                asunto += " - ( Ref. " + comunidad.Rows[0][1].ToString(); //Referencia comunidad
+                asunto += " / " + idTarea; //IdTarea
+                asunto += ") " + textBoxDescripcion.Text; //Descripción
+            }
+            else
+            {
+                String sqlSelect = "SELECT ctos_entidades.NombreCorto FROM ctos_entidades WHERE(((ctos_entidades.IDEntidad) = " + idEntidad + "))";
+                DataTable comunidad = Persistencia.SentenciasSQL.select(sqlSelect);
+                
+                asunto += comunidad.Rows[0][0].ToString();//Nombre corto
+                asunto += " - ( Ref. 0"; //Referencia
+                asunto += " / " + idTarea; //IdTarea
+                asunto += ") " + textBoxDescripcion.Text; //Descripción
 
+            }
             return asunto;
         }
 
@@ -1168,15 +1199,28 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (dataGridViewGestiones.SelectedRows[0].Cells[10].Value.ToString() != "")
             {
-                String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
+                if (dataGridViewGestiones.SelectedRows[0].Cells[11].Value.ToString() == "T")
+                {
+                    String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
 
-                String sqlSelect = "SELECT exp_gestiones.IdEntidad FROM exp_gestiones WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
+                    String sqlSelect = "SELECT exp_contactos.IdDetEntTarea FROM exp_contactos INNER JOIN exp_gestiones ON exp_contactos.IdDetEntTarea = exp_gestiones.IdEntidad WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
 
-                String idEntidad = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
-                
-                EntidadesForms.VerEntidad nueva = new EntidadesForms.VerEntidad(Int32.Parse(idEntidad));
-                nueva.Show();
+                    String idContacto = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
 
+                    Tareas.FormInsertarContacto nueva = new Tareas.FormInsertarContacto(this, idTarea, idContacto, idComunidad.ToString(), false);
+                    nueva.Show();
+                }
+                else
+                {
+                    String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
+
+                    String sqlSelect = "SELECT exp_gestiones.IdEntidad FROM exp_gestiones WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
+
+                    String idEntidad = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+
+                    EntidadesForms.VerEntidad nueva = new EntidadesForms.VerEntidad(Int32.Parse(idEntidad));
+                    nueva.Show();
+                }
             }
             else
             {
@@ -1208,7 +1252,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         }
 
         //ELEMENTOS
-
+        /*
         public void rellenarTreeViewInicio()
         {
             updateRuta();
@@ -1377,7 +1421,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
             labelRuta.Text = ruta;
         }
-
+       
         private void buttonAddElementoTarea_Click(object sender, EventArgs e)
         {
             if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0 ))
@@ -1406,7 +1450,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 MessageBox.Show("Debe seleccionar un elemento para poder añadirlo a la tarea");
             }
         }
-
+         */
         public void cargarExpedientes()
         {
             String sqlExpedientes1 = "SELECT exp_tareaRel.IdTareaRel, exp_tareas.IdTarea, exp_tareas.Descripción FROM exp_tareas INNER JOIN exp_tareaRel ON exp_tareas.IdTarea = exp_tareaRel.IdTarea_2 WHERE(((exp_tareaRel.IdTarea_1) = " + idTarea + "))";
@@ -1512,5 +1556,27 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
         }
         
+        private void buttonBloque_Click(object sender, EventArgs e)
+        {
+            if (idComunidad != 0)
+            {
+                ComunidadesForms.Elementos.FormElementos nueva = new ComunidadesForms.Elementos.FormElementos(this, idComunidad);
+                nueva.ControlBox = true;
+                nueva.TopMost = true;
+                nueva.WindowState = FormWindowState.Normal;
+                nueva.StartPosition = FormStartPosition.CenterScreen;
+                nueva.Show();
+            }
+            else
+            {
+                MessageBox.Show("Selecciona una comunidad para elegir su bloque");
+            }
+        }
+
+        public void recibirElemento(String idElemento,String nombre)
+        {
+            textBoxElemento.Text = nombre;
+            this.idElemento = idElemento;
+        }
     }
 }

@@ -24,42 +24,56 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String sfMax;
         String sfFin;
         String oldEntidad;
+        int idComunidad;
+        String esperade;
 
-        public FormInsertarGestion(FormVerTarea form_anterior,String idTarea,String fInicio)
+        public FormInsertarGestion(FormVerTarea form_anterior,String idTarea,String fInicio,int idComunidad)
         {
             InitializeComponent();
             this.form_anterior = form_anterior;
             this.idTarea = idTarea;
             this.fInicio = fInicio;
+            this.idComunidad = idComunidad;
         }
 
-        public FormInsertarGestion(FormVerTarea form_anterior, String idTarea, String idGestion, String fInicio)
+        public FormInsertarGestion(FormVerTarea form_anterior, String idTarea, String idGestion, String fInicio, int idComunidad)
         {
             InitializeComponent();
             this.form_anterior = form_anterior;
             this.idTarea = idTarea;
             this.idGestion = idGestion;
             this.fInicio = fInicio;
+            this.idComunidad = idComunidad;
         }
 
-        public FormInsertarGestion(FormVerTarea form_anterior, String idGestion)
+        public FormInsertarGestion(FormVerTarea form_anterior, String idGestion,int idComunidad)
         {
             InitializeComponent();
             this.form_anterior = form_anterior;
             this.idGestion = idGestion;
+            this.idComunidad = idComunidad;
         }
 
-        public FormInsertarGestion(String idGestion,String idTarea)
+        public FormInsertarGestion(String idGestion,String idTarea,int idComunidad)
         {
             InitializeComponent();
             this.idTarea = idTarea;
             this.idGestion = idGestion;
+            this.idComunidad = idComunidad;
+        }
+
+        public FormInsertarGestion(String idGestion,int idComunidad)
+        {
+            InitializeComponent();
+            this.idGestion = idGestion;
+            this.idComunidad = idComunidad;
         }
 
         public FormInsertarGestion(String idGestion)
         {
             InitializeComponent();
             this.idGestion = idGestion;
+            idComunidad = 0;
         }
 
 
@@ -68,6 +82,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             rellenarComboBox();
             maskedTextBoxFInicio.Text = DateTime.Now.ToShortDateString();
+            maskedTextBoxFSeguir.Text = DateTime.Now.ToShortDateString();
             //NUEVA GESTIÓN
             if (idGestion == null)
             {
@@ -145,7 +160,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
             checkBoxImportante.AutoCheck = false;
             comboBoxTipoGestion.Enabled = false;
             buttonGuardar.Visible = false;
-            buttonEntidad.Visible = false;
+            comboBoxEspera.Visible = false;
+            buttonEspera.Visible = false;
             buttonEditar.Visible = true;
             textBoxEspera.ReadOnly = true;
             buttonAgenda5.Visible = false;
@@ -172,7 +188,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
             checkBoxImportante.AutoCheck = true;
             comboBoxTipoGestion.Enabled = true;
             buttonGuardar.Visible = true;
-            buttonEntidad.Visible = true;
+            comboBoxEspera.Visible = true;
+            buttonEspera.Visible = true;
             buttonEditar.Visible = false;
             textBoxEspera.ReadOnly = false;
             buttonAgenda5.Visible = true;
@@ -352,7 +369,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     sqlUpdate = "UPDATE exp_gestiones SET IdEntidad = " + idEntidad + " WHERE IdGestión = " + idGestion;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                 }
-                
+                if (esperade != null)
+                {
+                    sqlUpdate = "UPDATE exp_gestiones SET TipoContacto = '" + esperade + "' WHERE IdGestión = " + idGestion;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                }
                 if (importante == "1")
                 {
                     tareaImportante();
@@ -388,6 +409,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     sqlUpdate = "UPDATE exp_gestiones SET IdEntidad = " + idEntidad + " WHERE IdGestión = " + idGestion;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                 }
+                if (esperade != null)
+                {
+                    sqlUpdate = "UPDATE exp_gestiones SET TipoContacto = '" + esperade + "' WHERE IdGestión = " + idGestion;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                }
                 if (importante == "1")
                 {
                     tareaImportante();
@@ -400,21 +426,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.Close();
 
         }
-
-        private void buttonEntidad_Click(object sender, EventArgs e)
-        {
-            Entidades nueva = new Entidades(this, this.Name);
-            nueva.ControlBox = true;
-            nueva.TopMost = true;
-            nueva.WindowState = FormWindowState.Normal;
-            nueva.StartPosition = FormStartPosition.CenterScreen;
-            nueva.textBox_buscar_nombre.Select();
-            nueva.Show();
-        }
-
+        
         public void recibirEntidad(String id_entidad)
         {
             idEntidad = id_entidad;
+            esperade = "E";
             String sqlSelect = "SELECT ctos_entidades.Entidad FROM ctos_entidades WHERE(((ctos_entidades.IDEntidad) = " + id_entidad + "))";
             textBoxEspera.Text = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
         }
@@ -512,6 +528,100 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void buttonFinNow_Click(object sender, EventArgs e)
         {
             maskedTextBoxFFin.Text = DateTime.Now.ToShortDateString();
+        }
+       
+        public void recibirComunero (String idEntidad)
+        {
+            this.idEntidad = idEntidad;
+            esperade = "C";
+            String sqlSelect = "SELECT ctos_entidades.Entidad FROM ctos_entidades WHERE(((ctos_entidades.IDEntidad) = " + idEntidad + "))";
+            textBoxEspera.Text = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+        }
+
+        public void recibirProveedor(String idEntidad)
+        {
+            this.idEntidad = idEntidad;
+            esperade = "P";
+            String sqlSelect = "SELECT ctos_entidades.Entidad FROM ctos_entidades WHERE(((ctos_entidades.IDEntidad) = " + idEntidad + "))";
+            textBoxEspera.Text = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+        }
+
+        public void recibirContacto(String idContacto)
+        {
+            this.idEntidad = idContacto;
+            esperade = "T";
+            String sqlSelect = "SELECT exp_contactos.Nombre FROM exp_contactos WHERE(((exp_contactos.IdDetEntTarea) = " + idContacto + "))";
+            textBoxEspera.Text = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+        }
+
+        private void buttonEspera_Click(object sender, EventArgs e)
+        {
+            //ENTIDAD
+            if(comboBoxEspera.SelectedIndex == 0)
+            {
+                Entidades nueva = new Entidades(this, this.Name);
+                nueva.ControlBox = true;
+                nueva.TopMost = true;
+                nueva.WindowState = FormWindowState.Normal;
+                nueva.StartPosition = FormStartPosition.CenterScreen;
+                nueva.textBox_buscar_nombre.Select();
+                nueva.Show();
+            }
+            //COMUNERO
+            else if (comboBoxEspera.SelectedIndex == 1)
+            {
+                if (idComunidad == 0)
+                {
+                    MessageBox.Show("Solo hay comuneros en una comunidad!");
+                }
+                else
+                {
+                    ComunidadesForms.Comuneros nueva = new ComunidadesForms.Comuneros(this, "FormInsertarGestion", idComunidad.ToString());
+                    nueva.ControlBox = true;
+                    nueva.TopMost = true;
+                    nueva.WindowState = FormWindowState.Normal;
+                    nueva.StartPosition = FormStartPosition.CenterScreen;
+                    nueva.Show();
+                }
+            }
+            //PROVEEDOR
+            else if (comboBoxEspera.SelectedIndex == 2)
+            {
+                if (idComunidad == 0)
+                {
+                    MessageBox.Show("Solo hay proveedores en una comunidad!");
+                }
+                else
+                {
+                    ComunidadesForms.OperacionesForms.FormOperacionesListadoProveedores nueva = new ComunidadesForms.OperacionesForms.FormOperacionesListadoProveedores(this, "FormInsertarGestion", idComunidad.ToString());
+                    nueva.ControlBox = true;
+                    nueva.TopMost = true;
+                    nueva.WindowState = FormWindowState.Normal;
+                    nueva.StartPosition = FormStartPosition.CenterScreen;
+                    nueva.Show();
+                }
+            }
+            //ORGANO GOBIERNO
+            else if (comboBoxEspera.SelectedIndex == 3)
+            {
+                MessageBox.Show("Por implementar!");
+            }
+            //CONTACTOS
+            else if (comboBoxEspera.SelectedIndex == 4)
+            {
+                if (idTarea == null)
+                {
+                    String sqlSelect = "SELECT exp_gestiones.IdTarea FROM exp_gestiones WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
+                    idTarea = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+
+                }
+                FormVerContactos nueva = new FormVerContactos(this,"FormInsertarGestion",idTarea,idComunidad.ToString());
+                nueva.ControlBox = true;
+                nueva.TopMost = true;
+                nueva.WindowState = FormWindowState.Normal;
+                nueva.StartPosition = FormStartPosition.CenterScreen;
+                nueva.Show();
+            }
         }
     }
 }
