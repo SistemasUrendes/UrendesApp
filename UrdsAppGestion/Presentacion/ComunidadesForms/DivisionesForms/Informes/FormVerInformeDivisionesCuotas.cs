@@ -33,7 +33,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes
 
             dataSet2BindingSource.DataSource = Persistencia.SentenciasSQL.select(sqlSelectInfoComunidad);
 
-            String cabecera = "DIVISIÓN : " + nombreDivision + "                                                                            PERIDO: " + fechaInicio + " A " + fechaFin;
+            String cabecera = "DIVISIÓN : " + nombreDivision + "                                                                            PERÍODO: " + fechaInicio + " A " + fechaFin;
 
             ReportParameter parametro = new ReportParameter("ReportParameter1", cabecera);
             this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro });

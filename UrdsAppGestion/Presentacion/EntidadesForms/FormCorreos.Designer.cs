@@ -77,6 +77,7 @@
             // 
             // textBox_descripcion
             // 
+            this.textBox_descripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox_descripcion.Location = new System.Drawing.Point(108, 30);
             this.textBox_descripcion.Name = "textBox_descripcion";
             this.textBox_descripcion.Size = new System.Drawing.Size(157, 20);
@@ -84,6 +85,7 @@
             // 
             // textBox_correo
             // 
+            this.textBox_correo.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.textBox_correo.Location = new System.Drawing.Point(108, 64);
             this.textBox_correo.Name = "textBox_correo";
             this.textBox_correo.Size = new System.Drawing.Size(157, 20);

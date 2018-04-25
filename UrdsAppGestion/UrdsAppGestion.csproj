@@ -27,7 +27,7 @@
     <UpdateUrl>\\Urenux\app\App\</UpdateUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>23</ApplicationRevision>
+    <ApplicationRevision>24</ApplicationRevision>
     <ApplicationVersion>1.3.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -333,6 +333,12 @@
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\CuotasForms\Informes\VisorInformeCuotas.Designer.cs">
       <DependentUpon>VisorInformeCuotas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\FormBloquesJunta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\FormBloquesJunta.Designer.cs">
+      <DependentUpon>FormBloquesJunta.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\FormCertificadoDeudasDivision.cs">
       <SubType>Form</SubType>
@@ -1334,6 +1340,9 @@
     <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\Informes\InformeCuotas.rdlc" />
     <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\Informes\VisorInformeCuotas.resx">
       <DependentUpon>VisorInformeCuotas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\FormBloquesJunta.resx">
+      <DependentUpon>FormBloquesJunta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\FormCertificadoDeudasDivision.resx">
       <DependentUpon>FormCertificadoDeudasDivision.cs</DependentUpon>

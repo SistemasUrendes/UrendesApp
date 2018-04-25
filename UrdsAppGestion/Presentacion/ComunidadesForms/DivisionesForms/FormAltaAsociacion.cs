@@ -127,10 +127,18 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
             if (id_asociacion_cargado != 0) {
                 if (textBox_fechabaja.MaskFull)
                 {
+                    String sqlSelectRegla = "SELECT com_repartos.Descripcion FROM(com_divisiones INNER JOIN com_tipodivs ON com_divisiones.IdTipoDiv = com_tipodivs.IdTipoDiv) INNER JOIN com_repartos ON com_divisiones.IdDivision = com_repartos.IdDivision GROUP BY com_divisiones.IdDivision, com_divisiones.IdComunidad, com_repartos.Descripcion HAVING(((com_divisiones.IdDivision) = " + id_division + ") AND((com_divisiones.IdComunidad) = " + id_comunidad_cargado + "));";
+
+                    DataTable reglas = Persistencia.SentenciasSQL.select(sqlSelectRegla);
+
+                    if (reglas.Rows.Count > 0) {
+                        MessageBox.Show("¡ATENCIÓN ! Tiene una regla de pago esta división " + reglas.Rows[0][0].ToString());
+                    }
+
                     fechaBaja = (Convert.ToDateTime(textBox_fechabaja.Text)).ToString("yyyy-MM-dd");
                     if (EntidadComunero(id_entidad) != null) {
                         sql = "UPDATE com_asociacion SET IdComunero = " + EntidadComunero(id_entidad) + ", IdTipoAsoc = " + comboBox_tipoasociacion.SelectedValue.ToString() + ", Participacion = " + participacion + ", FechaAlta= '" + fechaAlta + "', FechaBaja= '" + fechaBaja + "', Ppal= " + ppal + " WHERE IdAsociacion =" + id_asociacion_cargado;
-                       Persistencia.SentenciasSQL.InsertarGenerico(sql);
+                        Persistencia.SentenciasSQL.InsertarGenerico(sql);
                     }
                 }
                 else if (textBox_fechabaja.Text.Replace("/","").Replace(" ", "") == "") { //ELIMINAR FECHA DE BAJA
@@ -173,6 +181,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
                     Persistencia.SentenciasSQL.InsertarGenerico(sql);
                 }
             }
+
             form_anterior.cargarDivisiones();
             form_anterior.dataGridView_divisiones.CurrentCell = form_anterior.dataGridView_divisiones[2, indiceSel];
             form_anterior.buscar_text();

@@ -410,7 +410,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
 
             }
             else if (comboBox_informes.SelectedIndex == 1) {
-                MessageBox.Show("Ese Informe aún no esta disponible");
+                FormBloquesJunta nueva = new FormBloquesJunta(id_comunidad.ToString());
+                nueva.Show();
             }
         }
     }

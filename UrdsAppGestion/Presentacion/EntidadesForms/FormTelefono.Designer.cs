@@ -46,6 +46,7 @@
             // 
             // textBox_descripcion
             // 
+            this.textBox_descripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox_descripcion.Location = new System.Drawing.Point(92, 27);
             this.textBox_descripcion.Name = "textBox_descripcion";
             this.textBox_descripcion.Size = new System.Drawing.Size(157, 20);

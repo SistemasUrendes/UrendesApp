@@ -47,6 +47,7 @@
             // 
             // textBox_provincia
             // 
+            this.textBox_provincia.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox_provincia.Location = new System.Drawing.Point(426, 149);
             this.textBox_provincia.Name = "textBox_provincia";
             this.textBox_provincia.Size = new System.Drawing.Size(97, 20);
@@ -72,6 +73,7 @@
             // 
             // textBox_poblacion
             // 
+            this.textBox_poblacion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox_poblacion.Location = new System.Drawing.Point(238, 149);
             this.textBox_poblacion.Name = "textBox_poblacion";
             this.textBox_poblacion.Size = new System.Drawing.Size(122, 20);
@@ -79,6 +81,7 @@
             // 
             // textBox_cp
             // 
+            this.textBox_cp.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox_cp.Location = new System.Drawing.Point(89, 149);
             this.textBox_cp.Name = "textBox_cp";
             this.textBox_cp.Size = new System.Drawing.Size(79, 20);
@@ -95,6 +98,7 @@
             // 
             // textBox_direccion
             // 
+            this.textBox_direccion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox_direccion.Location = new System.Drawing.Point(89, 112);
             this.textBox_direccion.Name = "textBox_direccion";
             this.textBox_direccion.Size = new System.Drawing.Size(434, 20);
@@ -111,6 +115,7 @@
             // 
             // textBox_contacto
             // 
+            this.textBox_contacto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox_contacto.Location = new System.Drawing.Point(89, 75);
             this.textBox_contacto.Name = "textBox_contacto";
             this.textBox_contacto.Size = new System.Drawing.Size(263, 20);
@@ -136,6 +141,7 @@
             // 
             // textBox_descripcion
             // 
+            this.textBox_descripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox_descripcion.Location = new System.Drawing.Point(89, 38);
             this.textBox_descripcion.Name = "textBox_descripcion";
             this.textBox_descripcion.Size = new System.Drawing.Size(263, 20);
