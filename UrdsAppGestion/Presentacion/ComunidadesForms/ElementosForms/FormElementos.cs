@@ -15,7 +15,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
         private int idComunidad;
         List<String> idElementosAtras;
         List<String> nombreElementosAtras;
-        Tareas.FormVerTarea form_anterior;
+        Tareas.FormVerTarea form_anterior1;
+        Tareas.FormTareasPrincipal form_anterior2;
+        Tareas.FormGestionesPrincipal form_anterior3;
 
         public FormElementos(int idComunidad)
         {
@@ -31,13 +33,31 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
             idElementosAtras = new List<String>();
             nombreElementosAtras = new List<String>();
             this.idComunidad = idComunidad;
-            this.form_anterior = form_anterior;
+            this.form_anterior1 = form_anterior;
+        }
+
+        public FormElementos(Tareas.FormTareasPrincipal form_anterior, int idComunidad)
+        {
+            InitializeComponent();
+            idElementosAtras = new List<String>();
+            nombreElementosAtras = new List<String>();
+            this.idComunidad = idComunidad;
+            this.form_anterior2 = form_anterior;
+        }
+
+        public FormElementos(Tareas.FormGestionesPrincipal form_anterior, int idComunidad)
+        {
+            InitializeComponent();
+            idElementosAtras = new List<String>();
+            nombreElementosAtras = new List<String>();
+            this.idComunidad = idComunidad;
+            this.form_anterior3 = form_anterior;
         }
 
         private void FormElementos_Load(object sender, EventArgs e)
         {
             rellenarTreeViewInicio();
-            if (form_anterior != null) buttonEnviar.Visible = true;
+            if (form_anterior1 != null || form_anterior2 != null || form_anterior3 != null) buttonEnviar.Visible = true;
         }
 
 
@@ -46,13 +66,13 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
             updateRuta();
             treeViewElementos.Nodes.Clear();
             DataTable elementos;
-            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripción FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = 0) AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
+            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripcion FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = 0) AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
             elementos = Persistencia.SentenciasSQL.select(sqlSelect);
 
             foreach (DataRow row in elementos.Rows)
             {
                 TreeNode node = new TreeNode();
-                node.Text = row["Nombre"].ToString() + " : " + row["Descripción"].ToString();
+                node.Text = row["Nombre"].ToString() + " : " + row["Descripcion"].ToString();
                 node.Tag = row["IdElemento"].ToString();
                 treeViewElementos.Nodes.Add(node);
                 rellenarSubElementos((int)row["IdElemento"], node);
@@ -63,13 +83,13 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
         {
             treeViewElementos.Nodes.Clear();
             DataTable elementos;
-            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripción FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = " + IdElemento + ") AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
+            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripcion FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = " + IdElemento + ") AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
             elementos = Persistencia.SentenciasSQL.select(sqlSelect);
 
             foreach (DataRow row in elementos.Rows)
             {
                 TreeNode node = new TreeNode();
-                node.Text = row["Nombre"].ToString() + " : " + row["Descripción"].ToString();
+                node.Text = row["Nombre"].ToString() + " : " + row["Descripcion"].ToString();
                 node.Tag = row["IdElemento"];
                 treeViewElementos.Nodes.Add(node);
                 rellenarSubElementos((int)row["IdElemento"], node);
@@ -79,7 +99,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
         private void rellenarSubElementos(int idElemento, TreeNode node)
         {
             DataTable subElementos;
-            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripción FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = " + idElemento + ") AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
+            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripcion FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = " + idElemento + ") AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
             subElementos = Persistencia.SentenciasSQL.select(sqlSelect);
 
             if (subElementos.Rows.Count == 0) { return; }
@@ -87,7 +107,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
             foreach (DataRow row in subElementos.Rows)
             {
                 TreeNode subNode = new TreeNode();
-                subNode.Text = row["Nombre"].ToString() + " : " + row["Descripción"].ToString();
+                subNode.Text = row["Nombre"].ToString() + " : " + row["Descripcion"].ToString();
                 subNode.Tag = row["IdElemento"].ToString();
                 node.Nodes.Add(subNode);
             }
@@ -95,7 +115,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
 
         private void treeViewElementos_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripción FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = " + e.Node.Tag.ToString() + ") AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
+            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripcion FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = " + e.Node.Tag.ToString() + ") AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
             DataTable subElementos = Persistencia.SentenciasSQL.select(sqlSelect);
             if (subElementos.Rows.Count > 0)
             {
@@ -146,6 +166,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
             }
         }
 
+
+        /*
         private void buttonAddElementoPrincipal_Click(object sender, EventArgs e)
         {
             if (idElementosAtras.Count > 0)
@@ -172,6 +194,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
             }
 
         }
+        */
 
         private void añadirElementoToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -211,7 +234,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
             {
                 String nombrecompleto = node.Text.ToString();
                 String nombre = nombrecompleto.Substring(0, nombrecompleto.IndexOf(":"));
-                form_anterior.recibirElemento(node.Tag.ToString(),nombre);
+                if (form_anterior1 != null) form_anterior1.recibirElemento(node.Tag.ToString(),nombre);
+                if (form_anterior2 != null) form_anterior2.recibirElemento(node.Tag.ToString(),nombre);
+                if (form_anterior3 != null) form_anterior3.recibirElemento(node.Tag.ToString(), nombre);
                 this.Close();
             }
             else
@@ -219,6 +244,45 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
                 MessageBox.Show("Debe seleccionar un elemento para poder añadirlo a la tarea");
             }
             
+        }
+        
+
+        private void treeViewElementos_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (treeViewElementos.GetNodeAt(e.X, e.Y) == null)
+            {
+                if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                {
+                    contextMenuStrip2.Show(Cursor.Position);
+                }
+            }
+            
+        }
+
+        private void addElementoPrintoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (idElementosAtras.Count > 0)
+            {
+                int idElementoAnt = Int32.Parse(idElementosAtras.ElementAt(idElementosAtras.Count - 1));
+                String nombrecompleto = nombreElementosAtras.ElementAt(nombreElementosAtras.Count - 1);
+                String nombre = nombrecompleto.Substring(0, nombrecompleto.IndexOf(":"));
+                Tareas.FormInsertarElemento nueva = new Tareas.FormInsertarElemento(this, idElementoAnt, idComunidad, nombre);
+                nueva.ControlBox = true;
+                nueva.TopMost = true;
+                nueva.WindowState = FormWindowState.Normal;
+                nueva.StartPosition = FormStartPosition.CenterScreen;
+                nueva.Show();
+            }
+            else
+            {
+                Tareas.FormInsertarElemento nueva = new Tareas.FormInsertarElemento(this, 0, idComunidad, "Inicio");
+                nueva.ControlBox = true;
+                nueva.TopMost = true;
+                nueva.WindowState = FormWindowState.Normal;
+                nueva.StartPosition = FormStartPosition.CenterScreen;
+
+                nueva.Show();
+            }
         }
     }
 }

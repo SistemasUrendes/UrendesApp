@@ -51,7 +51,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String nombre = textBoxNombre.Text;
             String descripcion = textBoxDescripción.Text;
 
-            String sqlInsert = "INSERT INTO exp_elementos (IdElementoAnt,IdComunidad,Nombre,Descripción) VALUES (" + idElementoAnt + "," + idComunidad + ",'" + nombre + "','" + descripcion + "')";
+            String sqlInsert = "INSERT INTO exp_elementos (IdElementoAnt,IdComunidad,Nombre,Descripcion) VALUES (" + idElementoAnt + "," + idComunidad + ",'" + nombre + "','" + descripcion + "')";
 
             Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
             if (form_anterior1 != null) form_anterior1.rellenarTreeView(idElementoAnt.ToString());

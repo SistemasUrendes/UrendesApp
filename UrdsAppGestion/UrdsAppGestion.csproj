@@ -1170,11 +1170,11 @@
     <Compile Include="Presentacion\Tareas\FormCorreoGrupo.Designer.cs">
       <DependentUpon>FormCorreoGrupo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\Tareas\FormFiltroAvanzado.cs">
+    <Compile Include="Presentacion\Tareas\FormDuplicarTarea.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion\Tareas\FormFiltroAvanzado.Designer.cs">
-      <DependentUpon>FormFiltroAvanzado.cs</DependentUpon>
+    <Compile Include="Presentacion\Tareas\FormDuplicarTarea.Designer.cs">
+      <DependentUpon>FormDuplicarTarea.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Tareas\FormGestionesPrincipal.cs">
       <SubType>Form</SubType>
@@ -1727,8 +1727,8 @@
     <EmbeddedResource Include="Presentacion\Tareas\FormCorreoGrupo.resx">
       <DependentUpon>FormCorreoGrupo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\Tareas\FormFiltroAvanzado.resx">
-      <DependentUpon>FormFiltroAvanzado.cs</DependentUpon>
+    <EmbeddedResource Include="Presentacion\Tareas\FormDuplicarTarea.resx">
+      <DependentUpon>FormDuplicarTarea.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormGestionesPrincipal.resx">
       <DependentUpon>FormGestionesPrincipal.cs</DependentUpon>

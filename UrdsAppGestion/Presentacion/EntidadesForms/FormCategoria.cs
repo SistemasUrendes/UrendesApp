@@ -51,7 +51,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
             listBox_categorias.DisplayMember = "Descripcion";
             listBox_categorias.ValueMember = "IdCategoria";
         }
-
+        /*
         private void button1_Click(object sender, EventArgs e)
         {
             String sql = "INSERT INTO ctos_detallecat(IdEntidad, IdCategoria) VALUES (" + id_entidad_cargado + "," + listBox_categorias.SelectedValue+ ")";
@@ -61,5 +61,6 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
             form_entidad.cargoCategorias();
             this.Close();
         }
+        */
     }
 }

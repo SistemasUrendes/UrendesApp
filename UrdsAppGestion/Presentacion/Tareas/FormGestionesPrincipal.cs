@@ -16,6 +16,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String idEntidad;
         String idEntidadEspera;
         String nombre_columna;
+        String idComunidad;
+        String idElemento;
 
         public FormGestionesPrincipal()
         {
@@ -34,11 +36,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String sqlSelect;
             if (idEntidad != null)
             {
-                sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.IdTarea, com_comunidades.Referencia AS Ref, ctos_urendes.Usuario,exp_tareas.Descripción AS Tareas, exp_gestiones.Descripción, ctos_entidades.Entidad AS `Espera de`,exp_gestiones.TipoContacto AS T, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS I, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `FLímite`, exp_gestiones.FFin, exp_tareas.IdEntidad FROM(com_comunidades RIGHT JOIN(ctos_urendes INNER JOIN((exp_gestiones INNER JOIN exp_tareas ON exp_gestiones.IdTarea = exp_tareas.IdTarea) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) ON ctos_urendes.IdURD = exp_gestiones.IdUser) ON com_comunidades.IdEntidad = exp_tareas.IdEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE ((com_comunidades.FBaja) Is Null) AND (exp_gestiones.IdUser = " + Login.getId() + ") AND (exp_gestiones.FSeguir > '" + DateTime.Now.ToString("yyyy-MM-dd") + "') AND (exp_tareas.IdEntidad = " + idEntidad + ") AND exp_gestiones.FFin is null ORDER BY exp_gestiones.FSeguir";
+                sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.IdTarea, com_comunidades.Referencia AS Ref, ctos_urendes.Usuario,exp_tareas.Descripción AS Tareas, exp_gestiones.Descripción, If(exp_gestiones.TipoContacto = 'T',exp_contactos.Nombre ,If(exp_gestiones.TipoContacto = 'G',(SELECT com_cargos.Cargo FROM com_cargos INNER JOIN (com_comuneros INNER JOIN com_cargoscom ON com_comuneros.IdComunero = com_cargoscom.IdComunero) ON com_cargos.IdCargo = com_cargoscom.IdCargo WHERE(((com_comuneros.IdEntidad) = exp_gestiones.IdEntidad)) LIMIT 1 ),ctos_entidades.Entidad)) AS `Espera de`,exp_gestiones.TipoContacto AS T, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS I, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `FLímite`, exp_gestiones.FFin, exp_tareas.IdEntidad FROM exp_contactos RIGHT JOIN (com_comunidades RIGHT JOIN(ctos_urendes INNER JOIN((exp_gestiones INNER JOIN exp_tareas ON exp_gestiones.IdTarea = exp_tareas.IdTarea) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) ON ctos_urendes.IdURD = exp_gestiones.IdUser) ON com_comunidades.IdEntidad = exp_tareas.IdEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion ON exp_contactos.IdDetEntTarea = exp_gestiones.IdEntidad WHERE ((com_comunidades.FBaja) Is Null) AND (exp_gestiones.IdUser = " + Login.getId() + ") AND (exp_gestiones.FSeguir > '" + DateTime.Now.ToString("yyyy-MM-dd") + "') AND (exp_tareas.IdEntidad = " + idEntidad + ") AND exp_gestiones.FFin is null ORDER BY exp_gestiones.FSeguir";
             }
             else
             {
-                sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.IdTarea, com_comunidades.Referencia AS Ref, ctos_urendes.Usuario,exp_tareas.Descripción AS Tareas, exp_gestiones.Descripción, ctos_entidades.Entidad AS `Espera de`,exp_gestiones.TipoContacto AS T, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS I, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `FLímite`, exp_gestiones.FFin , exp_tareas.IdEntidad FROM(com_comunidades RIGHT JOIN(ctos_urendes INNER JOIN((exp_gestiones INNER JOIN exp_tareas ON exp_gestiones.IdTarea = exp_tareas.IdTarea) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) ON ctos_urendes.IdURD = exp_gestiones.IdUser) ON com_comunidades.IdEntidad = exp_tareas.IdEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE ((com_comunidades.FBaja) Is Null) AND (exp_gestiones.IdUser = " + Login.getId() + ") AND (exp_gestiones.FSeguir > '" + DateTime.Now.ToString("yyyy-MM-dd") + "') AND exp_gestiones.FFin is null ORDER BY exp_gestiones.FSeguir";                
+                sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.IdTarea, com_comunidades.Referencia AS Ref, ctos_urendes.Usuario,exp_tareas.Descripción AS Tareas, exp_gestiones.Descripción, If(exp_gestiones.TipoContacto = 'T',exp_contactos.Nombre ,If(exp_gestiones.TipoContacto = 'G',(SELECT com_cargos.Cargo FROM com_cargos INNER JOIN (com_comuneros INNER JOIN com_cargoscom ON com_comuneros.IdComunero = com_cargoscom.IdComunero) ON com_cargos.IdCargo = com_cargoscom.IdCargo WHERE(((com_comuneros.IdEntidad) = exp_gestiones.IdEntidad)) LIMIT 1 ),ctos_entidades.Entidad)) AS `Espera de`,exp_gestiones.TipoContacto AS T, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS I, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `FLímite`, exp_gestiones.FFin , exp_tareas.IdEntidad FROM exp_contactos RIGHT JOIN (com_comunidades RIGHT JOIN(ctos_urendes INNER JOIN((exp_gestiones INNER JOIN exp_tareas ON exp_gestiones.IdTarea = exp_tareas.IdTarea) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) ON ctos_urendes.IdURD = exp_gestiones.IdUser) ON com_comunidades.IdEntidad = exp_tareas.IdEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion ON exp_contactos.IdDetEntTarea = exp_gestiones.IdEntidad WHERE ((com_comunidades.FBaja) Is Null) AND (exp_gestiones.IdUser = " + Login.getId() + ") AND (exp_gestiones.FSeguir > '" + DateTime.Now.ToString("yyyy-MM-dd") + "') AND exp_gestiones.FFin is null ORDER BY exp_gestiones.FSeguir";                
             }
             comboBoxResponsable.SelectedValue = Login.getId();
             tablaGestiones = Persistencia.SentenciasSQL.select(sqlSelect);
@@ -55,7 +57,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 dataGridViewGestiones.Columns["Usuario"].Visible = false;
                 dataGridViewGestiones.Columns["IdEntidad"].Visible = false;
                 dataGridViewGestiones.Columns["IdTarea"].Visible = false;
-                dataGridViewGestiones.Columns["Descripción"].Width = 240;
+                dataGridViewGestiones.Columns["Descripción"].Width = 220;
                 dataGridViewGestiones.Columns["Ref"].Width = 30;
                 dataGridViewGestiones.Columns["Tareas"].Width = 300;
                 dataGridViewGestiones.Columns["Tipo Gestión"].Visible = false;
@@ -114,12 +116,20 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String fechaInicio2 = "";
             String fechaMax1 = "";
             String fechaMax2 = "";
+            String fechaAgenda1 = "";
+            String fechaAgenda2 = "";
+            String fechaFin1 = "";
+            String fechaFin2 = "";
             try
             {
                 if (maskedTextBox_FIni1.Text.ToString() != "  /  /") fechaInicio1 = (Convert.ToDateTime(maskedTextBox_FIni1.Text)).ToString("yyyy-MM-dd");
                 if (maskedTextBox_FIni2.Text.ToString() != "  /  /") fechaInicio2 = (Convert.ToDateTime(maskedTextBox_FIni2.Text)).ToString("yyyy-MM-dd");
                 if (maskedTextBox_FMax1.Text.ToString() != "  /  /") fechaMax1 = (Convert.ToDateTime(maskedTextBox_FMax1.Text)).ToString("yyyy-MM-dd");
                 if (maskedTextBox_FMax2.Text.ToString() != "  /  /") fechaMax2 = (Convert.ToDateTime(maskedTextBox_FMax2.Text)).ToString("yyyy-MM-dd");
+                if (maskedTextBox_FAgenda1.Text.ToString() != "  /  /") fechaAgenda1 = (Convert.ToDateTime(maskedTextBox_FAgenda1.Text)).ToString("yyyy-MM-dd");
+                if (maskedTextBox_FAgenda2.Text.ToString() != "  /  /") fechaAgenda2 = (Convert.ToDateTime(maskedTextBox_FAgenda2.Text)).ToString("yyyy-MM-dd");
+                if (maskedTextBox_FFin1.Text.ToString() != "  /  /") fechaFin1 = (Convert.ToDateTime(maskedTextBox_FFin1.Text)).ToString("yyyy-MM-dd");
+                if (maskedTextBox_FFin2.Text.ToString() != "  /  /") fechaFin2 = (Convert.ToDateTime(maskedTextBox_FFin2.Text)).ToString("yyyy-MM-dd");
             }
             catch
             {
@@ -131,7 +141,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String responsable = comboBoxResponsable.SelectedValue.ToString();
             
 
-            sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.IdTarea, com_comunidades.Referencia AS Ref, ctos_urendes.Usuario,exp_tareas.Descripción AS Tareas, exp_gestiones.Descripción, ctos_entidades.Entidad AS `Espera de`,exp_gestiones.TipoContacto AS T, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS I, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `FLímite`, exp_gestiones.FFin , exp_tareas.IdEntidad FROM(com_comunidades RIGHT JOIN(ctos_urendes INNER JOIN((exp_gestiones INNER JOIN exp_tareas ON exp_gestiones.IdTarea = exp_tareas.IdTarea) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) ON ctos_urendes.IdURD = exp_gestiones.IdUser) ON com_comunidades.IdEntidad = exp_tareas.IdEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE ((com_comunidades.FBaja) Is Null)";
+            sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.IdTarea, com_comunidades.Referencia AS Ref, ctos_urendes.Usuario,exp_tareas.Descripción AS Tareas, exp_gestiones.Descripción, If(exp_gestiones.TipoContacto = 'T',exp_contactos.Nombre ,If(exp_gestiones.TipoContacto = 'G',(SELECT com_cargos.Cargo FROM com_cargos INNER JOIN (com_comuneros INNER JOIN com_cargoscom ON com_comuneros.IdComunero = com_cargoscom.IdComunero) ON com_cargos.IdCargo = com_cargoscom.IdCargo WHERE(((com_comuneros.IdEntidad) = exp_gestiones.IdEntidad)) LIMIT 1 ),ctos_entidades.Entidad)) AS `Espera de`,exp_gestiones.TipoContacto AS T, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS I, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `FLímite`, exp_gestiones.FFin , exp_tareas.IdEntidad FROM exp_contactos RIGHT JOIN (com_comunidades RIGHT JOIN(ctos_urendes INNER JOIN((exp_gestiones INNER JOIN exp_tareas ON exp_gestiones.IdTarea = exp_tareas.IdTarea) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) ON ctos_urendes.IdURD = exp_gestiones.IdUser) ON com_comunidades.IdEntidad = exp_tareas.IdEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion ON exp_contactos.IdDetEntTarea = exp_gestiones.IdEntidad WHERE ((com_comunidades.FBaja) Is Null)";
 
             
             if (idEntidad != null)
@@ -158,12 +168,30 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
             if (fechaMax1 != "")
             {
-                sqlSelect += " AND (exp_gestiones.FFin >= '" + fechaMax1 + "') AND (exp_gestiones.FFin Is Not Null)";
+                sqlSelect += " AND (exp_gestiones.FMax >= '" + fechaMax1 + "') AND (exp_gestiones.FMax Is Not Null)";
             }
             if (fechaMax2 != "")
             {
-                sqlSelect += " AND (exp_gestiones.FFin <= '" + fechaMax2 + "')";
-                if (fechaMax1 == "") sqlSelect += " AND (exp_gestiones.FFin Is Not Null)";
+                sqlSelect += " AND (exp_gestiones.FMax <= '" + fechaMax2 + "')";
+                if (fechaMax1 == "") sqlSelect += " AND (exp_gestiones.FMax Is Not Null)";
+            }
+            if (fechaFin1 != "")
+            {
+                sqlSelect += " AND (exp_gestiones.FFin >= '" + fechaFin1 + "') AND (exp_gestiones.FFin Is Not Null)";
+            }
+            if (fechaFin2 != "")
+            {
+                sqlSelect += " AND (exp_gestiones.FFin <= '" + fechaFin2 + "')";
+                if (fechaFin1 == "") sqlSelect += " AND (exp_gestiones.FFin Is Not Null)";
+            }
+            if (fechaAgenda1 != "")
+            {
+                sqlSelect += " AND (exp_gestiones.FSeguir >= '" + fechaAgenda1 + "') AND (exp_gestiones.FSeguir Is Not Null)";
+            }
+            if (fechaAgenda2 != "")
+            {
+                sqlSelect += " AND (exp_gestiones.FSeguir <= '" + fechaAgenda2 + "')";
+                if (fechaAgenda1 == "") sqlSelect += " AND (exp_gestiones.FSeguir Is Not Null)";
             }
             //COMBOBOX
             if (tipo != "0")
@@ -187,8 +215,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 sqlSelect += " AND (exp_gestiones.IdUser = " + responsable + ")";
             }
-
-
+            if (idElemento != null)
+            {
+                sqlSelect += " AND (exp_tareas.IdElemento = " + idElemento + ")";
+            }
 
             sqlSelect += " ORDER BY exp_gestiones.FSeguir ASC";
 
@@ -196,7 +226,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             dataGridViewGestiones.DataSource = tablaGestiones;
             labelCount.Text = "Elementos: " + tablaGestiones.Rows.Count.ToString();
             ajustarDatagrid();
-
         }
         
 
@@ -230,10 +259,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
             else
             {
-                String sql = "SELECT ctos_entidades.Entidad,ctos_entidades.IdEntidad FROM ctos_entidades INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((com_comunidades.Referencia) = " + maskedTextBoxRefComunidad.Text + "))";
+                String sql = "SELECT ctos_entidades.Entidad,ctos_entidades.IdEntidad, com_comunidades.IdComunidad FROM ctos_entidades INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((com_comunidades.Referencia) = " + maskedTextBoxRefComunidad.Text + "))";
 
                 DataTable entidad = Persistencia.SentenciasSQL.select(sql);
                 idEntidad = entidad.Rows[0][1].ToString();
+                idComunidad = entidad.Rows[0][2].ToString();
                 CargarGestiones();
                 return entidad.Rows[0][0].ToString();
             }
@@ -362,15 +392,19 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonAplazar_Click(object sender, EventArgs e)
         {
-            if (textBoxEnEsperaDe.Text != "")
+            if (maskedTextBoxAplazarDias.Text != "")
             {
-                String idGestion = dataGridViewGestiones.SelectedRows[0].Cells["Id"].Value.ToString();
-                DateTime fechaAgenda = Convert.ToDateTime(dataGridViewGestiones.SelectedRows[0].Cells["FAgenda"].Value);
-                fechaAgenda = fechaAgenda.AddDays(Int32.Parse(maskedTextBoxAplazarDias.Text));
-                String sqlUpdate = "UPDATE exp_gestiones SET FSeguir = '" + fechaAgenda.ToString("yyyy-MM-dd") + "' WHERE IdGestión = " + idGestion;
-                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                for (int i = 0; i < dataGridViewGestiones.SelectedRows.Count; i++)
+                {
+                    String idGestion = dataGridViewGestiones.SelectedRows[i].Cells["Id"].Value.ToString();
+                    DateTime fechaAgenda = Convert.ToDateTime(dataGridViewGestiones.SelectedRows[i].Cells["FAgenda"].Value);
+                    fechaAgenda = fechaAgenda.AddDays(Int32.Parse(maskedTextBoxAplazarDias.Text));
+                    String sqlUpdate = "UPDATE exp_gestiones SET FSeguir = '" + fechaAgenda.ToString("yyyy-MM-dd") + "' WHERE IdGestión = " + idGestion;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                    
+                }
+                maskedTextBoxAplazarDias.Text = "";
                 CargarGestiones();
-                textBoxEnEsperaDe.Text = "";
             }
         }
 
@@ -449,6 +483,30 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String sqlSelect = "SELECT com_comunidades.IdComunidad FROM ctos_entidades INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((ctos_entidades.IDEntidad) = " + idEntidad + "))";
             String Idcomunidad = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
             return Int32.Parse(Idcomunidad);
+        }
+
+        private void buttonBloque_Click(object sender, EventArgs e)
+        {
+
+            if (idComunidad != null)
+            {
+                ComunidadesForms.Elementos.FormElementos nueva = new ComunidadesForms.Elementos.FormElementos(this, Int32.Parse(idComunidad));
+                nueva.ControlBox = true;
+                nueva.TopMost = true;
+                nueva.WindowState = FormWindowState.Normal;
+                nueva.StartPosition = FormStartPosition.CenterScreen;
+                nueva.Show();
+            }
+            else
+            {
+                MessageBox.Show("Selecciona una comunidad para elegir su bloque");
+            }
+        }
+
+        public void recibirElemento(String idElemento, String nombre)
+        {
+            textBoxBloque.Text = nombre;
+            this.idElemento = idElemento;
         }
     }
 }

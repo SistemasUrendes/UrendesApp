@@ -50,10 +50,12 @@
             this.button_anyadir = new System.Windows.Forms.Button();
             this.dataGridView_direcciones = new System.Windows.Forms.DataGridView();
             this.button_editar_dir1 = new System.Windows.Forms.Button();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label17 = new System.Windows.Forms.Label();
-            this.button_agregar_categoria = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tabPageCategoriasNuevo = new System.Windows.Forms.TabPage();
+            this.textBoxFiltroCategoria = new System.Windows.Forms.TextBox();
+            this.dataGridViewCatAsig = new System.Windows.Forms.DataGridView();
+            this.buttonRemove = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.dataGridViewCategorias = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.button_borrar_cuenta = new System.Windows.Forms.Button();
             this.button_anyadir_cuenta = new System.Windows.Forms.Button();
@@ -87,7 +89,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_telefonos)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_direcciones)).BeginInit();
-            this.tabPage3.SuspendLayout();
+            this.tabPageCategoriasNuevo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCatAsig)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCategorias)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_bancos)).BeginInit();
             this.tabPage5.SuspendLayout();
@@ -131,8 +135,8 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPageCategoriasNuevo);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Location = new System.Drawing.Point(56, 124);
             this.tabControl1.Name = "tabControl1";
@@ -350,65 +354,92 @@
             this.button_editar_dir1.UseVisualStyleBackColor = true;
             this.button_editar_dir1.Click += new System.EventHandler(this.button_editar_dir1_Click);
             // 
-            // tabPage3
+            // tabPageCategoriasNuevo
             // 
-            this.tabPage3.Controls.Add(this.label17);
-            this.tabPage3.Controls.Add(this.button_agregar_categoria);
-            this.tabPage3.Controls.Add(this.tableLayoutPanel1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(557, 327);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Categorías";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPageCategoriasNuevo.Controls.Add(this.textBoxFiltroCategoria);
+            this.tabPageCategoriasNuevo.Controls.Add(this.dataGridViewCatAsig);
+            this.tabPageCategoriasNuevo.Controls.Add(this.buttonRemove);
+            this.tabPageCategoriasNuevo.Controls.Add(this.buttonAdd);
+            this.tabPageCategoriasNuevo.Controls.Add(this.dataGridViewCategorias);
+            this.tabPageCategoriasNuevo.Location = new System.Drawing.Point(4, 22);
+            this.tabPageCategoriasNuevo.Name = "tabPageCategoriasNuevo";
+            this.tabPageCategoriasNuevo.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageCategoriasNuevo.Size = new System.Drawing.Size(557, 327);
+            this.tabPageCategoriasNuevo.TabIndex = 5;
+            this.tabPageCategoriasNuevo.Text = "Categorías";
+            this.tabPageCategoriasNuevo.UseVisualStyleBackColor = true;
             // 
-            // label17
+            // textBoxFiltroCategoria
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(208, 31);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(135, 24);
-            this.label17.TabIndex = 0;
-            this.label17.Text = "Sin Categoría";
-            this.label17.Click += new System.EventHandler(this.label17_Click);
+            this.textBoxFiltroCategoria.Location = new System.Drawing.Point(17, 16);
+            this.textBoxFiltroCategoria.Name = "textBoxFiltroCategoria";
+            this.textBoxFiltroCategoria.Size = new System.Drawing.Size(238, 20);
+            this.textBoxFiltroCategoria.TabIndex = 28;
+            this.textBoxFiltroCategoria.TextChanged += new System.EventHandler(this.textBoxFiltroCategoria_TextChanged);
             // 
-            // button_agregar_categoria
+            // dataGridViewCatAsig
             // 
-            this.button_agregar_categoria.Location = new System.Drawing.Point(370, 141);
-            this.button_agregar_categoria.Name = "button_agregar_categoria";
-            this.button_agregar_categoria.Size = new System.Drawing.Size(81, 72);
-            this.button_agregar_categoria.TabIndex = 5;
-            this.button_agregar_categoria.Text = "AGREGAR";
-            this.button_agregar_categoria.UseVisualStyleBackColor = true;
-            this.button_agregar_categoria.Click += new System.EventHandler(this.button8_Click);
+            this.dataGridViewCatAsig.AllowUserToAddRows = false;
+            this.dataGridViewCatAsig.AllowUserToDeleteRows = false;
+            this.dataGridViewCatAsig.AllowUserToResizeRows = false;
+            this.dataGridViewCatAsig.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewCatAsig.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCatAsig.Location = new System.Drawing.Point(301, 42);
+            this.dataGridViewCatAsig.MultiSelect = false;
+            this.dataGridViewCatAsig.Name = "dataGridViewCatAsig";
+            this.dataGridViewCatAsig.ReadOnly = true;
+            this.dataGridViewCatAsig.RowHeadersVisible = false;
+            this.dataGridViewCatAsig.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewCatAsig.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewCatAsig.ShowCellErrors = false;
+            this.dataGridViewCatAsig.ShowCellToolTips = false;
+            this.dataGridViewCatAsig.ShowEditingIcon = false;
+            this.dataGridViewCatAsig.ShowRowErrors = false;
+            this.dataGridViewCatAsig.Size = new System.Drawing.Size(250, 270);
+            this.dataGridViewCatAsig.TabIndex = 27;
+            this.dataGridViewCatAsig.TabStop = false;
             // 
-            // tableLayoutPanel1
+            // buttonRemove
             // 
-            this.tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 78.28572F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.71428F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(16, 6);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 12;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(244, 318);
-            this.tableLayoutPanel1.TabIndex = 4;
-            this.tableLayoutPanel1.Visible = false;
+            this.buttonRemove.Location = new System.Drawing.Point(261, 179);
+            this.buttonRemove.Name = "buttonRemove";
+            this.buttonRemove.Size = new System.Drawing.Size(34, 21);
+            this.buttonRemove.TabIndex = 26;
+            this.buttonRemove.Text = "<<";
+            this.buttonRemove.UseVisualStyleBackColor = true;
+            this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
+            // 
+            // buttonAdd
+            // 
+            this.buttonAdd.Location = new System.Drawing.Point(261, 152);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(34, 21);
+            this.buttonAdd.TabIndex = 25;
+            this.buttonAdd.Text = ">>";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            // 
+            // dataGridViewCategorias
+            // 
+            this.dataGridViewCategorias.AllowUserToAddRows = false;
+            this.dataGridViewCategorias.AllowUserToDeleteRows = false;
+            this.dataGridViewCategorias.AllowUserToResizeRows = false;
+            this.dataGridViewCategorias.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewCategorias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCategorias.Location = new System.Drawing.Point(17, 42);
+            this.dataGridViewCategorias.MultiSelect = false;
+            this.dataGridViewCategorias.Name = "dataGridViewCategorias";
+            this.dataGridViewCategorias.ReadOnly = true;
+            this.dataGridViewCategorias.RowHeadersVisible = false;
+            this.dataGridViewCategorias.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewCategorias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewCategorias.ShowCellErrors = false;
+            this.dataGridViewCategorias.ShowCellToolTips = false;
+            this.dataGridViewCategorias.ShowEditingIcon = false;
+            this.dataGridViewCategorias.ShowRowErrors = false;
+            this.dataGridViewCategorias.Size = new System.Drawing.Size(238, 270);
+            this.dataGridViewCategorias.TabIndex = 23;
+            this.dataGridViewCategorias.TabStop = false;
             // 
             // tabPage4
             // 
@@ -720,8 +751,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_telefonos)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_direcciones)).EndInit();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tabPageCategoriasNuevo.ResumeLayout(false);
+            this.tabPageCategoriasNuevo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCatAsig)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCategorias)).EndInit();
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_bancos)).EndInit();
             this.tabPage5.ResumeLayout(false);
@@ -756,14 +789,10 @@
         private System.Windows.Forms.Label label_nombrecorto;
         private System.Windows.Forms.TextBox textBox_notas;
         private System.Windows.Forms.Button button_editar_cabecera;
-        private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.DataGridView dataGridView_bancos;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button button_editar_dir1;
-        private System.Windows.Forms.Button button_agregar_categoria;
-        public System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         public System.Windows.Forms.TabControl tabControl1;
         public System.Windows.Forms.TabPage tabPage2;
         public System.Windows.Forms.DataGridView dataGridView_direcciones;
@@ -787,5 +816,11 @@
         private System.Windows.Forms.ToolStripMenuItem copiarCuentaToolStripMenuItem;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox_ruta;
+        private System.Windows.Forms.TabPage tabPageCategoriasNuevo;
+        private System.Windows.Forms.DataGridView dataGridViewCatAsig;
+        private System.Windows.Forms.Button buttonRemove;
+        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.DataGridView dataGridViewCategorias;
+        private System.Windows.Forms.TextBox textBoxFiltroCategoria;
     }
 }

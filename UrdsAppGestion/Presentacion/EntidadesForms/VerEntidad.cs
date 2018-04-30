@@ -13,10 +13,8 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
     public partial class VerEntidad : Form
     {
         public int id_entidad_cargado = 0;
-        Label labeldescripcion;
-        Button boton_borrar;
         String ruta = "";
-
+        DataTable categorias;
         public VerEntidad(int id_entidad_cargado)
         {
             this.id_entidad_cargado = id_entidad_cargado;
@@ -42,9 +40,11 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
                 //Cargo bancos
                 cargoBanco();
                 //Cargo categoria
-                cargoCategorias();
+                //cargoCategorias();
                 //Cargo Contactos
                 cargoContactos();
+                cargarCategorias();
+                cargarCategoriasEntidad();
             }
             else
             {
@@ -210,6 +210,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
             dataGridView_bancos.Columns[5].Width = 40;
 
         }
+        /*
         public void cargoCategorias()
         {
             int positionx = 50;
@@ -252,6 +253,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
                 positionx = positionx + 30;
             }
         }
+        */
         public void cargoDirecciones()
         {
             DataTable direcciones = Persistencia.SentenciasSQL.select("SELECT * FROM ctos_detdirecent WHERE IdEntidad = " + id_entidad_cargado);
@@ -274,6 +276,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
 
             //dataGridView1.Columns[0].Width = 50;
         }
+        /*
         private void button_eliminar_categoria_Click(object sender, EventArgs e)
         {
             Button boton = (Button)sender;
@@ -283,6 +286,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
             cargoCategorias();
 
         }
+        */
         private void button8_Click(object sender, EventArgs e)
         {
             FormCategoria nueva = new FormCategoria(this, id_entidad_cargado);
@@ -504,6 +508,153 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
             {
                 MessageBox.Show("No se encuentra la carpeta");
             }
+        }
+
+        private void cargarCategorias()
+        {
+            String sqlSelect = "SELECT ctos_catentidades.Descripcion as Categoría FROM ctos_catentidades";
+            categorias = Persistencia.SentenciasSQL.select(sqlSelect);
+            dataGridViewCategorias.DataSource = categorias;
+            //ocultarAgregadas();
+        }
+
+        private void cargarCategoriasEntidad()
+        {
+            String sqlSelect = "SELECT ctos_entidades.PalabrasClave AS Categoría FROM ctos_entidades WHERE ctos_entidades.IDEntidad = " + id_entidad_cargado;
+            String palabrasClave = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+            DataTable catEntidad = new DataTable("Categorias");
+            catEntidad.Columns.Add("Categoría", typeof(String));
+
+            //catEntidad.Columns.Add(new DataColumn("Categorías", typeof(string)));
+            int i = 0;
+            while (palabrasClave.Contains(";"))
+            {
+                //SI EL DATAGRID ESTÁ VACÍO CREA LAS COLUMNAS ANTES DE AÑADIR
+                String cat = palabrasClave.Substring(0, palabrasClave.IndexOf(";"));
+                int cadena = palabrasClave.Length - palabrasClave.IndexOf(";") - 1;
+                String nuevacadena = palabrasClave.Substring(palabrasClave.IndexOf(";") + 1, cadena);
+                palabrasClave = nuevacadena;
+                DataRow row = catEntidad.NewRow();
+                row[0] = cat;
+                catEntidad.Rows.InsertAt(row, i);
+                i++;
+            }
+            if (palabrasClave.Length > 0)
+            {
+                DataRow row = catEntidad.NewRow();
+                row[0] = palabrasClave;
+                catEntidad.Rows.InsertAt(row, i);
+            }
+            dataGridViewCatAsig.DataSource = catEntidad;
+
+        }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewCategorias.SelectedCells.Count > 0)
+            {
+                if (!yaExisteCategoria(dataGridViewCategorias.SelectedCells[0].Value.ToString())) addCategoriaEntidad();
+                else
+                {
+                    MessageBox.Show("¡Categoría ya agregada!");
+                }
+            }
+        }
+        
+        private Boolean yaExisteCategoria(String categoria)
+        {
+            String sqlSelect = "SELECT ctos_entidades.PalabrasClave AS Categoría FROM ctos_entidades WHERE ctos_entidades.IDEntidad = " + id_entidad_cargado;
+            String palabrasClave = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+            if (palabrasClave.Contains(categoria)) return true;
+            return false;
+        }
+
+        private void buttonRemove_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewCatAsig.SelectedCells.Count > 0)
+            {
+                removeCategoriaEntidad();
+            }
+        }
+
+        private void addCategoriaEntidad()
+        {
+            String sqlSelect = "SELECT ctos_entidades.PalabrasClave AS Categoría FROM ctos_entidades WHERE ctos_entidades.IDEntidad = " + id_entidad_cargado ;
+            String palabrasClave = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+            if(palabrasClave.Length > 0) palabrasClave += ";" + dataGridViewCategorias.SelectedRows[0].Cells[0].Value.ToString();
+            else palabrasClave += dataGridViewCategorias.SelectedRows[0].Cells[0].Value.ToString();
+            String sqlUpdate = "UPDATE ctos_entidades SET PalabrasClave = '" + palabrasClave + "' WHERE IDEntidad = " + id_entidad_cargado;
+            Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+            cargarCategoriasEntidad();
+            cargarCategorias();
+        }
+
+        private void removeCategoriaEntidad()
+        {
+            String palabrasClaveUpdate = "";
+            String clave = dataGridViewCatAsig.SelectedRows[0].Cells[0].Value.ToString();
+            String sqlSelect = "SELECT ctos_entidades.PalabrasClave AS Categoría FROM ctos_entidades WHERE ctos_entidades.IDEntidad = " + id_entidad_cargado;
+            String palabrasClave = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+            if (palabrasClave.Length != clave.Length)
+            {
+                if (palabrasClave.IndexOf(clave) == 0)
+                {
+                    int tamaño = palabrasClave.Length - palabrasClave.IndexOf(";") - 1;
+                    palabrasClaveUpdate = palabrasClave.Substring(palabrasClave.IndexOf(";")+1, tamaño);
+                }
+                else
+                {
+                    int tamaño = palabrasClave.Length - palabrasClave.IndexOf(clave) - clave.Length - 1;
+                    
+                    if (tamaño > 0)
+                    {
+                        String palabrasClavePre = palabrasClave.Substring(0, palabrasClave.IndexOf(clave));
+                        palabrasClaveUpdate += palabrasClavePre;
+                        String palabrasClavePost = palabrasClave.Substring(palabrasClave.IndexOf(clave) + clave.Length + 1, tamaño);
+                        palabrasClaveUpdate += palabrasClavePost;
+                    }
+                    else
+                    {
+                        String palabrasClavePre = palabrasClave.Substring(0, palabrasClave.IndexOf(clave)-1);
+                        palabrasClaveUpdate += palabrasClavePre;
+                    }
+                }
+            }
+            String sqlUpdate = "UPDATE ctos_entidades SET PalabrasClave = '" + palabrasClaveUpdate + "' WHERE IDEntidad = " + id_entidad_cargado;
+            Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+            cargarCategoriasEntidad();
+            cargarCategorias();
+        }
+        
+        private void ocultarAgregadas()
+        {
+            String sqlSelect = "SELECT ctos_entidades.PalabrasClave AS Categoría FROM ctos_entidades WHERE ctos_entidades.IDEntidad = " + id_entidad_cargado;
+            String palabrasClave = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+            foreach (DataGridViewRow row in dataGridViewCategorias.Rows)
+            {
+                if (palabrasClave.Contains(row.Cells[0].Value.ToString()))
+                {
+                    dataGridViewCategorias.Rows.RemoveAt(row.Index);
+                }
+            }
+        }
+
+        private void textBoxFiltroCategoria_TextChanged(object sender, EventArgs e)
+        {
+            String filtro;
+            DataTable busqueda = categorias;
+            if (textBoxFiltroCategoria.TextLength == 1 || textBoxFiltroCategoria.TextLength == 0)
+            {
+                busqueda.DefaultView.RowFilter = string.Empty;
+                this.dataGridViewCategorias.DataSource = busqueda;
+            }
+            else if(textBoxFiltroCategoria.TextLength > 1)
+            {
+                filtro = "Categoría like '%" + textBoxFiltroCategoria.Text.ToUpper().ToString() + "%'";
+                busqueda.DefaultView.RowFilter = filtro;
+                
+            }
+            this.dataGridViewCategorias.DataSource = busqueda;
         }
     }
 }
