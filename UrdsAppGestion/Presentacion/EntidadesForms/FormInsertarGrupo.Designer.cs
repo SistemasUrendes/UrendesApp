@@ -35,10 +35,14 @@
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxComunidad = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelGrupo = new System.Windows.Forms.Label();
             this.textBoxNombre = new System.Windows.Forms.TextBox();
             this.dataGridViewContactos = new System.Windows.Forms.DataGridView();
             this.buttonGuardar = new System.Windows.Forms.Button();
+            this.textBoxfiltroTodas = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBoxGrupos = new System.Windows.Forms.ComboBox();
+            this.buttonNuevoGrupo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGrupo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContactos)).BeginInit();
             this.SuspendLayout();
@@ -49,7 +53,7 @@
             this.dataGridViewGrupo.AllowUserToDeleteRows = false;
             this.dataGridViewGrupo.AllowUserToResizeRows = false;
             this.dataGridViewGrupo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewGrupo.Location = new System.Drawing.Point(363, 43);
+            this.dataGridViewGrupo.Location = new System.Drawing.Point(363, 126);
             this.dataGridViewGrupo.MultiSelect = false;
             this.dataGridViewGrupo.Name = "dataGridViewGrupo";
             this.dataGridViewGrupo.ReadOnly = true;
@@ -67,7 +71,7 @@
             // 
             // buttonRemove
             // 
-            this.buttonRemove.Location = new System.Drawing.Point(323, 150);
+            this.buttonRemove.Location = new System.Drawing.Point(323, 233);
             this.buttonRemove.Name = "buttonRemove";
             this.buttonRemove.Size = new System.Drawing.Size(34, 21);
             this.buttonRemove.TabIndex = 20;
@@ -77,7 +81,7 @@
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(323, 123);
+            this.buttonAdd.Location = new System.Drawing.Point(323, 206);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(34, 21);
             this.buttonAdd.TabIndex = 19;
@@ -87,7 +91,7 @@
             // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(590, 286);
+            this.buttonCancelar.Location = new System.Drawing.Point(590, 369);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
             this.buttonCancelar.TabIndex = 18;
@@ -98,7 +102,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(360, 20);
+            this.label2.Location = new System.Drawing.Point(12, 24);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 17;
@@ -108,26 +112,29 @@
             // 
             this.comboBoxComunidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxComunidad.FormattingEnabled = true;
-            this.comboBoxComunidad.Location = new System.Drawing.Point(429, 16);
+            this.comboBoxComunidad.Location = new System.Drawing.Point(81, 20);
             this.comboBoxComunidad.Name = "comboBoxComunidad";
             this.comboBoxComunidad.Size = new System.Drawing.Size(236, 21);
             this.comboBoxComunidad.TabIndex = 16;
+            this.comboBoxComunidad.SelectionChangeCommitted += new System.EventHandler(this.comboBoxComunidad_SelectionChangeCommitted);
             // 
-            // label1
+            // labelGrupo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 13);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Nombre del grupo:";
+            this.labelGrupo.AutoSize = true;
+            this.labelGrupo.Location = new System.Drawing.Point(360, 62);
+            this.labelGrupo.Name = "labelGrupo";
+            this.labelGrupo.Size = new System.Drawing.Size(74, 13);
+            this.labelGrupo.TabIndex = 15;
+            this.labelGrupo.Text = "Nuevo Grupo:";
+            this.labelGrupo.Visible = false;
             // 
             // textBoxNombre
             // 
-            this.textBoxNombre.Location = new System.Drawing.Point(112, 17);
+            this.textBoxNombre.Location = new System.Drawing.Point(440, 59);
             this.textBoxNombre.Name = "textBoxNombre";
-            this.textBoxNombre.Size = new System.Drawing.Size(205, 20);
+            this.textBoxNombre.Size = new System.Drawing.Size(225, 20);
             this.textBoxNombre.TabIndex = 14;
+            this.textBoxNombre.Visible = false;
             // 
             // dataGridViewContactos
             // 
@@ -135,7 +142,7 @@
             this.dataGridViewContactos.AllowUserToDeleteRows = false;
             this.dataGridViewContactos.AllowUserToResizeRows = false;
             this.dataGridViewContactos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewContactos.Location = new System.Drawing.Point(15, 43);
+            this.dataGridViewContactos.Location = new System.Drawing.Point(15, 126);
             this.dataGridViewContactos.MultiSelect = false;
             this.dataGridViewContactos.Name = "dataGridViewContactos";
             this.dataGridViewContactos.ReadOnly = true;
@@ -153,7 +160,7 @@
             // 
             // buttonGuardar
             // 
-            this.buttonGuardar.Location = new System.Drawing.Point(509, 286);
+            this.buttonGuardar.Location = new System.Drawing.Point(509, 369);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(75, 23);
             this.buttonGuardar.TabIndex = 12;
@@ -161,18 +168,59 @@
             this.buttonGuardar.UseVisualStyleBackColor = true;
             this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
             // 
+            // textBoxfiltroTodas
+            // 
+            this.textBoxfiltroTodas.Location = new System.Drawing.Point(15, 100);
+            this.textBoxfiltroTodas.Name = "textBoxfiltroTodas";
+            this.textBoxfiltroTodas.Size = new System.Drawing.Size(302, 20);
+            this.textBoxfiltroTodas.TabIndex = 22;
+            this.textBoxfiltroTodas.TextChanged += new System.EventHandler(this.textBoxfiltroTodas_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 63);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "Grupos:";
+            // 
+            // comboBoxGrupos
+            // 
+            this.comboBoxGrupos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxGrupos.FormattingEnabled = true;
+            this.comboBoxGrupos.Location = new System.Drawing.Point(81, 59);
+            this.comboBoxGrupos.Name = "comboBoxGrupos";
+            this.comboBoxGrupos.Size = new System.Drawing.Size(236, 21);
+            this.comboBoxGrupos.TabIndex = 24;
+            this.comboBoxGrupos.SelectionChangeCommitted += new System.EventHandler(this.comboBoxGrupos_SelectionChangeCommitted);
+            // 
+            // buttonNuevoGrupo
+            // 
+            this.buttonNuevoGrupo.Location = new System.Drawing.Point(363, 19);
+            this.buttonNuevoGrupo.Name = "buttonNuevoGrupo";
+            this.buttonNuevoGrupo.Size = new System.Drawing.Size(110, 23);
+            this.buttonNuevoGrupo.TabIndex = 26;
+            this.buttonNuevoGrupo.Text = "Nuevo Grupo";
+            this.buttonNuevoGrupo.UseVisualStyleBackColor = true;
+            this.buttonNuevoGrupo.Click += new System.EventHandler(this.buttonNuevoGrupo_Click);
+            // 
             // FormInsertarGrupo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(677, 319);
+            this.ClientSize = new System.Drawing.Size(691, 410);
+            this.Controls.Add(this.buttonNuevoGrupo);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.comboBoxGrupos);
+            this.Controls.Add(this.textBoxfiltroTodas);
             this.Controls.Add(this.dataGridViewGrupo);
             this.Controls.Add(this.buttonRemove);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBoxComunidad);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelGrupo);
             this.Controls.Add(this.textBoxNombre);
             this.Controls.Add(this.dataGridViewContactos);
             this.Controls.Add(this.buttonGuardar);
@@ -196,9 +244,13 @@
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBoxComunidad;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelGrupo;
         private System.Windows.Forms.TextBox textBoxNombre;
         private System.Windows.Forms.DataGridView dataGridViewContactos;
         private System.Windows.Forms.Button buttonGuardar;
+        private System.Windows.Forms.TextBox textBoxfiltroTodas;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBoxGrupos;
+        private System.Windows.Forms.Button buttonNuevoGrupo;
     }
 }

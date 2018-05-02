@@ -126,10 +126,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
         public void cargarCabecera()
         {
             
-            String sqlSelect = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tareas.IdEntidad, exp_tareas.Notas, exp_tareas.Ruta, exp_tareas.IdTipoTarea, exp_tareas.FFin, exp_tareas.FIni, exp_tareas.Coste, exp_tareas.RefSiniestro, exp_tareas.Seguro, exp_tareas.AcuerdoJunta, exp_tareas.FechaActaAcordado, exp_tareas.ProximaJunta, com_comunidades.Referencia, ctos_entidades.Entidad, exp_tareas.Importante, exp_elementos.Nombre, exp_elementos.IdElemento FROM((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad) LEFT JOIN exp_elementos ON exp_tareas.IdElemento = exp_elementos.IdElemento WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
+            String sqlSelect = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tareas.IdEntidad, exp_tareas.Notas, exp_tareas.Ruta, exp_tareas.IdTipoTarea, exp_tareas.FFin, exp_tareas.FIni, exp_tareas.Coste, exp_tareas.RefSiniestro, exp_tareas.Seguro, exp_tareas.AcuerdoJunta, exp_tareas.FechaActaAcordado, exp_tareas.ProximaJunta, com_comunidades.Referencia, ctos_entidades.Entidad, exp_tareas.Importante, exp_elementos.Nombre, exp_elementos.IdElemento, exp_tareas.IdTareaCorto FROM((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad) LEFT JOIN exp_elementos ON exp_tareas.IdElemento = exp_elementos.IdElemento WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
             tarea = Persistencia.SentenciasSQL.select(sqlSelect);
             
             textBoxIdTarea.Text = tarea.Rows[0][0].ToString();
+            textBoxIdTareaNuevo.Text = tarea.Rows[0][19].ToString();
             textBoxDescripcion.Text = tarea.Rows[0][1].ToString();
             idEntidad = tarea.Rows[0][2].ToString();
             textBoxNotas.Text = tarea.Rows[0][3].ToString();
@@ -357,6 +358,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
                 addTarea();
                 textBoxIdTarea.Text = idTarea;
+                textBoxIdTareaNuevo.Text = idTareaNuevo(idTarea);
                 bloquearEdicion();
                 if (form_anterior != null) form_anterior.CargarTareas();
 
@@ -383,6 +385,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
                     addTarea();
                     textBoxIdTarea.Text = idTarea;
+                    textBoxIdTareaNuevo.Text = idTareaNuevo(idTarea);
                     comboBoxEstadoGestion.SelectedIndex = 2;
                     bloquearEdicion();
                     if (form_anterior != null) form_anterior.CargarTareas();
@@ -561,6 +564,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
                 addTarea();
                 textBoxIdTarea.Text = idTarea;
+                textBoxIdTareaNuevo.Text = idTareaNuevo(idTarea);
                 if (form_anterior != null) form_anterior.CargarTareas();
 
                 String tarea = idTarea + " " + textBoxDescripcion.Text;
@@ -606,6 +610,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                         if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
                         addTarea();
                         textBoxIdTarea.Text = idTarea;
+                        textBoxIdTareaNuevo.Text = idTareaNuevo(idTarea);
                         if (form_anterior != null) form_anterior.CargarTareas();
 
                         String tarea = idTarea + " " + textBoxDescripcion.Text;
@@ -859,7 +864,15 @@ namespace UrdsAppGestión.Presentacion.Tareas
         public void recibirEntidad(String id_entidad)
         {
             idEntidad = id_entidad;
-            String nombre = (Persistencia.SentenciasSQL.select("SELECT Entidad FROM ctos_entidades WHERE IdEntidad = " + id_entidad)).Rows[0][0].ToString();
+            String sqlSelect = "SELECT ctos_entidades.Entidad, com_comunidades.Referencia , com_comunidades.idComunidad FROM ctos_entidades LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((ctos_entidades.IDEntidad) = " + id_entidad + "))";
+            DataTable entidad = Persistencia.SentenciasSQL.select(sqlSelect);
+            String nombre = entidad.Rows[0][0].ToString();
+            if(entidad.Rows[0][1].ToString() != "")
+            {
+                maskedTextBoxReferencia.Text = entidad.Rows[0][1].ToString();
+                idComunidad = Int32.Parse(entidad.Rows[0][2].ToString());
+            }
+
             textBoxEntidad.Text = nombre;
             textBoxEntidad.ForeColor = Color.Black;
         }
@@ -1261,15 +1274,31 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 String idTarea = textBoxTareaNueva.Text.ToString();
                 if (existeTarea(idTarea))
                 {
-                    Tareas.FormVerTarea nueva;
-                    if (form_anterior != null) nueva = new FormVerTarea(form_anterior, idTarea);
-                    else nueva = new FormVerTarea(idTarea);
-                    nueva.ControlBox = true;
-                    nueva.TopMost = true;
-                    nueva.WindowState = FormWindowState.Normal;
-                    nueva.StartPosition = FormStartPosition.CenterScreen;
-                    nueva.Show();
-                    this.Close();
+                    if (idTarea.Contains("/"))
+                    {
+                        Tareas.FormVerTarea nueva;
+                        if (form_anterior != null) nueva = new FormVerTarea(form_anterior, idTareaViejo(idTarea));
+                        else nueva = new FormVerTarea(idTareaViejo(idTarea));
+                        nueva.ControlBox = true;
+                        nueva.TopMost = true;
+                        nueva.WindowState = FormWindowState.Normal;
+                        nueva.StartPosition = FormStartPosition.CenterScreen;
+                        nueva.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+
+                        Tareas.FormVerTarea nueva;
+                        if (form_anterior != null) nueva = new FormVerTarea(form_anterior, idTarea);
+                        else nueva = new FormVerTarea(idTarea);
+                        nueva.ControlBox = true;
+                        nueva.TopMost = true;
+                        nueva.WindowState = FormWindowState.Normal;
+                        nueva.StartPosition = FormStartPosition.CenterScreen;
+                        nueva.Show();
+                        this.Close();
+                    }
                 }
                 else
                 {
@@ -1280,7 +1309,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private Boolean existeTarea(String idTarea)
         {
-            String sqlSelect = "SELECT exp_tareas.IdTarea FROM exp_tareas WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
+            String sqlSelect = "SELECT exp_tareas.IdTarea FROM exp_tareas WHERE(((exp_tareas.IdTarea) = " + idTarea + ") OR (exp_tareas.IdTareaCorto) = '" + idTarea + "')";
             DataTable tarea = Persistencia.SentenciasSQL.select(sqlSelect);
             if (tarea.Rows.Count == 0)
                 return false;
@@ -1577,5 +1606,18 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
             
         }
+
+        private String idTareaViejo(String idTareaNuevo)
+        {
+            String sqlSelect = "SELECT exp_tareas.IdTarea FROM exp_tareas WHERE exp_tareas.IdTareaCorto = '" + idTareaNuevo + "'";
+            return Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString(); ;
+        }
+
+        private String idTareaNuevo(String idTareaViejo)
+        {
+            String sqlSelect = "SELECT exp_tareas.IdTareaCorto FROM exp_tareas WHERE exp_tareas.IdTarea = '" + idTareaViejo + "'";
+            return Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString(); ;
+        }
+        
     }
 }
