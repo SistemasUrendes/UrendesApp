@@ -66,13 +66,22 @@
             this.buttonAplazar = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.labelCount = new System.Windows.Forms.Label();
+            this.buttonBloque = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBoxBloque = new System.Windows.Forms.TextBox();
+            this.maskedTextBox_FAgenda2 = new System.Windows.Forms.MaskedTextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.maskedTextBox_FAgenda1 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox_FFin2 = new System.Windows.Forms.MaskedTextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.maskedTextBox_FFin1 = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGestiones)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonImprimir
             // 
-            this.buttonImprimir.Location = new System.Drawing.Point(1059, 72);
+            this.buttonImprimir.Location = new System.Drawing.Point(1056, 70);
             this.buttonImprimir.Name = "buttonImprimir";
             this.buttonImprimir.Size = new System.Drawing.Size(84, 23);
             this.buttonImprimir.TabIndex = 72;
@@ -83,7 +92,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(853, 77);
+            this.label11.Location = new System.Drawing.Point(850, 75);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(72, 13);
             this.label11.TabIndex = 70;
@@ -91,7 +100,7 @@
             // 
             // maskedTextBox_FIni2
             // 
-            this.maskedTextBox_FIni2.Location = new System.Drawing.Point(564, 73);
+            this.maskedTextBox_FIni2.Location = new System.Drawing.Point(572, 42);
             this.maskedTextBox_FIni2.Mask = "00/00/0000";
             this.maskedTextBox_FIni2.Name = "maskedTextBox_FIni2";
             this.maskedTextBox_FIni2.Size = new System.Drawing.Size(71, 20);
@@ -101,7 +110,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(434, 77);
+            this.label5.Location = new System.Drawing.Point(442, 46);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 13);
             this.label5.TabIndex = 68;
@@ -109,7 +118,7 @@
             // 
             // maskedTextBox_FIni1
             // 
-            this.maskedTextBox_FIni1.Location = new System.Drawing.Point(487, 73);
+            this.maskedTextBox_FIni1.Location = new System.Drawing.Point(495, 42);
             this.maskedTextBox_FIni1.Mask = "00/00/0000";
             this.maskedTextBox_FIni1.Name = "maskedTextBox_FIni1";
             this.maskedTextBox_FIni1.Size = new System.Drawing.Size(71, 20);
@@ -118,7 +127,7 @@
             // 
             // maskedTextBox_FMax2
             // 
-            this.maskedTextBox_FMax2.Location = new System.Drawing.Point(768, 73);
+            this.maskedTextBox_FMax2.Location = new System.Drawing.Point(776, 42);
             this.maskedTextBox_FMax2.Mask = "00/00/0000";
             this.maskedTextBox_FMax2.Name = "maskedTextBox_FMax2";
             this.maskedTextBox_FMax2.Size = new System.Drawing.Size(71, 20);
@@ -128,7 +137,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(641, 77);
+            this.label10.Location = new System.Drawing.Point(649, 46);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(49, 13);
             this.label10.TabIndex = 67;
@@ -136,7 +145,7 @@
             // 
             // maskedTextBox_FMax1
             // 
-            this.maskedTextBox_FMax1.Location = new System.Drawing.Point(690, 73);
+            this.maskedTextBox_FMax1.Location = new System.Drawing.Point(698, 42);
             this.maskedTextBox_FMax1.Mask = "00/00/0000";
             this.maskedTextBox_FMax1.Name = "maskedTextBox_FMax1";
             this.maskedTextBox_FMax1.Size = new System.Drawing.Size(72, 20);
@@ -147,7 +156,7 @@
             // 
             this.checkBoxImportante.AutoSize = true;
             this.checkBoxImportante.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxImportante.Location = new System.Drawing.Point(437, 47);
+            this.checkBoxImportante.Location = new System.Drawing.Point(445, 14);
             this.checkBoxImportante.Name = "checkBoxImportante";
             this.checkBoxImportante.Size = new System.Drawing.Size(79, 17);
             this.checkBoxImportante.TabIndex = 62;
@@ -157,7 +166,7 @@
             // 
             // buttonReset
             // 
-            this.buttonReset.Location = new System.Drawing.Point(1059, 43);
+            this.buttonReset.Location = new System.Drawing.Point(1056, 41);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Size = new System.Drawing.Size(84, 23);
             this.buttonReset.TabIndex = 61;
@@ -167,7 +176,7 @@
             // 
             // maskedTextBoxRefComunidad
             // 
-            this.maskedTextBoxRefComunidad.Location = new System.Drawing.Point(503, 16);
+            this.maskedTextBoxRefComunidad.Location = new System.Drawing.Point(79, 12);
             this.maskedTextBoxRefComunidad.Mask = "999";
             this.maskedTextBoxRefComunidad.Name = "maskedTextBoxRefComunidad";
             this.maskedTextBoxRefComunidad.Size = new System.Drawing.Size(31, 20);
@@ -178,7 +187,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(434, 20);
+            this.label6.Location = new System.Drawing.Point(10, 16);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(63, 13);
             this.label6.TabIndex = 59;
@@ -186,7 +195,7 @@
             // 
             // buttonEditarGestion
             // 
-            this.buttonEditarGestion.Location = new System.Drawing.Point(9, 72);
+            this.buttonEditarGestion.Location = new System.Drawing.Point(10, 70);
             this.buttonEditarGestion.Name = "buttonEditarGestion";
             this.buttonEditarGestion.Size = new System.Drawing.Size(75, 23);
             this.buttonEditarGestion.TabIndex = 58;
@@ -196,9 +205,9 @@
             // 
             // button_Filtrar
             // 
-            this.button_Filtrar.Location = new System.Drawing.Point(1059, 14);
+            this.button_Filtrar.Location = new System.Drawing.Point(1056, 12);
             this.button_Filtrar.Name = "button_Filtrar";
-            this.button_Filtrar.Size = new System.Drawing.Size(84, 25);
+            this.button_Filtrar.Size = new System.Drawing.Size(84, 21);
             this.button_Filtrar.TabIndex = 57;
             this.button_Filtrar.Text = "Filtrar";
             this.button_Filtrar.UseVisualStyleBackColor = true;
@@ -207,7 +216,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(894, 20);
+            this.label3.Location = new System.Drawing.Point(891, 16);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 13);
             this.label3.TabIndex = 53;
@@ -216,7 +225,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(883, 48);
+            this.label2.Location = new System.Drawing.Point(880, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 51;
@@ -225,7 +234,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(540, 20);
+            this.label1.Location = new System.Drawing.Point(116, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 13);
             this.label1.TabIndex = 50;
@@ -235,14 +244,14 @@
             // 
             this.comboBox_Estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Estado.FormattingEnabled = true;
-            this.comboBox_Estado.Location = new System.Drawing.Point(931, 44);
+            this.comboBox_Estado.Location = new System.Drawing.Point(928, 42);
             this.comboBox_Estado.Name = "comboBox_Estado";
             this.comboBox_Estado.Size = new System.Drawing.Size(101, 21);
             this.comboBox_Estado.TabIndex = 56;
             // 
             // textBox_Entidad
             // 
-            this.textBox_Entidad.Location = new System.Drawing.Point(586, 16);
+            this.textBox_Entidad.Location = new System.Drawing.Point(162, 12);
             this.textBox_Entidad.Name = "textBox_Entidad";
             this.textBox_Entidad.Size = new System.Drawing.Size(253, 20);
             this.textBox_Entidad.TabIndex = 49;
@@ -251,7 +260,7 @@
             // 
             this.comboBox_Tipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Tipo.FormattingEnabled = true;
-            this.comboBox_Tipo.Location = new System.Drawing.Point(931, 16);
+            this.comboBox_Tipo.Location = new System.Drawing.Point(928, 12);
             this.comboBox_Tipo.Name = "comboBox_Tipo";
             this.comboBox_Tipo.Size = new System.Drawing.Size(101, 21);
             this.comboBox_Tipo.TabIndex = 52;
@@ -263,12 +272,12 @@
             this.dataGridViewGestiones.AllowUserToOrderColumns = true;
             this.dataGridViewGestiones.AllowUserToResizeRows = false;
             this.dataGridViewGestiones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewGestiones.Location = new System.Drawing.Point(9, 107);
+            this.dataGridViewGestiones.Location = new System.Drawing.Point(6, 100);
             this.dataGridViewGestiones.Name = "dataGridViewGestiones";
             this.dataGridViewGestiones.ReadOnly = true;
             this.dataGridViewGestiones.RowHeadersVisible = false;
             this.dataGridViewGestiones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewGestiones.Size = new System.Drawing.Size(1134, 546);
+            this.dataGridViewGestiones.Size = new System.Drawing.Size(1134, 550);
             this.dataGridViewGestiones.TabIndex = 46;
             this.dataGridViewGestiones.TabStop = false;
             this.dataGridViewGestiones.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewGestiones_CellDoubleClick);
@@ -276,7 +285,7 @@
             // 
             // textBoxEnEsperaDe
             // 
-            this.textBoxEnEsperaDe.Location = new System.Drawing.Point(586, 44);
+            this.textBoxEnEsperaDe.Location = new System.Drawing.Point(594, 12);
             this.textBoxEnEsperaDe.Name = "textBoxEnEsperaDe";
             this.textBoxEnEsperaDe.ReadOnly = true;
             this.textBoxEnEsperaDe.Size = new System.Drawing.Size(253, 20);
@@ -287,7 +296,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(528, 47);
+            this.label4.Location = new System.Drawing.Point(536, 16);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 75;
@@ -353,14 +362,14 @@
             // 
             this.comboBoxResponsable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxResponsable.FormattingEnabled = true;
-            this.comboBoxResponsable.Location = new System.Drawing.Point(931, 73);
+            this.comboBoxResponsable.Location = new System.Drawing.Point(928, 71);
             this.comboBoxResponsable.Name = "comboBoxResponsable";
             this.comboBoxResponsable.Size = new System.Drawing.Size(101, 21);
             this.comboBoxResponsable.TabIndex = 76;
             // 
             // buttonRuta
             // 
-            this.buttonRuta.Location = new System.Drawing.Point(91, 72);
+            this.buttonRuta.Location = new System.Drawing.Point(92, 70);
             this.buttonRuta.Name = "buttonRuta";
             this.buttonRuta.Size = new System.Drawing.Size(75, 23);
             this.buttonRuta.TabIndex = 77;
@@ -370,7 +379,7 @@
             // 
             // maskedTextBoxAplazarDias
             // 
-            this.maskedTextBoxAplazarDias.Location = new System.Drawing.Point(222, 74);
+            this.maskedTextBoxAplazarDias.Location = new System.Drawing.Point(223, 71);
             this.maskedTextBoxAplazarDias.Mask = "999";
             this.maskedTextBoxAplazarDias.Name = "maskedTextBoxAplazarDias";
             this.maskedTextBoxAplazarDias.Size = new System.Drawing.Size(23, 20);
@@ -379,7 +388,7 @@
             // 
             // buttonAplazar
             // 
-            this.buttonAplazar.Location = new System.Drawing.Point(251, 73);
+            this.buttonAplazar.Location = new System.Drawing.Point(252, 70);
             this.buttonAplazar.Name = "buttonAplazar";
             this.buttonAplazar.Size = new System.Drawing.Size(75, 23);
             this.buttonAplazar.TabIndex = 79;
@@ -390,7 +399,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(171, 78);
+            this.label7.Location = new System.Drawing.Point(172, 75);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(48, 13);
             this.label7.TabIndex = 80;
@@ -399,17 +408,107 @@
             // labelCount
             // 
             this.labelCount.AutoSize = true;
-            this.labelCount.Location = new System.Drawing.Point(6, 656);
+            this.labelCount.Location = new System.Drawing.Point(7, 657);
             this.labelCount.Name = "labelCount";
             this.labelCount.Size = new System.Drawing.Size(0, 13);
             this.labelCount.TabIndex = 81;
+            // 
+            // buttonBloque
+            // 
+            this.buttonBloque.Location = new System.Drawing.Point(352, 41);
+            this.buttonBloque.Name = "buttonBloque";
+            this.buttonBloque.Size = new System.Drawing.Size(63, 23);
+            this.buttonBloque.TabIndex = 84;
+            this.buttonBloque.Text = "Bloque";
+            this.buttonBloque.UseVisualStyleBackColor = true;
+            this.buttonBloque.Click += new System.EventHandler(this.buttonBloque_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(30, 46);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(43, 13);
+            this.label8.TabIndex = 83;
+            this.label8.Text = "Bloque:";
+            // 
+            // textBoxBloque
+            // 
+            this.textBoxBloque.Location = new System.Drawing.Point(79, 42);
+            this.textBoxBloque.Name = "textBoxBloque";
+            this.textBoxBloque.ReadOnly = true;
+            this.textBoxBloque.Size = new System.Drawing.Size(261, 20);
+            this.textBoxBloque.TabIndex = 82;
+            // 
+            // maskedTextBox_FAgenda2
+            // 
+            this.maskedTextBox_FAgenda2.Location = new System.Drawing.Point(572, 71);
+            this.maskedTextBox_FAgenda2.Mask = "00/00/0000";
+            this.maskedTextBox_FAgenda2.Name = "maskedTextBox_FAgenda2";
+            this.maskedTextBox_FAgenda2.Size = new System.Drawing.Size(71, 20);
+            this.maskedTextBox_FAgenda2.TabIndex = 86;
+            this.maskedTextBox_FAgenda2.ValidatingType = typeof(System.DateTime);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(430, 75);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(59, 13);
+            this.label9.TabIndex = 90;
+            this.label9.Text = "F. Agenda:";
+            // 
+            // maskedTextBox_FAgenda1
+            // 
+            this.maskedTextBox_FAgenda1.Location = new System.Drawing.Point(495, 71);
+            this.maskedTextBox_FAgenda1.Mask = "00/00/0000";
+            this.maskedTextBox_FAgenda1.Name = "maskedTextBox_FAgenda1";
+            this.maskedTextBox_FAgenda1.Size = new System.Drawing.Size(71, 20);
+            this.maskedTextBox_FAgenda1.TabIndex = 85;
+            this.maskedTextBox_FAgenda1.ValidatingType = typeof(System.DateTime);
+            // 
+            // maskedTextBox_FFin2
+            // 
+            this.maskedTextBox_FFin2.Location = new System.Drawing.Point(776, 71);
+            this.maskedTextBox_FFin2.Mask = "00/00/0000";
+            this.maskedTextBox_FFin2.Name = "maskedTextBox_FFin2";
+            this.maskedTextBox_FFin2.Size = new System.Drawing.Size(71, 20);
+            this.maskedTextBox_FFin2.TabIndex = 88;
+            this.maskedTextBox_FFin2.ValidatingType = typeof(System.DateTime);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(649, 75);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(36, 13);
+            this.label12.TabIndex = 89;
+            this.label12.Text = "F. Fin:";
+            // 
+            // maskedTextBox_FFin1
+            // 
+            this.maskedTextBox_FFin1.Location = new System.Drawing.Point(698, 71);
+            this.maskedTextBox_FFin1.Mask = "00/00/0000";
+            this.maskedTextBox_FFin1.Name = "maskedTextBox_FFin1";
+            this.maskedTextBox_FFin1.Size = new System.Drawing.Size(72, 20);
+            this.maskedTextBox_FFin1.TabIndex = 87;
+            this.maskedTextBox_FFin1.ValidatingType = typeof(System.DateTime);
             // 
             // FormGestionesPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1152, 677);
+            this.ClientSize = new System.Drawing.Size(1152, 687);
             this.ControlBox = false;
+            this.Controls.Add(this.maskedTextBox_FAgenda2);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.maskedTextBox_FAgenda1);
+            this.Controls.Add(this.maskedTextBox_FFin2);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.maskedTextBox_FFin1);
+            this.Controls.Add(this.buttonBloque);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.textBoxBloque);
             this.Controls.Add(this.labelCount);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.buttonAplazar);
@@ -490,5 +589,14 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSeguimiento;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCerrar;
         private System.Windows.Forms.Label labelCount;
+        private System.Windows.Forms.Button buttonBloque;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBoxBloque;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox_FAgenda2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox_FAgenda1;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox_FFin2;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox_FFin1;
     }
 }

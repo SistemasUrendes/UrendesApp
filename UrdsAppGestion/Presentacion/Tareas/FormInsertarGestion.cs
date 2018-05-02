@@ -80,6 +80,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void FormInsertarGestion_Load(object sender, EventArgs e)
         {
+            
             rellenarComboBox();
             maskedTextBoxFInicio.Text = DateTime.Now.ToShortDateString();
             maskedTextBoxFSeguir.Text = DateTime.Now.ToShortDateString();
@@ -101,6 +102,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 habilitarEdicion();
                 cargarGestion();
             }
+            monthCalendar1.MaxSelectionCount = 1;
         }
 
         public void rellenarComboBox()
@@ -114,6 +116,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
             comboBoxTipoGestion.DataSource = Persistencia.SentenciasSQL.select(SqlComboTipo);
             comboBoxTipoGestion.DisplayMember = "Descripcion";
             comboBoxTipoGestion.ValueMember = "IdTipoGestion";
+
+            comboBoxEspera.SelectedIndex = 0;
         }
 
         private void buttonGuardar_Click(object sender, EventArgs e)
@@ -164,13 +168,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
             buttonEspera.Visible = false;
             buttonEditar.Visible = true;
             textBoxEspera.ReadOnly = true;
-            buttonAgenda5.Visible = false;
-            buttonAgenda15.Visible = false;
-            buttonAgenda30.Visible = false;
-            buttonLimite5.Visible = false;
-            buttonLimite15.Visible = false;
-            buttonLimite30.Visible = false;
-            buttonFinNow.Visible = false;
+            monthCalendar1.Visible = false;
+            buttonFAgenda.Visible = false;
+            buttonFIni.Visible = false;
+            buttonFFin.Visible = false;
+            buttonFLimite.Visible = false;
         }
 
         private void habilitarEdicion()
@@ -192,13 +194,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
             buttonEspera.Visible = true;
             buttonEditar.Visible = false;
             textBoxEspera.ReadOnly = false;
-            buttonAgenda5.Visible = true;
-            buttonAgenda15.Visible = true;
-            buttonAgenda30.Visible = true;
-            buttonLimite5.Visible = true;
-            buttonLimite15.Visible = true;
-            buttonLimite30.Visible = true;
-            buttonFinNow.Visible = true;
+            monthCalendar1.Visible = true;
+            buttonFAgenda.Visible = true;
+            buttonFIni.Visible = true;
+            buttonFFin.Visible = true;
+            buttonFLimite.Visible = true;
+
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)
@@ -554,6 +555,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBoxEspera.Text = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
         }
 
+        public void recibirOrgano(String idEntidad)
+        {
+            this.idEntidad = idEntidad;
+            esperade = "G";
+            String sqlSelect = "SELECT com_cargos.Cargo FROM com_cargos INNER JOIN (com_comuneros INNER JOIN com_cargoscom ON com_comuneros.IdComunero = com_cargoscom.IdComunero) ON com_cargos.IdCargo = com_cargoscom.IdCargo WHERE(((com_comuneros.IdEntidad) = " + idEntidad + "))";
+            textBoxEspera.Text = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+        }
+
         private void buttonEspera_Click(object sender, EventArgs e)
         {
             //ENTIDAD
@@ -604,7 +613,19 @@ namespace UrdsAppGestión.Presentacion.Tareas
             //ORGANO GOBIERNO
             else if (comboBoxEspera.SelectedIndex == 3)
             {
-                MessageBox.Show("Por implementar!");
+                if (idComunidad == 0)
+                {
+                    MessageBox.Show("Solo hay Organos de Gobierno en una comunidad!");
+                }
+                else
+                {
+                    ComunidadesForms.CargosForms.FormCargos nueva = new ComunidadesForms.CargosForms.FormCargos(this,idComunidad.ToString());
+                    nueva.ControlBox = true;
+                    nueva.TopMost = true;
+                    nueva.WindowState = FormWindowState.Normal;
+                    nueva.StartPosition = FormStartPosition.CenterScreen;
+                    nueva.Show();
+                }
             }
             //CONTACTOS
             else if (comboBoxEspera.SelectedIndex == 4)
@@ -622,6 +643,26 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 nueva.StartPosition = FormStartPosition.CenterScreen;
                 nueva.Show();
             }
+        }
+
+        private void buttonFIni_Click(object sender, EventArgs e)
+        {
+            maskedTextBoxFInicio.Text = monthCalendar1.SelectionRange.Start.ToShortDateString();
+        }
+
+        private void buttonFAgenda_Click(object sender, EventArgs e)
+        {
+            maskedTextBoxFSeguir.Text = monthCalendar1.SelectionRange.Start.ToShortDateString();
+        }
+
+        private void buttonFLimite_Click(object sender, EventArgs e)
+        {
+            maskedTextBoxFMax.Text = monthCalendar1.SelectionRange.Start.ToShortDateString();
+        }
+
+        private void buttonFFin_Click(object sender, EventArgs e)
+        {
+            maskedTextBoxFFin.Text = monthCalendar1.SelectionRange.Start.ToShortDateString();
         }
     }
 }

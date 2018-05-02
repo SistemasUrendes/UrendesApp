@@ -104,6 +104,8 @@
             this.buttonBloque = new System.Windows.Forms.Button();
             this.textBoxElemento = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.buttonDuplicarTarea = new System.Windows.Forms.Button();
+            this.textBoxIdTareaNuevo = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGestiones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSeguimientos)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -130,9 +132,9 @@
             // 
             // textBoxDescripcion
             // 
-            this.textBoxDescripcion.Location = new System.Drawing.Point(135, 49);
+            this.textBoxDescripcion.Location = new System.Drawing.Point(194, 49);
             this.textBoxDescripcion.Name = "textBoxDescripcion";
-            this.textBoxDescripcion.Size = new System.Drawing.Size(429, 20);
+            this.textBoxDescripcion.Size = new System.Drawing.Size(370, 20);
             this.textBoxDescripcion.TabIndex = 2;
             // 
             // textBoxNotas
@@ -844,11 +846,32 @@
             this.label7.TabIndex = 45;
             this.label7.Text = "Elemento:";
             // 
+            // buttonDuplicarTarea
+            // 
+            this.buttonDuplicarTarea.Location = new System.Drawing.Point(231, 12);
+            this.buttonDuplicarTarea.Name = "buttonDuplicarTarea";
+            this.buttonDuplicarTarea.Size = new System.Drawing.Size(90, 23);
+            this.buttonDuplicarTarea.TabIndex = 46;
+            this.buttonDuplicarTarea.Text = "Duplicar Tarea";
+            this.buttonDuplicarTarea.UseVisualStyleBackColor = true;
+            this.buttonDuplicarTarea.Click += new System.EventHandler(this.buttonDuplicarTarea_Click);
+            // 
+            // textBoxIdTareaNuevo
+            // 
+            this.textBoxIdTareaNuevo.Location = new System.Drawing.Point(135, 49);
+            this.textBoxIdTareaNuevo.Name = "textBoxIdTareaNuevo";
+            this.textBoxIdTareaNuevo.ReadOnly = true;
+            this.textBoxIdTareaNuevo.Size = new System.Drawing.Size(53, 20);
+            this.textBoxIdTareaNuevo.TabIndex = 47;
+            this.textBoxIdTareaNuevo.TabStop = false;
+            // 
             // FormVerTarea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1239, 652);
+            this.Controls.Add(this.textBoxIdTareaNuevo);
+            this.Controls.Add(this.buttonDuplicarTarea);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBoxElemento);
             this.Controls.Add(this.buttonBloque);
@@ -992,5 +1015,7 @@
         private System.Windows.Forms.Button buttonBloque;
         private System.Windows.Forms.TextBox textBoxElemento;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button buttonDuplicarTarea;
+        private System.Windows.Forms.TextBox textBoxIdTareaNuevo;
     }
 }

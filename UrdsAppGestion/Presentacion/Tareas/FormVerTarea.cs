@@ -28,7 +28,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private int idComunidad;
         private String columnaContacto;
         private String idElemento;
-
+        private Boolean duplicar;
+        private String idTipoTareaDupli;
+        private String idTareaDupli;
+        private bool contactosDupli;
+        private bool expedientesDupli;
 
         public FormVerTarea(FormTareasPrincipal form_anterior, String idTarea)
         {
@@ -36,6 +40,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.idTarea = idTarea;
             this.form_anterior = form_anterior;
             idComunidad = 0;
+            duplicar = false;
         }
 
         public FormVerTarea(String idTarea)
@@ -43,6 +48,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             InitializeComponent();
             this.idTarea = idTarea;
             idComunidad = 0;
+            duplicar = false;
         }
 
         public FormVerTarea(FormTareasPrincipal form_anterior)
@@ -50,12 +56,52 @@ namespace UrdsAppGestión.Presentacion.Tareas
             InitializeComponent();
             this.form_anterior = form_anterior;
             idComunidad = 0;
+            duplicar = false;
         }
-
+        //DUPLICAR TAREA
+        public FormVerTarea(FormTareasPrincipal form_anterior, String idTipoTarea,String fIni, String descripcion, String coste, String seguro, String acuerdoJunta, String fechaActaAcordado, String proximaJunta, String refSiniestro, String fFin, String ruta,String notas, String importante,String nombreElemento,String idElemento,String idEntidad, String nombreComunidad, int idComunidad, String Referencia, String idTarea,Boolean contactos, Boolean expedientes)
+        {
+            InitializeComponent();
+            this.form_anterior = form_anterior;
+            idTipoTareaDupli = idTipoTarea;
+            textBoxDescripcion.Text = descripcion;
+            textBoxNotas.Text = notas;
+            this.ruta = ruta;
+            textBoxRuta.Text = ruta;
+            comboBoxTipo.SelectedValue = idTipoTarea;
+            maskedTextBoxFFin.Text = fFin;
+            fechaFin = fFin;
+            maskedTextBoxFIni.Text = fIni;
+            fInicio = fIni;
+            textBoxCoste.Text = coste;
+            textBoxSiniestro.Text = refSiniestro;
+            if ( seguro == "-1") checkBoxSeguro.Checked = true;
+            if ( acuerdoJunta == "-1") checkBoxAcuerdoJunta.Checked = true;
+            maskedTextBoxFechaActa.Text = fechaActaAcordado;
+            if ( proximaJunta == "-1") checkBoxProxJunta.Checked = true;
+            if ( importante == "-1") checkBoxImportante.Checked = true;
+            textBoxElemento.Text = nombreElemento;
+            this.idElemento = idElemento;
+            this.idEntidad = idEntidad;
+            textBoxEntidad.Text = nombreComunidad;
+            this.idComunidad = idComunidad;
+            maskedTextBoxReferencia.Text = Referencia;
+            duplicar = true;
+            this.idTareaDupli = idTarea;
+            this.contactosDupli = contactos;
+            this.expedientesDupli = expedientes;
+        }
         private void FormVerTarea_Load(object sender, EventArgs e)
         {
             rellenarComboBox();
             //VER TAREA
+            if (duplicar)
+            {
+                comboBoxTipo.SelectedValue = idTipoTareaDupli;
+                addTarea();
+                duplicarTarea();
+                form_anterior.CargarTareas();
+            }
             if (idTarea != null)
             {
                 cargarCabecera();
@@ -74,17 +120,17 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 textBoxRuta.Cursor = Cursors.Hand;
             }
+            if (duplicar) habilitarEdicion();
         }
 
         public void cargarCabecera()
         {
-
-            //String sqlSelect = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tareas.IdEntidad, exp_tareas.Notas, exp_tareas.Ruta, exp_tareas.IdTipoTarea, exp_tareas.FFin, exp_tareas.FIni, exp_tareas.Coste, exp_tareas.RefSiniestro, exp_tareas.Seguro, exp_tareas.AcuerdoJunta, exp_tareas.FechaActaAcordado, exp_tareas.ProximaJunta , com_comunidades.Referencia , ctos_entidades.Entidad, exp_tareas.Importante, exp_tareas.IdElemento FROM(exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
-
-            String sqlSelect = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tareas.IdEntidad, exp_tareas.Notas, exp_tareas.Ruta, exp_tareas.IdTipoTarea, exp_tareas.FFin, exp_tareas.FIni, exp_tareas.Coste, exp_tareas.RefSiniestro, exp_tareas.Seguro, exp_tareas.AcuerdoJunta, exp_tareas.FechaActaAcordado, exp_tareas.ProximaJunta, com_comunidades.Referencia, ctos_entidades.Entidad, exp_tareas.Importante, exp_elementos.Nombre FROM((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad) LEFT JOIN exp_elementos ON exp_tareas.IdElemento = exp_elementos.IdElemento WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
+            
+            String sqlSelect = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tareas.IdEntidad, exp_tareas.Notas, exp_tareas.Ruta, exp_tareas.IdTipoTarea, exp_tareas.FFin, exp_tareas.FIni, exp_tareas.Coste, exp_tareas.RefSiniestro, exp_tareas.Seguro, exp_tareas.AcuerdoJunta, exp_tareas.FechaActaAcordado, exp_tareas.ProximaJunta, com_comunidades.Referencia, ctos_entidades.Entidad, exp_tareas.Importante, exp_elementos.Nombre, exp_elementos.IdElemento, exp_tareas.IdTareaCorto FROM((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad) LEFT JOIN exp_elementos ON exp_tareas.IdElemento = exp_elementos.IdElemento WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
             tarea = Persistencia.SentenciasSQL.select(sqlSelect);
             
             textBoxIdTarea.Text = tarea.Rows[0][0].ToString();
+            textBoxIdTareaNuevo.Text = tarea.Rows[0][19].ToString();
             textBoxDescripcion.Text = tarea.Rows[0][1].ToString();
             idEntidad = tarea.Rows[0][2].ToString();
             textBoxNotas.Text = tarea.Rows[0][3].ToString();
@@ -105,6 +151,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBoxEntidad.Text = tarea.Rows[0][15].ToString();
             checkBoxImportante.Checked = bool.Parse(tarea.Rows[0][16].ToString());
             textBoxElemento.Text = tarea.Rows[0][17].ToString();
+            idElemento = tarea.Rows[0][18].ToString();
 
         }
 
@@ -132,6 +179,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBoxRuta.ReadOnly = true;
             labelRutaLink.Enabled = false;
             buttonBloque.Visible = false;
+            buttonDuplicarTarea.Enabled = true;
         }
 
         public void habilitarEdicion()
@@ -158,6 +206,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBoxRuta.ReadOnly = false;
             labelRutaLink.Enabled = true;
             buttonBloque.Visible = true;
+            buttonDuplicarTarea.Enabled = false;
             if (textBoxEntidad.Text == "")
             {
                 textBoxEntidad.Text = "Pulsa espacio para Seleccionar Entidad";
@@ -177,7 +226,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             comboBoxTipo.DataSource = tipos;
             comboBoxTipo.DisplayMember = "TipoTarea";
             comboBoxTipo.ValueMember = "IdTipoTarea";
-
+            
             
         }
         
@@ -186,7 +235,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
             //String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin,ctos_entidades.Entidad AS `Espera de`, exp_gestiones.TipoContacto as T FROM(((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE(((exp_gestiones.IdTarea) = " + idTarea + ")";
 
-            String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin,If(exp_gestiones.TipoContacto = 'T',exp_contactos.Nombre , ctos_entidades.Entidad) AS `Espera de`, exp_gestiones.TipoContacto AS T FROM exp_contactos RIGHT JOIN ((((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion) ON exp_contactos.IdDetEntTarea = exp_gestiones.IdEntidad WHERE(((exp_gestiones.IdTarea) = " + idTarea + ")";
+            String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin,If(exp_gestiones.TipoContacto = 'T',exp_contactos.Nombre ,If(exp_gestiones.TipoContacto = 'G',(SELECT com_cargos.Cargo FROM com_cargos INNER JOIN (com_comuneros INNER JOIN com_cargoscom ON com_comuneros.IdComunero = com_cargoscom.IdComunero) ON com_cargos.IdCargo = com_cargoscom.IdCargo WHERE(((com_comuneros.IdEntidad) = exp_gestiones.IdEntidad)) LIMIT 1 ),ctos_entidades.Entidad)) AS `Espera de`, exp_gestiones.TipoContacto AS T FROM exp_contactos RIGHT JOIN ((((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion) ON exp_contactos.IdDetEntTarea = exp_gestiones.IdEntidad WHERE(((exp_gestiones.IdTarea) = " + idTarea + ")";
 
             //Abiertas
             if (comboBoxEstadoGestion.SelectedIndex == 0)
@@ -309,6 +358,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
                 addTarea();
                 textBoxIdTarea.Text = idTarea;
+                textBoxIdTareaNuevo.Text = idTareaNuevo(idTarea);
                 bloquearEdicion();
                 if (form_anterior != null) form_anterior.CargarTareas();
 
@@ -335,6 +385,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
                     addTarea();
                     textBoxIdTarea.Text = idTarea;
+                    textBoxIdTareaNuevo.Text = idTareaNuevo(idTarea);
                     comboBoxEstadoGestion.SelectedIndex = 2;
                     bloquearEdicion();
                     if (form_anterior != null) form_anterior.CargarTareas();
@@ -346,6 +397,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 comboBoxEstadoGestion.SelectedIndex = 2;
                 Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, fInicio, idComunidad);
+                nueva.ControlBox = true;
+                nueva.TopMost = true;
+                nueva.WindowState = FormWindowState.Normal;
+                nueva.StartPosition = FormStartPosition.CenterScreen;
                 nueva.Show();
             }
         }
@@ -356,6 +411,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
                 Tareas.FormInsertarSeguimiento nueva = new FormInsertarSeguimiento(this, idGestion);
+                nueva.ControlBox = true;
+                nueva.TopMost = true;
+                nueva.WindowState = FormWindowState.Normal;
+                nueva.StartPosition = FormStartPosition.CenterScreen;
                 nueva.Show();
             }
             catch
@@ -453,6 +512,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
             Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea,idGestion,fInicio, idComunidad);
+            nueva.ControlBox = true;
+            nueva.TopMost = true;
+            nueva.WindowState = FormWindowState.Normal;
+            nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
         }
 
@@ -460,12 +523,20 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             String idSeguimiento = dataGridViewSeguimientos.SelectedRows[0].Cells[0].Value.ToString();
             Tareas.FormInsertarSeguimiento nueva = new FormInsertarSeguimiento(this, idGestion, idSeguimiento);
+            nueva.ControlBox = true;
+            nueva.TopMost = true;
+            nueva.WindowState = FormWindowState.Normal;
+            nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
         }
 
         private void dataGridViewGestiones_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this,idGestion, idComunidad);
+            nueva.ControlBox = true;
+            nueva.TopMost = true;
+            nueva.WindowState = FormWindowState.Normal;
+            nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
         }
 
@@ -474,6 +545,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String idSeguimiento = dataGridViewSeguimientos.SelectedRows[0].Cells[0].Value.ToString();
 
             Tareas.FormInsertarSeguimiento nueva = new FormInsertarSeguimiento(this,idGestion,idSeguimiento,false);
+            nueva.ControlBox = true;
+            nueva.TopMost = true;
+            nueva.WindowState = FormWindowState.Normal;
+            nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
         }
 
@@ -489,6 +564,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
                 addTarea();
                 textBoxIdTarea.Text = idTarea;
+                textBoxIdTareaNuevo.Text = idTareaNuevo(idTarea);
                 if (form_anterior != null) form_anterior.CargarTareas();
 
                 String tarea = idTarea + " " + textBoxDescripcion.Text;
@@ -534,6 +610,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                         if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
                         addTarea();
                         textBoxIdTarea.Text = idTarea;
+                        textBoxIdTareaNuevo.Text = idTareaNuevo(idTarea);
                         if (form_anterior != null) form_anterior.CargarTareas();
 
                         String tarea = idTarea + " " + textBoxDescripcion.Text;
@@ -782,7 +859,15 @@ namespace UrdsAppGestión.Presentacion.Tareas
         public void recibirEntidad(String id_entidad)
         {
             idEntidad = id_entidad;
-            String nombre = (Persistencia.SentenciasSQL.select("SELECT Entidad FROM ctos_entidades WHERE IdEntidad = " + id_entidad)).Rows[0][0].ToString();
+            String sqlSelect = "SELECT ctos_entidades.Entidad, com_comunidades.Referencia , com_comunidades.idComunidad FROM ctos_entidades LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((ctos_entidades.IDEntidad) = " + id_entidad + "))";
+            DataTable entidad = Persistencia.SentenciasSQL.select(sqlSelect);
+            String nombre = entidad.Rows[0][0].ToString();
+            if(entidad.Rows[0][1].ToString() != "")
+            {
+                maskedTextBoxReferencia.Text = entidad.Rows[0][1].ToString();
+                idComunidad = Int32.Parse(entidad.Rows[0][2].ToString());
+            }
+
             textBoxEntidad.Text = nombre;
             textBoxEntidad.ForeColor = Color.Black;
         }
@@ -919,6 +1004,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
             else
             {
                 Tareas.FormInsertarContacto nueva = new FormInsertarContacto(this, idTarea,idComunidad.ToString());
+                nueva.ControlBox = true;
+                nueva.TopMost = true;
+                nueva.WindowState = FormWindowState.Normal;
+                nueva.StartPosition = FormStartPosition.CenterScreen;
                 nueva.Show();
             }
         }
@@ -927,6 +1016,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             String idContacto = dataGridViewContactos.SelectedRows[0].Cells[0].Value.ToString();
             Tareas.FormInsertarContacto nueva = new FormInsertarContacto(this, idTarea, idContacto,idComunidad.ToString(), false);
+            nueva.ControlBox = true;
+            nueva.TopMost = true;
+            nueva.WindowState = FormWindowState.Normal;
+            nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
         }
 
@@ -951,6 +1044,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             String idContacto = dataGridViewContactos.SelectedRows[0].Cells[0].Value.ToString();
             Tareas.FormInsertarContacto nueva = new FormInsertarContacto(this, idTarea, idContacto,idComunidad.ToString());
+            nueva.ControlBox = true;
+            nueva.TopMost = true;
+            nueva.WindowState = FormWindowState.Normal;
+            nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
         }
         
@@ -1123,6 +1220,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
             
             Tareas.FormCorreoGrupo nueva = new FormCorreoGrupo(idGestion,idEntidad,idTarea, textBoxDescripcion.Text);
+            nueva.ControlBox = true;
+            nueva.TopMost = true;
+            nueva.WindowState = FormWindowState.Normal;
+            nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
         }
 
@@ -1168,11 +1269,31 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 String idTarea = textBoxTareaNueva.Text.ToString();
                 if (existeTarea(idTarea))
                 {
-                    Tareas.FormVerTarea nueva;
-                    if (form_anterior != null) nueva = new FormVerTarea(form_anterior, idTarea);
-                    else nueva = new FormVerTarea(idTarea);
-                    nueva.Show();
-                    this.Close();
+                    if (idTarea.Contains("/"))
+                    {
+                        Tareas.FormVerTarea nueva;
+                        if (form_anterior != null) nueva = new FormVerTarea(form_anterior, idTareaViejo(idTarea));
+                        else nueva = new FormVerTarea(idTareaViejo(idTarea));
+                        nueva.ControlBox = true;
+                        nueva.TopMost = true;
+                        nueva.WindowState = FormWindowState.Normal;
+                        nueva.StartPosition = FormStartPosition.CenterScreen;
+                        nueva.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+
+                        Tareas.FormVerTarea nueva;
+                        if (form_anterior != null) nueva = new FormVerTarea(form_anterior, idTarea);
+                        else nueva = new FormVerTarea(idTarea);
+                        nueva.ControlBox = true;
+                        nueva.TopMost = true;
+                        nueva.WindowState = FormWindowState.Normal;
+                        nueva.StartPosition = FormStartPosition.CenterScreen;
+                        nueva.Show();
+                        this.Close();
+                    }
                 }
                 else
                 {
@@ -1183,7 +1304,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private Boolean existeTarea(String idTarea)
         {
-            String sqlSelect = "SELECT exp_tareas.IdTarea FROM exp_tareas WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
+            String sqlSelect = "SELECT exp_tareas.IdTarea FROM exp_tareas WHERE(((exp_tareas.IdTarea) = " + idTarea + ") OR (exp_tareas.IdTareaCorto) = '" + idTarea + "')";
             DataTable tarea = Persistencia.SentenciasSQL.select(sqlSelect);
             if (tarea.Rows.Count == 0)
                 return false;
@@ -1203,6 +1324,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     String idContacto = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
 
                     Tareas.FormInsertarContacto nueva = new Tareas.FormInsertarContacto(this, idTarea, idContacto, idComunidad.ToString(), false);
+                    nueva.ControlBox = true;
+                    nueva.TopMost = true;
+                    nueva.WindowState = FormWindowState.Normal;
+                    nueva.StartPosition = FormStartPosition.CenterScreen;
                     nueva.Show();
                 }
                 else
@@ -1214,6 +1339,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     String idEntidad = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
 
                     EntidadesForms.VerEntidad nueva = new EntidadesForms.VerEntidad(Int32.Parse(idEntidad));
+                    nueva.ControlBox = true;
+                    nueva.TopMost = true;
+                    nueva.WindowState = FormWindowState.Normal;
+                    nueva.StartPosition = FormStartPosition.CenterScreen;
                     nueva.Show();
                 }
             }
@@ -1227,12 +1356,20 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
             Tareas.FormInsertarSeguimiento nueva = new FormInsertarSeguimiento(this, idGestion);
+            nueva.ControlBox = true;
+            nueva.TopMost = true;
+            nueva.WindowState = FormWindowState.Normal;
+            nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
         }
 
         private void buttonAddTipoGestion_Click(object sender, EventArgs e)
         {
             Tareas.FormInsertarTipoGestion nueva = new FormInsertarTipoGestion();
+            nueva.ControlBox = true;
+            nueva.TopMost = true;
+            nueva.WindowState = FormWindowState.Normal;
+            nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
         }
 
@@ -1246,211 +1383,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (idTarea != null) cargarTodosSeguimientos();
         }
 
-        //ELEMENTOS
-        /*
-        public void rellenarTreeViewInicio()
-        {
-            updateRuta();
-            treeViewElementos.Nodes.Clear();
-            DataTable elementos;
-            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripción FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = 0) AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
-            elementos = Persistencia.SentenciasSQL.select(sqlSelect);
-
-            foreach (DataRow row in elementos.Rows)
-            {
-                TreeNode node = new TreeNode();
-                node.Text = row["Nombre"].ToString() + " : " + row["Descripción"].ToString();
-                node.Tag = row["IdElemento"].ToString();
-                treeViewElementos.Nodes.Add(node);
-                rellenarSubElementos((int)row["IdElemento"], node);
-            }
-        }
-        public void rellenarElementoSelect(String IdElemento)
-        {
-            treeViewElementos.Nodes.Clear();
-            DataTable elementos;
-            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripción FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = " + IdElemento + ") AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
-            elementos = Persistencia.SentenciasSQL.select(sqlSelect);
-
-            foreach (DataRow row in elementos.Rows)
-            {
-                if (row["IdElemento"].ToString() == elemento)
-                {
-                    TreeNode node = new TreeNode();
-                    node.Text = row["Nombre"].ToString() + " : " + row["Descripción"].ToString();
-                    node.Tag = row["IdElemento"];
-                    treeViewElementos.Nodes.Add(node);
-                    rellenarSubElementos((int)row["IdElemento"], node);
-                }
-            }
-        }
-
-        public void rellenarTreeView(String IdElemento)
-        {
-            treeViewElementos.Nodes.Clear();
-            DataTable elementos;
-            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripción FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = " + IdElemento + ") AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
-            elementos = Persistencia.SentenciasSQL.select(sqlSelect);
-
-            foreach (DataRow row in elementos.Rows)
-            {
-                TreeNode node = new TreeNode();
-                node.Text = row["Nombre"].ToString() + " : " + row["Descripción"].ToString();
-                node.Tag = row["IdElemento"];
-                treeViewElementos.Nodes.Add(node);
-                rellenarSubElementos((int)row["IdElemento"], node);
-            }
-        }
-
-        private void rellenarSubElementos(int idElemento, TreeNode node)
-        {
-            DataTable subElementos;
-            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripción FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = " + idElemento + ") AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
-            subElementos = Persistencia.SentenciasSQL.select(sqlSelect);
-
-            if (subElementos.Rows.Count == 0) { return; }
-
-            foreach (DataRow row in subElementos.Rows)
-            {
-                TreeNode subNode = new TreeNode();
-                subNode.Text = row["Nombre"].ToString() + " : " + row["Descripción"].ToString();
-                subNode.Tag = row["IdElemento"].ToString();
-                node.Nodes.Add(subNode);
-            }
-        }
-
-        private void treeViewElementos_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripción FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = " + e.Node.Tag.ToString() + ") AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
-            DataTable subElementos = Persistencia.SentenciasSQL.select(sqlSelect);
-            if (subElementos.Rows.Count > 0)
-            {
-                idElementosAtras.Add(e.Node.Tag.ToString());
-                nombreElementosAtras.Add(e.Node.Text.ToString());
-                rellenarTreeView(e.Node.Tag.ToString());
-                updateRuta();
-            }
-        }
-
-        private void buttonAtras_Click(object sender, EventArgs e)
-        {
-            if (idElementosAtras.Count > 1)
-            {
-                idElementosAtras.RemoveAt(idElementosAtras.Count - 1);
-                nombreElementosAtras.RemoveAt(nombreElementosAtras.Count - 1);
-                rellenarTreeView(idElementosAtras.ElementAt(idElementosAtras.Count - 1));
-                updateRuta();
-            }
-            else
-            {
-                if (idElementosAtras.Count == 1)
-                {
-                    idElementosAtras.RemoveAt(idElementosAtras.Count - 1);
-                    nombreElementosAtras.RemoveAt(nombreElementosAtras.Count - 1);
-                    updateRuta();
-                }
-                rellenarTreeViewInicio();
-            }
-        }
-
-        private void buttonInicio_Click(object sender, EventArgs e)
-        {
-            idElementosAtras.Clear();
-            nombreElementosAtras.Clear();
-            rellenarTreeViewInicio();
-        }
-
-        private void treeViewElementos_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                treeViewElementos.SelectedNode = e.Node;
-                if (e.Node != null)
-                {
-                    contextMenuStrip4.Show(Cursor.Position);
-                }
-            }
-        }
-
-        private void buttonAddElementoPrincipal_Click(object sender, EventArgs e)
-        {
-            if (idElementosAtras.Count > 0)
-            {
-                int idElementoAnt = Int32.Parse(idElementosAtras.ElementAt(idElementosAtras.Count - 1));
-                String nombrecompleto = nombreElementosAtras.ElementAt(nombreElementosAtras.Count - 1);
-                String nombre = nombrecompleto.Substring(0, nombrecompleto.IndexOf(":"));
-                Tareas.FormInsertarElemento nueva = new Tareas.FormInsertarElemento(this, idElementoAnt, idComunidad, nombre);
-                nueva.Show();
-            }
-            else
-            {
-                Tareas.FormInsertarElemento nueva = new Tareas.FormInsertarElemento(this, 0, idComunidad, "Inicio");
-                nueva.Show();
-            }
-
-        }
-
-        private void añadirElementoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            int idElementoAnt = Int32.Parse(treeViewElementos.SelectedNode.Tag.ToString());
-            String nombrecompleto = treeViewElementos.SelectedNode.Text.ToString();
-            String nombre = nombrecompleto.Substring(0, nombrecompleto.IndexOf(":"));
-            Tareas.FormInsertarElemento nueva = new Tareas.FormInsertarElemento(this, idElementoAnt, idComunidad, nombre);
-            nueva.Show();
-        }
-
-        private void updateRuta()
-        {
-            String ruta = "Inicio";
-
-            foreach (String nombrecompleto in nombreElementosAtras)
-            {
-                String nombre = nombrecompleto.Substring(0, nombrecompleto.IndexOf(":"));
-                ruta += " > " + nombre;
-            }
-            if (ruta.Length > 100)
-            {
-                String ruta2 = ruta;
-                ruta = ".../";
-                ruta += ruta.Substring(ruta.Length - 90);
-            }
-            labelRuta.Text = ruta;
-        }
-       
-        private void buttonAddElementoTarea_Click(object sender, EventArgs e)
-        {
-            if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0 ))
-            {
-                MessageBox.Show("Los campos Descripción,Entidad,Tipo y FechaInicio son obligatorios!");
-                return;
-            }
-            else if (tarea == null)
-            {
-                if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
-                addTarea();
-                textBoxIdTarea.Text = idTarea;
-                bloquearEdicion();
-                if (form_anterior != null) form_anterior.CargarTareas();
-            }
-            TreeNode node = treeViewElementos.SelectedNode;
-            if (node != null)
-            {
-                String sqlUpdate = "UPDATE exp_tareas SET IdElemento = '" + node.Tag.ToString() + "' WHERE IdTarea = " + idTarea;
-                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
-                String nombrecompleto = node.Text.ToString();
-                labelElementoSeleccionado.Text = "Elemento: " + nombrecompleto.Substring(0, nombrecompleto.IndexOf(":"));
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar un elemento para poder añadirlo a la tarea");
-            }
-        }
-         */
         public void cargarExpedientes()
         {
-            String sqlExpedientes1 = "SELECT exp_tareaRel.IdTareaRel, exp_tareas.IdTarea, exp_tareas.Descripción FROM exp_tareas INNER JOIN exp_tareaRel ON exp_tareas.IdTarea = exp_tareaRel.IdTarea_2 WHERE(((exp_tareaRel.IdTarea_1) = " + idTarea + "))";
+            dataGridViewExpedientes.DataSource = null;
+        
+            String sqlExpedientes1 = "SELECT exp_tareaRel.IdTareaRel, exp_tareas.IdTarea, exp_tareas.Descripción, If(exp_tareas.FFin is not null, 'Cerrada', 'Abierta') AS Estado FROM exp_tareas INNER JOIN exp_tareaRel ON exp_tareas.IdTarea = exp_tareaRel.IdTarea_2 WHERE(((exp_tareaRel.IdTarea_1) = " + idTarea + "))";
 
-            String sqlExpedientes2 = "SELECT exp_tareaRel.IdTareaRel, exp_tareas.IdTarea, exp_tareas.Descripción FROM exp_tareas INNER JOIN exp_tareaRel ON exp_tareas.IdTarea = exp_tareaRel.IdTarea_1 WHERE(((exp_tareaRel.IdTarea_2) = " + idTarea + "))";
+            String sqlExpedientes2 = "SELECT exp_tareaRel.IdTareaRel, exp_tareas.IdTarea, exp_tareas.Descripción, If(exp_tareas.FFin is not null, 'Cerrada', 'Abierta') AS Estado FROM exp_tareas INNER JOIN exp_tareaRel ON exp_tareas.IdTarea = exp_tareaRel.IdTarea_1 WHERE(((exp_tareaRel.IdTarea_2) = " + idTarea + "))";
 
             DataTable expedientes1 = Persistencia.SentenciasSQL.select(sqlExpedientes1);
             DataTable expedientes2 = Persistencia.SentenciasSQL.select(sqlExpedientes2);
@@ -1462,7 +1401,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 dataGridViewExpedientes.DataSource = expedientes;
                 dataGridViewExpedientes.Columns["IdTareaRel"].Visible = false;
                 dataGridViewExpedientes.Columns["IdTarea"].Width = 60;
-                dataGridViewExpedientes.Columns["Descripción"].Width = 580;
+                dataGridViewExpedientes.Columns["Descripción"].Width = 520;
+                dataGridViewExpedientes.Columns["Estado"].Width = 60;
             }
             if (expedientes.Rows.Count != 0) tabPageExpedientes.Text = "Expedientes (" + expedientes.Rows.Count + ")";
             else tabPageExpedientes.Text = "Expedientes";
@@ -1489,6 +1429,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             String idTarea = dataGridViewExpedientes.SelectedRows[0].Cells["IdTarea"].Value.ToString();
             FormVerTarea nueva = new FormVerTarea(idTarea);
+            nueva.ControlBox = true;
+            nueva.TopMost = true;
+            nueva.WindowState = FormWindowState.Normal;
+            nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
         }
 
@@ -1537,7 +1481,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 ListBox listBox1 = new ListBox();
 
                 String rutaCheck = rutaEntidad().Trim('#');
-                //String ruta = ruta = @rutaCheck + @"\EXPEDIENTES\";
                 folderBrowserDialog.RootFolder = Environment.SpecialFolder.Desktop;
                 folderBrowserDialog.SelectedPath = rutaCheck;
                 SendKeys.Send("{TAB}{TAB}{RIGHT}{RIGHT}{RIGHT}{RIGHT}");
@@ -1573,5 +1516,103 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBoxElemento.Text = nombre;
             this.idElemento = idElemento;
         }
+
+        private void buttonDuplicarTarea_Click(object sender, EventArgs e)
+        {
+            String idTipoTarea = comboBoxTipo.SelectedValue.ToString();
+            String fIni = null;
+            if (maskedTextBoxFIni.Text != "  /  /" && maskedTextBoxFIni.Text != "") fIni = Convert.ToDateTime(maskedTextBoxFIni.Text).ToString();
+            String descripcion = "";
+            if (textBoxDescripcion.Text != "") descripcion = textBoxDescripcion.Text;
+            String coste = "";
+            if (textBoxCoste.Text != "") coste = textBoxCoste.Text;
+            String seguro = "0";
+            if (checkBoxSeguro.Checked) seguro = "-1";
+            String acuerdoJunta = "0";
+            if (checkBoxAcuerdoJunta.Checked) acuerdoJunta = "-1";
+            String fechaActaAcordado = null;
+            if (maskedTextBoxFechaActa.Text != "  /  /" && maskedTextBoxFechaActa.Text != "") fechaActaAcordado = Convert.ToDateTime(maskedTextBoxFechaActa.Text).ToString();
+            String proximaJunta = "0";
+            if (checkBoxProxJunta.Checked) proximaJunta = "-1";
+            String refSiniestro = textBoxSiniestro.Text;
+            String fFin = null;
+            if (maskedTextBoxFFin.Text != "  /  /" && maskedTextBoxFFin.Text != "") fFin = Convert.ToDateTime(maskedTextBoxFFin.Text).ToString();
+            String ruta = textBoxRuta.Text;
+            String notas = textBoxNotas.Text;
+            String importante = "0";
+            if (checkBoxImportante.Checked) importante = "-1";
+            String nombreElemento = textBoxElemento.Text;
+            String idElemento = this.idElemento;
+            int idComunidad = this.idComunidad;
+            String idEntidad = this.idEntidad;
+            String nombreComunidad = textBoxEntidad.Text;
+            String referencia = maskedTextBoxReferencia.Text;
+
+            FormDuplicarTarea nueva = new FormDuplicarTarea(form_anterior,idTipoTarea,fIni,descripcion,coste,seguro,acuerdoJunta,fechaActaAcordado,proximaJunta,refSiniestro,fFin,ruta,notas,importante,nombreElemento,idElemento,idEntidad,nombreComunidad,idComunidad, referencia,idTarea);
+            nueva.ControlBox = true;
+            nueva.TopMost = true;
+            nueva.WindowState = FormWindowState.Normal;
+            nueva.StartPosition = FormStartPosition.CenterScreen;
+            nueva.Show();
+        }
+        
+        private void duplicarTarea()
+        {
+            if (contactosDupli)
+            {
+                copiarContactos();
+            }
+            if (expedientesDupli)
+            {
+                copiarExpedientes();
+            }
+        }
+        private void copiarContactos()
+        {
+            String sqlSelect = "SELECT exp_contactos.Nombre, exp_contactos.Tel AS Teléfono, exp_contactos.Correo, exp_contactos.Notas, exp_contactos.Proveedor as P, exp_contactos.Comunero as C,exp_contactos.Entidad as E  FROM exp_contactos WHERE(((exp_contactos.IdTarea) = " + idTareaDupli + "))";
+
+            DataTable contactos = Persistencia.SentenciasSQL.select(sqlSelect);
+
+            foreach (DataRow row in contactos.Rows)
+            {
+                String sqlInsert = "INSERT INTO exp_contactos (Nombre,Tel,Correo,Notas,Proveedor,Comunero,Entidad,IdTarea) VALUES ('" + row["Nombre"] + "'," + row["Teléfono"] + ", '" + row["Correo"] + "','" + row["Notas"] + "','" + row["P"] + "','" + row["C"] + "','" + row["E"] + "'," + idTarea + ")";
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+            }
+        }
+
+        private void copiarExpedientes()
+        {
+            String sqlExpedientes1 = "SELECT exp_tareaRel.IdTarea_1 FROM exp_tareaRel WHERE(((exp_tareaRel.IdTarea_2) = " + idTareaDupli + "))";
+            DataTable expedientes1 = Persistencia.SentenciasSQL.select(sqlExpedientes1);
+
+            foreach (DataRow row in expedientes1.Rows)
+            {
+                String sqlInsert = "INSERT INTO exp_tareaRel (IdTarea_1,IdTarea_2) VALUES (" + row["IdTarea_1"] + "," + idTarea + ")";
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+            }
+
+            String sqlExpedientes2 = "SELECT exp_tareaRel.IdTarea_2 FROM exp_tareaRel WHERE(((exp_tareaRel.IdTarea_1) = " + idTareaDupli + "))";
+            DataTable expedientes2 = Persistencia.SentenciasSQL.select(sqlExpedientes2);
+
+            foreach (DataRow row in expedientes2.Rows)
+            {
+                String sqlInsert = "INSERT INTO exp_tareaRel (IdTarea_2,IdTarea_1) VALUES (" + row["IdTarea_2"] + "," + idTarea + ")";
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+            }
+            
+        }
+
+        private String idTareaViejo(String idTareaNuevo)
+        {
+            String sqlSelect = "SELECT exp_tareas.IdTarea FROM exp_tareas WHERE exp_tareas.IdTareaCorto = '" + idTareaNuevo + "'";
+            return Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString(); ;
+        }
+
+        private String idTareaNuevo(String idTareaViejo)
+        {
+            String sqlSelect = "SELECT exp_tareas.IdTareaCorto FROM exp_tareas WHERE exp_tareas.IdTarea = '" + idTareaViejo + "'";
+            return Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString(); ;
+        }
+        
     }
 }

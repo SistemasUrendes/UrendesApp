@@ -480,5 +480,6 @@ namespace UrdsAppGestión.Presentacion
             EntidadesForms.FormInsertarGrupo nueva = new EntidadesForms.FormInsertarGrupo();
             nueva.Show();
         }
+        
     }
 }
