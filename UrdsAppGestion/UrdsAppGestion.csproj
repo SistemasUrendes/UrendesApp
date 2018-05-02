@@ -27,7 +27,7 @@
     <UpdateUrl>\\Urenux\app\App\</UpdateUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>24</ApplicationRevision>
+    <ApplicationRevision>26</ApplicationRevision>
     <ApplicationVersion>1.3.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -770,11 +770,11 @@
     <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesLiquidacion.Designer.cs">
       <DependentUpon>FormOperacionesLiquidacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\FormOperacionesListadoProveedores.cs">
+    <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\FormListadoProveedores.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\FormOperacionesListadoProveedores.Designer.cs">
-      <DependentUpon>FormOperacionesListadoProveedores.cs</DependentUpon>
+    <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\FormListadoProveedores.Designer.cs">
+      <DependentUpon>FormListadoProveedores.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesVencimientos.cs">
       <SubType>Form</SubType>
@@ -1531,8 +1531,8 @@
     <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesLiquidacion.resx">
       <DependentUpon>FormOperacionesLiquidacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\ComunidadesForms\ProveedoresForms\FormOperacionesListadoProveedores.resx">
-      <DependentUpon>FormOperacionesListadoProveedores.cs</DependentUpon>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ProveedoresForms\FormListadoProveedores.resx">
+      <DependentUpon>FormListadoProveedores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormOperacionesVencimientos.resx">
       <DependentUpon>FormOperacionesVencimientos.cs</DependentUpon>

@@ -140,7 +140,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
             String sqlPrincipal = "UPDATE com_liquidaciones INNER JOIN com_ejercicios ON com_liquidaciones.IdEjercicio = com_ejercicios.IdEjercicio SET com_liquidaciones.Ppal = 0 WHERE(((com_ejercicios.IdComunidad) = " + id_comunidad_cargado + "));";
 
             Persistencia.SentenciasSQL.InsertarGenerico(sqlPrincipal);
-
         }
 
         private void textBox_FIni_Leave(object sender, EventArgs e)

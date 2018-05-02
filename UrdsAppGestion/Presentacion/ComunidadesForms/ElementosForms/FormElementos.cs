@@ -46,13 +46,13 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
             updateRuta();
             treeViewElementos.Nodes.Clear();
             DataTable elementos;
-            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripción FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = 0) AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
+            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripcion FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = 0) AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
             elementos = Persistencia.SentenciasSQL.select(sqlSelect);
 
             foreach (DataRow row in elementos.Rows)
             {
                 TreeNode node = new TreeNode();
-                node.Text = row["Nombre"].ToString() + " : " + row["Descripción"].ToString();
+                node.Text = row["Nombre"].ToString() + " : " + row["Descripcion"].ToString();
                 node.Tag = row["IdElemento"].ToString();
                 treeViewElementos.Nodes.Add(node);
                 rellenarSubElementos((int)row["IdElemento"], node);
@@ -63,13 +63,13 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
         {
             treeViewElementos.Nodes.Clear();
             DataTable elementos;
-            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripción FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = " + IdElemento + ") AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
+            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripcion FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = " + IdElemento + ") AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
             elementos = Persistencia.SentenciasSQL.select(sqlSelect);
 
             foreach (DataRow row in elementos.Rows)
             {
                 TreeNode node = new TreeNode();
-                node.Text = row["Nombre"].ToString() + " : " + row["Descripción"].ToString();
+                node.Text = row["Nombre"].ToString() + " : " + row["Descripcion"].ToString();
                 node.Tag = row["IdElemento"];
                 treeViewElementos.Nodes.Add(node);
                 rellenarSubElementos((int)row["IdElemento"], node);
@@ -79,7 +79,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
         private void rellenarSubElementos(int idElemento, TreeNode node)
         {
             DataTable subElementos;
-            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripción FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = " + idElemento + ") AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
+            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripcion FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = " + idElemento + ") AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
             subElementos = Persistencia.SentenciasSQL.select(sqlSelect);
 
             if (subElementos.Rows.Count == 0) { return; }
@@ -87,7 +87,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
             foreach (DataRow row in subElementos.Rows)
             {
                 TreeNode subNode = new TreeNode();
-                subNode.Text = row["Nombre"].ToString() + " : " + row["Descripción"].ToString();
+                subNode.Text = row["Nombre"].ToString() + " : " + row["Descripcion"].ToString();
                 subNode.Tag = row["IdElemento"].ToString();
                 node.Nodes.Add(subNode);
             }
@@ -95,7 +95,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
 
         private void treeViewElementos_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripción FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = " + e.Node.Tag.ToString() + ") AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
+            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.IdElementoAnt, exp_elementos.Nombre, exp_elementos.Descripcion FROM exp_elementos WHERE(((exp_elementos.IdElementoAnt) = " + e.Node.Tag.ToString() + ") AND((exp_elementos.IdComunidad) = " + idComunidad + "))";
             DataTable subElementos = Persistencia.SentenciasSQL.select(sqlSelect);
             if (subElementos.Rows.Count > 0)
             {

@@ -64,19 +64,19 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
 
            // String sqlSelectTodo = "SELECT com_comuneros.IdComunero, ctos_entidades.IDEntidad, ctos_entidades.Entidad, ctos_detdirecent.Direccion, ctos_detdirecent.CP, ctos_detdirecent.Poblacion, ctos_detdirecent.Provincia, com_comuneros.EnvioEmail, com_comuneros.EnvioPostal, aux_formapago.FormaPago, aux_formapago.IdFormaPago, ( IF((SELECT ctos_dettelf.Telefono FROM ctos_dettelf WHERE ctos_dettelf.IdEntidad = ctos_entidades.IDEntidad AND ctos_dettelf.Ppal = -1) !='' ,(SELECT ctos_dettelf.Telefono FROM ctos_dettelf WHERE ctos_dettelf.IdEntidad = ctos_entidades.IDEntidad AND ctos_dettelf.Ppal = -1),'')) AS Telefono, ctos_detemail.Email FROM(((((((com_comuneros INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN com_tipocopia ON com_comuneros.IdTipoCopia = com_tipocopia.IdTipoCopia) LEFT JOIN ctos_detdirecent ON com_comuneros.IdDireccion = ctos_detdirecent.IdDireccion) LEFT JOIN ctos_detemail ON com_comuneros.IdEmail = ctos_detemail.IdEmail) INNER JOIN aux_formapago ON com_comuneros.IdFormaPago = aux_formapago.IdFormaPago) INNER JOIN com_asociacion ON com_comuneros.IdComunero = com_asociacion.IdComunero) INNER JOIN com_divisiones ON com_asociacion.IdDivision = com_divisiones.IdDivision) INNER JOIN com_subcuotas ON com_divisiones.IdDivision = com_subcuotas.IdDivision GROUP BY com_comuneros.IdComunero, ctos_entidades.IDEntidad, ctos_entidades.Entidad, ctos_detdirecent.Direccion, ctos_detdirecent.CP, ctos_detdirecent.Poblacion, ctos_detdirecent.Provincia, com_comuneros.EnvioEmail, com_comuneros.EnvioPostal, aux_formapago.FormaPago, ctos_detemail.Email, com_comuneros.IdComunidad, com_subcuotas.IdBloque, com_comuneros.IdTipoCopia, com_comuneros.EnvioPostal, com_comuneros.EnvioEmail, com_comuneros.Activo, com_asociacion.Ppal HAVING(((com_comuneros.IdComunidad) = " + idComunidad + ") AND((com_subcuotas.IdBloque) = " + listBox_bloques.SelectedValue + ") AND((com_comuneros.Activo) = -1) AND ((com_asociacion.Ppal) = -1));";
 
-            String sqlSelectTodo = "SELECT com_comuneros.IdComunero, ctos_entidades.IDEntidad, ctos_entidades.Entidad, ctos_detdirecent.Direccion, ctos_detdirecent.CP, ctos_detdirecent.Poblacion, ctos_detdirecent.Provincia, com_comuneros.EnvioEmail, com_comuneros.EnvioPostal, aux_formapago.FormaPago, aux_formapago.IdFormaPago,( IF((SELECT ctos_dettelf.Telefono FROM ctos_dettelf WHERE ctos_dettelf.IdEntidad = ctos_entidades.IDEntidad AND ctos_dettelf.Ppal = -1) !='' ,(SELECT ctos_dettelf.Telefono FROM ctos_dettelf WHERE ctos_dettelf.IdEntidad = ctos_entidades.IDEntidad AND ctos_dettelf.Ppal = -1),'')) AS Telefono, ctos_detemail.Email, com_asociacion.IdTipoAsoc FROM((((((com_comuneros INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN ctos_detdirecent ON com_comuneros.IdDireccion = ctos_detdirecent.IdDireccion) LEFT JOIN ctos_detemail ON com_comuneros.IdEmail = ctos_detemail.IdEmail) INNER JOIN aux_formapago ON com_comuneros.IdFormaPago = aux_formapago.IdFormaPago) INNER JOIN com_asociacion ON com_comuneros.IdComunero = com_asociacion.IdComunero) INNER JOIN com_divisiones ON com_asociacion.IdDivision = com_divisiones.IdDivision) INNER JOIN com_subcuotas ON com_divisiones.IdDivision = com_subcuotas.IdDivision WHERE(((com_comuneros.IdComunidad) = " + idComunidad + ") AND((com_subcuotas.IdBloque) = " + listBox_bloques.SelectedValue + ") AND ((com_comuneros.Activo) = -1) AND((com_asociacion.Ppal) = -1));";
+            String sqlSelectTodo = "SELECT com_comuneros.IdComunero, ctos_entidades.IDEntidad, ctos_entidades.Entidad, ctos_detdirecent.Direccion, ctos_detdirecent.CP, ctos_detdirecent.Poblacion, ctos_detdirecent.Provincia, com_comuneros.EnvioEmail, com_comuneros.EnvioPostal, aux_formapago.FormaPago, aux_formapago.IdFormaPago, ( IF((SELECT ctos_dettelf.Telefono FROM ctos_dettelf WHERE ctos_dettelf.IdEntidad = ctos_entidades.IDEntidad AND ctos_dettelf.Ppal = -1) !='' ,(SELECT ctos_dettelf.Telefono FROM ctos_dettelf WHERE ctos_dettelf.IdEntidad = ctos_entidades.IDEntidad AND ctos_dettelf.Ppal = -1),'')) AS Telefono, ctos_detemail.Email, com_asociacion.IdTipoAsoc FROM((((((com_comuneros INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN ctos_detdirecent ON com_comuneros.IdDireccion = ctos_detdirecent.IdDireccion) LEFT JOIN ctos_detemail ON com_comuneros.IdEmail = ctos_detemail.IdEmail) INNER JOIN aux_formapago ON com_comuneros.IdFormaPago = aux_formapago.IdFormaPago) INNER JOIN com_asociacion ON com_comuneros.IdComunero = com_asociacion.IdComunero) INNER JOIN com_divisiones ON com_asociacion.IdDivision = com_divisiones.IdDivision) INNER JOIN com_subcuotas ON com_divisiones.IdDivision = com_subcuotas.IdDivision GROUP BY com_comuneros.IdComunero, ctos_entidades.IDEntidad, ctos_entidades.Entidad, ctos_detdirecent.Direccion, ctos_detdirecent.CP, ctos_detdirecent.Poblacion, ctos_detdirecent.Provincia, com_comuneros.EnvioEmail, com_comuneros.EnvioPostal, aux_formapago.FormaPago, aux_formapago.IdFormaPago, ctos_detemail.Email, com_asociacion.IdTipoAsoc, com_comuneros.IdComunidad, com_subcuotas.IdBloque, com_comuneros.Activo HAVING(((com_asociacion.IdTipoAsoc) = 1) AND((com_comuneros.IdComunidad) = " + idComunidad + ") AND((com_subcuotas.IdBloque) = " + listBox_bloques.SelectedValue + ") AND((com_comuneros.Activo) = -1));";
 
             datos = Persistencia.SentenciasSQL.select(sqlSelectTodo);
             dataGridView_lista.DataSource = datos;
 
             ajustarDatagrid();
-            label6.Text = "Registros: " + datos.Rows.Count.ToString();
+            label6.Text = "Registros: " + dataGridView_lista.Rows.Count.ToString();
         }
         private void ajustarDatagrid() {
             dataGridView_lista.Columns["IdFormaPago"].Visible = false;
             dataGridView_lista.Columns["IdTipoAsoc"].Visible = false;
-            dataGridView_lista.Columns["IdComunero"].Width = 50;
-            dataGridView_lista.Columns["IDEntidad"].Width = 50;
+            dataGridView_lista.Columns["IdComunero"].Width = 45;
+            dataGridView_lista.Columns["IDEntidad"].Width = 45;
             dataGridView_lista.Columns["Entidad"].Width = 200;
             dataGridView_lista.Columns["Direccion"].Width = 200;
             dataGridView_lista.Columns["CP"].Width = 50;
@@ -85,7 +85,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
             dataGridView_lista.Columns["EnvioPostal"].HeaderText = "P";
             dataGridView_lista.Columns["EnvioPostal"].Width = 20;
             dataGridView_lista.Columns["Email"].Width = 160;
-            dataGridView_lista.Columns["FormaPago"].Width = 70;
+            dataGridView_lista.Columns["FormaPago"].Width = 75;
             dataGridView_lista.Columns["Provincia"].Width = 70;
             dataGridView_lista.Columns["Telefono"].Width = 65;
         }
@@ -95,7 +95,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
             DataTable busqueda;
             if (comboBox_asociacion.SelectedValue.ToString() != "0" && comboBox_asociacion.SelectedValue.ToString() != "1")
             {
-                String sqlStringInquilinos = "SELECT com_comuneros.IdComunero, ctos_entidades.IDEntidad, ctos_entidades.Entidad, ctos_detdirecent.Direccion, ctos_detdirecent.CP, ctos_detdirecent.Poblacion, ctos_detdirecent.Provincia, com_comuneros.EnvioEmail, com_comuneros.EnvioPostal, aux_formapago.FormaPago, aux_formapago.IdFormaPago,( IF((SELECT ctos_dettelf.Telefono FROM ctos_dettelf WHERE ctos_dettelf.IdEntidad = ctos_entidades.IDEntidad AND ctos_dettelf.Ppal = -1) !='' ,(SELECT ctos_dettelf.Telefono FROM ctos_dettelf WHERE ctos_dettelf.IdEntidad = ctos_entidades.IDEntidad AND ctos_dettelf.Ppal = -1),'')) AS Telefono, ctos_detemail.Email, com_asociacion.IdTipoAsoc FROM((((((com_comuneros INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN ctos_detdirecent ON com_comuneros.IdDireccion = ctos_detdirecent.IdDireccion) LEFT JOIN ctos_detemail ON com_comuneros.IdEmail = ctos_detemail.IdEmail) INNER JOIN aux_formapago ON com_comuneros.IdFormaPago = aux_formapago.IdFormaPago) INNER JOIN com_asociacion ON com_comuneros.IdComunero = com_asociacion.IdComunero) INNER JOIN com_divisiones ON com_asociacion.IdDivision = com_divisiones.IdDivision) INNER JOIN com_subcuotas ON com_divisiones.IdDivision = com_subcuotas.IdDivision WHERE(((com_comuneros.IdComunidad) = " + idComunidad + ") AND((com_subcuotas.IdBloque) = " + listBox_bloques.SelectedValue + ") AND((com_comuneros.Activo) = -1) AND((com_asociacion.IdTipoAsoc) = " + comboBox_asociacion.SelectedValue.ToString() + "));";
+                String sqlStringInquilinos = "SELECT com_comuneros.IdComunero, ctos_entidades.IDEntidad, ctos_entidades.Entidad, ctos_detdirecent.Direccion, ctos_detdirecent.CP, ctos_detdirecent.Poblacion, ctos_detdirecent.Provincia, com_comuneros.EnvioEmail, com_comuneros.EnvioPostal, aux_formapago.FormaPago, aux_formapago.IdFormaPago, ( IF((SELECT ctos_dettelf.Telefono FROM ctos_dettelf WHERE ctos_dettelf.IdEntidad = ctos_entidades.IDEntidad AND ctos_dettelf.Ppal = -1) !='' ,(SELECT ctos_dettelf.Telefono FROM ctos_dettelf WHERE ctos_dettelf.IdEntidad = ctos_entidades.IDEntidad AND ctos_dettelf.Ppal = -1),'')) AS Telefono, ctos_detemail.Email, com_asociacion.IdTipoAsoc FROM((((((com_comuneros INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN ctos_detdirecent ON com_comuneros.IdDireccion = ctos_detdirecent.IdDireccion) LEFT JOIN ctos_detemail ON com_comuneros.IdEmail = ctos_detemail.IdEmail) INNER JOIN aux_formapago ON com_comuneros.IdFormaPago = aux_formapago.IdFormaPago) INNER JOIN com_asociacion ON com_comuneros.IdComunero = com_asociacion.IdComunero) INNER JOIN com_divisiones ON com_asociacion.IdDivision = com_divisiones.IdDivision) INNER JOIN com_subcuotas ON com_divisiones.IdDivision = com_subcuotas.IdDivision GROUP BY com_comuneros.IdComunero, ctos_entidades.IDEntidad, ctos_entidades.Entidad, ctos_detdirecent.Direccion, ctos_detdirecent.CP, ctos_detdirecent.Poblacion, ctos_detdirecent.Provincia, com_comuneros.EnvioEmail, com_comuneros.EnvioPostal, aux_formapago.FormaPago, aux_formapago.IdFormaPago, ctos_detemail.Email, com_asociacion.IdTipoAsoc, com_comuneros.IdComunidad, com_subcuotas.IdBloque, com_comuneros.Activo HAVING(((com_asociacion.IdTipoAsoc) = " + comboBox_asociacion.SelectedValue.ToString() + ") AND((com_comuneros.IdComunidad) = " + idComunidad + ") AND((com_subcuotas.IdBloque) = " + listBox_bloques.SelectedValue + ") AND((com_comuneros.Activo) = -1));";
 
                 busqueda = Persistencia.SentenciasSQL.select(sqlStringInquilinos);
             }
@@ -120,6 +120,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
                 busqueda.DefaultView.RowFilter = "EnvioPostal = True";
 
             this.dataGridView_lista.DataSource = busqueda;
+            label6.Text = "Registros: " + dataGridView_lista.Rows.Count.ToString();
         }
 
         private void dataGridView_lista_DoubleClick(object sender, EventArgs e)
@@ -132,15 +133,30 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
         {
             dataGridView_lista.SelectAll();
             CopyToClipboardWithHeaders(dataGridView_lista);
-            //dataGridView_lista.ClearSelection();
         }
         public void CopyToClipboardWithHeaders(DataGridView _dgv)
         {
-            //Copy to clipboard
             _dgv.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             DataObject dataObj = _dgv.GetClipboardContent();
             if (dataObj != null)
                 Clipboard.SetDataObject(dataObj);
+        }
+
+        private void textBox_buscar_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_buscar.TextLength < 2)
+            {
+                DataTable busqueda = (DataTable)dataGridView_lista.DataSource;
+                busqueda.DefaultView.RowFilter = "Entidad like '%%'";
+                this.dataGridView_lista.DataSource = busqueda;
+            }
+            else
+            {
+                DataTable busqueda = (DataTable)dataGridView_lista.DataSource; ;
+                busqueda.DefaultView.RowFilter = "Entidad like '%" + textBox_buscar.Text + "%'";
+                this.dataGridView_lista.DataSource = busqueda;
+            }
+
         }
     }
 }

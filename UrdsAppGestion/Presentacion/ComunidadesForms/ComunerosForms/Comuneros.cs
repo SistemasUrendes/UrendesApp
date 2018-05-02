@@ -388,8 +388,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
         private void comboBox_operaciones_SelectionChangeCommitted(object sender, EventArgs e)
         {
            if (comboBox_operaciones.SelectedIndex == 0)  {
-
-           }
+                ComunerosForms.Anticipos nueva = new ComunerosForms.Anticipos(id_comunidad, dataGridView_comuneros.SelectedRows[0].Cells[1].Value.ToString());
+                nueva.ControlBox = true;
+                nueva.Show();
+            }
            else if (comboBox_operaciones.SelectedIndex == 1) {
                 ComunerosForms.FormMovimientosComunero nueva = new ComunerosForms.FormMovimientosComunero(id_comunidad, dataGridView_comuneros.SelectedRows[0].Cells[1].Value.ToString(),dataGridView_comuneros.SelectedRows[0].Cells[2].Value.ToString());
                 nueva.Show();

@@ -35,6 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.maskedTextBox_inicio = new System.Windows.Forms.MaskedTextBox();
+            this.button_saldo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_anticipos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,12 +50,12 @@
             this.dataGridView_anticipos.ReadOnly = true;
             this.dataGridView_anticipos.RowHeadersVisible = false;
             this.dataGridView_anticipos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_anticipos.Size = new System.Drawing.Size(1185, 509);
+            this.dataGridView_anticipos.Size = new System.Drawing.Size(1138, 509);
             this.dataGridView_anticipos.TabIndex = 0;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(290, 10);
+            this.button2.Location = new System.Drawing.Point(286, 29);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(89, 23);
             this.button2.TabIndex = 19;
@@ -64,7 +65,7 @@
             // 
             // maskedTextBox_fin
             // 
-            this.maskedTextBox_fin.Location = new System.Drawing.Point(213, 12);
+            this.maskedTextBox_fin.Location = new System.Drawing.Point(209, 31);
             this.maskedTextBox_fin.Mask = "00/00/0000";
             this.maskedTextBox_fin.Name = "maskedTextBox_fin";
             this.maskedTextBox_fin.Size = new System.Drawing.Size(71, 20);
@@ -74,7 +75,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(171, 15);
+            this.label2.Location = new System.Drawing.Point(167, 34);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 13);
             this.label2.TabIndex = 17;
@@ -83,7 +84,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 15);
+            this.label1.Location = new System.Drawing.Point(12, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 13);
             this.label1.TabIndex = 16;
@@ -91,19 +92,30 @@
             // 
             // maskedTextBox_inicio
             // 
-            this.maskedTextBox_inicio.Location = new System.Drawing.Point(94, 12);
+            this.maskedTextBox_inicio.Location = new System.Drawing.Point(90, 31);
             this.maskedTextBox_inicio.Mask = "00/00/0000";
             this.maskedTextBox_inicio.Name = "maskedTextBox_inicio";
             this.maskedTextBox_inicio.Size = new System.Drawing.Size(71, 20);
             this.maskedTextBox_inicio.TabIndex = 15;
             this.maskedTextBox_inicio.ValidatingType = typeof(System.DateTime);
             // 
+            // button_saldo
+            // 
+            this.button_saldo.Location = new System.Drawing.Point(1075, 34);
+            this.button_saldo.Name = "button_saldo";
+            this.button_saldo.Size = new System.Drawing.Size(75, 23);
+            this.button_saldo.TabIndex = 20;
+            this.button_saldo.Text = "Con Saldo";
+            this.button_saldo.UseVisualStyleBackColor = true;
+            this.button_saldo.Click += new System.EventHandler(this.button_saldo_Click);
+            // 
             // Anticipos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1209, 584);
+            this.ClientSize = new System.Drawing.Size(1159, 584);
             this.ControlBox = false;
+            this.Controls.Add(this.button_saldo);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.maskedTextBox_fin);
             this.Controls.Add(this.label2);
@@ -129,5 +141,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox maskedTextBox_inicio;
+        private System.Windows.Forms.Button button_saldo;
     }
 }

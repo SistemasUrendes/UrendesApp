@@ -57,7 +57,7 @@
             this.dataGridView_bloques.ReadOnly = true;
             this.dataGridView_bloques.RowHeadersVisible = false;
             this.dataGridView_bloques.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_bloques.Size = new System.Drawing.Size(753, 381);
+            this.dataGridView_bloques.Size = new System.Drawing.Size(792, 381);
             this.dataGridView_bloques.TabIndex = 0;
             this.dataGridView_bloques.DoubleClick += new System.EventHandler(this.dataGridView_bloques_DoubleClick);
             this.dataGridView_bloques.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView_bloques_KeyDown);
@@ -103,7 +103,7 @@
             "Desactivados",
             "Bloque General",
             "Ver Todos"});
-            this.comboBox_FiltroBloques.Location = new System.Drawing.Point(644, 43);
+            this.comboBox_FiltroBloques.Location = new System.Drawing.Point(683, 43);
             this.comboBox_FiltroBloques.Name = "comboBox_FiltroBloques";
             this.comboBox_FiltroBloques.Size = new System.Drawing.Size(121, 21);
             this.comboBox_FiltroBloques.TabIndex = 2;
@@ -112,7 +112,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(606, 47);
+            this.label2.Location = new System.Drawing.Point(645, 47);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 14;
@@ -165,7 +165,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(777, 462);
+            this.ClientSize = new System.Drawing.Size(816, 462);
             this.ControlBox = false;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox_buscar);

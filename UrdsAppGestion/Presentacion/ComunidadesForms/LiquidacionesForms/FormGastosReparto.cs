@@ -50,7 +50,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
         private void calcularTotal() {
             double suma = 0.00;
             for (int a = 0; a < dataGridView_gastos.Rows.Count; a++) {
-                    suma = suma + Convert.ToDouble(dataGridView_gastos.Rows[a].Cells[11].Value.ToString());
+                    suma = suma + Convert.ToDouble(dataGridView_gastos.Rows[a].Cells[12].Value.ToString());
             }
             textBox_total.Text = suma.ToString("N2");
             

@@ -18,6 +18,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
         String nombreCortoLiqPasado;
         String id_comunidad_pasado;
         String LiqCerrada;
+        Double totalBloques;
         DataTable filas;
         DataTable newTable = new DataTable();
         DataTable DivisionConSubcuotas;
@@ -82,7 +83,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
             label3.Text = "Registros : " + filas.Rows.Count;
 
             Double totalParticulares = 0.00;
-            Double totalBloques = 0.00;
+            totalBloques = 0.00;
             for (int a = 0; a < dataGridView2.Rows.Count; a++)
                 totalParticulares = totalParticulares + Convert.ToDouble(dataGridView2.Rows[a].Cells["SumaDeImporte"].Value);
             textBox_total.Text = Math.Round(totalParticulares, 3).ToString() + " €";
@@ -197,11 +198,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
                     progressBar1.Value = a;
                 }
                 RepartoIVABloques();
-
-                MessageBox.Show("El Reparto ha sido guardado.");
-                progressBar1.Visible = false;
                 cargarDatagrid();
                 cerrarLiquidacion();
+                MessageBox.Show("El Reparto ha sido guardado.");
+                progressBar1.Visible = false;
                 button_guardar.Enabled = false;
             }
             else {
@@ -210,7 +210,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
             }
         }
         private void cerrarLiquidacion() {
-            String sqlCerrar = "UPDATE com_liquidaciones SET com_liquidaciones.Cerrada = -1 WHERE(((com_liquidaciones.IdLiquidacion) = " + id_liquidacion_pasado + "));";
+
+            //CIERRO Y GUARDO EL TOTAL
+            String sqlCerrar = "UPDATE com_liquidaciones SET com_liquidaciones.Cerrada = -1, com_liquidaciones.Total = " + totalBloques.ToString().Replace(',','.') + "  WHERE(((com_liquidaciones.IdLiquidacion) = " + id_liquidacion_pasado + "));";
             Persistencia.SentenciasSQL.InsertarGenerico(sqlCerrar);
         }
 

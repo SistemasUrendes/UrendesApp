@@ -233,7 +233,7 @@
         <Top>1.13647cm</Top>
         <Left>0.66417cm</Left>
         <Height>0.6cm</Height>
-        <Width>7.84372cm</Width>
+        <Width>10.17806cm</Width>
         <ZIndex>7</ZIndex>
         <Style>
           <Border>
@@ -296,7 +296,7 @@
         <Top>1.73647cm</Top>
         <Left>0.66417cm</Left>
         <Height>0.6cm</Height>
-        <Width>7.84372cm</Width>
+        <Width>10.17806cm</Width>
         <ZIndex>9</ZIndex>
         <Style>
           <Border>
@@ -418,7 +418,7 @@
         </Paragraphs>
         <rd:DefaultName>NumCuenta</rd:DefaultName>
         <Top>9.65125cm</Top>
-        <Left>10.84223cm</Left>
+        <Left>7.04485cm</Left>
         <Height>0.6cm</Height>
         <Width>6.16301cm</Width>
         <ZIndex>13</ZIndex>
@@ -482,9 +482,9 @@
         </Paragraphs>
         <rd:DefaultName>Descripcion1</rd:DefaultName>
         <Top>9.65125cm</Top>
-        <Left>7.22867cm</Left>
+        <Left>13.20786cm</Left>
         <Height>0.6cm</Height>
-        <Width>3.61356cm</Width>
+        <Width>4.83278cm</Width>
         <ZIndex>15</ZIndex>
         <Style>
           <Border>
@@ -1291,7 +1291,7 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>5.51683in</Height>
+    <Height>4.246in</Height>
     <Style />
   </Body>
   <Width>7.3043in</Width>
@@ -1405,7 +1405,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>2.14313cm</Height>
+      <Height>1.64042cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>

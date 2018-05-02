@@ -42,9 +42,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.BloquesForms
             cargarBloques();
             textBox_buscar.Select();
             comboBox_FiltroBloques.SelectedIndex = 0;
-            DataTable busqueda = bloques;
-            busqueda.DefaultView.RowFilter = "Baja = False";
-            dataGridView_bloques.DataSource = busqueda;
         }
         private void enviarOtroForm()
         {
@@ -79,6 +76,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.BloquesForms
         private void ajustarDatagrid() {
             dataGridView_bloques.Columns["GG"].Width = 31;
             dataGridView_bloques.Columns["Baja"].Width = 35;
+            dataGridView_bloques.Columns["Fisico"].Width = 38;
             dataGridView_bloques.Columns["Descripcion"].Width = 270;
             dataGridView_bloques.Columns["Cuenta"].Width = 100;
             dataGridView_bloques.Columns["Cuenta"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -91,10 +89,14 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.BloquesForms
             dataGridView_bloques.Columns["IdTipoSubcuota"].Visible = false;
         }
         public void cargarBloques() {
-            String sql = "SELECT com_bloques.IdBloque, com_bloques.Descripcion, com_tipoSubcuota.Descripcion AS CálculoSubcuota, Sum(com_divisiones.Cuota) AS CG, Count(com_subcuotas.IdDivision) AS Cuenta, Sum(com_subcuotas.Parte) AS Partes, com_bloques.GG, com_bloques.Baja, com_bloques.IdTipoSubcuota FROM((com_bloques LEFT JOIN com_tipoSubcuota ON com_bloques.IdTipoSubcuota = com_tipoSubcuota.IdTipoSubcuota) LEFT JOIN com_subcuotas ON com_bloques.IdBloque = com_subcuotas.IdBloque) LEFT JOIN com_divisiones ON com_subcuotas.IdDivision = com_divisiones.IdDivision GROUP BY com_bloques.IdBloque, com_bloques.Descripcion, com_tipoSubcuota.Descripcion, com_bloques.GG, com_bloques.Baja, com_bloques.IdTipoSubcuota, com_bloques.CalculoSubcuota, com_bloques.IdComunidad, com_bloques.IdTipoBloque HAVING(((com_bloques.IdComunidad) = " + id_comunidad_cargado + ") AND((com_bloques.IdTipoBloque) = 1)) ORDER BY com_bloques.Descripcion;";
+            String sql = "SELECT com_bloques.IdBloque, com_bloques.Descripcion, com_tipoSubcuota.Descripcion AS CálculoSubcuota, Sum(com_divisiones.Cuota) AS CG, Count(com_subcuotas.IdDivision) AS Cuenta, Sum(com_subcuotas.Parte) AS Partes, com_bloques.GG, com_bloques.Baja, com_bloques.IdTipoSubcuota, com_bloques.Fisica AS Fisico FROM((com_bloques LEFT JOIN com_tipoSubcuota ON com_bloques.IdTipoSubcuota = com_tipoSubcuota.IdTipoSubcuota) LEFT JOIN com_subcuotas ON com_bloques.IdBloque = com_subcuotas.IdBloque) LEFT JOIN com_divisiones ON com_subcuotas.IdDivision = com_divisiones.IdDivision GROUP BY com_bloques.IdBloque, com_bloques.Descripcion, com_tipoSubcuota.Descripcion, com_bloques.GG, com_bloques.Baja, com_bloques.IdTipoSubcuota, com_bloques.CalculoSubcuota, com_bloques.IdComunidad, com_bloques.IdTipoBloque HAVING(((com_bloques.IdComunidad) = " + id_comunidad_cargado + ") AND((com_bloques.IdTipoBloque) = 1)) ORDER BY com_bloques.Descripcion;";
 
             bloques = Persistencia.SentenciasSQL.select(sql);
             dataGridView_bloques.DataSource = bloques;
+            DataTable busqueda = bloques;
+            busqueda.DefaultView.RowFilter = "Baja = False";
+            dataGridView_bloques.DataSource = busqueda;
+
             ajustarDatagrid();
         }
         private void comboBox_FiltroBloques_SelectionChangeCommitted(object sender, EventArgs e)
@@ -121,7 +123,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.BloquesForms
 
         private void button_EditarBloque_Click(object sender, EventArgs e)
         {
-            FormBloquesAlta nueva = new FormBloquesAlta(this,id_comunidad_cargado,dataGridView_bloques.SelectedCells[0].Value.ToString(),dataGridView_bloques.SelectedCells[1].Value.ToString(), dataGridView_bloques.SelectedCells[5].Value.ToString(), dataGridView_bloques.SelectedCells[6].Value.ToString(), dataGridView_bloques.SelectedCells[8].Value.ToString());
+            FormBloquesAlta nueva = new FormBloquesAlta(this,id_comunidad_cargado,dataGridView_bloques.SelectedCells[0].Value.ToString(),dataGridView_bloques.SelectedCells[1].Value.ToString(), dataGridView_bloques.SelectedCells[5].Value.ToString(), dataGridView_bloques.SelectedCells[7].Value.ToString(), dataGridView_bloques.SelectedCells[8].Value.ToString(), dataGridView_bloques.SelectedCells[9].Value.ToString());
 
             nueva.Show();
         }

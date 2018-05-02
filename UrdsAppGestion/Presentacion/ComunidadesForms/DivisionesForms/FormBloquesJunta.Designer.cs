@@ -45,6 +45,8 @@
             this.button_mostrar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.button_seleccionarTodos = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox_buscar = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_lista)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,12 +56,12 @@
             this.dataGridView_lista.AllowUserToDeleteRows = false;
             this.dataGridView_lista.AllowUserToResizeRows = false;
             this.dataGridView_lista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_lista.Location = new System.Drawing.Point(233, 12);
+            this.dataGridView_lista.Location = new System.Drawing.Point(233, 29);
             this.dataGridView_lista.Name = "dataGridView_lista";
             this.dataGridView_lista.ReadOnly = true;
             this.dataGridView_lista.RowHeadersVisible = false;
             this.dataGridView_lista.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_lista.Size = new System.Drawing.Size(1062, 612);
+            this.dataGridView_lista.Size = new System.Drawing.Size(1062, 596);
             this.dataGridView_lista.TabIndex = 0;
             this.dataGridView_lista.DoubleClick += new System.EventHandler(this.dataGridView_lista_DoubleClick);
             // 
@@ -186,7 +188,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(230, 627);
+            this.label6.Location = new System.Drawing.Point(230, 628);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(51, 13);
             this.label6.TabIndex = 15;
@@ -202,11 +204,30 @@
             this.button_seleccionarTodos.UseVisualStyleBackColor = true;
             this.button_seleccionarTodos.Click += new System.EventHandler(this.button_seleccionarTodos_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(230, 9);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(49, 13);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Buscar : ";
+            // 
+            // textBox_buscar
+            // 
+            this.textBox_buscar.Location = new System.Drawing.Point(276, 6);
+            this.textBox_buscar.Name = "textBox_buscar";
+            this.textBox_buscar.Size = new System.Drawing.Size(270, 20);
+            this.textBox_buscar.TabIndex = 18;
+            this.textBox_buscar.TextChanged += new System.EventHandler(this.textBox_buscar_TextChanged);
+            // 
             // FormBloquesJunta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1307, 649);
+            this.Controls.Add(this.textBox_buscar);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.button_seleccionarTodos);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button_mostrar);
@@ -252,5 +273,7 @@
         private System.Windows.Forms.Button button_mostrar;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button_seleccionarTodos;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox_buscar;
     }
 }

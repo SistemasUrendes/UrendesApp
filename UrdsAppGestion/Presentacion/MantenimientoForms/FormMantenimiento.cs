@@ -338,6 +338,96 @@ namespace UrdsAppGestión.Presentacion
             return (sb.ToString().Normalize(NormalizationForm.FormC));
 
         }
-        
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            progressBar1.Visible = true;
+
+            String sqlLiqudaciones = "SELECT com_liquidaciones.IdLiquidacion FROM com_liquidaciones;";
+            DataTable todas = Persistencia.SentenciasSQL.select(sqlLiqudaciones);
+            
+            for (int i = 0; i < todas.Rows.Count; i++)
+            {
+                progressBar1.Maximum = todas.Rows.Count;
+
+                String sql = "(SELECT SUM(ImpLiq) FROM (SELECT Sum(com_opdetliquidacion.Importe * If(com_subcuentas.ES = 1, -1, 1)) AS ImpLiq FROM(com_operaciones INNER JOIN com_opdetliquidacion ON com_operaciones.IdOp = com_opdetliquidacion.IdOp) INNER JOIN com_subcuentas ON com_operaciones.IdSubCuenta = com_subcuentas.IdSubcuenta GROUP BY com_operaciones.IdOp, com_opdetliquidacion.IdLiquidacion, com_operaciones.IdSubCuenta, com_opdetliquidacion.Importe HAVING(((com_opdetliquidacion.IdLiquidacion) = " + todas.Rows[i][0].ToString() + ") AND((com_operaciones.IdSubCuenta)Between 60000 And 69999 Or(com_operaciones.IdSubCuenta) Between 70100 And 76900)) ORDER BY com_operaciones.IdOp) total); ";
+
+                DataTable total = Persistencia.SentenciasSQL.select(sql);
+
+                if (total.Rows[0][0].ToString().Replace(',', '.') != "")
+                {
+                    String sqlUpdate = "UPDATE com_liquidaciones SET Total=" + total.Rows[0][0].ToString().Replace(',', '.') + " WHERE IdLiquidacion = " + todas.Rows[i][0].ToString() + ";";
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                }
+                progressBar1.Value = i;
+
+            }
+            progressBar1.Visible = false;
+            MessageBox.Show("Fin");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            String sqlComunidades = "SELECT com_comunidades.IdComunidad FROM com_comunidades WHERE(((com_comunidades.FBaja)Is Null));";
+            DataTable comunidades = Persistencia.SentenciasSQL.select(sqlComunidades);
+
+            for (int b = 0; b < comunidades.Rows.Count; b++)
+            {
+                String idComunidad =comunidades.Rows[b][0].ToString();
+
+                String sqlSelectBloques = "SELECT com_bloques.IdBloque, com_bloques.Descripcion FROM com_bloques WHERE com_bloques.IdComunidad = " + idComunidad + " AND com_bloques.IdTipoBloque = 1 AND Fisica = -1 AND com_bloques.Baja <> -1; ";
+                DataTable bloquesComunidad = Persistencia.SentenciasSQL.select(sqlSelectBloques);
+
+                for (int a = 0; a < bloquesComunidad.Rows.Count; a++)
+                {
+                    String sqlInsertar = "INSERT INTO exp_elementos (IdElementoAnt, IdComunidad, Nombre, Descripcion) VALUES(0," + idComunidad + ",'" + bloquesComunidad.Rows[a][1].ToString() + "','Bloque físico')";
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlInsertar);
+
+                }
+            }
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int contTarea = 0;
+            String fecha = "";
+            String fechaAnterior="";
+            String sqlUpdate;
+            progressBar1.Visible = true;
+
+            String sqlString = "SELECT IdTarea, FIni, FFin FROM exp_tareas ORDER BY FIni";
+            DataTable tareas = Persistencia.SentenciasSQL.select(sqlString);
+            progressBar1.Maximum = tareas.Rows.Count;
+
+            for (int a = 0; a < tareas.Rows.Count;a++) {
+                contTarea++;
+                progressBar1.Value = a;
+                if (tareas.Rows[a][1].ToString() != "") {
+                    fecha = (Convert.ToDateTime(tareas.Rows[a][1].ToString()).Year).ToString().Substring(2, 2) + "/";
+                    if (fechaAnterior != fecha) contTarea = 1;
+                    sqlUpdate = "UPDATE exp_tareas SET IdTareaCorto='" + fecha + contTarea.ToString("D4") + "' WHERE IdTarea = " + tareas.Rows[a][0].ToString();
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                }
+                else if (tareas.Rows[a][1].ToString() == "" && tareas.Rows[a][2].ToString() != "") {
+                    fecha = (Convert.ToDateTime(tareas.Rows[a][2].ToString()).Year).ToString().Substring(2,2) + "/";
+                    if (fechaAnterior != fecha) contTarea = 1;
+                    sqlUpdate = "UPDATE exp_tareas SET IdTareaCorto='" + fecha + contTarea.ToString("D4") + "' WHERE IdTarea = " + tareas.Rows[a][0].ToString();
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                }
+                else if (tareas.Rows[a][1].ToString() != "" && tareas.Rows[a][2].ToString() != "")
+                {
+                    fecha = "00/";
+                    if (fechaAnterior != fecha) contTarea = 1;
+                    sqlUpdate = "UPDATE exp_tareas SET IdTareaCorto='" + fecha + contTarea.ToString("D4") + "' WHERE IdTarea = " + tareas.Rows[a][0].ToString();
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                }
+
+                fechaAnterior = fecha;
+
+            }
+            MessageBox.Show("Fin");
+            progressBar1.Visible = false;
+        }
     }
 }

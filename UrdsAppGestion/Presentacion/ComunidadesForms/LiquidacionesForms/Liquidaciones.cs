@@ -60,12 +60,25 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
             cargarDatagrid();
         }
         public void cargarDatagrid() {
-            String sql = "SELECT com_liquidaciones.IdLiquidacion, com_fondos.NombreFondo, com_ejercicios.Ejercicio, com_liquidaciones.LiqLargo, com_liquidaciones.Liquidacion, com_liquidaciones.FIni, com_liquidaciones.FFin, aux_tipoliquidacion.TipoLiq, com_liquidaciones.Ppal, com_liquidaciones.Cerrada FROM(((com_liquidaciones INNER JOIN com_ejercicios ON com_liquidaciones.IdEjercicio = com_ejercicios.IdEjercicio) INNER JOIN aux_tipoliquidacion ON com_liquidaciones.IdTipoLiq = aux_tipoliquidacion.IdTipoLiq) LEFT JOIN com_detallesfondo ON com_liquidaciones.IdDetalleFondo = com_detallesfondo.IdDetalleFondo) LEFT JOIN com_fondos ON com_detallesfondo.IdFondo = com_fondos.IdFondo WHERE(((com_ejercicios.IdComunidad) = " + id_comunidad_cargado + ")) ORDER BY com_liquidaciones.IdLiquidacion DESC;";
+
+            String sql = "SELECT com_liquidaciones.IdLiquidacion, com_fondos.NombreFondo, com_ejercicios.Ejercicio, com_liquidaciones.LiqLargo, com_liquidaciones.Liquidacion, com_liquidaciones.FIni, com_liquidaciones.FFin, aux_tipoliquidacion.TipoLiq, com_liquidaciones.Ppal, com_liquidaciones.Cerrada, com_liquidaciones.Total FROM(((com_liquidaciones INNER JOIN com_ejercicios ON com_liquidaciones.IdEjercicio = com_ejercicios.IdEjercicio) INNER JOIN aux_tipoliquidacion ON com_liquidaciones.IdTipoLiq = aux_tipoliquidacion.IdTipoLiq) LEFT JOIN com_detallesfondo ON com_liquidaciones.IdDetalleFondo = com_detallesfondo.IdDetalleFondo) LEFT JOIN com_fondos ON com_detallesfondo.IdFondo = com_fondos.IdFondo WHERE(((com_ejercicios.IdComunidad) = " + id_comunidad_cargado + ")) ORDER BY com_liquidaciones.IdLiquidacion DESC;";
 
             liquidaciones = Persistencia.SentenciasSQL.select(sql);
             dataGridView_Liquidaciones.DataSource = liquidaciones;
+
+            ajustarDatagrid();
+            DataTable busqueda = liquidaciones;
+            busqueda.DefaultView.RowFilter = "Cerrada = 'False'";
+            this.dataGridView_Liquidaciones.DataSource = busqueda;
+            comboBox_filtro.SelectedItem = "Abiertas";
+
+        }
+        private void ajustarDatagrid() {
             dataGridView_Liquidaciones.Columns["FIni"].DefaultCellStyle.Format = "dd/MM/yyyy";
             dataGridView_Liquidaciones.Columns["FFin"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            dataGridView_Liquidaciones.Columns["Total"].DefaultCellStyle.Format = "c";
+            dataGridView_Liquidaciones.Columns["Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView_Liquidaciones.Columns["Total"].Width = 80;
             dataGridView_Liquidaciones.Columns["Cerrada"].Width = 50;
             dataGridView_Liquidaciones.Columns["Ppal"].Width = 40;
             dataGridView_Liquidaciones.Columns["IdLiquidacion"].Width = 60;
@@ -73,15 +86,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
             dataGridView_Liquidaciones.Columns["FIni"].Width = 70;
             dataGridView_Liquidaciones.Columns["FFin"].Width = 70;
             dataGridView_Liquidaciones.Columns["Ejercicio"].Visible = false;
-            //dataGridView_Liquidaciones.Columns["Liquidacion"].Visible = false;
-
-            DataTable busqueda = liquidaciones;
-            busqueda.DefaultView.RowFilter = "Cerrada = 'False'";
-            this.dataGridView_Liquidaciones.DataSource = busqueda;
-
-            comboBox_filtro.SelectedItem = "Abiertas";
-
-
         }
 
         private void button_Añadir_Click(object sender, EventArgs e)
@@ -229,7 +233,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
                         Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdatePal);
                     }
                 }
-                this.cargarDatagrid();
+                cargarDatagrid();
             }else {
                 MessageBox.Show("Selecciona una liquidación");
             }
@@ -275,6 +279,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
         private void añadirNotaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormAnyadirNotaLiq nueva = new FormAnyadirNotaLiq(dataGridView_Liquidaciones.SelectedRows[0].Cells[0].Value.ToString());
+            nueva.Show();
+        }
+
+        private void dataGridView_Liquidaciones_DoubleClick(object sender, EventArgs e)
+        {
+            FormGastosReparto nueva = new FormGastosReparto(id_comunidad_cargado, dataGridView_Liquidaciones.SelectedRows[0].Cells[0].Value.ToString());
             nueva.Show();
         }
     }

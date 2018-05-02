@@ -159,7 +159,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             {
 
                 DataTable busqueda = pagos;
-                busqueda.DefaultView.RowFilter = "(IdSubCuenta = 43801 AND ImpOpDetPte > 0) OR (IdSubCuenta = 43812 AND ImpOpDetPte < 0) OR (IdSubCuenta > 59999 AND IdSubCuenta < 70000 AND ImpOpDetPte < 0) OR (IdSubCuenta = 70000 AND ImpOpDetPte > 0) OR (IdSubCuenta = 70001 AND ImpOpDetPte > 0)";
+                busqueda.DefaultView.RowFilter = "(IdSubCuenta = 43801 AND ImpOpDetPte > 0) OR (IdSubCuenta = 43812 AND ImpOpDetPte < 0) OR (IdSubCuenta > 59999 AND IdSubCuenta < 70000 AND ImpOpDetPte < 0) OR (IdSubCuenta = 70000 AND ImpOpDetPte > 0) OR (IdSubCuenta = 70001 AND ImpOpDetPte > 0) OR (IdSubCuenta >= 70001 AND IdSubCuenta < 72000 AND ImpOpDetPte > 0)";
                 this.dataGridView_pagos.DataSource = busqueda;
             }
             else if (id_subcuenta == "43801" || (id_subcuenta == "43812" && Convert.ToDouble(importe) < 0) || ((id_subcuenta == "70000" || id_subcuenta == "70001") && Convert.ToDouble(importe) > 0) || ((Convert.ToInt32(id_subcuenta) >= 60000 || Convert.ToInt32(id_subcuenta) <= 69999) && Convert.ToDouble(importe) < 0))

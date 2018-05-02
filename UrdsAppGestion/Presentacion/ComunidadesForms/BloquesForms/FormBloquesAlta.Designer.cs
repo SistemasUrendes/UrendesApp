@@ -39,6 +39,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.comboBox_tipoCalculo = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.checkBox_fisico = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // textBox_Bloque
@@ -52,7 +53,7 @@
             // checkBox_GG
             // 
             this.checkBox_GG.AutoSize = true;
-            this.checkBox_GG.Location = new System.Drawing.Point(84, 101);
+            this.checkBox_GG.Location = new System.Drawing.Point(58, 101);
             this.checkBox_GG.Name = "checkBox_GG";
             this.checkBox_GG.Size = new System.Drawing.Size(110, 17);
             this.checkBox_GG.TabIndex = 1;
@@ -63,7 +64,7 @@
             // checkBox_Desactivado
             // 
             this.checkBox_Desactivado.AutoSize = true;
-            this.checkBox_Desactivado.Location = new System.Drawing.Point(200, 101);
+            this.checkBox_Desactivado.Location = new System.Drawing.Point(174, 101);
             this.checkBox_Desactivado.Name = "checkBox_Desactivado";
             this.checkBox_Desactivado.Size = new System.Drawing.Size(86, 17);
             this.checkBox_Desactivado.TabIndex = 2;
@@ -81,7 +82,7 @@
             // 
             // button_Guardar
             // 
-            this.button_Guardar.Location = new System.Drawing.Point(101, 124);
+            this.button_Guardar.Location = new System.Drawing.Point(93, 139);
             this.button_Guardar.Name = "button_Guardar";
             this.button_Guardar.Size = new System.Drawing.Size(75, 23);
             this.button_Guardar.TabIndex = 4;
@@ -91,7 +92,7 @@
             // 
             // button_Cancelar
             // 
-            this.button_Cancelar.Location = new System.Drawing.Point(182, 124);
+            this.button_Cancelar.Location = new System.Drawing.Point(174, 139);
             this.button_Cancelar.Name = "button_Cancelar";
             this.button_Cancelar.Size = new System.Drawing.Size(75, 23);
             this.button_Cancelar.TabIndex = 5;
@@ -122,11 +123,24 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Cálculo: ";
             // 
+            // checkBox_fisico
+            // 
+            this.checkBox_fisico.AutoSize = true;
+            this.checkBox_fisico.Checked = true;
+            this.checkBox_fisico.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_fisico.Location = new System.Drawing.Point(266, 101);
+            this.checkBox_fisico.Name = "checkBox_fisico";
+            this.checkBox_fisico.Size = new System.Drawing.Size(55, 17);
+            this.checkBox_fisico.TabIndex = 8;
+            this.checkBox_fisico.Text = "Físico";
+            this.checkBox_fisico.UseVisualStyleBackColor = true;
+            // 
             // FormBloquesAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(348, 159);
+            this.ClientSize = new System.Drawing.Size(365, 174);
+            this.Controls.Add(this.checkBox_fisico);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBox_tipoCalculo);
             this.Controls.Add(this.button_Cancelar);
@@ -157,5 +171,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ComboBox comboBox_tipoCalculo;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox checkBox_fisico;
     }
 }
