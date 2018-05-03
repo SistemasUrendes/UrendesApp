@@ -64,7 +64,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-
+            //hola
         }
 
         private void buttonDuplicar_Click(object sender, EventArgs e)

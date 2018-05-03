@@ -1548,7 +1548,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String nombreComunidad = textBoxEntidad.Text;
             String referencia = maskedTextBoxReferencia.Text;
 
-            FormDuplicarTarea nueva = new FormDuplicarTarea(form_anterior,idTipoTarea,fIni,descripcion,coste,seguro,acuerdoJunta,fechaActaAcordado,proximaJunta,refSiniestro,fFin,ruta,notas,importante,nombreElemento,idElemento,idEntidad,nombreComunidad,idComunidad, referencia,idTarea);
+            FormDuplicarTarea nueva = new FormDuplicarTarea(form_anterior, idTipoTarea, fIni, descripcion, coste, seguro, acuerdoJunta, fechaActaAcordado, proximaJunta, refSiniestro, fFin, ruta, notas, importante, nombreElemento, idElemento, idEntidad, nombreComunidad, idComunidad, referencia, idTarea);
             nueva.ControlBox = true;
             nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;
