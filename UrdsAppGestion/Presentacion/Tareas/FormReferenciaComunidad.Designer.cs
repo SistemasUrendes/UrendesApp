@@ -86,7 +86,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormReferenciaComunidad";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormReferenciaComunidad";
+            this.Text = "Referencia Comunidad";
             this.Load += new System.EventHandler(this.FormReferenciaComunidad_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -116,7 +116,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormInsertarTipoGestion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormInsertarTipoGestion";
+            this.Text = "Insertar Tipo Gestion";
             this.ResumeLayout(false);
             this.PerformLayout();
 

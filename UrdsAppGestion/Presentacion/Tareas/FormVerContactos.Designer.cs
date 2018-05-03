@@ -93,7 +93,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormVerContactos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormVerContactos";
+            this.Text = "Ver Contactos";
             this.Load += new System.EventHandler(this.FormVerContactos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContactos)).EndInit();
             this.ResumeLayout(false);
