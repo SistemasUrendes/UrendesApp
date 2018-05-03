@@ -32,6 +32,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String nombreComunidad;
         int idComunidad;
         String referencia;
+        private CheckBox checkBoxContactos;
+        private CheckBox checkBoxExpedientes;
+        private Button buttonCancelar;
+        private Button buttonDuplicar;
         String idTarea;
         
 
@@ -77,6 +81,72 @@ namespace UrdsAppGestión.Presentacion.Tareas
             nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
             this.Close();
+        }
+
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDuplicarTarea));
+            this.checkBoxContactos = new System.Windows.Forms.CheckBox();
+            this.checkBoxExpedientes = new System.Windows.Forms.CheckBox();
+            this.buttonCancelar = new System.Windows.Forms.Button();
+            this.buttonDuplicar = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // checkBoxContactos
+            // 
+            this.checkBoxContactos.AutoSize = true;
+            this.checkBoxContactos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxContactos.Location = new System.Drawing.Point(76, 18);
+            this.checkBoxContactos.Name = "checkBoxContactos";
+            this.checkBoxContactos.Size = new System.Drawing.Size(99, 21);
+            this.checkBoxContactos.TabIndex = 2;
+            this.checkBoxContactos.Text = "Contactos";
+            this.checkBoxContactos.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxExpedientes
+            // 
+            this.checkBoxExpedientes.AutoSize = true;
+            this.checkBoxExpedientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxExpedientes.Location = new System.Drawing.Point(76, 53);
+            this.checkBoxExpedientes.Name = "checkBoxExpedientes";
+            this.checkBoxExpedientes.Size = new System.Drawing.Size(115, 21);
+            this.checkBoxExpedientes.TabIndex = 3;
+            this.checkBoxExpedientes.Text = "Expedientes";
+            this.checkBoxExpedientes.UseVisualStyleBackColor = true;
+            // 
+            // buttonCancelar
+            // 
+            this.buttonCancelar.Location = new System.Drawing.Point(197, 96);
+            this.buttonCancelar.Name = "buttonCancelar";
+            this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancelar.TabIndex = 4;
+            this.buttonCancelar.Text = "Cancelar";
+            this.buttonCancelar.UseVisualStyleBackColor = true;
+            this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
+            // 
+            // buttonDuplicar
+            // 
+            this.buttonDuplicar.Location = new System.Drawing.Point(116, 96);
+            this.buttonDuplicar.Name = "buttonDuplicar";
+            this.buttonDuplicar.Size = new System.Drawing.Size(75, 23);
+            this.buttonDuplicar.TabIndex = 5;
+            this.buttonDuplicar.Text = "Duplicar";
+            this.buttonDuplicar.UseVisualStyleBackColor = true;
+            this.buttonDuplicar.Click += new System.EventHandler(this.buttonDuplicar_Click);
+            // 
+            // FormDuplicarTarea
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 131);
+            this.Controls.Add(this.buttonDuplicar);
+            this.Controls.Add(this.buttonCancelar);
+            this.Controls.Add(this.checkBoxExpedientes);
+            this.Controls.Add(this.checkBoxContactos);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "FormDuplicarTarea";
+            this.Text = "DuplicarTarea";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
     }
 }
