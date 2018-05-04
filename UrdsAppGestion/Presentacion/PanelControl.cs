@@ -195,7 +195,7 @@ namespace UrdsAppGestión.Presentacion
         }
         private void EnviarCorreo(String destinatario, String Asunto, String Cuerpo, List<String> adjuntos,String from)
         {
-            destinatario = "sistemas@urendes.com";
+            //destinatario = "sistemas@urendes.com";
 
             //Sustituir \n por <br>
             Cuerpo = Cuerpo.Replace("\n", "<br>");
@@ -217,12 +217,20 @@ namespace UrdsAppGestión.Presentacion
                 if (System.IO.File.Exists(@adjuntos[a]))
                     email.Attachments.Add(new Attachment(@adjuntos[a]));
 
+
             SmtpClient smtp = new SmtpClient();
+            smtp.Host = "hl316.hosteurope.es";
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new NetworkCredential("admin@envios.urendes.com", "#.Urds16");
+
+            /*SmtpClient smtp = new SmtpClient();
             smtp.Host = "urendes.com";
             smtp.Port = 26;
             smtp.EnableSsl = true;
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("no-replay@envios.urendes.com", "TwTtdo3T[Sw&");
+            smtp.Credentials = new NetworkCredential("no-replay@envios.urendes.com", "TwTtdo3T[Sw&");*/
 
             /*SmtpClient smtp = new SmtpClient();
             smtp.Host = "cp5023.webempresa.eu";

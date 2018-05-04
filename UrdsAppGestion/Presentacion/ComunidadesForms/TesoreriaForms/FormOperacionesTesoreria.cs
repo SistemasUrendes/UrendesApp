@@ -83,14 +83,28 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
             String sqlSelect = "";
             if (id_entidad_pasado != "0" && tipoOperacion == "Salida a Comuneros" )
             {
-                sqlSelect = "SELECT com_opdetalles.IdOpDet, com_operaciones.IdOp, com_opdetalles.IdEntidad, ctos_entidades.Entidad, com_operaciones.Documento, com_operaciones.Descripcion,com_opdetalles.Fecha, com_opdetalles.ImpOpDetPte, com_opdetalles.Importe FROM(com_operaciones INNER JOIN com_opdetalles ON com_operaciones.IdOp = com_opdetalles.IdOp) INNER JOIN ctos_entidades ON com_operaciones.IdEntidad = ctos_entidades.IDEntidad WHERE((com_opdetalles.IdEntidad = " + id_entidad_pasado + ") AND ((com_opdetalles.ImpOpDetPte) > 0) AND((com_operaciones.IdSubCuenta)Between 60000 And 69999) AND((com_opdetalles.IdEstado) <> 3) AND((com_operaciones.IdComunidad) = " + id_comunidad_cargado + ")) OR (((com_opdetalles.ImpOpDetPte) > 0) AND((com_operaciones.IdSubCuenta) = 43812) AND (com_opdetalles.IdEntidad = " + id_entidad_pasado + ")) ORDER BY com_operaciones.Fecha;";
+                sqlSelect = "SELECT com_opdetalles.IdOpDet, com_operaciones.IdOp, com_opdetalles.IdEntidad, ctos_entidades.Entidad, com_operaciones.Documento, com_operaciones.Descripcion,com_opdetalles.Fecha, -1 * com_opdetalles.ImpOpDetPte AS ImpOpDetPte ,  -1 * com_opdetalles.Importe AS Importe FROM(com_operaciones INNER JOIN com_opdetalles ON com_operaciones.IdOp = com_opdetalles.IdOp) INNER JOIN ctos_entidades ON com_operaciones.IdEntidad = ctos_entidades.IDEntidad WHERE ((Not (com_opdetalles.IdRecibo) Is Null) AND ((com_opdetalles.IdEntidad)=" + id_entidad_pasado + ") AND ((com_opdetalles.ImpOpDetPte)<0) AND ((com_operaciones.IdComunidad)=" + id_comunidad_cargado + ") AND ((com_opdetalles.IdEstado)<3) AND ((com_operaciones.IdSubCuenta) Between 70000 And 700001)) OR (((com_opdetalles.IdEntidad)=" + id_entidad_pasado + ") AND ((com_opdetalles.ImpOpDetPte)<0) AND ((com_operaciones.IdComunidad)=" + id_comunidad_cargado + ") AND ((com_operaciones.IdSubCuenta)=43801)) ORDER BY com_operaciones.Fecha;";
 
                 datos_datagrid = Persistencia.SentenciasSQL.select(sqlSelect);
                 dataGridView_general.DataSource = datos_datagrid;
+
                 dataGridView_general.Columns["Entidad"].Width = 250;
                 dataGridView_general.Columns["Entidad"].ReadOnly = true;
                 dataGridView_general.Columns["Documento"].Width = 90;
                 dataGridView_general.Columns["Documento"].ReadOnly = true;
+                dataGridView_general.Columns["IdOpDet"].Visible = false;
+                dataGridView_general.Columns["IdOp"].Visible = false;
+                dataGridView_general.Columns["IdEntidad"].Visible = false;
+                dataGridView_general.Columns["Importe"].Visible = false;
+
+                dataGridView_general.Columns["Descripcion"].Width = 300;
+                dataGridView_general.Columns["Descripcion"].ReadOnly = true;
+                dataGridView_general.Columns["Fecha"].Width = 70;
+                dataGridView_general.Columns["Fecha"].ReadOnly = true;
+                dataGridView_general.Columns["ImpOpDetPte"].Width = 80;
+                dataGridView_general.Columns["ImpOpDetPte"].ReadOnly = true;
+                dataGridView_general.Columns["ImpOpDetPte"].DefaultCellStyle.Format = "c";
+                dataGridView_general.Columns["ImpOpDetPte"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             }
 
@@ -149,7 +163,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
 
             }
             else {
-                sqlSelect = "SELECT com_opdetalles.IdOpDet, com_operaciones.IdOp, com_opdetalles.IdEntidad, ctos_entidades.Entidad, com_operaciones.Documento, com_operaciones.Descripcion,com_opdetalles.Fecha, com_opdetalles.ImpOpDetPte, com_opdetalles.Importe FROM(com_operaciones INNER JOIN com_opdetalles ON com_operaciones.IdOp = com_opdetalles.IdOp) INNER JOIN ctos_entidades ON com_opdetalles.IdEntidad = ctos_entidades.IDEntidad WHERE(((com_opdetalles.ImpOpDetPte) > 0) AND((com_operaciones.IdSubCuenta)Between 60000 And 69999) AND((com_opdetalles.IdEstado) <> 3) AND ((com_operaciones.IdComunidad)=" + id_comunidad_cargado + ")) OR (((com_opdetalles.ImpOpDetPte)>0) AND ((com_operaciones.IdComunidad)=" + id_comunidad_cargado + ") AND ((com_operaciones.IdSubCuenta)=43812)) ORDER BY ctos_entidades.Entidad;";
+                sqlSelect = "SELECT com_opdetalles.IdOpDet, com_operaciones.IdOp, com_opdetalles.IdEntidad, ctos_entidades.Entidad, com_operaciones.Documento, com_operaciones.Descripcion,com_opdetalles.Fecha, com_opdetalles.ImpOpDetPte, com_opdetalles.Importe FROM(com_operaciones INNER JOIN com_opdetalles ON com_operaciones.IdOp = com_opdetalles.IdOp) INNER JOIN ctos_entidades ON com_opdetalles.IdEntidad = ctos_entidades.IDEntidad WHERE(((com_opdetalles.ImpOpDetPte) > 0) AND((com_operaciones.IdSubCuenta)Between 60000 And 69999) AND((com_opdetalles.IdEstado) <> 3) AND ((com_operaciones.IdComunidad)=" + id_comunidad_cargado + ")) OR (((com_opdetalles.ImpOpDetPte)>0) AND ((com_operaciones.IdComunidad)=" + id_comunidad_cargado + ") AND ((com_operaciones.IdSubCuenta)=43801)) ORDER BY ctos_entidades.Entidad;";
 
                 datos_datagrid = Persistencia.SentenciasSQL.select(sqlSelect);
 
@@ -354,7 +368,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
             String fechaMov = "";
             int numMov = 0;
             Boolean crearAnticipo = false;
-            if (tipoOperacion == "Ingreso a Comuneros" || tipoOperacion == "Entrada a Proveedor" || tipoOperacion == "Pago a Proveedor") {
+            if (tipoOperacion == "Ingreso a Comuneros" || tipoOperacion == "Entrada a Proveedor" || tipoOperacion == "Pago a Proveedor" || tipoOperacion == "Salida a Comuneros") {
                 //PREGUNTO SI EL USUARIO QUIERE CREAR UN ANTICIPO ANTES DE HACER NADA
                 if (Convert.ToDouble(textBox_operacion_disponible.Text) > 0) {
                     try { fechaMov = (Convert.ToDateTime(fecha_operacion_pasado)).ToString("yyyy-MM-dd"); }
@@ -384,6 +398,13 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
                 numMov = Logica.FuncionesTesoreria.CreaMovimiento(idEjercicio, id_cuenta_cargado, "2", id_entidad_pasado, fechaMov, "Ingreso");
 
             }
+            else if (tipoOperacion == "Salida a Comuneros") {
+                //BUSCO EL EJERCICIO ACTIVO
+                String idEjercicio = Logica.FuncionesTesoreria.ejercicioActivo(id_comunidad_cargado, fechaMov);
+
+                //CREO CABECERA DEL MOVIMIENTO
+                numMov = Logica.FuncionesTesoreria.CreaMovimiento(idEjercicio, id_cuenta_cargado, "11", id_entidad_pasado, fechaMov, "Salida a Comunero");
+            }
             else if (tipoOperacion == "Entrada a Proveedor")
             {
                 //COJO LA FECHA
@@ -405,7 +426,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
                         ingresoComunero(a,"Ingreso", numMov, fechaMov);
                     }
                     else if (tipoOperacion == "Salida a Comuneros") {
-                        //pagarComunero(a);
+                       pagarComunero(a, numMov, fechaMov);
                     }
                     else if (tipoOperacion == "Entrada a Proveedor") {
                         ingresoComunero(a, "Ingreso a Proveedor", numMov, fechaMov);
@@ -414,7 +435,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
                     }
                 }
             }
-            if (tipoOperacion == "Ingreso a Comuneros" && crearAnticipo)
+
+            if (tipoOperacion == "Ingreso a Comuneros" && crearAnticipo || tipoOperacion == "Salida a Comuneros" && crearAnticipo)
                 AnticipoResto(numMov);
 
             if ((tipoOperacion == "Pago a Proveedor" || tipoOperacion == "Entrada a Proveedor") && crearAnticipo)
@@ -438,7 +460,33 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
             }
             this.Close();
         }
-        private void pagarComunero(int indice) {
+        private void pagarComunero(int indice, int numMov, String fechaMov)
+        {
+            
+            
+            //ANTICIPO SI QUEDA ALGO PENDIENTE
+            double importeReal = Convert.ToDouble(dataGridView_general.Rows[indice].Cells[importeOp].Value);
+            double importeAsignado = Convert.ToDouble(dataGridView_general.Rows[indice].Cells[celdaAsignado].Value.ToString().Replace('.', ','));
+            double importeAcuenta = importeAsignado - importeReal;
+
+            if (importeAcuenta > 0)
+            {
+                //ANTICIPO A COMUNERO
+                Logica.FuncionesTesoreria.AnticipoComunero(id_comunidad_cargado, dataGridView_general.Rows[indice].Cells[1].Value.ToString(), fechaMov, importeAcuenta, numMov);
+
+                //CREO EL DETALLE DEL MOVIMIENTO CON EL IMPORTE ENTERO
+                Logica.FuncionesTesoreria.CreaDetalleMovimiento(numMov.ToString(), dataGridView_general.Rows[indice].Cells[0].Value.ToString(), Logica.FuncionesGenerales.ArreglarImportes(dataGridView_general.Rows[indice].Cells[importeOp].Value.ToString()));
+            }
+            else if (importeAcuenta < 0)
+            {
+                //CREO EL DETALLE DEL MOVIMIENTO CON EL ACUMULADO
+                Logica.FuncionesTesoreria.CreaDetalleMovimiento(numMov.ToString(), dataGridView_general.Rows[indice].Cells[0].Value.ToString(), Logica.FuncionesGenerales.ArreglarImportes(dataGridView_general.Rows[indice].Cells[celdaAsignado].Value.ToString()));
+            }
+            else if (importeAcuenta == 0)
+            {
+                //CREO EL DETALLE DEL MOVIMIENTO CON EL IMPORTE ENTERO
+                Logica.FuncionesTesoreria.CreaDetalleMovimiento(numMov.ToString(), dataGridView_general.Rows[indice].Cells[0].Value.ToString(), Logica.FuncionesGenerales.ArreglarImportes(dataGridView_general.Rows[indice].Cells[importeOp].Value.ToString()));
+            }
 
         }
         private void AnticipoRestoSalidaProveedor(int numMov) {
