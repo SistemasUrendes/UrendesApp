@@ -350,13 +350,16 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
-            if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || idElemento == null || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
+            if (textBoxDescripcion.Text != "" && comboBoxTipo.SelectedIndex != 0 && idElemento != null && (idEntidad != null || idComunidad != 0))
             {
-                MessageBox.Show("Los campos Descripción,Entidad,Bloque,Tipo y FechaInicio son obligatorios!");
+                maskedTextBoxFIni.Text = DateTime.Now.ToShortDateString();
+            }
+            else if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || idElemento == null || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
+            {
+                MessageBox.Show("Los campos DESCRIPCIÓN,ENTIDAD,BLOQUE,TIPO y FECHA INICIO son obligatorios");
                 return;
             }
-            else
-            {
+            
                 if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
                 addTarea();
                 textBoxIdTarea.Text = idTarea;
@@ -364,7 +367,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 bloquearEdicion();
                 if (form_anterior != null) form_anterior.CargarTareas();
 
-            }
         }
 
         private void buttonEditar_Click(object sender, EventArgs e)
@@ -382,7 +384,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
                 else if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || idElemento == null || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
                 {
-                    MessageBox.Show("Los campos Descripción,Entidad,Bloque,Tipo y FechaInicio son obligatorios!");
+                    MessageBox.Show("Los campos DESCRIPCIÓN,ENTIDAD,BLOQUE,TIPO y FECHA INICIO son obligatorios.");
                     return;
                 }
                     
@@ -561,12 +563,17 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonRuta_Click(object sender, EventArgs e)
         {
-            if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || idElemento == null  || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
+            if (textBoxDescripcion.Text != "" && comboBoxTipo.SelectedIndex != 0 && idElemento != null && (idEntidad != null || idComunidad != 0))
             {
-                MessageBox.Show("Los campos Descripción,Entidad,Bloque,Tipo y FechaInicio son obligatorios!");
+                maskedTextBoxFIni.Text = DateTime.Now.ToShortDateString();
+            }
+            else if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || idElemento == null  || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
+            {
+                MessageBox.Show("Los campos DESCRIPCIÓN,ENTIDAD,BLOQUE,TIPO y FECHA INICIO son obligatorios.");
                 return;
             }
-            else if ((ruta == null || ruta == "") && textBoxRuta.Text == "")
+
+            if ((ruta == null || ruta == "") && textBoxRuta.Text == "")
             {
                 if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
                 addTarea();
@@ -701,7 +708,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || idElemento == null || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
             {
-                MessageBox.Show("Los campos Descripción,Entidad,Bloque,Tipo y FechaInicio son obligatorios!");
+                MessageBox.Show("Los campos DESCRIPCIÓN,ENTIDAD,BLOQUE,TIPO y FECHA INICIO son obligatorios.");
                 return;
             }
             String idTipoTarea = comboBoxTipo.SelectedValue.ToString();
@@ -775,7 +782,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     sqlUpdate = "UPDATE exp_tareas SET Importante = 0 WHERE IdTarea = " + idTarea;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                 }
-                if (idElemento != null)
+                if (idElemento != null && idElemento != "-1")
                 {
                     sqlUpdate = "UPDATE exp_tareas SET IdElemento = '" + idElemento +"' WHERE IdTarea = " + idTarea;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
@@ -818,7 +825,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     sqlInsert = "UPDATE exp_tareas SET Ruta = '" + fixRuta + "' WHERE IdTarea = " + idTarea;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
                 }
-                if (idElemento != null)
+                if (idElemento != null && idElemento != "-1")
                 {
                     sqlInsert = "UPDATE exp_tareas SET IdElemento = '" + idElemento + "' WHERE IdTarea = " + idTarea;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
@@ -874,7 +881,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 maskedTextBoxReferencia.Text = entidad.Rows[0][1].ToString();
                 idComunidad = Int32.Parse(entidad.Rows[0][2].ToString());
             }
-
+            else
+            {
+                idElemento = "-1";
+            }
             textBoxEntidad.Text = nombre;
             textBoxEntidad.ForeColor = Color.Black;
         }
