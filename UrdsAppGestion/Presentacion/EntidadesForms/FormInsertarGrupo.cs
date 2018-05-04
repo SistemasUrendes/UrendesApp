@@ -236,17 +236,16 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
         private void comboBoxGrupos_SelectionChangeCommitted(object sender, EventArgs e)
         {
             grupoContactos = null;
-            String sqlContactos = "SELECT exp_contactos.IdDetEntTarea,exp_contactos.Nombre,ctos_detemail.Email AS Correo,'T' AS T FROM((exp_categoriaContactos INNER JOIN exp_catcontactos ON exp_categoriaContactos.IdGrupo = exp_catcontactos.IdCategoria) INNER JOIN exp_contactos ON exp_catcontactos.IdContacto = exp_contactos.IdDetEntTarea) INNER JOIN ctos_detemail ON exp_contactos.IdEntidad = ctos_detemail.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_categoriaContactos.IdGrupo) = " + comboBoxGrupos.SelectedValue + ") AND ((exp_catcontactos.TipoContacto) = 'T'))";
+            String sqlContactos = "SELECT exp_contactos.IdDetEntTarea AS ID,exp_contactos.Nombre,ctos_detemail.Email AS Correo,'T' AS T FROM((exp_categoriaContactos INNER JOIN exp_catcontactos ON exp_categoriaContactos.IdGrupo = exp_catcontactos.IdCategoria) INNER JOIN exp_contactos ON exp_catcontactos.IdContacto = exp_contactos.IdDetEntTarea) INNER JOIN ctos_detemail ON exp_contactos.IdEntidad = ctos_detemail.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_categoriaContactos.IdGrupo) = " + comboBoxGrupos.SelectedValue + ") AND ((exp_catcontactos.TipoContacto) = 'T'))";
             grupoContactos = Persistencia.SentenciasSQL.select(sqlContactos);
 
-            String sqlProveedores = "SELECT com_proveedores.IdProveedor,ctos_entidades.Entidad AS Nombre, ctos_detemail.Email AS Correo, 'P' AS T FROM(((exp_categoriaContactos INNER JOIN exp_catcontactos ON exp_categoriaContactos.IdGrupo = exp_catcontactos.IdCategoria) INNER JOIN com_proveedores ON exp_catcontactos.IdContacto = com_proveedores.IdProveedor) INNER JOIN ctos_entidades ON com_proveedores.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN ctos_detemail ON ctos_entidades.IDEntidad = ctos_detemail.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_categoriaContactos.IdGrupo) = " + comboBoxGrupos.SelectedValue + ") AND ((exp_catcontactos.TipoContacto) = 'P'))";
+            String sqlProveedores = "SELECT com_proveedores.IdProveedor AS ID,ctos_entidades.Entidad AS Nombre, ctos_detemail.Email AS Correo, 'P' AS T FROM(((exp_categoriaContactos INNER JOIN exp_catcontactos ON exp_categoriaContactos.IdGrupo = exp_catcontactos.IdCategoria) INNER JOIN com_proveedores ON exp_catcontactos.IdContacto = com_proveedores.IdProveedor) INNER JOIN ctos_entidades ON com_proveedores.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN ctos_detemail ON ctos_entidades.IDEntidad = ctos_detemail.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_categoriaContactos.IdGrupo) = " + comboBoxGrupos.SelectedValue + ") AND ((exp_catcontactos.TipoContacto) = 'P'))";
             grupoContactos.Merge(Persistencia.SentenciasSQL.select(sqlProveedores));
 
-            String sqlCargos = "SELECT com_cargos.IdCargo,com_cargos.Cargo AS Nombre, ctos_detemail.Email AS Correo, 'O' AS T FROM ctos_detemail INNER JOIN ((((exp_categoriaContactos INNER JOIN exp_catcontactos ON exp_categoriaContactos.IdGrupo = exp_catcontactos.IdCategoria) INNER JOIN com_cargos ON exp_catcontactos.IdContacto = com_cargos.IdCargo) INNER JOIN com_cargoscom ON com_cargos.IdCargo = com_cargoscom.IdCargo) INNER JOIN com_comuneros ON com_cargoscom.IdComunero = com_comuneros.IdComunero) ON ctos_detemail.IdEntidad = com_comuneros.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_categoriaContactos.IdGrupo) = " + comboBoxGrupos.SelectedValue + ") AND ((com_cargos.Baja) = 0) AND((exp_catcontactos.TipoContacto) = 'O'))";
-
+            String sqlCargos = "SELECT com_cargos.IdCargo AS ID,com_cargos.Cargo AS Nombre, ctos_detemail.Email AS Correo, 'O' AS T FROM ctos_detemail INNER JOIN ((((exp_categoriaContactos INNER JOIN exp_catcontactos ON exp_categoriaContactos.IdGrupo = exp_catcontactos.IdCategoria) INNER JOIN com_cargos ON exp_catcontactos.IdContacto = com_cargos.IdCargo) INNER JOIN com_cargoscom ON com_cargos.IdCargo = com_cargoscom.IdCargo) INNER JOIN com_comuneros ON com_cargoscom.IdComunero = com_comuneros.IdComunero) ON ctos_detemail.IdEntidad = com_comuneros.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_categoriaContactos.IdGrupo) = " + comboBoxGrupos.SelectedValue + ") AND ((com_cargos.Baja) = 0) AND((exp_catcontactos.TipoContacto) = 'O'))";
             grupoContactos.Merge(Persistencia.SentenciasSQL.select(sqlCargos));
 
-            String sqlComuneros = "SELECT com_comuneros.IdComunero,ctos_entidades.Entidad AS Nombre, ctos_detemail.Email AS Correo, 'C' AS T FROM((exp_categoriaContactos INNER JOIN exp_catcontactos ON exp_categoriaContactos.IdGrupo = exp_catcontactos.IdCategoria) INNER JOIN (ctos_detemail INNER JOIN com_comuneros ON ctos_detemail.IdEntidad = com_comuneros.IdEntidad) ON exp_catcontactos.IdContacto = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_categoriaContactos.IdGrupo) = " + comboBoxGrupos.SelectedValue + ") AND((exp_catcontactos.TipoContacto) = 'C'))";
+            String sqlComuneros = "SELECT com_comuneros.IdComunero AS ID,ctos_entidades.Entidad AS Nombre, ctos_detemail.Email AS Correo, 'C' AS T FROM((exp_categoriaContactos INNER JOIN exp_catcontactos ON exp_categoriaContactos.IdGrupo = exp_catcontactos.IdCategoria) INNER JOIN (ctos_detemail INNER JOIN com_comuneros ON ctos_detemail.IdEntidad = com_comuneros.IdEntidad) ON exp_catcontactos.IdContacto = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_categoriaContactos.IdGrupo) = " + comboBoxGrupos.SelectedValue + ") AND((exp_catcontactos.TipoContacto) = 'C'))";
             grupoContactos.Merge(Persistencia.SentenciasSQL.select(sqlComuneros));
 
             oldGrupoContactos = grupoContactos.Copy();
@@ -255,9 +254,9 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
             if (dataGridViewGrupo.Rows.Count > 0)
             {
                 dataGridViewGrupo.Columns[0].Visible = false;
-                dataGridViewGrupo.Columns["Nombre"].Width = 130;
-                dataGridViewGrupo.Columns["Correo"].Width = 120;
-                dataGridViewGrupo.Columns["T"].Width = 50;
+                dataGridViewGrupo.Columns["Nombre"].Width = 190;
+                dataGridViewGrupo.Columns["Correo"].Width = 100;
+                dataGridViewGrupo.Columns["T"].Width = 20;
             }
         }
 
