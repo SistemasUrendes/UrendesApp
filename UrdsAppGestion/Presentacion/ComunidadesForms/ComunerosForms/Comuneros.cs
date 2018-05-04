@@ -318,7 +318,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             else
             {
                 DataTable busqueda = comuneros;
-                busqueda.DefaultView.RowFilter = "EntidadSinAcentos like '%" + textBox_buscar.Text + "%' OR Division like '%" + textBox_buscar.Text + "%' OR Entidad like '%" + textBox_buscar.Text + "%'";
+                busqueda.DefaultView.RowFilter = "EntidadSinAcentos like '%" + textBox_buscar.Text + "%' OR Division like '%" + textBox_buscar.Text + "%' OR Entidad like '%" + textBox_buscar.Text + "%' OR Asociaciones like '%" + textBox_buscar.Text + "%'";
                 this.dataGridView_comuneros.DataSource = busqueda;
             }
             cargado = true;

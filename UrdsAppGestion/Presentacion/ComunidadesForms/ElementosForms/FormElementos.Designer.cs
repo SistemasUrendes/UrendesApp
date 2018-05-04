@@ -39,6 +39,7 @@
             this.buttonEnviar = new System.Windows.Forms.Button();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addElementoPrintoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonBorrar = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -99,7 +100,7 @@
             // 
             // buttonEnviar
             // 
-            this.buttonEnviar.Location = new System.Drawing.Point(430, 11);
+            this.buttonEnviar.Location = new System.Drawing.Point(430, 12);
             this.buttonEnviar.Name = "buttonEnviar";
             this.buttonEnviar.Size = new System.Drawing.Size(75, 23);
             this.buttonEnviar.TabIndex = 21;
@@ -122,11 +123,22 @@
             this.addElementoPrintoolStripMenuItem.Text = "Añadir Elemento";
             this.addElementoPrintoolStripMenuItem.Click += new System.EventHandler(this.addElementoPrintoolStripMenuItem_Click);
             // 
+            // buttonBorrar
+            // 
+            this.buttonBorrar.Location = new System.Drawing.Point(124, 12);
+            this.buttonBorrar.Name = "buttonBorrar";
+            this.buttonBorrar.Size = new System.Drawing.Size(75, 23);
+            this.buttonBorrar.TabIndex = 22;
+            this.buttonBorrar.Text = "Borrar";
+            this.buttonBorrar.UseVisualStyleBackColor = true;
+            this.buttonBorrar.Click += new System.EventHandler(this.buttonBorrar_Click);
+            // 
             // FormElementos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(520, 518);
+            this.Controls.Add(this.buttonBorrar);
             this.Controls.Add(this.buttonEnviar);
             this.Controls.Add(this.labelRuta);
             this.Controls.Add(this.buttonInicio);
@@ -155,5 +167,6 @@
         private System.Windows.Forms.Button buttonEnviar;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem addElementoPrintoolStripMenuItem;
+        private System.Windows.Forms.Button buttonBorrar;
     }
 }

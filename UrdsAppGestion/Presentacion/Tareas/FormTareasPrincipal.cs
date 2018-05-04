@@ -358,7 +358,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
                     Tareas.FormVerTarea nueva = new FormVerTarea(this, idTarea);
                     nueva.ControlBox = true;
-                    nueva.TopMost = true;
+                   // nueva.TopMost = true;
                     nueva.WindowState = FormWindowState.Normal;
                     nueva.StartPosition = FormStartPosition.CenterScreen;
                     nueva.Show();
@@ -370,7 +370,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             Tareas.FormVerTarea nueva = new FormVerTarea(this);
             nueva.ControlBox = true;
-            nueva.TopMost = true;
+            //nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;
             nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
@@ -471,7 +471,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                         String tareaViejo = idTareaViejo(idTarea);
                         Tareas.FormVerTarea nueva = new FormVerTarea(this, tareaViejo);
                         nueva.ControlBox = true;
-                        nueva.TopMost = true;
+                        //nueva.TopMost = true;
                         nueva.WindowState = FormWindowState.Normal;
                         nueva.StartPosition = FormStartPosition.CenterScreen;
                         nueva.Show();
@@ -480,7 +480,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     {
                         Tareas.FormVerTarea nueva = new FormVerTarea(this, idTarea);
                         nueva.ControlBox = true;
-                        nueva.TopMost = true;
+                        //nueva.TopMost = true;
                         nueva.WindowState = FormWindowState.Normal;
                         nueva.StartPosition = FormStartPosition.CenterScreen;
                         nueva.Show();

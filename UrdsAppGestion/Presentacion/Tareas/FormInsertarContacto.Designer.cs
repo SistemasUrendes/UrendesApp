@@ -115,31 +115,31 @@
             // 
             // buttonEntidad
             // 
-            this.buttonEntidad.Location = new System.Drawing.Point(146, 12);
+            this.buttonEntidad.Location = new System.Drawing.Point(65, 12);
             this.buttonEntidad.Name = "buttonEntidad";
-            this.buttonEntidad.Size = new System.Drawing.Size(23, 20);
+            this.buttonEntidad.Size = new System.Drawing.Size(53, 20);
             this.buttonEntidad.TabIndex = 5;
-            this.buttonEntidad.Text = "E";
+            this.buttonEntidad.Text = "Entidad";
             this.buttonEntidad.UseVisualStyleBackColor = true;
             this.buttonEntidad.Click += new System.EventHandler(this.buttonEntidad_Click);
             // 
             // buttonProveedores
             // 
-            this.buttonProveedores.Location = new System.Drawing.Point(193, 12);
+            this.buttonProveedores.Location = new System.Drawing.Point(126, 12);
             this.buttonProveedores.Name = "buttonProveedores";
-            this.buttonProveedores.Size = new System.Drawing.Size(23, 20);
+            this.buttonProveedores.Size = new System.Drawing.Size(68, 20);
             this.buttonProveedores.TabIndex = 6;
-            this.buttonProveedores.Text = "P";
+            this.buttonProveedores.Text = "Proveedor";
             this.buttonProveedores.UseVisualStyleBackColor = true;
             this.buttonProveedores.Click += new System.EventHandler(this.buttonProveedores_Click);
             // 
             // buttonComuneros
             // 
-            this.buttonComuneros.Location = new System.Drawing.Point(245, 11);
+            this.buttonComuneros.Location = new System.Drawing.Point(200, 12);
             this.buttonComuneros.Name = "buttonComuneros";
-            this.buttonComuneros.Size = new System.Drawing.Size(23, 20);
+            this.buttonComuneros.Size = new System.Drawing.Size(68, 20);
             this.buttonComuneros.TabIndex = 7;
-            this.buttonComuneros.Text = "C";
+            this.buttonComuneros.Text = "Comunero";
             this.buttonComuneros.UseVisualStyleBackColor = true;
             this.buttonComuneros.Click += new System.EventHandler(this.buttonComuneros_Click);
             // 

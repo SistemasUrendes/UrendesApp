@@ -20,6 +20,7 @@ namespace UrdsAppGestión.Presentacion
         int columnaSeleccionaPortaPapeles = 0;
         Form form_ant = null;
         String nombre_form_anterior;
+        String IdPasado;
         DataTable newTable = new DataTable();
 
         public Entidades()
@@ -31,6 +32,13 @@ namespace UrdsAppGestión.Presentacion
             InitializeComponent();
             this.form_ant = form_ant;
             this.nombre_form_anterior = nombre_form_anterior;
+        }
+        public Entidades(Form form_ant, String nombre_form_anterior, String Id)
+        {
+            InitializeComponent();
+            this.form_ant = form_ant;
+            this.nombre_form_anterior = nombre_form_anterior;
+            this.IdPasado = Id;
         }
 
         private void Entidades_Load(object sender, EventArgs e)
@@ -185,7 +193,7 @@ namespace UrdsAppGestión.Presentacion
                     Tareas.FormInsertarContacto nuevo = (Tareas.FormInsertarContacto)existe;
                     nuevo.recibirEntidad(dataGridView1.SelectedCells[0].Value.ToString());
                 }
-                if (nombre_form_anterior == "FormInsertarGestion")
+                if (nombre_form_anterior.Contains("Gestion") && form_ant.Tag.ToString() == IdPasado)
                 {
                     Tareas.FormInsertarGestion nuevo = (Tareas.FormInsertarGestion)existe;
                     nuevo.recibirEntidad(dataGridView1.SelectedCells[0].Value.ToString());

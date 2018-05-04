@@ -9,11 +9,13 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace UrdsAppGestión.Presentacion.Tareas
 {
     public partial class FormVerTarea : Form
     {
+
         private String idTarea;
         private String ruta;
         private String idEntidad;
@@ -348,9 +350,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
-            if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
+            if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || idElemento == null || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
             {
-                MessageBox.Show("Los campos Descripción,Entidad,Tipo y FechaInicio son obligatorios!");
+                MessageBox.Show("Los campos Descripción,Entidad,Bloque,Tipo y FechaInicio son obligatorios!");
                 return;
             }
             else
@@ -374,24 +376,29 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (idTarea == null)
             {
-                if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
+                if (textBoxDescripcion.Text != "" && comboBoxTipo.SelectedIndex != 0 && idElemento != null && (idEntidad != null || idComunidad != 0))
                 {
-                    MessageBox.Show("Los campos Descripción,Entidad,Tipo y FechaInicio son obligatorios!");
+                    maskedTextBoxFIni.Text = DateTime.Now.ToShortDateString();
+                }
+                else if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || idElemento == null || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
+                {
+                    MessageBox.Show("Los campos Descripción,Entidad,Bloque,Tipo y FechaInicio son obligatorios!");
                     return;
                 }
-                else
-                {
                     
-                    if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
-                    addTarea();
-                    textBoxIdTarea.Text = idTarea;
-                    textBoxIdTareaNuevo.Text = idTareaNuevo(idTarea);
-                    comboBoxEstadoGestion.SelectedIndex = 2;
-                    bloquearEdicion();
-                    if (form_anterior != null) form_anterior.CargarTareas();
-                    Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, fInicio,idComunidad);
-                    nueva.Show();
-                }
+                if (maskedTextBoxReferencia.Text != "") idEntidad = entidadReferencia();
+                addTarea();
+                textBoxIdTarea.Text = idTarea;
+                textBoxIdTareaNuevo.Text = idTareaNuevo(idTarea);
+                comboBoxEstadoGestion.SelectedIndex = 2;
+                bloquearEdicion();
+                if (form_anterior != null) form_anterior.CargarTareas();
+                Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, fInicio,idComunidad);
+                nueva.ControlBox = true;
+                nueva.TopMost = true;
+                nueva.WindowState = FormWindowState.Normal;
+                nueva.StartPosition = FormStartPosition.CenterScreen;
+                nueva.Show();
             }
             else
             {
@@ -554,9 +561,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonRuta_Click(object sender, EventArgs e)
         {
-            if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
+            if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || idElemento == null  || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
             {
-                MessageBox.Show("Los campos Descripción,Entidad,Tipo y FechaInicio son obligatorios!");
+                MessageBox.Show("Los campos Descripción,Entidad,Bloque,Tipo y FechaInicio son obligatorios!");
                 return;
             }
             else if ((ruta == null || ruta == "") && textBoxRuta.Text == "")
@@ -692,9 +699,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
         //AÑADIR O EDITAR TAREA
         private void addTarea()
         {
-            if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
+            if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || idElemento == null || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
             {
-                MessageBox.Show("Los campos Descripción,Entidad,Tipo y FechaInicio son obligatorios!");
+                MessageBox.Show("Los campos Descripción,Entidad,Bloque,Tipo y FechaInicio son obligatorios!");
                 return;
             }
             String idTipoTarea = comboBoxTipo.SelectedValue.ToString();
@@ -1275,7 +1282,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                         if (form_anterior != null) nueva = new FormVerTarea(form_anterior, idTareaViejo(idTarea));
                         else nueva = new FormVerTarea(idTareaViejo(idTarea));
                         nueva.ControlBox = true;
-                        nueva.TopMost = true;
+                        //nueva.TopMost = true;
                         nueva.WindowState = FormWindowState.Normal;
                         nueva.StartPosition = FormStartPosition.CenterScreen;
                         nueva.Show();
@@ -1288,7 +1295,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                         if (form_anterior != null) nueva = new FormVerTarea(form_anterior, idTarea);
                         else nueva = new FormVerTarea(idTarea);
                         nueva.ControlBox = true;
-                        nueva.TopMost = true;
+                        //nueva.TopMost = true;
                         nueva.WindowState = FormWindowState.Normal;
                         nueva.StartPosition = FormStartPosition.CenterScreen;
                         nueva.Show();
@@ -1430,7 +1437,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String idTarea = dataGridViewExpedientes.SelectedRows[0].Cells["IdTarea"].Value.ToString();
             FormVerTarea nueva = new FormVerTarea(idTarea);
             nueva.ControlBox = true;
-            nueva.TopMost = true;
+            //nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;
             nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
@@ -1520,8 +1527,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void buttonDuplicarTarea_Click(object sender, EventArgs e)
         {
             String idTipoTarea = comboBoxTipo.SelectedValue.ToString();
-            String fIni = null;
-            if (maskedTextBoxFIni.Text != "  /  /" && maskedTextBoxFIni.Text != "") fIni = Convert.ToDateTime(maskedTextBoxFIni.Text).ToString();
+            String fIni = DateTime.Now.ToShortDateString();
             String descripcion = "";
             if (textBoxDescripcion.Text != "") descripcion = textBoxDescripcion.Text;
             String coste = "";

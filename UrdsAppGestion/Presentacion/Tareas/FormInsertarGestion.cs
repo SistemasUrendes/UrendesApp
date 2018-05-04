@@ -34,6 +34,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.idTarea = idTarea;
             this.fInicio = fInicio;
             this.idComunidad = idComunidad;
+            this.Tag = idTarea;
         }
 
         public FormInsertarGestion(FormVerTarea form_anterior, String idTarea, String idGestion, String fInicio, int idComunidad)
@@ -44,6 +45,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.idGestion = idGestion;
             this.fInicio = fInicio;
             this.idComunidad = idComunidad;
+            this.Text = this.Text + "[" + idTarea + "]";
         }
 
         public FormInsertarGestion(FormVerTarea form_anterior, String idGestion,int idComunidad)
@@ -52,6 +54,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.form_anterior = form_anterior;
             this.idGestion = idGestion;
             this.idComunidad = idComunidad;
+            this.Text = this.Text + "[" + idTarea + "]";
         }
 
         public FormInsertarGestion(String idGestion,String idTarea,int idComunidad)
@@ -60,6 +63,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.idTarea = idTarea;
             this.idGestion = idGestion;
             this.idComunidad = idComunidad;
+            this.Text = this.Text + "[" + idTarea + "]";
         }
 
         public FormInsertarGestion(String idGestion,int idComunidad)
@@ -568,7 +572,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             //ENTIDAD
             if(comboBoxEspera.SelectedIndex == 0)
             {
-                Entidades nueva = new Entidades(this, this.Name);
+                Entidades nueva = new Entidades(this, this.Text, idTarea);
                 nueva.ControlBox = true;
                 nueva.TopMost = true;
                 nueva.WindowState = FormWindowState.Normal;
