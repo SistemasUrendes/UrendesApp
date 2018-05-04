@@ -390,11 +390,18 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
 
                 String Liquidacion = (Persistencia.SentenciasSQL.select("SELECT LiqLargo FROM com_liquidaciones WHERE IdLiquidacion = " + id_liquidacion_pasado)).Rows[0][0].ToString();
 
-                for (int a = 0; a < Recibos.Rows.Count; a++)
-                {
-                    InformeParticularRecibo.FormVerInformeParticularRecibo nueva = new InformeParticularRecibo.FormVerInformeParticularRecibo(id_liquidacion_pasado, id_comunidad_pasado, dataGridView2.SelectedRows[0].Cells[0].Value.ToString(), Recibos.Rows[a][0].ToString(), Liquidacion);
+                if (Recibos.Rows.Count > 0) {
+                    for (int a = 0; a < Recibos.Rows.Count; a++)
+                    {
+                        InformeParticularRecibo.FormVerInformeParticularRecibo nueva = new InformeParticularRecibo.FormVerInformeParticularRecibo(id_liquidacion_pasado, id_comunidad_pasado, dataGridView2.SelectedRows[0].Cells[0].Value.ToString(), Recibos.Rows[a][0].ToString(), Liquidacion);
+                        nueva.Show();
+                    }
+                }else {
+                    MessageBox.Show("NO SE A CREADO LA CUOTA, SOLO ES UN INFORME Y NO UN RECIBO");
+                    InformeParticular.FormVerInformeParticular nueva = new InformeParticular.FormVerInformeParticular(id_comunidad_pasado, id_liquidacion_pasado, dataGridView2.SelectedRows[0].Cells[0].Value.ToString());
                     nueva.Show();
                 }
+                
             }
         }
 

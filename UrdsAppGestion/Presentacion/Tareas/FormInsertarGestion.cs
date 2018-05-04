@@ -566,9 +566,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void buttonEspera_Click(object sender, EventArgs e)
         {
             //ENTIDAD
-            if(comboBoxEspera.SelectedIndex == 0)
+            String Nombre = "FormInsertarGestion" + idTarea;
+
+            this.Name = Nombre;
+
+            if (comboBoxEspera.SelectedIndex == 0)
             {
-                Entidades nueva = new Entidades(this, this.Name);
+                Entidades nueva = new Entidades(this, Nombre);
                 nueva.ControlBox = true;
                 nueva.TopMost = true;
                 nueva.WindowState = FormWindowState.Normal;

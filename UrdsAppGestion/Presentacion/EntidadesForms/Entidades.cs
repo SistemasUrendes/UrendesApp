@@ -21,6 +21,7 @@ namespace UrdsAppGestión.Presentacion
         Form form_ant = null;
         String nombre_form_anterior;
         DataTable newTable = new DataTable();
+        String idPasado;
 
         public Entidades()
         {
@@ -31,6 +32,13 @@ namespace UrdsAppGestión.Presentacion
             InitializeComponent();
             this.form_ant = form_ant;
             this.nombre_form_anterior = nombre_form_anterior;
+        }
+        public Entidades(Form form_ant, String nombre_form_anterior, String Id)
+        {
+            InitializeComponent();
+            this.form_ant = form_ant;
+            this.nombre_form_anterior = nombre_form_anterior;
+            this.idPasado = Id;
         }
 
         private void Entidades_Load(object sender, EventArgs e)
@@ -122,7 +130,6 @@ namespace UrdsAppGestión.Presentacion
                     Presentacion.ComunidadesForms.ComunerosForms.FormAltaComunero nuevo = (Presentacion.ComunidadesForms.ComunerosForms.FormAltaComunero) existe;
                     nuevo.recibirEntidad(dataGridView1.SelectedCells[0].Value.ToString());
                 }
-
                 //if (nombre_form_anterior == "FormAltaAsociacion") {
                 //    Presentacion.ComunidadesForms.DivisionesForms.FormAltaAsociacion nuevo = (Presentacion.ComunidadesForms.DivisionesForms.FormAltaAsociacion) existe;
                 //    nuevo.recogerEntidad(dataGridView1.SelectedCells[0].Value.ToString());
@@ -185,7 +192,7 @@ namespace UrdsAppGestión.Presentacion
                     Tareas.FormInsertarContacto nuevo = (Tareas.FormInsertarContacto)existe;
                     nuevo.recibirEntidad(dataGridView1.SelectedCells[0].Value.ToString());
                 }
-                if (nombre_form_anterior == "FormInsertarGestion")
+                if (form_ant.Name.Contains("FormInsertarGestion"))
                 {
                     Tareas.FormInsertarGestion nuevo = (Tareas.FormInsertarGestion)existe;
                     nuevo.recibirEntidad(dataGridView1.SelectedCells[0].Value.ToString());
