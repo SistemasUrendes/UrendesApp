@@ -43,6 +43,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.comboBoxGrupos = new System.Windows.Forms.ComboBox();
             this.buttonNuevoGrupo = new System.Windows.Forms.Button();
+            this.buttonContactos = new System.Windows.Forms.Button();
+            this.buttonProveedores = new System.Windows.Forms.Button();
+            this.buttonOrgGobierno = new System.Windows.Forms.Button();
+            this.buttonComuneros = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGrupo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContactos)).BeginInit();
             this.SuspendLayout();
@@ -53,7 +57,7 @@
             this.dataGridViewGrupo.AllowUserToDeleteRows = false;
             this.dataGridViewGrupo.AllowUserToResizeRows = false;
             this.dataGridViewGrupo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewGrupo.Location = new System.Drawing.Point(363, 126);
+            this.dataGridViewGrupo.Location = new System.Drawing.Point(400, 145);
             this.dataGridViewGrupo.MultiSelect = false;
             this.dataGridViewGrupo.Name = "dataGridViewGrupo";
             this.dataGridViewGrupo.ReadOnly = true;
@@ -64,14 +68,14 @@
             this.dataGridViewGrupo.ShowCellToolTips = false;
             this.dataGridViewGrupo.ShowEditingIcon = false;
             this.dataGridViewGrupo.ShowRowErrors = false;
-            this.dataGridViewGrupo.Size = new System.Drawing.Size(302, 237);
+            this.dataGridViewGrupo.Size = new System.Drawing.Size(330, 237);
             this.dataGridViewGrupo.TabIndex = 21;
             this.dataGridViewGrupo.TabStop = false;
             this.dataGridViewGrupo.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewGrupo_CellDoubleClick);
             // 
             // buttonRemove
             // 
-            this.buttonRemove.Location = new System.Drawing.Point(323, 233);
+            this.buttonRemove.Location = new System.Drawing.Point(360, 252);
             this.buttonRemove.Name = "buttonRemove";
             this.buttonRemove.Size = new System.Drawing.Size(34, 21);
             this.buttonRemove.TabIndex = 20;
@@ -81,7 +85,7 @@
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(323, 206);
+            this.buttonAdd.Location = new System.Drawing.Point(360, 225);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(34, 21);
             this.buttonAdd.TabIndex = 19;
@@ -91,7 +95,7 @@
             // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(590, 369);
+            this.buttonCancelar.Location = new System.Drawing.Point(655, 388);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
             this.buttonCancelar.TabIndex = 18;
@@ -114,14 +118,14 @@
             this.comboBoxComunidad.FormattingEnabled = true;
             this.comboBoxComunidad.Location = new System.Drawing.Point(81, 20);
             this.comboBoxComunidad.Name = "comboBoxComunidad";
-            this.comboBoxComunidad.Size = new System.Drawing.Size(236, 21);
+            this.comboBoxComunidad.Size = new System.Drawing.Size(274, 21);
             this.comboBoxComunidad.TabIndex = 16;
             this.comboBoxComunidad.SelectionChangeCommitted += new System.EventHandler(this.comboBoxComunidad_SelectionChangeCommitted);
             // 
             // labelGrupo
             // 
             this.labelGrupo.AutoSize = true;
-            this.labelGrupo.Location = new System.Drawing.Point(360, 62);
+            this.labelGrupo.Location = new System.Drawing.Point(397, 62);
             this.labelGrupo.Name = "labelGrupo";
             this.labelGrupo.Size = new System.Drawing.Size(74, 13);
             this.labelGrupo.TabIndex = 15;
@@ -130,7 +134,7 @@
             // 
             // textBoxNombre
             // 
-            this.textBoxNombre.Location = new System.Drawing.Point(440, 59);
+            this.textBoxNombre.Location = new System.Drawing.Point(477, 59);
             this.textBoxNombre.Name = "textBoxNombre";
             this.textBoxNombre.Size = new System.Drawing.Size(225, 20);
             this.textBoxNombre.TabIndex = 14;
@@ -142,7 +146,7 @@
             this.dataGridViewContactos.AllowUserToDeleteRows = false;
             this.dataGridViewContactos.AllowUserToResizeRows = false;
             this.dataGridViewContactos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewContactos.Location = new System.Drawing.Point(15, 126);
+            this.dataGridViewContactos.Location = new System.Drawing.Point(15, 145);
             this.dataGridViewContactos.MultiSelect = false;
             this.dataGridViewContactos.Name = "dataGridViewContactos";
             this.dataGridViewContactos.ReadOnly = true;
@@ -153,14 +157,14 @@
             this.dataGridViewContactos.ShowCellToolTips = false;
             this.dataGridViewContactos.ShowEditingIcon = false;
             this.dataGridViewContactos.ShowRowErrors = false;
-            this.dataGridViewContactos.Size = new System.Drawing.Size(302, 237);
+            this.dataGridViewContactos.Size = new System.Drawing.Size(340, 237);
             this.dataGridViewContactos.TabIndex = 13;
             this.dataGridViewContactos.TabStop = false;
             this.dataGridViewContactos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewContactos_CellDoubleClick);
             // 
             // buttonGuardar
             // 
-            this.buttonGuardar.Location = new System.Drawing.Point(509, 369);
+            this.buttonGuardar.Location = new System.Drawing.Point(574, 388);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(75, 23);
             this.buttonGuardar.TabIndex = 12;
@@ -170,9 +174,9 @@
             // 
             // textBoxfiltroTodas
             // 
-            this.textBoxfiltroTodas.Location = new System.Drawing.Point(15, 100);
+            this.textBoxfiltroTodas.Location = new System.Drawing.Point(15, 119);
             this.textBoxfiltroTodas.Name = "textBoxfiltroTodas";
-            this.textBoxfiltroTodas.Size = new System.Drawing.Size(302, 20);
+            this.textBoxfiltroTodas.Size = new System.Drawing.Size(340, 20);
             this.textBoxfiltroTodas.TabIndex = 22;
             this.textBoxfiltroTodas.TextChanged += new System.EventHandler(this.textBoxfiltroTodas_TextChanged);
             // 
@@ -191,13 +195,13 @@
             this.comboBoxGrupos.FormattingEnabled = true;
             this.comboBoxGrupos.Location = new System.Drawing.Point(81, 59);
             this.comboBoxGrupos.Name = "comboBoxGrupos";
-            this.comboBoxGrupos.Size = new System.Drawing.Size(236, 21);
+            this.comboBoxGrupos.Size = new System.Drawing.Size(274, 21);
             this.comboBoxGrupos.TabIndex = 24;
             this.comboBoxGrupos.SelectionChangeCommitted += new System.EventHandler(this.comboBoxGrupos_SelectionChangeCommitted);
             // 
             // buttonNuevoGrupo
             // 
-            this.buttonNuevoGrupo.Location = new System.Drawing.Point(363, 19);
+            this.buttonNuevoGrupo.Location = new System.Drawing.Point(400, 19);
             this.buttonNuevoGrupo.Name = "buttonNuevoGrupo";
             this.buttonNuevoGrupo.Size = new System.Drawing.Size(110, 23);
             this.buttonNuevoGrupo.TabIndex = 26;
@@ -205,11 +209,55 @@
             this.buttonNuevoGrupo.UseVisualStyleBackColor = true;
             this.buttonNuevoGrupo.Click += new System.EventHandler(this.buttonNuevoGrupo_Click);
             // 
+            // buttonContactos
+            // 
+            this.buttonContactos.Location = new System.Drawing.Point(15, 90);
+            this.buttonContactos.Name = "buttonContactos";
+            this.buttonContactos.Size = new System.Drawing.Size(85, 23);
+            this.buttonContactos.TabIndex = 27;
+            this.buttonContactos.Text = "Contactos(T)";
+            this.buttonContactos.UseVisualStyleBackColor = true;
+            this.buttonContactos.Click += new System.EventHandler(this.buttonContactos_Click);
+            // 
+            // buttonProveedores
+            // 
+            this.buttonProveedores.Location = new System.Drawing.Point(106, 90);
+            this.buttonProveedores.Name = "buttonProveedores";
+            this.buttonProveedores.Size = new System.Drawing.Size(77, 23);
+            this.buttonProveedores.TabIndex = 28;
+            this.buttonProveedores.Text = "&Proveedores";
+            this.buttonProveedores.UseVisualStyleBackColor = true;
+            this.buttonProveedores.Click += new System.EventHandler(this.buttonProveedores_Click);
+            // 
+            // buttonOrgGobierno
+            // 
+            this.buttonOrgGobierno.Location = new System.Drawing.Point(270, 90);
+            this.buttonOrgGobierno.Name = "buttonOrgGobierno";
+            this.buttonOrgGobierno.Size = new System.Drawing.Size(85, 23);
+            this.buttonOrgGobierno.TabIndex = 30;
+            this.buttonOrgGobierno.Text = "&Org. Gobierno";
+            this.buttonOrgGobierno.UseVisualStyleBackColor = true;
+            this.buttonOrgGobierno.Click += new System.EventHandler(this.buttonOrgGobierno_Click);
+            // 
+            // buttonComuneros
+            // 
+            this.buttonComuneros.Location = new System.Drawing.Point(189, 90);
+            this.buttonComuneros.Name = "buttonComuneros";
+            this.buttonComuneros.Size = new System.Drawing.Size(75, 23);
+            this.buttonComuneros.TabIndex = 29;
+            this.buttonComuneros.Text = "&Comuneros";
+            this.buttonComuneros.UseVisualStyleBackColor = true;
+            this.buttonComuneros.Click += new System.EventHandler(this.buttonComuneros_Click);
+            // 
             // FormInsertarGrupo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(691, 410);
+            this.ClientSize = new System.Drawing.Size(748, 425);
+            this.Controls.Add(this.buttonOrgGobierno);
+            this.Controls.Add(this.buttonComuneros);
+            this.Controls.Add(this.buttonProveedores);
+            this.Controls.Add(this.buttonContactos);
             this.Controls.Add(this.buttonNuevoGrupo);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBoxGrupos);
@@ -252,5 +300,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBoxGrupos;
         private System.Windows.Forms.Button buttonNuevoGrupo;
+        private System.Windows.Forms.Button buttonContactos;
+        private System.Windows.Forms.Button buttonProveedores;
+        private System.Windows.Forms.Button buttonOrgGobierno;
+        private System.Windows.Forms.Button buttonComuneros;
     }
 }

@@ -352,7 +352,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormInsertarGestion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormInsertarGestion";
+            this.Text = "Gestion";
             this.Load += new System.EventHandler(this.FormInsertarGestion_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

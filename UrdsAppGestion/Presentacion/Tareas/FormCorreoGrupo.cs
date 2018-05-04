@@ -35,12 +35,23 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             String idGrupo = comboBoxGrupo.SelectedValue.ToString();
             String mail = "";
-            String sqlSelect = "SELECT exp_contactos.Correo FROM exp_catcontactos INNER JOIN exp_contactos ON exp_catcontactos.IdGrupo = exp_contactos.IdCat WHERE(((exp_catcontactos.IdGrupo) = " + idGrupo +"))"; 
-            DataTable tablaMail = Persistencia.SentenciasSQL.select(sqlSelect);
-            for (int i = 0; i < tablaMail.Rows.Count; i++)
+            DataTable grupoContactos = null;
+            String sqlContactos = "SELECT ctos_detemail.Email AS Correo FROM((exp_categoriaContactos INNER JOIN exp_catcontactos ON exp_categoriaContactos.IdGrupo = exp_catcontactos.IdCategoria) INNER JOIN exp_contactos ON exp_catcontactos.IdContacto = exp_contactos.IdDetEntTarea) INNER JOIN ctos_detemail ON exp_contactos.IdEntidad = ctos_detemail.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_categoriaContactos.IdGrupo) = " + comboBoxGrupo.SelectedValue + ") AND ((exp_catcontactos.TipoContacto) = 'T'))";
+            grupoContactos = Persistencia.SentenciasSQL.select(sqlContactos);
+
+            String sqlProveedores = "SELECT ctos_detemail.Email AS Correo FROM(((exp_categoriaContactos INNER JOIN exp_catcontactos ON exp_categoriaContactos.IdGrupo = exp_catcontactos.IdCategoria) INNER JOIN com_proveedores ON exp_catcontactos.IdContacto = com_proveedores.IdProveedor) INNER JOIN ctos_entidades ON com_proveedores.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN ctos_detemail ON ctos_entidades.IDEntidad = ctos_detemail.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_categoriaContactos.IdGrupo) = " + comboBoxGrupo.SelectedValue + ") AND ((exp_catcontactos.TipoContacto) = 'P'))";
+            grupoContactos.Merge(Persistencia.SentenciasSQL.select(sqlProveedores));
+
+            String sqlCargos = "SELECT ctos_detemail.Email AS Correo FROM ctos_detemail INNER JOIN ((((exp_categoriaContactos INNER JOIN exp_catcontactos ON exp_categoriaContactos.IdGrupo = exp_catcontactos.IdCategoria) INNER JOIN com_cargos ON exp_catcontactos.IdContacto = com_cargos.IdCargo) INNER JOIN com_cargoscom ON com_cargos.IdCargo = com_cargoscom.IdCargo) INNER JOIN com_comuneros ON com_cargoscom.IdComunero = com_comuneros.IdComunero) ON ctos_detemail.IdEntidad = com_comuneros.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_categoriaContactos.IdGrupo) = " + comboBoxGrupo.SelectedValue + ") AND ((com_cargos.Baja) = 0) AND((exp_catcontactos.TipoContacto) = 'O'))";
+            grupoContactos.Merge(Persistencia.SentenciasSQL.select(sqlCargos));
+
+            String sqlComuneros = "SELECT ctos_detemail.Email AS Correo FROM((exp_categoriaContactos INNER JOIN exp_catcontactos ON exp_categoriaContactos.IdGrupo = exp_catcontactos.IdCategoria) INNER JOIN (ctos_detemail INNER JOIN com_comuneros ON ctos_detemail.IdEntidad = com_comuneros.IdEntidad) ON exp_catcontactos.IdContacto = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_categoriaContactos.IdGrupo) = " + comboBoxGrupo.SelectedValue + ") AND((exp_catcontactos.TipoContacto) = 'C'))";
+            grupoContactos.Merge(Persistencia.SentenciasSQL.select(sqlComuneros));
+            
+            for (int i = 0; i < grupoContactos.Rows.Count; i++)
             {
-                mail += tablaMail.Rows[i][0].ToString();
-                if (i < tablaMail.Rows.Count - 1) mail += ",";
+                mail += grupoContactos.Rows[i][0].ToString();
+                if (i < grupoContactos.Rows.Count - 1) mail += ",";
             }
 
             System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\'" + mail + "\',subject=\'" + generaAsunto() + "\'");
@@ -54,7 +65,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void rellenarComboBox()
         {
-            String sqlComboGrupo = "SELECT exp_catcontactos.Nombre, exp_catcontactos.IdGrupo FROM exp_catcontactos";
+            String sqlComboGrupo = "SELECT exp_categoriaContactos.Nombre, exp_categoriaContactos.IdGrupo FROM exp_categoriaContactos";
             comboBoxGrupo.DataSource = Persistencia.SentenciasSQL.select(sqlComboGrupo);
             comboBoxGrupo.DisplayMember = "Nombre";
             comboBoxGrupo.ValueMember = "IdGrupo";

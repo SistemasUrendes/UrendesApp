@@ -284,5 +284,25 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
                 nueva.Show();
             }
         }
+
+        private void buttonBorrar_Click(object sender, EventArgs e)
+        {
+            TreeNode node = treeViewElementos.SelectedNode;
+            if (node != null)
+            {
+                DialogResult resultado_message;
+                resultado_message = MessageBox.Show("¿Desea borrar este Elemento ?", "Borrar Elemento", MessageBoxButtons.OKCancel);
+                if (resultado_message == System.Windows.Forms.DialogResult.OK)
+                {
+                    String sqlBorrar = "DELETE FROM exp_elementos WHERE IdElemento = " + node.Tag;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrar);
+                    rellenarTreeViewInicio();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un elemento para poder borrarlo");
+            }
+        }
     }
 }
