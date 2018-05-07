@@ -530,5 +530,22 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                 System.Diagnostics.Process.Start(@Ruta);
             }
         }
+
+        private void impuestosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name.Contains(nombre_comunidad + " Impuestos ")).SingleOrDefault<Form>();
+            if (existe != null)
+            {
+                existe.WindowState = FormWindowState.Maximized;
+                existe.BringToFront();
+            }
+            else
+            {
+                Impuestos.FormImpuestos newMDIChild = new Impuestos.FormImpuestos(id_comunidad.ToString());
+                newMDIChild.MdiParent = this;
+                newMDIChild.WindowState = FormWindowState.Maximized;
+                newMDIChild.Show();
+            }
+        }
     }
 }

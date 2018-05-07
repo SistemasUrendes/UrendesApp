@@ -427,7 +427,7 @@
             <Value>=Fields!IdSubCuenta.Value</Value>
           </SortExpression>
         </SortExpressions>
-        <Top>3.04808cm</Top>
+        <Top>3.9562cm</Top>
         <Left>0.83721cm</Left>
         <Height>1.45604cm</Height>
         <Width>15.30331cm</Width>
@@ -455,7 +455,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox186</rd:DefaultName>
-        <Top>2.06002cm</Top>
+        <Top>2.96814cm</Top>
         <Left>0.91659cm</Left>
         <Height>0.6cm</Height>
         <Width>11.09896cm</Width>
@@ -489,7 +489,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox187</rd:DefaultName>
-        <Top>4.5394cm</Top>
+        <Top>5.44752cm</Top>
         <Left>13.64052cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
@@ -521,7 +521,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox188</rd:DefaultName>
-        <Top>4.5394cm</Top>
+        <Top>5.44752cm</Top>
         <Left>10.02927cm</Left>
         <Height>0.6cm</Height>
         <Width>3.61125cm</Width>
@@ -553,10 +553,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox6</rd:DefaultName>
-        <Top>0.99138cm</Top>
-        <Left>5.78773cm</Left>
+        <Top>1.73221cm</Top>
+        <Left>6.81961cm</Left>
         <Height>0.6cm</Height>
-        <Width>10.79094cm</Width>
+        <Width>9.75906cm</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -583,11 +583,47 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox3</rd:DefaultName>
-        <Top>5.4737cm</Top>
+        <Top>6.38182cm</Top>
         <Left>0.91659cm</Left>
         <Height>0.6cm</Height>
         <Width>15.22393cm</Width>
         <ZIndex>5</ZIndex>
+        <Visibility>
+          <Hidden>=IIF((First(Fields!Notas.Value, "DataSet1") &lt;&gt; "") ,False,True)</Hidden>
+        </Visibility>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox7">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!nombreComunidad.Value</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox6</rd:DefaultName>
+        <Top>0.67388cm</Top>
+        <Left>0.95873cm</Left>
+        <Height>0.6cm</Height>
+        <Width>12.10916cm</Width>
+        <ZIndex>6</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -599,7 +635,7 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>4.246in</Height>
+    <Height>3.06892in</Height>
     <Style />
   </Body>
   <Width>6.71912in</Width>
@@ -749,6 +785,35 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
+        <Textbox Name="Textbox30">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>="Fecha de Impresión: " &amp; Today()</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox30</rd:DefaultName>
+          <Top>0.36146cm</Top>
+          <Height>0.6cm</Height>
+          <Width>6.47302cm</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
       </ReportItems>
       <Style>
         <Border>
@@ -856,6 +921,13 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="nombreComunidad">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+  </ReportParameters>
   <EmbeddedImages>
     <EmbeddedImage Name="LogoUrendescopia">
       <MIMEType>image/png</MIMEType>

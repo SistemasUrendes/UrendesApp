@@ -38,7 +38,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.Infor
 
             dataSet2BindingSource1.DataSource = Persistencia.SentenciasSQL.select(Entidad);
 
-
             String Liquidacion_info = "SELECT com_liquidaciones.Liquidacion, com_liquidaciones.LiqLargo, com_comunidades.Referencia, ctos_entidades.NombreCorto FROM((com_liquidaciones INNER JOIN com_ejercicios ON com_liquidaciones.IdEjercicio = com_ejercicios.IdEjercicio) INNER JOIN com_comunidades ON com_ejercicios.IdComunidad = com_comunidades.IdComunidad) INNER JOIN ctos_entidades ON com_comunidades.IdEntidad = ctos_entidades.IDEntidad WHERE(((com_liquidaciones.IdLiquidacion) = " + idLiquidacionPasado + "));";
 
             dataSetLiqInformacionBindingSource.DataSource = Persistencia.SentenciasSQL.select(Liquidacion_info);
