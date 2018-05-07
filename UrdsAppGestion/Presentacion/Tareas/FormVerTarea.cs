@@ -1236,7 +1236,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
             
-            Tareas.FormCorreoGrupo nueva = new FormCorreoGrupo(idGestion,idEntidad,idTarea, textBoxDescripcion.Text);
+            Tareas.FormCorreoGrupo nueva = new FormCorreoGrupo(idGestion,idEntidad,idTarea, textBoxDescripcion.Text,idComunidad.ToString());
             nueva.ControlBox = true;
             nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;
@@ -1379,16 +1379,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
         }
-
-        private void buttonAddTipoGestion_Click(object sender, EventArgs e)
-        {
-            Tareas.FormInsertarTipoGestion nueva = new FormInsertarTipoGestion();
-            nueva.ControlBox = true;
-            nueva.TopMost = true;
-            nueva.WindowState = FormWindowState.Normal;
-            nueva.StartPosition = FormStartPosition.CenterScreen;
-            nueva.Show();
-        }
+        
 
         private void comboBoxEstadoGestion_SelectedIndexChanged(object sender, EventArgs e)
         {

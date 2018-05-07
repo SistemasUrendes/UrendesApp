@@ -33,9 +33,10 @@
             this.panelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entidadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comunidadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verTareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verGestionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comunicadosGeneralesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.planContableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,7 +48,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.barrar_abajo_nombre = new System.Windows.Forms.ToolStripStatusLabel();
             this.barra_abajo_bbdd = new System.Windows.Forms.ToolStripStatusLabel();
-            this.verGestionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configuraciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -83,16 +84,12 @@
             resources.ApplyResources(this.comunidadesToolStripMenuItem, "comunidadesToolStripMenuItem");
             this.comunidadesToolStripMenuItem.Click += new System.EventHandler(this.comunidadesToolStripMenuItem_Click);
             // 
-            // proveedoresToolStripMenuItem
-            // 
-            resources.ApplyResources(this.proveedoresToolStripMenuItem, "proveedoresToolStripMenuItem");
-            this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
-            // 
             // tareasToolStripMenuItem
             // 
             this.tareasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.verTareasToolStripMenuItem,
-            this.verGestionesToolStripMenuItem});
+            this.verGestionesToolStripMenuItem,
+            this.configuraciónToolStripMenuItem});
             this.tareasToolStripMenuItem.Name = "tareasToolStripMenuItem";
             resources.ApplyResources(this.tareasToolStripMenuItem, "tareasToolStripMenuItem");
             // 
@@ -101,6 +98,17 @@
             this.verTareasToolStripMenuItem.Name = "verTareasToolStripMenuItem";
             resources.ApplyResources(this.verTareasToolStripMenuItem, "verTareasToolStripMenuItem");
             this.verTareasToolStripMenuItem.Click += new System.EventHandler(this.verTareasToolStripMenuItem_Click);
+            // 
+            // verGestionesToolStripMenuItem
+            // 
+            this.verGestionesToolStripMenuItem.Name = "verGestionesToolStripMenuItem";
+            resources.ApplyResources(this.verGestionesToolStripMenuItem, "verGestionesToolStripMenuItem");
+            this.verGestionesToolStripMenuItem.Click += new System.EventHandler(this.verGestionesToolStripMenuItem_Click);
+            // 
+            // proveedoresToolStripMenuItem
+            // 
+            resources.ApplyResources(this.proveedoresToolStripMenuItem, "proveedoresToolStripMenuItem");
+            this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
             // 
             // comunicadosGeneralesToolStripMenuItem
             // 
@@ -175,11 +183,11 @@
             this.barra_abajo_bbdd.Name = "barra_abajo_bbdd";
             resources.ApplyResources(this.barra_abajo_bbdd, "barra_abajo_bbdd");
             // 
-            // verGestionesToolStripMenuItem
+            // configuraciónToolStripMenuItem
             // 
-            this.verGestionesToolStripMenuItem.Name = "verGestionesToolStripMenuItem";
-            resources.ApplyResources(this.verGestionesToolStripMenuItem, "verGestionesToolStripMenuItem");
-            this.verGestionesToolStripMenuItem.Click += new System.EventHandler(this.verGestionesToolStripMenuItem_Click);
+            this.configuraciónToolStripMenuItem.Name = "configuraciónToolStripMenuItem";
+            resources.ApplyResources(this.configuraciónToolStripMenuItem, "configuraciónToolStripMenuItem");
+            this.configuraciónToolStripMenuItem.Click += new System.EventHandler(this.configuraciónToolStripMenuItem_Click);
             // 
             // FormPrincipal
             // 
@@ -222,6 +230,7 @@
         private System.Windows.Forms.ToolStripMenuItem tareasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verTareasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verGestionesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem configuraciónToolStripMenuItem;
     }
 }
 

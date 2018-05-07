@@ -16,14 +16,16 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String idEntidad;
         String idTarea;
         String descripcion;
+        String idComunidad;
 
-        public FormCorreoGrupo(String idGestion,String idEntidad, String idTarea, String descripcion)
+        public FormCorreoGrupo(String idGestion,String idEntidad, String idTarea, String descripcion, String idComunidad)
         {
             InitializeComponent();
             this.idGestion = idGestion;
             this.idEntidad = idEntidad;
             this.idTarea = idTarea;
             this.descripcion = descripcion;
+            this.idComunidad = idComunidad;
         }
 
         private void FormCorreoGrupo_Load(object sender, EventArgs e)
@@ -65,7 +67,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void rellenarComboBox()
         {
-            String sqlComboGrupo = "SELECT exp_categoriaContactos.Nombre, exp_categoriaContactos.IdGrupo FROM exp_categoriaContactos";
+            String sqlComboGrupo = "SELECT exp_categoriaContactos.Nombre, exp_categoriaContactos.IdGrupo FROM exp_categoriaContactos WHERE exp_categoriaContactos.IdComunidad = " + idComunidad;
             comboBoxGrupo.DataSource = Persistencia.SentenciasSQL.select(sqlComboGrupo);
             comboBoxGrupo.DisplayMember = "Nombre";
             comboBoxGrupo.ValueMember = "IdGrupo";

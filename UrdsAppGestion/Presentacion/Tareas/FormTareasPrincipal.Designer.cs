@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTareasPrincipal));
             this.dataGridView_tareas = new System.Windows.Forms.DataGridView();
             this.comboBox_Tipo = new System.Windows.Forms.ComboBox();
-            this.textBox_Entidad = new System.Windows.Forms.TextBox();
             this.comboBox_Estado = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -69,6 +68,7 @@
             this.buttonBloque = new System.Windows.Forms.Button();
             this.labelMostrar = new System.Windows.Forms.Label();
             this.textBoxMostrar = new System.Windows.Forms.TextBox();
+            this.textBox_Entidad = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tareas)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -99,14 +99,6 @@
             this.comboBox_Tipo.Name = "comboBox_Tipo";
             this.comboBox_Tipo.Size = new System.Drawing.Size(101, 21);
             this.comboBox_Tipo.TabIndex = 6;
-            // 
-            // textBox_Entidad
-            // 
-            this.textBox_Entidad.Location = new System.Drawing.Point(583, 9);
-            this.textBox_Entidad.Name = "textBox_Entidad";
-            this.textBox_Entidad.Size = new System.Drawing.Size(253, 20);
-            this.textBox_Entidad.TabIndex = 3;
-            this.textBox_Entidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Entidad_KeyPress);
             // 
             // comboBox_Estado
             // 
@@ -444,12 +436,23 @@
             this.textBoxMostrar.Visible = false;
             this.textBoxMostrar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxMostrar_KeyPress);
             // 
+            // textBox_Entidad
+            // 
+            this.textBox_Entidad.Location = new System.Drawing.Point(589, 9);
+            this.textBox_Entidad.Name = "textBox_Entidad";
+            this.textBox_Entidad.ReadOnly = true;
+            this.textBox_Entidad.Size = new System.Drawing.Size(247, 20);
+            this.textBox_Entidad.TabIndex = 52;
+            this.textBox_Entidad.Text = "Pulsa espacio para Seleccionar Entidad";
+            this.textBox_Entidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxEntidad_KeyPress);
+            // 
             // FormTareasPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1152, 692);
             this.ControlBox = false;
+            this.Controls.Add(this.textBox_Entidad);
             this.Controls.Add(this.labelMostrar);
             this.Controls.Add(this.textBoxMostrar);
             this.Controls.Add(this.buttonBloque);
@@ -481,7 +484,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox_Estado);
-            this.Controls.Add(this.textBox_Entidad);
             this.Controls.Add(this.comboBox_Tipo);
             this.Controls.Add(this.dataGridView_tareas);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -501,7 +503,6 @@
 
         private System.Windows.Forms.DataGridView dataGridView_tareas;
         private System.Windows.Forms.ComboBox comboBox_Tipo;
-        private System.Windows.Forms.TextBox textBox_Entidad;
         private System.Windows.Forms.ComboBox comboBox_Estado;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -538,5 +539,6 @@
         private System.Windows.Forms.Button buttonBloque;
         private System.Windows.Forms.Label labelMostrar;
         private System.Windows.Forms.TextBox textBoxMostrar;
+        private System.Windows.Forms.TextBox textBox_Entidad;
     }
 }

@@ -96,7 +96,6 @@
             this.checkBoxImportante = new System.Windows.Forms.CheckBox();
             this.textBoxTareaNueva = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.buttonAddTipoGestion = new System.Windows.Forms.Button();
             this.dataSetCargos1 = new UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms.Informes.DataSetCargos();
             this.comboBoxEstadoGestion = new System.Windows.Forms.ComboBox();
             this.contextMenuStrip5 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -776,16 +775,6 @@
             this.label12.TabIndex = 40;
             this.label12.Text = "Ir a Tarea:";
             // 
-            // buttonAddTipoGestion
-            // 
-            this.buttonAddTipoGestion.Location = new System.Drawing.Point(1157, 594);
-            this.buttonAddTipoGestion.Name = "buttonAddTipoGestion";
-            this.buttonAddTipoGestion.Size = new System.Drawing.Size(75, 23);
-            this.buttonAddTipoGestion.TabIndex = 41;
-            this.buttonAddTipoGestion.Text = "Añadir Tipo";
-            this.buttonAddTipoGestion.UseVisualStyleBackColor = true;
-            this.buttonAddTipoGestion.Click += new System.EventHandler(this.buttonAddTipoGestion_Click);
-            // 
             // dataSetCargos1
             // 
             this.dataSetCargos1.DataSetName = "DataSetCargos";
@@ -876,7 +865,6 @@
             this.Controls.Add(this.textBoxElemento);
             this.Controls.Add(this.buttonBloque);
             this.Controls.Add(this.comboBoxEstadoGestion);
-            this.Controls.Add(this.buttonAddTipoGestion);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.textBoxTareaNueva);
             this.Controls.Add(this.checkBoxImportante);
@@ -1001,7 +989,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemInfoEntidad;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAddSeguimiento;
-        private System.Windows.Forms.Button buttonAddTipoGestion;
         private ComunidadesForms.CargosForms.Informes.DataSetCargos dataSetCargos1;
         private System.Windows.Forms.ComboBox comboBoxEstadoGestion;
         private System.Windows.Forms.Button buttonTodosSeguimientos;

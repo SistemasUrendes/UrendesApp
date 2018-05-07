@@ -42,6 +42,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.buttonActualizarCategoriasEntidad = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -169,11 +170,22 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // buttonActualizarCategoriasEntidad
+            // 
+            this.buttonActualizarCategoriasEntidad.Location = new System.Drawing.Point(40, 330);
+            this.buttonActualizarCategoriasEntidad.Name = "buttonActualizarCategoriasEntidad";
+            this.buttonActualizarCategoriasEntidad.Size = new System.Drawing.Size(75, 61);
+            this.buttonActualizarCategoriasEntidad.TabIndex = 9;
+            this.buttonActualizarCategoriasEntidad.Text = "Actualizar Categorías Entidad";
+            this.buttonActualizarCategoriasEntidad.UseVisualStyleBackColor = true;
+            this.buttonActualizarCategoriasEntidad.Click += new System.EventHandler(this.buttonActualizarCategoriasEntidad_Click);
+            // 
             // FormMantenimiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 560);
+            this.Controls.Add(this.buttonActualizarCategoriasEntidad);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.progressBar1);
@@ -208,5 +220,6 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button buttonActualizarCategoriasEntidad;
     }
 }

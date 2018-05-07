@@ -341,12 +341,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 ajustarDatagrid();
             }
         }
-
-        private void textBox_Entidad_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            tareas.DefaultView.RowFilter = "Entidad like '%" + textBox_Entidad.Text + "%' OR Descripción like '%" + textBox_Entidad.Text + "%'";
-            
-        }
+        
 
         private void dataGridView_tareas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -620,6 +615,21 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             String sqlSelect = "SELECT exp_tareas.IdTarea FROM exp_tareas WHERE exp_tareas.IdTareaCorto = '" + idTareaNuevo + "'";
             return Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString(); ;
+        }
+
+        private void textBoxEntidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (Char)Keys.Space || e.KeyChar == (Char)Keys.Enter)
+            {
+                maskedTextBoxRefComunidad.Text = "";
+                Entidades nueva = new Entidades(this, this.Name);
+                nueva.ControlBox = true;
+                nueva.TopMost = true;
+                nueva.WindowState = FormWindowState.Normal;
+                nueva.StartPosition = FormStartPosition.CenterScreen;
+                nueva.textBox_buscar_nombre.Select();
+                nueva.Show();
+            }
         }
     }
 }

@@ -1215,6 +1215,12 @@
     <Compile Include="Presentacion\Tareas\FormReferenciaComunidad.Designer.cs">
       <DependentUpon>FormReferenciaComunidad.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Tareas\FormTareasConfiguracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormTareasConfiguracion.Designer.cs">
+      <DependentUpon>FormTareasConfiguracion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Tareas\FormTareasPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1747,6 +1753,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormReferenciaComunidad.resx">
       <DependentUpon>FormReferenciaComunidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormTareasConfiguracion.resx">
+      <DependentUpon>FormTareasConfiguracion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormTareasPrincipal.resx">
       <DependentUpon>FormTareasPrincipal.cs</DependentUpon>

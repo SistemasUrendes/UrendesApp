@@ -429,5 +429,37 @@ namespace UrdsAppGestión.Presentacion
             MessageBox.Show("Fin");
             progressBar1.Visible = false;
         }
+
+        private void buttonActualizarCategoriasEntidad_Click(object sender, EventArgs e)
+        {
+
+            String sqlSelect = "SELECT ctos_entidades.IDEntidad, ctos_catentidades.Descripcion FROM ctos_catentidades INNER JOIN (ctos_entidades INNER JOIN ctos_detallecat ON ctos_entidades.IDEntidad = ctos_detallecat.IdEntidad) ON ctos_catentidades.IdCategoria = ctos_detallecat.IdCategoria";
+            DataTable table = Persistencia.SentenciasSQL.select(sqlSelect);
+            
+            
+            foreach (DataRow row in table.Rows)
+            {
+                String sqlSelect2 = "SELECT ctos_entidades.PalabrasClave AS Categoría FROM ctos_entidades WHERE ctos_entidades.IDEntidad = " + row[0].ToString();
+                String palabrasClave = Persistencia.SentenciasSQL.select(sqlSelect2).Rows[0][0].ToString();
+                if (palabrasClave.Length > 0) palabrasClave += ";" + quitaAcentos(row[1].ToString());
+                else palabrasClave += quitaAcentos(row[1].ToString());
+                String sqlUpdate = "UPDATE ctos_entidades SET PalabrasClave = '" + palabrasClave + "' WHERE IDEntidad = " + row[0].ToString();
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+            }
+                
+            /*
+
+
+            String sqlSelect = "SELECT ctos_entidades.IDEntidad, ctos_entidades.PalabrasClave FROM ctos_entidades WHERE((Not(ctos_entidades.PalabrasClave) = ''))";
+            DataTable table = Persistencia.SentenciasSQL.select(sqlSelect);
+
+            foreach (DataRow row in table.Rows)
+            {
+                String sqlUpdate = "UPDATE ctos_entidades SET PalabrasClave = '' WHERE IDEntidad = " + row[0].ToString();
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+            }
+            */
+            MessageBox.Show(table.Rows.Count.ToString() + " Registros Actualizados");
+        }
     }
 }
