@@ -20,14 +20,12 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
         public FormInsertarGrupo()
         {
             InitializeComponent();
-
         }
 
         private void FormInsertarGrupo_Load(object sender, EventArgs e)
         {
             rellenarCombobox();
             cargarDatagrid();
-
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)
@@ -283,7 +281,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
 
         private void buttonComuneros_Click(object sender, EventArgs e)
         {
-            String sqlSelect = "SELECT com_comuneros.IdComunero, ctos_entidades.Entidad AS Nombre, ctos_detemail.Email AS Correo,'C' AS T FROM(com_comuneros INNER JOIN ctos_detemail ON com_comuneros.IdEmail = ctos_detemail.IdEmail) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((com_comuneros.IdComunidad) = " + comboBoxComunidad.SelectedValue +"))";
+            String sqlSelect = "SELECT com_comuneros.IdComunero, ctos_entidades.Entidad AS Nombre, ctos_detemail.Email AS Correo,'C' AS T FROM(com_comuneros INNER JOIN ctos_detemail ON com_comuneros.IdEmail = ctos_detemail.IdEmail) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad WHERE ((com_comuneros.IdComunidad) = " + comboBoxComunidad.SelectedValue +")";
             contactos = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewContactos.DataSource = contactos;
             ajustarDatagridContactos();

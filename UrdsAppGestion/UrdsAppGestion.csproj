@@ -1215,11 +1215,23 @@
     <Compile Include="Presentacion\Tareas\FormInsertarTipoGestion.Designer.cs">
       <DependentUpon>FormInsertarTipoGestion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarTipoTarea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarTipoTarea.Designer.cs">
+      <DependentUpon>FormInsertarTipoTarea.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Tareas\FormReferenciaComunidad.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\Tareas\FormReferenciaComunidad.Designer.cs">
       <DependentUpon>FormReferenciaComunidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormServiciosConfiguracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormServiciosConfiguracion.Designer.cs">
+      <DependentUpon>FormServiciosConfiguracion.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Tareas\FormTareasConfiguracion.cs">
       <SubType>Form</SubType>
@@ -1760,8 +1772,14 @@
     <EmbeddedResource Include="Presentacion\Tareas\FormInsertarTipoGestion.resx">
       <DependentUpon>FormInsertarTipoGestion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormInsertarTipoTarea.resx">
+      <DependentUpon>FormInsertarTipoTarea.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormReferenciaComunidad.resx">
       <DependentUpon>FormReferenciaComunidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormServiciosConfiguracion.resx">
+      <DependentUpon>FormServiciosConfiguracion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormTareasConfiguracion.resx">
       <DependentUpon>FormTareasConfiguracion.cs</DependentUpon>

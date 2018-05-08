@@ -100,7 +100,7 @@
             // 
             // buttonEnviar
             // 
-            this.buttonEnviar.Location = new System.Drawing.Point(430, 12);
+            this.buttonEnviar.Location = new System.Drawing.Point(196, 12);
             this.buttonEnviar.Name = "buttonEnviar";
             this.buttonEnviar.Size = new System.Drawing.Size(75, 23);
             this.buttonEnviar.TabIndex = 21;
@@ -125,12 +125,13 @@
             // 
             // buttonBorrar
             // 
-            this.buttonBorrar.Location = new System.Drawing.Point(124, 12);
+            this.buttonBorrar.Location = new System.Drawing.Point(431, 12);
             this.buttonBorrar.Name = "buttonBorrar";
             this.buttonBorrar.Size = new System.Drawing.Size(75, 23);
             this.buttonBorrar.TabIndex = 22;
             this.buttonBorrar.Text = "Borrar";
             this.buttonBorrar.UseVisualStyleBackColor = true;
+            this.buttonBorrar.Visible = false;
             this.buttonBorrar.Click += new System.EventHandler(this.buttonBorrar_Click);
             // 
             // FormElementos

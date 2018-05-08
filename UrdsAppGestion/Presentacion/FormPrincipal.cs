@@ -170,7 +170,7 @@ namespace UrdsAppGestión {
 
         private void verTareasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name == "Tareas").SingleOrDefault<Form>();
+            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name == "FormTareasPrincipal").SingleOrDefault<Form>();
             if (existe != null)
             {
                 existe.WindowState = FormWindowState.Maximized;
@@ -188,7 +188,7 @@ namespace UrdsAppGestión {
         private void verGestionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name == "Gestiones").SingleOrDefault<Form>();
+            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name == "FormGestionesPrincipal").SingleOrDefault<Form>();
             if (existe != null)
             {
                 existe.WindowState = FormWindowState.Maximized;
@@ -202,10 +202,10 @@ namespace UrdsAppGestión {
                 newMDIChild.Show();
             }
         }
-
-        private void configuraciónToolStripMenuItem_Click(object sender, EventArgs e)
+        
+        private void mttoTareasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name == "Configuración Tarea").SingleOrDefault<Form>();
+            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name == "FormTareasConfiguracion").SingleOrDefault<Form>();
             if (existe != null)
             {
                 existe.WindowState = FormWindowState.Maximized;
@@ -214,6 +214,23 @@ namespace UrdsAppGestión {
             else
             {
                 Presentacion.Tareas.FormTareasConfiguracion newMDIChild = new Presentacion.Tareas.FormTareasConfiguracion();
+                newMDIChild.MdiParent = this;
+                newMDIChild.WindowState = FormWindowState.Maximized;
+                newMDIChild.Show();
+            }
+        }
+
+        private void mttoServiciosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name == "FormServiciosConfiguracion").SingleOrDefault<Form>();
+            if (existe != null)
+            {
+                existe.WindowState = FormWindowState.Maximized;
+                existe.BringToFront();
+            }
+            else
+            {
+                Presentacion.Tareas.FormServiciosConfiguracion newMDIChild = new Presentacion.Tareas.FormServiciosConfiguracion();
                 newMDIChild.MdiParent = this;
                 newMDIChild.WindowState = FormWindowState.Maximized;
                 newMDIChild.Show();

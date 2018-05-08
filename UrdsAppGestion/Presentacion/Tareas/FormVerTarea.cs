@@ -1418,7 +1418,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
         }
         private void buttonAddExpediente_Click(object sender, EventArgs e)
         {
-            Tareas.FormTareasPrincipal nueva = new Tareas.FormTareasPrincipal(this, idComunidad.ToString());
+            String Nombre = "FormVerTarea" + idTarea;
+
+            this.Name = Nombre;
+
+            Tareas.FormTareasPrincipal nueva = new Tareas.FormTareasPrincipal(this, Nombre, idComunidad.ToString());
             nueva.ControlBox = true;
             nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;

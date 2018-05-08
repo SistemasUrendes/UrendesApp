@@ -20,6 +20,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String id_comunidad;
         Form form_anterior;
         String idElemento;
+        String form_ant;
 
         public FormTareasPrincipal(String id_comunidad)
         {
@@ -28,14 +29,23 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBoxTarea.Select();
         }
         
-        public FormTareasPrincipal(Form form_anterior,String id_comunidad)
+        public FormTareasPrincipal(Form form_anterior,String form_ant,String id_comunidad)
+        {
+            InitializeComponent();
+            this.id_comunidad = id_comunidad;
+            this.form_anterior = form_anterior;
+            textBoxTarea.Select();
+            this.form_ant = form_ant;
+        }
+
+        public FormTareasPrincipal(Form form_anterior, String id_comunidad)
         {
             InitializeComponent();
             this.id_comunidad = id_comunidad;
             this.form_anterior = form_anterior;
             textBoxTarea.Select();
         }
-        
+
         public FormTareasPrincipal()
         {
             InitializeComponent();
@@ -545,7 +555,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     ComunidadesForms.OperacionesForms.FromOperacionesVer nuevo = (ComunidadesForms.OperacionesForms.FromOperacionesVer)existe;
                     nuevo.recibirTarea(dataGridView_tareas.SelectedCells[0].Value.ToString());
                 }
-                if (form_anterior.Name == "FormVerTarea")
+                if (form_anterior.Name.Contains("FormVerTarea")) 
                 {
                     FormVerTarea nuevo = (FormVerTarea)existe;
                     nuevo.recibirTarea(dataGridView_tareas.SelectedCells[0].Value.ToString());
@@ -630,6 +640,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 nueva.textBox_buscar_nombre.Select();
                 nueva.Show();
             }
+        }
+        
+        public void recibirEntidad(String idEntidad,String nombre)
+        {
+            this.id_entidad = idEntidad;
+            textBox_Entidad.Text = nombre;
+            aplicarFiltroTabla();
         }
     }
 }
