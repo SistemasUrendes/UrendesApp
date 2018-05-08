@@ -405,7 +405,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
         {
             if (comboBox_informes.SelectedIndex == 0)
             {
-                DivisionesForms.Informes.FormRangoFechasCuotasEmitidas nueva = new DivisionesForms.Informes.FormRangoFechasCuotasEmitidas(dataGridView_divisiones.Rows[0].Cells[0].Value.ToString(),id_comunidad.ToString(),dataGridView_divisiones.Rows[0].Cells[2].Value.ToString());
+                DivisionesForms.Informes.FormRangoFechasCuotasEmitidas nueva = new DivisionesForms.Informes.FormRangoFechasCuotasEmitidas(dataGridView_divisiones.SelectedRows[0].Cells[0].Value.ToString(),id_comunidad.ToString(),dataGridView_divisiones.SelectedRows[0].Cells[2].Value.ToString());
                 nueva.Show();
 
             }

@@ -114,6 +114,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Presentacion\ComunidadesForms\Impuestos\FormImpuestoDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\Impuestos\FormImpuestoDetalle.Designer.cs">
+      <DependentUpon>FormImpuestoDetalle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\ComunidadesForms\Impuestos\FormImpuestos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1416,6 +1422,9 @@
       <DependentUpon>FormVerInformeCuentas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\Informes\ReportCuentas.rdlc" />
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\Impuestos\FormImpuestoDetalle.resx">
+      <DependentUpon>FormImpuestoDetalle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\Impuestos\FormImpuestos.resx">
       <DependentUpon>FormImpuestos.cs</DependentUpon>
     </EmbeddedResource>
