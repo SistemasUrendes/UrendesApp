@@ -62,14 +62,13 @@
             this.elementosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rutaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.ejerciciosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.liquidacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cuotasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.informesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.documentosYComunicacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.impuestosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ejerciciosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -299,7 +298,6 @@
             this.cargosToolStripMenuItem,
             this.elementosToolStripMenuItem,
             this.rutaToolStripMenuItem,
-            this.impuestosToolStripMenuItem,
             this.toolStripSeparator1,
             this.ejerciciosToolStripMenuItem1,
             this.liquidacionesToolStripMenuItem,
@@ -351,13 +349,6 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(225, 6);
             // 
-            // ejerciciosToolStripMenuItem1
-            // 
-            this.ejerciciosToolStripMenuItem1.Name = "ejerciciosToolStripMenuItem1";
-            this.ejerciciosToolStripMenuItem1.Size = new System.Drawing.Size(228, 22);
-            this.ejerciciosToolStripMenuItem1.Text = "Ejercicios";
-            this.ejerciciosToolStripMenuItem1.Click += new System.EventHandler(this.ejerciciosToolStripMenuItem1_Click);
-            // 
             // liquidacionesToolStripMenuItem
             // 
             this.liquidacionesToolStripMenuItem.Name = "liquidacionesToolStripMenuItem";
@@ -398,12 +389,12 @@
             this.tareasToolStripMenuItem.Text = "Tareas";
             this.tareasToolStripMenuItem.Click += new System.EventHandler(this.tareasToolStripMenuItem_Click);
             // 
-            // impuestosToolStripMenuItem
+            // ejerciciosToolStripMenuItem1
             // 
-            this.impuestosToolStripMenuItem.Name = "impuestosToolStripMenuItem";
-            this.impuestosToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.impuestosToolStripMenuItem.Text = "Impuestos";
-            this.impuestosToolStripMenuItem.Click += new System.EventHandler(this.impuestosToolStripMenuItem_Click);
+            this.ejerciciosToolStripMenuItem1.Name = "ejerciciosToolStripMenuItem1";
+            this.ejerciciosToolStripMenuItem1.Size = new System.Drawing.Size(228, 22);
+            this.ejerciciosToolStripMenuItem1.Text = "Ejercicios";
+            this.ejerciciosToolStripMenuItem1.Click += new System.EventHandler(this.ejerciciosToolStripMenuItem1_Click);
             // 
             // ContenedorComunidad
             // 
@@ -457,7 +448,6 @@
         private System.Windows.Forms.ToolStripMenuItem documentosYComunicacionesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem liquidacionesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cuotasToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem ejerciciosToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem gestiónDeudasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem informesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -466,6 +456,6 @@
         private System.Windows.Forms.ToolStripMenuItem tareasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem elementosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rutaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem impuestosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ejerciciosToolStripMenuItem1;
     }
 }

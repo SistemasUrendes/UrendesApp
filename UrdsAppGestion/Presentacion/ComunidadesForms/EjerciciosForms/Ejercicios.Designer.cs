@@ -37,6 +37,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.establecerPrincipalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarEjercicioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.impuestosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Ejercicios)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -93,9 +94,10 @@
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.establecerPrincipalToolStripMenuItem,
-            this.cerrarEjercicioToolStripMenuItem});
+            this.cerrarEjercicioToolStripMenuItem,
+            this.impuestosToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(177, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(177, 92);
             // 
             // establecerPrincipalToolStripMenuItem
             // 
@@ -109,6 +111,13 @@
             this.cerrarEjercicioToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.cerrarEjercicioToolStripMenuItem.Text = "Cerrar Ejercicio";
             this.cerrarEjercicioToolStripMenuItem.Click += new System.EventHandler(this.cerrarEjercicioToolStripMenuItem_Click);
+            // 
+            // impuestosToolStripMenuItem
+            // 
+            this.impuestosToolStripMenuItem.Name = "impuestosToolStripMenuItem";
+            this.impuestosToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.impuestosToolStripMenuItem.Text = "Impuestos";
+            this.impuestosToolStripMenuItem.Click += new System.EventHandler(this.impuestosToolStripMenuItem_Click);
             // 
             // Ejercicios
             // 
@@ -140,5 +149,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem establecerPrincipalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarEjercicioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem impuestosToolStripMenuItem;
     }
 }
