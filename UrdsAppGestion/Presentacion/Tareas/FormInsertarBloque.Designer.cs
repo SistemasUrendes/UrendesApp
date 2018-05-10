@@ -1,6 +1,6 @@
 ﻿namespace UrdsAppGestión.Presentacion.Tareas
 {
-    partial class FormInsertarElemento
+    partial class FormInsertarBloque
     {
         /// <summary>
         /// Required designer variable.
@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInsertarElemento));
-            this.labelPrevio = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInsertarBloque));
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.buttonGuardar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -38,31 +37,22 @@
             this.textBoxNombre = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // labelPrevio
-            // 
-            this.labelPrevio.AutoSize = true;
-            this.labelPrevio.Location = new System.Drawing.Point(12, 9);
-            this.labelPrevio.Name = "labelPrevio";
-            this.labelPrevio.Size = new System.Drawing.Size(0, 13);
-            this.labelPrevio.TabIndex = 15;
-            this.labelPrevio.Click += new System.EventHandler(this.labelPrevio_Click);
-            // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(184, 117);
+            this.buttonCancelar.Location = new System.Drawing.Point(185, 98);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancelar.TabIndex = 14;
+            this.buttonCancelar.TabIndex = 21;
             this.buttonCancelar.Text = "Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = true;
             this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
             // 
             // buttonGuardar
             // 
-            this.buttonGuardar.Location = new System.Drawing.Point(103, 117);
+            this.buttonGuardar.Location = new System.Drawing.Point(104, 98);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(75, 23);
-            this.buttonGuardar.TabIndex = 13;
+            this.buttonGuardar.TabIndex = 20;
             this.buttonGuardar.Text = "Guardar";
             this.buttonGuardar.UseVisualStyleBackColor = true;
             this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
@@ -70,45 +60,40 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 73);
+            this.label2.Location = new System.Drawing.Point(7, 54);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 13);
-            this.label2.TabIndex = 12;
+            this.label2.TabIndex = 19;
             this.label2.Text = "Descripción:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 38);
+            this.label1.Location = new System.Drawing.Point(23, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 13);
-            this.label1.TabIndex = 11;
+            this.label1.TabIndex = 18;
             this.label1.Text = "Nombre: ";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // textBoxDescripción
             // 
-            this.textBoxDescripción.Location = new System.Drawing.Point(78, 70);
+            this.textBoxDescripción.Location = new System.Drawing.Point(79, 51);
             this.textBoxDescripción.Name = "textBoxDescripción";
             this.textBoxDescripción.Size = new System.Drawing.Size(181, 20);
-            this.textBoxDescripción.TabIndex = 10;
-            this.textBoxDescripción.TextChanged += new System.EventHandler(this.textBoxDescripción_TextChanged);
+            this.textBoxDescripción.TabIndex = 17;
             // 
             // textBoxNombre
             // 
-            this.textBoxNombre.Location = new System.Drawing.Point(78, 35);
+            this.textBoxNombre.Location = new System.Drawing.Point(79, 16);
             this.textBoxNombre.Name = "textBoxNombre";
             this.textBoxNombre.Size = new System.Drawing.Size(181, 20);
-            this.textBoxNombre.TabIndex = 9;
-            this.textBoxNombre.TextChanged += new System.EventHandler(this.textBoxNombre_TextChanged);
+            this.textBoxNombre.TabIndex = 16;
             // 
-            // FormInsertarElemento
+            // FormInsertarBloque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 159);
-            this.Controls.Add(this.labelPrevio);
+            this.ClientSize = new System.Drawing.Size(284, 140);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonGuardar);
             this.Controls.Add(this.label2);
@@ -116,18 +101,15 @@
             this.Controls.Add(this.textBoxDescripción);
             this.Controls.Add(this.textBoxNombre);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FormInsertarElemento";
+            this.Name = "FormInsertarBloque";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormInsertarElemento";
-            this.Load += new System.EventHandler(this.FormInsertarElemento_Load);
+            this.Text = "Insertar Bloque";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label labelPrevio;
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Button buttonGuardar;
         private System.Windows.Forms.Label label2;

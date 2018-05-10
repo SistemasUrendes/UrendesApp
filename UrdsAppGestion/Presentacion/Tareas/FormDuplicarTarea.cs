@@ -76,7 +76,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             Boolean expedientes = checkBoxExpedientes.Checked;
             FormVerTarea nueva = new FormVerTarea(form_anterior,idTipoTarea, fIni, descripcion, coste, seguro, acuerdoJunta, fechaActaAcordado, proximaJunta, refSiniestro, fFin, ruta, notas, importante, nombreElemento, idElemento, idEntidad, nombreComunidad, idComunidad, referencia, idTarea,contactos,expedientes);
             nueva.ControlBox = true;
-            nueva.TopMost = true;
+            //nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;
             nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();

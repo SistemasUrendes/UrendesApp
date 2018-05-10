@@ -52,13 +52,13 @@
             this.dataGridViewAllGestion.AllowUserToResizeRows = false;
             this.dataGridViewAllGestion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAllGestion.ColumnHeadersVisible = false;
-            this.dataGridViewAllGestion.Location = new System.Drawing.Point(327, 74);
+            this.dataGridViewAllGestion.Location = new System.Drawing.Point(351, 74);
             this.dataGridViewAllGestion.MultiSelect = false;
             this.dataGridViewAllGestion.Name = "dataGridViewAllGestion";
             this.dataGridViewAllGestion.ReadOnly = true;
             this.dataGridViewAllGestion.RowHeadersVisible = false;
             this.dataGridViewAllGestion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewAllGestion.Size = new System.Drawing.Size(279, 343);
+            this.dataGridViewAllGestion.Size = new System.Drawing.Size(309, 343);
             this.dataGridViewAllGestion.TabIndex = 1;
             this.dataGridViewAllGestion.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAllGestion_CellDoubleClick);
             // 
@@ -75,15 +75,15 @@
             this.dataGridViewAddGestion.ReadOnly = true;
             this.dataGridViewAddGestion.RowHeadersVisible = false;
             this.dataGridViewAddGestion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewAddGestion.Size = new System.Drawing.Size(275, 343);
+            this.dataGridViewAddGestion.Size = new System.Drawing.Size(299, 343);
             this.dataGridViewAddGestion.TabIndex = 2;
             this.dataGridViewAddGestion.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAddGestion_CellDoubleClick);
             // 
             // textBoxFiltroGestiones
             // 
-            this.textBoxFiltroGestiones.Location = new System.Drawing.Point(327, 48);
+            this.textBoxFiltroGestiones.Location = new System.Drawing.Point(351, 48);
             this.textBoxFiltroGestiones.Name = "textBoxFiltroGestiones";
-            this.textBoxFiltroGestiones.Size = new System.Drawing.Size(279, 20);
+            this.textBoxFiltroGestiones.Size = new System.Drawing.Size(309, 20);
             this.textBoxFiltroGestiones.TabIndex = 3;
             this.textBoxFiltroGestiones.TextChanged += new System.EventHandler(this.textBoxFiltroGestiones_TextChanged);
             // 
@@ -91,7 +91,7 @@
             // 
             this.textBoxNombre.Location = new System.Drawing.Point(66, 12);
             this.textBoxNombre.Name = "textBoxNombre";
-            this.textBoxNombre.Size = new System.Drawing.Size(221, 20);
+            this.textBoxNombre.Size = new System.Drawing.Size(245, 20);
             this.textBoxNombre.TabIndex = 4;
             // 
             // labelName
@@ -114,7 +114,7 @@
             // 
             // buttonSubir
             // 
-            this.buttonSubir.Location = new System.Drawing.Point(293, 124);
+            this.buttonSubir.Location = new System.Drawing.Point(317, 124);
             this.buttonSubir.Name = "buttonSubir";
             this.buttonSubir.Size = new System.Drawing.Size(28, 23);
             this.buttonSubir.TabIndex = 7;
@@ -124,7 +124,7 @@
             // 
             // buttonBajar
             // 
-            this.buttonBajar.Location = new System.Drawing.Point(293, 153);
+            this.buttonBajar.Location = new System.Drawing.Point(317, 153);
             this.buttonBajar.Name = "buttonBajar";
             this.buttonBajar.Size = new System.Drawing.Size(28, 23);
             this.buttonBajar.TabIndex = 8;
@@ -134,7 +134,7 @@
             // 
             // buttonAddGestion
             // 
-            this.buttonAddGestion.Location = new System.Drawing.Point(293, 235);
+            this.buttonAddGestion.Location = new System.Drawing.Point(317, 235);
             this.buttonAddGestion.Name = "buttonAddGestion";
             this.buttonAddGestion.Size = new System.Drawing.Size(28, 23);
             this.buttonAddGestion.TabIndex = 9;
@@ -144,7 +144,7 @@
             // 
             // buttonRemoveGestion
             // 
-            this.buttonRemoveGestion.Location = new System.Drawing.Point(293, 264);
+            this.buttonRemoveGestion.Location = new System.Drawing.Point(317, 264);
             this.buttonRemoveGestion.Name = "buttonRemoveGestion";
             this.buttonRemoveGestion.Size = new System.Drawing.Size(28, 23);
             this.buttonRemoveGestion.TabIndex = 10;
@@ -154,7 +154,7 @@
             // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(530, 424);
+            this.buttonCancelar.Location = new System.Drawing.Point(585, 423);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
             this.buttonCancelar.TabIndex = 11;
@@ -164,7 +164,7 @@
             // 
             // buttonGuardar
             // 
-            this.buttonGuardar.Location = new System.Drawing.Point(449, 423);
+            this.buttonGuardar.Location = new System.Drawing.Point(504, 423);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(75, 23);
             this.buttonGuardar.TabIndex = 12;
@@ -176,7 +176,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(621, 457);
+            this.ClientSize = new System.Drawing.Size(672, 457);
             this.Controls.Add(this.buttonGuardar);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonRemoveGestion);

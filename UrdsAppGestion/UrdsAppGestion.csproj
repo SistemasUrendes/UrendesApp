@@ -1191,6 +1191,12 @@
     <Compile Include="Presentacion\Tareas\FormGestionesPrincipal.Designer.cs">
       <DependentUpon>FormGestionesPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarBloque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarBloque.Designer.cs">
+      <DependentUpon>FormInsertarBloque.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Tareas\FormInsertarContacto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1765,6 +1771,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormGestionesPrincipal.resx">
       <DependentUpon>FormGestionesPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormInsertarBloque.resx">
+      <DependentUpon>FormInsertarBloque.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormInsertarContacto.resx">
       <DependentUpon>FormInsertarContacto.cs</DependentUpon>
