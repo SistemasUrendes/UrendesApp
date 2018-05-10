@@ -13,8 +13,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Impuestos
     public partial class FormImpuestoDetalle : Form
     {
         String idEntidad;
+        DataTable datos;
 
-        public FormImpuestoDetalle()
+        public FormImpuestoDetalle(String idEntidad, DataTable datos)
         {
             InitializeComponent();
         }
