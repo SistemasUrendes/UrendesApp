@@ -36,6 +36,8 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.marcarComoLiquidableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verTodasDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.comboBox_informes = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_impuestos)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -46,7 +48,7 @@
             this.dataGridView_impuestos.AllowUserToDeleteRows = false;
             this.dataGridView_impuestos.AllowUserToResizeRows = false;
             this.dataGridView_impuestos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_impuestos.Location = new System.Drawing.Point(12, 44);
+            this.dataGridView_impuestos.Location = new System.Drawing.Point(12, 72);
             this.dataGridView_impuestos.Name = "dataGridView_impuestos";
             this.dataGridView_impuestos.ReadOnly = true;
             this.dataGridView_impuestos.RowHeadersVisible = false;
@@ -65,7 +67,7 @@
             "2 Trimestre IVA",
             "3 Trimestre IVA",
             "4 Trimestre IVA"});
-            this.comboBox_liquidaciones.Location = new System.Drawing.Point(1002, 17);
+            this.comboBox_liquidaciones.Location = new System.Drawing.Point(1002, 45);
             this.comboBox_liquidaciones.Name = "comboBox_liquidaciones";
             this.comboBox_liquidaciones.Size = new System.Drawing.Size(121, 21);
             this.comboBox_liquidaciones.TabIndex = 1;
@@ -74,7 +76,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(940, 20);
+            this.label1.Location = new System.Drawing.Point(940, 48);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 2;
@@ -86,7 +88,7 @@
             this.marcarComoLiquidableToolStripMenuItem,
             this.verTodasDeToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(201, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(201, 48);
             // 
             // marcarComoLiquidableToolStripMenuItem
             // 
@@ -102,12 +104,32 @@
             this.verTodasDeToolStripMenuItem.Text = "Ver todas de :";
             this.verTodasDeToolStripMenuItem.Click += new System.EventHandler(this.verTodasDeToolStripMenuItem_Click);
             // 
+            // comboBox_informes
+            // 
+            this.comboBox_informes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_informes.FormattingEnabled = true;
+            this.comboBox_informes.Location = new System.Drawing.Point(1002, 13);
+            this.comboBox_informes.Name = "comboBox_informes";
+            this.comboBox_informes.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_informes.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(940, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(50, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Informes:";
+            // 
             // FormImpuestos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1135, 528);
+            this.ClientSize = new System.Drawing.Size(1135, 556);
             this.ControlBox = false;
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.comboBox_informes);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox_liquidaciones);
             this.Controls.Add(this.dataGridView_impuestos);
@@ -131,5 +153,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem marcarComoLiquidableToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verTodasDeToolStripMenuItem;
+        private System.Windows.Forms.ComboBox comboBox_informes;
+        private System.Windows.Forms.Label label2;
     }
 }
