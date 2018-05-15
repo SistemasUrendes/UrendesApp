@@ -146,6 +146,12 @@
     <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\FormAnticiposProveedores.Designer.cs">
       <DependentUpon>FormAnticiposProveedores.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Tareas\FormAreasBloque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormAreasBloque.Designer.cs">
+      <DependentUpon>FormAreasBloque.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Tareas\FormDuplicarTarea.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1211,6 +1217,18 @@
     <Compile Include="Presentacion\Tareas\FormGestionesPrincipal.Designer.cs">
       <DependentUpon>FormGestionesPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarArea.Designer.cs">
+      <DependentUpon>FormInsertarArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarBloque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarBloque.Designer.cs">
+      <DependentUpon>FormInsertarBloque.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Tareas\FormInsertarContacto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1252,6 +1270,12 @@
     </Compile>
     <Compile Include="Presentacion\Tareas\FormReferenciaComunidad.Designer.cs">
       <DependentUpon>FormReferenciaComunidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormSeleccionarBloque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormSeleccionarBloque.Designer.cs">
+      <DependentUpon>FormSeleccionarBloque.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Tareas\FormServiciosConfiguracion.cs">
       <SubType>Form</SubType>
@@ -1784,6 +1808,9 @@
     <EmbeddedResource Include="Presentacion\PlanContableForms\FormPlanContableAlta.resx">
       <DependentUpon>FormPlanContableAlta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormAreasBloque.resx">
+      <DependentUpon>FormAreasBloque.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormCorreoGrupo.resx">
       <DependentUpon>FormCorreoGrupo.cs</DependentUpon>
     </EmbeddedResource>
@@ -1792,6 +1819,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormGestionesPrincipal.resx">
       <DependentUpon>FormGestionesPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormInsertarArea.resx">
+      <DependentUpon>FormInsertarArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormInsertarBloque.resx">
+      <DependentUpon>FormInsertarBloque.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormInsertarContacto.resx">
       <DependentUpon>FormInsertarContacto.cs</DependentUpon>
@@ -1813,6 +1846,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormReferenciaComunidad.resx">
       <DependentUpon>FormReferenciaComunidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormSeleccionarBloque.resx">
+      <DependentUpon>FormSeleccionarBloque.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormServiciosConfiguracion.resx">
       <DependentUpon>FormServiciosConfiguracion.cs</DependentUpon>
