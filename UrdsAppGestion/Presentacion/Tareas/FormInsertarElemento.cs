@@ -58,6 +58,30 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
             this.Close();
         }
-        
+
+        private void labelPrevio_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxDescripción_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxNombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

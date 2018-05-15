@@ -229,6 +229,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
 
         private void buttonEnviar_Click(object sender, EventArgs e)
         {
+            /*
             TreeNode node = treeViewElementos.SelectedNode;
             if (node != null)
             {
@@ -243,6 +244,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
             {
                 MessageBox.Show("Debe seleccionar un elemento para poder añadirlo a la tarea");
             }
+            */
             
         }
         
