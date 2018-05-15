@@ -514,13 +514,13 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                 newMDIChild.Show();
             }
         }
-
+        /*
         private void elementosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Elementos.FormElementos nueva = new Elementos.FormElementos(id_comunidad);
             nueva.Show();
         }
-
+        */
         private void rutaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String sqlRuta = "SELECT ctos_entidades.Ruta FROM com_comunidades INNER JOIN ctos_entidades ON com_comunidades.IdEntidad = ctos_entidades.IDEntidad GROUP BY com_comunidades.IdComunidad, ctos_entidades.Ruta HAVING(((com_comunidades.IdComunidad) = " + id_comunidad + "));";

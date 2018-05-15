@@ -25,8 +25,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String fFin;
         String notas;
         String importante;
-        String nombreElemento;
-        String idElemento;
+        //String nombreElemento;
+        //String idElemento;
         String idEntidad;
         String nombreComunidad;
         int idComunidad;

@@ -13,32 +13,52 @@ namespace UrdsAppGestión.Presentacion.Tareas
     public partial class FormInsertarElemento : Form
     {
         private int idElementoAnt;
-        private int idComunidad;
+        private String idElemento;
+        private String idCategoria;
         private String nombreAnt;
-        private ComunidadesForms.Elementos.FormElementos form_anterior1;
+        private ComunidadesForms.Elementos.FormElementos form_anterior;
         private FormVerTarea form_anterior2;
+        Boolean actualizar;
 
-        public FormInsertarElemento(ComunidadesForms.Elementos.FormElementos form_anterior, int idElementoAnt, int idComunidad, String nombreAnt)
+        public FormInsertarElemento(ComunidadesForms.Elementos.FormElementos form_anterior, int idElementoAnt, String idCategoria, String nombreAnt)
         {
             InitializeComponent();
             this.idElementoAnt = idElementoAnt;
-            this.idComunidad = idComunidad;
+            this.idCategoria = idCategoria;
             this.nombreAnt = nombreAnt;
-            this.form_anterior1 = form_anterior;
+            this.form_anterior = form_anterior;
+            actualizar = false;
         }
 
-        public FormInsertarElemento(FormVerTarea form_anterior, int idElementoAnt, int idComunidad, String nombreAnt)
+        public FormInsertarElemento(FormVerTarea form_anterior, int idElementoAnt, String idCategoria, String nombreAnt)
         {
             InitializeComponent();
             this.idElementoAnt = idElementoAnt;
-            this.idComunidad = idComunidad;
+            this.idCategoria = idCategoria;
             this.nombreAnt = nombreAnt;
             this.form_anterior2 = form_anterior;
+            actualizar = false;
+        }
+
+        public FormInsertarElemento(ComunidadesForms.Elementos.FormElementos form_anterior, String idElemento, int idElementoAnt)
+        {
+            InitializeComponent();
+            this.form_anterior = form_anterior;
+            actualizar = true;
+            this.idElemento = idElemento;
+            this.idElementoAnt = idElementoAnt;
         }
 
         private void FormInsertarElemento_Load(object sender, EventArgs e)
         {
-            labelPrevio.Text = "Añadir elemento nuevo en : " + nombreAnt;
+            if ( actualizar)
+            {
+                cargarElemento();
+            }
+            else
+            {
+                 labelPrevio.Text = "Añadir elemento nuevo en : " + nombreAnt;
+            }
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)
@@ -51,37 +71,30 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String nombre = textBoxNombre.Text;
             String descripcion = textBoxDescripción.Text;
 
-            String sqlInsert = "INSERT INTO exp_elementos (IdElementoAnt,IdComunidad,Nombre,Descripcion) VALUES (" + idElementoAnt + "," + idComunidad + ",'" + nombre + "','" + descripcion + "')";
-
-            Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
-            if (form_anterior1 != null) form_anterior1.rellenarTreeView(idElementoAnt.ToString());
+            if (actualizar)
+            {
+                String sqlUpdate = "UPDATE exp_detElemento SET Nombre = '" + nombre + "',Descripcion = '" + descripcion + "' WHERE IdDetElemento = " + idElemento ;
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+            }
+            else
+            {
+                String sqlInsert = "INSERT INTO exp_detElemento (IdDetElementoPrev,IdCatElemento,Nombre,Descripcion) VALUES (" + idElementoAnt + "," + idCategoria + ",'" + nombre + "','" + descripcion + "')";
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+            }
+            if (form_anterior != null) form_anterior.rellenarTreeView(idElementoAnt.ToString());
 
             this.Close();
         }
 
-        private void labelPrevio_Click(object sender, EventArgs e)
+        private void cargarElemento()
         {
+            String sqlSelect = "SELECT exp_detElemento.Nombre, exp_detElemento.Descripcion FROM exp_detElemento WHERE(((exp_detElemento.IdDetElemento) = " + idElemento + "))";
+            DataTable elemento = Persistencia.SentenciasSQL.select(sqlSelect);
 
+            textBoxNombre.Text = elemento.Rows[0][0].ToString();
+            textBoxDescripción.Text = elemento.Rows[0][1].ToString();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxDescripción_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxNombre_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

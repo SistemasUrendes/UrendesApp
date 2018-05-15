@@ -36,10 +36,11 @@
             this.treeViewElementos = new System.Windows.Forms.TreeView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.añadirElementoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buttonEnviar = new System.Windows.Forms.Button();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addElementoPrintoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buttonBorrar = new System.Windows.Forms.Button();
+            this.ToolStripMenuItemBorrar = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemEditar = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelServicio = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
@@ -87,9 +88,11 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.añadirElementoToolStripMenuItem});
+            this.toolStripMenuItemEditar,
+            this.añadirElementoToolStripMenuItem,
+            this.ToolStripMenuItemBorrar});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(163, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(163, 70);
             // 
             // añadirElementoToolStripMenuItem
             // 
@@ -97,17 +100,6 @@
             this.añadirElementoToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.añadirElementoToolStripMenuItem.Text = "Añadir Elemento";
             this.añadirElementoToolStripMenuItem.Click += new System.EventHandler(this.añadirElementoToolStripMenuItem_Click);
-            // 
-            // buttonEnviar
-            // 
-            this.buttonEnviar.Location = new System.Drawing.Point(196, 12);
-            this.buttonEnviar.Name = "buttonEnviar";
-            this.buttonEnviar.Size = new System.Drawing.Size(75, 23);
-            this.buttonEnviar.TabIndex = 21;
-            this.buttonEnviar.Text = "Enviar";
-            this.buttonEnviar.UseVisualStyleBackColor = true;
-            this.buttonEnviar.Visible = false;
-            this.buttonEnviar.Click += new System.EventHandler(this.buttonEnviar_Click);
             // 
             // contextMenuStrip2
             // 
@@ -123,24 +115,35 @@
             this.addElementoPrintoolStripMenuItem.Text = "Añadir Elemento";
             this.addElementoPrintoolStripMenuItem.Click += new System.EventHandler(this.addElementoPrintoolStripMenuItem_Click);
             // 
-            // buttonBorrar
+            // ToolStripMenuItemBorrar
             // 
-            this.buttonBorrar.Location = new System.Drawing.Point(431, 12);
-            this.buttonBorrar.Name = "buttonBorrar";
-            this.buttonBorrar.Size = new System.Drawing.Size(75, 23);
-            this.buttonBorrar.TabIndex = 22;
-            this.buttonBorrar.Text = "Borrar";
-            this.buttonBorrar.UseVisualStyleBackColor = true;
-            this.buttonBorrar.Visible = false;
-            this.buttonBorrar.Click += new System.EventHandler(this.buttonBorrar_Click);
+            this.ToolStripMenuItemBorrar.Name = "ToolStripMenuItemBorrar";
+            this.ToolStripMenuItemBorrar.Size = new System.Drawing.Size(162, 22);
+            this.ToolStripMenuItemBorrar.Text = "Borrar";
+            this.ToolStripMenuItemBorrar.Click += new System.EventHandler(this.ToolStripMenuItemBorrar_Click);
+            // 
+            // toolStripMenuItemEditar
+            // 
+            this.toolStripMenuItemEditar.Name = "toolStripMenuItemEditar";
+            this.toolStripMenuItemEditar.Size = new System.Drawing.Size(162, 22);
+            this.toolStripMenuItemEditar.Text = "Editar";
+            this.toolStripMenuItemEditar.Click += new System.EventHandler(this.toolStripMenuItemEditar_Click);
+            // 
+            // labelServicio
+            // 
+            this.labelServicio.AutoSize = true;
+            this.labelServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelServicio.Location = new System.Drawing.Point(204, 17);
+            this.labelServicio.Name = "labelServicio";
+            this.labelServicio.Size = new System.Drawing.Size(0, 17);
+            this.labelServicio.TabIndex = 23;
             // 
             // FormElementos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(520, 518);
-            this.Controls.Add(this.buttonBorrar);
-            this.Controls.Add(this.buttonEnviar);
+            this.Controls.Add(this.labelServicio);
             this.Controls.Add(this.labelRuta);
             this.Controls.Add(this.buttonInicio);
             this.Controls.Add(this.buttonAtras);
@@ -165,9 +168,10 @@
         private System.Windows.Forms.TreeView treeViewElementos;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem añadirElementoToolStripMenuItem;
-        private System.Windows.Forms.Button buttonEnviar;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem addElementoPrintoolStripMenuItem;
-        private System.Windows.Forms.Button buttonBorrar;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemEditar;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemBorrar;
+        private System.Windows.Forms.Label labelServicio;
     }
 }
