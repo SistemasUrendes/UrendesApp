@@ -27,7 +27,7 @@
     <UpdateUrl>\\Urenux\app\App\</UpdateUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>30</ApplicationRevision>
+    <ApplicationRevision>31</ApplicationRevision>
     <ApplicationVersion>1.3.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -126,11 +126,25 @@
     <Compile Include="Presentacion\ComunidadesForms\Impuestos\FormImpuestos.Designer.cs">
       <DependentUpon>FormImpuestos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\Tareas\FormAreasBloque.cs">
+    <Compile Include="Presentacion\ComunidadesForms\Impuestos\Informes\DataSetImpuestos.cs">
+      <DependentUpon>DataSetImpuestos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\Impuestos\Informes\DataSetImpuestos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetImpuestos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\Impuestos\Informes\FormVerInforme.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion\Tareas\FormAreasBloque.Designer.cs">
-      <DependentUpon>FormAreasBloque.cs</DependentUpon>
+    <Compile Include="Presentacion\ComunidadesForms\Impuestos\Informes\FormVerInforme.Designer.cs">
+      <DependentUpon>FormVerInforme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\FormAnticiposProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\FormAnticiposProveedores.Designer.cs">
+      <DependentUpon>FormAnticiposProveedores.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Tareas\FormDuplicarTarea.cs">
       <SubType>Form</SubType>
@@ -1197,18 +1211,6 @@
     <Compile Include="Presentacion\Tareas\FormGestionesPrincipal.Designer.cs">
       <DependentUpon>FormGestionesPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\Tareas\FormInsertarArea.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\Tareas\FormInsertarArea.Designer.cs">
-      <DependentUpon>FormInsertarArea.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\Tareas\FormInsertarBloque.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\Tareas\FormInsertarBloque.Designer.cs">
-      <DependentUpon>FormInsertarBloque.cs</DependentUpon>
-    </Compile>
     <Compile Include="Presentacion\Tareas\FormInsertarContacto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1250,12 +1252,6 @@
     </Compile>
     <Compile Include="Presentacion\Tareas\FormReferenciaComunidad.Designer.cs">
       <DependentUpon>FormReferenciaComunidad.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\Tareas\FormSeleccionarBloque.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\Tareas\FormSeleccionarBloque.Designer.cs">
-      <DependentUpon>FormSeleccionarBloque.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Tareas\FormServiciosConfiguracion.cs">
       <SubType>Form</SubType>
@@ -1452,6 +1448,10 @@
     <EmbeddedResource Include="Presentacion\ComunidadesForms\Impuestos\FormImpuestos.resx">
       <DependentUpon>FormImpuestos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\Impuestos\Informes\FormVerInforme.resx">
+      <DependentUpon>FormVerInforme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\Impuestos\Informes\ReportImpuestos.rdlc" />
     <EmbeddedResource Include="Presentacion\ComunidadesForms\Informes\InformeDeudasComunero\FormInformeDeudasComunero.resx">
       <DependentUpon>FormInformeDeudasComunero.cs</DependentUpon>
     </EmbeddedResource>
@@ -1489,6 +1489,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormLiqCerrarOp.resx">
       <DependentUpon>FormLiqCerrarOp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ProveedoresForms\FormAnticiposProveedores.resx">
+      <DependentUpon>FormAnticiposProveedores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\ProveedoresForms\FormAnyadirProveedor.resx">
       <DependentUpon>FormAnyadirProveedor.cs</DependentUpon>
@@ -1781,9 +1784,6 @@
     <EmbeddedResource Include="Presentacion\PlanContableForms\FormPlanContableAlta.resx">
       <DependentUpon>FormPlanContableAlta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\Tareas\FormAreasBloque.resx">
-      <DependentUpon>FormAreasBloque.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormCorreoGrupo.resx">
       <DependentUpon>FormCorreoGrupo.cs</DependentUpon>
     </EmbeddedResource>
@@ -1792,12 +1792,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormGestionesPrincipal.resx">
       <DependentUpon>FormGestionesPrincipal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\Tareas\FormInsertarArea.resx">
-      <DependentUpon>FormInsertarArea.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\Tareas\FormInsertarBloque.resx">
-      <DependentUpon>FormInsertarBloque.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormInsertarContacto.resx">
       <DependentUpon>FormInsertarContacto.cs</DependentUpon>
@@ -1819,9 +1813,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormReferenciaComunidad.resx">
       <DependentUpon>FormReferenciaComunidad.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\Tareas\FormSeleccionarBloque.resx">
-      <DependentUpon>FormSeleccionarBloque.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormServiciosConfiguracion.resx">
       <DependentUpon>FormServiciosConfiguracion.cs</DependentUpon>
@@ -1940,6 +1931,17 @@
     </None>
     <None Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetTotalesFondos.xss">
       <DependentUpon>DataSetTotalesFondos.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\Impuestos\Informes\DataSetImpuestos.xsc">
+      <DependentUpon>DataSetImpuestos.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\Impuestos\Informes\DataSetImpuestos.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetImpuestos.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\Impuestos\Informes\DataSetImpuestos.xss">
+      <DependentUpon>DataSetImpuestos.xsd</DependentUpon>
     </None>
     <None Include="Presentacion\ComunidadesForms\Informes\InformeDeudasComunero\DataSetDeudasComunero.xsc">
       <DependentUpon>DataSetDeudasComunero.xsd</DependentUpon>

@@ -108,10 +108,13 @@
             // 
             this.comboBox_informes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_informes.FormattingEnabled = true;
+            this.comboBox_informes.Items.AddRange(new object[] {
+            "Por Entidades"});
             this.comboBox_informes.Location = new System.Drawing.Point(1002, 13);
             this.comboBox_informes.Name = "comboBox_informes";
             this.comboBox_informes.Size = new System.Drawing.Size(121, 21);
             this.comboBox_informes.TabIndex = 3;
+            this.comboBox_informes.SelectionChangeCommitted += new System.EventHandler(this.comboBox_informes_SelectionChangeCommitted);
             // 
             // label2
             // 

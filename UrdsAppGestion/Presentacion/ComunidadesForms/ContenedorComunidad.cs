@@ -530,5 +530,23 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                 System.Diagnostics.Process.Start(@Ruta);
             }
         }
+
+        private void anticiposToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name.Contains(nombre_comunidad + " Anticipos Proveedores ")).SingleOrDefault<Form>();
+            if (existe != null)
+            {
+                existe.WindowState = FormWindowState.Maximized;
+                existe.BringToFront();
+            }
+            else
+            {
+                ProveedoresForms.FormAnticiposProveedores newMDIChild = new ProveedoresForms.FormAnticiposProveedores(id_comunidad.ToString());
+                newMDIChild.MdiParent = this;
+                newMDIChild.WindowState = FormWindowState.Maximized;
+                newMDIChild.Show();
+            }
+
+        }
     }
 }

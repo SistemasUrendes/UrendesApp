@@ -39,7 +39,6 @@ namespace UrdsAppGestión.Presentacion
             }
             else
             {
-                //MessageBox.Show(text);
                 dataGridView_tareas.Rows[1].Cells[2].Value = text + "%";
             }
         }
@@ -195,7 +194,7 @@ namespace UrdsAppGestión.Presentacion
         }
         private void EnviarCorreo(String destinatario, String Asunto, String Cuerpo, List<String> adjuntos,String from)
         {
-            //destinatario = "sistemas@urendes.com";
+            //destinatario = "alex.cremeria@gmail.com";
 
             //Sustituir \n por <br>
             Cuerpo = Cuerpo.Replace("\n", "<br>");
@@ -226,11 +225,11 @@ namespace UrdsAppGestión.Presentacion
             smtp.Credentials = new NetworkCredential("admin@envios.urendes.com", "#.Urds16");
 
             /*SmtpClient smtp = new SmtpClient();
-            smtp.Host = "urendes.com";
+            smtp.Host = "mail.urendes.com";
             smtp.Port = 26;
-            smtp.EnableSsl = true;
+            smtp.EnableSsl = false;
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("no-replay@envios.urendes.com", "TwTtdo3T[Sw&");*/
+            smtp.Credentials = new NetworkCredential("sistemas@urendes.com", "#.Urds16");*/
 
             /*SmtpClient smtp = new SmtpClient();
             smtp.Host = "cp5023.webempresa.eu";
