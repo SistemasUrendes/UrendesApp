@@ -32,7 +32,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String sqlInsert = "INSERT INTO exp_catElemento (Nombre,Descripcion) VALUES ('" + nombre + "','" + descripcion + "')";
             Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
             MessageBox.Show("Area insertada correctamente");
-            form.cargarAreas();
+            form.cargarCategorias();
             this.Close();
         }
     }

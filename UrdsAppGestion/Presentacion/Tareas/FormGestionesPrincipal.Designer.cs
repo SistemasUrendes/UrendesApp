@@ -421,7 +421,6 @@
             this.buttonBloque.TabIndex = 84;
             this.buttonBloque.Text = "Bloque";
             this.buttonBloque.UseVisualStyleBackColor = true;
-            this.buttonBloque.Click += new System.EventHandler(this.buttonBloque_Click);
             // 
             // label8
             // 

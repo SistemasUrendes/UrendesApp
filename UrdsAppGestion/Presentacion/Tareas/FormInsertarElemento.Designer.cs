@@ -45,7 +45,6 @@
             this.labelPrevio.Name = "labelPrevio";
             this.labelPrevio.Size = new System.Drawing.Size(0, 13);
             this.labelPrevio.TabIndex = 15;
-            this.labelPrevio.Click += new System.EventHandler(this.labelPrevio_Click);
             // 
             // buttonCancelar
             // 
@@ -75,7 +74,6 @@
             this.label2.Size = new System.Drawing.Size(66, 13);
             this.label2.TabIndex = 12;
             this.label2.Text = "Descripción:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -85,7 +83,6 @@
             this.label1.Size = new System.Drawing.Size(50, 13);
             this.label1.TabIndex = 11;
             this.label1.Text = "Nombre: ";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // textBoxDescripción
             // 
@@ -93,7 +90,6 @@
             this.textBoxDescripción.Name = "textBoxDescripción";
             this.textBoxDescripción.Size = new System.Drawing.Size(181, 20);
             this.textBoxDescripción.TabIndex = 10;
-            this.textBoxDescripción.TextChanged += new System.EventHandler(this.textBoxDescripción_TextChanged);
             // 
             // textBoxNombre
             // 
@@ -101,7 +97,6 @@
             this.textBoxNombre.Name = "textBoxNombre";
             this.textBoxNombre.Size = new System.Drawing.Size(181, 20);
             this.textBoxNombre.TabIndex = 9;
-            this.textBoxNombre.TextChanged += new System.EventHandler(this.textBoxNombre_TextChanged);
             // 
             // FormInsertarElemento
             // 
@@ -118,7 +113,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormInsertarElemento";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormInsertarElemento";
+            this.Text = "Ver Elemento";
             this.Load += new System.EventHandler(this.FormInsertarElemento_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

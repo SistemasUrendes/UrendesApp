@@ -425,10 +425,10 @@
     <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\ReglasPago\FormReglasPago.Designer.cs">
       <DependentUpon>FormReglasPago.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\ComunidadesForms\ElementosForms\FormElementos.cs">
+    <Compile Include="Presentacion\Tareas\FormElementos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion\ComunidadesForms\ElementosForms\FormElementos.Designer.cs">
+    <Compile Include="Presentacion\Tareas\FormElementos.Designer.cs">
       <DependentUpon>FormElementos.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormEntradasFondos.cs">
@@ -1427,7 +1427,7 @@
     <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\ReglasPago\FormReglasPago.resx">
       <DependentUpon>FormReglasPago.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\ComunidadesForms\ElementosForms\FormElementos.resx">
+    <EmbeddedResource Include="Presentacion\Tareas\FormElementos.resx">
       <DependentUpon>FormElementos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\FormEntradasFondos.resx">

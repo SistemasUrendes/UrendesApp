@@ -119,7 +119,7 @@
             this.groupBox1.Size = new System.Drawing.Size(328, 428);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Categorías";
+            this.groupBox1.Text = "Servicios";
             // 
             // textBoxAreas
             // 
@@ -154,12 +154,13 @@
             this.dataGridViewAreas.ShowEditingIcon = false;
             this.dataGridViewAreas.Size = new System.Drawing.Size(293, 350);
             this.dataGridViewAreas.TabIndex = 0;
+            this.dataGridViewAreas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAreas_CellDoubleClick);
             // 
             // FormServiciosConfiguracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(701, 476);
+            this.ClientSize = new System.Drawing.Size(1057, 476);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);

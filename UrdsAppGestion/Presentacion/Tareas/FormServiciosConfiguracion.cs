@@ -25,7 +25,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void FormServiciosConfiguracion_Load(object sender, EventArgs e)
         {
             rellenarComboBox();
-            cargarAreas();
+            cargarCategorias();
         }
 
         private void rellenarComboBox()
@@ -128,7 +128,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             nueva.Show();
         }
 
-        public void cargarAreas()
+        public void cargarCategorias()
         {
             String sqlSelect = "SELECT IdCatElemento,Nombre, Descripcion FROM exp_catElemento";
             tablaAreas = Persistencia.SentenciasSQL.select(sqlSelect);
@@ -149,6 +149,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String filtro = "Descripcion like '%" + textBoxAreas.Text.ToString() + "%'";
             busqueda.DefaultView.RowFilter = filtro;
             dataGridViewAreas.DataSource = busqueda;
+        }
+
+        private void dataGridViewAreas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ComunidadesForms.Elementos.FormElementos nueva = new ComunidadesForms.Elementos.FormElementos(this,dataGridViewAreas.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewAreas.SelectedRows[0].Cells[1].Value.ToString());
+            nueva.Show();
         }
     }
 }
