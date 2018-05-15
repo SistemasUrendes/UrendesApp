@@ -13,14 +13,19 @@ namespace UrdsAppGestión.Presentacion.Tareas
     public partial class FormServiciosConfiguracion : Form
     {
         String idComunidad;
+        DataTable tablaBloques;
+        DataTable tablaAreas;
+
         public FormServiciosConfiguracion()
         {
             InitializeComponent();
+            
         }
 
         private void FormServiciosConfiguracion_Load(object sender, EventArgs e)
         {
             rellenarComboBox();
+            cargarAreas();
         }
 
         private void rellenarComboBox()
@@ -48,31 +53,29 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         public void cargarBloques(String idComunidad)
         {
-            DataTable bloques;
-            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.Nombre, exp_elementos.Descripcion FROM exp_elementos WHERE(((exp_elementos.IdComunidad) = " + idComunidad + "))";
-            bloques = Persistencia.SentenciasSQL.select(sqlSelect);
-            dataGridViewBloque.DataSource = bloques;
+           
+            String sqlSelect = "SELECT com_bloques.IdBloque,com_bloques.Descripcion FROM com_bloques WHERE(((com_bloques.IdTipoBloque) = 1) AND((com_bloques.IdComunidad) = " + idComunidad + "))";
+            tablaBloques = Persistencia.SentenciasSQL.select(sqlSelect);
+            dataGridViewBloque.DataSource = tablaBloques;
 
             if (dataGridViewBloque.Rows.Count > 0)
             {
-                dataGridViewBloque.Columns["IdElemento"].Visible = false;
-                dataGridViewBloque.Columns["Nombre"].Width = 100;
-                dataGridViewBloque.Columns["Descripcion"].Width = 250;
+                dataGridViewBloque.Columns["IdBloque"].Visible = false;
+                dataGridViewBloque.Columns["Descripcion"].Width = 350;
             }
         }
 
         public void cargarBloques()
         {
-            DataTable bloques;
-            String sqlSelect = "SELECT exp_elementos.IdElemento, exp_elementos.Nombre, exp_elementos.Descripcion FROM exp_elementos WHERE(((exp_elementos.IdComunidad) = " + this.idComunidad + "))";
-            bloques = Persistencia.SentenciasSQL.select(sqlSelect);
-            dataGridViewBloque.DataSource = bloques;
+            
+            String sqlSelect = "SELECT com_bloques.IdBloque,com_bloques.Descripcion FROM com_bloques WHERE(((com_bloques.IdTipoBloque) = 1) AND((com_bloques.IdComunidad) = " + this.idComunidad + "))";
+            tablaBloques = Persistencia.SentenciasSQL.select(sqlSelect);
+            dataGridViewBloque.DataSource = tablaBloques;
 
             if (dataGridViewBloque.Rows.Count > 0)
             {
-                dataGridViewBloque.Columns["IdElemento"].Visible = false;
-                dataGridViewBloque.Columns["Nombre"].Width = 100;
-                dataGridViewBloque.Columns["Descripcion"].Width = 250;
+                dataGridViewBloque.Columns["IdBloque"].Visible = false;
+                dataGridViewBloque.Columns["Descripcion"].Width = 350;
             }
         }
 
@@ -105,7 +108,47 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonAddArea_Click(object sender, EventArgs e)
         {
+            FormInsertarArea nueva = new FormInsertarArea(this);
+            nueva.Show();
+        }
 
+        private void textBoxFiltroBloque_TextChanged(object sender, EventArgs e)
+        {
+            DataTable busqueda = tablaBloques;
+            busqueda.DefaultView.RowFilter = string.Empty;
+
+            String filtro = "Descripcion like '%" + textBoxFiltroBloque.Text.ToString() + "%'";
+            busqueda.DefaultView.RowFilter = filtro;
+            dataGridViewBloque.DataSource = busqueda;
+        }
+
+        private void dataGridViewBloque_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            FormAreasBloque nueva = new FormAreasBloque(this, dataGridViewBloque.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewBloque.SelectedRows[0].Cells[1].Value.ToString());
+            nueva.Show();
+        }
+
+        public void cargarAreas()
+        {
+            String sqlSelect = "SELECT IdCatElemento,Nombre, Descripcion FROM exp_catElemento";
+            tablaAreas = Persistencia.SentenciasSQL.select(sqlSelect);
+            dataGridViewAreas.DataSource = tablaAreas;
+            if (dataGridViewAreas.Rows.Count > 0)
+            {
+                dataGridViewAreas.Columns["IdCatElemento"].Visible = false;
+                dataGridViewAreas.Columns["Nombre"].Width = 100;
+                dataGridViewAreas.Columns["Descripcion"].Width = 190;
+            }
+        }
+
+        private void textBoxAreas_TextChanged(object sender, EventArgs e)
+        {
+            DataTable busqueda = tablaAreas;
+            busqueda.DefaultView.RowFilter = string.Empty;
+
+            String filtro = "Descripcion like '%" + textBoxAreas.Text.ToString() + "%'";
+            busqueda.DefaultView.RowFilter = filtro;
+            dataGridViewAreas.DataSource = busqueda;
         }
     }
 }

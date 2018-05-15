@@ -89,6 +89,7 @@
             this.dataGridView_tareas.TabIndex = 0;
             this.dataGridView_tareas.TabStop = false;
             this.dataGridView_tareas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_tareas_CellDoubleClick);
+            this.dataGridView_tareas.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_tareas_CellFormatting);
             this.dataGridView_tareas.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView_tareas_MouseClick);
             // 
             // comboBox_Tipo
@@ -392,6 +393,7 @@
             // 
             // textBoxBloque
             // 
+            this.textBoxBloque.Enabled = false;
             this.textBoxBloque.Location = new System.Drawing.Point(500, 35);
             this.textBoxBloque.Name = "textBoxBloque";
             this.textBoxBloque.ReadOnly = true;
@@ -401,6 +403,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Enabled = false;
             this.label4.Location = new System.Drawing.Point(451, 38);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(43, 13);
@@ -409,6 +412,7 @@
             // 
             // buttonBloque
             // 
+            this.buttonBloque.Enabled = false;
             this.buttonBloque.Location = new System.Drawing.Point(773, 33);
             this.buttonBloque.Name = "buttonBloque";
             this.buttonBloque.Size = new System.Drawing.Size(63, 23);
