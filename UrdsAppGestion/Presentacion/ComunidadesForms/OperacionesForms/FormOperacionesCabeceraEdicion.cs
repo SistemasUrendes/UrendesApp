@@ -296,5 +296,26 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
         {
             this.Close();
         }
+        private void tieneRetencion() {
+            String sqlFechas = "SELECT com_ivaImpuestos.FIni, com_ivaImpuestos.FFin, com_ivaImpuestos.IdIvaImpuestos FROM com_ivaImpuestos;";
+            
+            String fecha;
+            DataTable periodos = Persistencia.SentenciasSQL.select(sqlFechas);
+            for (int i=0;i<periodos.Rows.Count; i++) {
+                fecha = maskedTextBox_fecha.Text;
+
+                String fechaInicio = (Convert.ToDateTime(periodos.Rows[i][0] + "-" + DateTime.Now.Year.ToString())).ToString("yyyy-MM-dd");
+                String fechaFin = periodos.Rows[i][1] + "-" + DateTime.Now.Year.ToString();
+                fechaFin = (Convert.ToDateTime(periodos.Rows[i][1] + "-" + DateTime.Now.Year.ToString())).ToString("yyyy-MM-dd");
+
+                MessageBox.Show(fecha + " | " + fechaInicio + " | " + fechaFin);
+            }
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            tieneRetencion();
+        }
     }
 }

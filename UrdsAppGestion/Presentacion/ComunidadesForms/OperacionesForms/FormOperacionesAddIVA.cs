@@ -107,13 +107,16 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             if (comprobarImporte())  {
                 for (int a = 0; a < dataGridView_add_iva.Rows.Count; a++)
                 {
-                    if (dataGridView_add_iva.Rows[a].Cells[3].Value != null && dataGridView_add_iva.Rows[a].Cells[0].Value != null)
+                    if (dataGridView_add_iva.Rows[a].Cells[3].Value != null && dataGridView_add_iva.Rows[a].Cells[0].Value != null && dataGridView_add_iva.Rows[a].Cells[0].Value.ToString() != "0")
                     {
                         actualizar_filasIVA(dataGridView_add_iva.Rows[a].Cells[3].Value.ToString(), dataGridView_add_iva.Rows[a].Cells[0].Value.ToString(), dataGridView_add_iva.Rows[a].Cells[1].Value.ToString(), dataGridView_add_iva.Rows[a].Cells[2].Value.ToString());
                     }
-                    else if (dataGridView_add_iva.Rows[a].Cells[0].Value != null)
+                    else if (dataGridView_add_iva.Rows[a].Cells[0].Value != null && dataGridView_add_iva.Rows[a].Cells[0].Value.ToString() != "0")
                     {
                         insertar_filasIVA(dataGridView_add_iva.Rows[a].Cells[0].Value.ToString(), dataGridView_add_iva.Rows[a].Cells[1].Value.ToString(), dataGridView_add_iva.Rows[a].Cells[2].Value.ToString());
+                    }else if (dataGridView_add_iva.Rows[a].Cells[3].Value != null && dataGridView_add_iva.Rows[a].Cells[0].Value.ToString() == "0") {
+                        String sqlDelete = "DELETE FROM com_opdetiva WHERE IdDetOpIVA = " + dataGridView_add_iva.Rows[a].Cells[3].Value;
+                        Persistencia.SentenciasSQL.InsertarGenerico(sqlDelete);
                     }
                 }
                 if (vengoDePantallaVer)

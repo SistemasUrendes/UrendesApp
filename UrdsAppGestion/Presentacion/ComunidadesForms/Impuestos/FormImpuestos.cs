@@ -29,7 +29,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Impuestos
             String fechaInicio = (Convert.ToDateTime("01/01/" + DateTime.Now.Year)).ToString("yyyy-MM-dd");
             String fechaFin = (Convert.ToDateTime("30/03/" + DateTime.Now.Year)).ToString("yyyy-MM-dd");
 
-            String sqlSelect = "SELECT com_operaciones.IdOp, com_operaciones.Documento, ctos_entidades.Entidad, ctos_entidades.CIF, com_operaciones.Descripcion, com_opdetalles.Fecha, com_operaciones.Retencion, com_operaciones.BaseRet, aux_retencion.`%Retencion` AS Retención, com_operaciones.ImpuestoLiquidado AS Informado FROM aux_retencion INNER JOIN (ctos_entidades INNER JOIN(com_opdetalles INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp) ON ctos_entidades.IDEntidad = com_operaciones.IdEntidad) ON aux_retencion.IdRetencion = com_operaciones.IdRetencion GROUP BY com_operaciones.IdOp, com_operaciones.Documento, ctos_entidades.Entidad, ctos_entidades.CIF, com_operaciones.Descripcion, com_opdetalles.Fecha, com_operaciones.Retencion, com_operaciones.BaseRet, aux_retencion.`%Retencion`, com_operaciones.ImpuestoLiquidado, com_operaciones.IdComunidad HAVING(((com_opdetalles.Fecha) >'" + fechaInicio + "' AND (com_opdetalles.Fecha) < '" + fechaFin + "') AND ((com_operaciones.Retencion)>0) AND ((com_operaciones.IdComunidad)=" + idComunidad + "));";
+            String sqlSelect = "SELECT com_operaciones.IdOp, com_operaciones.Documento, ctos_entidades.Entidad, ctos_entidades.CIF, com_operaciones.Descripcion, DATE_FORMAT(Coalesce(com_opdetalles.Fecha,'ok'),'%d/%m/%Y') AS Fecha, com_operaciones.Retencion, com_operaciones.BaseRet, aux_retencion.`%Retencion` AS Retención, com_operaciones.ImpuestoLiquidado AS Informado FROM aux_retencion INNER JOIN (ctos_entidades INNER JOIN(com_opdetalles INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp) ON ctos_entidades.IDEntidad = com_operaciones.IdEntidad) ON aux_retencion.IdRetencion = com_operaciones.IdRetencion GROUP BY com_operaciones.IdOp, com_operaciones.Documento, ctos_entidades.Entidad, ctos_entidades.CIF, com_operaciones.Descripcion, com_opdetalles.Fecha, com_operaciones.Retencion, com_operaciones.BaseRet, aux_retencion.`%Retencion`, com_operaciones.ImpuestoLiquidado, com_operaciones.IdComunidad HAVING(((com_opdetalles.Fecha) >'" + fechaInicio + "' AND (com_opdetalles.Fecha) < '" + fechaFin + "') AND ((com_operaciones.Retencion)>0) AND ((com_operaciones.IdComunidad)=" + idComunidad + "));";
 
             DataTable impuestos = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridView_impuestos.DataSource = impuestos;
@@ -68,7 +68,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Impuestos
             }
 
 
-            String sqlSelect = "SELECT com_operaciones.IdOp, com_operaciones.Documento, ctos_entidades.Entidad, ctos_entidades.CIF, com_operaciones.Descripcion, com_opdetalles.Fecha, com_operaciones.Retencion, com_operaciones.BaseRet, aux_retencion.`%Retencion` AS Retención, com_operaciones.ImpuestoLiquidado AS Informado FROM aux_retencion INNER JOIN (ctos_entidades INNER JOIN(com_opdetalles INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp) ON ctos_entidades.IDEntidad = com_operaciones.IdEntidad) ON aux_retencion.IdRetencion = com_operaciones.IdRetencion GROUP BY com_operaciones.IdOp, com_operaciones.Documento, ctos_entidades.Entidad, ctos_entidades.CIF, com_operaciones.Descripcion, com_opdetalles.Fecha, com_operaciones.Retencion, com_operaciones.BaseRet, aux_retencion.`%Retencion`, com_operaciones.ImpuestoLiquidado, com_operaciones.IdComunidad HAVING(((com_opdetalles.Fecha) >'" + fechaInicio + "' AND (com_opdetalles.Fecha) < '" + fechaFin + "') AND ((com_operaciones.Retencion)>0) AND ((com_operaciones.IdComunidad)=" + idComunidad + "));";
+            String sqlSelect = "SELECT com_operaciones.IdOp, com_operaciones.Documento, ctos_entidades.Entidad, ctos_entidades.CIF, com_operaciones.Descripcion,  DATE_FORMAT(Coalesce(com_opdetalles.Fecha,'ok'),'%d/%m/%Y') AS Fecha, com_operaciones.Retencion, com_operaciones.BaseRet, aux_retencion.`%Retencion` AS Retención, com_operaciones.ImpuestoLiquidado AS Informado FROM aux_retencion INNER JOIN (ctos_entidades INNER JOIN(com_opdetalles INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp) ON ctos_entidades.IDEntidad = com_operaciones.IdEntidad) ON aux_retencion.IdRetencion = com_operaciones.IdRetencion GROUP BY com_operaciones.IdOp, com_operaciones.Documento, ctos_entidades.Entidad, ctos_entidades.CIF, com_operaciones.Descripcion, com_opdetalles.Fecha, com_operaciones.Retencion, com_operaciones.BaseRet, aux_retencion.`%Retencion`, com_operaciones.ImpuestoLiquidado, com_operaciones.IdComunidad HAVING(((com_opdetalles.Fecha) >'" + fechaInicio + "' AND (com_opdetalles.Fecha) < '" + fechaFin + "') AND ((com_operaciones.Retencion)>0) AND ((com_operaciones.IdComunidad)=" + idComunidad + "));";
 
             DataTable impuestos = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridView_impuestos.DataSource = impuestos;
@@ -120,7 +120,16 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Impuestos
 
         private void verTodasDeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                
+            Impuestos.FormImpuestoDetalle nueva = new FormImpuestoDetalle(dataGridView_impuestos.SelectedRows[0].Cells[0].Value.ToString(),(DataTable)dataGridView_impuestos.DataSource);
+            nueva.Show();
+        }
+
+        private void comboBox_informes_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (comboBox_informes.SelectedIndex == 0) {
+                Informes.FormVerInforme nueva = new Informes.FormVerInforme((DataTable)dataGridView_impuestos.DataSource);
+                nueva.Show();
+            }
         }
     }
 }

@@ -19,6 +19,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
         List<String> sin_represe = new List<String>();
         String donde = "";
         Form form_anterior;
+        Boolean cargado = false;
 
         public Divisiones(int id_comunidad)
         {
@@ -48,6 +49,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                 MessageBox.Show("No hay divisiones");
         }
         public void cargarDivisiones () {
+            cargado = false;
             String sql = "SELECT com_divisiones.IdDivision, com_divisiones.IdComunidad, com_divisiones.Division, com_divisiones.Finca, com_divisiones.Orden, com_divisiones.IdTipoDiv, com_tipodivs.TipoDivision, com_divisiones.Cuota, com_divisiones.Excluido, com_divisiones.Notas FROM com_divisiones INNER JOIN com_tipodivs ON com_divisiones.IdTipoDiv = com_tipodivs.IdTipoDiv GROUP BY com_divisiones.IdDivision, com_divisiones.IdComunidad, com_divisiones.Division, com_divisiones.Finca, com_divisiones.Orden, com_divisiones.IdTipoDiv, com_tipodivs.TipoDivision, com_divisiones.Cuota, com_divisiones.Excluido, com_divisiones.Notas, com_divisiones.Division, com_divisiones.IdComunidad HAVING(((com_divisiones.IdComunidad) = " + id_comunidad + ")) ORDER BY com_divisiones.Orden, com_divisiones.Division;";
 
 
@@ -57,6 +59,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                 dataGridView_divisiones.DataSource = divisiones;
                 label4.Text = "Total: " + divisiones.Rows.Count;
                 ajustarDatagrid();
+                cargado = true;
                 //comprobarRepresentante();
 
             }
@@ -67,7 +70,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
         public void cargarDetallesDivisiones() {
             if (divisiones.Rows.Count > 0)
             {
-                String sql = "SELECT com_asociacion.IdDivision, com_asociacion.IdAsociacion, ctos_entidades.Entidad, com_tipoasociacion.TipoAsociación, com_asociacion.Participacion, com_asociacion.FechaAlta, com_asociacion.FechaBaja, com_asociacion.Ppal, ctos_entidades.IDEntidad FROM((com_asociacion INNER JOIN com_comuneros ON com_asociacion.IdComunero = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN com_tipoasociacion ON com_asociacion.IdTipoAsoc = com_tipoasociacion.IdTipoAsoc WHERE(((com_asociacion.IdDivision)= " + dataGridView_divisiones.SelectedCells[0].Value + "));";
+                String sql = "SELECT com_asociacion.IdDivision, com_asociacion.IdAsociacion, ctos_entidades.Entidad, com_tipoasociacion.TipoAsociación, com_asociacion.Participacion, com_asociacion.FechaAlta, com_asociacion.FechaBaja, com_asociacion.Ppal, ctos_entidades.IDEntidad FROM((com_asociacion INNER JOIN com_comuneros ON com_asociacion.IdComunero = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN com_tipoasociacion ON com_asociacion.IdTipoAsoc = com_tipoasociacion.IdTipoAsoc WHERE(((com_asociacion.IdDivision)= " + dataGridView_divisiones.Rows[0].Cells[0].Value + "));";
 
                 dataGridView_detalles_divisiones.DataSource = Persistencia.SentenciasSQL.select(sql);
                 dataGridView_detalles_divisiones.Columns[0].Visible = false;
@@ -365,7 +368,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
         private void dataGridView_divisiones_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (Char)Keys.Up || e.KeyChar == (Char)Keys.Down) {
-                cargardetalles();
+                //cargardetalles();
             }
         }
 
@@ -413,6 +416,17 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                 FormBloquesJunta nueva = new FormBloquesJunta(id_comunidad.ToString());
                 nueva.Show();
             }
+        }
+
+        private void dataGridView_divisiones_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (cargado && divisiones.Rows.Count > 0)
+                cargardetalles();
+        }
+
+        private void Divisiones_Shown(object sender, EventArgs e)
+        {
+            cargado = true;
         }
     }
 }

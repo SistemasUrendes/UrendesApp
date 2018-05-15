@@ -27,7 +27,7 @@
     <UpdateUrl>\\Urenux\app\App\</UpdateUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>30</ApplicationRevision>
+    <ApplicationRevision>31</ApplicationRevision>
     <ApplicationVersion>1.3.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -125,6 +125,26 @@
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\Impuestos\FormImpuestos.Designer.cs">
       <DependentUpon>FormImpuestos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\Impuestos\Informes\DataSetImpuestos.cs">
+      <DependentUpon>DataSetImpuestos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\Impuestos\Informes\DataSetImpuestos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetImpuestos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\Impuestos\Informes\FormVerInforme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\Impuestos\Informes\FormVerInforme.Designer.cs">
+      <DependentUpon>FormVerInforme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\FormAnticiposProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\FormAnticiposProveedores.Designer.cs">
+      <DependentUpon>FormAnticiposProveedores.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Tareas\FormDuplicarTarea.cs">
       <SubType>Form</SubType>
@@ -1428,6 +1448,10 @@
     <EmbeddedResource Include="Presentacion\ComunidadesForms\Impuestos\FormImpuestos.resx">
       <DependentUpon>FormImpuestos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\Impuestos\Informes\FormVerInforme.resx">
+      <DependentUpon>FormVerInforme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\Impuestos\Informes\ReportImpuestos.rdlc" />
     <EmbeddedResource Include="Presentacion\ComunidadesForms\Informes\InformeDeudasComunero\FormInformeDeudasComunero.resx">
       <DependentUpon>FormInformeDeudasComunero.cs</DependentUpon>
     </EmbeddedResource>
@@ -1465,6 +1489,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormLiqCerrarOp.resx">
       <DependentUpon>FormLiqCerrarOp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ProveedoresForms\FormAnticiposProveedores.resx">
+      <DependentUpon>FormAnticiposProveedores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\ProveedoresForms\FormAnyadirProveedor.resx">
       <DependentUpon>FormAnyadirProveedor.cs</DependentUpon>
@@ -1904,6 +1931,17 @@
     </None>
     <None Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetTotalesFondos.xss">
       <DependentUpon>DataSetTotalesFondos.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\Impuestos\Informes\DataSetImpuestos.xsc">
+      <DependentUpon>DataSetImpuestos.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\Impuestos\Informes\DataSetImpuestos.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetImpuestos.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\Impuestos\Informes\DataSetImpuestos.xss">
+      <DependentUpon>DataSetImpuestos.xsd</DependentUpon>
     </None>
     <None Include="Presentacion\ComunidadesForms\Informes\InformeDeudasComunero\DataSetDeudasComunero.xsc">
       <DependentUpon>DataSetDeudasComunero.xsd</DependentUpon>

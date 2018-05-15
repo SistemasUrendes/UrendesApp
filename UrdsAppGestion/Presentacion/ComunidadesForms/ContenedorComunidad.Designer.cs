@@ -62,13 +62,14 @@
             this.elementosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rutaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.ejerciciosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.liquidacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cuotasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.informesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.documentosYComunicacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ejerciciosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.anticiposToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,35 +128,35 @@
             // listadoToolStripMenuItem
             // 
             this.listadoToolStripMenuItem.Name = "listadoToolStripMenuItem";
-            this.listadoToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.listadoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.listadoToolStripMenuItem.Text = "Listado";
             this.listadoToolStripMenuItem.Click += new System.EventHandler(this.listadoToolStripMenuItem_Click);
             // 
             // recibosToolStripMenuItem1
             // 
             this.recibosToolStripMenuItem1.Name = "recibosToolStripMenuItem1";
-            this.recibosToolStripMenuItem1.Size = new System.Drawing.Size(145, 22);
+            this.recibosToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.recibosToolStripMenuItem1.Text = "Recibos";
             this.recibosToolStripMenuItem1.Click += new System.EventHandler(this.recibosToolStripMenuItem1_Click);
             // 
             // gestiónDeudasToolStripMenuItem
             // 
             this.gestiónDeudasToolStripMenuItem.Name = "gestiónDeudasToolStripMenuItem";
-            this.gestiónDeudasToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.gestiónDeudasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.gestiónDeudasToolStripMenuItem.Text = "Operaciones";
             this.gestiónDeudasToolStripMenuItem.Click += new System.EventHandler(this.gestiónDeudasToolStripMenuItem_Click);
             // 
             // vencimientosToolStripMenuItem
             // 
             this.vencimientosToolStripMenuItem.Name = "vencimientosToolStripMenuItem";
-            this.vencimientosToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.vencimientosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.vencimientosToolStripMenuItem.Text = "Vencimientos";
             this.vencimientosToolStripMenuItem.Click += new System.EventHandler(this.vencimientosToolStripMenuItem_Click);
             // 
             // anticiposToolStripMenuItem
             // 
             this.anticiposToolStripMenuItem.Name = "anticiposToolStripMenuItem";
-            this.anticiposToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.anticiposToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.anticiposToolStripMenuItem.Text = "Anticipos";
             this.anticiposToolStripMenuItem.Click += new System.EventHandler(this.anticiposToolStripMenuItem_Click);
             // 
@@ -164,6 +165,7 @@
             this.proveedoresToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.listadoToolStripMenuItem1,
             this.operacionesToolStripMenuItem1,
+            this.anticiposToolStripMenuItem1,
             this.emergenciasToolStripMenuItem});
             this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
             this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
@@ -172,14 +174,14 @@
             // listadoToolStripMenuItem1
             // 
             this.listadoToolStripMenuItem1.Name = "listadoToolStripMenuItem1";
-            this.listadoToolStripMenuItem1.Size = new System.Drawing.Size(141, 22);
+            this.listadoToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.listadoToolStripMenuItem1.Text = "Listado";
             this.listadoToolStripMenuItem1.Click += new System.EventHandler(this.listadoToolStripMenuItem1_Click);
             // 
             // operacionesToolStripMenuItem1
             // 
             this.operacionesToolStripMenuItem1.Name = "operacionesToolStripMenuItem1";
-            this.operacionesToolStripMenuItem1.Size = new System.Drawing.Size(141, 22);
+            this.operacionesToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.operacionesToolStripMenuItem1.Text = "Operaciones";
             this.operacionesToolStripMenuItem1.Click += new System.EventHandler(this.operacionesToolStripMenuItem1_Click);
             // 
@@ -187,8 +189,9 @@
             // 
             this.emergenciasToolStripMenuItem.Enabled = false;
             this.emergenciasToolStripMenuItem.Name = "emergenciasToolStripMenuItem";
-            this.emergenciasToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.emergenciasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.emergenciasToolStripMenuItem.Text = "Emergencias";
+            this.emergenciasToolStripMenuItem.Visible = false;
             // 
             // admnistraciónToolStripMenuItem
             // 
@@ -349,6 +352,13 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(225, 6);
             // 
+            // ejerciciosToolStripMenuItem1
+            // 
+            this.ejerciciosToolStripMenuItem1.Name = "ejerciciosToolStripMenuItem1";
+            this.ejerciciosToolStripMenuItem1.Size = new System.Drawing.Size(228, 22);
+            this.ejerciciosToolStripMenuItem1.Text = "Ejercicios";
+            this.ejerciciosToolStripMenuItem1.Click += new System.EventHandler(this.ejerciciosToolStripMenuItem1_Click);
+            // 
             // liquidacionesToolStripMenuItem
             // 
             this.liquidacionesToolStripMenuItem.Name = "liquidacionesToolStripMenuItem";
@@ -389,12 +399,12 @@
             this.tareasToolStripMenuItem.Text = "Tareas";
             this.tareasToolStripMenuItem.Click += new System.EventHandler(this.tareasToolStripMenuItem_Click);
             // 
-            // ejerciciosToolStripMenuItem1
+            // anticiposToolStripMenuItem1
             // 
-            this.ejerciciosToolStripMenuItem1.Name = "ejerciciosToolStripMenuItem1";
-            this.ejerciciosToolStripMenuItem1.Size = new System.Drawing.Size(228, 22);
-            this.ejerciciosToolStripMenuItem1.Text = "Ejercicios";
-            this.ejerciciosToolStripMenuItem1.Click += new System.EventHandler(this.ejerciciosToolStripMenuItem1_Click);
+            this.anticiposToolStripMenuItem1.Name = "anticiposToolStripMenuItem1";
+            this.anticiposToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.anticiposToolStripMenuItem1.Text = "Anticipos";
+            this.anticiposToolStripMenuItem1.Click += new System.EventHandler(this.anticiposToolStripMenuItem1_Click);
             // 
             // ContenedorComunidad
             // 
@@ -457,5 +467,6 @@
         private System.Windows.Forms.ToolStripMenuItem elementosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rutaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ejerciciosToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem anticiposToolStripMenuItem1;
     }
 }

@@ -79,6 +79,7 @@
             this.dataGridView_divisiones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_divisiones.Size = new System.Drawing.Size(755, 352);
             this.dataGridView_divisiones.TabIndex = 0;
+            this.dataGridView_divisiones.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_divisiones_RowEnter);
             this.dataGridView_divisiones.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView_divisiones_RowPostPaint);
             this.dataGridView_divisiones.Click += new System.EventHandler(this.dataGridView_divisiones_Click);
             this.dataGridView_divisiones.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView_divisiones_KeyPress);
@@ -364,6 +365,7 @@
             this.Name = "Divisiones";
             this.Text = "Divisiones";
             this.Load += new System.EventHandler(this.FormDivisiones_Load);
+            this.Shown += new System.EventHandler(this.Divisiones_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_divisiones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_detalles_divisiones)).EndInit();
             this.contextMenuStrip2.ResumeLayout(false);
