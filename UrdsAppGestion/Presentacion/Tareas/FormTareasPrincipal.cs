@@ -21,6 +21,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
         Form form_anterior;
         String form_ant;
         String idAreaBloque;
+        String ordFIni;
+        String ordFFin;
 
         public FormTareasPrincipal(String id_comunidad)
         {
@@ -116,8 +118,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 dataGridView_tareas.Columns["Estado"].Width = 120;
                 dataGridView_tareas.Columns["FIni"].Width = 90;
                 dataGridView_tareas.Columns["FIni"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                dataGridView_tareas.Columns["FIni"].SortMode = DataGridViewColumnSortMode.NotSortable;
                 dataGridView_tareas.Columns["FFin"].Width = 90;
                 dataGridView_tareas.Columns["FFin"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                dataGridView_tareas.Columns["FFin"].SortMode = DataGridViewColumnSortMode.NotSortable;
                 dataGridView_tareas.Columns["A"].Width = 20;
                 dataGridView_tareas.Columns["I"].Width = 20;
                 dataGridView_tareas.Columns["P"].Width = 20;
@@ -287,8 +291,19 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 sqlSelect += " AND (exp_areaTarea.IdArea = " + idAreaBloque + ")";
             }
-            sqlSelect += " ORDER BY exp_tareas.FIni ASC";
-            
+            if (ordFIni == null && ordFFin == null)
+            {
+                sqlSelect += " ORDER BY exp_tareas.FIni ASC";
+            }
+            if (ordFIni != null && ordFFin == null)
+            {
+                sqlSelect += " ORDER BY exp_tareas.FIni " + ordFIni;
+            }
+            else if (ordFIni == null && ordFFin != null)
+            {
+                sqlSelect += " ORDER BY exp_tareas.FFin " + ordFFin;
+            }
+
             tareas = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridView_tareas.DataSource = tareas;
             labelCount.Text = "Elementos: " + tareas.Rows.Count.ToString();
@@ -672,6 +687,38 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             textBoxBloque.Text = "";
             this.idAreaBloque = null;
+        }
+        
+
+        private void dataGridView_tareas_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == 7)
+            {
+                if (ordFIni == null || ordFIni == "DESC")
+                {
+                    ordFIni = "ASC";
+                    ordFFin = null;
+                }
+                else
+                {
+                    ordFIni = "DESC";
+                    ordFFin = null;
+                }
+            }
+            else if (e.ColumnIndex == 8)
+            {
+                if (ordFFin == null || ordFFin == "DESC")
+                {
+                    ordFIni = null;
+                    ordFFin = "ASC";
+                }
+                else
+                {
+                    ordFIni = null;
+                    ordFFin = "DESC";
+                }
+            }
+            aplicarFiltroTabla();
         }
     }
 }

@@ -93,6 +93,7 @@
             this.dataGridView_tareas.TabStop = false;
             this.dataGridView_tareas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_tareas_CellDoubleClick);
             this.dataGridView_tareas.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_tareas_CellFormatting);
+            this.dataGridView_tareas.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_tareas_ColumnHeaderMouseClick);
             this.dataGridView_tareas.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView_tareas_MouseClick);
             // 
             // comboBox_Tipo
