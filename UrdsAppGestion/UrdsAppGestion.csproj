@@ -1301,9 +1301,7 @@
     <Compile Include="Presentacion\Tareas\FormSeleccionarBloque.Designer.cs">
       <DependentUpon>FormSeleccionarBloque.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\Tareas\FormSeleccionarCategoria.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Presentacion\Tareas\FormSeleccionarCategoria.cs" />
     <Compile Include="Presentacion\Tareas\FormSeleccionarCategoria.Designer.cs">
       <DependentUpon>FormSeleccionarCategoria.cs</DependentUpon>
     </Compile>
