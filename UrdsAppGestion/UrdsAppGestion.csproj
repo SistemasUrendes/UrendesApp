@@ -1259,6 +1259,18 @@
     <Compile Include="Presentacion\Tareas\FormInsertarSeguimiento.Designer.cs">
       <DependentUpon>FormInsertarSeguimiento.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarServicioBloque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarServicioBloque.Designer.cs">
+      <DependentUpon>FormInsertarServicioBloque.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarServicioTarea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormInsertarServicioTarea.Designer.cs">
+      <DependentUpon>FormInsertarServicioTarea.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Tareas\FormInsertarTipoGestion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1282,6 +1294,18 @@
     </Compile>
     <Compile Include="Presentacion\Tareas\FormSeleccionarBloque.Designer.cs">
       <DependentUpon>FormSeleccionarBloque.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormSeleccionarCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormSeleccionarCategoria.Designer.cs">
+      <DependentUpon>FormSeleccionarCategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormServiciosBloque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormServiciosBloque.Designer.cs">
+      <DependentUpon>FormServiciosBloque.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Tareas\FormServiciosConfiguracion.cs">
       <SubType>Form</SubType>
@@ -1847,6 +1871,12 @@
     <EmbeddedResource Include="Presentacion\Tareas\FormInsertarSeguimiento.resx">
       <DependentUpon>FormInsertarSeguimiento.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormInsertarServicioBloque.resx">
+      <DependentUpon>FormInsertarServicioBloque.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormInsertarServicioTarea.resx">
+      <DependentUpon>FormInsertarServicioTarea.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormInsertarTipoGestion.resx">
       <DependentUpon>FormInsertarTipoGestion.cs</DependentUpon>
     </EmbeddedResource>
@@ -1858,6 +1888,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormSeleccionarBloque.resx">
       <DependentUpon>FormSeleccionarBloque.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormSeleccionarCategoria.resx">
+      <DependentUpon>FormSeleccionarCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormServiciosBloque.resx">
+      <DependentUpon>FormServiciosBloque.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormServiciosConfiguracion.resx">
       <DependentUpon>FormServiciosConfiguracion.cs</DependentUpon>

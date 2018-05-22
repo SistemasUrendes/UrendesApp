@@ -338,11 +338,13 @@ namespace UrdsAppGestión.Presentacion
                 dataGridView1.Rows[hti.RowIndex].Selected = true;
                 MenuContextual.Items.Clear();
                 MenuContextual.Items.Add("Copiar a Portapapeles");
+                MenuContextual.Items.Add("Enviar Correo");
                 MenuContextual.Items.Add(new ToolStripSeparator());
                 columnaSeleccionaPortaPapeles = hti.ColumnIndex;
                 MenuContextual.Items[0].Click += new EventHandler(this.copiarAlPortapapelesToolStripMenuItem_Click);
+                MenuContextual.Items[1].Click += new EventHandler(this.enviarCorreoToolStripMenuItem_Click);
                 MenuContextual.Items.Add("Telefonos");
-                MenuContextual.Items[2].Enabled = false;
+                MenuContextual.Items[3].Enabled = false;
 
                 DataTable telefonos = Persistencia.SentenciasSQL.select(" SELECT ctos_dettelf.IdEntidad, ctos_dettelf.Descripcion, ctos_dettelf.Telefono FROM ctos_dettelf WHERE(((ctos_dettelf.IdEntidad) = " + dataGridView1.SelectedCells[0].Value.ToString() + " ));");
                 for (int a = 0;a< telefonos.Rows.Count;a++) {
@@ -492,6 +494,14 @@ namespace UrdsAppGestión.Presentacion
             EntidadesForms.FormInsertarGrupo nueva = new EntidadesForms.FormInsertarGrupo();
             nueva.Show();
         }
-        
+
+        private void enviarCorreoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String mail = dataGridView1.SelectedRows[0].Cells["Email"].Value.ToString();
+            if (mail != "")
+            {
+                System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + "\"");
+            }
+        }
     }
 }

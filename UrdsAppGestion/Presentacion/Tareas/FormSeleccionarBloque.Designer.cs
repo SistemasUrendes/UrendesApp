@@ -47,9 +47,10 @@
             this.dataGridViewBloques.ReadOnly = true;
             this.dataGridViewBloques.RowHeadersVisible = false;
             this.dataGridViewBloques.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewBloques.Size = new System.Drawing.Size(300, 343);
+            this.dataGridViewBloques.Size = new System.Drawing.Size(400, 343);
             this.dataGridViewBloques.TabIndex = 13;
             this.dataGridViewBloques.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBloques_CellDoubleClick);
+            this.dataGridViewBloques.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridViewBloques_KeyDown);
             // 
             // buttonEnviar
             // 
@@ -65,7 +66,7 @@
             // 
             this.textBoxFiltroBloque.Location = new System.Drawing.Point(93, 14);
             this.textBoxFiltroBloque.Name = "textBoxFiltroBloque";
-            this.textBoxFiltroBloque.Size = new System.Drawing.Size(218, 20);
+            this.textBoxFiltroBloque.Size = new System.Drawing.Size(319, 20);
             this.textBoxFiltroBloque.TabIndex = 15;
             this.textBoxFiltroBloque.TextChanged += new System.EventHandler(this.textBoxFiltroBloque_TextChanged);
             // 
@@ -73,14 +74,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(332, 404);
+            this.ClientSize = new System.Drawing.Size(422, 404);
             this.Controls.Add(this.textBoxFiltroBloque);
             this.Controls.Add(this.buttonEnviar);
             this.Controls.Add(this.dataGridViewBloques);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormSeleccionarBloque";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormSeleccionarBloque";
+            this.Text = "Seleccionar Bloque";
             this.Load += new System.EventHandler(this.FormSeleccionarBloque_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBloques)).EndInit();
             this.ResumeLayout(false);
