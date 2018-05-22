@@ -29,13 +29,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private FormTareasPrincipal form_anterior;
         private int idComunidad;
         private String columnaContacto;
-        private String idElemento;
-        private String idBloque;
+        private Boolean conBloque;
         private Boolean duplicar;
         private String idTipoTareaDupli;
         private String idTareaDupli;
         private bool contactosDupli;
         private bool expedientesDupli;
+        private DataTable tablaBloque;
+        private DataTable tablaFinalServicios;
 
         public FormVerTarea(FormTareasPrincipal form_anterior, String idTarea)
         {
@@ -44,6 +45,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.form_anterior = form_anterior;
             idComunidad = 0;
             duplicar = false;
+            conBloque = false;
         }
 
         public FormVerTarea(String idTarea)
@@ -52,6 +54,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.idTarea = idTarea;
             idComunidad = 0;
             duplicar = false;
+            conBloque = false;
         }
 
         public FormVerTarea(FormTareasPrincipal form_anterior)
@@ -60,11 +63,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.form_anterior = form_anterior;
             idComunidad = 0;
             duplicar = false;
+            conBloque = false;
         }
         //DUPLICAR TAREA
         public FormVerTarea(FormTareasPrincipal form_anterior, String idTipoTarea,String fIni, String descripcion, String coste, String seguro, String acuerdoJunta, String fechaActaAcordado, String proximaJunta, String refSiniestro, String fFin,String notas, String importante,String idEntidad, String nombreComunidad, int idComunidad, String Referencia, String idTarea,Boolean contactos, Boolean expedientes)
         {
             InitializeComponent();
+            conBloque = false;
             this.form_anterior = form_anterior;
             idTipoTareaDupli = idTipoTarea;
             textBoxDescripcion.Text = descripcion;
@@ -81,9 +86,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
             maskedTextBoxFechaActa.Text = fechaActaAcordado;
             if ( proximaJunta == "-1") checkBoxProxJunta.Checked = true;
             if ( importante == "-1") checkBoxImportante.Checked = true;
-            //textBoxBloque.Text = nombreElemento;
-            //this.idElemento = idElemento;
             this.idEntidad = idEntidad;
+            if (idEntidad != null) conBloque = true;
             textBoxEntidad.Text = nombreComunidad;
             this.idComunidad = idComunidad;
             maskedTextBoxReferencia.Text = Referencia;
@@ -110,6 +114,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 cargarTodosSeguimientos();
                 cargarContactos();
                 cargarExpedientes();
+                cargarBloque();
                 bloquearEdicion();
             }
             //NUEVA TAREA
@@ -134,6 +139,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBoxIdTareaNuevo.Text = tarea.Rows[0][17].ToString();
             textBoxDescripcion.Text = tarea.Rows[0][1].ToString();
             idEntidad = tarea.Rows[0][2].ToString();
+            if (idEntidad != null) conBloque = true;
             textBoxNotas.Text = tarea.Rows[0][3].ToString();
             textBoxRuta.Text = limpiaRuta(tarea.Rows[0][4].ToString());
             comboBoxTipo.SelectedValue = tarea.Rows[0][5].ToString();
@@ -151,9 +157,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (maskedTextBoxReferencia.Text != "") nombreReferencia();
             textBoxEntidad.Text = tarea.Rows[0][15].ToString();
             checkBoxImportante.Checked = bool.Parse(tarea.Rows[0][16].ToString());
-            //textBoxElemento.Text = tarea.Rows[0][17].ToString();
-            //idElemento = tarea.Rows[0][18].ToString();
-            //cargarBloque();
             this.Name = "FormVerTarea" + idTarea;
         }
 
@@ -181,7 +184,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBoxRuta.ReadOnly = true;
             labelRutaLink.Enabled = false;
             buttonBloque.Visible = false;
-            buttonElemento.Visible = false;
             buttonDuplicarTarea.Enabled = true;
         }
 
@@ -209,7 +211,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBoxRuta.ReadOnly = false;
             labelRutaLink.Enabled = true;
             buttonBloque.Visible = true;
-            buttonElemento.Visible = true;
             buttonDuplicarTarea.Enabled = false;
             if (textBoxEntidad.Text == "")
             {
@@ -352,15 +353,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
-            //if (textBoxDescripcion.Text != "" && comboBoxTipo.SelectedIndex != 0 && idElemento != null && (idEntidad != null || idComunidad != 0))
-            if (textBoxDescripcion.Text != "" && comboBoxTipo.SelectedIndex != 0 && (idEntidad != null || idComunidad != 0))
+            if (textBoxDescripcion.Text != "" && comboBoxTipo.SelectedIndex != 0 && conBloque && (idEntidad != null || idComunidad != 0))
             {
                 maskedTextBoxFIni.Text = DateTime.Now.ToShortDateString();
             }
-            //else if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || idElemento == null || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
-            else if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0  || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
+            else if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0  || !conBloque || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
             {
-                MessageBox.Show("Los campos DESCRIPCIÓN,ENTIDAD,TIPO y FECHA INICIO son obligatorios");
+                MessageBox.Show("Los campos DESCRIPCIÓN,ENTIDAD,TIPO, BLOQUE y FECHA INICIO son obligatorios");
                 return;
             }
             
@@ -382,13 +381,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (idTarea == null)
             {
-                if (textBoxDescripcion.Text != "" && comboBoxTipo.SelectedIndex != 0 && (idEntidad != null || idComunidad != 0))
+                if (textBoxDescripcion.Text != "" && comboBoxTipo.SelectedIndex != 0 && conBloque && (idEntidad != null || idComunidad != 0))
                 {
                     maskedTextBoxFIni.Text = DateTime.Now.ToShortDateString();
                 }
-                else if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
+                else if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || !conBloque || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
                 {
-                    MessageBox.Show("Los campos DESCRIPCIÓN,ENTIDAD,TIPO y FECHA INICIO son obligatorios.");
+                    MessageBox.Show("Los campos DESCRIPCIÓN,ENTIDAD,TIPO, BLOQUE y FECHA INICIO son obligatorios.");
                     return;
                 }
                     
@@ -567,13 +566,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonRuta_Click(object sender, EventArgs e)
         {
-            if (textBoxDescripcion.Text != "" && comboBoxTipo.SelectedIndex != 0 && (idEntidad != null || idComunidad != 0))
+            if (textBoxDescripcion.Text != "" && comboBoxTipo.SelectedIndex != 0 && conBloque && (idEntidad != null || idComunidad != 0))
             {
                 maskedTextBoxFIni.Text = DateTime.Now.ToShortDateString();
             }
-            else if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0  || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
+            else if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0  || !conBloque || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
             {
-                MessageBox.Show("Los campos DESCRIPCIÓN,ENTIDAD,TIPO y FECHA INICIO son obligatorios.");
+                MessageBox.Show("Los campos DESCRIPCIÓN,ENTIDAD,TIPO, BLOQUE  y FECHA INICIO son obligatorios.");
                 return;
             }
 
@@ -710,11 +709,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
         //AÑADIR O EDITAR TAREA
         private void addTarea()
         {
-            if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
-            {
-                MessageBox.Show("Los campos DESCRIPCIÓN,ENTIDAD,TIPO y FECHA INICIO son obligatorios.");
-                return;
-            }
+            //if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || !conBloque || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
+            //{
+            //    MessageBox.Show("Los campos DESCRIPCIÓN,ENTIDAD,TIPO, BLOQUE y FECHA INICIO son obligatorios.");
+            //    return;
+            //}
             String idTipoTarea = comboBoxTipo.SelectedValue.ToString();
             String fIni = null;
             fInicio = maskedTextBoxFIni.Text;
@@ -895,9 +894,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             else
             {
                 textBoxBloque.Text = "";
-                textBoxElemento.Text = "";
-                idBloque = "-1";
-                idElemento = "-1";
+                conBloque = true;
             }
             textBoxEntidad.Text = nombre;
             textBoxEntidad.ForeColor = Color.Black;
@@ -912,7 +909,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 {
                     textBoxEntidad.Text = nombreReferencia();
                     textBoxEntidad.ForeColor = Color.Black;
-                    comboBoxTipo.Focus();
+                    buttonBloque.Focus();
                 }
                 catch
                 {
@@ -1521,23 +1518,36 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (idComunidad != 0)
             {
-                FormSeleccionarBloque nueva = new FormSeleccionarBloque(this, idComunidad.ToString());
-                nueva.ControlBox = true;
-                nueva.TopMost = true;
-                nueva.WindowState = FormWindowState.Normal;
-                nueva.StartPosition = FormStartPosition.CenterScreen;
-                nueva.Show();
+                if (idTarea != null)
+                {
+                    comboBoxTipo.Focus();
+                    FormSeleccionarBloque nueva = new FormSeleccionarBloque(this, idComunidad.ToString(), idTarea);
+                    nueva.ControlBox = true;
+                    nueva.TopMost = true;
+                    nueva.WindowState = FormWindowState.Normal;
+                    nueva.StartPosition = FormStartPosition.CenterScreen;
+                    nueva.Show();
+                }
+                else
+                {
+                    comboBoxTipo.SelectedIndex = 1;
+                    maskedTextBoxFIni.Text = DateTime.Now.ToShortDateString();
+                    addTarea();
+                    textBoxIdTarea.Text = idTarea;
+                    textBoxIdTareaNuevo.Text = idTareaNuevo(idTarea);
+                    comboBoxTipo.Focus();
+                    FormSeleccionarBloque nueva = new FormSeleccionarBloque(this, idComunidad.ToString(), idTarea);
+                    nueva.ControlBox = true;
+                    nueva.TopMost = true;
+                    nueva.WindowState = FormWindowState.Normal;
+                    nueva.StartPosition = FormStartPosition.CenterScreen;
+                    nueva.Show();
+                }
             }
             else
             {
                 MessageBox.Show("Selecciona una comunidad para elegir su bloque");
             }
-        }
-
-        public void recibirBloque(String idBloque,String nombre)
-        {
-            textBoxBloque.Text = nombre;
-            this.idBloque = idBloque;
         }
 
         private void buttonDuplicarTarea_Click(object sender, EventArgs e)
@@ -1635,28 +1645,88 @@ namespace UrdsAppGestión.Presentacion.Tareas
             return Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString(); ;
         }
         
-        private void cargarBloque()
+        public void cargarBloque()
         {
-            String sqlSelect = "SELECT exp_area.IdArea, exp_area.IdAreaPrevio, exp_area.Nombre, exp_area.Descripcion FROM exp_area INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((exp_areaTarea.IdTarea) = " + idTarea + "))";
-            DataTable tablaBloque = Persistencia.SentenciasSQL.select(sqlSelect);
-
+            String sqlSelect = "SELECT exp_area.IdArea, exp_area.IdAreaPrevio, exp_area.Nombre, exp_area.Descripcion FROM exp_area INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((exp_areaTarea.IdTarea) = " + idTarea + ") AND((exp_area.IdAreaPrevio) = 0))";
+            tablaBloque = Persistencia.SentenciasSQL.select(sqlSelect);
+            if (tablaBloque.Rows.Count > 0) conBloque = true;
             String bloques = "";
-            String elementos = "";
             foreach( DataRow row in tablaBloque.Rows)
             {
-                if (row[1].ToString() == "0")
-                {
-                    if (bloques.Length > 0) bloques += " - " + row[2];
+                    if (bloques.Length > 0) bloques += " ; " + row[2];
                     else bloques = row[2].ToString();
-                }
-                else
-                {
-                    if (elementos.Length > 0) elementos += " - " + row[2];
-                    else elementos = row[2].ToString();
-                }
             }
             textBoxBloque.Text = bloques;
-            textBoxElemento.Text = elementos;
+            cargarServicios();
+        }
+
+        private void textBoxBloque_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            FormSeleccionarBloque nueva = new FormSeleccionarBloque(this, idTarea);
+            nueva.Show();
+        }
+        
+        public void cargarServicios()
+        {
+            DataTable tablaServicios = null;
+            tablaFinalServicios = null;
+            foreach (DataRow row in tablaBloque.Rows)
+            {
+
+                String idAreaBloque = row[0].ToString();
+                String nombreBloque = row[2].ToString();
+
+
+                String sqlSelect = "SELECT exp_area.IdArea,'" + nombreBloque + "' AS Bloque, exp_area.Nombre AS Categoría,exp_area.Nombre AS Nombre , '' AS Previo FROM (exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea) INNER JOIN exp_area AS exp_area_1 ON exp_area.IdAreaPrevio = exp_area_1.IdArea WHERE(((exp_areaTarea.IdTarea) = " + idTarea + ") AND((exp_area.IdAreaPrevio) = " + idAreaBloque + "))";
+                
+                tablaServicios = Persistencia.SentenciasSQL.select(sqlSelect);
+                if (tablaFinalServicios == null) tablaFinalServicios = tablaServicios.Copy();
+                else tablaFinalServicios.Merge(tablaServicios);
+
+                String sqlSelectTodas = "SELECT exp_area.IdArea,'" + nombreBloque + "' AS Bloque, exp_area.Nombre AS Categoría,exp_area.Nombre AS Nombre , '' AS Previo FROM (exp_areaTarea RIGHT JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea) INNER JOIN exp_area AS exp_area_1 ON exp_area.IdAreaPrevio = exp_area_1.IdArea WHERE(((exp_area.IdAreaPrevio) = " + idAreaBloque + "))";
+
+                tablaServicios = Persistencia.SentenciasSQL.select(sqlSelectTodas);
+
+                foreach (DataRow rowSub in tablaServicios.Rows)
+                {
+                    DataTable subServicios = null;
+                    String sqlSelectSub = "SELECT exp_area.IdArea,'" + nombreBloque + "' AS Bloque,'" + rowSub[2] + "' AS Categoría,exp_area.Nombre AS Nombre , exp_area_1.Nombre AS Previo FROM (exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea) INNER JOIN exp_area AS exp_area_1 ON exp_area.IdAreaPrevio = exp_area_1.IdArea WHERE(((exp_areaTarea.IdTarea) = " + idTarea + ") AND((exp_area.IdAreaPrevio) = " + rowSub[0] + "))";
+
+                    subServicios = Persistencia.SentenciasSQL.select(sqlSelectSub);
+                    if (subServicios.Rows.Count > 0) tablaFinalServicios.Merge(subServicios);
+
+                    subServicios = null;
+                    String sqlSelectSubTodas = "SELECT exp_area.IdArea,'" + nombreBloque + "' AS Bloque,'" + rowSub[2] + "' AS Categoría,exp_area.Nombre AS Nombre , exp_area_1.Nombre AS Previo FROM (exp_areaTarea RIGHT JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea) INNER JOIN exp_area AS exp_area_1 ON exp_area.IdAreaPrevio = exp_area_1.IdArea WHERE(((exp_area.IdAreaPrevio) = " + rowSub[0] + "))";
+                    subServicios = Persistencia.SentenciasSQL.select(sqlSelectSubTodas);
+
+
+                    foreach (DataRow rowSub2 in subServicios.Rows)
+                    {
+                        DataTable subServicios2 = null;
+
+                        String sqlSelectSub2 = "SELECT exp_area.IdArea,'" + nombreBloque + "' AS Bloque,'" + rowSub[2] + "' AS Categoría,exp_area.Nombre AS Nombre , exp_area_1.Nombre AS Previo FROM (exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea) INNER JOIN exp_area AS exp_area_1 ON exp_area.IdAreaPrevio = exp_area_1.IdArea WHERE(((exp_areaTarea.IdTarea) = " + idTarea + ") AND((exp_area.IdAreaPrevio) = " + rowSub2[0] + "))";
+                        
+                        subServicios2 = Persistencia.SentenciasSQL.select(sqlSelectSub2);
+                        if (subServicios2.Rows.Count > 0) tablaFinalServicios.Merge(subServicios2);
+                    }
+                }
+            }
+            dataGridViewServicios.DataSource = tablaFinalServicios;
+
+            if (dataGridViewServicios.Rows.Count > 0)
+            {
+                dataGridViewServicios.Columns["IdArea"].Visible = false;
+                dataGridViewServicios.Columns["Nombre"].Width = 180;
+                dataGridViewServicios.Columns["Previo"].Width = 150;
+                dataGridViewServicios.Columns["Bloque"].Width = 150;
+                dataGridViewServicios.Columns["Categoría"].Width = 150;
+            }
+        }
+
+        private void buttonAddServicio_Click(object sender, EventArgs e)
+        {
+            FormInsertarServicioTarea nueva = new FormInsertarServicioTarea(this, idTarea);
+            nueva.Show();
         }
     }
 }

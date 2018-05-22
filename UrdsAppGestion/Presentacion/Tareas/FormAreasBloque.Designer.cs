@@ -29,37 +29,17 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAreasBloque));
-            this.buttonRemoveArea = new System.Windows.Forms.Button();
-            this.buttonAddArea = new System.Windows.Forms.Button();
             this.labelName = new System.Windows.Forms.Label();
             this.textBoxFiltroAreas = new System.Windows.Forms.TextBox();
-            this.dataGridViewAddArea = new System.Windows.Forms.DataGridView();
             this.dataGridViewAllAreas = new System.Windows.Forms.DataGridView();
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.buttonGuardar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAddArea)).BeginInit();
+            this.dataGridViewAddArea = new System.Windows.Forms.DataGridView();
+            this.buttonAddArea = new System.Windows.Forms.Button();
+            this.buttonRemoveArea = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAllAreas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAddArea)).BeginInit();
             this.SuspendLayout();
-            // 
-            // buttonRemoveArea
-            // 
-            this.buttonRemoveArea.Location = new System.Drawing.Point(314, 228);
-            this.buttonRemoveArea.Name = "buttonRemoveArea";
-            this.buttonRemoveArea.Size = new System.Drawing.Size(28, 23);
-            this.buttonRemoveArea.TabIndex = 20;
-            this.buttonRemoveArea.Text = ">>";
-            this.buttonRemoveArea.UseVisualStyleBackColor = true;
-            this.buttonRemoveArea.Click += new System.EventHandler(this.buttonRemoveArea_Click);
-            // 
-            // buttonAddArea
-            // 
-            this.buttonAddArea.Location = new System.Drawing.Point(314, 199);
-            this.buttonAddArea.Name = "buttonAddArea";
-            this.buttonAddArea.Size = new System.Drawing.Size(28, 23);
-            this.buttonAddArea.TabIndex = 19;
-            this.buttonAddArea.Text = "<<";
-            this.buttonAddArea.UseVisualStyleBackColor = true;
-            this.buttonAddArea.Click += new System.EventHandler(this.buttonAddArea_Click);
             // 
             // labelName
             // 
@@ -77,22 +57,6 @@
             this.textBoxFiltroAreas.Size = new System.Drawing.Size(300, 20);
             this.textBoxFiltroAreas.TabIndex = 13;
             this.textBoxFiltroAreas.TextChanged += new System.EventHandler(this.textBoxFiltroAreas_TextChanged);
-            // 
-            // dataGridViewAddArea
-            // 
-            this.dataGridViewAddArea.AllowUserToAddRows = false;
-            this.dataGridViewAddArea.AllowUserToDeleteRows = false;
-            this.dataGridViewAddArea.AllowUserToResizeRows = false;
-            this.dataGridViewAddArea.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewAddArea.Location = new System.Drawing.Point(9, 38);
-            this.dataGridViewAddArea.MultiSelect = false;
-            this.dataGridViewAddArea.Name = "dataGridViewAddArea";
-            this.dataGridViewAddArea.ReadOnly = true;
-            this.dataGridViewAddArea.RowHeadersVisible = false;
-            this.dataGridViewAddArea.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewAddArea.Size = new System.Drawing.Size(300, 343);
-            this.dataGridViewAddArea.TabIndex = 12;
-            this.dataGridViewAddArea.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAddArea_CellDoubleClick);
             // 
             // dataGridViewAllAreas
             // 
@@ -130,6 +94,42 @@
             this.buttonGuardar.UseVisualStyleBackColor = true;
             this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
             // 
+            // dataGridViewAddArea
+            // 
+            this.dataGridViewAddArea.AllowUserToAddRows = false;
+            this.dataGridViewAddArea.AllowUserToDeleteRows = false;
+            this.dataGridViewAddArea.AllowUserToResizeRows = false;
+            this.dataGridViewAddArea.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAddArea.Location = new System.Drawing.Point(9, 38);
+            this.dataGridViewAddArea.MultiSelect = false;
+            this.dataGridViewAddArea.Name = "dataGridViewAddArea";
+            this.dataGridViewAddArea.ReadOnly = true;
+            this.dataGridViewAddArea.RowHeadersVisible = false;
+            this.dataGridViewAddArea.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewAddArea.Size = new System.Drawing.Size(300, 343);
+            this.dataGridViewAddArea.TabIndex = 12;
+            this.dataGridViewAddArea.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAddArea_CellDoubleClick);
+            // 
+            // buttonAddArea
+            // 
+            this.buttonAddArea.Location = new System.Drawing.Point(314, 199);
+            this.buttonAddArea.Name = "buttonAddArea";
+            this.buttonAddArea.Size = new System.Drawing.Size(28, 23);
+            this.buttonAddArea.TabIndex = 19;
+            this.buttonAddArea.Text = "<<";
+            this.buttonAddArea.UseVisualStyleBackColor = true;
+            this.buttonAddArea.Click += new System.EventHandler(this.buttonAddArea_Click);
+            // 
+            // buttonRemoveArea
+            // 
+            this.buttonRemoveArea.Location = new System.Drawing.Point(314, 228);
+            this.buttonRemoveArea.Name = "buttonRemoveArea";
+            this.buttonRemoveArea.Size = new System.Drawing.Size(28, 23);
+            this.buttonRemoveArea.TabIndex = 20;
+            this.buttonRemoveArea.Text = ">>";
+            this.buttonRemoveArea.UseVisualStyleBackColor = true;
+            this.buttonRemoveArea.Click += new System.EventHandler(this.buttonRemoveArea_Click);
+            // 
             // FormAreasBloque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -148,22 +148,21 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Areas del Bloque";
             this.Load += new System.EventHandler(this.FormAreasBloque_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAddArea)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAllAreas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAddArea)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button buttonRemoveArea;
-        private System.Windows.Forms.Button buttonAddArea;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.TextBox textBoxFiltroAreas;
-        private System.Windows.Forms.DataGridView dataGridViewAddArea;
         private System.Windows.Forms.DataGridView dataGridViewAllAreas;
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Button buttonGuardar;
+        private System.Windows.Forms.DataGridView dataGridViewAddArea;
+        private System.Windows.Forms.Button buttonAddArea;
+        private System.Windows.Forms.Button buttonRemoveArea;
     }
 }

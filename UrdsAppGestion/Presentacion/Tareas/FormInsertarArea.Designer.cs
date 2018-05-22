@@ -104,6 +104,7 @@
             this.Name = "FormInsertarArea";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Insertar Area";
+            this.Load += new System.EventHandler(this.FormInsertarArea_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

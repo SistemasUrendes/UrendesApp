@@ -14,6 +14,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
     {
         String id_comunidad_cargado = "0";
         DataTable operaciones;
+        String nombre_columna;
 
         public Operaciones_proveedores(String id_comunidad_cargado)
         {
@@ -49,6 +50,13 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
 
 
             operaciones = Persistencia.SentenciasSQL.select(sqlSelectOp);
+            ajustarDatagrid();
+
+
+        }
+
+        private void ajustarDatagrid()
+        {
             dataGridView_operaciones.DataSource = operaciones;
             dataGridView_operaciones.Columns["IDEntidad"].Visible = false;
             dataGridView_operaciones.Columns["IdOp"].Width = 50;
@@ -62,7 +70,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             dataGridView_operaciones.Columns["ImpOp"].DefaultCellStyle.Format = "c";
             dataGridView_operaciones.Columns["ImpOpPte"].Width = 70;
             dataGridView_operaciones.Columns["ImpOpPte"].DefaultCellStyle.Format = "c";
-            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -165,10 +172,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
+                toolStripTextBoxFiltro.Text = "";
                 var hti = dataGridView_operaciones.HitTest(e.X, e.Y);
                 dataGridView_operaciones.ClearSelection();
                 dataGridView_operaciones.Rows[hti.RowIndex].Selected = true;
-
+                dataGridView_operaciones.CurrentCell = this.dataGridView_operaciones[hti.ColumnIndex, hti.RowIndex];
+                nombre_columna = dataGridView_operaciones.CurrentCell.OwningColumn.Name;
                 contextMenuStrip1.Show(Cursor.Position);
             }
         }
@@ -231,6 +240,54 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             ////COMPROBAR SI TIENE VENCIMIENTOS PAGADOS
             //String vencimientos =  "SELECT com_opdetalles.IdOp, com_opdetalles.IdOpDet, com_opdetalles.Importe, com_opdetalles.ImpOpDetMov, com_opdetalles.ImpOpDetPte, com_opdetalles.IdEntidad, com_opdetalles.Fecha FROM com_opdetalles WHERE(((com_opdetalles.IdOp) = 121212));";
 
+        }
+
+        private void toolStripTextBoxFiltro_TextChanged(object sender, EventArgs e)
+        {
+            String filtro;
+            if (toolStripTextBoxFiltro.TextLength == 1)
+            {
+                DataTable busqueda = operaciones;
+                busqueda.DefaultView.RowFilter = string.Empty;
+                this.dataGridView_operaciones.DataSource = busqueda;
+
+
+                if (nombre_columna == "Descripcion" || nombre_columna == "Entidad")
+                {
+                    filtro = nombre_columna + " like '%" + toolStripTextBoxFiltro.Text.ToUpper().ToString() + "%'";
+                    busqueda.DefaultView.RowFilter = filtro;
+                }
+                else
+                {
+
+                }
+                this.dataGridView_operaciones.DataSource = busqueda;
+                ajustarDatagrid();
+            }
+            else if (toolStripTextBoxFiltro.TextLength > 1)
+            {
+                DataTable busqueda = operaciones;
+
+                if (nombre_columna == "Descripcion" || nombre_columna == "Entidad")
+                {
+                    filtro = nombre_columna + " like '%" + toolStripTextBoxFiltro.Text.ToUpper().ToString() + "%'";
+                    busqueda.DefaultView.RowFilter = filtro;
+                }
+                else
+                {
+                }
+
+                this.dataGridView_operaciones.DataSource = busqueda;
+                ajustarDatagrid();
+            }
+        }
+
+        private void toolStripTextBoxFiltro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (Char)Keys.Tab || e.KeyChar == (Char)Keys.Enter)
+            {
+                contextMenuStrip1.Close();
+            }
         }
     }
 }

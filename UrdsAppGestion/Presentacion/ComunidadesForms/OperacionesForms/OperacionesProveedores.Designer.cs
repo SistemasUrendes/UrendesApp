@@ -52,9 +52,12 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.marcarComoFavoritaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarOperaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.abonarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label8 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.abonarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripTextBoxFiltro = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_operaciones)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -256,9 +259,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.marcarComoFavoritaToolStripMenuItem,
             this.eliminarOperaciónToolStripMenuItem,
-            this.abonarToolStripMenuItem});
+            this.abonarToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.toolStripTextBoxFiltro,
+            this.toolStripSeparator2});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(189, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(189, 129);
             // 
             // marcarComoFavoritaToolStripMenuItem
             // 
@@ -273,6 +279,14 @@
             this.eliminarOperaciónToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.eliminarOperaciónToolStripMenuItem.Text = "Eliminar Operación";
             this.eliminarOperaciónToolStripMenuItem.Click += new System.EventHandler(this.eliminarOperaciónToolStripMenuItem_Click);
+            // 
+            // abonarToolStripMenuItem
+            // 
+            this.abonarToolStripMenuItem.Name = "abonarToolStripMenuItem";
+            this.abonarToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.abonarToolStripMenuItem.Text = "Abonar";
+            this.abonarToolStripMenuItem.Visible = false;
+            this.abonarToolStripMenuItem.Click += new System.EventHandler(this.abonarToolStripMenuItem_Click);
             // 
             // label8
             // 
@@ -295,13 +309,22 @@
             this.comboBox1.TabIndex = 22;
             this.comboBox1.SelectionChangeCommitted += new System.EventHandler(this.comboBox1_SelectionChangeCommitted);
             // 
-            // abonarToolStripMenuItem
+            // toolStripSeparator1
             // 
-            this.abonarToolStripMenuItem.Name = "abonarToolStripMenuItem";
-            this.abonarToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.abonarToolStripMenuItem.Text = "Abonar";
-            this.abonarToolStripMenuItem.Visible = false;
-            this.abonarToolStripMenuItem.Click += new System.EventHandler(this.abonarToolStripMenuItem_Click);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(185, 6);
+            // 
+            // toolStripTextBoxFiltro
+            // 
+            this.toolStripTextBoxFiltro.Name = "toolStripTextBoxFiltro";
+            this.toolStripTextBoxFiltro.Size = new System.Drawing.Size(100, 23);
+            this.toolStripTextBoxFiltro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.toolStripTextBoxFiltro_KeyPress);
+            this.toolStripTextBoxFiltro.TextChanged += new System.EventHandler(this.toolStripTextBoxFiltro_TextChanged);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(185, 6);
             // 
             // Operaciones_proveedores
             // 
@@ -336,6 +359,7 @@
             this.Load += new System.EventHandler(this.Operaciones_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_operaciones)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            this.contextMenuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -369,5 +393,8 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ToolStripMenuItem eliminarOperaciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem abonarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxFiltro;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

@@ -548,5 +548,11 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             }
 
         }
+
+        private void serviciosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Tareas.FormServiciosBloque nueva = new Tareas.FormServiciosBloque(id_comunidad.ToString());
+            nueva.Show();
+        }
     }
 }

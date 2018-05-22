@@ -43,6 +43,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.buttonActualizarCategoriasEntidad = new System.Windows.Forms.Button();
+            this.buttonActualizarBloqueTareas = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -180,11 +181,22 @@
             this.buttonActualizarCategoriasEntidad.UseVisualStyleBackColor = true;
             this.buttonActualizarCategoriasEntidad.Click += new System.EventHandler(this.buttonActualizarCategoriasEntidad_Click);
             // 
+            // buttonActualizarBloqueTareas
+            // 
+            this.buttonActualizarBloqueTareas.Location = new System.Drawing.Point(163, 330);
+            this.buttonActualizarBloqueTareas.Name = "buttonActualizarBloqueTareas";
+            this.buttonActualizarBloqueTareas.Size = new System.Drawing.Size(75, 61);
+            this.buttonActualizarBloqueTareas.TabIndex = 10;
+            this.buttonActualizarBloqueTareas.Text = "Actualizar Bloque Tareas";
+            this.buttonActualizarBloqueTareas.UseVisualStyleBackColor = true;
+            this.buttonActualizarBloqueTareas.Click += new System.EventHandler(this.buttonActualizarBloqueTareas_Click);
+            // 
             // FormMantenimiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 560);
+            this.Controls.Add(this.buttonActualizarBloqueTareas);
             this.Controls.Add(this.buttonActualizarCategoriasEntidad);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -221,5 +233,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button buttonActualizarCategoriasEntidad;
+        private System.Windows.Forms.Button buttonActualizarBloqueTareas;
     }
 }

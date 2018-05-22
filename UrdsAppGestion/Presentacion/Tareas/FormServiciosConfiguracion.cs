@@ -67,8 +67,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         public void cargarBloques()
         {
-            
-            String sqlSelect = "SELECT com_bloques.IdBloque,com_bloques.Descripcion FROM com_bloques WHERE(((com_bloques.IdTipoBloque) = 1) AND((com_bloques.IdComunidad) = " + this.idComunidad + "))";
+            String sqlSelect = "SELECT com_bloques.IdBloque,com_bloques.Descripcion FROM com_bloques WHERE(((com_bloques.IdTipoBloque) = 1) AND ((com_bloques.Baja) = 0) AND((com_bloques.IdComunidad) = " + this.idComunidad + "))";
             tablaBloques = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewBloque.DataSource = tablaBloques;
 
@@ -93,6 +92,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         
         private void dataGridViewBloque_MouseClick(object sender, MouseEventArgs e)
         {
+            /*
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 var hti = dataGridViewBloque.HitTest(e.X, e.Y);
@@ -104,6 +104,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     contextMenuStrip1.Show(Cursor.Position);
                 }
             }
+            */
         }
 
         private void buttonAddArea_Click(object sender, EventArgs e)
@@ -124,8 +125,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void dataGridViewBloque_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            FormAreasBloque nueva = new FormAreasBloque(this, dataGridViewBloque.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewBloque.SelectedRows[0].Cells[1].Value.ToString());
-            nueva.Show();
+            //FormAreasBloque nueva = new FormAreasBloque(this, dataGridViewBloque.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewBloque.SelectedRows[0].Cells[1].Value.ToString());
+            if (dataGridViewBloque.SelectedRows[0].Index > -1)
+            {
+                FormArbolAreasBloque nueva = new FormArbolAreasBloque(this, dataGridViewBloque.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewBloque.SelectedRows[0].Cells[1].Value.ToString(), comboBoxComunidades.Text.ToString());
+                nueva.Show();
+            }
         }
 
         public void cargarCategorias()
@@ -155,6 +160,39 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             ComunidadesForms.Elementos.FormElementos nueva = new ComunidadesForms.Elementos.FormElementos(this,dataGridViewAreas.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewAreas.SelectedRows[0].Cells[1].Value.ToString());
             nueva.Show();
+        }
+
+        private void cambiarNombreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormInsertarArea nueva = new FormInsertarArea(this, dataGridViewAreas.SelectedRows[0].Cells[0].Value.ToString());
+            nueva.Show();
+        }
+
+        private void borrarCategoríaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado_message;
+            resultado_message = MessageBox.Show("¿Desea borrar esta Categoría ?", "Borrar Categoría", MessageBoxButtons.OKCancel);
+            if (resultado_message == System.Windows.Forms.DialogResult.OK)
+            {
+                String sqlBorrar = "DELETE FROM exp_catElemento WHERE IdCatElemento = " + dataGridViewAreas.SelectedRows[0].Cells[0].Value.ToString();
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrar);
+                cargarCategorias();
+            }
+        }
+
+        private void dataGridViewAreas_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                var hti = dataGridViewAreas.HitTest(e.X, e.Y);
+                if (hti.RowIndex > -1)
+                {
+                    dataGridViewAreas.ClearSelection();
+                    dataGridViewAreas.Rows[hti.RowIndex].Selected = true;
+                    dataGridViewAreas.Columns[hti.ColumnIndex].Selected = true;
+                    contextMenuStrip2.Show(Cursor.Position);
+                }
+            }
         }
     }
 }

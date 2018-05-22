@@ -380,11 +380,30 @@ namespace UrdsAppGestión.Presentacion
 
                 for (int a = 0; a < bloquesComunidad.Rows.Count; a++)
                 {
-                    String sqlInsertar = "INSERT INTO exp_elementos (IdElementoAnt, IdComunidad, Nombre, Descripcion) VALUES(0," + idComunidad + ",'" + bloquesComunidad.Rows[a][1].ToString() + "','Bloque físico')";
+                    int id = Int32.Parse(bloquesComunidad.Rows[a][0].ToString());
+                    String codigo = "";
+                    if ( id < 10)
+                    {
+                        codigo += "000" + id;
+                    }
+                    else if (id < 100)
+                    {
+                        codigo += "00" + id;
+                    }
+                    else if (id < 1000)
+                    {
+                        codigo += "0" + id;
+                    }
+                    else
+                    {
+                        codigo = id.ToString();
+                    }
+                    String sqlInsertar = "INSERT INTO exp_area (IdAreaPrevio,IdBloque, Nombre, Descripcion, codigoArea) VALUES(0,'" + bloquesComunidad.Rows[a][0].ToString() + "','" + bloquesComunidad.Rows[a][1].ToString() + "','Bloque físico','" + codigo + "')";
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlInsertar);
 
                 }
             }
+            MessageBox.Show("Fin.");
 
         }
 
@@ -460,6 +479,20 @@ namespace UrdsAppGestión.Presentacion
             }
             */
             MessageBox.Show(table.Rows.Count.ToString() + " Registros Actualizados");
+        }
+
+        private void buttonActualizarBloqueTareas_Click(object sender, EventArgs e)
+        {
+            String sqlSelect = "SELECT exp_area.IdArea, exp_tareas.IdTarea, com_bloques.Descripcion FROM((exp_tareas INNER JOIN exp_elementos ON exp_tareas.IdElemento = exp_elementos.IdElemento) INNER JOIN com_bloques ON exp_elementos.IdComunidad = com_bloques.IdComunidad) INNER JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque WHERE (((com_bloques.Descripcion) = exp_elementos.Nombre) AND((exp_area.IdAreaPrevio) = 0))";
+            DataTable tablaAntigua = Persistencia.SentenciasSQL.select(sqlSelect);
+
+            foreach(DataRow row in tablaAntigua.Rows)
+            {
+                String sqlInsert = "INSERT INTO exp_areaTarea (IdArea,IdTarea) VALUES ('" + row[0] + "','" + row[1] + "')";
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+            }
+
+            MessageBox.Show("Actualizado correctamente");
         }
     }
 }
