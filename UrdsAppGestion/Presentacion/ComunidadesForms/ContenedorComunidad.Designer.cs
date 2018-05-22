@@ -60,7 +60,6 @@
             this.cuentasBancoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fichaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cargosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.serviciosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rutaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ejerciciosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,7 +69,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.documentosYComunicacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.anticiposToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.serviciosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -307,7 +306,7 @@
             this.cuentasBancoToolStripMenuItem,
             this.fichaToolStripMenuItem,
             this.cargosToolStripMenuItem,
-            this.elementosToolStripMenuItem,
+            this.serviciosToolStripMenuItem,
             this.rutaToolStripMenuItem,
             this.toolStripSeparator1,
             this.ejerciciosToolStripMenuItem1,
@@ -340,13 +339,6 @@
             this.cargosToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
             this.cargosToolStripMenuItem.Text = "Cargos";
             this.cargosToolStripMenuItem.Click += new System.EventHandler(this.cargosToolStripMenuItem_Click);
-            // 
-            // elementosToolStripMenuItem
-            // 
-            this.elementosToolStripMenuItem.Name = "elementosToolStripMenuItem";
-            this.elementosToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.elementosToolStripMenuItem.Text = "Elementos";
-            this.elementosToolStripMenuItem.Click += new System.EventHandler(this.elementosToolStripMenuItem_Click);
             // 
             // rutaToolStripMenuItem
             // 
@@ -406,6 +398,13 @@
             this.tareasToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.tareasToolStripMenuItem.Text = "Tareas";
             this.tareasToolStripMenuItem.Click += new System.EventHandler(this.tareasToolStripMenuItem_Click);
+            // 
+            // serviciosToolStripMenuItem
+            // 
+            this.serviciosToolStripMenuItem.Name = "serviciosToolStripMenuItem";
+            this.serviciosToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.serviciosToolStripMenuItem.Text = "Servicios";
+            this.serviciosToolStripMenuItem.Click += new System.EventHandler(this.serviciosToolStripMenuItem_Click_1);
             // 
             // ContenedorComunidad
             // 
@@ -469,5 +468,6 @@
         private System.Windows.Forms.ToolStripMenuItem rutaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ejerciciosToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem anticiposToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem serviciosToolStripMenuItem;
     }
 }

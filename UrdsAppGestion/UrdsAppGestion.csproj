@@ -152,6 +152,12 @@
     <Compile Include="Presentacion\EntidadesForms\FormRecibosEmitidos.Designer.cs">
       <DependentUpon>FormRecibosEmitidos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Tareas\FormArbolAreasBloque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormArbolAreasBloque.Designer.cs">
+      <DependentUpon>FormArbolAreasBloque.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Tareas\FormAreasBloque.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1482,6 +1488,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\EntidadesForms\FormRecibosEmitidos.resx">
       <DependentUpon>FormRecibosEmitidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormArbolAreasBloque.resx">
+      <DependentUpon>FormArbolAreasBloque.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormElementos.resx">
       <DependentUpon>FormElementos.cs</DependentUpon>
