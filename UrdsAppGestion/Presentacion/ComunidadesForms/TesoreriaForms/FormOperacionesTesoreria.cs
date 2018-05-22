@@ -218,12 +218,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
             fecha.HeaderText = "Fecha";
             fecha.Name = "FechaAsig";
             fecha.Width = 70;
-            fecha.DefaultCellStyle.Format = "##/##/####";
-            fecha.DefaultCellStyle.Format = "d";
+            fecha.DefaultCellStyle.Format = "dd/MM/yyyy";
             fecha.ReadOnly = false;
             dataGridView_general.Columns.Add(fecha);
             fechaasignacion = dataGridView_general.Columns["FechaAsig"].Index;
-
 
             DataGridViewCheckBoxColumn check = new DataGridViewCheckBoxColumn();
             check.HeaderText = "A";
@@ -616,6 +614,13 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
                         textBox_operacion_disponible.Text = "0.00";
                     }
                 }
+                if (e.ColumnIndex == fechaasignacion)
+                {
+                    if (dataGridView_general.CurrentCell.Value.ToString().Length == 8)
+                    {
+                        dataGridView_general.CurrentCell.Value = dataGridView_general.CurrentCell.Value.ToString().Substring(0, 2) + "/" + dataGridView_general.CurrentCell.Value.ToString().Substring(2, 2) + "/" + dataGridView_general.CurrentCell.Value.ToString().Substring(4, 4);
+                    }
+                }
             }
         }
 
@@ -645,6 +650,11 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
 
                 }
             }
+        }
+
+        private void dataGridView_general_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+
         }
     }
 }

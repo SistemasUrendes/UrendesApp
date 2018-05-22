@@ -50,6 +50,7 @@
             this.dataGridView_gastos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_gastos.Size = new System.Drawing.Size(1036, 475);
             this.dataGridView_gastos.TabIndex = 2;
+            this.dataGridView_gastos.DoubleClick += new System.EventHandler(this.dataGridView_gastos_DoubleClick);
             // 
             // label1
             // 

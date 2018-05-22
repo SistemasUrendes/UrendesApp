@@ -15,6 +15,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Impuestos
         String idComunidad;
         String idEjercicio = "";
         String anyo;
+        String orden = "1";
+        DataTable impuestos;
+        String sqlSelect;
+
+        int numColumnaBoton;
+        int numColumnaCheck;
 
         public FormImpuestos(String idComunidad,String idEjercicio, String anyo)
         {
@@ -26,109 +32,179 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Impuestos
 
         public void cargarDatagrid() {
 
-            String fechaInicio = (Convert.ToDateTime("01/01/" + DateTime.Now.Year)).ToString("yyyy-MM-dd");
-            String fechaFin = (Convert.ToDateTime("30/03/" + DateTime.Now.Year)).ToString("yyyy-MM-dd");
+            sqlSelect = "SELECT com_operaciones.IdComunidad, com_operaciones.IdOp, com_operaciones.Documento, ctos_entidades.Entidad, ctos_entidades.CIF, com_operaciones.Descripcion,  DATE_FORMAT(Coalesce(com_operaciones.Fecha,'ok'),'%d/%m/%Y') AS Fecha, com_operaciones.Retencion, com_operaciones.BaseRet, aux_retencion.`%Retencion` AS Retención, com_ivaImpuestos.Orden FROM com_ivaImpuestos INNER JOIN (aux_retencion INNER JOIN(ctos_entidades INNER JOIN com_operaciones ON ctos_entidades.IDEntidad = com_operaciones.IdEntidad) ON aux_retencion.IdRetencion = com_operaciones.IdRetencion) ON com_ivaImpuestos.IdIvaImpuestos = com_operaciones.IdPeridoIVA GROUP BY com_operaciones.IdComunidad, com_operaciones.IdOp, com_operaciones.Documento, ctos_entidades.Entidad, ctos_entidades.CIF, com_operaciones.Descripcion, com_operaciones.Fecha, com_operaciones.Retencion, com_operaciones.BaseRet, aux_retencion.`%Retencion`, com_ivaImpuestos.Orden HAVING(((com_operaciones.Retencion) > 0) AND((com_operaciones.IdComunidad) = " + idComunidad + "));";
 
-            String sqlSelect = "SELECT com_operaciones.IdOp, com_operaciones.Documento, ctos_entidades.Entidad, ctos_entidades.CIF, com_operaciones.Descripcion, DATE_FORMAT(Coalesce(com_opdetalles.Fecha,'ok'),'%d/%m/%Y') AS Fecha, com_operaciones.Retencion, com_operaciones.BaseRet, aux_retencion.`%Retencion` AS Retención, com_operaciones.ImpuestoLiquidado AS Informado FROM aux_retencion INNER JOIN (ctos_entidades INNER JOIN(com_opdetalles INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp) ON ctos_entidades.IDEntidad = com_operaciones.IdEntidad) ON aux_retencion.IdRetencion = com_operaciones.IdRetencion GROUP BY com_operaciones.IdOp, com_operaciones.Documento, ctos_entidades.Entidad, ctos_entidades.CIF, com_operaciones.Descripcion, com_opdetalles.Fecha, com_operaciones.Retencion, com_operaciones.BaseRet, aux_retencion.`%Retencion`, com_operaciones.ImpuestoLiquidado, com_operaciones.IdComunidad HAVING(((com_opdetalles.Fecha) >'" + fechaInicio + "' AND (com_opdetalles.Fecha) < '" + fechaFin + "') AND ((com_operaciones.Retencion)>0) AND ((com_operaciones.IdComunidad)=" + idComunidad + "));";
-
-            DataTable impuestos = Persistencia.SentenciasSQL.select(sqlSelect);
+            impuestos = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridView_impuestos.DataSource = impuestos;
+
+            if (dataGridView_impuestos.Columns.Contains("Vacio"))
+                dataGridView_impuestos.Columns.RemoveAt(dataGridView_impuestos.Columns["Vacio"].Index);
+
+            DataGridViewTextBoxColumn espacio = new DataGridViewTextBoxColumn();
+            espacio.HeaderText = "";
+            espacio.Name = "Vacio";
+            espacio.Width = 10;
+            espacio.DefaultCellStyle.BackColor = Color.Gray;
+            dataGridView_impuestos.Columns.Add(espacio);
+
+
+            if (dataGridView_impuestos.Columns.Contains("Unir"))
+                dataGridView_impuestos.Columns.RemoveAt(dataGridView_impuestos.Columns["Unir"].Index);
+
+            DataGridViewCheckBoxColumn check = new DataGridViewCheckBoxColumn();
+            check.HeaderText = "A";
+            check.Width = 30;
+            check.Name = "Unir";
+            check.ReadOnly = false;
+            dataGridView_impuestos.Columns.Add(check);
+            numColumnaCheck = dataGridView_impuestos.Columns["Unir"].Index;
+
+
+            for (int a = 0; a < dataGridView_impuestos.Columns.Count - 2; a++)
+            {
+                dataGridView_impuestos.Columns[a].ReadOnly = true;
+            }
+
+            dataGridView_impuestos.EditMode = DataGridViewEditMode.EditOnEnter;
+            DataTable busqueda = impuestos;
+            busqueda.DefaultView.RowFilter = "Orden = " + orden;
+            this.dataGridView_impuestos.DataSource = busqueda;
+
             ajustarDatagrid();
+            pintarDatagrid();
         }
 
         private void FormImpuestos_Load(object sender, EventArgs e)
         {
             cargarDatagrid();
-            comboBox_liquidaciones.SelectedItem = 0;
+            comboBox_liquidaciones.SelectedIndex = 0;
         }
 
         private void comboBox_liquidaciones_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            String fechaInicio = "0";
-            String fechaFin = "0";
 
-            if (comboBox_liquidaciones.SelectedIndex == 0) {
-                fechaInicio = (Convert.ToDateTime("01/01/"+ DateTime.Now.Year)).ToString("yyyy-MM-dd");
-                fechaFin = (Convert.ToDateTime("30/03/" + DateTime.Now.Year)).ToString("yyyy-MM-dd");
-            }
+            if (comboBox_liquidaciones.SelectedIndex == 0)
+                orden = "1";
             else if (comboBox_liquidaciones.SelectedIndex == 1)
-            {
-                fechaInicio = (Convert.ToDateTime("01/04/" + DateTime.Now.Year)).ToString("yyyy-MM-dd");
-                fechaFin = (Convert.ToDateTime("30/06/" + DateTime.Now.Year)).ToString("yyyy-MM-dd");
-            }
+                orden = "2";
+            else if (comboBox_liquidaciones.SelectedIndex == 2)
+                orden = "3";
             else if (comboBox_liquidaciones.SelectedIndex == 3)
-            {
-                fechaInicio = (Convert.ToDateTime("01/07/" + DateTime.Now.Year)).ToString("yyyy-MM-dd");
-                fechaFin = (Convert.ToDateTime("30/09/" + DateTime.Now.Year)).ToString("yyyy-MM-dd");
-            }
-            else if (comboBox_liquidaciones.SelectedIndex == 4)
-            {
-                fechaInicio = (Convert.ToDateTime("01/10/" + DateTime.Now.Year)).ToString("yyyy-MM-dd");
-                fechaFin = (Convert.ToDateTime("30/12/" + DateTime.Now.Year)).ToString("yyyy-MM-dd");
-            }
+                orden = "4";
 
+            DataTable busqueda = impuestos;
+            busqueda.DefaultView.RowFilter = "Orden = " + orden;
+            this.dataGridView_impuestos.DataSource = busqueda;
+            pintarDatagrid();
 
-            String sqlSelect = "SELECT com_operaciones.IdOp, com_operaciones.Documento, ctos_entidades.Entidad, ctos_entidades.CIF, com_operaciones.Descripcion,  DATE_FORMAT(Coalesce(com_opdetalles.Fecha,'ok'),'%d/%m/%Y') AS Fecha, com_operaciones.Retencion, com_operaciones.BaseRet, aux_retencion.`%Retencion` AS Retención, com_operaciones.ImpuestoLiquidado AS Informado FROM aux_retencion INNER JOIN (ctos_entidades INNER JOIN(com_opdetalles INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp) ON ctos_entidades.IDEntidad = com_operaciones.IdEntidad) ON aux_retencion.IdRetencion = com_operaciones.IdRetencion GROUP BY com_operaciones.IdOp, com_operaciones.Documento, ctos_entidades.Entidad, ctos_entidades.CIF, com_operaciones.Descripcion, com_opdetalles.Fecha, com_operaciones.Retencion, com_operaciones.BaseRet, aux_retencion.`%Retencion`, com_operaciones.ImpuestoLiquidado, com_operaciones.IdComunidad HAVING(((com_opdetalles.Fecha) >'" + fechaInicio + "' AND (com_opdetalles.Fecha) < '" + fechaFin + "') AND ((com_operaciones.Retencion)>0) AND ((com_operaciones.IdComunidad)=" + idComunidad + "));";
-
-            DataTable impuestos = Persistencia.SentenciasSQL.select(sqlSelect);
-            dataGridView_impuestos.DataSource = impuestos;
-            ajustarDatagrid();
         }
         private void ajustarDatagrid() {
             dataGridView_impuestos.Columns["Entidad"].Width = 200;
             dataGridView_impuestos.Columns["Descripcion"].Width = 200;
             dataGridView_impuestos.Columns["IdOp"].Width = 60;
-            dataGridView_impuestos.Columns["Informado"].Width = 50;
             dataGridView_impuestos.Columns["Retención"].HeaderText = "%";
             dataGridView_impuestos.Columns["BaseRet"].DefaultCellStyle.Format = "c";
             dataGridView_impuestos.Columns["Retencion"].DefaultCellStyle.Format = "c";
             dataGridView_impuestos.Columns["Retencion"].Width = 60;
-        }
-
-        private void marcarComoLiquidableToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            String sqlUpdate;
-            if (dataGridView_impuestos.SelectedRows[0].Cells[9].Value.ToString() == "-1") {
-                sqlUpdate = "UPDATE com_operaciones SET ImpuestoLiquidado = 0 WHERE IdOp = " + dataGridView_impuestos.SelectedRows[0].Cells[0].Value.ToString();
-            }
-            else {
-                sqlUpdate = "UPDATE com_operaciones SET ImpuestoLiquidado = -1 WHERE IdOp = " + dataGridView_impuestos.SelectedRows[0].Cells[0].Value.ToString();
-            }
-
-            Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
-            MessageBox.Show("Marcada");
-            cargarDatagrid();
+            dataGridView_impuestos.Columns["Orden"].Visible = false;
+            dataGridView_impuestos.Columns["IdComunidad"].Visible = false;
         }
 
         private void dataGridView_impuestos_DoubleClick(object sender, EventArgs e)
         {
-            OperacionesForms.FromOperacionesVer nueva = new OperacionesForms.FromOperacionesVer(dataGridView_impuestos.SelectedRows[0].Cells[0].Value.ToString(),0);
+            OperacionesForms.FromOperacionesVer nueva = new OperacionesForms.FromOperacionesVer(dataGridView_impuestos.SelectedRows[0].Cells[1].Value.ToString(), 2);
             nueva.Show();
         }
 
-        private void dataGridView_impuestos_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                var hti = dataGridView_impuestos.HitTest(e.X, e.Y);
-                dataGridView_impuestos.ClearSelection();
-                dataGridView_impuestos.Rows[hti.RowIndex].Selected = true;
-                verTodasDeToolStripMenuItem.Text = "Ver todas de: " + dataGridView_impuestos.SelectedRows[0].Cells[2].Value;
-                contextMenuStrip1.Show(Cursor.Position);
-            }
-        }
-
-        private void verTodasDeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Impuestos.FormImpuestoDetalle nueva = new FormImpuestoDetalle(dataGridView_impuestos.SelectedRows[0].Cells[0].Value.ToString(),(DataTable)dataGridView_impuestos.DataSource);
-            nueva.Show();
-        }
 
         private void comboBox_informes_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (comboBox_informes.SelectedIndex == 0) {
                 Informes.FormVerInforme nueva = new Informes.FormVerInforme((DataTable)dataGridView_impuestos.DataSource);
                 nueva.Show();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            String nombre = "Nada";
+
+            for (int a = 0; a < dataGridView_impuestos.Rows.Count; a++) {
+                if (button1.Text == "Sel.Todos")    {
+                    dataGridView_impuestos.Rows[a].Cells[numColumnaCheck].Value = true;
+                    nombre = "Des. Todos";
+                }else {
+                    dataGridView_impuestos.Rows[a].Cells[numColumnaCheck].Value = false;
+                    nombre = "Sel.Todos";
+                }
+            }
+            button1.Text = nombre;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           if (crearPeriodos()) {
+                DialogResult resultado_message;
+                resultado_message = MessageBox.Show("¿Desea cerrar el " + comboBox_liquidaciones.SelectedItem + " ?", "Cerrar Impuestos", MessageBoxButtons.OKCancel);
+                if (resultado_message == System.Windows.Forms.DialogResult.OK) {
+                    for (int a = 0; a < dataGridView_impuestos.Rows.Count; a++) {
+                        if ((Boolean)dataGridView_impuestos.Rows[a].Cells[numColumnaCheck].Value == false)
+                            cambiarPeriodoImpuestos(dataGridView_impuestos.Rows[a].Cells[1].Value.ToString());
+                    }
+                    String sqlUpdate = "UPDATE com_ivaImpuestos SET Cerrada= -1 WHERE Orden = " + orden + " AND IdComunidad = " + idComunidad;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+
+                    Informes.FormVerInforme nueva = new Informes.FormVerInforme((DataTable)dataGridView_impuestos.DataSource);
+                    nueva.Show();
+
+                    cargarDatagrid();
+                }
+            }
+        }
+        private void pintarDatagrid() {
+            for (int a = 0; a<dataGridView_impuestos.Rows.Count; a++) {
+                String sqlSelect = "SELECT com_ivaImpuestos.IdIvaImpuestos FROM com_operaciones INNER JOIN com_ivaImpuestos ON com_operaciones.IdPeridoIVA = com_ivaImpuestos.IdIvaImpuestos WHERE(((com_operaciones.IdOp) = " + dataGridView_impuestos.Rows[a].Cells[1].Value.ToString() + ") AND((com_ivaImpuestos.Cerrada) = -1));";
+                if (Persistencia.SentenciasSQL.select(sqlSelect).Rows.Count > 0)    {
+                    dataGridView_impuestos.Rows[a].DefaultCellStyle.ForeColor = Color.White;
+                    dataGridView_impuestos.Rows[a].DefaultCellStyle.BackColor = Color.Red;
+                }
+            }
+        }
+        private void cambiarPeriodoImpuestos (String idOp) {
+
+            String orden2;
+            if (orden == "4") orden2 = "1";
+            else orden2 = (Convert.ToInt32(orden) + 1).ToString();
+
+            String sqlSelect = "SELECT com_ivaImpuestos.IdIvaImpuestos FROM com_ivaImpuestos WHERE com_ivaImpuestos.Orden = " + orden2 + " AND com_ivaImpuestos.IdComunidad =" + idComunidad;
+
+            DataTable ivamas1 = Persistencia.SentenciasSQL.select(sqlSelect);
+            if (ivamas1.Rows.Count > 0)     {
+                String sqlUpdate = "UPDATE com_operaciones SET IdPeridoIVA=" + ivamas1.Rows[0][0].ToString() + " WHERE IdOp = " + idOp;
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+            }
+        }
+        private Boolean crearPeriodos() {
+
+            String sql = "SELECT IdIvaImpuestos FROM com_ivaImpuestos WHERE IdComunidad = " + idComunidad;
+            DataTable lineas = Persistencia.SentenciasSQL.select(sql);
+            if (lineas.Rows.Count != 4) {
+
+                String sqlDelete = "DELETE FROM com_ivaImpuestos WHERE IdComunidad = " + idComunidad;
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlDelete);
+
+                String sql1 = "INSERT INTO  com_ivaImpuestos (IdComunidad ,Descripcion, DescripcionCorta, FIni, FFin, Orden ,Cerrada) VALUES (" + idComunidad + ", '1º Trimestre IVA', '1TIVA', '01-01', '30-03', '1', '0')";
+                Persistencia.SentenciasSQL.InsertarGenerico(sql1);
+                String sql2 = "INSERT INTO  com_ivaImpuestos (IdComunidad ,Descripcion, DescripcionCorta, FIni, FFin, Orden ,Cerrada) VALUES (" + idComunidad + ", '2º Trimestre IVA', '2TIVA', '01-04', '30-06', '2', '0')";
+                Persistencia.SentenciasSQL.InsertarGenerico(sql2);
+                String sql3 = "INSERT INTO  com_ivaImpuestos (IdComunidad ,Descripcion, DescripcionCorta, FIni, FFin, Orden ,Cerrada) VALUES (" + idComunidad + ", '3º Trimestre IVA', '3TIVA', '01-07', '30-09', '3', '0')";
+                Persistencia.SentenciasSQL.InsertarGenerico(sql3);
+                String sql4 = "INSERT INTO  com_ivaImpuestos (IdComunidad ,Descripcion, DescripcionCorta, FIni, FFin, Orden ,Cerrada) VALUES (" + idComunidad + ", '4º Trimestre IVA', '4TIVA', '01-10', '30-12', '4', '0')";
+                Persistencia.SentenciasSQL.InsertarGenerico(sql4);
+
+                return true;
+            }else {
+                return true;
             }
         }
     }

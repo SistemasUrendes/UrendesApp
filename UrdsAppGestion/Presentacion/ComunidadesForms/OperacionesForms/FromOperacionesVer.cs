@@ -14,6 +14,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
     {
         String id_comunidad_cargado = "0";
         String id_operacion_cargado = "0";
+        String idEntidad;
         String tipo_reparto;
         String textobuscar;
         int deDondeVengo;
@@ -100,6 +101,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
                 textBox2.Visible = true;
                 textBox2.Text = fila.Rows[0]["IdOp"].ToString();
                 textBox_entidad.Text = (Persistencia.SentenciasSQL.select("SELECT Entidad FROM ctos_entidades WHERE IDEntidad = " + fila.Rows[0]["IdEntidad"].ToString())).Rows[0][0].ToString();
+                idEntidad = fila.Rows[0]["IdEntidad"].ToString();
+                textBox_entidad.Enabled = true;
                 textBox_importe.Text = fila.Rows[0]["ImpOp"].ToString();
                 textBox_imppte.Text = fila.Rows[0]["ImpOpPte"].ToString();
                 comboBox_cuenta_gastos.SelectedValue = fila.Rows[0]["IdSubCuenta"].ToString();
@@ -481,6 +484,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;
             nueva.StartPosition = FormStartPosition.CenterScreen;
+            nueva.Show();
+        }
+
+        private void textBox_entidad_DoubleClick(object sender, EventArgs e)
+        {
+            EntidadesForms.VerEntidad nueva = new EntidadesForms.VerEntidad(Convert.ToInt32(idEntidad));
             nueva.Show();
         }
     }

@@ -54,6 +54,7 @@
             this.comboBoxestado = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox_filtrofecha = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_operacionesComuneros)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -217,7 +218,7 @@
             // label_registros
             // 
             this.label_registros.AutoSize = true;
-            this.label_registros.Location = new System.Drawing.Point(826, 83);
+            this.label_registros.Location = new System.Drawing.Point(12, 531);
             this.label_registros.Name = "label_registros";
             this.label_registros.Size = new System.Drawing.Size(35, 13);
             this.label_registros.TabIndex = 24;
@@ -288,11 +289,21 @@
             this.comboBox_filtrofecha.Size = new System.Drawing.Size(105, 21);
             this.comboBox_filtrofecha.TabIndex = 30;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(600, 531);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.TabIndex = 31;
+            this.label7.Text = "label7";
+            // 
             // FormDivisionesCuotas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1218, 540);
+            this.ClientSize = new System.Drawing.Size(1218, 565);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.comboBox_filtrofecha);
             this.Controls.Add(this.comboBoxestado);
             this.Controls.Add(this.label6);
@@ -349,5 +360,6 @@
         private System.Windows.Forms.ToolStripMenuItem borrarFechaCertificaciónToolStripMenuItem;
         private System.Windows.Forms.ComboBox comboBox_filtrofecha;
         private System.Windows.Forms.ToolStripMenuItem liquidarFondoToolStripMenuItem;
+        private System.Windows.Forms.Label label7;
     }
 }

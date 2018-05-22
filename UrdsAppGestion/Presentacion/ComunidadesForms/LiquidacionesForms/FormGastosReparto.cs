@@ -71,5 +71,13 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
                 this.dataGridView_gastos.DataSource = busqueda;
             }
         }
+
+        private void dataGridView_gastos_DoubleClick(object sender, EventArgs e)
+        {
+            if (dataGridView_gastos.SelectedRows.Count > 0)     {
+                OperacionesForms.FromOperacionesVer nueva = new OperacionesForms.FromOperacionesVer(dataGridView_gastos.SelectedRows[0].Cells[2].Value.ToString(), 2);
+                nueva.Show();
+            }
+        }
     }
 }

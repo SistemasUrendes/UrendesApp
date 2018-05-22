@@ -189,8 +189,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
 
                     idop = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsert);
                 }
+                if (Convert.ToDouble(textBox_retencion.Text) > 0.00)
+                    tieneRetencion(idop.ToString());
 
-                //form_anterior.cargarOperacion(idop.ToString());
                 FormOperacionesAddIVA nueva = new FormOperacionesAddIVA(id_comunidad_cargado, idop.ToString(), textBox_importe.Text.Replace('.',','));
                 nueva.Show();
                 this.Close();
@@ -296,26 +297,51 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
         {
             this.Close();
         }
-        private void tieneRetencion() {
-            String sqlFechas = "SELECT com_ivaImpuestos.FIni, com_ivaImpuestos.FFin, com_ivaImpuestos.IdIvaImpuestos FROM com_ivaImpuestos;";
-            
+        private void tieneRetencion(String idOpNueva) {
+
+            //COMPRUEBO QUE TIENE NIF ESA OERACIÓN
+            String sqlNIF = "SELECT ctos_entidades.CIF FROM ctos_entidades WHERE ctos_entidades.IDEntidad =" + id_entidad_nuevo;
+            DataTable nif = Persistencia.SentenciasSQL.select(sqlNIF);
+            if (nif.Rows.Count > 0) {
+                if (nif.Rows[0][0].ToString() == "")
+                    MessageBox.Show("ESA ENTIDAD NO TIENE NIF Y LE HAS PUESTO RETENCIÓN. DEBES PONERLE EL NIF");
+                EntidadesForms.VerEntidad nueva = new EntidadesForms.VerEntidad(Convert.ToInt32(id_entidad_nuevo));
+                nueva.Show();
+            }
+
+            //BUSCO EL PERIODO QUE LE PERTENECE DE IVA Y SI ESTA CERRADO LE PONGO EL SIGUIENTE
+            String sqlFechas = "SELECT com_ivaImpuestos.FIni, com_ivaImpuestos.FFin, com_ivaImpuestos.IdIvaImpuestos, com_ivaImpuestos.Cerrada, com_ivaImpuestos.Orden FROM com_ivaImpuestos WHERE IdComunidad = " + id_comunidad_cargado;
             String fecha;
             DataTable periodos = Persistencia.SentenciasSQL.select(sqlFechas);
+
             for (int i=0;i<periodos.Rows.Count; i++) {
                 fecha = maskedTextBox_fecha.Text;
 
-                String fechaInicio = (Convert.ToDateTime(periodos.Rows[i][0] + "-" + DateTime.Now.Year.ToString())).ToString("yyyy-MM-dd");
-                String fechaFin = periodos.Rows[i][1] + "-" + DateTime.Now.Year.ToString();
-                fechaFin = (Convert.ToDateTime(periodos.Rows[i][1] + "-" + DateTime.Now.Year.ToString())).ToString("yyyy-MM-dd");
+                String fechaInicio = (Convert.ToDateTime(periodos.Rows[i][0] + "-" + DateTime.Now.Year.ToString())).ToString();
+                String fechaFin = (Convert.ToDateTime(periodos.Rows[i][1] + "-" + DateTime.Now.Year.ToString())).ToString();
 
-                MessageBox.Show(fecha + " | " + fechaInicio + " | " + fechaFin);
+                if (Convert.ToDateTime(fechaInicio) <= Convert.ToDateTime(maskedTextBox_fecha.Text) && Convert.ToDateTime(fechaFin) >= Convert.ToDateTime(maskedTextBox_fecha.Text)) {
+
+                    if (periodos.Rows[i][3].ToString() != "True")
+                    {
+                        //MessageBox.Show(fecha + " | " + fechaInicio + " | " + fechaFin);
+                        String sqlUpdateOperacion = "UPDATE com_operaciones SET IdPeridoIVA=" + periodos.Rows[i][2] + " WHERE IdOp = " + idOpNueva;
+                        Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdateOperacion);
+                    }else {
+                        int actual = Convert.ToInt32(periodos.Rows[i][4].ToString());
+                        if (actual == 4) actual = 1;
+                        else actual++;
+
+                        String sqlSelect = "SELECT IdIvaImpuestos FROM com_ivaImpuestos WHERE IdComunidad = " + id_comunidad_cargado + " AND Orden = " + actual;
+                        DataTable periodoNuevo = Persistencia.SentenciasSQL.select(sqlSelect);
+                        if (periodoNuevo.Rows.Count > 0) {
+                            String sqlUpdateOperacion = "UPDATE com_operaciones SET IdPeridoIVA=" + periodoNuevo.Rows[0][0] + " WHERE IdOp = " + idOpNueva;
+                            Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdateOperacion);
+                        }
+                    }
+                }
             }
-
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            tieneRetencion();
-        }
     }
 }

@@ -50,17 +50,17 @@
             this.button_anyadir = new System.Windows.Forms.Button();
             this.dataGridView_direcciones = new System.Windows.Forms.DataGridView();
             this.button_editar_dir1 = new System.Windows.Forms.Button();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button_borrar_cuenta = new System.Windows.Forms.Button();
+            this.button_anyadir_cuenta = new System.Windows.Forms.Button();
+            this.button_editar_cuenta = new System.Windows.Forms.Button();
+            this.dataGridView_bancos = new System.Windows.Forms.DataGridView();
             this.tabPageCategoriasNuevo = new System.Windows.Forms.TabPage();
             this.textBoxFiltroCategoria = new System.Windows.Forms.TextBox();
             this.dataGridViewCatAsig = new System.Windows.Forms.DataGridView();
             this.buttonRemove = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.dataGridViewCategorias = new System.Windows.Forms.DataGridView();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.button_borrar_cuenta = new System.Windows.Forms.Button();
-            this.button_anyadir_cuenta = new System.Windows.Forms.Button();
-            this.button_editar_cuenta = new System.Windows.Forms.Button();
-            this.dataGridView_bancos = new System.Windows.Forms.DataGridView();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.button_borrar_contacto = new System.Windows.Forms.Button();
             this.button_anyadir_contacto = new System.Windows.Forms.Button();
@@ -89,11 +89,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_telefonos)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_direcciones)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_bancos)).BeginInit();
             this.tabPageCategoriasNuevo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCatAsig)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCategorias)).BeginInit();
-            this.tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_bancos)).BeginInit();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_contactos)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -354,6 +354,69 @@
             this.button_editar_dir1.UseVisualStyleBackColor = true;
             this.button_editar_dir1.Click += new System.EventHandler(this.button_editar_dir1_Click);
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.button_borrar_cuenta);
+            this.tabPage4.Controls.Add(this.button_anyadir_cuenta);
+            this.tabPage4.Controls.Add(this.button_editar_cuenta);
+            this.tabPage4.Controls.Add(this.dataGridView_bancos);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(557, 327);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Bancos";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
+            // 
+            // button_borrar_cuenta
+            // 
+            this.button_borrar_cuenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_borrar_cuenta.Location = new System.Drawing.Point(498, 6);
+            this.button_borrar_cuenta.Name = "button_borrar_cuenta";
+            this.button_borrar_cuenta.Size = new System.Drawing.Size(53, 28);
+            this.button_borrar_cuenta.TabIndex = 16;
+            this.button_borrar_cuenta.Text = "Borrar";
+            this.button_borrar_cuenta.UseVisualStyleBackColor = true;
+            this.button_borrar_cuenta.Click += new System.EventHandler(this.button_borrar_cuenta_Click);
+            // 
+            // button_anyadir_cuenta
+            // 
+            this.button_anyadir_cuenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_anyadir_cuenta.Location = new System.Drawing.Point(399, 6);
+            this.button_anyadir_cuenta.Name = "button_anyadir_cuenta";
+            this.button_anyadir_cuenta.Size = new System.Drawing.Size(45, 28);
+            this.button_anyadir_cuenta.TabIndex = 15;
+            this.button_anyadir_cuenta.Text = "Añadir";
+            this.button_anyadir_cuenta.UseVisualStyleBackColor = true;
+            this.button_anyadir_cuenta.Click += new System.EventHandler(this.button_anyadir_cuenta_Click);
+            // 
+            // button_editar_cuenta
+            // 
+            this.button_editar_cuenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_editar_cuenta.Location = new System.Drawing.Point(450, 6);
+            this.button_editar_cuenta.Name = "button_editar_cuenta";
+            this.button_editar_cuenta.Size = new System.Drawing.Size(42, 28);
+            this.button_editar_cuenta.TabIndex = 14;
+            this.button_editar_cuenta.Text = "Editar";
+            this.button_editar_cuenta.UseVisualStyleBackColor = true;
+            this.button_editar_cuenta.Click += new System.EventHandler(this.button_editar_cuenta_Click);
+            // 
+            // dataGridView_bancos
+            // 
+            this.dataGridView_bancos.AllowUserToAddRows = false;
+            this.dataGridView_bancos.AllowUserToDeleteRows = false;
+            this.dataGridView_bancos.AllowUserToResizeRows = false;
+            this.dataGridView_bancos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_bancos.Location = new System.Drawing.Point(3, 40);
+            this.dataGridView_bancos.Name = "dataGridView_bancos";
+            this.dataGridView_bancos.ReadOnly = true;
+            this.dataGridView_bancos.RowHeadersVisible = false;
+            this.dataGridView_bancos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_bancos.Size = new System.Drawing.Size(551, 284);
+            this.dataGridView_bancos.TabIndex = 0;
+            this.dataGridView_bancos.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView_bancos_MouseClick);
+            // 
             // tabPageCategoriasNuevo
             // 
             this.tabPageCategoriasNuevo.Controls.Add(this.textBoxFiltroCategoria);
@@ -440,68 +503,6 @@
             this.dataGridViewCategorias.Size = new System.Drawing.Size(238, 270);
             this.dataGridViewCategorias.TabIndex = 23;
             this.dataGridViewCategorias.TabStop = false;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.button_borrar_cuenta);
-            this.tabPage4.Controls.Add(this.button_anyadir_cuenta);
-            this.tabPage4.Controls.Add(this.button_editar_cuenta);
-            this.tabPage4.Controls.Add(this.dataGridView_bancos);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(557, 327);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Bancos";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
-            // 
-            // button_borrar_cuenta
-            // 
-            this.button_borrar_cuenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_borrar_cuenta.Location = new System.Drawing.Point(498, 6);
-            this.button_borrar_cuenta.Name = "button_borrar_cuenta";
-            this.button_borrar_cuenta.Size = new System.Drawing.Size(53, 28);
-            this.button_borrar_cuenta.TabIndex = 16;
-            this.button_borrar_cuenta.Text = "Borrar";
-            this.button_borrar_cuenta.UseVisualStyleBackColor = true;
-            this.button_borrar_cuenta.Click += new System.EventHandler(this.button_borrar_cuenta_Click);
-            // 
-            // button_anyadir_cuenta
-            // 
-            this.button_anyadir_cuenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_anyadir_cuenta.Location = new System.Drawing.Point(399, 6);
-            this.button_anyadir_cuenta.Name = "button_anyadir_cuenta";
-            this.button_anyadir_cuenta.Size = new System.Drawing.Size(45, 28);
-            this.button_anyadir_cuenta.TabIndex = 15;
-            this.button_anyadir_cuenta.Text = "Añadir";
-            this.button_anyadir_cuenta.UseVisualStyleBackColor = true;
-            this.button_anyadir_cuenta.Click += new System.EventHandler(this.button_anyadir_cuenta_Click);
-            // 
-            // button_editar_cuenta
-            // 
-            this.button_editar_cuenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_editar_cuenta.Location = new System.Drawing.Point(450, 6);
-            this.button_editar_cuenta.Name = "button_editar_cuenta";
-            this.button_editar_cuenta.Size = new System.Drawing.Size(42, 28);
-            this.button_editar_cuenta.TabIndex = 14;
-            this.button_editar_cuenta.Text = "Editar";
-            this.button_editar_cuenta.UseVisualStyleBackColor = true;
-            this.button_editar_cuenta.Click += new System.EventHandler(this.button_editar_cuenta_Click);
-            // 
-            // dataGridView_bancos
-            // 
-            this.dataGridView_bancos.AllowUserToAddRows = false;
-            this.dataGridView_bancos.AllowUserToDeleteRows = false;
-            this.dataGridView_bancos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_bancos.Location = new System.Drawing.Point(3, 40);
-            this.dataGridView_bancos.Name = "dataGridView_bancos";
-            this.dataGridView_bancos.ReadOnly = true;
-            this.dataGridView_bancos.RowHeadersVisible = false;
-            this.dataGridView_bancos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_bancos.Size = new System.Drawing.Size(551, 284);
-            this.dataGridView_bancos.TabIndex = 0;
-            this.dataGridView_bancos.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView_bancos_MouseClick);
             // 
             // tabPage5
             // 
@@ -751,12 +752,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_telefonos)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_direcciones)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_bancos)).EndInit();
             this.tabPageCategoriasNuevo.ResumeLayout(false);
             this.tabPageCategoriasNuevo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCatAsig)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCategorias)).EndInit();
-            this.tabPage4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_bancos)).EndInit();
             this.tabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_contactos)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
@@ -791,7 +792,6 @@
         private System.Windows.Forms.Button button_editar_cabecera;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.DataGridView dataGridView_bancos;
         private System.Windows.Forms.Button button_editar_dir1;
         public System.Windows.Forms.TabControl tabControl1;
         public System.Windows.Forms.TabPage tabPage2;
@@ -822,5 +822,6 @@
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.DataGridView dataGridViewCategorias;
         private System.Windows.Forms.TextBox textBoxFiltroCategoria;
+        public System.Windows.Forms.DataGridView dataGridView_bancos;
     }
 }

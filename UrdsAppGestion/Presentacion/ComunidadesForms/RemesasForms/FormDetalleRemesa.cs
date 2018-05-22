@@ -28,6 +28,11 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.RemesasForms
             this.idComunidadCargado = idComunidadCargado;
             this.form_anterior = form_anterior;
         }
+        public FormDetalleRemesa(String id_remesa_cargado)
+        {
+            InitializeComponent();
+            this.id_remesa_cargado = id_remesa_cargado;
+        }
 
         private void FormDetalleRemesa_Load(object sender, EventArgs e)
         {
@@ -235,6 +240,25 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.RemesasForms
                 busqueda.DefaultView.RowFilter = "Entidad like '%" + textBox_buscar.Text + "%' OR Referencia like '%" + textBox_buscar.Text + "%' ";
                 this.dataGridView_detalles_remesa.DataSource = busqueda;
             }
+        }
+
+        private void dataGridView_detalles_remesa_MouseClick(object sender, MouseEventArgs e)
+        {
+
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                var hti = dataGridView_detalles_remesa.HitTest(e.X, e.Y);
+                dataGridView_detalles_remesa.ClearSelection();
+                dataGridView_detalles_remesa.Rows[hti.RowIndex].Selected = true;
+
+                contextMenuStrip1.Show(Cursor.Position);
+            }
+        }
+
+        private void cambiarNºCuentaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormCambiarCuenta nueva = new FormCambiarCuenta(this,dataGridView_detalles_remesa.SelectedRows[0].Cells[7].Value.ToString(), dataGridView_detalles_remesa.SelectedRows[0].Cells[3].Value.ToString(), dataGridView_detalles_remesa.SelectedRows[0].Cells[0].Value.ToString());
+            nueva.Show();
         }
     }
 }

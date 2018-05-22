@@ -114,12 +114,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Presentacion\ComunidadesForms\Impuestos\FormImpuestoDetalle.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\ComunidadesForms\Impuestos\FormImpuestoDetalle.Designer.cs">
-      <DependentUpon>FormImpuestoDetalle.cs</DependentUpon>
-    </Compile>
     <Compile Include="Presentacion\ComunidadesForms\Impuestos\FormImpuestos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +139,18 @@
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\FormAnticiposProveedores.Designer.cs">
       <DependentUpon>FormAnticiposProveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\RemesasForms\FormCambiarCuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\RemesasForms\FormCambiarCuenta.Designer.cs">
+      <DependentUpon>FormCambiarCuenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\FormRecibosEmitidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\EntidadesForms\FormRecibosEmitidos.Designer.cs">
+      <DependentUpon>FormRecibosEmitidos.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Tareas\FormAreasBloque.cs">
       <SubType>Form</SubType>
@@ -1447,6 +1453,12 @@
     <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\ReglasPago\FormReglasPago.resx">
       <DependentUpon>FormReglasPago.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\RemesasForms\FormCambiarCuenta.resx">
+      <DependentUpon>FormCambiarCuenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\EntidadesForms\FormRecibosEmitidos.resx">
+      <DependentUpon>FormRecibosEmitidos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormElementos.resx">
       <DependentUpon>FormElementos.cs</DependentUpon>
     </EmbeddedResource>
@@ -1466,9 +1478,6 @@
       <DependentUpon>FormVerInformeCuentas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\Informes\ReportCuentas.rdlc" />
-    <EmbeddedResource Include="Presentacion\ComunidadesForms\Impuestos\FormImpuestoDetalle.resx">
-      <DependentUpon>FormImpuestoDetalle.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\Impuestos\FormImpuestos.resx">
       <DependentUpon>FormImpuestos.cs</DependentUpon>
     </EmbeddedResource>

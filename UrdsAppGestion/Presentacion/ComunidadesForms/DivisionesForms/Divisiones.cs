@@ -71,7 +71,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
         public void cargarDetallesDivisiones() {
             if (divisiones.Rows.Count > 0)
             {
-                dataGridView_divisiones.Rows[0].Selected = true;
+                if (dataGridView_divisiones.SelectedRows.Count == 0) {
+                    dataGridView_divisiones.Rows[0].Selected = true;
+                }
+
                 String sql = "SELECT com_asociacion.IdDivision, com_asociacion.IdAsociacion, ctos_entidades.Entidad, com_tipoasociacion.TipoAsociación, com_asociacion.Participacion, com_asociacion.FechaAlta, com_asociacion.FechaBaja, com_asociacion.Ppal, ctos_entidades.IDEntidad FROM((com_asociacion INNER JOIN com_comuneros ON com_asociacion.IdComunero = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN com_tipoasociacion ON com_asociacion.IdTipoAsoc = com_tipoasociacion.IdTipoAsoc WHERE(((com_asociacion.IdDivision)= " + dataGridView_divisiones.SelectedRows[0].Cells[0].Value + "));";
 
                 dataGridView_detalles_divisiones.DataSource = Persistencia.SentenciasSQL.select(sql);

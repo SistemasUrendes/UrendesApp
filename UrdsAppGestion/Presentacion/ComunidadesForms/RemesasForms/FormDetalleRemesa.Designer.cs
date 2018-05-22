@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDetalleRemesa));
             this.dataGridView_detalles_remesa = new System.Windows.Forms.DataGridView();
             this.button_anyadir_recibos = new System.Windows.Forms.Button();
@@ -38,7 +39,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox_buscar = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cambiarNºCuentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_detalles_remesa)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView_detalles_remesa
@@ -55,6 +59,7 @@
             this.dataGridView_detalles_remesa.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_detalles_remesa.Size = new System.Drawing.Size(1135, 520);
             this.dataGridView_detalles_remesa.TabIndex = 0;
+            this.dataGridView_detalles_remesa.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView_detalles_remesa_MouseClick);
             // 
             // button_anyadir_recibos
             // 
@@ -131,6 +136,20 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Buscar : ";
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cambiarNºCuentaToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(178, 48);
+            // 
+            // cambiarNºCuentaToolStripMenuItem
+            // 
+            this.cambiarNºCuentaToolStripMenuItem.Name = "cambiarNºCuentaToolStripMenuItem";
+            this.cambiarNºCuentaToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.cambiarNºCuentaToolStripMenuItem.Text = "Cambiar Nº Cuenta";
+            this.cambiarNºCuentaToolStripMenuItem.Click += new System.EventHandler(this.cambiarNºCuentaToolStripMenuItem_Click);
+            // 
             // FormDetalleRemesa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -152,6 +171,7 @@
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormDetalleRemesa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_detalles_remesa)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -168,5 +188,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox_buscar;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem cambiarNºCuentaToolStripMenuItem;
     }
 }

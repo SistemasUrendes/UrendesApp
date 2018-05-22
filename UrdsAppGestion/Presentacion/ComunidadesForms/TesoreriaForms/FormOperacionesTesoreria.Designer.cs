@@ -69,6 +69,7 @@
             this.dataGridView_general.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_general_CellClick);
             this.dataGridView_general.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_general_CellEndEdit);
             this.dataGridView_general.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_general_CellValidated);
+            this.dataGridView_general.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView_general_CellValidating);
             this.dataGridView_general.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_general_CellValueChanged);
             this.dataGridView_general.Sorted += new System.EventHandler(this.dataGridView_general_Sorted);
             // 

@@ -58,7 +58,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
 
             if (id_division_cargado != null)
             {
-                String sqlSelect = "SELECT com_operaciones.IdDivision, com_operaciones.Descripcion, com_operaciones.ImpOp, com_operaciones.ImpOpPte, com_opdetalles.IdRecibo, com_estadosCuotas.Descripcion, com_operaciones.FCertificado, com_operaciones.IdOp FROM(com_operaciones INNER JOIN com_opdetalles ON com_operaciones.IdOp = com_opdetalles.IdOp) LEFT JOIN com_estadosCuotas ON com_operaciones.IdEstadoCuota = com_estadosCuotas.IdEstadoCuota WHERE(((com_operaciones.IdDivision) = " + id_division_cargado + ") AND((com_operaciones.ImpOpPte) <> 0));";
+                String sqlSelect = "SELECT com_operaciones.IdOp, com_operaciones.IdDivision, com_operaciones.Descripcion, com_operaciones.ImpOp, com_operaciones.ImpOpPte, com_opdetalles.IdRecibo, com_estadosCuotas.Descripcion, com_operaciones.FCertificado FROM(com_operaciones INNER JOIN com_opdetalles ON com_operaciones.IdOp = com_opdetalles.IdOp) LEFT JOIN com_estadosCuotas ON com_operaciones.IdEstadoCuota = com_estadosCuotas.IdEstadoCuota WHERE(((com_operaciones.IdDivision) = " + id_division_cargado + ") AND((com_operaciones.ImpOpPte) <> 0));";
 
                 cuotasDivision = Persistencia.SentenciasSQL.select(sqlSelect);
                 dataGridView_operacionesComuneros.DataSource = cuotasDivision;
@@ -100,11 +100,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
             label_registros.Text = dataGridView_operacionesComuneros.Rows.Count.ToString() + " Registros";
             maskedTextBox_inicio.Text = Convert.ToDateTime("1-1-" + DateTime.Now.Year).ToShortDateString();
             maskedTextBox_fin.Text = Convert.ToDateTime(DateTime.Now).ToShortDateString();
+            calcularImporte();
         }
         private void ajustarDatagrid() {
             dataGridView_operacionesComuneros.Columns[1].Width = 310;
             dataGridView_operacionesComuneros.Columns[0].Visible = false;
-            dataGridView_operacionesComuneros.Columns[7].Visible = false;
+            //dataGridView_operacionesComuneros.Columns[7].Visible = false;
             dataGridView_operacionesComuneros.Columns["ImpOpPte"].DefaultCellStyle.Format = "c";
             dataGridView_operacionesComuneros.Columns["ImpOp"].DefaultCellStyle.Format = "c";
             dataGridView_operacionesComuneros.Columns[5].HeaderText = "Estado";
@@ -131,15 +132,15 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
             {
                 if (comboBox_estado.SelectedItem.ToString() == "Pendiente")
                 {
-                    sqlSelect = "SELECT com_divisiones.IdDivision, com_operaciones.Descripcion, com_operaciones.ImpOp, com_operaciones.ImpOpPte, com_opdetalles.IdRecibo, com_estadosCuotas.Descripcion, com_operaciones.FCertificado, com_operaciones.IdOp FROM(((com_opdetbloques INNER JOIN com_divisiones ON com_opdetbloques.IdDivision = com_divisiones.IdDivision) INNER JOIN com_operaciones ON com_opdetbloques.IdOp = com_operaciones.IdOp) INNER JOIN com_opdetalles ON com_operaciones.IdOp = com_opdetalles.IdOp) INNER JOIN com_estadosCuotas ON com_operaciones.IdEstadoCuota = com_estadosCuotas.IdEstadoCuota WHERE(((com_divisiones.IdDivision) = " + id_division_cargado + ") AND((com_operaciones.Fecha) >= '" + fechaInicio + "' And (com_operaciones.Fecha) <= '" + fechaFin + "') And (ImpOpPte > 0));";
+                    sqlSelect = "SELECT com_operaciones.IdOp, com_divisiones.IdDivision, com_operaciones.Descripcion, com_operaciones.ImpOp, com_operaciones.ImpOpPte, com_opdetalles.IdRecibo, com_estadosCuotas.Descripcion, com_operaciones.FCertificado FROM(((com_opdetbloques INNER JOIN com_divisiones ON com_opdetbloques.IdDivision = com_divisiones.IdDivision) INNER JOIN com_operaciones ON com_opdetbloques.IdOp = com_operaciones.IdOp) INNER JOIN com_opdetalles ON com_operaciones.IdOp = com_opdetalles.IdOp) INNER JOIN com_estadosCuotas ON com_operaciones.IdEstadoCuota = com_estadosCuotas.IdEstadoCuota WHERE(((com_divisiones.IdDivision) = " + id_division_cargado + ") AND((com_operaciones.Fecha) >= '" + fechaInicio + "' And (com_operaciones.Fecha) <= '" + fechaFin + "') And (ImpOpPte > 0));";
                 }
                 else if (comboBox_estado.SelectedItem.ToString() == "Cerrado")
                 {
-                    sqlSelect = "SELECT com_divisiones.IdDivision, com_operaciones.Descripcion, com_operaciones.ImpOp, com_operaciones.ImpOpPte, com_opdetalles.IdRecibo, com_estadosCuotas.Descripcion, com_operaciones.FCertificado, com_operaciones.IdOp FROM(((com_opdetbloques INNER JOIN com_divisiones ON com_opdetbloques.IdDivision = com_divisiones.IdDivision) INNER JOIN com_operaciones ON com_opdetbloques.IdOp = com_operaciones.IdOp) INNER JOIN com_opdetalles ON com_operaciones.IdOp = com_opdetalles.IdOp) INNER JOIN com_estadosCuotas ON com_operaciones.IdEstadoCuota = com_estadosCuotas.IdEstadoCuota WHERE(((com_divisiones.IdDivision) = " + id_division_cargado + ") AND((com_operaciones.Fecha) >= '" + fechaInicio + "' And (com_operaciones.Fecha) <= '" + fechaFin + "') And (ImpOpPte = 0));";
+                    sqlSelect = "SELECT com_operaciones.IdOp, com_divisiones.IdDivision, com_operaciones.Descripcion, com_operaciones.ImpOp, com_operaciones.ImpOpPte, com_opdetalles.IdRecibo, com_estadosCuotas.Descripcion, com_operaciones.FCertificado FROM(((com_opdetbloques INNER JOIN com_divisiones ON com_opdetbloques.IdDivision = com_divisiones.IdDivision) INNER JOIN com_operaciones ON com_opdetbloques.IdOp = com_operaciones.IdOp) INNER JOIN com_opdetalles ON com_operaciones.IdOp = com_opdetalles.IdOp) INNER JOIN com_estadosCuotas ON com_operaciones.IdEstadoCuota = com_estadosCuotas.IdEstadoCuota WHERE(((com_divisiones.IdDivision) = " + id_division_cargado + ") AND((com_operaciones.Fecha) >= '" + fechaInicio + "' And (com_operaciones.Fecha) <= '" + fechaFin + "') And (ImpOpPte = 0));";
                 }
                 else if (comboBox_estado.SelectedItem.ToString() == "Todo")
                 {
-                    sqlSelect = "SELECT com_divisiones.IdDivision, com_operaciones.Descripcion, com_operaciones.ImpOp, com_operaciones.ImpOpPte, com_opdetalles.IdRecibo, com_estadosCuotas.Descripcion, com_operaciones.FCertificado, com_operaciones.IdOp FROM(((com_opdetbloques INNER JOIN com_divisiones ON com_opdetbloques.IdDivision = com_divisiones.IdDivision) INNER JOIN com_operaciones ON com_opdetbloques.IdOp = com_operaciones.IdOp) INNER JOIN com_opdetalles ON com_operaciones.IdOp = com_opdetalles.IdOp) INNER JOIN com_estadosCuotas ON com_operaciones.IdEstadoCuota = com_estadosCuotas.IdEstadoCuota WHERE(((com_divisiones.IdDivision) = " + id_division_cargado + ") AND((com_operaciones.Fecha) >= '" + fechaInicio + "' And (com_operaciones.Fecha) <= '" + fechaFin + "'));";
+                    sqlSelect = "SELECT com_operaciones.IdOp, com_divisiones.IdDivision, com_operaciones.Descripcion, com_operaciones.ImpOp, com_operaciones.ImpOpPte, com_opdetalles.IdRecibo, com_estadosCuotas.Descripcion, com_operaciones.FCertificado FROM(((com_opdetbloques INNER JOIN com_divisiones ON com_opdetbloques.IdDivision = com_divisiones.IdDivision) INNER JOIN com_operaciones ON com_opdetbloques.IdOp = com_operaciones.IdOp) INNER JOIN com_opdetalles ON com_operaciones.IdOp = com_opdetalles.IdOp) INNER JOIN com_estadosCuotas ON com_operaciones.IdEstadoCuota = com_estadosCuotas.IdEstadoCuota WHERE(((com_divisiones.IdDivision) = " + id_division_cargado + ") AND((com_operaciones.Fecha) >= '" + fechaInicio + "' And (com_operaciones.Fecha) <= '" + fechaFin + "'));";
                 }
                 //ajustarDatagrid();
             }
@@ -261,6 +262,15 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
 
             dataGridView_operacionesComuneros.Columns["ImpOpPte"].DefaultCellStyle.Format = "c";
             label_registros.Text = dataGridView_operacionesComuneros.Rows.Count.ToString() + " Registros";
+            calcularImporte();
+
+        }
+        private void calcularImporte() {
+            double total = 0.0;
+            for (int i = 0; i < dataGridView_operacionesComuneros.Rows.Count;i++) {
+                total += Convert.ToDouble(dataGridView_operacionesComuneros.Rows[i].Cells[5].Value);
+            }
+            label7.Text = "Suma: " + total.ToString() + "€";
         }
         private void button_filtrar_Click(object sender, EventArgs e)
         {
@@ -298,7 +308,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
                 for (int a = 0; a < dataGridView_operacionesComuneros.SelectedRows.Count; a++)
                 {
                     if (id_division_cargado != null)
-                         lista_operaciones.Add(dataGridView_operacionesComuneros.SelectedRows[a].Cells[7].Value.ToString());
+                         lista_operaciones.Add(dataGridView_operacionesComuneros.SelectedRows[a].Cells[0].Value.ToString());
                     else
                         lista_operaciones.Add(dataGridView_operacionesComuneros.SelectedRows[a].Cells[0].Value.ToString());
                 }
@@ -312,7 +322,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
 
         private void abrirOperacionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OperacionesForms.FromOperacionesVer nueva = new OperacionesForms.FromOperacionesVer(dataGridView_operacionesComuneros.SelectedCells[7].Value.ToString(),2);
+            OperacionesForms.FromOperacionesVer nueva = new OperacionesForms.FromOperacionesVer(dataGridView_operacionesComuneros.SelectedCells[0].Value.ToString(),2);
             nueva.Show();
         }
 
@@ -326,7 +336,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
                 for (int a = 0; a < dataGridView_operacionesComuneros.SelectedRows.Count; a++)
                 {
                     if (id_division_cargado != null)
-                        lista_operaciones.Add(dataGridView_operacionesComuneros.SelectedRows[a].Cells[7].Value.ToString());
+                        lista_operaciones.Add(dataGridView_operacionesComuneros.SelectedRows[a].Cells[0].Value.ToString());
                     else
                         lista_operaciones.Add(dataGridView_operacionesComuneros.SelectedRows[a].Cells[0].Value.ToString());
                 }
@@ -359,7 +369,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
 
         private void dataGridView_operacionesComuneros_DoubleClick(object sender, EventArgs e)
         {
-            OperacionesForms.FromOperacionesVer nueva = new OperacionesForms.FromOperacionesVer(dataGridView_operacionesComuneros.SelectedCells[7].Value.ToString(),2);
+            OperacionesForms.FromOperacionesVer nueva = new OperacionesForms.FromOperacionesVer(dataGridView_operacionesComuneros.SelectedCells[0].Value.ToString(),2);
             nueva.Show();
         }
 

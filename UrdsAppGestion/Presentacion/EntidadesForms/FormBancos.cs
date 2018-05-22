@@ -64,10 +64,16 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
                     compruebaPrincipal(ultimo_id.ToString(), principal);
                     // form_entidad.cargoBanco();
                 }
+                if (form_entidad.dataGridView_bancos.Rows.Count > 0) {
+                    MessageBox.Show("Puede que existan recibos emitidos");
+                    FormRecibosEmitidos nueva = new FormRecibosEmitidos(id_entidad_cargado);
+                    nueva.Show();
+                }
                 form_entidad.cargoBanco();
                 this.Close();
             }
         }
+
 
         private void compruebaPrincipal(String id_direccion, String principal)
         {

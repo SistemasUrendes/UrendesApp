@@ -92,6 +92,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
                 else
                     MessageBox.Show("No se ha podido actualizar el correo");
             }
+            MessageBox.Show("Asegurate de cambiarlo, si es necesario, en el Comunero.");
             m_frm.cargaCorreos();
 
         }

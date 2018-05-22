@@ -87,6 +87,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
                 else
                     MessageBox.Show("No se ha podido actualizar el telefono");
             }
+            MessageBox.Show("Asegurate de cambiarlo, si es necesario ,en el Comunero.");
             m_frm.cargaTelefonos();
 
         }

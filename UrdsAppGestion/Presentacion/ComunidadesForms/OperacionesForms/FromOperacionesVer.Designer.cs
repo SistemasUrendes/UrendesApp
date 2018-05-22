@@ -339,6 +339,7 @@
             this.textBox_entidad.ReadOnly = true;
             this.textBox_entidad.Size = new System.Drawing.Size(321, 20);
             this.textBox_entidad.TabIndex = 10;
+            this.textBox_entidad.DoubleClick += new System.EventHandler(this.textBox_entidad_DoubleClick);
             // 
             // label10
             // 
