@@ -106,32 +106,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void dataGridViewBloques_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (idComunidad != null && idTarea != null)
-            {
-                if (dataGridViewBloques.SelectedRows[0].Index > -1)
-                {
-                    if (dataGridViewBloques.SelectedRows[0].Cells["Sel"].Value.ToString() == "false")
-                    {
-                        dataGridViewBloques.SelectedRows[0].Cells["Sel"].Value = "true";
-                        tablaBloques.Rows[indiceTabla(dataGridViewBloques.SelectedRows[0].Cells[0].Value.ToString())]["Selected"] = "true";
-                    }
-                    else if (dataGridViewBloques.SelectedRows[0].Cells["Sel"].Value.ToString() == "true")
-                    {
-                        dataGridViewBloques.SelectedRows[0].Cells["Sel"].Value = "false";
-                        tablaBloques.Rows[indiceTabla(dataGridViewBloques.SelectedRows[0].Cells[0].Value.ToString())]["Selected"] = "false";
-                    }
-                }
-            }
-            if (form_anterior2 != null)
-            {
-                form_anterior2.recibirBloque(dataGridViewBloques.SelectedRows[0].Cells[1].Value.ToString());
-                this.Close();
-            }
-            if (form_anterior3 != null)
-            {
-                form_anterior3.recibirBloque(dataGridViewBloques.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewBloques.SelectedRows[0].Cells[1].Value.ToString());
-                this.Close();
-            }
 
         }
 
@@ -225,6 +199,37 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     }
                 }
             }
+        }
+
+        private void dataGridViewBloques_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (idComunidad != null && idTarea != null)
+            {
+                if (dataGridViewBloques.SelectedRows[0].Index > -1)
+                {
+                    if (dataGridViewBloques.SelectedRows[0].Cells["Sel"].Value.ToString() == "false")
+                    {
+                        dataGridViewBloques.SelectedRows[0].Cells["Sel"].Value = "true";
+                        tablaBloques.Rows[indiceTabla(dataGridViewBloques.SelectedRows[0].Cells[0].Value.ToString())]["Selected"] = "true";
+                    }
+                    else if (dataGridViewBloques.SelectedRows[0].Cells["Sel"].Value.ToString() == "true")
+                    {
+                        dataGridViewBloques.SelectedRows[0].Cells["Sel"].Value = "false";
+                        tablaBloques.Rows[indiceTabla(dataGridViewBloques.SelectedRows[0].Cells[0].Value.ToString())]["Selected"] = "false";
+                    }
+                }
+            }
+            if (form_anterior2 != null)
+            {
+                form_anterior2.recibirBloque(dataGridViewBloques.SelectedRows[0].Cells[1].Value.ToString());
+                this.Close();
+            }
+            if (form_anterior3 != null)
+            {
+                form_anterior3.recibirBloque(dataGridViewBloques.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewBloques.SelectedRows[0].Cells[1].Value.ToString());
+                this.Close();
+            }
+
         }
     }
 

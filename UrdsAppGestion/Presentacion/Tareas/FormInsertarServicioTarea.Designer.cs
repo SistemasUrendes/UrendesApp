@@ -108,7 +108,7 @@
             this.dataGridViewServicios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewServicios.Size = new System.Drawing.Size(643, 340);
             this.dataGridViewServicios.TabIndex = 4;
-            this.dataGridViewServicios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewServicios_CellDoubleClick);
+            this.dataGridViewServicios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewServicios_CellClick);
             this.dataGridViewServicios.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridViewServicios_KeyDown);
             // 
             // buttonEnviar

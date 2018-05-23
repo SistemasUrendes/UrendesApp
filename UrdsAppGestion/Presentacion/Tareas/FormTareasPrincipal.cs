@@ -704,6 +704,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     ordFIni = "DESC";
                     ordFFin = null;
                 }
+                aplicarFiltroTabla();
             }
             else if (e.ColumnIndex == 8)
             {
@@ -717,8 +718,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     ordFIni = null;
                     ordFFin = "DESC";
                 }
+                aplicarFiltroTabla();
             }
-            aplicarFiltroTabla();
         }
     }
 }

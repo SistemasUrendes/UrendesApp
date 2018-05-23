@@ -49,7 +49,7 @@
             this.dataGridViewBloques.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewBloques.Size = new System.Drawing.Size(400, 343);
             this.dataGridViewBloques.TabIndex = 13;
-            this.dataGridViewBloques.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBloques_CellDoubleClick);
+            this.dataGridViewBloques.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBloques_CellClick);
             this.dataGridViewBloques.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridViewBloques_KeyDown);
             // 
             // buttonEnviar

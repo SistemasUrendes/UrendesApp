@@ -192,11 +192,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.Close();
         }
 
-        private void dataGridViewServicios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            cambiarSeleccionFila();
-        }
-
         private void cambiarSeleccionFila()
         {
             if (dataGridViewServicios.SelectedRows[0].Index > -1)
@@ -228,6 +223,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void buttonEnviar_Click(object sender, EventArgs e)
         {
             guardarServicios();
+        }
+
+        private void dataGridViewServicios_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            cambiarSeleccionFila();
         }
     }
 }
