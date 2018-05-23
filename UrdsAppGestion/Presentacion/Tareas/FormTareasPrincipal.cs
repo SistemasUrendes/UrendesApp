@@ -721,5 +721,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 aplicarFiltroTabla();
             }
         }
+
+        private void textBox_Entidad_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.id_comunidad = null;
+            this.id_entidad = null;
+            maskedTextBoxRefComunidad.Text = "";
+            textBox_Entidad.Text = "";
+            aplicarFiltroTabla();
+        }
     }
 }
