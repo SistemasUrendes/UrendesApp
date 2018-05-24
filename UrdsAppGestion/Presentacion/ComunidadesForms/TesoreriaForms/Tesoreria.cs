@@ -250,17 +250,22 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             //ComboBox combo = (ComboBox)sender;
             if (comboBox_e_otras.SelectedIndex == 0)
             {
-                TesoreriaForms.FormTraspasoES nueva = new TesoreriaForms.FormTraspasoES(this,id_comunidad.ToString(),"1",id_cuenta.ToString());
+                TesoreriaForms.FormTraspasoES nueva = new TesoreriaForms.FormTraspasoES(this, id_comunidad.ToString(), "1", id_cuenta.ToString());
                 nueva.Show();
-            }else if (comboBox_e_otras.SelectedIndex == 1) {
-                TesoreriaForms.FormAsientoApertura nueva = new TesoreriaForms.FormAsientoApertura(this,id_comunidad.ToString(),id_cuenta.ToString(),comboBox_ejercicio.SelectedValue.ToString());
+            }
+            else if (comboBox_e_otras.SelectedIndex == 1)
+            {
+                TesoreriaForms.FormAsientoApertura nueva = new TesoreriaForms.FormAsientoApertura(this, id_comunidad.ToString(), id_cuenta.ToString(), comboBox_ejercicio.SelectedValue.ToString());
+                nueva.Show();
+            }
+            else if (comboBox_e_otras.SelectedIndex == 2)   {
+                TesoreriaForms.FormOperacionesTesoreria nueva = new TesoreriaForms.FormOperacionesTesoreria(this, id_comunidad.ToString(), id_cuenta.ToString(), "Otras Entradas");
                 nueva.Show();
             }
         }
 
         private void comboBox_s_otras_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            //ComboBox combo = (ComboBox)sender;
 
             if (comboBox_s_otras.SelectedIndex == 0)
             {
