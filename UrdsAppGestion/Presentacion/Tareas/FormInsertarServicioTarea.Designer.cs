@@ -37,13 +37,14 @@
             this.label15 = new System.Windows.Forms.Label();
             this.dataGridViewServicios = new System.Windows.Forms.DataGridView();
             this.buttonEnviar = new System.Windows.Forms.Button();
+            this.buttonAddServicio = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewServicios)).BeginInit();
             this.SuspendLayout();
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(220, 36);
+            this.label18.Location = new System.Drawing.Point(221, 47);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(43, 13);
             this.label18.TabIndex = 41;
@@ -52,7 +53,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(456, 36);
+            this.label16.Location = new System.Drawing.Point(457, 47);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(26, 13);
             this.label16.TabIndex = 40;
@@ -60,7 +61,7 @@
             // 
             // textBoxFiltroBloque
             // 
-            this.textBoxFiltroBloque.Location = new System.Drawing.Point(269, 33);
+            this.textBoxFiltroBloque.Location = new System.Drawing.Point(270, 44);
             this.textBoxFiltroBloque.Name = "textBoxFiltroBloque";
             this.textBoxFiltroBloque.Size = new System.Drawing.Size(170, 20);
             this.textBoxFiltroBloque.TabIndex = 2;
@@ -69,7 +70,7 @@
             // 
             // textBoxFiltroCategoria
             // 
-            this.textBoxFiltroCategoria.Location = new System.Drawing.Point(488, 33);
+            this.textBoxFiltroCategoria.Location = new System.Drawing.Point(489, 44);
             this.textBoxFiltroCategoria.Name = "textBoxFiltroCategoria";
             this.textBoxFiltroCategoria.Size = new System.Drawing.Size(170, 20);
             this.textBoxFiltroCategoria.TabIndex = 3;
@@ -78,7 +79,7 @@
             // 
             // textBoxFiltroServicios
             // 
-            this.textBoxFiltroServicios.Location = new System.Drawing.Point(15, 33);
+            this.textBoxFiltroServicios.Location = new System.Drawing.Point(16, 44);
             this.textBoxFiltroServicios.Name = "textBoxFiltroServicios";
             this.textBoxFiltroServicios.Size = new System.Drawing.Size(199, 20);
             this.textBoxFiltroServicios.TabIndex = 1;
@@ -88,7 +89,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(12, 9);
+            this.label15.Location = new System.Drawing.Point(13, 15);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(121, 15);
             this.label15.TabIndex = 36;
@@ -100,7 +101,7 @@
             this.dataGridViewServicios.AllowUserToDeleteRows = false;
             this.dataGridViewServicios.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewServicios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewServicios.Location = new System.Drawing.Point(15, 59);
+            this.dataGridViewServicios.Location = new System.Drawing.Point(16, 70);
             this.dataGridViewServicios.Name = "dataGridViewServicios";
             this.dataGridViewServicios.ReadOnly = true;
             this.dataGridViewServicios.RowHeadersVisible = false;
@@ -113,7 +114,7 @@
             // 
             // buttonEnviar
             // 
-            this.buttonEnviar.Location = new System.Drawing.Point(285, 6);
+            this.buttonEnviar.Location = new System.Drawing.Point(285, 12);
             this.buttonEnviar.Name = "buttonEnviar";
             this.buttonEnviar.Size = new System.Drawing.Size(88, 23);
             this.buttonEnviar.TabIndex = 5;
@@ -121,11 +122,22 @@
             this.buttonEnviar.UseVisualStyleBackColor = true;
             this.buttonEnviar.Click += new System.EventHandler(this.buttonEnviar_Click);
             // 
+            // buttonAddServicio
+            // 
+            this.buttonAddServicio.Location = new System.Drawing.Point(531, 12);
+            this.buttonAddServicio.Name = "buttonAddServicio";
+            this.buttonAddServicio.Size = new System.Drawing.Size(128, 23);
+            this.buttonAddServicio.TabIndex = 42;
+            this.buttonAddServicio.Text = "Añadir Servicio nuevo";
+            this.buttonAddServicio.UseVisualStyleBackColor = true;
+            this.buttonAddServicio.Click += new System.EventHandler(this.buttonAddServicio_Click);
+            // 
             // FormInsertarServicioTarea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(671, 411);
+            this.ClientSize = new System.Drawing.Size(671, 422);
+            this.Controls.Add(this.buttonAddServicio);
             this.Controls.Add(this.buttonEnviar);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label16);
@@ -155,5 +167,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DataGridView dataGridViewServicios;
         private System.Windows.Forms.Button buttonEnviar;
+        private System.Windows.Forms.Button buttonAddServicio;
     }
 }

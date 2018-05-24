@@ -451,6 +451,7 @@
             this.textBox_Entidad.TabIndex = 52;
             this.textBox_Entidad.Text = "Pulsa espacio para Seleccionar Entidad";
             this.textBox_Entidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxEntidad_KeyPress);
+            this.textBox_Entidad.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Entidad_MouseDoubleClick);
             // 
             // buttonServicio
             // 

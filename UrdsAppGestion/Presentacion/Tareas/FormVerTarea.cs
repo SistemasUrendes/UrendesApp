@@ -353,7 +353,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
-            if (textBoxDescripcion.Text != "" && comboBoxTipo.SelectedIndex != 0 && conBloque && (idEntidad != null || idComunidad != 0))
+            if (textBoxDescripcion.Text != "" && comboBoxTipo.SelectedIndex != 0 && maskedTextBoxFIni.Text == "  /  /" && conBloque && (idEntidad != null || idComunidad != 0))
             {
                 maskedTextBoxFIni.Text = DateTime.Now.ToShortDateString();
             }
@@ -381,7 +381,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (idTarea == null)
             {
-                if (textBoxDescripcion.Text != "" && comboBoxTipo.SelectedIndex != 0 && conBloque && (idEntidad != null || idComunidad != 0))
+                if (textBoxDescripcion.Text != "" && comboBoxTipo.SelectedIndex != 0 && maskedTextBoxFIni.Text == "  /  /" && conBloque && (idEntidad != null || idComunidad != 0))
                 {
                     maskedTextBoxFIni.Text = DateTime.Now.ToShortDateString();
                 }
@@ -566,7 +566,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonRuta_Click(object sender, EventArgs e)
         {
-            if (textBoxDescripcion.Text != "" && comboBoxTipo.SelectedIndex != 0 && conBloque && (idEntidad != null || idComunidad != 0))
+            if (textBoxDescripcion.Text != "" && comboBoxTipo.SelectedIndex != 0 && conBloque && maskedTextBoxFIni.Text == "  /  /" && (idEntidad != null || idComunidad != 0))
             {
                 maskedTextBoxFIni.Text = DateTime.Now.ToShortDateString();
             }

@@ -22,7 +22,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             InitializeComponent();
             this.formAnt = formAnt;
             this.idTarea = idTarea;
-
         }
 
         private void FormInsertarServicioTarea_Load(object sender, EventArgs e)
@@ -30,6 +29,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
             cargarBloques();
             cargarServicios();
             this.KeyPreview = true;
+            if (Login.getRol() == "Admin")
+            {
+                buttonAddServicio.Visible = true;
+            }
+            else
+            {
+                buttonAddServicio.Visible = false;
+            }
         }
         
         private void cargarServicios()
@@ -228,6 +235,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void dataGridViewServicios_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             cambiarSeleccionFila();
+        }
+
+        private void buttonAddServicio_Click(object sender, EventArgs e)
+        {
+            String sqlSelect = "SELECT com_comunidades.IdComunidad FROM com_comunidades INNER JOIN exp_tareas ON com_comunidades.IdEntidad = exp_tareas.IdEntidad WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
+            String idComunidad = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+            Tareas.FormServiciosBloque nueva = new Tareas.FormServiciosBloque(idComunidad);
+            nueva.Show();
         }
     }
 }
