@@ -161,6 +161,31 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
                 dataGridView_general.Columns["ImpOpDetPte"].DefaultCellStyle.Format = "c";
                 dataGridView_general.Columns["ImpOpDetPte"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
+            }else if (tipoOperacion == "Otras Entradas")
+            {
+                sqlSelect = "SELECT com_operaciones.IdComunidad, com_opdetalles.IdOpDet, com_opdetalles.IdOp, com_opdetalles.IdEntidad, ctos_entidades.Entidad, com_operaciones.Documento, com_operaciones.Descripcion, com_opdetalles.Fecha, com_opdetalles.Importe, com_opdetalles.ImpOpDetPte FROM ((com_opdetalles INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp) INNER JOIN com_subcuentas ON com_operaciones.IdSubCuenta = com_subcuentas.IdSubcuenta) INNER JOIN ctos_entidades ON com_opdetalles.IdEntidad = ctos_entidades.IDEntidad WHERE (((com_operaciones.IdComunidad)=" + id_comunidad_cargado + ") AND ((com_opdetalles.ImpOpDetPte)>0) AND ((com_operaciones.IdSubCuenta) Between 10000 And 43799) AND ((com_subcuentas.`ES`)=1)) OR (((com_operaciones.IdComunidad)=" + id_comunidad_cargado + ") AND ((com_opdetalles.ImpOpDetPte)>0) AND ((com_operaciones.IdSubCuenta) Between 43813 And 59999) AND ((com_subcuentas.`ES`)=1)) OR (((com_operaciones.IdComunidad)=" + id_comunidad_cargado + ") AND ((com_opdetalles.ImpOpDetPte)>0) AND ((com_operaciones.IdSubCuenta) Between 70002 And 79999) AND ((com_subcuentas.`ES`)=1)) OR (((com_operaciones.IdComunidad)=" + id_comunidad_cargado + ") AND ((com_opdetalles.ImpOpDetPte)>0) AND ((com_operaciones.IdSubCuenta) Between 80000 And 99999) AND ((com_subcuentas.`ES`)=1));";
+
+                datos_datagrid = Persistencia.SentenciasSQL.select(sqlSelect);
+                dataGridView_general.DataSource = datos_datagrid;
+                dataGridView_general.Columns["Entidad"].Width = 250;
+                dataGridView_general.Columns["Entidad"].ReadOnly = true;
+                dataGridView_general.Columns["Documento"].Width = 90;
+                dataGridView_general.Columns["Documento"].ReadOnly = true;
+                dataGridView_general.Columns["IdOpDet"].Visible = false;
+                dataGridView_general.Columns["IdOp"].Visible = false;
+                dataGridView_general.Columns["IdEntidad"].Visible = false;
+                dataGridView_general.Columns["Importe"].Visible = false;
+                dataGridView_general.Columns["IdComunidad"].Visible = false;
+
+                dataGridView_general.Columns["Descripcion"].Width = 300;
+                dataGridView_general.Columns["Descripcion"].ReadOnly = true;
+                dataGridView_general.Columns["Fecha"].Width = 70;
+                dataGridView_general.Columns["Fecha"].ReadOnly = true;
+                dataGridView_general.Columns["ImpOpDetPte"].Width = 80;
+                dataGridView_general.Columns["ImpOpDetPte"].ReadOnly = true;
+                dataGridView_general.Columns["ImpOpDetPte"].DefaultCellStyle.Format = "c";
+                dataGridView_general.Columns["ImpOpDetPte"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
             }
             else {
                 sqlSelect = "SELECT com_opdetalles.IdOpDet, com_operaciones.IdOp, com_opdetalles.IdEntidad, ctos_entidades.Entidad, com_operaciones.Documento, com_operaciones.Descripcion,com_opdetalles.Fecha, com_opdetalles.ImpOpDetPte, com_opdetalles.Importe FROM(com_operaciones INNER JOIN com_opdetalles ON com_operaciones.IdOp = com_opdetalles.IdOp) INNER JOIN ctos_entidades ON com_opdetalles.IdEntidad = ctos_entidades.IDEntidad WHERE(((com_opdetalles.ImpOpDetPte) > 0) AND((com_operaciones.IdSubCuenta)Between 60000 And 69999) AND((com_opdetalles.IdEstado) <> 3) AND ((com_operaciones.IdComunidad)=" + id_comunidad_cargado + ")) OR (((com_opdetalles.ImpOpDetPte)>0) AND ((com_operaciones.IdComunidad)=" + id_comunidad_cargado + ") AND ((com_operaciones.IdSubCuenta)=43801)) ORDER BY ctos_entidades.Entidad;";

@@ -423,7 +423,6 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
 
         private void VerEntidad_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Entidades.setGeneral();
         }
 
         private void tabPage1_Click(object sender, EventArgs e)

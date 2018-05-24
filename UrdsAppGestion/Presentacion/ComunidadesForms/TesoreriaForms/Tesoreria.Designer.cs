@@ -268,7 +268,8 @@
             this.comboBox_e_otras.FormattingEnabled = true;
             this.comboBox_e_otras.Items.AddRange(new object[] {
             "Traspaso de Entrada",
-            "Asiento de Apertura"});
+            "Asiento de Apertura",
+            "Otras Entradas"});
             this.comboBox_e_otras.Location = new System.Drawing.Point(571, 88);
             this.comboBox_e_otras.Name = "comboBox_e_otras";
             this.comboBox_e_otras.Size = new System.Drawing.Size(148, 21);
@@ -485,7 +486,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1116, 614);
+            this.ClientSize = new System.Drawing.Size(1112, 610);
             this.ControlBox = false;
             this.Controls.Add(this.label_borrado);
             this.Controls.Add(this.progressBar_op);

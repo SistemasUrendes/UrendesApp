@@ -18,8 +18,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Impuestos
         String orden = "1";
         DataTable impuestos;
         String sqlSelect;
-
-        int numColumnaBoton;
+        String NombreComunidad;
         int numColumnaCheck;
 
         public FormImpuestos(String idComunidad,String idEjercicio, String anyo)
@@ -28,6 +27,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Impuestos
             this.idComunidad = idComunidad;
             this.idEjercicio = idEjercicio;
             this.anyo = anyo;
+
         }
 
         public void cargarDatagrid() {
@@ -59,11 +59,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Impuestos
             dataGridView_impuestos.Columns.Add(check);
             numColumnaCheck = dataGridView_impuestos.Columns["Unir"].Index;
 
-
             for (int a = 0; a < dataGridView_impuestos.Columns.Count - 2; a++)
-            {
                 dataGridView_impuestos.Columns[a].ReadOnly = true;
-            }
 
             dataGridView_impuestos.EditMode = DataGridViewEditMode.EditOnEnter;
             DataTable busqueda = impuestos;
@@ -72,6 +69,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Impuestos
 
             ajustarDatagrid();
             pintarDatagrid();
+
+            NombreComunidad = Persistencia.SentenciasSQL.select("SELECT ctos_entidades.Entidad FROM com_comunidades INNER JOIN ctos_entidades ON com_comunidades.IdEntidad = ctos_entidades.IDEntidad WHERE(((com_comunidades.IdComunidad) = " + idComunidad + "));").Rows[0][0].ToString();
+
         }
 
         private void FormImpuestos_Load(object sender, EventArgs e)
@@ -82,7 +82,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Impuestos
 
         private void comboBox_liquidaciones_SelectionChangeCommitted(object sender, EventArgs e)
         {
-
             if (comboBox_liquidaciones.SelectedIndex == 0)
                 orden = "1";
             else if (comboBox_liquidaciones.SelectedIndex == 1)
@@ -116,12 +115,20 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Impuestos
             nueva.Show();
         }
 
-
         private void comboBox_informes_SelectionChangeCommitted(object sender, EventArgs e)
         {
+
             if (comboBox_informes.SelectedIndex == 0) {
-                Informes.FormVerInforme nueva = new Informes.FormVerInforme((DataTable)dataGridView_impuestos.DataSource);
+                Informes.FormVerInforme nueva = new Informes.FormVerInforme((DataTable)dataGridView_impuestos.DataSource, NombreComunidad);
                 nueva.Show();
+            }else if (comboBox_informes.SelectedIndex == 1) {
+
+               String sqlSelectTodas = "SELECT com_operaciones.IdComunidad, com_operaciones.IdOp, com_operaciones.Documento, ctos_entidades.Entidad, ctos_entidades.CIF, com_operaciones.Descripcion,  DATE_FORMAT(Coalesce(com_operaciones.Fecha,'ok'),'%d/%m/%Y') AS Fecha, com_operaciones.Retencion, com_operaciones.BaseRet, aux_retencion.`%Retencion` AS Retención, com_ivaImpuestos.Orden FROM com_ivaImpuestos INNER JOIN (aux_retencion INNER JOIN(ctos_entidades INNER JOIN com_operaciones ON ctos_entidades.IDEntidad = com_operaciones.IdEntidad) ON aux_retencion.IdRetencion = com_operaciones.IdRetencion) ON com_ivaImpuestos.IdIvaImpuestos = com_operaciones.IdPeridoIVA GROUP BY com_operaciones.IdComunidad, com_operaciones.IdOp, com_operaciones.Documento, ctos_entidades.Entidad, ctos_entidades.CIF, com_operaciones.Descripcion, com_operaciones.Fecha, com_operaciones.Retencion, com_operaciones.BaseRet, aux_retencion.`%Retencion`, com_ivaImpuestos.Orden HAVING(((com_operaciones.Retencion) > 0) AND((com_operaciones.IdComunidad) = " + idComunidad + "));";
+
+                DataTable impuestosTodos = Persistencia.SentenciasSQL.select(sqlSelectTodas);
+                Informes.FormVerInforme nueva = new Informes.FormVerInforme(impuestosTodos, NombreComunidad);
+                nueva.Show();
+
             }
         }
 
@@ -154,7 +161,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Impuestos
                     String sqlUpdate = "UPDATE com_ivaImpuestos SET Cerrada= -1 WHERE Orden = " + orden + " AND IdComunidad = " + idComunidad;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
 
-                    Informes.FormVerInforme nueva = new Informes.FormVerInforme((DataTable)dataGridView_impuestos.DataSource);
+                    Informes.FormVerInforme nueva = new Informes.FormVerInforme((DataTable)dataGridView_impuestos.DataSource,NombreComunidad);
                     nueva.Show();
 
                     cargarDatagrid();
@@ -169,6 +176,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Impuestos
                     dataGridView_impuestos.Rows[a].DefaultCellStyle.BackColor = Color.Red;
                 }
             }
+           // dataGridView_impuestos.Enabled = false;
+            dataGridView_impuestos.ReadOnly = false;
         }
         private void cambiarPeriodoImpuestos (String idOp) {
 

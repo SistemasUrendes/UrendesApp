@@ -406,12 +406,6 @@ namespace UrdsAppGestión.Presentacion
             }
         }
 
-        public static void setGeneral()
-        {
-           // MessageBox.Show("hola");
-            general = Persistencia.SentenciasSQL.select(SentenciasSQL.SQL[1]);
-        }
-
         private void button_enviar_Click(object sender, EventArgs e)
         {
             enviarOtroForm();
@@ -472,6 +466,8 @@ namespace UrdsAppGestión.Presentacion
             {
                 dataGridView1.DataSource = general;
                 dataGridView1.Columns[4].Visible = false;
+                dataGridView1.Columns[2].Visible = false;
+                dataGridView1.Columns[5].Visible = false;
                 //ajustarDatagrid();
             }
         }

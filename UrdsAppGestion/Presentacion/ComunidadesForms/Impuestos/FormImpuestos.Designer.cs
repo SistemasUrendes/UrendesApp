@@ -82,8 +82,9 @@
             this.comboBox_informes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_informes.FormattingEnabled = true;
             this.comboBox_informes.Items.AddRange(new object[] {
-            "Por Entidades"});
-            this.comboBox_informes.Location = new System.Drawing.Point(325, 45);
+            "Trimestre",
+            "Anual"});
+            this.comboBox_informes.Location = new System.Drawing.Point(278, 45);
             this.comboBox_informes.Name = "comboBox_informes";
             this.comboBox_informes.Size = new System.Drawing.Size(121, 21);
             this.comboBox_informes.TabIndex = 3;
@@ -92,7 +93,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(263, 48);
+            this.label2.Location = new System.Drawing.Point(216, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 4;
@@ -110,11 +111,11 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(978, 491);
+            this.button2.Location = new System.Drawing.Point(929, 491);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(121, 23);
+            this.button2.Size = new System.Drawing.Size(170, 38);
             this.button2.TabIndex = 6;
-            this.button2.Text = "Cerrar Operaciones";
+            this.button2.Text = "CERRAR PERIODO IVA";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 

@@ -15,13 +15,13 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Impuestos.Informes
     {
         DataTable datosImpuestos;
 
-        public FormVerInforme(DataTable datosImpuestos)
+        public FormVerInforme(DataTable datosImpuestos, String NombreComunidad)
         {
             InitializeComponent();
             this.datosImpuestos = datosImpuestos;
             ImpuestosBindingSource.DataSource = datosImpuestos;
 
-            ReportParameter parametro = new ReportParameter("ReportParameter1", "MAESTRO RODRIGO");
+            ReportParameter parametro = new ReportParameter("ReportParameter1", NombreComunidad);
             this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro });
 
         }
