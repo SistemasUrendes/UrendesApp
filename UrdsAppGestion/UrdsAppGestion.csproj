@@ -114,6 +114,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormSeleccionarOrgano.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormSeleccionarOrgano.Designer.cs">
+      <DependentUpon>FormSeleccionarOrgano.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\ComunidadesForms\Impuestos\FormImpuestos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1406,6 +1412,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\CargosForms\FormNuevoCargos.resx">
       <DependentUpon>FormNuevoCargos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CargosForms\FormSeleccionarOrgano.resx">
+      <DependentUpon>FormSeleccionarOrgano.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\CargosForms\Informes\FormVerInformeCargos.resx">
       <DependentUpon>FormVerInformeCargos.cs</DependentUpon>
