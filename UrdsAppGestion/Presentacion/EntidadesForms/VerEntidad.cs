@@ -27,6 +27,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
 
         private void AddEntidad_Load(object sender, EventArgs e)
         {
+            
             if (id_entidad_cargado != 0)
             {
                 //Cargo entidades
@@ -59,6 +60,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
                 dataGridView_telefonos.Columns[1].Name = "Email";
                 dataGridView_telefonos.Columns[2].Name = "Principal";
             }
+            
         }
         private void button3_Click(object sender, EventArgs e)
         {

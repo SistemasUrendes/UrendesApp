@@ -47,14 +47,16 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void cargarTodosTipoGestion()
         {
-            String sqlSelect = "SELECT exp_tipogestion.IdTipoGestion, exp_tipogestion.Descripcion, exp_tipogestion.Plazo AS Días, '0' AS `Orden` FROM exp_tipogestion";
+            String sqlSelect = "SELECT exp_tipogestion.IdTipoGestion, exp_tipogestion.Descripcion, ctos_gruposurd.Grupo AS Perfil, exp_tipogestion.Plazo AS Días, '0' AS `Orden` FROM exp_tipogestion LEFT JOIN ctos_gruposurd ON exp_tipogestion.IdGrupo = ctos_gruposurd.IdGrupoURD";
+            //String sqlSelect = "SELECT exp_tipogestion.IdTipoGestion, exp_tipogestion.Descripcion, exp_tipogestion.Plazo AS Días, '0' AS `Orden` FROM exp_tipogestion";
             allGestion = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewAllGestion.DataSource = allGestion;
 
             if (dataGridViewAllGestion.Rows.Count > 0)
             {
                 dataGridViewAllGestion.Columns["IdTipoGestion"].Visible = false;
-                dataGridViewAllGestion.Columns["Descripcion"].Width = 240;
+                dataGridViewAllGestion.Columns["Descripcion"].Width = 170;
+                dataGridViewAllGestion.Columns["Perfil"].Width = 90;
                 dataGridViewAllGestion.Columns["Días"].Width = 40;
                 dataGridViewAllGestion.Columns["Orden"].Visible = false;
             }
@@ -62,7 +64,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void cargarTipoTarea()
         {
-            String sqlSelect = "SELECT exp_tipogestion.IdTipoGestion, exp_tipogestion.Descripcion, exp_tipogestion.Plazo AS Días, exp_gestionEstado.Orden FROM exp_tipogestion INNER JOIN (exp_tipostareas INNER JOIN exp_gestionEstado ON exp_tipostareas.IdTipoTarea = exp_gestionEstado.IdTipoTarea) ON exp_tipogestion.IdTipoGestion = exp_gestionEstado.IdTipoGestion WHERE(((exp_tipostareas.IdTipoTarea) = " + idTipoTarea + ")) ORDER BY exp_gestionEstado.Orden";
+            //String sqlSelect = "SELECT exp_tipogestion.IdTipoGestion, exp_tipogestion.Descripcion, exp_tipogestion.Plazo AS Días, exp_gestionEstado.Orden FROM exp_tipogestion INNER JOIN (exp_tipostareas INNER JOIN exp_gestionEstado ON exp_tipostareas.IdTipoTarea = exp_gestionEstado.IdTipoTarea) ON exp_tipogestion.IdTipoGestion = exp_gestionEstado.IdTipoGestion WHERE(((exp_tipostareas.IdTipoTarea) = " + idTipoTarea + ")) ORDER BY exp_gestionEstado.Orden";
+            String sqlSelect = "SELECT exp_tipogestion.IdTipoGestion, exp_tipogestion.Descripcion, ctos_gruposurd.Grupo AS Perfil, exp_tipogestion.Plazo AS Días, exp_gestionEstado.Orden FROM(exp_tipogestion INNER JOIN(exp_tipostareas INNER JOIN exp_gestionEstado ON exp_tipostareas.IdTipoTarea = exp_gestionEstado.IdTipoTarea) ON exp_tipogestion.IdTipoGestion = exp_gestionEstado.IdTipoGestion) INNER JOIN ctos_gruposurd ON exp_tipogestion.IdGrupo = ctos_gruposurd.IdGrupoURD WHERE(((exp_tipostareas.IdTipoTarea) = " + idTipoTarea + ")) ORDER BY exp_gestionEstado.Orden";
             addGestion = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewAddGestion.DataSource = addGestion;
             dataGridViewAddGestion.Sort(dataGridViewAddGestion.Columns["Orden"], ListSortDirection.Ascending);
@@ -116,7 +119,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 String idTipoTarea = this.idTipoTarea;
                 String idTipoGestion = row.Cells[0].Value.ToString();
-                String orden = row.Cells[3].Value.ToString();
+                String orden = row.Cells[4].Value.ToString();
                 String sqlInsert = "INSERT INTO exp_gestionEstado (IdTipoTarea,IdTipoGestion,Orden) VALUES ('" + idTipoTarea + "','" + idTipoGestion + "','" + orden + "')";
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert).ToString();
 
@@ -141,7 +144,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 String idTipoTarea = this.idTipoTarea;
                 String idTipoGestion = row.Cells[0].Value.ToString();
-                String orden = row.Cells[3].Value.ToString();
+                String orden = row.Cells[4].Value.ToString();
                 String sqlInsert = "INSERT INTO exp_gestionEstado (IdTipoTarea,IdTipoGestion,Orden) VALUES ('" + idTipoTarea + "','" + idTipoGestion + "','" + orden + "')";
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert).ToString();
             }
@@ -186,7 +189,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     int intColIndex = 0;
                     foreach (DataGridViewCell cell in dataGridViewAllGestion.SelectedRows[0].Cells)
                     {
-                        if (intColIndex == 3)
+                        if (intColIndex == 4)
                         {
                             row.Cells[intColIndex].Value = order;
                         }
@@ -206,7 +209,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     DataTable table = dataGridViewAllGestion.DataSource as DataTable;
                     DataRow row = table.NewRow();
                     row = ((DataRowView)dataGridViewAllGestion.SelectedRows[0].DataBoundItem).Row;
-                    row[3] = order;
+                    row[4] = order;
                     DataRow newRow = addGestion.NewRow();
                     newRow.ItemArray = row.ItemArray.Clone() as object[];
                     addGestion.Rows.Add(newRow);
@@ -239,7 +242,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (dataGridViewAddGestion.Rows.Count > 0)
             {
                 dataGridViewAddGestion.Columns["IdTipoGestion"].Visible = false;
-                dataGridViewAddGestion.Columns["Descripcion"].Width = 200;
+                dataGridViewAddGestion.Columns["Descripcion"].Width = 130;
+                dataGridViewAddGestion.Columns["Perfil"].Width = 90;
                 dataGridViewAddGestion.Columns["Días"].Width = 40;
                 dataGridViewAddGestion.Columns["Orden"].Visible = true;
                 dataGridViewAddGestion.Columns["Orden"].Width = 40;
@@ -280,14 +284,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     int movida = mover - 1;
                     DataGridViewRow RowMover = dataGridViewAddGestion.SelectedRows[0];
                     DataGridViewRow RowMovida = dataGridViewAddGestion.Rows[movida];
-                    int ordenMover = Int32.Parse(RowMover.Cells[3].Value.ToString());
-                    int ordenMovida = Int32.Parse(RowMovida.Cells[3].Value.ToString());
+                    int ordenMover = Int32.Parse(RowMover.Cells[4].Value.ToString());
+                    int ordenMovida = Int32.Parse(RowMovida.Cells[4].Value.ToString());
                     dataGridViewAddGestion.Rows.RemoveAt(movida);
                     dataGridViewAddGestion.Rows.RemoveAt(movida);
                     dataGridViewAddGestion.Rows.Insert(movida, RowMover);
                     dataGridViewAddGestion.Rows.Insert(mover, RowMovida);
-                    dataGridViewAddGestion.Rows[movida].Cells[3].Value = ordenMovida;
-                    dataGridViewAddGestion.Rows[mover].Cells[3].Value = ordenMover;
+                    dataGridViewAddGestion.Rows[movida].Cells[4].Value = ordenMovida;
+                    dataGridViewAddGestion.Rows[mover].Cells[4].Value = ordenMover;
                     dataGridViewAddGestion.ClearSelection();
                     dataGridViewAddGestion.Rows[movida].Selected = true;
                 }
@@ -299,8 +303,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     int movida = mover - 1;
                     DataGridViewRow RowMover = dataGridViewAddGestion.SelectedRows[0];
                     DataGridViewRow RowMovida = dataGridViewAddGestion.Rows[movida];
-                    int ordenMover = Int32.Parse(RowMover.Cells[3].Value.ToString());
-                    int ordenMovida = Int32.Parse(RowMovida.Cells[3].Value.ToString());
+                    int ordenMover = Int32.Parse(RowMover.Cells[4].Value.ToString());
+                    int ordenMovida = Int32.Parse(RowMovida.Cells[4].Value.ToString());
                     DataRow r1 = addGestion.Rows[mover];
                     DataRow r2 = addGestion.Rows[movida];
                     DataRow rowMover = addGestion.NewRow();
@@ -331,14 +335,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     int movida = mover + 1;
                     DataGridViewRow RowMover = dataGridViewAddGestion.SelectedRows[0];
                     DataGridViewRow RowMovida = dataGridViewAddGestion.Rows[movida];
-                    int ordenMover = Int32.Parse(RowMover.Cells[3].Value.ToString());
-                    int ordenMovida = Int32.Parse(RowMovida.Cells[3].Value.ToString());
+                    int ordenMover = Int32.Parse(RowMover.Cells[4].Value.ToString());
+                    int ordenMovida = Int32.Parse(RowMovida.Cells[4].Value.ToString());
                     dataGridViewAddGestion.Rows.RemoveAt(mover);
                     dataGridViewAddGestion.Rows.RemoveAt(mover);
                     dataGridViewAddGestion.Rows.Insert(mover, RowMovida);
                     dataGridViewAddGestion.Rows.Insert(movida, RowMover);
-                    dataGridViewAddGestion.Rows[movida].Cells[3].Value = ordenMovida;
-                    dataGridViewAddGestion.Rows[mover].Cells[3].Value = ordenMover;
+                    dataGridViewAddGestion.Rows[movida].Cells[4].Value = ordenMovida;
+                    dataGridViewAddGestion.Rows[mover].Cells[4].Value = ordenMover;
                     dataGridViewAddGestion.ClearSelection();
                     dataGridViewAddGestion.Rows[movida].Selected = true;
                 }
@@ -349,8 +353,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     int movida = mover + 1;
                     DataGridViewRow RowMover = dataGridViewAddGestion.SelectedRows[0];
                     DataGridViewRow RowMovida = dataGridViewAddGestion.Rows[movida];
-                    int ordenMover = Int32.Parse(RowMover.Cells[3].Value.ToString());
-                    int ordenMovida = Int32.Parse(RowMovida.Cells[3].Value.ToString());
+                    int ordenMover = Int32.Parse(RowMover.Cells[4].Value.ToString());
+                    int ordenMovida = Int32.Parse(RowMovida.Cells[4].Value.ToString());
                     DataRow r1 = addGestion.Rows[mover];
                     DataRow r2 = addGestion.Rows[movida];
                     DataRow rowMover = addGestion.NewRow();

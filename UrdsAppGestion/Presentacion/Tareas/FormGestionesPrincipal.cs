@@ -483,30 +483,5 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String Idcomunidad = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
             return Int32.Parse(Idcomunidad);
         }
-        /*
-        private void buttonBloque_Click(object sender, EventArgs e)
-        {
-            
-            if (idComunidad != null)
-            {
-                ComunidadesForms.Elementos.FormElementos nueva = new ComunidadesForms.Elementos.FormElementos(this, Int32.Parse(idComunidad));
-                nueva.ControlBox = true;
-                nueva.TopMost = true;
-                nueva.WindowState = FormWindowState.Normal;
-                nueva.StartPosition = FormStartPosition.CenterScreen;
-                nueva.Show();
-            }
-            else
-            {
-                MessageBox.Show("Selecciona una comunidad para elegir su bloque");
-            }
-        }
-
-        public void recibirElemento(String idElemento, String nombre)
-        {
-            textBoxBloque.Text = nombre;
-            this.idElemento = idElemento;
-        }
-        */
     }
 }

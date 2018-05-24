@@ -1170,8 +1170,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 DataTable comunidad = Persistencia.SentenciasSQL.select(sqlSelect);
                 
                 asunto += comunidad.Rows[0][0].ToString();//Nombre corto
-                asunto += " - ( Ref. " + comunidad.Rows[0][1].ToString(); //Referencia comunidad
-                asunto += " / " + idTareaNuevo(idTarea); //IdTarea
+                asunto += "- (Ref." + comunidad.Rows[0][1].ToString(); //Referencia comunidad
+                asunto += "-" + idTareaNuevo(idTarea); //IdTarea
                 asunto += ") " + textBoxDescripcion.Text; //Descripción
             }
             else
@@ -1180,8 +1180,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 DataTable comunidad = Persistencia.SentenciasSQL.select(sqlSelect);
                 
                 asunto += comunidad.Rows[0][0].ToString();//Nombre corto
-                asunto += " - ( Ref. 0"; //Referencia
-                asunto += " / " + idTarea; //IdTarea
+                asunto += "- (Ref.0"; //Referencia
+                asunto += "-" + idTareaNuevo(idTarea); //IdTarea
                 asunto += ") " + textBoxDescripcion.Text; //Descripción
 
             }

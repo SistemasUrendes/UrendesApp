@@ -88,7 +88,7 @@
             this.dataGridView_tareas.ReadOnly = true;
             this.dataGridView_tareas.RowHeadersVisible = false;
             this.dataGridView_tareas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_tareas.Size = new System.Drawing.Size(1134, 549);
+            this.dataGridView_tareas.Size = new System.Drawing.Size(1134, 469);
             this.dataGridView_tareas.TabIndex = 0;
             this.dataGridView_tareas.TabStop = false;
             this.dataGridView_tareas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_tareas_CellDoubleClick);
@@ -390,7 +390,7 @@
             // labelCount
             // 
             this.labelCount.AutoSize = true;
-            this.labelCount.Location = new System.Drawing.Point(8, 699);
+            this.labelCount.Location = new System.Drawing.Point(12, 617);
             this.labelCount.Name = "labelCount";
             this.labelCount.Size = new System.Drawing.Size(0, 13);
             this.labelCount.TabIndex = 46;
@@ -486,7 +486,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1152, 721);
+            this.ClientSize = new System.Drawing.Size(1152, 654);
             this.ControlBox = false;
             this.Controls.Add(this.buttonServicio);
             this.Controls.Add(this.label7);

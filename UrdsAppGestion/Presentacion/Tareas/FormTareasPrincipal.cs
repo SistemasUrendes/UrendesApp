@@ -165,7 +165,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             comboBox_Estado.SelectedIndex = 1;
 
             DataTable admins;
-            String sqlComboAdm = "SELECT ctos_urendes.IdURD, ctos_urendes.Usuario FROM ctos_urendes WHERE(((ctos_urendes.FBaja)Is Null) AND((ctos_urendes.IdGrupoURD) = 1 Or(ctos_urendes.IdGrupoURD) = 2))";
+            String sqlComboAdm = "SELECT ctos_urendes.IdURD, ctos_urendes.Usuario FROM ctos_urendes WHERE(((ctos_urendes.FBaja)Is Null) AND((ctos_urendes.IdGrupoURD) = 4 Or(ctos_urendes.IdGrupoURD) = 2))";
             admins = Persistencia.SentenciasSQL.select(sqlComboAdm);
             DataRow admtodas = admins.NewRow();
 
