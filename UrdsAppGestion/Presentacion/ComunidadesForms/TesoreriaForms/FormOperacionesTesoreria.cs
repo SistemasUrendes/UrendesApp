@@ -165,6 +165,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
             {
                 sqlSelect = "SELECT com_operaciones.IdComunidad, com_opdetalles.IdOpDet, com_opdetalles.IdOp, com_opdetalles.IdEntidad, ctos_entidades.Entidad, com_operaciones.Documento, com_operaciones.Descripcion, com_opdetalles.Fecha, com_opdetalles.Importe, com_opdetalles.ImpOpDetPte FROM ((com_opdetalles INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp) INNER JOIN com_subcuentas ON com_operaciones.IdSubCuenta = com_subcuentas.IdSubcuenta) INNER JOIN ctos_entidades ON com_opdetalles.IdEntidad = ctos_entidades.IDEntidad WHERE (((com_operaciones.IdComunidad)=" + id_comunidad_cargado + ") AND ((com_opdetalles.ImpOpDetPte)>0) AND ((com_operaciones.IdSubCuenta) Between 10000 And 43799) AND ((com_subcuentas.`ES`)=1)) OR (((com_operaciones.IdComunidad)=" + id_comunidad_cargado + ") AND ((com_opdetalles.ImpOpDetPte)>0) AND ((com_operaciones.IdSubCuenta) Between 43813 And 59999) AND ((com_subcuentas.`ES`)=1)) OR (((com_operaciones.IdComunidad)=" + id_comunidad_cargado + ") AND ((com_opdetalles.ImpOpDetPte)>0) AND ((com_operaciones.IdSubCuenta) Between 70002 And 79999) AND ((com_subcuentas.`ES`)=1)) OR (((com_operaciones.IdComunidad)=" + id_comunidad_cargado + ") AND ((com_opdetalles.ImpOpDetPte)>0) AND ((com_operaciones.IdSubCuenta) Between 80000 And 99999) AND ((com_subcuentas.`ES`)=1));";
 
+
                 datos_datagrid = Persistencia.SentenciasSQL.select(sqlSelect);
                 dataGridView_general.DataSource = datos_datagrid;
                 dataGridView_general.Columns["Entidad"].Width = 250;
@@ -355,8 +356,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
                     fecha_arrastrar = dataGridView_general.Rows[row].Cells[fechaasignacion].Value.ToString();
                 }
             }
-                //if (id_entidad_pasado != "0")
-                    //textBox_operacion_disponible.Text = string.Format("{0:0.00}", (Convert.ToDouble(textBox_operacion_disponible.Text) - total_acumulado));
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -455,6 +454,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
                         ingresoComunero(a, "Ingreso a Proveedor", numMov, fechaMov);
                     } else if (tipoOperacion == "Pago a Proveedor") {
                         pagarProveedor(a);
+                    }else if (tipoOperacion == "Otras Entradas") {
+                        pagarOtrosIngresos(a);
                     }
                 }
             }
@@ -485,8 +486,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
         }
         private void pagarComunero(int indice, int numMov, String fechaMov)
         {
-            
-            
             //ANTICIPO SI QUEDA ALGO PENDIENTE
             double importeReal = Convert.ToDouble(dataGridView_general.Rows[indice].Cells[importeOp].Value);
             double importeAsignado = Convert.ToDouble(dataGridView_general.Rows[indice].Cells[celdaAsignado].Value.ToString().Replace('.', ','));
@@ -671,14 +670,63 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
                     fecha_arrastrar = dataGridView_general.CurrentCell.Value.ToString();
                 }
                 else if (!Regex.IsMatch(dataGridView_general.CurrentCell.Value.ToString(), sPattern1) && !Regex.IsMatch(dataGridView_general.CurrentCell.Value.ToString(), sPattern))  {
-                    //dataGridView_general.CurrentCell.Selected = true;
-
                 }
             }
         }
+        private void pagarOtrosIngresos(int indice) {
 
-        private void dataGridView_general_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
-        {
+            String fechaMov;
+            try
+            {
+                //COMPRUEBO QUE ESTA DENTRO DE LA FECHA DE CIERRE
+                String fechaCierre = (Persistencia.SentenciasSQL.select("SELECT FCierre FROM com_cuentas WHERE IdCuenta = " + id_cuenta_cargado)).Rows[0][0].ToString();
+                if (fechaCierre != "" || fechaCierre != null)
+                {
+                    if (Convert.ToDateTime(dataGridView_general.Rows[indice].Cells[fechaasignacion].Value.ToString()) < Convert.ToDateTime(fechaCierre))
+                    {
+                        MessageBox.Show("El banco esta cerrado a esa fecha y el pago de " + dataGridView_general.Rows[indice].Cells[5].Value.ToString() + " no se ha realizado.");
+                        return;
+                    }
+
+                }
+
+                fechaMov = (Convert.ToDateTime(dataGridView_general.Rows[indice].Cells[fechaasignacion].Value.ToString())).ToString("yyyy-MM-dd");
+
+            }
+            catch
+            {
+                MessageBox.Show("Introduce una fecha valida en un pago");
+                return;
+            }
+
+            //BUSCO EL EJERCICIO ACTIVO
+            String idEjercicio = Logica.FuncionesTesoreria.ejercicioActivo(id_comunidad_cargado, fechaMov);
+
+            //CREO CABECERA DEL MOVIMIENTO
+            int numMov = Logica.FuncionesTesoreria.CreaMovimiento(idEjercicio, id_cuenta_cargado, "2", dataGridView_general.Rows[indice].Cells[3].Value.ToString(), fechaMov, "Otros Vtos");
+
+            double importeReal = Convert.ToDouble(dataGridView_general.Rows[indice].Cells[importeOp].Value);
+            double importeAsignado = Convert.ToDouble(dataGridView_general.Rows[indice].Cells[celdaAsignado].Value.ToString().Replace('.', ','));
+            double importeAcuenta = importeAsignado - importeReal;
+
+            if (importeAcuenta > 0)
+            {
+                //ANTICIPO A PROVEEDOR
+                Logica.FuncionesTesoreria.AnticipoProveedor(id_comunidad_cargado, dataGridView_general.Rows[indice].Cells[3].Value.ToString(), fechaMov, importeAcuenta, numMov);
+
+                //CREO EL DETALLE DEL MOVIMIENTO CON EL IMPORTE ENTERO
+                Logica.FuncionesTesoreria.CreaDetalleMovimiento(numMov.ToString(), dataGridView_general.Rows[indice].Cells[1].Value.ToString(), dataGridView_general.Rows[indice].Cells[importeOp].Value.ToString().Replace(',', '.'));
+            }
+            else if (importeAcuenta < 0)
+            {
+                //CREO EL DETALLE DEL MOVIMIENTO CON EL ACUMULADO
+                Logica.FuncionesTesoreria.CreaDetalleMovimiento(numMov.ToString(), dataGridView_general.Rows[indice].Cells[1].Value.ToString(), dataGridView_general.Rows[indice].Cells[celdaAsignado].Value.ToString().Replace(',', '.'));
+            }
+            else if (importeAcuenta == 0)
+            {
+                //CREO EL DETALLE DEL MOVIMIENTO CON EL IMPORTE ENTERO
+                Logica.FuncionesTesoreria.CreaDetalleMovimiento(numMov.ToString(), dataGridView_general.Rows[indice].Cells[1].Value.ToString(), dataGridView_general.Rows[indice].Cells[importeOp].Value.ToString().Replace(',', '.'));
+            }
 
         }
     }

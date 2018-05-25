@@ -60,6 +60,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button_fondo = new System.Windows.Forms.Button();
+            this.liquidarAOtroFondoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_operaciones)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -234,9 +235,10 @@
             this.compensarToolStripMenuItem,
             this.abonarVencimientoToolStripMenuItem,
             this.reasignarToolStripMenuItem,
-            this.eliminarOperaciónToolStripMenuItem});
+            this.eliminarOperaciónToolStripMenuItem,
+            this.liquidarAOtroFondoToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(189, 158);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(189, 202);
             // 
             // marcarComoFavoritaToolStripMenuItem
             // 
@@ -244,6 +246,7 @@
             this.marcarComoFavoritaToolStripMenuItem.Name = "marcarComoFavoritaToolStripMenuItem";
             this.marcarComoFavoritaToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.marcarComoFavoritaToolStripMenuItem.Text = "Marcar como favorita";
+            this.marcarComoFavoritaToolStripMenuItem.Visible = false;
             this.marcarComoFavoritaToolStripMenuItem.Click += new System.EventHandler(this.marcarComoFavoritaToolStripMenuItem_Click);
             // 
             // verMovimientosToolStripMenuItem
@@ -258,6 +261,7 @@
             this.verOperacionesToolStripMenuItem.Name = "verOperacionesToolStripMenuItem";
             this.verOperacionesToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.verOperacionesToolStripMenuItem.Text = "Ver Operaciones ";
+            this.verOperacionesToolStripMenuItem.Visible = false;
             this.verOperacionesToolStripMenuItem.Click += new System.EventHandler(this.verOperacionesToolStripMenuItem_Click);
             // 
             // compensarToolStripMenuItem
@@ -354,6 +358,13 @@
             this.button_fondo.UseVisualStyleBackColor = true;
             this.button_fondo.Click += new System.EventHandler(this.button_fondo_Click);
             // 
+            // liquidarAOtroFondoToolStripMenuItem
+            // 
+            this.liquidarAOtroFondoToolStripMenuItem.Name = "liquidarAOtroFondoToolStripMenuItem";
+            this.liquidarAOtroFondoToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.liquidarAOtroFondoToolStripMenuItem.Text = "Liquidar a otro Fondo";
+            this.liquidarAOtroFondoToolStripMenuItem.Click += new System.EventHandler(this.liquidarAOtroFondoToolStripMenuItem_Click);
+            // 
             // Operaciones_comuneros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -427,5 +438,6 @@
         private System.Windows.Forms.ToolStripMenuItem eliminarOperaciónToolStripMenuItem;
         private System.Windows.Forms.Button button_fondo;
         private System.Windows.Forms.ToolStripMenuItem abonarVencimientoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem liquidarAOtroFondoToolStripMenuItem;
     }
 }

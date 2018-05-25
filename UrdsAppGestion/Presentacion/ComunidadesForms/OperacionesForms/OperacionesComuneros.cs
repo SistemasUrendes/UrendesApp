@@ -301,5 +301,11 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             OperacionesForms.FormAbonarVencimiento nueva = new OperacionesForms.FormAbonarVencimiento(this, dataGridView_operaciones.SelectedRows[0].Cells[0].Value.ToString(),id_comunidad_cargado);
             nueva.Show();
         }
+
+        private void liquidarAOtroFondoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OperacionesForms.FormLiquidarAOtroFondo nueva = new OperacionesForms.FormLiquidarAOtroFondo(dataGridView_operaciones.SelectedRows[0].Cells[0].Value.ToString(), id_comunidad_cargado, dataGridView_operaciones.SelectedRows[0].Cells[2].Value.ToString());
+            nueva.Show();
+        }
     }
 }

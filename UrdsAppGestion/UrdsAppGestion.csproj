@@ -140,6 +140,12 @@
     <Compile Include="Presentacion\ComunidadesForms\Impuestos\Informes\FormVerInforme.Designer.cs">
       <DependentUpon>FormVerInforme.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormLiquidarAOtroFondo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormLiquidarAOtroFondo.Designer.cs">
+      <DependentUpon>FormLiquidarAOtroFondo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\FormAnticiposProveedores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1491,6 +1497,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\ReglasPago\FormReglasPago.resx">
       <DependentUpon>FormReglasPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormLiquidarAOtroFondo.resx">
+      <DependentUpon>FormLiquidarAOtroFondo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\RemesasForms\FormCambiarCuenta.resx">
       <DependentUpon>FormCambiarCuenta.cs</DependentUpon>
