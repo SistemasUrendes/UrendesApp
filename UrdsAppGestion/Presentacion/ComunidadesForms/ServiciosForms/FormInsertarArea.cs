@@ -31,11 +31,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (idCategoria != null)
             {
-                String sqlSelect = "SELECT Nombre,Descripcion FROM exp_catElemento WHERE IdCatElemento = '" + idCategoria + "'";
+                String sqlSelect = "SELECT Nombre,NombreCorto,Descripcion FROM exp_catElemento WHERE IdCatElemento = '" + idCategoria + "'";
                 DataTable tablaArea = Persistencia.SentenciasSQL.select(sqlSelect);
 
                 textBoxNombre.Text = tablaArea.Rows[0][0].ToString();
-                textBoxDescripcion.Text = tablaArea.Rows[0][1].ToString();
+                textBoxNombreCorto.Text = tablaArea.Rows[0][1].ToString();
+                textBoxDescripcion.Text = tablaArea.Rows[0][2].ToString();
             }
         }
 
@@ -47,18 +48,20 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
             String nombre = textBoxNombre.Text;
+            String nombreCorto = textBoxNombreCorto.Text;
             String descripcion = textBoxDescripcion.Text;
+            
 
             if (idCategoria != null)
             {
-                String sqlUpdate = "UPDATE exp_catElemento SET Nombre = '" + nombre + "',Descripcion = '" + descripcion + "' WHERE IdCatElemento = '" + idCategoria + "'";
+                String sqlUpdate = "UPDATE exp_catElemento SET Nombre = '" + nombre + "',NombreCorto = '" + nombreCorto + "',Descripcion = '" + descripcion + "' WHERE IdCatElemento = '" + idCategoria + "'";
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                 form.cargarCategorias();
                 this.Close();
             }
             else
             {
-                String sqlInsert = "INSERT INTO exp_catElemento (Nombre,Descripcion) VALUES ('" + nombre + "','" + descripcion + "')";
+                String sqlInsert = "INSERT INTO exp_catElemento (Nombre,NombreCorto,Descripcion) VALUES ('" + nombre + "','" + nombreCorto + "','" + descripcion + "')";
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
                 MessageBox.Show("Area insertada correctamente");
                 form.cargarCategorias();

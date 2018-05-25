@@ -407,6 +407,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
             else
             {
+                addTarea();
+                bloquearEdicion();
                 comboBoxEstadoGestion.SelectedIndex = 2;
                 Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, fInicio, idComunidad);
                 nueva.ControlBox = true;
@@ -1530,7 +1532,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
                 else
                 {
-                    comboBoxTipo.SelectedIndex = 1;
+                    comboBoxTipo.SelectedIndex = 2;
                     maskedTextBoxFIni.Text = DateTime.Now.ToShortDateString();
                     addTarea();
                     textBoxIdTarea.Text = idTarea;

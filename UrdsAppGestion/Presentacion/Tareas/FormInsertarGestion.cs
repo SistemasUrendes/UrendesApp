@@ -623,7 +623,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
                 else
                 {
-                    ComunidadesForms.CargosForms.FormCargos nueva = new ComunidadesForms.CargosForms.FormCargos(this,idComunidad.ToString());
+                    //ComunidadesForms.CargosForms.FormCargos nueva = new ComunidadesForms.CargosForms.FormCargos(this,idComunidad.ToString());
+                    ComunidadesForms.CargosForms.FormSeleccionarOrgano nueva = new ComunidadesForms.CargosForms.FormSeleccionarOrgano(this, idComunidad.ToString());
                     nueva.ControlBox = true;
                     nueva.TopMost = true;
                     nueva.WindowState = FormWindowState.Normal;

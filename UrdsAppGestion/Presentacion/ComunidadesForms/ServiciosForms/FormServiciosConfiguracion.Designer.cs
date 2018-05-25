@@ -43,6 +43,7 @@
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cambiarNombreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.borrarCategoríaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonActualizarClave = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBloque)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -62,7 +63,6 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bloques";
-            this.groupBox2.Visible = false;
             // 
             // comboBoxComunidades
             // 
@@ -184,12 +184,24 @@
             this.borrarCategoríaToolStripMenuItem.Text = "Borrar Categoría";
             this.borrarCategoríaToolStripMenuItem.Click += new System.EventHandler(this.borrarCategoríaToolStripMenuItem_Click);
             // 
+            // buttonActualizarClave
+            // 
+            this.buttonActualizarClave.Location = new System.Drawing.Point(715, 56);
+            this.buttonActualizarClave.Name = "buttonActualizarClave";
+            this.buttonActualizarClave.Size = new System.Drawing.Size(75, 58);
+            this.buttonActualizarClave.TabIndex = 7;
+            this.buttonActualizarClave.Text = "Actualizar clave bloques";
+            this.buttonActualizarClave.UseVisualStyleBackColor = true;
+            this.buttonActualizarClave.Visible = false;
+            this.buttonActualizarClave.Click += new System.EventHandler(this.buttonActualizarClave_Click);
+            // 
             // FormServiciosConfiguracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1057, 476);
             this.ControlBox = false;
+            this.Controls.Add(this.buttonActualizarClave);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -223,5 +235,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem cambiarNombreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem borrarCategoríaToolStripMenuItem;
+        private System.Windows.Forms.Button buttonActualizarClave;
     }
 }

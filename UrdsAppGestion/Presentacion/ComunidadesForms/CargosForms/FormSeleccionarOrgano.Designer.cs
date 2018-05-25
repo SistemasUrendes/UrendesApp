@@ -65,7 +65,6 @@
             this.dataGridViewBloques.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewBloques.Size = new System.Drawing.Size(400, 343);
             this.dataGridViewBloques.TabIndex = 16;
-            this.dataGridViewBloques.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBloques_CellContentClick);
             // 
             // FormSeleccionarOrgano
             // 
@@ -78,6 +77,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormSeleccionarOrgano";
             this.Text = "FormSeleccionarOrgano";
+            this.Load += new System.EventHandler(this.FormSeleccionarOrgano_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBloques)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

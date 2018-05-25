@@ -125,7 +125,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void dataGridViewBloque_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //FormAreasBloque nueva = new FormAreasBloque(this, dataGridViewBloque.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewBloque.SelectedRows[0].Cells[1].Value.ToString());
             if (dataGridViewBloque.SelectedRows[0].Index > -1)
             {
                 FormArbolAreasBloque nueva = new FormArbolAreasBloque(this, dataGridViewBloque.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewBloque.SelectedRows[0].Cells[1].Value.ToString(), comboBoxComunidades.Text.ToString());
@@ -135,14 +134,15 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         public void cargarCategorias()
         {
-            String sqlSelect = "SELECT IdCatElemento,Nombre, Descripcion FROM exp_catElemento";
+            String sqlSelect = "SELECT IdCatElemento,Nombre,NombreCorto AS 'Abr.',Descripcion FROM exp_catElemento";
             tablaAreas = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewAreas.DataSource = tablaAreas;
             if (dataGridViewAreas.Rows.Count > 0)
             {
                 dataGridViewAreas.Columns["IdCatElemento"].Visible = false;
                 dataGridViewAreas.Columns["Nombre"].Width = 100;
-                dataGridViewAreas.Columns["Descripcion"].Width = 190;
+                dataGridViewAreas.Columns["Abr."].Width = 50;
+                dataGridViewAreas.Columns["Descripcion"].Width = 130;
             }
         }
 
@@ -158,7 +158,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void dataGridViewAreas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            ComunidadesForms.Elementos.FormElementos nueva = new ComunidadesForms.Elementos.FormElementos(this,dataGridViewAreas.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewAreas.SelectedRows[0].Cells[1].Value.ToString());
+            String nombre = dataGridViewAreas.SelectedRows[0].Cells[1].Value.ToString() + " (" + dataGridViewAreas.SelectedRows[0].Cells[2].Value.ToString() + ")";
+            ComunidadesForms.Elementos.FormElementos nueva = new ComunidadesForms.Elementos.FormElementos(this,dataGridViewAreas.SelectedRows[0].Cells[0].Value.ToString(), nombre);
             nueva.Show();
         }
 
@@ -193,6 +194,22 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     contextMenuStrip2.Show(Cursor.Position);
                 }
             }
+        }
+
+        private void buttonActualizarClave_Click(object sender, EventArgs e)
+        {
+            String sqlSelect = "SELECT exp_area.IdArea, exp_area.codigoArea FROM exp_area";
+            DataTable claveOld = Persistencia.SentenciasSQL.select(sqlSelect);
+            int count = 0;
+            foreach ( DataRow row in claveOld.Rows)
+            {
+                String sqlUpdate = "UPDATE exp_area SET codigoArea = '0" + row[1] + "' WHERE IdArea = '" + row[0] + "'";
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                count++;
+            }
+
+            MessageBox.Show(count + "Bloques actualizados");
+
         }
     }
 }
