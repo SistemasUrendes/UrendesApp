@@ -349,7 +349,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private String contarCategorias(String codigo)
         {
-            String sqlSelect = "SELECT exp_area.IdArea, exp_area.codigoArea FROM exp_area WHERE(((exp_area.codigoArea)Like '" + codigo + "%'))";
+            String sqlSelect = "SELECT exp_area.IdArea, exp_area.codigoArea FROM exp_area WHERE(((exp_area.codigoArea)Like '" + codigo + "__'))";
             DataTable categorias = Persistencia.SentenciasSQL.select(sqlSelect);
             String count = categorias.Rows.Count.ToString();
             if (count.Length == 1) return "0" + count;
