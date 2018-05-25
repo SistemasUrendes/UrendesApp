@@ -45,11 +45,11 @@
             this.cambiarUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mantenimientoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conexiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mttoTareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mttoServiciosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.barrar_abajo_nombre = new System.Windows.Forms.ToolStripStatusLabel();
             this.barra_abajo_bbdd = new System.Windows.Forms.ToolStripStatusLabel();
-            this.mttoTareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mttoServiciosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -124,9 +124,9 @@
             this.versiónToolStripMenuItem,
             this.cambiarUsuarioToolStripMenuItem,
             this.mantenimientoToolStripMenuItem,
-            this.conexiónToolStripMenuItem,
             this.mttoTareasToolStripMenuItem,
-            this.mttoServiciosToolStripMenuItem});
+            this.mttoServiciosToolStripMenuItem,
+            this.conexiónToolStripMenuItem});
             this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
             resources.ApplyResources(this.archivoToolStripMenuItem, "archivoToolStripMenuItem");
             // 
@@ -166,6 +166,18 @@
             this.conexiónToolStripMenuItem.Name = "conexiónToolStripMenuItem";
             this.conexiónToolStripMenuItem.Click += new System.EventHandler(this.conexiónToolStripMenuItem_Click);
             // 
+            // mttoTareasToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mttoTareasToolStripMenuItem, "mttoTareasToolStripMenuItem");
+            this.mttoTareasToolStripMenuItem.Name = "mttoTareasToolStripMenuItem";
+            this.mttoTareasToolStripMenuItem.Click += new System.EventHandler(this.mttoTareasToolStripMenuItem_Click);
+            // 
+            // mttoServiciosToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mttoServiciosToolStripMenuItem, "mttoServiciosToolStripMenuItem");
+            this.mttoServiciosToolStripMenuItem.Name = "mttoServiciosToolStripMenuItem";
+            this.mttoServiciosToolStripMenuItem.Click += new System.EventHandler(this.mttoServiciosToolStripMenuItem_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -184,18 +196,6 @@
             this.barra_abajo_bbdd.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
             this.barra_abajo_bbdd.Name = "barra_abajo_bbdd";
             resources.ApplyResources(this.barra_abajo_bbdd, "barra_abajo_bbdd");
-            // 
-            // mttoTareasToolStripMenuItem
-            // 
-            resources.ApplyResources(this.mttoTareasToolStripMenuItem, "mttoTareasToolStripMenuItem");
-            this.mttoTareasToolStripMenuItem.Name = "mttoTareasToolStripMenuItem";
-            this.mttoTareasToolStripMenuItem.Click += new System.EventHandler(this.mttoTareasToolStripMenuItem_Click);
-            // 
-            // mttoServiciosToolStripMenuItem
-            // 
-            resources.ApplyResources(this.mttoServiciosToolStripMenuItem, "mttoServiciosToolStripMenuItem");
-            this.mttoServiciosToolStripMenuItem.Name = "mttoServiciosToolStripMenuItem";
-            this.mttoServiciosToolStripMenuItem.Click += new System.EventHandler(this.mttoServiciosToolStripMenuItem_Click);
             // 
             // FormPrincipal
             // 

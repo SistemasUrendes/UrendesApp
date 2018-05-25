@@ -65,7 +65,6 @@
             this.dataGridViewBloques.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewBloques.Size = new System.Drawing.Size(400, 343);
             this.dataGridViewBloques.TabIndex = 16;
-            this.dataGridViewBloques.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBloques_CellContentClick);
             // 
             // FormSeleccionarOrgano
             // 

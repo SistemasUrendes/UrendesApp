@@ -38,11 +38,11 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ProveedoresForms
         }
         private void cargarDataGrid() {
 
-            if (idEntidad != "" && idEntidad != null)
+            if (idEntidad != null)
             {
                 maskedTextBox_inicio.Text = "";
                 maskedTextBox_fin.Text = "";
-                String sqlSelect = "SELECT com_opdetalles.IdOp, com_opdetalles.IdOpDet, com_opdetalles.IdEntidad, ctos_entidades.Entidad, com_subcuentas.IdSubcuenta, com_subcuentas.`TIT SUBCTA`, com_opdetalles.Fecha, com_operaciones.Documento, com_operaciones.Descripcion, com_opdetalles.Importe, com_opdetalles.ImpOpDetPte FROM((com_opdetalles INNER JOIN ctos_entidades ON com_opdetalles.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp) INNER JOIN com_subcuentas ON com_operaciones.IdSubCuenta = com_subcuentas.IdSubcuenta WHERE com_subcuentas.IdSubcuenta >= 43800 AND com_subcuentas.IdSubcuenta <= 46000 AND com_opdetalles.IdEntidad = " + idEntidad + " AND com_operaciones.IdComunidad =" + idComunidad + " ORDER BY com_opdetalles.Fecha DESC;";
+                String sqlSelect = "SELECT com_opdetalles.IdOp, com_opdetalles.IdOpDet, com_opdetalles.IdEntidad, ctos_entidades.Entidad, com_subcuentas.IdSubcuenta, com_subcuentas.`TIT SUBCTA` AS Subcuenta, com_opdetalles.Fecha, com_operaciones.Documento, com_operaciones.Descripcion, com_opdetalles.Importe, com_opdetalles.ImpOpDetPte FROM((com_opdetalles INNER JOIN ctos_entidades ON com_opdetalles.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp) INNER JOIN com_subcuentas ON com_operaciones.IdSubCuenta = com_subcuentas.IdSubcuenta WHERE(((com_opdetalles.IdEntidad) = " + idEntidad + ") AND((com_subcuentas.IdSubcuenta) >= 43812 And(com_subcuentas.IdSubcuenta) <= 46000) AND((com_operaciones.IdComunidad) = " + idComunidad + ")) OR(((com_opdetalles.IdEntidad) = " + idEntidad + ") AND((com_subcuentas.IdSubcuenta) >= 60000 And(com_subcuentas.IdSubcuenta) <= 69999) AND((com_opdetalles.Importe) < 0) AND((com_operaciones.IdComunidad) = " + idComunidad + ")) ORDER BY com_opdetalles.Fecha DESC;";
 
                 anticipos = Persistencia.SentenciasSQL.select(sqlSelect);
                 dataGridView1.DataSource = anticipos;
@@ -50,26 +50,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ProveedoresForms
             }
             else
             {
-                String fechaInicio;
-                String fechaFin;
-                try
-                {
-                    fechaInicio = (Convert.ToDateTime(maskedTextBox_inicio.Text)).ToString("yyyy-MM-dd");
-                    fechaFin = (Convert.ToDateTime(maskedTextBox_fin.Text)).ToString("yyyy-MM-dd");
-                }
-                catch
-                {
-                    MessageBox.Show("Comprueba la fecha");
-                    return;
-                }
-
-                String sql = "SELECT com_opdetalles.IdOp, com_opdetalles.IdOpDet, com_opdetalles.IdEntidad, ctos_entidades.Entidad, com_subcuentas.IdSubcuenta, com_subcuentas.`TIT SUBCTA` AS Subcuenta, com_opdetalles.Fecha, com_operaciones.Documento, com_operaciones.Descripcion, com_opdetalles.Importe, com_opdetalles.ImpOpDetPte FROM((com_opdetalles INNER JOIN ctos_entidades ON com_opdetalles.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp) INNER JOIN com_subcuentas ON com_operaciones.IdSubCuenta = com_subcuentas.IdSubcuenta WHERE(((com_subcuentas.IdSubcuenta) >= 43812 And(com_subcuentas.IdSubcuenta) <= 46000) AND((com_opdetalles.Fecha) >= '" + fechaInicio + "' And(com_opdetalles.Fecha) <= '" + fechaFin + "') AND((com_operaciones.IdComunidad) = " + idComunidad + ")) ORDER BY com_opdetalles.Fecha DESC;";
+                String sql = "SELECT com_opdetalles.IdOp, com_opdetalles.IdOpDet, com_opdetalles.IdEntidad, ctos_entidades.Entidad, com_subcuentas.IdSubcuenta, com_subcuentas.`TIT SUBCTA` AS Subcuenta, com_opdetalles.Fecha, com_operaciones.Documento, com_operaciones.Descripcion, com_opdetalles.Importe, com_opdetalles.ImpOpDetPte FROM((com_opdetalles INNER JOIN ctos_entidades ON com_opdetalles.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp) INNER JOIN com_subcuentas ON com_operaciones.IdSubCuenta = com_subcuentas.IdSubcuenta WHERE(((com_subcuentas.IdSubcuenta) >= 43812 And(com_subcuentas.IdSubcuenta) <= 46000) AND((com_operaciones.IdComunidad) = " + idComunidad + ")) OR(((com_subcuentas.IdSubcuenta) >= 60000 And(com_subcuentas.IdSubcuenta) <= 69999) AND((com_opdetalles.Importe) < 0) AND((com_operaciones.IdComunidad) = " + idComunidad + ")) ORDER BY com_opdetalles.Fecha DESC;";
 
                 anticipos = Persistencia.SentenciasSQL.select(sql);
                 dataGridView1.DataSource = anticipos;
                 ajustarDatagrid();
             }
-
         }
         private void ajustarDatagrid()
         {
@@ -94,7 +80,32 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ProveedoresForms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            cargarDataGrid();
+            String fechaInicio;
+            String fechaFin;
+            String sql;
+
+            try
+            {
+                fechaInicio = (Convert.ToDateTime(maskedTextBox_inicio.Text)).ToString("yyyy-MM-dd");
+                fechaFin = (Convert.ToDateTime(maskedTextBox_fin.Text)).ToString("yyyy-MM-dd");
+            }
+            catch
+            {
+                MessageBox.Show("Comprueba la fecha");
+                return;
+            }
+
+            if (idEntidad != null)
+            {
+                sql = "SELECT com_opdetalles.IdOp, com_opdetalles.IdOpDet, com_opdetalles.IdEntidad, ctos_entidades.Entidad, com_subcuentas.IdSubcuenta, com_subcuentas.`TIT SUBCTA` AS Subcuenta, com_opdetalles.Fecha, com_operaciones.Documento, com_operaciones.Descripcion, com_opdetalles.Importe, com_opdetalles.ImpOpDetPte FROM((com_opdetalles INNER JOIN ctos_entidades ON com_opdetalles.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp) INNER JOIN com_subcuentas ON com_operaciones.IdSubCuenta = com_subcuentas.IdSubcuenta WHERE(((com_opdetalles.IdEntidad) = " + idEntidad + ") AND((com_subcuentas.IdSubcuenta) >= 43812 And(com_subcuentas.IdSubcuenta) <= 46000) AND((com_opdetalles.Fecha) >= '" + fechaInicio + "' And(com_opdetalles.Fecha) <= '" + fechaFin + "') AND((com_operaciones.IdComunidad) = " + idComunidad + ")) OR(((com_opdetalles.IdEntidad) = " + idEntidad + ") AND((com_subcuentas.IdSubcuenta) >= 60000 And(com_subcuentas.IdSubcuenta) <= 69999) AND((com_opdetalles.Fecha) >= '" + fechaInicio + "' And(com_opdetalles.Fecha) <= '" + fechaFin + "') AND((com_opdetalles.Importe) < 0) AND((com_operaciones.IdComunidad) = " + idComunidad + ")) ORDER BY com_opdetalles.Fecha DESC; ";
+            }
+            else {
+                sql = "SELECT com_opdetalles.IdOp, com_opdetalles.IdOpDet, com_opdetalles.IdEntidad, ctos_entidades.Entidad, com_subcuentas.IdSubcuenta, com_subcuentas.`TIT SUBCTA` AS Subcuenta, com_opdetalles.Fecha, com_operaciones.Documento, com_operaciones.Descripcion, com_opdetalles.Importe, com_opdetalles.ImpOpDetPte FROM((com_opdetalles INNER JOIN ctos_entidades ON com_opdetalles.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp) INNER JOIN com_subcuentas ON com_operaciones.IdSubCuenta = com_subcuentas.IdSubcuenta WHERE(((com_subcuentas.IdSubcuenta) >= 43812 And(com_subcuentas.IdSubcuenta) <= 46000) AND((com_opdetalles.Fecha) >='" + fechaInicio + "' And (com_opdetalles.Fecha)<='" + fechaFin + "') AND ((com_operaciones.IdComunidad)=" + idComunidad + ")) OR (((com_subcuentas.IdSubcuenta)>=60000 And (com_subcuentas.IdSubcuenta)<=69999) AND ((com_opdetalles.Fecha)>='" + fechaInicio + "' And (com_opdetalles.Fecha)<='" + fechaFin + "') AND ((com_opdetalles.Importe)<0) AND ((com_operaciones.IdComunidad)=" + idComunidad + ")) ORDER BY com_opdetalles.Fecha DESC;";
+            }
+
+            anticipos = Persistencia.SentenciasSQL.select(sql);
+            dataGridView1.DataSource = anticipos;
+            ajustarDatagrid();
         }
 
         private void button_saldo_Click(object sender, EventArgs e)

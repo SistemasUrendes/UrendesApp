@@ -52,12 +52,15 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //string[] row1 = new string[] { textBox1.Text,maskedTextBox1.Text, checkBox1.Checked.ToString()};
-            //m_frm.dataGridView_telefonos.Rows.Add(row1);
 
             int principal = 0;
             if (checkBox_principal.Checked == true)
                 principal = -1;
+
+            if (!maskedTextBox_telefono.MaskFull) {
+                MessageBox.Show("El teléfono no es correcto");
+                return;
+            } 
 
             //Inserto uno nuevo
             if (id_telefono == 0)
