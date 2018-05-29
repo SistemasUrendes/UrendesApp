@@ -20,6 +20,16 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
             this.idComunidad = idComunidad;
             this.formAnt = formAnt;
         }
-        
+
+        private void FormSeleccionarOrgano_Load(object sender, EventArgs e)
+        {
+            cargarOrganos();
+        }
+
+        private void cargarOrganos()
+        {
+            String sqlSelect = "SELECT com_organos.IdOrgano, com_organos.Nombre FROM com_organos WHERE(((com_organos.IdComunidad) = " + idComunidad + ") AND((com_organos.Activo) = -1))";
+            dataGridViewBloques.DataSource = Persistencia.SentenciasSQL.select(sqlSelect);
+        }
     }
 }

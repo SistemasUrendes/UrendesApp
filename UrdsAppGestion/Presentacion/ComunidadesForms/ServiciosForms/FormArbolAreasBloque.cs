@@ -50,14 +50,15 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void cargarAreas()
         {
-            String sqlSelect = "SELECT IdCatElemento,Nombre, Descripcion FROM exp_catElemento";
+            String sqlSelect = "SELECT IdCatElemento,Nombre,NombreCorto AS 'Abr.', Descripcion FROM exp_catElemento";
             areasTabla = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewAllAreas.DataSource = areasTabla;
             if (dataGridViewAllAreas.Rows.Count > 0)
             {
                 dataGridViewAllAreas.Columns["IdCatElemento"].Visible = false;
                 dataGridViewAllAreas.Columns["Nombre"].Width = 100;
-                dataGridViewAllAreas.Columns["Descripcion"].Width = 190;
+                dataGridViewAllAreas.Columns["Abr."].Width = 50;
+                dataGridViewAllAreas.Columns["Descripcion"].Width = 130;
             }
         }
 
@@ -79,45 +80,66 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void copiarServicioABloque()
         {
 
-            String sqlSelectBloque = "SELECT exp_area.IdArea, exp_area.IdBloque, exp_area.IdAreaPrevio FROM exp_area WHERE(((exp_area.IdBloque) = " + idBloque + ") AND((exp_area.IdAreaPrevio) = 0))";
+            String sqlSelectBloque = "SELECT exp_area.IdArea, exp_area.IdBloque, exp_area.IdAreaPrevio, exp_area.codigoArea FROM exp_area WHERE(((exp_area.IdBloque) = " + idBloque + ") AND((exp_area.IdAreaPrevio) = 0))";
             DataTable bloque = Persistencia.SentenciasSQL.select(sqlSelectBloque);
             int areaBloque;
             if (bloque.Rows.Count > 0) areaBloque = Int32.Parse(bloque.Rows[0][0].ToString());
             else
             {
-                String insertBloque = "INSERT INTO exp_area (IdAreaPrevio,IdBloque,Nombre,Descripcion) VALUE (0,'" + idBloque + "','" + nombreBloque + "','Bloque físico')";
+                String insertBloque = "INSERT INTO exp_area (IdAreaPrevio,IdBloque,Nombre,Descripcion,codigoArea) VALUE (0,'" + idBloque + "','" + nombreBloque + "','Bloque físico','0" + idBloque + "')";
                 areaBloque = Persistencia.SentenciasSQL.InsertarGenericoID(insertBloque);
             }
-           
-             
-            String sqlInsertPrincipal = "INSERT INTO exp_area (IdAreaPrevio,IdBloque,Nombre,Descripcion) VALUES ('" + areaBloque + "','" + idBloque + "','" + dataGridViewAllAreas.SelectedRows[0].Cells[1].Value.ToString() + "','" + dataGridViewAllAreas.SelectedRows[0].Cells[2].Value.ToString() + "')";
-            int idAreaPrincipal = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsertPrincipal);
+            String codigoArea = "0" + idBloque + "S";
+
+            String codigoCategoria = dataGridViewAllAreas.SelectedRows[0].Cells[0].Value.ToString();
+            codigoCategoria = actualizaCodigoCat(codigoCategoria);
+
+            codigoArea += codigoCategoria;
             
+            codigoArea += contarCategorias(codigoArea);
+
+            String sqlInsertPrincipal = "INSERT INTO exp_area (IdAreaPrevio,IdBloque,Nombre,Descripcion,NombreCorto,codigoArea) VALUES ('" + areaBloque + "','" + idBloque + "','" + dataGridViewAllAreas.SelectedRows[0].Cells[1].Value.ToString() + "','" + dataGridViewAllAreas.SelectedRows[0].Cells[3].Value.ToString() + "','" + dataGridViewAllAreas.SelectedRows[0].Cells[2].Value.ToString() + "','" + codigoArea  + "')";
+            int idAreaPrincipal = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsertPrincipal);
+            String nombreCorto = dataGridViewAllAreas.SelectedRows[0].Cells[2].Value.ToString();
+
             String sqlSelect = "SELECT exp_detElemento.Nombre, exp_detElemento.Descripcion, exp_detElemento.IdDetElemento FROM exp_detElemento WHERE(((exp_detElemento.IdDetElementoPrev) = 0) AND((exp_detElemento.IdCatElemento) = " + dataGridViewAllAreas.SelectedRows[0].Cells[0].Value.ToString() + "))";
             DataTable servicio = Persistencia.SentenciasSQL.select(sqlSelect);
 
+            int count = 0;
             foreach (DataRow row in servicio.Rows)
             {
                 String nombre = row[0].ToString();
                 String descripcion = row[1].ToString();
                 String idElementoPrev = row[2].ToString();
-                String sqlInsert = "INSERT INTO exp_area (IdAreaPrevio,IdBloque,Nombre,Descripcion) VALUES ('" + idAreaPrincipal + "','" + idBloque + "','" + nombre + "','" + descripcion + "')";
+                String codigoSubArea = codigoArea;
+                
+                if (count < 10) codigoSubArea += "00" + count;
+                else if (count < 100) codigoSubArea += "0" + count;
+                else codigoSubArea += count;
+                String sqlInsert = "INSERT INTO exp_area (IdAreaPrevio,IdBloque,Nombre,Descripcion,NombreCorto,codigoArea) VALUES ('" + idAreaPrincipal + "','" + idBloque + "','" + nombre + "','" + descripcion + "','" + nombreCorto + "','" + codigoSubArea + "')";
                 int idAreaPrev = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsert);
 
                 String sqlSelectsub = "SELECT exp_detElemento.Nombre, exp_detElemento.Descripcion FROM exp_detElemento WHERE exp_detElemento.IdDetElementoPrev = " + idElementoPrev;
                 DataTable subServicio = Persistencia.SentenciasSQL.select(sqlSelectsub);
-
+                int subCount = 0;
                 foreach ( DataRow rowSub in subServicio.Rows)
                 {
                     String nombreSub = rowSub[0].ToString();
                     String descripcionSub = rowSub[1].ToString();
-                    String sqlInsertSub = "INSERT INTO exp_area (IdAreaPrevio,IdBloque,Nombre,Descripcion) VALUES ('" + idAreaPrev + "','" + idBloque + "','" + nombreSub + "','" + descripcionSub + "')";
+
+                    String codigoSubSubArea = codigoSubArea;
+                    if (subCount < 10) codigoSubSubArea += "00" + subCount;
+                    else if (subCount < 100) codigoSubSubArea += "0" + subCount;
+                    else codigoSubSubArea += subCount;
+                    String sqlInsertSub = "INSERT INTO exp_area (IdAreaPrevio,IdBloque,Nombre,Descripcion,NombreCorto,codigoArea) VALUES ('" + idAreaPrev + "','" + idBloque + "','" + nombreSub + "','" + descripcionSub + "','" + nombreCorto + "','" + codigoSubSubArea + "')";
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlInsertSub);
+                    subCount++;
                 }
+                count++;
             }
             rellenarTreeViewInicio();
         }
-
+        
         public void rellenarTreeViewInicio()
         {
             updateRuta();
@@ -313,7 +335,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 nueva.WindowState = FormWindowState.Normal;
                 nueva.StartPosition = FormStartPosition.CenterScreen;
                 nueva.Show();
-            }
+            }   
             else
             {
                 Tareas.FormInsertarServicioBloque nueva = new Tareas.FormInsertarServicioBloque(this, "0", idBloque, nombreBloque );
@@ -322,6 +344,30 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 nueva.StartPosition = FormStartPosition.CenterScreen;
 
                 nueva.Show();
+            }
+        }
+
+        private String contarCategorias(String codigo)
+        {
+            String sqlSelect = "SELECT exp_area.IdArea, exp_area.codigoArea FROM exp_area WHERE(((exp_area.codigoArea)Like '" + codigo + "__'))";
+            DataTable categorias = Persistencia.SentenciasSQL.select(sqlSelect);
+            String count = categorias.Rows.Count.ToString();
+            if (count.Length == 1) return "0" + count;
+            return count;
+        }
+        private String actualizaCodigoCat(String original)
+        {
+            if (original.Length == 1)
+            {
+                return "00" + original;
+            }
+            else if (original.Length == 2)
+            {
+                return "0" + original;
+            }
+            else
+            {
+                return original;
             }
         }
     }

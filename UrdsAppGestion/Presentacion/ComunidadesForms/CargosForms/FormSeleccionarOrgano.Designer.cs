@@ -77,6 +77,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormSeleccionarOrgano";
             this.Text = "FormSeleccionarOrgano";
+            this.Load += new System.EventHandler(this.FormSeleccionarOrgano_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBloques)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
