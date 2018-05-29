@@ -15,13 +15,17 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
         String idOpPasado;
         String idComunidad;
         String idEntidad;
+        String idSubCuenta;
+        String Descripcion;
 
-        public FormLiquidarAOtroFondo(String idOpPasado, String idComunidad, String idEntidad)
+        public FormLiquidarAOtroFondo(String idOpPasado, String idComunidad, String idEntidad, String idSubCuenta, String Descripcion)
         {
             InitializeComponent();
             this.idOpPasado = idOpPasado;
             this.idComunidad = idComunidad;
             this.idEntidad = idEntidad;
+            this.idSubCuenta = idSubCuenta;
+            this.Descripcion = Descripcion;
         }
         public void cargarDatagrid() {
 
@@ -30,7 +34,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             dataGridView_fondos.DataSource = Persistencia.SentenciasSQL.select(sqlSelectFondos);
             dataGridView_fondos.Columns["NombreFondo"].Width = 200;
             dataGridView_fondos.Columns["Bloque"].Width = 150;
-            dataGridView_fondos.Columns["IdFondo"].Width = 50;
+            dataGridView_fondos.Columns["IdFondo"].Width = 30;
         }
 
         private void FormLiquidarAOtroFondo_Load(object sender, EventArgs e)
@@ -74,37 +78,47 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
 
             for (int a = 0; a<vencimientos.Rows.Count;a++) {
                 //CREO EL DETALLE
-                Logica.FuncionesTesoreria.CreaDetalleMovimiento(idMov.ToString(), vencimientos.Rows[a][0].ToString(), vencimientos.Rows[a][3].ToString());
+                Logica.FuncionesTesoreria.CreaDetalleMovimiento(idMov.ToString(), vencimientos.Rows[a][0].ToString(), vencimientos.Rows[a][3].ToString().Replace(",", "."));
                 totalApagar += Convert.ToDouble(vencimientos.Rows[a][3].ToString());
             }
+            
 
             //OPERACION DEVOLUCIÓN
-            String sqlInsertOperacion = "INSERT INTO com_operaciones (IdComunidad, IdEntidad, IdSubCuenta, IdTipoReparto, Fecha, Documento, Descripcion, IdMovCrea, ImpOp, ImpOpPte, Guardada, IdURD, FAct) VALUES (" + idComunidad + "," + idEntidad + ",67800,1,'" + fechaHoy + "','VTO. ANTIGUO', 'VTO. ANTIGUO MOV" + idMov + "'," + idMov + "," + totalApagar.ToString().Replace(",", ".") + "," + totalApagar.ToString().Replace(",", ".") + ",'Si'," + Login.getId() + ",'" + fechaHoy + "')";
+            String sqlInsertOperacion = "INSERT INTO com_operaciones (IdComunidad, IdEntidad, IdSubCuenta, IdTipoReparto, Fecha, Documento, Descripcion, IdMovCrea, ImpOp, ImpOpPte, Guardada, IdURD, FAct) VALUES (" + idComunidad + "," + idEntidad + "," + idSubCuenta + ",1,'" + fechaHoy + "','', '" + Descripcion + "'," + idMov + ",-" + totalApagar.ToString().Replace(",", ".") + ",-" + totalApagar.ToString().Replace(",", ".") + ",'Si'," + Login.getId() + ",'" + fechaHoy + "')";
 
             int op = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsertOperacion);
 
             //INSERTO EL IVA EN LA OPERACION
-            String sqlIVA = "INSERT INTO com_opdetiva (IdOp, Base, IdIVA, IVA) VALUES (" + op + "," + totalApagar.ToString().Replace(",", ".") + ",1,0.00)";
+            String sqlIVA = "INSERT INTO com_opdetiva (IdOp, Base, IdIVA, IVA) VALUES (" + op + ",-" + totalApagar.ToString().Replace(",", ".") + ",1,0.00)";
             Persistencia.SentenciasSQL.InsertarGenerico(sqlIVA);
 
             //INSERTO EL REPARTO EN LA OPERACION
-            String sqlBloq2 = "INSERT INTO com_opdetbloques (IdOp, IdBloque, Porcentaje, Importe) VALUES (" + op + "," + idBloqueGG + ",1," + totalApagar.ToString().Replace(",", ".") + ")";
-            Persistencia.SentenciasSQL.InsertarGenerico(sqlBloq2);
+            String sqlSelectReparto = "SELECT IdBloque, Porcentaje FROM com_opdetbloques WHERE IdOp = " + idOpPasado + ";";
+            DataTable repartos = Persistencia.SentenciasSQL.select(sqlSelectReparto);
+            for (int a = 0; a < repartos.Rows.Count; a++)   {
+
+                double porcentaje = Convert.ToDouble(repartos.Rows[a][1].ToString()) * 100;
+                double total = (Convert.ToDouble(totalApagar.ToString().Replace(",", ".")) * porcentaje) / 100;
+
+                String sqlInsertReparto = "INSERT INTO com_opdetbloques (IdOp, IdBloque, Porcentaje, Importe) VALUES (" + idOpPasado + "," + repartos.Rows[a][0].ToString() + "," + repartos.Rows[a][1].ToString().Replace(',', '.') + ",-" + total.ToString().Replace(',', '.') + ")";
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlInsertReparto);
+            }
 
             //INSERTO EL VENCIMIENTO EN LA OPERACION
-            String sqlDetOp2 = "INSERT INTO com_opdetalles (IdOp, IdEntidad, Fecha, FechaPrev, Importe,ImpOpDetPte) VALUES (" + op + "," + idEntidad + ",'" + fechaHoy + "','" + fechaHoy + "'," + totalApagar.ToString().Replace(",", ".") + "," + totalApagar.ToString().Replace(",", ".") + ")";
+            String sqlDetOp2 = "INSERT INTO com_opdetalles (IdOp, IdEntidad, Fecha, FechaPrev, Importe,ImpOpDetPte) VALUES (" + op + "," + idEntidad + ",'" + fechaHoy + "','" + fechaHoy + "',-" + totalApagar.ToString().Replace(",", ".") + ",-" + totalApagar.ToString().Replace(",", ".") + ")";
             int nuevaDet = Persistencia.SentenciasSQL.InsertarGenericoID(sqlDetOp2);
 
             //INSERTO LA LIQUIDACION EN LA OPERACION ANTERIOR
-            String sqlLiq2 = "INSERT INTO com_opdetliquidacion (IdOp, IdLiquidacion, Porcentaje, Importe) VALUES (" + op + "," + LiquidacionFondo() + ",1," + totalApagar.ToString().Replace(",", ".") + ")";
+            String sqlLiq2 = "INSERT INTO com_opdetliquidacion (IdOp, IdLiquidacion, Porcentaje, Importe) VALUES (" + op + "," + LiquidacionFondo() + ",1,-" + totalApagar.ToString().Replace(",", ".") + ")";
             Persistencia.SentenciasSQL.InsertarGenerico(sqlLiq2);
 
             //CREO EL MOVIMIENTO
-            int idMovEntrada = Logica.FuncionesTesoreria.CreaMovimiento(IdEjercicio, idCuentaCom, "8", idEntidad, fechaHoy, "AJUSTE VENCIMIENTO ANTIGUO");
+            int idMovEntrada = Logica.FuncionesTesoreria.CreaMovimiento(IdEjercicio, idCuentaCom, "8", idEntidad, fechaHoy, "AJUSTE VENCIMIENTO LIQUIDADO");
+            
             //CREO EL DETALLE
             Logica.FuncionesTesoreria.CreaDetalleMovimiento(idMovEntrada.ToString(), nuevaDet.ToString(), totalApagar.ToString().Replace(",", "."));
 
-            MessageBox.Show("Movimiento de cuadre realizado");
+            MessageBox.Show("CUOTA LIQUIDADA EN " + dataGridView_fondos.SelectedRows[0].Cells[1].Value.ToString());
 
             FromOperacionesVer vieja = new FromOperacionesVer(idOpPasado.ToString(), 2);
             vieja.Show();

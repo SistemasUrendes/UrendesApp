@@ -88,22 +88,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms
             cargarDatagrid();
         }
 
-        private void textBox_buscarComunero_TextChanged(object sender, EventArgs e)
-        {
-            //if (textBox_buscarComunero.TextLength < 2)
-            //{
-            //    DataTable busqueda = recibos;
-            //    busqueda.DefaultView.RowFilter = "Entidad like '%%'";
-            //    this.dataGridView_recibos.DataSource = busqueda;
-            //}
-            //else
-            //{
-            //    DataTable busqueda = recibos;
-            //    busqueda.DefaultView.RowFilter = "Entidad like '%" + textBox_buscarComunero.Text + "%'";
-            //    this.dataGridView_recibos.DataSource = busqueda;
-            //}
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             Recibos.FormNuevoRecibo nueva = new Recibos.FormNuevoRecibo(id_comunidad_cargado, id_comunero_cargado);
@@ -188,15 +172,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms
         {
             buttonImprimirRecibo.Text = "Imprimiendo...";
             buttonImprimirRecibo.Enabled = false;
-            progressBar1.Visible = true;
-            label_impriendo.Visible = true;
-            progressBar1.Maximum = dataGridView_recibos.SelectedRows.Count;
 
-            Warning[] warnings;
-            string[] streamids;
-            string mimeType;
-            string encoding;
-            string filenameExtension;
+            DataTable RecibosSeleccionados = new DataTable();
 
             FolderBrowserDialog fichero = new FolderBrowserDialog();
 
@@ -206,45 +183,30 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms
 
             if (fichero.ShowDialog() == DialogResult.OK)
             {
-                for (int a = 0; a < dataGridView_recibos.SelectedRows.Count; a++)
+                foreach (DataGridViewColumn column in dataGridView_recibos.Columns)
+                    RecibosSeleccionados.Columns.Add(column.Name);
+
+                for (int i = 0; i < dataGridView_recibos.SelectedRows.Count; i++)
                 {
-                    try
+                    RecibosSeleccionados.Rows.Add();
+                    for (int j = 0; j < dataGridView_recibos.Columns.Count; j++)
                     {
-                        progressBar1.Value = a;
-                        EntidadesForms.VerReporte nueva = new EntidadesForms.VerReporte(dataGridView_recibos.SelectedRows[a].Cells[0].Value.ToString(), dataGridView_recibos.SelectedRows[a].Cells[2].Value.ToString(), id_comunidad_cargado);
-
-                        byte[] bytes = nueva.reportViewer1.LocalReport.Render(
-                            "PDF", null, out mimeType, out encoding, out filenameExtension,
-                            out streamids, out warnings);
-
-                        String nombre = "R" + dataGridView_recibos.SelectedRows[a].Cells[0].Value + "-" + dataGridView_recibos.SelectedRows[a].Cells[2].Value + " " + dataGridView_recibos.SelectedRows[a].Cells[5].Value + "-" + dataGridView_recibos.SelectedRows[a].Cells[3].Value + ".pdf";
-                        nombre = nombre.Replace(@"/", "-");
-
-
-                        using (FileStream fs = new FileStream(fichero.SelectedPath + "/" + nombre, FileMode.Create))
-                        {
-                            fs.Write(bytes, 0, bytes.Length);
-                        }
-                        nueva.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error al crear el PDF => " + ex.Message);
+                        RecibosSeleccionados.Rows[i][j] = dataGridView_recibos.SelectedRows[i].Cells[j].Value;
                     }
                 }
-                progressBar1.Visible = false;
-                label_impriendo.Visible = false;
-                MessageBox.Show("Recibos Creados ");
-                buttonImprimirRecibo.Text = "Imprimir";
-                buttonImprimirRecibo.Enabled = true;
+
+                PanelControl existe = Application.OpenForms.OfType<PanelControl>().Where(pre => pre.Name == "PanelControl").SingleOrDefault<PanelControl>();
+
+                if (existe != null)
+                {
+                    existe.WindowState = FormWindowState.Normal;
+                    existe.BringToFront();
+                    existe.imprimirRecibos(RecibosSeleccionados, id_comunidad_cargado, fichero.SelectedPath);
+                    
+                }
             }
-            else
-            {
-                progressBar1.Visible = false;
-                label_impriendo.Visible = false;
-                buttonImprimirRecibo.Text = "Imprimir";
-                buttonImprimirRecibo.Enabled = true;
-            }
+            buttonImprimirRecibo.Text = "Imprimir";
+            buttonImprimirRecibo.Enabled = true;
 
         }
 
@@ -415,6 +377,55 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms
                 dataGridView_recibos.Rows[hti.RowIndex].Selected = true;
 
                 contextMenuStrip1.Show(Cursor.Position);
+            }
+        }
+
+        private void button_enviar_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fichero = new FolderBrowserDialog();
+            DataTable RecibosSeleccionados = new DataTable();
+
+            DataTable DatosComunidad = Persistencia.SentenciasSQL.select("SELECT ctos_entidades.Ruta, ctos_entidades.NombreCorto FROM ctos_entidades INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((com_comunidades.IdComunidad) = " + id_comunidad_cargado + "));");
+
+            String RutaComunidad = DatosComunidad.Rows[0][0].ToString().Trim('#');
+            String strComunidad = DatosComunidad.Rows[0][1].ToString();
+
+            fichero.SelectedPath = RutaComunidad;
+
+            if (fichero.ShowDialog() == DialogResult.OK)
+            {
+                foreach (DataGridViewColumn column in dataGridView_recibos.Columns)
+                    RecibosSeleccionados.Columns.Add(column.Name);
+
+                for (int i = 0; i < dataGridView_recibos.SelectedRows.Count; i++)
+                {
+                    RecibosSeleccionados.Rows.Add();
+                    for (int j = 0; j < dataGridView_recibos.Columns.Count; j++)
+                    {
+                        RecibosSeleccionados.Rows[i][j] = dataGridView_recibos.SelectedRows[i].Cells[j].Value;
+                    }
+                }
+
+                PanelControl existe = Application.OpenForms.OfType<PanelControl>().Where(pre => pre.Name == "PanelControl").SingleOrDefault<PanelControl>();
+
+                if (existe != null)
+                {
+                    existe.WindowState = FormWindowState.Normal;
+                    existe.BringToFront();
+                    existe.enviarRecibos(RecibosSeleccionados, strComunidad, fichero.SelectedPath);
+                }
+            }
+        }
+
+        private void dataGridView_recibos_DoubleClick(object sender, EventArgs e)
+        {
+            String sqlSelectIdOp = "SELECT com_operaciones.IdOp FROM com_operaciones INNER JOIN com_opdetalles ON com_operaciones.IdOp = com_opdetalles.IdOp WHERE com_opdetalles.IdRecibo = " + dataGridView_recibos.SelectedRows[0].Cells[0].Value.ToString();
+
+            DataTable idOp = Persistencia.SentenciasSQL.select(sqlSelectIdOp);
+
+            if (idOp.Rows.Count > 0) {
+                OperacionesForms.FromOperacionesVer nueva = new OperacionesForms.FromOperacionesVer(idOp.Rows[0][0].ToString(),2);
+                nueva.Show();
             }
         }
     }

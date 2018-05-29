@@ -67,6 +67,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
                 int idFondo = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsert);
                 
                 if (comboBox_tipoFondo.SelectedValue.ToString() == "2") { 
+
                 //CREO LIQUIDACIÓN 
                 //COMPRUEBO QUE NO HAY NINGUNA LIQUIDACION CREADA PARA ESE FONDO
                 String sqlSelectLiq = "SELECT IdLiquidacion FROM com_liquidaciones WHERE IdFondo = " + idFondo;
@@ -86,10 +87,11 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
                         MessageBox.Show("Se ha creado una liquidación pasa ese fondo");
 
                         //REVISAR IdMetodo
-                        String sqlInsertCuota = "INSERT INTO com_cuotas (Descripcion, IdLiquidacion, IdTipoCuota, IdFondo, IdMetodo, FIni, FFin, FEmision, FVto, IdEstado) VALUES ('" + textBox_nombre.Text + "'," + liqNueva + ",2," + idFondo + ",2,'" + (Convert.ToDateTime(fechasEjer.Rows[0][0].ToString())).ToString("yyyy-MM-dd") + "','" + (Convert.ToDateTime(fechasEjer.Rows[0][1].ToString())).ToString("yyyy-MM-dd") + "','" + (Convert.ToDateTime(fechasEjer.Rows[0][0].ToString())).ToString("yyyy-MM-dd") + "','" + (Convert.ToDateTime(fechasEjer.Rows[0][1].ToString())).ToString("yyyy-MM-dd") + "',1)";
-                        Persistencia.SentenciasSQL.InsertarGenerico(sqlInsertCuota);
+                        //CREO UNA CUOTA
+                        //String sqlInsertCuota = "INSERT INTO com_cuotas (Descripcion, IdLiquidacion, IdTipoCuota, IdFondo, IdMetodo, FIni, FFin, FEmision, FVto, IdEstado) VALUES ('" + textBox_nombre.Text + "'," + liqNueva + ",2," + idFondo + ",2,'" + (Convert.ToDateTime(fechasEjer.Rows[0][0].ToString())).ToString("yyyy-MM-dd") + "','" + (Convert.ToDateTime(fechasEjer.Rows[0][1].ToString())).ToString("yyyy-MM-dd") + "','" + (Convert.ToDateTime(fechasEjer.Rows[0][0].ToString())).ToString("yyyy-MM-dd") + "','" + (Convert.ToDateTime(fechasEjer.Rows[0][1].ToString())).ToString("yyyy-MM-dd") + "',1)";
+                        //Persistencia.SentenciasSQL.InsertarGenerico(sqlInsertCuota);
 
-                        MessageBox.Show("Se ha creado una CUOTA pasa ese fondo");
+                        //MessageBox.Show("Se ha creado una CUOTA pasa ese fondo");
                     }
 
                 }

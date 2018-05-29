@@ -55,6 +55,7 @@
             // 
             // textBox_nombre
             // 
+            this.textBox_nombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox_nombre.Location = new System.Drawing.Point(102, 54);
             this.textBox_nombre.Name = "textBox_nombre";
             this.textBox_nombre.Size = new System.Drawing.Size(218, 20);
@@ -136,6 +137,7 @@
             // 
             // textBox_subcuenta
             // 
+            this.textBox_subcuenta.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox_subcuenta.Location = new System.Drawing.Point(236, 20);
             this.textBox_subcuenta.Name = "textBox_subcuenta";
             this.textBox_subcuenta.Size = new System.Drawing.Size(148, 20);

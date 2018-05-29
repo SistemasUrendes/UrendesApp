@@ -394,6 +394,7 @@ namespace UrdsAppGestión.Presentacion
             }
             e.Result = "Creación de PDF Completada";
         }
+
         //VERSIÓN NUEVA PARA CREAR LIQUIDACIÓN
         public void CrearPDFLiquidacionNuevo (DataTable PdfCrear, String idComunidad, String idLiquidacion,String Ruta, String nombreCortoLiqPasado) {
             proc1++;
@@ -549,9 +550,182 @@ namespace UrdsAppGestión.Presentacion
             tarea.RunWorkerAsync(arguments);
 
         }
-        public void recibirTexto(String text) {
-        
+        public void imprimirRecibos(DataTable RecibosParaCrear, String idComunidad, String Ruta)
+        {
+            proc1++;
+            string[] row = new string[] { proc1.ToString(), "Creación PDF Rbo :", "0%" };
+            dataGridView_tareas.Rows.Add(row);
+
+            List<object> arguments = new List<object>();
+            arguments.Add(RecibosParaCrear);
+            arguments.Add(idComunidad);
+            arguments.Add(Ruta);
+
+            var tarea1 = new BackgroundWorker()
+            {
+                WorkerReportsProgress = true,
+                WorkerSupportsCancellation = true
+            };
+
+            tarea1.DoWork += backgroundWorkerimprimirRecibos_DoWork;
+            tarea1.ProgressChanged += backgroundWorker1_ProgressChanged;
+            tarea1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
+            numero_procesos++;
+            tarea1.RunWorkerAsync(arguments);
         }
+
+        public void enviarRecibos(DataTable RecibosParaEnviar, String idComunidad, String Ruta)
+        {
+            proc1++;
+            string[] row = new string[] { proc1.ToString(), "Enviando Rbos :", "0%" };
+            dataGridView_tareas.Rows.Add(row);
+
+            List<object> arguments = new List<object>();
+            arguments.Add(RecibosParaEnviar);
+            arguments.Add(idComunidad);
+            arguments.Add(Ruta);
+
+            var tarea1 = new BackgroundWorker()
+            {
+                WorkerReportsProgress = true,
+                WorkerSupportsCancellation = true
+            };
+
+            tarea1.DoWork += backgroundWorkerEnvRbo_DoWork;
+            tarea1.ProgressChanged += backgroundWorker1_ProgressChanged;
+            tarea1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
+            numero_procesos++;
+            tarea1.RunWorkerAsync(arguments);
+        }
+        private void backgroundWorkerimprimirRecibos_DoWork(object sender, DoWorkEventArgs e)
+        {
+            List<object> genericlist = e.Argument as List<object>;
+            DataTable PdfRecibos = (DataTable)genericlist[0];
+            String idcomunidad = (String)genericlist[1];
+            String Ruta = (String)genericlist[2];
+
+            Warning[] warnings;
+            string[] streamids;
+            string mimeType;
+            string encoding;
+            string filenameExtension;
+
+            if (Thread.CurrentThread.Name == null)
+            {
+                Thread.CurrentThread.Name = numero_procesos.ToString();
+            }
+
+            for (int a = 0; a < PdfRecibos.Rows.Count; a++)
+            {
+                try
+                {
+                    EntidadesForms.VerReporte nueva = new EntidadesForms.VerReporte(PdfRecibos.Rows[a][0].ToString(), PdfRecibos.Rows[a][2].ToString(), idcomunidad);
+
+                    byte[] bytes = nueva.reportViewer1.LocalReport.Render(
+                        "PDF", null, out mimeType, out encoding, out filenameExtension,
+                        out streamids, out warnings);
+
+                    String nombre = "R" + PdfRecibos.Rows[a][0].ToString() + "-" + PdfRecibos.Rows[a][2].ToString() + " " + PdfRecibos.Rows[a][5].ToString() + "-" + PdfRecibos.Rows[a][3].ToString() + ".pdf";
+                    nombre = nombre.Replace(@"/", "-");
+
+                    using (FileStream fs = new FileStream(Ruta + "/" + nombre, FileMode.Create))
+                        fs.Write(bytes, 0, bytes.Length);
+                    nueva.Close();
+                }
+                catch (Exception ex)    {
+                    MessageBox.Show("Error al crear el PDF => " + ex.Message);
+                }
+                backgroundWorker1.ReportProgress((100 * a) / PdfRecibos.Rows.Count, DateTime.Now);
+            }
+            e.Result = "Creación de PDF Completada";
+
+        }
+        private void backgroundWorkerEnvRbo_DoWork(object sender, DoWorkEventArgs e)    {
+            List<object> genericlist = e.Argument as List<object>;
+            DataTable PdfRecibos = (DataTable)genericlist[0];
+            String strComunidad = (String)genericlist[1];
+            String Ruta = (String)genericlist[2];
+
+            if (Thread.CurrentThread.Name == null)
+                Thread.CurrentThread.Name = numero_procesos.ToString();
+
+            DirectoryInfo di = new DirectoryInfo(Ruta.ToString());
+
+            int IdEntidad;
+
+            List<String> fallos = new List<String>();
+            int a = 0;
+            foreach (var fi in di.GetFiles("R*"))
+            {
+                //PREPARO EL IDENTIDAD PARA VER QUE TIPO DE ENVIO
+                String nombreFichero = fi.Name;
+                String idEntidad = fi.Name.Split('-')[1];
+                String Entidad = fi.Name.Split('-')[3];
+                idEntidad = idEntidad.Split(' ')[0];
+
+                //BUSCO COMO QUIERE EL ENVIO
+                if (int.TryParse(idEntidad, out IdEntidad))
+                {
+                    String sqltipoEnvio = "SELECT com_comuneros.EnvioPostal, com_comuneros.EnvioEmail, com_comuneros.IdEmail, com_comuneros.IdComunero FROM com_comuneros WHERE(((com_comuneros.IdEntidad) = " + IdEntidad + "));";
+                    DataTable tipoEnvio = Persistencia.SentenciasSQL.select(sqltipoEnvio);
+
+                    if (tipoEnvio.Rows.Count == 1)
+                    {
+                        if ((tipoEnvio.Rows[0][1].ToString() == "True"))
+                        {
+                            //ENVIO CORREO
+                            String destinatario = "SELECT ctos_detemail.Email FROM ctos_detemail WHERE ctos_detemail.IdEmail = " + tipoEnvio.Rows[0][2].ToString();
+                            DataTable correo = Persistencia.SentenciasSQL.select(destinatario);
+                            if (correo.Rows.Count == 1)
+                            {
+                                destinatario = correo.Rows[0][0].ToString();
+                                if (ComprobarFormatoEmail(destinatario))
+                                {
+                                    String asunto = strComunidad + " (C" + tipoEnvio.Rows[0][3].ToString() + ") - " + Entidad;
+
+                                    String cuerpo = "Estimado vecino:\n Adjunto en este correo encontrará documentos de su interés.\n\nAtentamente,\nAdministraciones Urendes, S.L.\nTelf. 96 123 70 13 - admin@urendes.com";
+
+                                    List<String> lista = new List<string>();
+                                    lista.Add(fi.FullName);
+
+                                    EnviarCorreo(destinatario, asunto, cuerpo, lista, "info@urendes.com");
+                                }
+                                else
+                                {
+                                    fallos.Add(IdEntidad.ToString());
+                                }
+                            }
+                            else
+                            {
+                                fallos.Add(IdEntidad.ToString());
+                            }
+                        }
+                        
+                    }
+                }
+                else
+                {
+                    fallos.Add(IdEntidad.ToString());
+                }
+                backgroundWorker1.ReportProgress((100 * a) / di.GetFiles("R*").Length, DateTime.Now);
+                a++;
+            }
+
+            //MUESTRO LOS FALLOS
+            if (fallos.Count > 0)
+            {
+                String total = "";
+                foreach (var fallo in fallos)
+                {
+                    total = total + "\n" + fallo.ToString();
+                }
+                e.Result = "Fallo al enviar Liquidación: \nIdEntidades: " + total;
+            }
+            else
+                e.Result = "Recibos enviados";
+
+        }
+
         private void backgroundWorkerEnvLiq_DoWork(object sender, DoWorkEventArgs e) {
 
             List<object> genericlist = e.Argument as List<object>;
@@ -612,7 +786,6 @@ namespace UrdsAppGestión.Presentacion
                                 lista.Add(fi.FullName);
                                 
                                EnviarCorreo(destinatario, asunto, cuerpo, lista, "info@urendes.com");
-                               //EnviarCorreo("sistemas@urendes.com", asunto, cuerpo, lista, "info@urendes.com");
                             }else {
                                 fallos.Add(IdEntidad.ToString());
                             }
@@ -641,7 +814,6 @@ namespace UrdsAppGestión.Presentacion
                                     lista.Add(fi.FullName);
 
                                     EnviarCorreo(destinatario, asunto, cuerpo, lista, "info@urendes.com");
-                                    //EnviarCorreo("sistemas@urendes.com", asunto, cuerpo, lista, "info@urendes.com");
                                 }
                                 else  {
                                     fallos.Add(IdEntidad.ToString());

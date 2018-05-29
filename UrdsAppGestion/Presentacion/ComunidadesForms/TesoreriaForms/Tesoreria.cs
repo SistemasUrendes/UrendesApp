@@ -18,18 +18,21 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
         int id_cuenta;
         DataTable nueva;
         String fechaCierre;
+        String nombreCuenta;
 
-        public Tesoreria(String nombre_comunidad,int id_comunidad,int id_cuenta)
+        public Tesoreria(String nombre_comunidad,int id_comunidad,int id_cuenta, String nombreCuenta)
         {
             InitializeComponent();
             this.id_comunidad = id_comunidad;
             this.nombre_comunidad = nombre_comunidad;
             this.id_cuenta = id_cuenta;
+            this.nombreCuenta = nombreCuenta;
         }
 
         private void Tesoreria_Load(object sender, EventArgs e)
         {
             cargarDatagrid();
+            label13.Text = nombreCuenta;
         }
         public void cargarDatagrid() {
             String sql2 = "SELECT IdEjercicio,Ejercicio FROM com_ejercicios WHERE IdComunidad = " + id_comunidad + " ORDER BY FFin DESC";
@@ -54,8 +57,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             //CONSIGO LA FECHA DE CIERRE DE LA CUENTA
             fechaCierreRecargar();
 
-            //VALOR POR DEFECTO COMBOS
-            //comboBox_s_proveedor.SelectedIndex = 0;
             ajustarDatagrid();
         }
         private void fechaCierreRecargar() {
@@ -219,7 +220,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
 
         private void comboBox_s_comuneros_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            //ComboBox combo = (ComboBox)sender;
             if (comboBox_s_comuneros.SelectedIndex == 0)  {
                 TesoreriaForms.FormAccesoOperacionesTesoreria nueva = new TesoreriaForms.FormAccesoOperacionesTesoreria(id_comunidad.ToString(), id_cuenta.ToString(), "Salida a Comuneros");
                 nueva.Show();
@@ -247,7 +247,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
 
         private void comboBox_e_otras_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //ComboBox combo = (ComboBox)sender;
             if (comboBox_e_otras.SelectedIndex == 0)
             {
                 TesoreriaForms.FormTraspasoES nueva = new TesoreriaForms.FormTraspasoES(this, id_comunidad.ToString(), "1", id_cuenta.ToString());
@@ -286,7 +285,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
 
         private void comboBox_e_proveedor_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            //ComboBox combo = (ComboBox)sender;
             if (comboBox_e_proveedor.SelectedIndex == 0)
             {
                 TesoreriaForms.FormAccesoOperacionesTesoreria nueva = new TesoreriaForms.FormAccesoOperacionesTesoreria(id_comunidad.ToString(), id_cuenta.ToString(), "Entrada a Proveedor");
@@ -299,6 +297,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             BorrarMovimiento();
         }
         private void BorrarMovimiento() {
+
             //BORRAR MOVIMIENTO
             List<String> movimientosParaBorrar = new List<String>();
             List<String> movimientosNoSePueden = new List<String>();

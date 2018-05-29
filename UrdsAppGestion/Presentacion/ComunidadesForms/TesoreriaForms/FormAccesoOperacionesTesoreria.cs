@@ -139,23 +139,28 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
 
         private void maskedTextBox_fecha_Validated(object sender, EventArgs e)
         {
-            String fechaCierre = (Persistencia.SentenciasSQL.select("SELECT FCierre FROM com_cuentas WHERE IdCuenta = " + id_cuenta_cargado)).Rows[0][0].ToString();
-
-            if (maskedTextBox_fecha.Text == "  /  /" || maskedTextBox_fecha.Text == null)
+            try
             {
-                String fecha = (Convert.ToDateTime(DateTime.Now.ToShortDateString())).ToString("dd-MM-yyyy");
-                maskedTextBox_fecha.Text = fecha;
-            }
+                String fechaCierre = (Persistencia.SentenciasSQL.select("SELECT FCierre FROM com_cuentas WHERE IdCuenta = " + id_cuenta_cargado)).Rows[0][0].ToString();
 
-            if (fechaCierre != "" || fechaCierre != null)
-            {
-                if (Convert.ToDateTime(maskedTextBox_fecha.Text) < Convert.ToDateTime(fechaCierre))
+                if (maskedTextBox_fecha.Text == "  /  /" || maskedTextBox_fecha.Text == null)
                 {
-                    MessageBox.Show("El banco esta cerrado a esa fecha. Cambia la fecha");
-                    maskedTextBox_fecha.Focus();
-                    maskedTextBox_fecha.Select();
-                    return;
+                    String fecha = (Convert.ToDateTime(DateTime.Now.ToShortDateString())).ToString("dd-MM-yyyy");
+                    maskedTextBox_fecha.Text = fecha;
                 }
+
+                if (fechaCierre != "" || fechaCierre != null)
+                {
+                    if (Convert.ToDateTime(maskedTextBox_fecha.Text) < Convert.ToDateTime(fechaCierre))
+                    {
+                        MessageBox.Show("El banco esta cerrado a esa fecha. Cambia la fecha");
+                        maskedTextBox_fecha.Focus();
+                        maskedTextBox_fecha.Select();
+                        return;
+                    }
+                }
+            }catch {
+                MessageBox.Show("Fecha no correcta. Comprueba la fecha de cierre");
             }
         }
 
