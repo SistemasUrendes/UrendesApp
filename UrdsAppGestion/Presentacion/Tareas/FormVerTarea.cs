@@ -37,6 +37,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private bool expedientesDupli;
         private DataTable tablaBloque;
         private DataTable tablaFinalServicios;
+        private bool edicion;
 
         public FormVerTarea(FormTareasPrincipal form_anterior, String idTarea)
         {
@@ -106,12 +107,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 addTarea();
                 duplicarTarea();
                 form_anterior.CargarTareas();
+                form_anterior.aplicarFiltroTabla();
+                form_anterior.filtroNombre();
             }
             if (idTarea != null)
             {
                 cargarCabecera();
                 comboBoxEstadoGestion.SelectedIndex = 2; //TODAS
-                cargarTodosSeguimientos();
+                //cargarTodosSeguimientos();
                 cargarContactos();
                 cargarExpedientes();
                 cargarBloque();
@@ -185,6 +188,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
             labelRutaLink.Enabled = false;
             buttonBloque.Visible = false;
             buttonDuplicarTarea.Enabled = true;
+            edicion = false;
+
         }
 
         public void habilitarEdicion()
@@ -217,6 +222,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 textBoxEntidad.Text = "Pulsa espacio para Seleccionar Entidad";
                 textBoxEntidad.ForeColor = Color.Gray;
             }
+            edicion = true;
         }
 
         public void rellenarComboBox()
@@ -368,7 +374,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 textBoxIdTarea.Text = idTarea;
                 textBoxIdTareaNuevo.Text = idTareaNuevo(idTarea);
                 bloquearEdicion();
-                if (form_anterior != null) form_anterior.CargarTareas();
+                if (form_anterior != null)
+                {
+                    form_anterior.CargarTareas();
+                    form_anterior.aplicarFiltroTabla();
+                    form_anterior.filtroNombre();
+                }
 
         }
 
@@ -397,7 +408,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 textBoxIdTareaNuevo.Text = idTareaNuevo(idTarea);
                 comboBoxEstadoGestion.SelectedIndex = 2;
                 bloquearEdicion();
-                if (form_anterior != null) form_anterior.CargarTareas();
+                if (form_anterior != null)
+                {
+                    form_anterior.CargarTareas();
+                    form_anterior.aplicarFiltroTabla();
+                    form_anterior.filtroNombre();
+                }
                 Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, fInicio,idComunidad);
                 nueva.ControlBox = true;
                 nueva.TopMost = true;
@@ -584,7 +600,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 addTarea();
                 textBoxIdTarea.Text = idTarea;
                 textBoxIdTareaNuevo.Text = idTareaNuevo(idTarea);
-                if (form_anterior != null) form_anterior.CargarTareas();
+                if (form_anterior != null)
+                {
+                    form_anterior.CargarTareas();
+                    form_anterior.aplicarFiltroTabla();
+                    form_anterior.filtroNombre();
+                }
 
                 String tarea = idTarea + " " + textBoxDescripcion.Text;
                 String rutaCheck = rutaEntidad().Trim('#');
@@ -630,7 +651,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
                         addTarea();
                         textBoxIdTarea.Text = idTarea;
                         textBoxIdTareaNuevo.Text = idTareaNuevo(idTarea);
-                        if (form_anterior != null) form_anterior.CargarTareas();
+                        if (form_anterior != null)
+                        {
+                            form_anterior.CargarTareas();
+                            form_anterior.aplicarFiltroTabla();
+                            form_anterior.filtroNombre();
+                        }
 
                         String tarea = idTarea + " " + textBoxDescripcion.Text;
                         String rutaCheck = rutaEntidad().Trim('#');
@@ -1200,7 +1226,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 addTarea();
                 bloquearEdicion();
-                if (form_anterior != null) form_anterior.CargarTareas();
+                if (form_anterior != null)
+                {
+                    form_anterior.CargarTareas();
+                    form_anterior.aplicarFiltroTabla();
+                    form_anterior.filtroNombre();
+                }
 
                 if (dataGridViewGestiones.SelectedCells.Count > 0)
                 {
@@ -1223,7 +1254,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
                         String sqlUpdate = "UPDATE exp_tareas SET FFin = '" + DateTime.Now.ToString("yyyy-MM-dd") + "',Importante = 0 WHERE IdTarea = " + idTarea;
                         Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                         cargarCabecera();
-                        if (form_anterior != null) form_anterior.CargarTareas();
+                        if (form_anterior != null)
+                        {
+                            form_anterior.CargarTareas();
+                            form_anterior.aplicarFiltroTabla();
+                            form_anterior.filtroNombre();
+                        }
                     }
                 }
             }
@@ -1239,7 +1275,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 {
                     String sqlBorrar = "DELETE FROM exp_tareas WHERE IdTarea = " + idTarea;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrar);
-                    if (form_anterior != null) form_anterior.CargarTareas();
+                    if (form_anterior != null)
+                    {
+                        form_anterior.CargarTareas();
+                        form_anterior.aplicarFiltroTabla();
+                        form_anterior.filtroNombre();
+                    }
                     this.Close();
                 }
             }
@@ -1268,7 +1309,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
         public void tareaImportanteGestion()
         {
             cargarCabecera();
-            if (form_anterior != null) form_anterior.CargarTareas();
+            if (form_anterior != null)
+            {
+                form_anterior.CargarTareas();
+                form_anterior.aplicarFiltroTabla();
+                form_anterior.filtroNombre();
+            }
         }
         
         private void textBoxSiniestro_Leave(object sender, EventArgs e)
@@ -1729,6 +1775,27 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             FormInsertarServicioTarea nueva = new FormInsertarServicioTarea(this, idTarea);
             nueva.Show();
+        }
+        
+        private void FormVerTarea_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (edicion)
+            {
+                DialogResult resultado_message;
+                resultado_message = MessageBox.Show("¿Desea Guardar los cambios en esta Tarea ?", "Guardar Tarea", MessageBoxButtons.YesNoCancel);
+                if (resultado_message == System.Windows.Forms.DialogResult.Yes)
+                {
+                    addTarea();
+                    form_anterior.CargarTareas();
+                    form_anterior.aplicarFiltroTabla();
+                    form_anterior.filtroNombre();
+
+                }
+                else if (resultado_message == System.Windows.Forms.DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }

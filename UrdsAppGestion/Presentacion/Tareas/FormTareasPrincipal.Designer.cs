@@ -462,6 +462,7 @@
             this.buttonServicio.TabIndex = 55;
             this.buttonServicio.Text = "Servicio";
             this.buttonServicio.UseVisualStyleBackColor = true;
+            this.buttonServicio.Click += new System.EventHandler(this.buttonServicio_Click);
             // 
             // label7
             // 

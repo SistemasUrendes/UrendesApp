@@ -139,6 +139,7 @@
             // 
             // añadirElementoToolStripMenuItem
             // 
+            this.añadirElementoToolStripMenuItem.Enabled = false;
             this.añadirElementoToolStripMenuItem.Name = "añadirElementoToolStripMenuItem";
             this.añadirElementoToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.añadirElementoToolStripMenuItem.Text = "Añadir Elemento";
@@ -160,6 +161,7 @@
             // 
             // addElementoPrintoolStripMenuItem
             // 
+            this.addElementoPrintoolStripMenuItem.Enabled = false;
             this.addElementoPrintoolStripMenuItem.Name = "addElementoPrintoolStripMenuItem";
             this.addElementoPrintoolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.addElementoPrintoolStripMenuItem.Text = "Añadir Elemento";

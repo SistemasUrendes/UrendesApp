@@ -49,6 +49,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button_enviar = new System.Windows.Forms.Button();
             this.buttonAddGrupo = new System.Windows.Forms.Button();
+            this.buttonMttoCategoria = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.MenuContextual.SuspendLayout();
             this.SuspendLayout();
@@ -240,12 +241,23 @@
             this.buttonAddGrupo.UseVisualStyleBackColor = true;
             this.buttonAddGrupo.Click += new System.EventHandler(this.buttonAddGrupo_Click);
             // 
+            // buttonMttoCategoria
+            // 
+            this.buttonMttoCategoria.Location = new System.Drawing.Point(154, 80);
+            this.buttonMttoCategoria.Name = "buttonMttoCategoria";
+            this.buttonMttoCategoria.Size = new System.Drawing.Size(86, 23);
+            this.buttonMttoCategoria.TabIndex = 18;
+            this.buttonMttoCategoria.Text = "Mantenimiento";
+            this.buttonMttoCategoria.UseVisualStyleBackColor = true;
+            this.buttonMttoCategoria.Click += new System.EventHandler(this.buttonMttoCategoria_Click);
+            // 
             // Entidades
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1300, 712);
             this.ControlBox = false;
+            this.Controls.Add(this.buttonMttoCategoria);
             this.Controls.Add(this.buttonAddGrupo);
             this.Controls.Add(this.button_enviar);
             this.Controls.Add(this.button2);
@@ -300,5 +312,6 @@
         public System.Windows.Forms.TextBox textBox_telefono_buscar;
         private System.Windows.Forms.ToolStripMenuItem copiarAlPortapapelesToolStripMenuItem;
         private System.Windows.Forms.Button buttonAddGrupo;
+        private System.Windows.Forms.Button buttonMttoCategoria;
     }
 }

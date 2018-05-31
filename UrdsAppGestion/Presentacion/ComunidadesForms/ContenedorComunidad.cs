@@ -500,10 +500,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
 
         private void tareasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name.Contains(nombre_comunidad + " Tareas ")).SingleOrDefault<Form>();
+            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Text.Contains(nombre_comunidad + " - [Tareas]")).SingleOrDefault<Form>();
             if (existe != null)
             {
-                existe.WindowState = FormWindowState.Maximized;
+                //existe.WindowState = FormWindowState.Maximized;
                 existe.BringToFront();
             }
             else

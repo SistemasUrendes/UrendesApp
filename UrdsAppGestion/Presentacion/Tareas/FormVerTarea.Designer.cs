@@ -963,6 +963,7 @@
             this.Name = "FormVerTarea";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ver Tarea";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormVerTarea_FormClosing);
             this.Load += new System.EventHandler(this.FormVerTarea_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGestiones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSeguimientos)).EndInit();

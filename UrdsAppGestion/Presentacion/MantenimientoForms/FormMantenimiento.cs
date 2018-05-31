@@ -494,5 +494,11 @@ namespace UrdsAppGestión.Presentacion
 
             MessageBox.Show("Actualizado correctamente");
         }
+
+        private void buttonActualizarCategoriasProv_Click(object sender, EventArgs e)
+        {
+            MantenimientoForms.FormActualizarCatProveedores nueva = new MantenimientoForms.FormActualizarCatProveedores();
+            nueva.Show();
+        }
     }
 }
