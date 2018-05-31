@@ -23,6 +23,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String idAreaBloque;
         String ordFIni;
         String ordFFin;
+        Boolean boolContCom;
+        String filtro;
 
         public FormTareasPrincipal(String id_comunidad)
         {
@@ -60,6 +62,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (id_comunidad != null)
             {
                 filtroComunidad();
+                boolContCom = true;
+            }
+            else
+            {
+                boolContCom = false;
             }
             if (form_anterior != null) {
                 button_enviar.Visible = true;
@@ -139,7 +146,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 //    if (row.Cells["I"].Value.ToString() == "True" && row.Cells["FFin"].Value.ToString() == "")
                 //    {
                 //        row.DefaultCellStyle.BackColor = Color.Wheat;
-                        
+
                 //    }
                 //}
             }
@@ -586,16 +593,20 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void textBoxEntidad_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (Char)Keys.Space || e.KeyChar == (Char)Keys.Enter)
+            if (!boolContCom)
             {
-                maskedTextBoxRefComunidad.Text = "";
-                Entidades nueva = new Entidades(this, this.Name);
-                nueva.ControlBox = true;
-                nueva.TopMost = true;
-                nueva.WindowState = FormWindowState.Normal;
-                nueva.StartPosition = FormStartPosition.CenterScreen;
-                nueva.textBox_buscar_nombre.Select();
-                nueva.Show();
+                if (e.KeyChar == (Char)Keys.Space || e.KeyChar == (Char)Keys.Enter)
+                {
+                    maskedTextBoxRefComunidad.Text = "";
+                    this.Name = "FormGeneralTareasPrincipal";
+                    Entidades nueva = new Entidades(this, this.Name);
+                    nueva.ControlBox = true;
+                    nueva.TopMost = true;
+                    nueva.WindowState = FormWindowState.Normal;
+                    nueva.StartPosition = FormStartPosition.CenterScreen;
+                    nueva.textBox_buscar_nombre.Select();
+                    nueva.Show();
+                }
             }
         }
         
@@ -608,6 +619,16 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void dataGridView_tareas_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
+            //MessageBox.Show(e.ColumnIndex.ToString());
+            if (e.ColumnIndex == 11)
+            {
+                //MessageBox.Show(e.Value.ToString());
+                if (e.Value.ToString() == "True")
+                {
+                    dataGridView_tareas.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Wheat;
+                }
+            }
+            /*
             foreach (DataGridViewRow row in dataGridView_tareas.Rows)
             {
                 if (row.Cells["I"].Value.ToString() == "True" && row.Cells["FFin"].Value.ToString() == "")
@@ -616,11 +637,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
                 }
             }
+            */
+            
         }
 
         private void toolStripTextBoxFiltro_TextChanged(object sender, EventArgs e)
         {
-            String filtro;
             if (toolStripTextBoxFiltro.TextLength == 1)
             {
                 DataTable busqueda = tareas;
@@ -729,6 +751,35 @@ namespace UrdsAppGestión.Presentacion.Tareas
             maskedTextBoxRefComunidad.Text = "";
             textBox_Entidad.Text = "";
             aplicarFiltroTabla();
+        }
+
+        public void filtroNombre()
+        {
+            DataTable busqueda = tareas;
+            busqueda.DefaultView.RowFilter = string.Empty;
+            this.dataGridView_tareas.DataSource = busqueda;
+            busqueda.DefaultView.RowFilter = filtro;
+            this.dataGridView_tareas.DataSource = busqueda;
+            ajustarDatagrid();
+        }
+
+        private void buttonServicio_Click(object sender, EventArgs e)
+        {
+            if (idAreaBloque != null)
+            {
+                FormSeleccionarCategoria nueva = new FormSeleccionarCategoria(this);
+                nueva.Show();
+            }
+            else
+            {
+                FormSeleccionarCategoria nueva = new FormSeleccionarCategoria(this,idAreaBloque);
+                nueva.Show();
+            }
+        }
+
+        public void recibirCategoria(String idCategoria,String codigoCategoria)
+        {
+
         }
     }
 }

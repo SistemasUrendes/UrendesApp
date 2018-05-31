@@ -44,6 +44,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.buttonActualizarCategoriasEntidad = new System.Windows.Forms.Button();
             this.buttonActualizarBloqueTareas = new System.Windows.Forms.Button();
+            this.buttonActualizarCategoriasProv = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,7 +106,8 @@
             // 
             // button_borradoMultiple
             // 
-            this.button_borradoMultiple.Location = new System.Drawing.Point(40, 156);
+            this.button_borradoMultiple.Enabled = false;
+            this.button_borradoMultiple.Location = new System.Drawing.Point(40, 224);
             this.button_borradoMultiple.Name = "button_borradoMultiple";
             this.button_borradoMultiple.Size = new System.Drawing.Size(78, 60);
             this.button_borradoMultiple.TabIndex = 2;
@@ -115,7 +117,8 @@
             // 
             // button_insertarPendientes
             // 
-            this.button_insertarPendientes.Location = new System.Drawing.Point(163, 156);
+            this.button_insertarPendientes.Enabled = false;
+            this.button_insertarPendientes.Location = new System.Drawing.Point(163, 224);
             this.button_insertarPendientes.Name = "button_insertarPendientes";
             this.button_insertarPendientes.Size = new System.Drawing.Size(78, 60);
             this.button_insertarPendientes.TabIndex = 3;
@@ -125,7 +128,8 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(281, 156);
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(281, 224);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(123, 60);
             this.button1.TabIndex = 4;
@@ -135,7 +139,8 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(40, 245);
+            this.button2.Enabled = false;
+            this.button2.Location = new System.Drawing.Point(40, 302);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(78, 60);
             this.button2.TabIndex = 5;
@@ -153,7 +158,8 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(163, 245);
+            this.button3.Enabled = false;
+            this.button3.Location = new System.Drawing.Point(163, 302);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(78, 60);
             this.button3.TabIndex = 7;
@@ -163,7 +169,8 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(281, 245);
+            this.button4.Enabled = false;
+            this.button4.Location = new System.Drawing.Point(281, 302);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 60);
             this.button4.TabIndex = 8;
@@ -173,9 +180,10 @@
             // 
             // buttonActualizarCategoriasEntidad
             // 
-            this.buttonActualizarCategoriasEntidad.Location = new System.Drawing.Point(40, 330);
+            this.buttonActualizarCategoriasEntidad.Enabled = false;
+            this.buttonActualizarCategoriasEntidad.Location = new System.Drawing.Point(40, 377);
             this.buttonActualizarCategoriasEntidad.Name = "buttonActualizarCategoriasEntidad";
-            this.buttonActualizarCategoriasEntidad.Size = new System.Drawing.Size(75, 61);
+            this.buttonActualizarCategoriasEntidad.Size = new System.Drawing.Size(78, 61);
             this.buttonActualizarCategoriasEntidad.TabIndex = 9;
             this.buttonActualizarCategoriasEntidad.Text = "Actualizar Categorías Entidad";
             this.buttonActualizarCategoriasEntidad.UseVisualStyleBackColor = true;
@@ -183,7 +191,8 @@
             // 
             // buttonActualizarBloqueTareas
             // 
-            this.buttonActualizarBloqueTareas.Location = new System.Drawing.Point(163, 330);
+            this.buttonActualizarBloqueTareas.Enabled = false;
+            this.buttonActualizarBloqueTareas.Location = new System.Drawing.Point(163, 377);
             this.buttonActualizarBloqueTareas.Name = "buttonActualizarBloqueTareas";
             this.buttonActualizarBloqueTareas.Size = new System.Drawing.Size(75, 61);
             this.buttonActualizarBloqueTareas.TabIndex = 10;
@@ -191,11 +200,22 @@
             this.buttonActualizarBloqueTareas.UseVisualStyleBackColor = true;
             this.buttonActualizarBloqueTareas.Click += new System.EventHandler(this.buttonActualizarBloqueTareas_Click);
             // 
+            // buttonActualizarCategoriasProv
+            // 
+            this.buttonActualizarCategoriasProv.Location = new System.Drawing.Point(40, 146);
+            this.buttonActualizarCategoriasProv.Name = "buttonActualizarCategoriasProv";
+            this.buttonActualizarCategoriasProv.Size = new System.Drawing.Size(78, 61);
+            this.buttonActualizarCategoriasProv.TabIndex = 11;
+            this.buttonActualizarCategoriasProv.Text = "Actualizar Categorías Proveedores";
+            this.buttonActualizarCategoriasProv.UseVisualStyleBackColor = true;
+            this.buttonActualizarCategoriasProv.Click += new System.EventHandler(this.buttonActualizarCategoriasProv_Click);
+            // 
             // FormMantenimiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 560);
+            this.Controls.Add(this.buttonActualizarCategoriasProv);
             this.Controls.Add(this.buttonActualizarBloqueTareas);
             this.Controls.Add(this.buttonActualizarCategoriasEntidad);
             this.Controls.Add(this.button4);
@@ -234,5 +254,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button buttonActualizarCategoriasEntidad;
         private System.Windows.Forms.Button buttonActualizarBloqueTareas;
+        private System.Windows.Forms.Button buttonActualizarCategoriasProv;
     }
 }

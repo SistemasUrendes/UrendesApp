@@ -202,7 +202,7 @@ namespace UrdsAppGestión.Presentacion
                     Tareas.FormGestionesPrincipal nuevo = (Tareas.FormGestionesPrincipal)existe;
                     nuevo.recibirEntidad(dataGridView1.SelectedCells[0].Value.ToString());
                 }
-                if (nombre_form_anterior == "FormTareasPrincipal")
+                if (nombre_form_anterior == "FormGeneralTareasPrincipal")
                 {
                     Tareas.FormTareasPrincipal nuevo = (Tareas.FormTareasPrincipal)existe;
                     nuevo.recibirEntidad(dataGridView1.SelectedCells[0].Value.ToString(), dataGridView1.SelectedCells[1].Value.ToString());
@@ -498,6 +498,11 @@ namespace UrdsAppGestión.Presentacion
             {
                 System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + "\"");
             }
+        }
+
+        private void buttonMttoCategoria_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

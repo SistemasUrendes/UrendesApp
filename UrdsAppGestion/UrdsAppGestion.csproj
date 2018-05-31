@@ -176,6 +176,18 @@
     <Compile Include="Presentacion\ComunidadesForms\ServiciosForms\FormAreasBloque.Designer.cs">
       <DependentUpon>FormAreasBloque.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\MantenimientoForms\FormActualizarCatProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\MantenimientoForms\FormActualizarCatProveedores.Designer.cs">
+      <DependentUpon>FormActualizarCatProveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\MantenimientoForms\FormInsertarCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\MantenimientoForms\FormInsertarCategoria.Designer.cs">
+      <DependentUpon>FormInsertarCategoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Tareas\FormDuplicarTarea.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1840,8 +1852,14 @@
     <EmbeddedResource Include="Presentacion\FormConexion.resx">
       <DependentUpon>FormConexion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\MantenimientoForms\FormActualizarCatProveedores.resx">
+      <DependentUpon>FormActualizarCatProveedores.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\MantenimientoForms\FormBorradoMultiple.resx">
       <DependentUpon>FormBorradoMultiple.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\MantenimientoForms\FormInsertarCategoria.resx">
+      <DependentUpon>FormInsertarCategoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\MantenimientoForms\FormInsertarPendientes.resx">
       <DependentUpon>FormInsertarPendientes.cs</DependentUpon>

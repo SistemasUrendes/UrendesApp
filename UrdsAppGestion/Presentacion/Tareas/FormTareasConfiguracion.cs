@@ -37,16 +37,17 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         public void cargarTiposGestion()
         {
-            String sqlSelect = "SELECT exp_tipogestion.IdTipoGestion, exp_tipogestion.Descripcion, ctos_gruposurd.Grupo, exp_tipogestion.Plazo AS Días FROM exp_tipogestion LEFT JOIN ctos_gruposurd ON exp_tipogestion.IdGrupo = ctos_gruposurd.IdGrupoURD";
+            String sqlSelect = "SELECT exp_tipogestion.IdTipoGestion, exp_tipogestion.Descripcion, ctos_gruposurd.Grupo, exp_tipogestion.Plazo AS Días, exp_tipogestion.HorasDeTrabajo AS 'HT' FROM exp_tipogestion LEFT JOIN ctos_gruposurd ON exp_tipogestion.IdGrupo = ctos_gruposurd.IdGrupoURD";
             tipoGestion = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewTipoGestion.DataSource = tipoGestion;
 
             if (dataGridViewTipoGestion.Rows.Count > 0)
             {
                 dataGridViewTipoGestion.Columns["IdTipoGestion"].Visible = false;
-                dataGridViewTipoGestion.Columns["Descripcion"].Width = 170;
+                dataGridViewTipoGestion.Columns["Descripcion"].Width = 140;
                 dataGridViewTipoGestion.Columns["Grupo"].Width = 80;
                 dataGridViewTipoGestion.Columns["Días"].Width = 40;
+                dataGridViewTipoGestion.Columns["HT"].Width = 30;
             }
         }
 

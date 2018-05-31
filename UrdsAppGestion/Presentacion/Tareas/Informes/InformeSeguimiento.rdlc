@@ -181,7 +181,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=IIf(Fields!T.Value = "I","LightGrey","Transparent")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!I.Value,"LightGrey","Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -214,7 +214,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=IIf(Fields!T.Value = "I","LightGrey","Transparent")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!I.Value,"LightGrey","Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -247,7 +247,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=IIf(Fields!T.Value = "I","LightGrey","Transparent")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!I.Value,"LightGrey","Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -282,7 +282,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=IIf(Fields!T.Value = "I","LightGrey","Transparent")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!I.Value,"LightGrey","Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -317,7 +317,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=IIf(Fields!T.Value = "I","LightGrey","Transparent")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!I.Value,"LightGrey","Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -353,7 +353,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=IIf(Fields!T.Value = "I","LightGrey","Transparent")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!I.Value,"LightGrey","Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -389,7 +389,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=IIf(Fields!T.Value = "I","LightGrey","Transparent")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!I.Value,"LightGrey","Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -425,7 +425,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=IIf(Fields!T.Value = "I","LightGrey","Transparent")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!I.Value,"LightGrey","Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -460,13 +460,14 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=IIf(Fields!T.Value = "I","LightGrey","Transparent")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!I.Value,"LightGrey","Transparent")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -896,7 +897,7 @@
                             <Color>LightGrey</Color>
                             <Style>Solid</Style>
                           </Border>
-                          <BackgroundColor>=IIf(Fields!T.Value = "I","LightGrey","Transparent")</BackgroundColor>
+                          <BackgroundColor>=IIF(Fields!I.Value,"LightGrey","Transparent")</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>

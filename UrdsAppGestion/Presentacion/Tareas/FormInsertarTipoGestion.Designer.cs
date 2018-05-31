@@ -38,6 +38,11 @@
             this.buttonGuardar = new System.Windows.Forms.Button();
             this.comboBoxResponsable = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.maskedTextBoxHoras = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBoxMinutos = new System.Windows.Forms.MaskedTextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBoxNombre
@@ -53,7 +58,7 @@
             this.maskedTextBoxPlazo.Mask = "99999";
             this.maskedTextBoxPlazo.Name = "maskedTextBoxPlazo";
             this.maskedTextBoxPlazo.Size = new System.Drawing.Size(40, 20);
-            this.maskedTextBoxPlazo.TabIndex = 1;
+            this.maskedTextBoxPlazo.TabIndex = 2;
             this.maskedTextBoxPlazo.ValidatingType = typeof(int);
             // 
             // label1
@@ -85,20 +90,20 @@
             // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(180, 119);
+            this.buttonCancelar.Location = new System.Drawing.Point(189, 144);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancelar.TabIndex = 5;
+            this.buttonCancelar.TabIndex = 6;
             this.buttonCancelar.Text = "Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = true;
             this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
             // 
             // buttonGuardar
             // 
-            this.buttonGuardar.Location = new System.Drawing.Point(99, 119);
+            this.buttonGuardar.Location = new System.Drawing.Point(108, 144);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(75, 23);
-            this.buttonGuardar.TabIndex = 6;
+            this.buttonGuardar.TabIndex = 5;
             this.buttonGuardar.Text = "Guardar";
             this.buttonGuardar.UseVisualStyleBackColor = true;
             this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
@@ -110,7 +115,7 @@
             this.comboBoxResponsable.Location = new System.Drawing.Point(84, 48);
             this.comboBoxResponsable.Name = "comboBoxResponsable";
             this.comboBoxResponsable.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxResponsable.TabIndex = 7;
+            this.comboBoxResponsable.TabIndex = 1;
             // 
             // label4
             // 
@@ -121,11 +126,61 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Perfil:";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(1, 111);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(77, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Carga Trabajo:";
+            // 
+            // maskedTextBoxHoras
+            // 
+            this.maskedTextBoxHoras.Location = new System.Drawing.Point(83, 108);
+            this.maskedTextBoxHoras.Mask = "99999";
+            this.maskedTextBoxHoras.Name = "maskedTextBoxHoras";
+            this.maskedTextBoxHoras.Size = new System.Drawing.Size(40, 20);
+            this.maskedTextBoxHoras.TabIndex = 3;
+            this.maskedTextBoxHoras.ValidatingType = typeof(int);
+            // 
+            // maskedTextBoxMinutos
+            // 
+            this.maskedTextBoxMinutos.Location = new System.Drawing.Point(143, 108);
+            this.maskedTextBoxMinutos.Mask = "99999";
+            this.maskedTextBoxMinutos.Name = "maskedTextBoxMinutos";
+            this.maskedTextBoxMinutos.Size = new System.Drawing.Size(40, 20);
+            this.maskedTextBoxMinutos.TabIndex = 4;
+            this.maskedTextBoxMinutos.ValidatingType = typeof(int);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(129, 111);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(13, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "h";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(186, 111);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(28, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "mins";
+            // 
             // FormInsertarTipoGestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(276, 154);
+            this.ClientSize = new System.Drawing.Size(276, 178);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.maskedTextBoxMinutos);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.maskedTextBoxHoras);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.comboBoxResponsable);
             this.Controls.Add(this.buttonGuardar);
@@ -156,5 +211,10 @@
         private System.Windows.Forms.Button buttonGuardar;
         private System.Windows.Forms.ComboBox comboBoxResponsable;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxHoras;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxMinutos;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }
