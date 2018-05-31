@@ -71,6 +71,7 @@
             this.button8 = new System.Windows.Forms.Button();
             this.progressBar_op = new System.Windows.Forms.ProgressBar();
             this.label_borrado = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tesoreria)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -150,7 +151,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(308, 44);
+            this.label4.Location = new System.Drawing.Point(243, 23);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 13);
             this.label4.TabIndex = 7;
@@ -159,7 +160,7 @@
             // textBox_fechacierre
             // 
             this.textBox_fechacierre.Enabled = false;
-            this.textBox_fechacierre.Location = new System.Drawing.Point(364, 41);
+            this.textBox_fechacierre.Location = new System.Drawing.Point(299, 20);
             this.textBox_fechacierre.Name = "textBox_fechacierre";
             this.textBox_fechacierre.ReadOnly = true;
             this.textBox_fechacierre.Size = new System.Drawing.Size(80, 20);
@@ -391,11 +392,11 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(364, 63);
+            this.button2.Location = new System.Drawing.Point(385, 18);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(80, 23);
+            this.button2.Size = new System.Drawing.Size(48, 23);
             this.button2.TabIndex = 26;
-            this.button2.Text = "Cerrar Banco";
+            this.button2.Text = "Abrir";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -455,7 +456,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(1031, 3);
+            this.button8.Location = new System.Drawing.Point(112, 592);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(97, 23);
             this.button8.TabIndex = 33;
@@ -482,12 +483,23 @@
             this.label_borrado.Text = "Borrando Movimiento";
             this.label_borrado.Visible = false;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(215, 597);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(48, 13);
+            this.label13.TabIndex = 36;
+            this.label13.Text = "label13";
+            // 
             // Tesoreria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1112, 610);
+            this.ClientSize = new System.Drawing.Size(1165, 617);
             this.ControlBox = false;
+            this.Controls.Add(this.label13);
             this.Controls.Add(this.label_borrado);
             this.Controls.Add(this.progressBar_op);
             this.Controls.Add(this.button8);
@@ -583,5 +595,6 @@
         private System.Windows.Forms.ToolStripMenuItem borrar0MovimientosToolStripMenuItem;
         private System.Windows.Forms.ProgressBar progressBar_op;
         private System.Windows.Forms.Label label_borrado;
+        private System.Windows.Forms.Label label13;
     }
 }

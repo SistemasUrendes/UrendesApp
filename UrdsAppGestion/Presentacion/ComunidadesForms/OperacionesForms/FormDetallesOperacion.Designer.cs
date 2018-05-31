@@ -58,6 +58,7 @@
             this.button_liquidar.TabIndex = 2;
             this.button_liquidar.Text = "Liquidar Pte.";
             this.button_liquidar.UseVisualStyleBackColor = true;
+            this.button_liquidar.Visible = false;
             this.button_liquidar.Click += new System.EventHandler(this.button_cerrar_Click);
             // 
             // button_cerrar
@@ -69,6 +70,7 @@
             this.button_cerrar.TabIndex = 3;
             this.button_cerrar.Text = "Cerrar Pte.";
             this.button_cerrar.UseVisualStyleBackColor = true;
+            this.button_cerrar.Visible = false;
             this.button_cerrar.Click += new System.EventHandler(this.button_cerrar_Click_1);
             // 
             // FormDetallesOperacion

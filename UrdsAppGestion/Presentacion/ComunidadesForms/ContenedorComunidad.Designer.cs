@@ -464,7 +464,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem anticiposToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tareasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem elementosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rutaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ejerciciosToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem anticiposToolStripMenuItem1;

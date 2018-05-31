@@ -50,6 +50,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label_impriendo = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.button_enviar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_recibos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,6 +69,7 @@
             this.dataGridView_recibos.Size = new System.Drawing.Size(1081, 484);
             this.dataGridView_recibos.TabIndex = 0;
             this.dataGridView_recibos.DataSourceChanged += new System.EventHandler(this.dataGridView_recibos_DataSourceChanged);
+            this.dataGridView_recibos.DoubleClick += new System.EventHandler(this.dataGridView_recibos_DoubleClick);
             this.dataGridView_recibos.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView_recibos_MouseClick);
             // 
             // label1
@@ -82,7 +84,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(454, 21);
+            this.label2.Location = new System.Drawing.Point(409, 20);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 2;
@@ -130,11 +132,10 @@
             this.textBox_buscarComunero.Name = "textBox_buscarComunero";
             this.textBox_buscarComunero.Size = new System.Drawing.Size(198, 20);
             this.textBox_buscarComunero.TabIndex = 9;
-            this.textBox_buscarComunero.TextChanged += new System.EventHandler(this.textBox_buscarComunero_TextChanged);
             // 
             // textBox_recibos
             // 
-            this.textBox_recibos.Location = new System.Drawing.Point(510, 18);
+            this.textBox_recibos.Location = new System.Drawing.Point(465, 17);
             this.textBox_recibos.Name = "textBox_recibos";
             this.textBox_recibos.Size = new System.Drawing.Size(71, 20);
             this.textBox_recibos.TabIndex = 10;
@@ -203,21 +204,21 @@
             // 
             // buttonVerRecibo
             // 
-            this.buttonVerRecibo.Location = new System.Drawing.Point(409, 81);
+            this.buttonVerRecibo.Location = new System.Drawing.Point(441, 81);
             this.buttonVerRecibo.Name = "buttonVerRecibo";
-            this.buttonVerRecibo.Size = new System.Drawing.Size(75, 23);
+            this.buttonVerRecibo.Size = new System.Drawing.Size(127, 23);
             this.buttonVerRecibo.TabIndex = 17;
-            this.buttonVerRecibo.Text = "Ver Recibo";
+            this.buttonVerRecibo.Text = "Ver Recibo PDF";
             this.buttonVerRecibo.UseVisualStyleBackColor = true;
             this.buttonVerRecibo.Click += new System.EventHandler(this.button4_Click);
             // 
             // buttonImprimirRecibo
             // 
-            this.buttonImprimirRecibo.Location = new System.Drawing.Point(490, 81);
+            this.buttonImprimirRecibo.Location = new System.Drawing.Point(574, 81);
             this.buttonImprimirRecibo.Name = "buttonImprimirRecibo";
-            this.buttonImprimirRecibo.Size = new System.Drawing.Size(75, 23);
+            this.buttonImprimirRecibo.Size = new System.Drawing.Size(127, 23);
             this.buttonImprimirRecibo.TabIndex = 18;
-            this.buttonImprimirRecibo.Text = "Imprimir";
+            this.buttonImprimirRecibo.Text = "Imprimir Varios";
             this.buttonImprimirRecibo.UseVisualStyleBackColor = true;
             this.buttonImprimirRecibo.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -244,12 +245,23 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // button_enviar
+            // 
+            this.button_enviar.Location = new System.Drawing.Point(707, 81);
+            this.button_enviar.Name = "button_enviar";
+            this.button_enviar.Size = new System.Drawing.Size(127, 23);
+            this.button_enviar.TabIndex = 21;
+            this.button_enviar.Text = "Enviar Varios";
+            this.button_enviar.UseVisualStyleBackColor = true;
+            this.button_enviar.Click += new System.EventHandler(this.button_enviar_Click);
+            // 
             // FormRecibos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1141, 625);
             this.ControlBox = false;
+            this.Controls.Add(this.button_enviar);
             this.Controls.Add(this.label_impriendo);
             this.Controls.Add(this.buttonImprimirRecibo);
             this.Controls.Add(this.buttonVerRecibo);
@@ -302,5 +314,6 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label_impriendo;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Button button_enviar;
     }
 }

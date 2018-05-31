@@ -45,14 +45,14 @@
             this.dataGridView_fondos.ReadOnly = true;
             this.dataGridView_fondos.RowHeadersVisible = false;
             this.dataGridView_fondos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_fondos.Size = new System.Drawing.Size(387, 119);
+            this.dataGridView_fondos.Size = new System.Drawing.Size(530, 288);
             this.dataGridView_fondos.TabIndex = 0;
             // 
             // button_aceptar
             // 
-            this.button_aceptar.Location = new System.Drawing.Point(161, 139);
+            this.button_aceptar.Location = new System.Drawing.Point(212, 321);
             this.button_aceptar.Name = "button_aceptar";
-            this.button_aceptar.Size = new System.Drawing.Size(75, 23);
+            this.button_aceptar.Size = new System.Drawing.Size(129, 55);
             this.button_aceptar.TabIndex = 1;
             this.button_aceptar.Text = "Aceptar";
             this.button_aceptar.UseVisualStyleBackColor = true;
@@ -62,7 +62,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(411, 174);
+            this.ClientSize = new System.Drawing.Size(566, 388);
             this.Controls.Add(this.button_aceptar);
             this.Controls.Add(this.dataGridView_fondos);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

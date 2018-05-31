@@ -304,7 +304,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
 
         private void liquidarAOtroFondoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OperacionesForms.FormLiquidarAOtroFondo nueva = new OperacionesForms.FormLiquidarAOtroFondo(dataGridView_operaciones.SelectedRows[0].Cells[0].Value.ToString(), id_comunidad_cargado, dataGridView_operaciones.SelectedRows[0].Cells[2].Value.ToString());
+            OperacionesForms.FormLiquidarAOtroFondo nueva = new OperacionesForms.FormLiquidarAOtroFondo(dataGridView_operaciones.SelectedRows[0].Cells[0].Value.ToString(), id_comunidad_cargado, dataGridView_operaciones.SelectedRows[0].Cells[2].Value.ToString(), dataGridView_operaciones.SelectedRows[0].Cells[4].Value.ToString(), dataGridView_operaciones.SelectedRows[0].Cells[8].Value.ToString());
             nueva.Show();
         }
     }

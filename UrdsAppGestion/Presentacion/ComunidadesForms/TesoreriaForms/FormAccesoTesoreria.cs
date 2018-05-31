@@ -37,51 +37,25 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
 
         private void button_abrir_tesoreria_Click(object sender, EventArgs e)
         {
-            //Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name.Contains("Tesoreria" + nombre_comunidad)).SingleOrDefault<Form>();
-
-            //if (existe != null )
-            //{
-            //    existe.WindowState = FormWindowState.Maximized;
-            //    existe.BringToFront();
-            //}
-            //else
-            //{
-                Tesoreria newMDIChild = new Tesoreria(nombre_comunidad,id_comunidad,(int)listBox_cuentas.SelectedValue);
-
-                Form existe2 = Application.OpenForms.OfType<Form>().Where(pre => pre.Text.Contains(" " + nombre_comunidad)).SingleOrDefault<Form>();
-                existe2.Show();
-                existe2.Activate();
-
-                newMDIChild.MdiParent = existe2;
-                newMDIChild.Name = "Tesoreria" + nombre_comunidad;
-                newMDIChild.WindowState = FormWindowState.Maximized;
-                newMDIChild.Show();
-            //}
-            this.Close();
+            abrirTesoreria();
         }
 
         private void listBox_cuentas_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name.Contains("Tesoreria" + nombre_comunidad)).SingleOrDefault<Form>();
+            abrirTesoreria();
+        }
+        private void abrirTesoreria() {
 
-            if (existe != null)
-            {
-                existe.WindowState = FormWindowState.Maximized;
-                existe.BringToFront();
-            }
-            else
-            {
-                Tesoreria newMDIChild = new Tesoreria(nombre_comunidad, id_comunidad, (int)listBox_cuentas.SelectedValue);
+            Tesoreria newMDIChild = new Tesoreria(nombre_comunidad, id_comunidad, (int)listBox_cuentas.SelectedValue, listBox_cuentas.Text);
 
-                Form existe2 = Application.OpenForms.OfType<Form>().Where(pre => pre.Text.Contains(" " + nombre_comunidad)).SingleOrDefault<Form>();
-                existe2.Show();
-                existe2.Activate();
+            Form existe2 = Application.OpenForms.OfType<Form>().Where(pre => pre.Text.Contains(" " + nombre_comunidad)).SingleOrDefault<Form>();
+            existe2.Show();
+            existe2.Activate();
 
-                newMDIChild.MdiParent = existe2;
-                newMDIChild.Name = "Tesoreria" + nombre_comunidad;
-                newMDIChild.WindowState = FormWindowState.Maximized;
-                newMDIChild.Show();
-            }
+            newMDIChild.MdiParent = existe2;
+            newMDIChild.Name = "Tesoreria" + nombre_comunidad;
+            newMDIChild.WindowState = FormWindowState.Maximized;
+            newMDIChild.Show();
             this.Close();
         }
 

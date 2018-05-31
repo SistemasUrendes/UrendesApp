@@ -144,7 +144,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
                     form_anterior.dataGridView_operacionesComuneros.Rows[indice_seleccioando].Selected = true;
                 }
             }else {
-                form_anterior1.cargardatagrid();
+                //form_anterior1.cargardatagrid();
                 form_anterior1.aplicarFiltro();
             }
             MessageBox.Show("Operación reasignada");
