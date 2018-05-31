@@ -421,6 +421,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.TesoreriaForms
 
             }
             else if (tipoOperacion == "Salida a Comuneros") {
+                //COJO LA FECHA
+                try { fechaMov = (Convert.ToDateTime(fecha_operacion_pasado)).ToString("yyyy-MM-dd"); }
+                catch { MessageBox.Show("Introduce una fecha valida en un pago"); return; }
+
                 //BUSCO EL EJERCICIO ACTIVO
                 String idEjercicio = Logica.FuncionesTesoreria.ejercicioActivo(id_comunidad_cargado, fechaMov);
 

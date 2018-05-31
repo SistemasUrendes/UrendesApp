@@ -37,6 +37,7 @@
             this.button_Añadir = new System.Windows.Forms.Button();
             this.button_Borrar = new System.Windows.Forms.Button();
             this.textBox_filtro_division = new System.Windows.Forms.TextBox();
+            this.button_cambiar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_PlantillaManual)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,13 +62,14 @@
             this.dataGridView_PlantillaManual.AllowUserToAddRows = false;
             this.dataGridView_PlantillaManual.AllowUserToDeleteRows = false;
             this.dataGridView_PlantillaManual.AllowUserToOrderColumns = true;
+            this.dataGridView_PlantillaManual.AllowUserToResizeRows = false;
             this.dataGridView_PlantillaManual.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_PlantillaManual.Enabled = false;
-            this.dataGridView_PlantillaManual.Location = new System.Drawing.Point(21, 58);
+            this.dataGridView_PlantillaManual.Location = new System.Drawing.Point(21, 72);
             this.dataGridView_PlantillaManual.Name = "dataGridView_PlantillaManual";
             this.dataGridView_PlantillaManual.RowHeadersVisible = false;
             this.dataGridView_PlantillaManual.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_PlantillaManual.Size = new System.Drawing.Size(716, 346);
+            this.dataGridView_PlantillaManual.Size = new System.Drawing.Size(716, 332);
             this.dataGridView_PlantillaManual.TabIndex = 2;
             this.dataGridView_PlantillaManual.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             // 
@@ -123,11 +125,22 @@
             this.textBox_filtro_division.TextChanged += new System.EventHandler(this.textBox_filtro_division_TextChanged);
             this.textBox_filtro_division.Leave += new System.EventHandler(this.textBox_filtro_division_Leave);
             // 
+            // button_cambiar
+            // 
+            this.button_cambiar.Location = new System.Drawing.Point(581, 42);
+            this.button_cambiar.Name = "button_cambiar";
+            this.button_cambiar.Size = new System.Drawing.Size(156, 23);
+            this.button_cambiar.TabIndex = 9;
+            this.button_cambiar.Text = "Cambiar";
+            this.button_cambiar.UseVisualStyleBackColor = true;
+            this.button_cambiar.Click += new System.EventHandler(this.button_cambiar_Click);
+            // 
             // FormCuotasPlantillaManualDetalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(759, 450);
+            this.Controls.Add(this.button_cambiar);
             this.Controls.Add(this.textBox_filtro_division);
             this.Controls.Add(this.button_Borrar);
             this.Controls.Add(this.button_Añadir);
@@ -158,5 +171,6 @@
         private System.Windows.Forms.Button button_Añadir;
         private System.Windows.Forms.Button button_Borrar;
         private System.Windows.Forms.TextBox textBox_filtro_division;
+        private System.Windows.Forms.Button button_cambiar;
     }
 }

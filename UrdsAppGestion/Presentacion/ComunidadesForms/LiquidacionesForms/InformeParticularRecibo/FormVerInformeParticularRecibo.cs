@@ -94,7 +94,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.Infor
             ReportParameter parametro = new ReportParameter("NombreLiquidacion", NombreLiquidacion);
             this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro });
 
-
         }
 
         private void FormVerInformeParticularRecibo_Load(object sender, EventArgs e)

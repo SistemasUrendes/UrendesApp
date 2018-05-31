@@ -120,6 +120,12 @@
     <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormSeleccionarOrgano.Designer.cs">
       <DependentUpon>FormSeleccionarOrgano.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormPlantilla\FormDetalleCuotaCambiar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormPlantilla\FormDetalleCuotaCambiar.Designer.cs">
+      <DependentUpon>FormDetalleCuotaCambiar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\ComunidadesForms\Impuestos\FormImpuestos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -696,12 +702,6 @@
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormPlantilla\FormCuotasPlantillaAlta.Designer.cs">
       <DependentUpon>FormCuotasPlantillaAlta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormPlantilla\FormCuotasPlantillaManualAlta.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormPlantilla\FormCuotasPlantillaManualAlta.Designer.cs">
-      <DependentUpon>FormCuotasPlantillaManualAlta.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormPlantilla\FormCuotasPlantillas.cs">
       <SubType>Form</SubType>
@@ -1465,6 +1465,9 @@
     <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\VistaInformeMovimientos.resx">
       <DependentUpon>VistaInformeMovimientos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\FormPlantilla\FormDetalleCuotaCambiar.resx">
+      <DependentUpon>FormDetalleCuotaCambiar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\Informes\InformeCuotas.rdlc" />
     <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\Informes\VisorInformeCuotas.resx">
       <DependentUpon>VisorInformeCuotas.cs</DependentUpon>
@@ -1605,9 +1608,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\FormPlantilla\FormCuotasPlantillaAlta.resx">
       <DependentUpon>FormCuotasPlantillaAlta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\FormPlantilla\FormCuotasPlantillaManualAlta.resx">
-      <DependentUpon>FormCuotasPlantillaManualAlta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\CuotasForms\FormPlantilla\FormCuotasPlantillas.resx">
       <DependentUpon>FormCuotasPlantillas.cs</DependentUpon>

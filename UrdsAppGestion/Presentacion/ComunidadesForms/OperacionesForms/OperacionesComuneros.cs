@@ -204,8 +204,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            ProvisionesForms.FormProvisionesDotarAplicar1 nueva = new ProvisionesForms.FormProvisionesDotarAplicar1(id_comunidad_cargado,comboBox1.SelectedItem.ToString());
-            nueva.Show();
+
         }
 
         private void verOperacionesToolStripMenuItem_Click(object sender, EventArgs e)

@@ -304,6 +304,22 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                     nueva.BringToFront();
                     this.Close();
                 }
+                if (donde.Contains("FormCuotasPlantillaManualDetalle"))
+                {
+                    List<String> listaEnviar = new List<String>();
+                    DataGridViewSelectedRowCollection Seleccionados = dataGridView_divisiones.SelectedRows;
+
+                    foreach (DataGridViewRow item in Seleccionados)
+                    {
+                        listaEnviar.Add(item.Cells[0].Value.ToString());
+                    }
+
+                    CuotasForms.FormCuotasPlantillaManualDetalle nueva = (CuotasForms.FormCuotasPlantillaManualDetalle)existe;
+                    nueva.recibirDivision(listaEnviar);
+                    nueva.BringToFront();
+                    this.Close();
+                }
+
                 if (donde.Contains("FormOperacionesEditReparto")) {
                     OperacionesForms.FormOperacionesEditReparto nueva = (OperacionesForms.FormOperacionesEditReparto) existe;
                     nueva.recogerBloque(dataGridView_divisiones.SelectedCells[0].Value.ToString(),dataGridView_divisiones.SelectedCells[2].Value.ToString());

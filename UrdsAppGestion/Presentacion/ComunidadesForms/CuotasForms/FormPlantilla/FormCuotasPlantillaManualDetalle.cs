@@ -15,6 +15,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
         DataTable filas_pegadas = new DataTable();
         String id_comunidad_cargado;
         String id_plantilla_pasado;
+        List<String> id_divisiones = new List<String>();
 
         public FormCuotasPlantillaManualDetalle(String id_comunidad_cargado, String id_plantilla_pasado)
         {
@@ -64,8 +65,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
         {
             String sqlSelect = "SELECT com_cuotamanualdet.IdDetCuotaManual, com_divisiones.IdDivision, com_divisiones.Division, com_bloques.IdBloque, com_bloques.Descripcion, com_cuotamanualdet.Importe FROM(com_cuotamanualdet INNER JOIN com_divisiones ON com_cuotamanualdet.IdDivision = com_divisiones.IdDivision) INNER JOIN com_bloques ON com_cuotamanualdet.IdBloque = com_bloques.IdBloque WHERE com_cuotamanualdet.IdCuotaManual = " + id_plantilla_pasado;
 
-            dataGridView_PlantillaManual.DataSource = Persistencia.SentenciasSQL.select(sqlSelect);
+            filas_pegadas = Persistencia.SentenciasSQL.select(sqlSelect);
+            dataGridView_PlantillaManual.DataSource = filas_pegadas;
             dataGridView_PlantillaManual.Enabled = true;
+            dataGridView_PlantillaManual.Columns[3].Visible = false;
 
         }
 
@@ -80,7 +83,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
         private void textBox_filtro_division_TextChanged(object sender, EventArgs e)
         {
             if (textBox_filtro_division.Text != "Filtrar División") { 
-                if (textBox_filtro_division.TextLength > 0)
+                if (textBox_filtro_division.TextLength > 1)
                 {
                     DataTable busqueda = filas_pegadas;
                     busqueda.DefaultView.RowFilter = "Division like '%" + textBox_filtro_division.Text + "%'";
@@ -107,7 +110,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
 
         private void button_Añadir_Click(object sender, EventArgs e)
         {
-            FormCuotasPlantillaManualAlta nueva = new FormCuotasPlantillaManualAlta(this,id_comunidad_cargado);
+            
+            String donde = this.Name;
+            Divisiones nueva = new Divisiones(Convert.ToInt32(id_comunidad_cargado), donde, this);
+            nueva.ControlBox = true;
+            nueva.TopMost = true;
+            nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
         }
         public void anyadir_division(List<String> division) {
@@ -127,6 +135,70 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
         private void button_Cancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        public void recibirDivision(List<String> id_divisiones)
+        {
+            this.id_divisiones = id_divisiones;
+
+            for (int a = 0; a < id_divisiones.Count; a++)
+            {
+                String division = (Persistencia.SentenciasSQL.select("SELECT division FROM com_divisiones WHERE IdDivision = " + id_divisiones[a])).Rows[0][0].ToString();
+                String sql = "SELECT Cuota FROM com_divisiones WHERE IdDivision = " + id_divisiones[a];
+
+                String cuota_pasada = (Persistencia.SentenciasSQL.select(sql)).Rows[0][0].ToString();
+
+                if (revisarRepetidos(id_divisiones[a]))
+                {
+                    DataRow row = filas_pegadas.NewRow();
+                    row[0] = 0;
+                    row[1] = id_divisiones[a];
+                    row[2] = division;
+                    row[3] = Convert.ToDouble(cuota_pasada);
+
+                    filas_pegadas.Rows.Add(row);
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            dataGridView_PlantillaManual.DataSource = filas_pegadas;
+
+        }
+        private Boolean revisarRepetidos(String nombre_division)
+        {
+            Boolean resultado = true;
+            for (int b = 0; b < dataGridView_PlantillaManual.Rows.Count; b++)
+            {
+                if (dataGridView_PlantillaManual.Rows[b].Cells["IdDivision"].Value.ToString() == nombre_division)
+                {
+                    MessageBox.Show("Esa división no se puede añadir porque ya existe.");
+                    resultado = false;
+                }
+            }
+            return resultado;
+        }
+
+        private void button_cambiar_Click(object sender, EventArgs e)
+        {
+            FormPlantilla.FormDetalleCuotaCambiar nueva = new FormPlantilla.FormDetalleCuotaCambiar(this,id_comunidad_cargado);
+            nueva.Show();
+        }
+        public void recibirDatos(String idBloque, String nombreBloque, String importe) {
+
+            for (int a = 0; a < dataGridView_PlantillaManual.SelectedRows.Count; a++)
+            {       
+                dataGridView_PlantillaManual.Rows[a].Cells["Importe"].Value = importe;
+                String sqlSelect = "SELECT com_subcuotas.IdBloque FROM com_divisiones INNER JOIN com_subcuotas ON com_divisiones.IdDivision = com_subcuotas.IdDivision WHERE(((com_divisiones.IdDivision) = " + dataGridView_PlantillaManual.Rows[a].Cells["IdDivision"].Value.ToString() + "));";
+                DataTable bloquesValidos = Persistencia.SentenciasSQL.select(sqlSelect);
+                for (int b = 0;b < bloquesValidos.Rows.Count ;b++) {
+                    if (bloquesValidos.Rows[a][0].ToString() == idBloque) {
+                        dataGridView_PlantillaManual.Rows[a].Cells["Descripcion"].Value = nombreBloque;
+                        dataGridView_PlantillaManual.Rows[a].Cells["IdBloque"].Value = idBloque;
+                    }
+                }
+
+            }
         }
     }
 }

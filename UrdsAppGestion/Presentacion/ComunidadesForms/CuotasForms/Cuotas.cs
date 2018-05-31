@@ -115,33 +115,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
 
         private void button_IrAPlantillas_Click(object sender, EventArgs e)
         {
-            //Manuales
-            //Presupuesto
-            //Tipo División
 
             ComboBox combo = comboBox_TipoPlantilla;
             FormCuotasPlantillas nueva = new FormCuotasPlantillas(id_comunidad_cargado, combo.SelectedItem.ToString());
             nueva.Show();
-
-            //if (combo.SelectedItem.ToString() == "Tipo División") { 
-            //    FormCuotasPlantillaTipoDivDetalle nueva = new FormCuotasPlantillaTipoDivDetalle(id_comunidad_cargado, combo.SelectedItem.ToString());
-            //    nueva.Show();
-            //}
-            //if (combo.SelectedItem.ToString() == "Manuales")
-            //{
-            //    FormCuotasPlantillaManualDetalle nueva = new FormCuotasPlantillaManualDetalle(id_comunidad_cargado);
-            //    nueva.Show();
-            //}
-            //else if (combo.SelectedItem.ToString() == "Presupuesto")
-            //{
-            //    FormCuotasPlantillaPptoDetalle nueva = new FormCuotasPlantillaPptoDetalle(id_comunidad_cargado);
-            //    nueva.Show();
-            //}
-            //else if (combo.SelectedItem.ToString() == "Todas")
-            //{
-            //    FormCuotasPlantillas nueva = new FormCuotasPlantillas(id_comunidad_cargado);
-            //    nueva.Show();
-            //}
         }
 
         private void button1_Click(object sender, EventArgs e)

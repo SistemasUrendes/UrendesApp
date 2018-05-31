@@ -53,8 +53,6 @@
             this.marcarComoFavoritaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarOperaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abonarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label8 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBoxFiltro = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -264,7 +262,7 @@
             this.toolStripTextBoxFiltro,
             this.toolStripSeparator2});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(189, 129);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(189, 107);
             // 
             // marcarComoFavoritaToolStripMenuItem
             // 
@@ -287,27 +285,6 @@
             this.abonarToolStripMenuItem.Text = "Abonar";
             this.abonarToolStripMenuItem.Visible = false;
             this.abonarToolStripMenuItem.Click += new System.EventHandler(this.abonarToolStripMenuItem_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(912, 22);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(70, 13);
-            this.label8.TabIndex = 21;
-            this.label8.Text = "Provisiones : ";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Dotar",
-            "Aplicar"});
-            this.comboBox1.Location = new System.Drawing.Point(979, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 22;
-            this.comboBox1.SelectionChangeCommitted += new System.EventHandler(this.comboBox1_SelectionChangeCommitted);
             // 
             // toolStripSeparator1
             // 
@@ -332,8 +309,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1112, 591);
             this.ControlBox = false;
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -389,8 +364,6 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem marcarComoFavoritaToolStripMenuItem;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ToolStripMenuItem eliminarOperaciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem abonarToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

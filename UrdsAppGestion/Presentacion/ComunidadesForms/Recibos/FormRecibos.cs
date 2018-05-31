@@ -59,7 +59,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms
 
         private void FormRecibos_Load(object sender, EventArgs e)
         {
-            maskedTextBox_inicio.Text = "01/01/2017";
+            maskedTextBox_inicio.Text = "01/01/2018";
             maskedTextBox_fin.Text = DateTime.Now.ToShortDateString();
             comboBox_estado.SelectedIndex = 2;
             if (id_comunero_cargado != "0")

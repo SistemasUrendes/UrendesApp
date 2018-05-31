@@ -194,7 +194,7 @@ namespace UrdsAppGestión.Presentacion
         }
         private void EnviarCorreo(String destinatario, String Asunto, String Cuerpo, List<String> adjuntos,String from)
         {
-            //destinatario = "alex.cremeria@gmail.com";
+            destinatario = "alex.cremeria@gmail.com";
 
             //Sustituir \n por <br>
             Cuerpo = Cuerpo.Replace("\n", "<br>");
@@ -422,7 +422,6 @@ namespace UrdsAppGestión.Presentacion
         }
         private void backgroundWorkerPdfLiqNueva_DoWork(object sender, DoWorkEventArgs e)
         {
-
             List<object> genericlist = e.Argument as List<object>;
             DataTable PdfCrear = (DataTable)genericlist[0];
             String idcomunidad = (String)genericlist[1];
@@ -468,7 +467,7 @@ namespace UrdsAppGestión.Presentacion
                                 Entidad = Pagadores.Rows[0][1].ToString();
                             }
 
-                            String Liquidacion = (Persistencia.SentenciasSQL.select("SELECT LiqLargo FROM com_liquidaciones WHERE IdLiquidacion = " + idLiquidacion)).Rows[0][0].ToString();                   
+                            String Liquidacion = (Persistencia.SentenciasSQL.select("SELECT LiqLargo FROM com_liquidaciones WHERE IdLiquidacion = " + idLiquidacion)).Rows[0][0].ToString();
 
                             ComunidadesForms.LiquidacionesForms.InformeParticularRecibo.FormVerInformeParticularRecibo nueva = new ComunidadesForms.LiquidacionesForms.InformeParticularRecibo.FormVerInformeParticularRecibo(idLiquidacion, idcomunidad, idEntidad, Recibos.Rows[b][0].ToString(), Liquidacion);
 
@@ -477,7 +476,7 @@ namespace UrdsAppGestión.Presentacion
                                 out streamids, out warnings);
 
                             String nombre = "L" + idLiquidacion + "-R" + Recibos.Rows[b][0].ToString() + "-" + idEntidad + " " + nombreCortoLiqPasado + " " + Entidad + ".pdf";
-                        
+
                             using (FileStream fs = new FileStream(Ruta + @"\" + nombre, FileMode.Create))
                             {
                                 fs.Write(bytes, 0, bytes.Length);
@@ -577,7 +576,7 @@ namespace UrdsAppGestión.Presentacion
         public void enviarRecibos(DataTable RecibosParaEnviar, String idComunidad, String Ruta)
         {
             proc1++;
-            string[] row = new string[] { proc1.ToString(), "Enviando Rbos :", "0%" };
+            string[] row = new string[] { proc1.ToString(), "Enviando Recibos: " + idComunidad, "0%" };
             dataGridView_tareas.Rows.Add(row);
 
             List<object> arguments = new List<object>();
@@ -652,6 +651,7 @@ namespace UrdsAppGestión.Presentacion
             DirectoryInfo di = new DirectoryInfo(Ruta.ToString());
 
             int IdEntidad;
+            int idRecibo;
 
             List<String> fallos = new List<String>();
             int a = 0;
@@ -660,28 +660,31 @@ namespace UrdsAppGestión.Presentacion
                 //PREPARO EL IDENTIDAD PARA VER QUE TIPO DE ENVIO
                 String nombreFichero = fi.Name;
                 String idEntidad = fi.Name.Split('-')[1];
-                String Entidad = fi.Name.Split('-')[3];
+                idRecibo= Convert.ToInt32(fi.Name.Split('-')[0].Substring(1));
+
                 idEntidad = idEntidad.Split(' ')[0];
 
                 //BUSCO COMO QUIERE EL ENVIO
                 if (int.TryParse(idEntidad, out IdEntidad))
                 {
-                    String sqltipoEnvio = "SELECT com_comuneros.EnvioPostal, com_comuneros.EnvioEmail, com_comuneros.IdEmail, com_comuneros.IdComunero FROM com_comuneros WHERE(((com_comuneros.IdEntidad) = " + IdEntidad + "));";
+                    String sqltipoEnvio = "SELECT com_comuneros.EnvioPostal, com_comuneros.EnvioEmail, com_comuneros.IdEmail, com_comuneros.IdComunero, ctos_entidades.Entidad FROM com_comuneros INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad WHERE(((com_comuneros.IdEntidad) = " + IdEntidad + "));";
+
                     DataTable tipoEnvio = Persistencia.SentenciasSQL.select(sqltipoEnvio);
 
                     if (tipoEnvio.Rows.Count == 1)
                     {
-                        if ((tipoEnvio.Rows[0][1].ToString() == "True"))
-                        {
-                            //ENVIO CORREO
+                        //ENVIO CORREO
+                        if ((tipoEnvio.Rows[0][1].ToString() == "True") && (tipoEnvio.Rows[0][0].ToString() == "True")) {
+
                             String destinatario = "SELECT ctos_detemail.Email FROM ctos_detemail WHERE ctos_detemail.IdEmail = " + tipoEnvio.Rows[0][2].ToString();
                             DataTable correo = Persistencia.SentenciasSQL.select(destinatario);
+
                             if (correo.Rows.Count == 1)
                             {
                                 destinatario = correo.Rows[0][0].ToString();
                                 if (ComprobarFormatoEmail(destinatario))
                                 {
-                                    String asunto = strComunidad + " (C" + tipoEnvio.Rows[0][3].ToString() + ") - " + Entidad;
+                                    String asunto = strComunidad + " (C" + tipoEnvio.Rows[0][3].ToString() + ") - " + tipoEnvio.Rows[0][4].ToString();
 
                                     String cuerpo = "Estimado vecino:\n Adjunto en este correo encontrará documentos de su interés.\n\nAtentamente,\nAdministraciones Urendes, S.L.\nTelf. 96 123 70 13 - admin@urendes.com";
 
@@ -689,6 +692,7 @@ namespace UrdsAppGestión.Presentacion
                                     lista.Add(fi.FullName);
 
                                     EnviarCorreo(destinatario, asunto, cuerpo, lista, "info@urendes.com");
+                                    
                                 }
                                 else
                                 {
@@ -699,14 +703,65 @@ namespace UrdsAppGestión.Presentacion
                             {
                                 fallos.Add(IdEntidad.ToString());
                             }
+
+                            //ENVIO POSTAL
+                            EnvioPostal(IdEntidad.ToString(), fi.DirectoryName, fi.Name, fi.FullName);
+
+                            //LO REGISTRO EN LA BASE DE DATOS
+                            registrarEnvioRecibo(idRecibo);
                         }
-                        
+                        else if (tipoEnvio.Rows[0][1].ToString() == "True")
+                        {
+                            //ENVIO CORREO
+                            String destinatario = "SELECT ctos_detemail.Email FROM ctos_detemail WHERE ctos_detemail.IdEmail = " + tipoEnvio.Rows[0][2].ToString();
+                            DataTable correo = Persistencia.SentenciasSQL.select(destinatario);
+
+                            if (correo.Rows.Count == 1)
+                            {
+                                destinatario = correo.Rows[0][0].ToString();
+                                if (ComprobarFormatoEmail(destinatario))
+                                {
+                                    String asunto = strComunidad + " (C" + tipoEnvio.Rows[0][3].ToString() + ") - " + tipoEnvio.Rows[0][4].ToString();
+
+                                    String cuerpo = "Estimado vecino:\n Adjunto en este correo encontrará documentos de su interés.\n\nAtentamente,\nAdministraciones Urendes, S.L.\nTelf. 96 123 70 13 - admin@urendes.com";
+
+                                    List<String> lista = new List<string>();
+                                    lista.Add(fi.FullName);
+
+                                    EnviarCorreo(destinatario, asunto, cuerpo, lista, "info@urendes.com");
+
+                                    //LO REGISTRO EN LA BASE DE DATOS
+                                    registrarEnvioRecibo(idRecibo);
+                                }
+                                else
+                                {
+                                    fallos.Add(IdEntidad.ToString());
+                                }
+                            }
+                            else
+                            {
+                                fallos.Add(IdEntidad.ToString());
+                            }
+
+                        }
+                        else if (tipoEnvio.Rows[0][0].ToString() == "True")
+                        {
+                            EnvioPostal(IdEntidad.ToString(), fi.DirectoryName, fi.Name, fi.FullName);
+
+                            //LO REGISTRO EN LA BASE DE DATOS
+                            registrarEnvioRecibo(idRecibo);
+                        }
+                        else
+                        {
+                            fallos.Add(IdEntidad.ToString());
+                        }
                     }
                 }
                 else
                 {
                     fallos.Add(IdEntidad.ToString());
                 }
+
                 backgroundWorker1.ReportProgress((100 * a) / di.GetFiles("R*").Length, DateTime.Now);
                 a++;
             }
@@ -874,6 +929,17 @@ namespace UrdsAppGestión.Presentacion
                 DirectoryInfo di = Directory.CreateDirectory(Raiz + @"\Postal");
             }
             File.Copy(Ruta, Raiz + @"\Postal\" + nombreFichero , true);
+        }
+        private void registrarEnvioRecibo(int idRecibo) {
+            try
+            {
+                String fechaInicio = (Convert.ToDateTime(DateTime.Now.ToShortDateString())).ToString("yyyy-MM-dd");
+                String sqlUpdate = "UPDATE com_recibos SET FEnvio='" + fechaInicio + "' WHERE IdRecibo = " + idRecibo;
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+            }catch {
+                MessageBox.Show("Error al registrar en la BD.");
+                
+            }
         }
     }
 }

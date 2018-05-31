@@ -54,13 +54,11 @@
             this.abonarVencimientoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reasignarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarOperaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label8 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.liquidarAOtroFondoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button_fondo = new System.Windows.Forms.Button();
-            this.liquidarAOtroFondoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_operaciones)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -238,7 +236,7 @@
             this.eliminarOperaciónToolStripMenuItem,
             this.liquidarAOtroFondoToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(189, 202);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(189, 180);
             // 
             // marcarComoFavoritaToolStripMenuItem
             // 
@@ -292,27 +290,12 @@
             this.eliminarOperaciónToolStripMenuItem.Text = "Eliminar Operación";
             this.eliminarOperaciónToolStripMenuItem.Click += new System.EventHandler(this.eliminarOperaciónToolStripMenuItem_Click);
             // 
-            // label8
+            // liquidarAOtroFondoToolStripMenuItem
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(956, 25);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(70, 13);
-            this.label8.TabIndex = 21;
-            this.label8.Text = "Provisiones : ";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Dotar",
-            "Aplicar"});
-            this.comboBox1.Location = new System.Drawing.Point(1023, 22);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 22;
-            this.comboBox1.SelectionChangeCommitted += new System.EventHandler(this.comboBox1_SelectionChangeCommitted);
+            this.liquidarAOtroFondoToolStripMenuItem.Name = "liquidarAOtroFondoToolStripMenuItem";
+            this.liquidarAOtroFondoToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.liquidarAOtroFondoToolStripMenuItem.Text = "Liquidar a otro Fondo";
+            this.liquidarAOtroFondoToolStripMenuItem.Click += new System.EventHandler(this.liquidarAOtroFondoToolStripMenuItem_Click);
             // 
             // comboBox2
             // 
@@ -358,13 +341,6 @@
             this.button_fondo.UseVisualStyleBackColor = true;
             this.button_fondo.Click += new System.EventHandler(this.button_fondo_Click);
             // 
-            // liquidarAOtroFondoToolStripMenuItem
-            // 
-            this.liquidarAOtroFondoToolStripMenuItem.Name = "liquidarAOtroFondoToolStripMenuItem";
-            this.liquidarAOtroFondoToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.liquidarAOtroFondoToolStripMenuItem.Text = "Liquidar a otro Fondo";
-            this.liquidarAOtroFondoToolStripMenuItem.Click += new System.EventHandler(this.liquidarAOtroFondoToolStripMenuItem_Click);
-            // 
             // Operaciones_comuneros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -375,8 +351,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBox_buscar);
             this.Controls.Add(this.button3);
@@ -426,8 +400,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem marcarComoFavoritaToolStripMenuItem;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ToolStripMenuItem verOperacionesToolStripMenuItem;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label9;

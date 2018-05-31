@@ -408,6 +408,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
         private void button3_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fichero = new FolderBrowserDialog();
+
             String RutaComunidad = (Persistencia.SentenciasSQL.select("SELECT ctos_entidades.Ruta FROM ctos_entidades INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((com_comunidades.IdComunidad) = " + id_comunidad_pasado + "));")).Rows[0][0].ToString().Trim('#');
 
             String anyo = Convert.ToDateTime((Persistencia.SentenciasSQL.select("SELECT FFin FROM com_liquidaciones WHERE IdLiquidacion = " + id_liquidacion_pasado)).Rows[0][0].ToString()).Year.ToString();
@@ -429,7 +430,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
                 {
                     existe.WindowState = FormWindowState.Normal;
                     existe.BringToFront();
-
                     existe.CrearPDFLiquidacionNuevo((DataTable)dataGridView2.DataSource, id_comunidad_pasado, id_liquidacion_pasado, Ruta, nombreCortoLiqPasado);
                     this.Close();
                 }

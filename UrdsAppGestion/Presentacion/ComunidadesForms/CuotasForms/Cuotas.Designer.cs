@@ -136,6 +136,7 @@
             this.button1.TabIndex = 9;
             this.button1.Text = "Importar Cuotas con Detalles";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button_abonar
@@ -146,6 +147,7 @@
             this.button_abonar.TabIndex = 10;
             this.button_abonar.Text = "Abonar Cuota";
             this.button_abonar.UseVisualStyleBackColor = true;
+            this.button_abonar.Visible = false;
             this.button_abonar.Click += new System.EventHandler(this.button_abonar_Click);
             // 
             // progressBar1
