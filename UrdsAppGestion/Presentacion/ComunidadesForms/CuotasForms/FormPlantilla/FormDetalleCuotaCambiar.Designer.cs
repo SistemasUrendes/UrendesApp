@@ -57,7 +57,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(35, 80);
+            this.label2.Location = new System.Drawing.Point(35, 67);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 2;
@@ -65,14 +65,16 @@
             // 
             // textBox_importe
             // 
-            this.textBox_importe.Location = new System.Drawing.Point(84, 77);
+            this.textBox_importe.Location = new System.Drawing.Point(84, 64);
             this.textBox_importe.Name = "textBox_importe";
-            this.textBox_importe.Size = new System.Drawing.Size(100, 20);
+            this.textBox_importe.Size = new System.Drawing.Size(65, 20);
             this.textBox_importe.TabIndex = 3;
+            this.textBox_importe.Text = "0";
+            this.textBox_importe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // button_enviar
             // 
-            this.button_enviar.Location = new System.Drawing.Point(84, 117);
+            this.button_enviar.Location = new System.Drawing.Point(105, 100);
             this.button_enviar.Name = "button_enviar";
             this.button_enviar.Size = new System.Drawing.Size(75, 23);
             this.button_enviar.TabIndex = 4;
@@ -84,7 +86,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(262, 164);
+            this.ClientSize = new System.Drawing.Size(263, 146);
             this.Controls.Add(this.button_enviar);
             this.Controls.Add(this.textBox_importe);
             this.Controls.Add(this.label2);

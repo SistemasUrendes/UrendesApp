@@ -45,6 +45,7 @@
             this.buttonActualizarCategoriasEntidad = new System.Windows.Forms.Button();
             this.buttonActualizarBloqueTareas = new System.Windows.Forms.Button();
             this.buttonActualizarCategoriasProv = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -210,11 +211,22 @@
             this.buttonActualizarCategoriasProv.UseVisualStyleBackColor = true;
             this.buttonActualizarCategoriasProv.Click += new System.EventHandler(this.buttonActualizarCategoriasProv_Click);
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(163, 146);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 61);
+            this.button5.TabIndex = 12;
+            this.button5.Text = "Crear Movimientos a opdetalles  con Pte 0";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // FormMantenimiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 560);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.buttonActualizarCategoriasProv);
             this.Controls.Add(this.buttonActualizarBloqueTareas);
             this.Controls.Add(this.buttonActualizarCategoriasEntidad);
@@ -255,5 +267,6 @@
         private System.Windows.Forms.Button buttonActualizarCategoriasEntidad;
         private System.Windows.Forms.Button buttonActualizarBloqueTareas;
         private System.Windows.Forms.Button buttonActualizarCategoriasProv;
+        private System.Windows.Forms.Button button5;
     }
 }

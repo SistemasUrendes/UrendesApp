@@ -500,5 +500,18 @@ namespace UrdsAppGestión.Presentacion
             MantenimientoForms.FormActualizarCatProveedores nueva = new MantenimientoForms.FormActualizarCatProveedores();
             nueva.Show();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            String idComunidad = "2";
+
+            String sqlSelect = "SELECT com_operaciones.IdComunidad, com_opdetalles.IdOpDet, com_opdetalles.NumMov, com_opdetalles.ImpOpDetPte, Count(com_detmovs.IdDetMov) AS CuentaDeIdDetMov FROM(com_opdetalles LEFT JOIN com_detmovs ON com_opdetalles.IdOpDet = com_detmovs.IdOpDet) INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp GROUP BY com_operaciones.IdComunidad, com_opdetalles.IdOpDet, com_opdetalles.NumMov, com_opdetalles.ImpOpDetPte HAVING(((com_operaciones.IdComunidad) = " + idComunidad + ") AND((com_opdetalles.ImpOpDetPte) = 0) AND((Count(com_detmovs.IdDetMov)) = 0));";
+
+            DataTable vencimientos = Persistencia.SentenciasSQL.select(sqlSelect);
+            for (int a = 0; a < vencimientos.Rows.Count; a++) {
+
+            }
+            
+        }
     }
 }

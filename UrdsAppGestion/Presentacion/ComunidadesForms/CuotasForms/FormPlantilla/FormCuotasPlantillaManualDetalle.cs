@@ -63,13 +63,16 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
         }
         private void FormCuotasPlantillaManualDetalle_Load(object sender, EventArgs e)
         {
+            cargarDatagrid();
+
+        }
+        private void cargarDatagrid() {
             String sqlSelect = "SELECT com_cuotamanualdet.IdDetCuotaManual, com_divisiones.IdDivision, com_divisiones.Division, com_bloques.IdBloque, com_bloques.Descripcion, com_cuotamanualdet.Importe FROM(com_cuotamanualdet INNER JOIN com_divisiones ON com_cuotamanualdet.IdDivision = com_divisiones.IdDivision) INNER JOIN com_bloques ON com_cuotamanualdet.IdBloque = com_bloques.IdBloque WHERE com_cuotamanualdet.IdCuotaManual = " + id_plantilla_pasado;
 
             filas_pegadas = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridView_PlantillaManual.DataSource = filas_pegadas;
             dataGridView_PlantillaManual.Enabled = true;
             dataGridView_PlantillaManual.Columns[3].Visible = false;
-
         }
 
         private void textBox_filtro_division_Leave(object sender, EventArgs e)
@@ -100,11 +103,55 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
 
         private void button_Guardar_Click(object sender, EventArgs e)
         {
-            if (dataGridView_PlantillaManual.Rows.Count > 0) {
-                for (int a = 0; a < dataGridView_PlantillaManual.Rows.Count; a++) {
+            Boolean TodoBien = true;
 
+            if (dataGridView_PlantillaManual.Rows.Count > 0) {
+
+                for (int a = 0; a < dataGridView_PlantillaManual.Rows.Count;a++)
+                {
+                    string id = dataGridView_PlantillaManual.Rows[a].Cells[0].Value.ToString();
+                    if (!todoCorrecto(Convert.ToInt32(id)))
+                        TodoBien = false;
                 }
 
+                if (TodoBien) {
+                    for (int a = 0; a < dataGridView_PlantillaManual.Rows.Count; a++)
+                    {
+                        string id = dataGridView_PlantillaManual.Rows[a].Cells[0].Value.ToString();
+                        if (id == "0")
+                        {
+                            String sqlInsert = "INSERT INTO com_cuotamanualdet (IdCuotaManual, IdDivision, IdBloque, Importe) VALUES (" + id_plantilla_pasado + "," + dataGridView_PlantillaManual.Rows[a].Cells[1].Value.ToString() + "," + dataGridView_PlantillaManual.Rows[a].Cells[3].Value.ToString() + "," + dataGridView_PlantillaManual.Rows[a].Cells[5].Value.ToString() + ")";
+
+                            Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+                        }else {
+                            String sqlUpdate = "UPDATE com_cuotamanualdet SET IdCuotaManual=" + id_plantilla_pasado + ", IdDivision=" + dataGridView_PlantillaManual.Rows[a].Cells[1].Value.ToString() + ",IdBloque=" + dataGridView_PlantillaManual.Rows[a].Cells[3].Value.ToString() + ",Importe=" + dataGridView_PlantillaManual.Rows[a].Cells[5].Value.ToString() + " WHERE IdDetCuotaManual = " + id;
+
+                            Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                        }
+                    }
+                    cargarDatagrid();
+                }
+                else {
+                    MessageBox.Show("Hay alguna linea incorrecta");
+                }
+                
+            }
+        }
+        private Boolean todoCorrecto(int indice) {
+            try
+            {
+                if (Convert.ToInt32(dataGridView_PlantillaManual.Rows[indice].Cells["IdBloque"].Value) != 0 && Convert.ToDouble(dataGridView_PlantillaManual.Rows[indice].Cells["Importe"].Value) != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Los datos no son correctos");
+                    return false;
+                }
+            }catch {
+                MessageBox.Show("Los datos no son correctos");
+                return false;
             }
         }
 
@@ -128,7 +175,14 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
             resultado_message = MessageBox.Show("¿Quitar división de la lista ?", "Quitar División", MessageBoxButtons.OKCancel);
             if (resultado_message == System.Windows.Forms.DialogResult.OK)
             {
-                dataGridView_PlantillaManual.Rows.RemoveAt(dataGridView_PlantillaManual.CurrentRow.Index);
+                if (dataGridView_PlantillaManual.SelectedRows[0].Cells[0].Value.ToString() == "0")
+                    dataGridView_PlantillaManual.Rows.RemoveAt(dataGridView_PlantillaManual.CurrentRow.Index);
+                else
+                {
+                    String sqlDelete = "DELETE FROM com_cuotamanualdet WHERE IdDetCuotaManual = " + dataGridView_PlantillaManual.SelectedRows[0].Cells[0].Value.ToString();
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlDelete);
+                }
+                cargarDatagrid();
             }
         }
 
@@ -186,18 +240,19 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
         }
         public void recibirDatos(String idBloque, String nombreBloque, String importe) {
 
-            for (int a = 0; a < dataGridView_PlantillaManual.SelectedRows.Count; a++)
-            {       
-                dataGridView_PlantillaManual.Rows[a].Cells["Importe"].Value = importe;
-                String sqlSelect = "SELECT com_subcuotas.IdBloque FROM com_divisiones INNER JOIN com_subcuotas ON com_divisiones.IdDivision = com_subcuotas.IdDivision WHERE(((com_divisiones.IdDivision) = " + dataGridView_PlantillaManual.Rows[a].Cells["IdDivision"].Value.ToString() + "));";
+            DataGridViewSelectedRowCollection Seleccionados = dataGridView_PlantillaManual.SelectedRows;
+            foreach (DataGridViewRow item in Seleccionados)
+            {
+                item.Cells["Importe"].Value = importe;
+
+                String sqlSelect = "SELECT com_subcuotas.IdBloque FROM com_divisiones INNER JOIN com_subcuotas ON com_divisiones.IdDivision = com_subcuotas.IdDivision WHERE(((com_divisiones.IdDivision) = " + item.Cells["IdDivision"].Value.ToString() + "));";
                 DataTable bloquesValidos = Persistencia.SentenciasSQL.select(sqlSelect);
                 for (int b = 0;b < bloquesValidos.Rows.Count ;b++) {
-                    if (bloquesValidos.Rows[a][0].ToString() == idBloque) {
-                        dataGridView_PlantillaManual.Rows[a].Cells["Descripcion"].Value = nombreBloque;
-                        dataGridView_PlantillaManual.Rows[a].Cells["IdBloque"].Value = idBloque;
+                    if (bloquesValidos.Rows[b][0].ToString() == idBloque) {
+                        item.Cells["Descripcion"].Value = nombreBloque;
+                        item.Cells["IdBloque"].Value = idBloque;
                     }
                 }
-
             }
         }
     }
