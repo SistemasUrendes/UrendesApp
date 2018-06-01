@@ -194,7 +194,7 @@ namespace UrdsAppGestión.Presentacion
         }
         private void EnviarCorreo(String destinatario, String Asunto, String Cuerpo, List<String> adjuntos,String from)
         {
-            destinatario = "alex.cremeria@gmail.com";
+            //destinatario = "alex.cremeria@gmail.com";
 
             //Sustituir \n por <br>
             Cuerpo = Cuerpo.Replace("\n", "<br>");

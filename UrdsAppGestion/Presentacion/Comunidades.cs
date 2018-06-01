@@ -62,7 +62,7 @@ namespace UrdsAppGestión.Presentacion
             comboBox_administrador.DisplayMember = "Usuario";
             comboBox_administrador.ValueMember = "IdURD";
 
-            comboBox_gestor.DataSource = Persistencia.SentenciasSQL.select("SELECT Usuario,IdURD FROM ctos_urendes WHERE IdGrupoURD = 1 and FBaja is Null ");
+            comboBox_gestor.DataSource = Persistencia.SentenciasSQL.select("SELECT Usuario,IdURD FROM ctos_urendes WHERE IdGrupoURD = 4 and FBaja is Null ");
             comboBox_gestor.DisplayMember = "Usuario";
             comboBox_gestor.ValueMember = "IdURD";
 

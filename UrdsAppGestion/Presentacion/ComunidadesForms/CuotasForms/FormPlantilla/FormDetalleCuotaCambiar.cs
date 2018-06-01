@@ -34,6 +34,13 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms.FormPlantill
 
         private void button_enviar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                int importe = Convert.ToInt32(textBox_importe.Text);
+            }catch {
+                MessageBox.Show("El Importe debe ser entero");
+                return;
+            }
             form_anterior.recibirDatos(comboBox_bloque.SelectedValue.ToString(), comboBox_bloque.Text, textBox_importe.Text);
             this.Close();
         }

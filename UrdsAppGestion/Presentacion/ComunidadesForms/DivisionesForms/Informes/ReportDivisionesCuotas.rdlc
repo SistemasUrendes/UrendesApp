@@ -1034,7 +1034,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox30</rd:DefaultName>
         <Top>6.95702cm</Top>
-        <Left>16.86213cm</Left>
+        <Left>15.93406cm</Left>
         <Height>0.6cm</Height>
         <Width>2.02375cm</Width>
         <ZIndex>13</ZIndex>
@@ -1067,7 +1067,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox31</rd:DefaultName>
         <Top>6.95702cm</Top>
-        <Left>15.45785cm</Left>
+        <Left>14.52978cm</Left>
         <Height>0.6cm</Height>
         <Width>1.40428cm</Width>
         <ZIndex>14</ZIndex>
@@ -1117,7 +1117,7 @@
     <Height>3.1875in</Height>
     <Style />
   </Body>
-  <Width>7.64292in</Width>
+  <Width>7.1325in</Width>
   <Page>
     <PageHeader>
       <Height>3.09562cm</Height>
