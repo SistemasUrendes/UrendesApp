@@ -25,6 +25,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String ordFFin;
         Boolean boolContCom;
         String filtro;
+        String codigoCat;
 
         public FormTareasPrincipal(String id_comunidad)
         {
@@ -777,9 +778,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
         }
 
-        public void recibirCategoria(String idCategoria,String codigoCategoria)
+        public void recibirCategoria(String nombreCategoria,String codigoCategoria)
         {
-
+            textBoxServicio.Text = nombreCategoria;
+            codigoCat = codigoCategoria;
         }
     }
 }

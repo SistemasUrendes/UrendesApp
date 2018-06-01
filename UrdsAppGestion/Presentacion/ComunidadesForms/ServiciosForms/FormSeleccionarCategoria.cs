@@ -69,7 +69,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (idBloque == null)
             {
                 DataTable bloques;
-                String sqlSelect = "SELECT exp_area.IdArea FROM exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea WHERE(((exp_area.IdAreaPrevio) = 0)";
+                String sqlSelect = "SELECT exp_area.IdArea FROM exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea WHERE ((exp_area.IdAreaPrevio) = 0)";
                 bloques = Persistencia.SentenciasSQL.select(sqlSelect);
 
                 foreach (DataRow row in bloques.Rows)
@@ -91,7 +91,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
             dataGridViewCategorias.DataSource = tablaCategorias;
             dataGridViewCategorias.Columns["codigoArea"].Visible = false;
-        }
+        } 
 
         private void cargarCategoriasTarea()
         {

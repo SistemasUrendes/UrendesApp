@@ -1579,6 +1579,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 else
                 {
                     comboBoxTipo.SelectedIndex = 2;
+                    checkBoxImportante.Checked = true;
                     maskedTextBoxFIni.Text = DateTime.Now.ToShortDateString();
                     addTarea();
                     textBoxIdTarea.Text = idTarea;
@@ -1789,7 +1790,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     form_anterior.CargarTareas();
                     form_anterior.aplicarFiltroTabla();
                     form_anterior.filtroNombre();
-
                 }
                 else if (resultado_message == System.Windows.Forms.DialogResult.Cancel)
                 {
