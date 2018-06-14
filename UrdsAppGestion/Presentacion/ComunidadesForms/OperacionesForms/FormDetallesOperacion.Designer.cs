@@ -46,13 +46,13 @@
             this.dataGridView_vencimietos.ReadOnly = true;
             this.dataGridView_vencimietos.RowHeadersVisible = false;
             this.dataGridView_vencimietos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_vencimietos.Size = new System.Drawing.Size(747, 197);
+            this.dataGridView_vencimietos.Size = new System.Drawing.Size(872, 283);
             this.dataGridView_vencimietos.TabIndex = 0;
             // 
             // button_liquidar
             // 
             this.button_liquidar.Enabled = false;
-            this.button_liquidar.Location = new System.Drawing.Point(679, 12);
+            this.button_liquidar.Location = new System.Drawing.Point(804, 12);
             this.button_liquidar.Name = "button_liquidar";
             this.button_liquidar.Size = new System.Drawing.Size(82, 23);
             this.button_liquidar.TabIndex = 2;
@@ -64,7 +64,7 @@
             // button_cerrar
             // 
             this.button_cerrar.Enabled = false;
-            this.button_cerrar.Location = new System.Drawing.Point(598, 12);
+            this.button_cerrar.Location = new System.Drawing.Point(723, 12);
             this.button_cerrar.Name = "button_cerrar";
             this.button_cerrar.Size = new System.Drawing.Size(75, 23);
             this.button_cerrar.TabIndex = 3;
@@ -77,7 +77,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(773, 252);
+            this.ClientSize = new System.Drawing.Size(898, 337);
             this.Controls.Add(this.button_cerrar);
             this.Controls.Add(this.button_liquidar);
             this.Controls.Add(this.dataGridView_vencimietos);

@@ -417,6 +417,16 @@ namespace UrdsAppGestión.Logica
                 Console.WriteLine("---" + e.Message);
             }
 
+
+            //BUSCO PARA AÑADIR A LA DESCRIPCIÓN LA REF DEL RECIBO
+            String sqlSelect = "SELECT com_divisiones.ReferenciaRecibos, com_comuneros.IdEntidad FROM(com_divisiones INNER JOIN com_asociacion ON com_divisiones.IdDivision = com_asociacion.IdDivision) INNER JOIN com_comuneros ON com_asociacion.IdComunero = com_comuneros.IdComunero WHERE(((com_divisiones.IdComunidad) = " + id_comunidad + ") AND((com_divisiones.ReferenciaRecibos) <> ''));";
+
+            DataTable referencias = Persistencia.SentenciasSQL.select(sqlSelect);
+            for (int a = 0;a< referencias.Rows.Count;a++) {
+                String sqlUpdate = "UPDATE com_recibos SET com_recibos.Referencia = CONCAT(com_recibos.Referencia,' ','" + referencias.Rows[a][0] + "' ) WHERE(((com_recibos.IdEntidad) = " + referencias.Rows[a][1] + ") AND((com_recibos.IdCuota) = " + id_cuota + ") AND((com_recibos.IdComunidad) = " + id_comunidad + "));";
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+            }
+
             String sqlCasarIdRecibo = "UPDATE com_opdetalles INNER JOIN com_recibos ON com_opdetalles.FXN = com_recibos.FXN SET com_opdetalles.IdRecibo = com_recibos.IdRecibo WHERE(((com_recibos.IdCuota) = " + id_cuota + "));";
 
             Persistencia.SentenciasSQL.InsertarGenerico(sqlCasarIdRecibo);

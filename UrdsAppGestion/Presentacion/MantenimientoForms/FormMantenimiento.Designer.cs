@@ -46,6 +46,7 @@
             this.buttonActualizarBloqueTareas = new System.Windows.Forms.Button();
             this.buttonActualizarCategoriasProv = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -107,7 +108,6 @@
             // 
             // button_borradoMultiple
             // 
-            this.button_borradoMultiple.Enabled = false;
             this.button_borradoMultiple.Location = new System.Drawing.Point(40, 224);
             this.button_borradoMultiple.Name = "button_borradoMultiple";
             this.button_borradoMultiple.Size = new System.Drawing.Size(78, 60);
@@ -221,11 +221,22 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(281, 146);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 61);
+            this.button6.TabIndex = 13;
+            this.button6.Text = "Borrar";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // FormMantenimiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 560);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.buttonActualizarCategoriasProv);
             this.Controls.Add(this.buttonActualizarBloqueTareas);
@@ -268,5 +279,6 @@
         private System.Windows.Forms.Button buttonActualizarBloqueTareas;
         private System.Windows.Forms.Button buttonActualizarCategoriasProv;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }

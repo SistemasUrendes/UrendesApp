@@ -467,8 +467,6 @@ namespace UrdsAppGestión.Presentacion
             }
                 
             /*
-
-
             String sqlSelect = "SELECT ctos_entidades.IDEntidad, ctos_entidades.PalabrasClave FROM ctos_entidades WHERE((Not(ctos_entidades.PalabrasClave) = ''))";
             DataTable table = Persistencia.SentenciasSQL.select(sqlSelect);
 
@@ -504,14 +502,93 @@ namespace UrdsAppGestión.Presentacion
         private void button5_Click(object sender, EventArgs e)
         {
             String idComunidad = "2";
+            progressBar1.Visible = true;
 
-            String sqlSelect = "SELECT com_operaciones.IdComunidad, com_opdetalles.IdOpDet, com_opdetalles.NumMov, com_opdetalles.ImpOpDetPte, Count(com_detmovs.IdDetMov) AS CuentaDeIdDetMov FROM(com_opdetalles LEFT JOIN com_detmovs ON com_opdetalles.IdOpDet = com_detmovs.IdOpDet) INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp GROUP BY com_operaciones.IdComunidad, com_opdetalles.IdOpDet, com_opdetalles.NumMov, com_opdetalles.ImpOpDetPte HAVING(((com_operaciones.IdComunidad) = " + idComunidad + ") AND((com_opdetalles.ImpOpDetPte) = 0) AND((Count(com_detmovs.IdDetMov)) = 0));";
+            String sqlSelectCuenta = "SELECT com_cuentas.IdCuenta FROM com_cuentas WHERE(((com_cuentas.IdComunidad) = " + idComunidad + ") AND((com_cuentas.A) = -1));";
+
+            String idCuentaCom = (Persistencia.SentenciasSQL.select(sqlSelectCuenta)).Rows[0][0].ToString();
+
+            if (idCuentaCom == "")
+            {
+                MessageBox.Show("Debes crear una cuenta de compesaciones para la comunidad");
+                return;
+            }
+
+
+            String sqlSelect = "SELECT com_operaciones.IdComunidad, com_operaciones.IdEntidad, com_opdetalles.IdOpDet, com_opdetalles.NumMov, com_opdetalles.Importe, Count(com_detmovs.IdDetMov) AS CuentaDeIdDetMov,com_operaciones.IdOp, com_opdetalles.Fecha ,com_operaciones.IdSubcuenta FROM(com_opdetalles LEFT JOIN com_detmovs ON com_opdetalles.IdOpDet = com_detmovs.IdOpDet) INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp GROUP BY com_operaciones.IdComunidad, com_opdetalles.IdOpDet, com_opdetalles.NumMov, com_opdetalles.ImpOpDetPte HAVING(((com_operaciones.IdComunidad) = " + idComunidad + ") AND((com_opdetalles.ImpOpDetPte) = 0) AND((Count(com_detmovs.IdDetMov)) = 0));";
 
             DataTable vencimientos = Persistencia.SentenciasSQL.select(sqlSelect);
+            progressBar1.Maximum = vencimientos.Rows.Count;
             for (int a = 0; a < vencimientos.Rows.Count; a++) {
 
+                progressBar1.Value = a;
+                int año = Convert.ToDateTime(vencimientos.Rows[a][7].ToString()).Year;
+                int dia = DateTime.DaysInMonth(Convert.ToDateTime(vencimientos.Rows[a][7].ToString()).Year, 12);
+                String fechaHoy = año + "-12-" + dia;
+
+                //BUSCO EJERCICIO
+                String IdEjercicio = Logica.FuncionesTesoreria.ejercicioActivo(idComunidad, fechaHoy);
+
+                int idMov =0;
+                String tipoOperacion = "";
+                String sqltipo = "SELECT ES FROM com_subcuentas WHERE IdSubCuenta = " + vencimientos.Rows[a][8].ToString();
+                DataTable tipoC = Persistencia.SentenciasSQL.select(sqltipo);
+                if (tipoC.Rows.Count > 0) {
+                    tipoOperacion = tipoC.Rows[0][0].ToString();
+                }
+    
+
+                //CREO EL MOVIMIENTO
+                if (tipoOperacion == "1")
+                {
+                    idMov = Logica.FuncionesTesoreria.CreaMovimiento(IdEjercicio, idCuentaCom, "1", vencimientos.Rows[a][1].ToString(), fechaHoy, "AJUSTE MOVIMIENTO ANTIGUO_3");
+                }else if(tipoOperacion == "2") {
+                    idMov = Logica.FuncionesTesoreria.CreaMovimiento(IdEjercicio, idCuentaCom, "8", vencimientos.Rows[a][1].ToString(), fechaHoy, "AJUSTE MOVIMIENTO ANTIGUO_3");
+                }
+
+                //CREO EL DETALLE
+                Logica.FuncionesTesoreria.CreaDetalleMovimiento(idMov.ToString(), vencimientos.Rows[a][2].ToString(), vencimientos.Rows[a][4].ToString().Replace(",", "."));
+                
+                //RETIFICO LO QUE HA HECHO EL TRIGGER EN OPDETALLES
+                String sqlUpdateDtealle = "UPDATE com_opdetalles SET ImpOpDetPte=0.00,ImpOpDetMov=com_opdetalles.Importe WHERE IdOpDet = " + vencimientos.Rows[a][2].ToString();
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdateDtealle);
+
+                //RETIFICO LO QUE HA HECHO TRIGGER EN OPERACIONES
+                String sqlUpdateOperaciones = "UPDATE com_operaciones SET ImpOpPte=0.00 WHERE IdOp = " + vencimientos.Rows[a][6].ToString();
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdateOperaciones);
+
+                //BUSCO EL RECIBO Y LO PONGO A CERO TAMBIEN
+                String sqlIdRecibo = "SELECT com_opdetalles.IdRecibo FROM com_opdetalles WHERE com_opdetalles.IdOpDet = " + vencimientos.Rows[a][2].ToString();
+                DataTable recibos = Persistencia.SentenciasSQL.select(sqlIdRecibo);
+
+                if (recibos.Rows.Count > 0 && recibos.Rows[0][0].ToString() != "") {
+                    String sqlUpdate = "UPDATE com_recibos SET ImpRboPte=0.00  WHERE IdRecibo = " + recibos.Rows[0][0].ToString();
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+
+                }
+
             }
-            
+            progressBar1.Visible = false;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            String sql = "SELECT com_detmovs.IdMov, com_detmovs.IdDetMov, com_opdetalles.IdOpDet FROM((com_detmovs INNER JOIN com_movimientos ON com_detmovs.IdMov = com_movimientos.IdMov) INNER JOIN com_opdetalles ON com_detmovs.IdOpDet = com_opdetalles.IdOpDet) INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp WHERE(((com_operaciones.IdComunidad) = 2) AND((com_movimientos.Detalle)Like 'AJUSTE MOVIMIENTO ANTIGUO_2') AND((com_operaciones.IdSubCuenta) = 70000));";
+
+
+            DataTable movimientos = Persistencia.SentenciasSQL.select(sql);
+
+            for (int a = 0; a < movimientos.Rows.Count; a++) {
+
+                String sqlDelete1 = "DELETE FROM com_detmovs WHERE IdDetMov = " + movimientos.Rows[a][1].ToString();
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlDelete1);
+
+                String sqlDelete2 = "DELETE FROM com_movimientos WHERE IdMov = " + movimientos.Rows[a][0].ToString();
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlDelete2);
+
+                String sqlUpdate = "UPDATE com_opdetalles SET ImpOpDetMov = Importe, ImpOpDetPte= 0.00 WHERE IdOpDet = " + movimientos.Rows[a][2].ToString();
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+            }
         }
     }
 }

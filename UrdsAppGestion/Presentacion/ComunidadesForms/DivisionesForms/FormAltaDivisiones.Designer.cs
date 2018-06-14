@@ -43,6 +43,8 @@
             this.button_cancelar = new System.Windows.Forms.Button();
             this.button_guardar = new System.Windows.Forms.Button();
             this.label_nombre = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox_ref_recibos = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // textBox_Nombre
@@ -137,7 +139,7 @@
             // 
             // button_cancelar
             // 
-            this.button_cancelar.Location = new System.Drawing.Point(445, 256);
+            this.button_cancelar.Location = new System.Drawing.Point(449, 282);
             this.button_cancelar.Name = "button_cancelar";
             this.button_cancelar.Size = new System.Drawing.Size(75, 23);
             this.button_cancelar.TabIndex = 7;
@@ -147,7 +149,7 @@
             // 
             // button_guardar
             // 
-            this.button_guardar.Location = new System.Drawing.Point(364, 256);
+            this.button_guardar.Location = new System.Drawing.Point(368, 282);
             this.button_guardar.Name = "button_guardar";
             this.button_guardar.Size = new System.Drawing.Size(75, 23);
             this.button_guardar.TabIndex = 6;
@@ -164,11 +166,29 @@
             this.label_nombre.TabIndex = 14;
             this.label_nombre.Text = "Nombre:";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(35, 253);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 13);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "Ref. Recibos: ";
+            // 
+            // textBox_ref_recibos
+            // 
+            this.textBox_ref_recibos.Location = new System.Drawing.Point(116, 250);
+            this.textBox_ref_recibos.Name = "textBox_ref_recibos";
+            this.textBox_ref_recibos.Size = new System.Drawing.Size(236, 20);
+            this.textBox_ref_recibos.TabIndex = 16;
+            // 
             // FormAltaDivisiones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(536, 298);
+            this.ClientSize = new System.Drawing.Size(536, 322);
+            this.Controls.Add(this.textBox_ref_recibos);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label_nombre);
             this.Controls.Add(this.button_cancelar);
             this.Controls.Add(this.button_guardar);
@@ -210,5 +230,7 @@
         private System.Windows.Forms.Button button_cancelar;
         private System.Windows.Forms.Button button_guardar;
         private System.Windows.Forms.Label label_nombre;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox_ref_recibos;
     }
 }
