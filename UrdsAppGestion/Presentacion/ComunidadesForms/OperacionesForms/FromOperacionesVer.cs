@@ -396,9 +396,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
 
         private void button_revisarPte_Click(object sender, EventArgs e)
         {
-            calcularPteVto();
-            MessageBox.Show("Recalculado");
+            MantenimientoForms.FormBorradoMultiple.AjustarVencimiento(id_operacion_cargado);
+            MessageBox.Show("Ajustado");
             cargarOperacion(id_operacion_cargado);
+
         }
         private void calcularPteVto()  {
             

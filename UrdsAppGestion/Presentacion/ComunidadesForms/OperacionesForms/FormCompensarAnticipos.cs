@@ -152,7 +152,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
         }
         private void cargarDatagrid(String idEntidad) {
             
-            String sqlSelectPagos = "SELECT com_opdetalles.IdOp, com_opdetalles.IdOpDet, ctos_entidades.Entidad, com_opdetalles.IdRecibo, com_operaciones.Descripcion, com_opdetalles.Fecha, com_opdetalles.Importe, com_opdetalles.ImpOpDetPte, com_operaciones.IdSubCuenta FROM(com_opdetalles INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp) INNER JOIN ctos_entidades ON com_opdetalles.IdEntidad = ctos_entidades.IDEntidad WHERE(((com_operaciones.IdComunidad) = " + id_comunidad + ") AND((com_opdetalles.IdEntidad) = " + idEntidad + ") AND((com_opdetalles.IdEstado) <> 3));";
+            String sqlSelectPagos = "SELECT com_opdetalles.IdOp, com_opdetalles.IdOpDet, ctos_entidades.Entidad, com_opdetalles.IdRecibo, com_operaciones.Descripcion, com_opdetalles.Fecha, com_opdetalles.Importe, com_opdetalles.ImpOpDetPte, com_operaciones.IdSubCuenta FROM(com_opdetalles INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp) INNER JOIN ctos_entidades ON com_opdetalles.IdEntidad = ctos_entidades.IDEntidad WHERE(((com_operaciones.IdComunidad) = " + id_comunidad + ") AND((com_opdetalles.IdEntidad) = " + idEntidad + "));";
             pagos = Persistencia.SentenciasSQL.select(sqlSelectPagos);
 
             if (((id_subcuenta == "43801" && Convert.ToDouble(importe) < 0) || id_subcuenta == "43812" && Convert.ToDouble(importe) > 0) || ((id_subcuenta == "70000" || id_subcuenta == "70001") && Convert.ToDouble(importe) < 0) || ((Convert.ToInt32(id_subcuenta) >= 60000 || Convert.ToInt32(id_subcuenta) <= 69999) && Convert.ToDouble(importe) > 0))

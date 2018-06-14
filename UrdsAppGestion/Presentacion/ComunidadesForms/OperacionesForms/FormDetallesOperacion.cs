@@ -33,7 +33,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             cargarDatagrid();
         }
         public void cargarDatagrid() {
-            String sqlVencimiento = "SELECT com_movimientos.IdMov, com_detmovs.IdDetMov, com_detmovs.IdOpDet, com_movimientos.Fecha, com_movimientos.Detalle, com_detmovs.ImpDetMovEntra AS Entrada, com_detmovs.ImpDetMovSale AS Salida FROM com_detmovs INNER JOIN com_movimientos ON com_detmovs.IdMov = com_movimientos.IdMov WHERE(((com_detmovs.IdOpDet) = " + id_det_operacion + "));";
+            String sqlVencimiento = "SELECT com_movimientos.IdMov, com_detmovs.IdDetMov, com_detmovs.IdOpDet, com_movimientos.Fecha, com_cuentas.Descripcion, com_movimientos.Detalle, com_detmovs.ImpDetMovEntra AS Entrada, com_detmovs.ImpDetMovSale AS Salida FROM(com_detmovs INNER JOIN com_movimientos ON com_detmovs.IdMov = com_movimientos.IdMov) INNER JOIN com_cuentas ON com_movimientos.IdCuenta = com_cuentas.IdCuenta WHERE(((com_detmovs.IdOpDet) = " + id_det_operacion + "));";
 
             dataGridView_vencimietos.DataSource = Persistencia.SentenciasSQL.select(sqlVencimiento);
             ajustarDatagrid();
@@ -49,6 +49,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             dataGridView_vencimietos.Columns["Entrada"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView_vencimietos.Columns["Salida"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView_vencimietos.Columns["Detalle"].Width = 250;
+            dataGridView_vencimietos.Columns["Descripcion"].Width = 150;
+            dataGridView_vencimietos.Columns["Descripcion"].HeaderText = "Banco";
+
         }
         private void  calcularPteVto() {
 
@@ -108,7 +111,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             int idMov = Logica.FuncionesTesoreria.CreaMovimiento(IdEjercicio, idCuentaCom, "2", datos.Rows[0][1].ToString(), fechaHoy, "AJUSTE VENCIMIENTO ANTIGUO");
             //CREO EL DETALLE
             Logica.FuncionesTesoreria.CreaDetalleMovimiento(idMov.ToString(), id_det_operacion, totalPte.ToString().Replace(",", "."));
-            MessageBox.Show("Ajsute realizado");
+            MessageBox.Show("Ajuste realizado");
             cargarDatagrid();
         }
     }

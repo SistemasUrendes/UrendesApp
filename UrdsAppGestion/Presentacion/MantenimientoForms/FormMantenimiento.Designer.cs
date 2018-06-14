@@ -108,7 +108,6 @@
             // 
             // button_borradoMultiple
             // 
-            this.button_borradoMultiple.Enabled = false;
             this.button_borradoMultiple.Location = new System.Drawing.Point(40, 224);
             this.button_borradoMultiple.Name = "button_borradoMultiple";
             this.button_borradoMultiple.Size = new System.Drawing.Size(78, 60);
@@ -224,11 +223,11 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(281, 377);
+            this.button6.Location = new System.Drawing.Point(281, 146);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 61);
             this.button6.TabIndex = 13;
-            this.button6.Text = "Actualizar Tareas Sin Acentos";
+            this.button6.Text = "Borrar";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 

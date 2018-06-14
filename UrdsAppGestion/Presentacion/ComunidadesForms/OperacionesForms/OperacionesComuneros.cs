@@ -303,8 +303,71 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
 
         private void liquidarAOtroFondoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OperacionesForms.FormLiquidarAOtroFondo nueva = new OperacionesForms.FormLiquidarAOtroFondo(dataGridView_operaciones.SelectedRows[0].Cells[0].Value.ToString(), id_comunidad_cargado, dataGridView_operaciones.SelectedRows[0].Cells[2].Value.ToString(), dataGridView_operaciones.SelectedRows[0].Cells[4].Value.ToString(), dataGridView_operaciones.SelectedRows[0].Cells[8].Value.ToString());
+            String sqlSelect = "SELECT IdTipoReparto FROM com_operaciones WHERE IdOp = " + dataGridView_operaciones.SelectedRows[0].Cells[0].Value.ToString();
+            
+            OperacionesForms.FormLiquidarAOtroFondo nueva = new OperacionesForms.FormLiquidarAOtroFondo(dataGridView_operaciones.SelectedRows[0].Cells[0].Value.ToString(), id_comunidad_cargado, dataGridView_operaciones.SelectedRows[0].Cells[2].Value.ToString(), dataGridView_operaciones.SelectedRows[0].Cells[4].Value.ToString(), dataGridView_operaciones.SelectedRows[0].Cells[8].Value.ToString(),Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString());
             nueva.Show();
         }
+
+        private void comboBox_ajustes_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (comboBox_ajustes.SelectedIndex == 0)
+            {
+                //PONGO A 0 EL IMPORTE DEL VENCIMIENTO CREANDO MOVIMIENTOS.
+                for (int a = 0; a < dataGridView_operaciones.Rows.Count; a++)
+                {
+
+                        String sqlMovs = "SELECT com_detmovs.IdOpDet, Sum(com_detmovs.Importe*If(idtipomov=1,1,0)) AS ImpEnt, Sum(com_detmovs.Importe*IF(idtipomov=2,1,0)) AS ImpSal FROM(com_detmovs INNER JOIN com_movimientos ON com_detmovs.IdMov = com_movimientos.IdMov) INNER JOIN com_dettiposmov ON com_movimientos.IdDetTipoMov = com_dettiposmov.IdDetTipoMov GROUP BY com_detmovs.IdOpDet HAVING com_detmovs.IdOpDet = " + dataGridView_operaciones.Rows[a].Cells[1].Value.ToString();
+
+                        DataTable movimientos = Persistencia.SentenciasSQL.select(sqlMovs);
+
+                        double entrada = 0.00;
+                        double salida = 0.00;
+
+                        for (int b = 0; b < movimientos.Rows.Count; b++) {
+                            entrada += Convert.ToDouble(movimientos.Rows[b][1]);
+                            salida += Convert.ToDouble(movimientos.Rows[b][2]);
+                        }
+
+                        String tipoOperacion = "";
+                        String sqltipo = "SELECT ES FROM com_subcuentas WHERE IdSubCuenta = " + dataGridView_operaciones.Rows[a].Cells[4].Value.ToString();
+                        DataTable tipoC = Persistencia.SentenciasSQL.select(sqltipo);
+                        if (tipoC.Rows.Count > 0)
+                        {
+                            tipoOperacion = tipoC.Rows[0][0].ToString();
+                        }
+
+                        if (tipoOperacion == "1") {
+                            Double importeOpDet = Convert.ToDouble(dataGridView_operaciones.Rows[a].Cells[9].Value);
+                            Double sumaMov = entrada - salida;
+                            Double ImporteAingresar = importeOpDet + salida;
+
+                            //insertarMovimiento(ImporteAingresar.ToString(), dataGridView_operaciones.Rows[a].Cells[6].Value.ToString(), dataGridView_operaciones.Rows[a].Cells[2].Value.ToString(), dataGridView_operaciones.Rows[a].Cells[1].Value.ToString(),"1");
+
+                        }
+                        else if (tipoOperacion == "2") {
+                            Double importeOpDet = Convert.ToDouble(dataGridView_operaciones.Rows[a].Cells[9].Value);
+                            Double sumaMov = salida - entrada;
+                            Double ImporteAingresar = importeOpDet + entrada ;
+
+                            //insertarMovimiento(ImporteAingresar.ToString(), dataGridView_operaciones.Rows[a].Cells[6].Value.ToString(), dataGridView_operaciones.Rows[a].Cells[2].Value.ToString(), dataGridView_operaciones.Rows[a].Cells[1].Value.ToString(), "2");
+                    }
+                            
+                }
+            } else if (comboBox_ajustes.SelectedIndex == 1) {
+                //ACTUALIZO LOS IMPORTES PENDIENTES.
+                for (int a = 0; a < dataGridView_operaciones.Rows.Count; a++)
+                {
+
+                }
+            } else if (comboBox_ajustes.SelectedIndex == 2) {
+                if (dataGridView_operaciones.Rows.Count == 1) {
+
+                }else {
+                    MessageBox.Show("Debes seleccionar una sola operación");
+                }
+            }
+        }
+       
     }
 }

@@ -59,6 +59,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button_fondo = new System.Windows.Forms.Button();
+            this.comboBox_ajustes = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_operaciones)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -341,12 +343,37 @@
             this.button_fondo.UseVisualStyleBackColor = true;
             this.button_fondo.Click += new System.EventHandler(this.button_fondo_Click);
             // 
+            // comboBox_ajustes
+            // 
+            this.comboBox_ajustes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_ajustes.FormattingEnabled = true;
+            this.comboBox_ajustes.Items.AddRange(new object[] {
+            "Pendiente a 0",
+            "Ajustar a Pte.",
+            "Ajustar Manual"});
+            this.comboBox_ajustes.Location = new System.Drawing.Point(790, 95);
+            this.comboBox_ajustes.Name = "comboBox_ajustes";
+            this.comboBox_ajustes.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_ajustes.TabIndex = 28;
+            this.comboBox_ajustes.SelectionChangeCommitted += new System.EventHandler(this.comboBox_ajustes_SelectionChangeCommitted);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(737, 98);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(47, 13);
+            this.label8.TabIndex = 29;
+            this.label8.Text = "Ajustes: ";
+            // 
             // Operaciones_comuneros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1165, 591);
             this.ControlBox = false;
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.comboBox_ajustes);
             this.Controls.Add(this.button_fondo);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label9);
@@ -411,5 +438,7 @@
         private System.Windows.Forms.Button button_fondo;
         private System.Windows.Forms.ToolStripMenuItem abonarVencimientoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem liquidarAOtroFondoToolStripMenuItem;
+        private System.Windows.Forms.ComboBox comboBox_ajustes;
+        private System.Windows.Forms.Label label8;
     }
 }

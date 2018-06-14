@@ -17,8 +17,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
         String idEntidad;
         String idSubCuenta;
         String Descripcion;
+        String tipoReparto;
 
-        public FormLiquidarAOtroFondo(String idOpPasado, String idComunidad, String idEntidad, String idSubCuenta, String Descripcion)
+        public FormLiquidarAOtroFondo(String idOpPasado, String idComunidad, String idEntidad, String idSubCuenta, String Descripcion, String tipoReparto)
         {
             InitializeComponent();
             this.idOpPasado = idOpPasado;
@@ -26,6 +27,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             this.idEntidad = idEntidad;
             this.idSubCuenta = idSubCuenta;
             this.Descripcion = Descripcion;
+            this.tipoReparto = tipoReparto;
         }
         public void cargarDatagrid() {
 
@@ -84,7 +86,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             
 
             //OPERACION DEVOLUCIÓN
-            String sqlInsertOperacion = "INSERT INTO com_operaciones (IdComunidad, IdEntidad, IdSubCuenta, IdTipoReparto, Fecha, Documento, Descripcion, IdMovCrea, ImpOp, ImpOpPte, Guardada, IdURD, FAct) VALUES (" + idComunidad + "," + idEntidad + "," + idSubCuenta + ",1,'" + fechaHoy + "','', '" + Descripcion + "'," + idMov + ",-" + totalApagar.ToString().Replace(",", ".") + ",-" + totalApagar.ToString().Replace(",", ".") + ",'Si'," + Login.getId() + ",'" + fechaHoy + "')";
+            String sqlInsertOperacion = "INSERT INTO com_operaciones (IdComunidad, IdEntidad, IdSubCuenta, IdTipoReparto, Fecha, Documento, Descripcion, IdMovCrea, ImpOp, ImpOpPte, Guardada, IdURD, FAct) VALUES (" + idComunidad + "," + idEntidad + "," + idSubCuenta + "," + tipoReparto + ",'" + fechaHoy + "','', '" + Descripcion + "'," + idMov + ",-" + totalApagar.ToString().Replace(",", ".") + ",-" + totalApagar.ToString().Replace(",", ".") + ",'Si'," + Login.getId() + ",'" + fechaHoy + "')";
 
             int op = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsertOperacion);
 
@@ -93,15 +95,27 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             Persistencia.SentenciasSQL.InsertarGenerico(sqlIVA);
 
             //INSERTO EL REPARTO EN LA OPERACION
-            String sqlSelectReparto = "SELECT IdBloque, Porcentaje FROM com_opdetbloques WHERE IdOp = " + idOpPasado + ";";
+            String sqlSelectReparto = "SELECT IdBloque, Porcentaje, IdDivision, IdEntidad FROM com_opdetbloques WHERE IdOp = " + idOpPasado + ";";
             DataTable repartos = Persistencia.SentenciasSQL.select(sqlSelectReparto);
             for (int a = 0; a < repartos.Rows.Count; a++)   {
 
+                String sqlInsertReparto ="";
                 double porcentaje = Convert.ToDouble(repartos.Rows[a][1].ToString()) * 100;
                 double total = (Convert.ToDouble(totalApagar.ToString().Replace(",", ".")) * porcentaje) / 100;
 
-                String sqlInsertReparto = "INSERT INTO com_opdetbloques (IdOp, IdBloque, Porcentaje, Importe) VALUES (" + idOpPasado + "," + repartos.Rows[a][0].ToString() + "," + repartos.Rows[a][1].ToString().Replace(',', '.') + ",-" + total.ToString().Replace(',', '.') + ")";
-                Persistencia.SentenciasSQL.InsertarGenerico(sqlInsertReparto);
+                if (tipoReparto == "1")
+                {
+                    sqlInsertReparto = "INSERT INTO com_opdetbloques (IdOp, IdBloque, Porcentaje, Importe) VALUES (" + op + "," + repartos.Rows[a][0].ToString() + "," + repartos.Rows[a][1].ToString().Replace(',', '.') + ",-" + total.ToString().Replace(',', '.') + ")";
+                }
+                else if (tipoReparto == "2")
+                {
+                    sqlInsertReparto = "INSERT INTO com_opdetbloques (IdOp, IdDivision, Porcentaje, Importe) VALUES (" + op + "," + repartos.Rows[a][2].ToString() + "," + repartos.Rows[a][1].ToString().Replace(',', '.') + ",-" + total.ToString().Replace(',', '.') + ")";
+                }
+                else if (tipoReparto == "3")
+                {
+                    sqlInsertReparto = "INSERT INTO com_opdetbloques (IdOp, IdEntidad, Porcentaje, Importe) VALUES (" + op + "," + repartos.Rows[a][3].ToString() + "," + repartos.Rows[a][1].ToString().Replace(',', '.') + ",-" + total.ToString().Replace(',', '.') + ")";
+                }
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlInsertReparto);
             }
 
             //INSERTO EL VENCIMIENTO EN LA OPERACION
