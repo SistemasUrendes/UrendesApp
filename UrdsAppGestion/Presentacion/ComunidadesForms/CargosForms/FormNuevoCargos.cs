@@ -13,6 +13,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
     public partial class FormNuevoCargos : Form
     {
         String id_comunidad_cargado;
+        String idBloque;
         FormCargosEditar form_anterior;
         
         public FormNuevoCargos(FormCargosEditar form_anterior, String id_comunidad_cargado)
@@ -56,9 +57,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
             }
             String sqlInsert = "";
             if (radioButton1.Checked)
-                sqlInsert = "INSERT INTO com_cargos (IdComunidad, IdOrgano, Cargo, Baja) VALUES (" + id_comunidad_cargado + "," + idOrgano + ",'" + textBox_nuevo.Text  + "',0)";
+                sqlInsert = "INSERT INTO com_cargos (IdComunidad, IdOrgano, Cargo, Baja,IdBloque) VALUES (" + id_comunidad_cargado + "," + idOrgano + ",'" + textBox_nuevo.Text  + "',0," + idBloque + ")";
             else if (radioButton2.Checked) {
-                sqlInsert = "INSERT INTO com_cargos (IdComunidad, IdOrgano, Cargo, Baja) VALUES (" + id_comunidad_cargado + "," + idOrgano + ",'" + comboBox_sugerencia.SelectedItem.ToString() + "',0)";
+                sqlInsert = "INSERT INTO com_cargos (IdComunidad, IdOrgano, Cargo, Baja,IdBloque) VALUES (" + id_comunidad_cargado + "," + idOrgano + ",'" + comboBox_sugerencia.SelectedItem.ToString() + "',0," + idBloque + ")";
             }
 
             Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
@@ -66,6 +67,19 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
             form_anterior.cargardatagrid();
             this.Close();
         
+        }
+
+        private void buttonSeleccionarBloque_Click(object sender, EventArgs e)
+        {
+            BloquesForms.Bloques nueva = new BloquesForms.Bloques(this, "FormNuevoCargos", id_comunidad_cargado);
+            nueva.TopMost = true;
+            nueva.Show();
+        }
+
+        public void recogerBloque(String idBloque, String bloque)
+        {
+            this.idBloque = idBloque;
+            textBoxBloque.Text = bloque;
         }
     }
 }

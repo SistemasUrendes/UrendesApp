@@ -50,21 +50,21 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
                     MessageBox.Show("Ha ocurrido un error al cargar la entidad");
             }
         }
-        private String quitaAcentos(String inputString)
-        {
-            var normalizedString = inputString.Normalize(NormalizationForm.FormD);
-            var sb = new StringBuilder();
-            for (int i = 0; i < normalizedString.Length; i++)
-            {
-                var uc = System.Globalization.CharUnicodeInfo.GetUnicodeCategory(normalizedString[i]);
-                if (uc != System.Globalization.UnicodeCategory.NonSpacingMark)
-                {
-                    sb.Append(normalizedString[i]);
-                }
-            }
-            return (sb.ToString().Normalize(NormalizationForm.FormC));
+        //private String quitaAcentos(String inputString)
+        //{
+        //    var normalizedString = inputString.Normalize(NormalizationForm.FormD);
+        //    var sb = new StringBuilder();
+        //    for (int i = 0; i < normalizedString.Length; i++)
+        //    {
+        //        var uc = System.Globalization.CharUnicodeInfo.GetUnicodeCategory(normalizedString[i]);
+        //        if (uc != System.Globalization.UnicodeCategory.NonSpacingMark)
+        //        {
+        //            sb.Append(normalizedString[i]);
+        //        }
+        //    }
+        //    return (sb.ToString().Normalize(NormalizationForm.FormC));
 
-        }
+        //}
 
         private void button_guardar_Click(object sender, EventArgs e)
         {
@@ -72,7 +72,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
             {
                 if (comprobarCampos())
                 {
-                    int id = Persistencia.SentenciasSQL.InsertEntidad(textBox_nombre_largo.Text, textBox_nombre_corto.Text, textbox_cif.Text, textBox_notas.Text,quitaAcentos(textBox_nombre_largo.Text), textBox_ruta.Text);
+                    int id = Persistencia.SentenciasSQL.InsertEntidad(textBox_nombre_largo.Text, textBox_nombre_corto.Text, textbox_cif.Text, textBox_notas.Text,FormMantenimiento.quitaAcentos(textBox_nombre_largo.Text), textBox_ruta.Text);
                     VerEntidad nueva = new VerEntidad(id);
                     this.Close();
                     nueva.Show();

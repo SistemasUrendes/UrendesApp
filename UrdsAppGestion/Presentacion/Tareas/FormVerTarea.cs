@@ -15,7 +15,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
 {
     public partial class FormVerTarea : Form
     {
-
         private String idTarea;
         private String ruta;
         private String idEntidad;
@@ -607,7 +606,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     form_anterior.filtroNombre();
                 }
 
-                String tarea = idTarea + " " + textBoxDescripcion.Text;
+                //String tarea = idTarea + " " + textBoxDescripcion.Text;
+                String tarea = "20" + idTareaNuevo(idTarea).Replace(@"/",@"\") + " " + textBoxDescripcion.Text;
                 String rutaCheck = rutaEntidad().Trim('#');
                 ruta = @rutaCheck + @"\EXPEDIENTES\" + tarea;
 
@@ -658,7 +658,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                             form_anterior.filtroNombre();
                         }
 
-                        String tarea = idTarea + " " + textBoxDescripcion.Text;
+                        String tarea = "20" + idTareaNuevo(idTarea).Replace(@"/", @"\") + " " + textBoxDescripcion.Text;
                         String rutaCheck = rutaEntidad().Trim('#');
                         ruta = @rutaCheck + @"\EXPEDIENTES\" + tarea;
 
@@ -737,17 +737,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
         //AÑADIR O EDITAR TAREA
         private void addTarea()
         {
-            //if (textBoxDescripcion.Text == "" || comboBoxTipo.SelectedIndex == 0 || !conBloque || maskedTextBoxFIni.Text == "  /  /" || (idEntidad == null && idComunidad == 0))
-            //{
-            //    MessageBox.Show("Los campos DESCRIPCIÓN,ENTIDAD,TIPO, BLOQUE y FECHA INICIO son obligatorios.");
-            //    return;
-            //}
             String idTipoTarea = comboBoxTipo.SelectedValue.ToString();
             String fIni = null;
             fInicio = maskedTextBoxFIni.Text;
             if (maskedTextBoxFIni.Text != "  /  /" && maskedTextBoxFIni.Text != "") fIni = Convert.ToDateTime(maskedTextBoxFIni.Text).ToString("yyyy-MM-dd");
             String descripcion = "";
             if (textBoxDescripcion.Text != "") descripcion = textBoxDescripcion.Text;
+            if (descripcion.Contains("'")) descripcion = descripcion.Replace("'", " ");
+            String descripcionSinAcentos = FormMantenimiento.quitaAcentos(descripcion);
             String coste = "";
             if (textBoxCoste.Text != "") coste = textBoxCoste.Text;
             String seguro = "0";
@@ -765,12 +762,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String notas = textBoxNotas.Text;
             String importante = "0";
             if (checkBoxImportante.Checked) importante = "-1";
+            
 
             //EDITAR TAREA
             if (idTarea != null)
             {
                 String fixRuta = ruta.Replace(@"\", @"\\");
-                String sqlUpdate = "UPDATE exp_tareas SET IdEntidad = " + idEntidad + ",IdRbleTarea = " + Login.getId() + ",IdTipoTarea = " + idTipoTarea + ",Descripción = '" + descripcion + "',Seguro = " + seguro + ",AcuerdoJunta = " + acuerdoJunta + ",RefSiniestro = '" + refSiniestro + "',ProximaJunta = " + proximaJunta + ",Notas = '" + notas + "' WHERE IdTarea = " + idTarea;
+                String sqlUpdate = "UPDATE exp_tareas SET IdEntidad = " + idEntidad + ",IdRbleTarea = " + Login.getId() + ",IdTipoTarea = " + idTipoTarea + ",Descripción = '" + descripcion + "',DescripcionSinAcentos = '" + descripcionSinAcentos + "',Seguro = " + seguro + ",AcuerdoJunta = " + acuerdoJunta + ",RefSiniestro = '" + refSiniestro + "',ProximaJunta = " + proximaJunta + ",Notas = '" + notas + "' WHERE IdTarea = " + idTarea;
                 Persistencia.SentenciasSQL.InsertarGenericoID(sqlUpdate);
                 if (fIni != null)
                 {
@@ -825,7 +823,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             else
             {
                 String fixRuta = ruta.Replace(@"\", @"\\");
-                String sqlInsert = "INSERT INTO exp_tareas (IdEntidad,IdRbleTarea,IdTipoTarea,Descripción,Seguro,AcuerdoJunta,ProximaJunta,RefSiniestro,Notas,FIni) VALUES (" + idEntidad + "," + Login.getId() + "," + idTipoTarea + ",'" + descripcion + "'," + seguro + "," + acuerdoJunta + "," + proximaJunta + ",'" + refSiniestro + "','" + notas + "','" + fIni + "')";
+                String sqlInsert = "INSERT INTO exp_tareas (IdEntidad,IdRbleTarea,IdTipoTarea,Descripción,DescripcionSinAcentos,Seguro,AcuerdoJunta,ProximaJunta,RefSiniestro,Notas,FIni) VALUES (" + idEntidad + "," + Login.getId() + "," + idTipoTarea + ",'" + descripcion + "','" + descripcionSinAcentos +  "'," + seguro + "," + acuerdoJunta + "," + proximaJunta + ",'" + refSiniestro + "','" + notas + "','" + fIni + "')";
                 idTarea = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsert).ToString();
 
                 if (fFin != null)
@@ -1198,7 +1196,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 DataTable comunidad = Persistencia.SentenciasSQL.select(sqlSelect);
                 
                 asunto += comunidad.Rows[0][0].ToString();//Nombre corto
-                asunto += "- (Ref." + comunidad.Rows[0][1].ToString(); //Referencia comunidad
+                asunto += "- (" + comunidad.Rows[0][1].ToString(); //Referencia comunidad
                 asunto += "-" + idTareaNuevo(idTarea); //IdTarea
                 asunto += ") " + textBoxDescripcion.Text; //Descripción
             }
@@ -1579,7 +1577,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 else
                 {
                     comboBoxTipo.SelectedIndex = 2;
-                    checkBoxImportante.Checked = true;
+                    //checkBoxImportante.Checked = true;
                     maskedTextBoxFIni.Text = DateTime.Now.ToShortDateString();
                     addTarea();
                     textBoxIdTarea.Text = idTarea;
@@ -1797,5 +1795,50 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
             }
         }
+
+        private String quitaAcentos(String str)
+        {
+            String strfinal = "";
+
+            for(int i = 0; i < str.Length; i++)
+            {
+                strfinal += arreglaCaracter(str[i]);
+            }
+            return strfinal;
+           
+        }
+
+        private Char arreglaCaracter(Char c)
+        {
+            switch(c)
+            {
+                case 'á':
+                    return 'a';
+                case 'é':
+                    return 'e';
+                case 'í':
+                    return 'i';
+                case 'ó':
+                    return 'o';
+                case 'ú':
+                    return 'u';
+                case 'Á':
+                    return 'A';
+                case 'É':
+                    return 'E';
+                case 'Í':
+                    return 'I';
+                case 'Ó':
+                    return 'O';
+                case 'Ú':
+                    return 'U';
+                default:
+                    return c;
+            }
+            
+        }
+
+
+        
     }
 }

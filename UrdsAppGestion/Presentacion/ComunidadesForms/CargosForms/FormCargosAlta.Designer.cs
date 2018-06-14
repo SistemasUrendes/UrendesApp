@@ -38,6 +38,8 @@
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox_comunero = new System.Windows.Forms.TextBox();
+            this.comboBoxDivision = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -70,7 +72,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(26, 144);
+            this.label4.Location = new System.Drawing.Point(26, 173);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(86, 13);
             this.label4.TabIndex = 3;
@@ -96,7 +98,7 @@
             // 
             // maskedTextBox1
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(141, 141);
+            this.maskedTextBox1.Location = new System.Drawing.Point(141, 170);
             this.maskedTextBox1.Mask = "00/00/0000";
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(68, 20);
@@ -105,7 +107,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(308, 177);
+            this.button1.Location = new System.Drawing.Point(308, 206);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 8;
@@ -123,11 +125,31 @@
             this.textBox_comunero.Text = "Pulse espacio para buscar";
             this.textBox_comunero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_comunero_KeyPress);
             // 
+            // comboBoxDivision
+            // 
+            this.comboBoxDivision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxDivision.FormattingEnabled = true;
+            this.comboBoxDivision.Location = new System.Drawing.Point(141, 138);
+            this.comboBoxDivision.Name = "comboBoxDivision";
+            this.comboBoxDivision.Size = new System.Drawing.Size(242, 21);
+            this.comboBoxDivision.TabIndex = 10;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(26, 141);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(47, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "División:";
+            // 
             // FormCargosAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(405, 215);
+            this.ClientSize = new System.Drawing.Size(405, 250);
+            this.Controls.Add(this.comboBoxDivision);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox_comunero);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.maskedTextBox1);
@@ -160,5 +182,7 @@
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox_comunero;
+        private System.Windows.Forms.ComboBox comboBoxDivision;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -37,7 +37,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         public void cargarTiposGestion()
         {
-            String sqlSelect = "SELECT exp_tipogestion.IdTipoGestion, exp_tipogestion.Descripcion, ctos_gruposurd.Grupo, exp_tipogestion.Plazo AS Días, exp_tipogestion.HorasDeTrabajo AS 'HT' FROM exp_tipogestion LEFT JOIN ctos_gruposurd ON exp_tipogestion.IdGrupo = ctos_gruposurd.IdGrupoURD";
+            String sqlSelect = "SELECT exp_tipogestion.IdTipoGestion, exp_tipogestion.Descripcion, ctos_gruposurd.Grupo, exp_tipogestion.Plazo AS Días, exp_tipogestion.HorasDeTrabajo AS 'CT' FROM exp_tipogestion LEFT JOIN ctos_gruposurd ON exp_tipogestion.IdGrupo = ctos_gruposurd.IdGrupoURD";
             tipoGestion = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewTipoGestion.DataSource = tipoGestion;
 
@@ -47,7 +47,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 dataGridViewTipoGestion.Columns["Descripcion"].Width = 140;
                 dataGridViewTipoGestion.Columns["Grupo"].Width = 80;
                 dataGridViewTipoGestion.Columns["Días"].Width = 40;
-                dataGridViewTipoGestion.Columns["HT"].Width = 30;
+                dataGridViewTipoGestion.Columns["CT"].Width = 30;
             }
         }
 
@@ -114,14 +114,17 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         public void cargarTiposTarea()
         {
-            String sqlSelect = "SELECT exp_tipostareas.IdTipoTarea, exp_tipostareas.TipoTarea AS Descripcion FROM exp_tipostareas";
+            //String sqlSelect = "SELECT exp_tipostareas.IdTipoTarea, exp_tipostareas.TipoTarea AS Descripcion FROM exp_tipostareas";
+            String sqlSelect = "SELECT exp_tipostareas.IdTipoTarea, exp_tipostareas.TipoTarea AS Descripcion, Sum(exp_tipogestion.HorasDeTrabajo) AS CT FROM exp_tipogestion INNER JOIN (exp_tipostareas INNER JOIN exp_gestionEstado ON exp_tipostareas.IdTipoTarea = exp_gestionEstado.IdTipoTarea) ON exp_tipogestion.IdTipoGestion = exp_gestionEstado.IdTipoGestion GROUP BY exp_tipostareas.IdTipoTarea, exp_tipostareas.TipoTarea";
+
             tipoTarea = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewTipoTarea.DataSource = tipoTarea;
 
             if (dataGridViewTipoTarea.Rows.Count > 0)
             {
                 dataGridViewTipoTarea.Columns["IdTipoTarea"].Visible = false;
-                dataGridViewTipoTarea.Columns["Descripcion"].Width = 280;
+                dataGridViewTipoTarea.Columns["Descripcion"].Width = 240;
+                dataGridViewTipoTarea.Columns["CT"].Width = 40;
             }
 
         }

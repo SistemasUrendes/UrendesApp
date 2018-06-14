@@ -72,6 +72,7 @@
             this.buttonServicio = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.textBoxServicio = new System.Windows.Forms.TextBox();
+            this.labelBusqueda = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tareas)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -247,7 +248,7 @@
             // 
             this.textBoxTarea.Location = new System.Drawing.Point(150, 118);
             this.textBoxTarea.Name = "textBoxTarea";
-            this.textBoxTarea.Size = new System.Drawing.Size(43, 20);
+            this.textBoxTarea.Size = new System.Drawing.Size(60, 20);
             this.textBoxTarea.TabIndex = 1;
             this.textBoxTarea.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxTarea_KeyPress);
             // 
@@ -426,7 +427,7 @@
             // labelMostrar
             // 
             this.labelMostrar.AutoSize = true;
-            this.labelMostrar.Location = new System.Drawing.Point(199, 121);
+            this.labelMostrar.Location = new System.Drawing.Point(216, 122);
             this.labelMostrar.Name = "labelMostrar";
             this.labelMostrar.Size = new System.Drawing.Size(45, 13);
             this.labelMostrar.TabIndex = 51;
@@ -435,9 +436,9 @@
             // 
             // textBoxMostrar
             // 
-            this.textBoxMostrar.Location = new System.Drawing.Point(250, 118);
+            this.textBoxMostrar.Location = new System.Drawing.Point(267, 119);
             this.textBoxMostrar.Name = "textBoxMostrar";
-            this.textBoxMostrar.Size = new System.Drawing.Size(43, 20);
+            this.textBoxMostrar.Size = new System.Drawing.Size(55, 20);
             this.textBoxMostrar.TabIndex = 50;
             this.textBoxMostrar.Visible = false;
             this.textBoxMostrar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxMostrar_KeyPress);
@@ -455,7 +456,6 @@
             // 
             // buttonServicio
             // 
-            this.buttonServicio.Enabled = false;
             this.buttonServicio.Location = new System.Drawing.Point(772, 61);
             this.buttonServicio.Name = "buttonServicio";
             this.buttonServicio.Size = new System.Drawing.Size(63, 23);
@@ -467,7 +467,6 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Enabled = false;
             this.label7.Location = new System.Drawing.Point(445, 66);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(48, 13);
@@ -476,12 +475,21 @@
             // 
             // textBoxServicio
             // 
-            this.textBoxServicio.Enabled = false;
             this.textBoxServicio.Location = new System.Drawing.Point(499, 63);
             this.textBoxServicio.Name = "textBoxServicio";
             this.textBoxServicio.ReadOnly = true;
             this.textBoxServicio.Size = new System.Drawing.Size(261, 20);
             this.textBoxServicio.TabIndex = 53;
+            this.textBoxServicio.DoubleClick += new System.EventHandler(this.textBoxServicio_DoubleClick);
+            // 
+            // labelBusqueda
+            // 
+            this.labelBusqueda.AutoSize = true;
+            this.labelBusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBusqueda.Location = new System.Drawing.Point(106, 597);
+            this.labelBusqueda.Name = "labelBusqueda";
+            this.labelBusqueda.Size = new System.Drawing.Size(0, 13);
+            this.labelBusqueda.TabIndex = 56;
             // 
             // FormTareasPrincipal
             // 
@@ -489,6 +497,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1152, 626);
             this.ControlBox = false;
+            this.Controls.Add(this.labelBusqueda);
             this.Controls.Add(this.buttonServicio);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBoxServicio);
@@ -583,5 +592,6 @@
         private System.Windows.Forms.Button buttonServicio;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBoxServicio;
+        private System.Windows.Forms.Label labelBusqueda;
     }
 }

@@ -51,7 +51,7 @@
             this.textBoxDescripcion.Location = new System.Drawing.Point(85, 72);
             this.textBoxDescripcion.Name = "textBoxDescripcion";
             this.textBoxDescripcion.Size = new System.Drawing.Size(264, 20);
-            this.textBoxDescripcion.TabIndex = 1;
+            this.textBoxDescripcion.TabIndex = 2;
             // 
             // label1
             // 
@@ -86,7 +86,7 @@
             this.buttonGuardar.Location = new System.Drawing.Point(192, 98);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(75, 23);
-            this.buttonGuardar.TabIndex = 5;
+            this.buttonGuardar.TabIndex = 3;
             this.buttonGuardar.Text = "Guardar";
             this.buttonGuardar.UseVisualStyleBackColor = true;
             this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
@@ -105,7 +105,7 @@
             this.textBoxNombreCorto.Location = new System.Drawing.Point(85, 46);
             this.textBoxNombreCorto.Name = "textBoxNombreCorto";
             this.textBoxNombreCorto.Size = new System.Drawing.Size(49, 20);
-            this.textBoxNombreCorto.TabIndex = 6;
+            this.textBoxNombreCorto.TabIndex = 1;
             // 
             // FormInsertarArea
             // 

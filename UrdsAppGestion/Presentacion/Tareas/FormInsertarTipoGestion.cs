@@ -42,7 +42,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
-            if (textBoxNombre.Text != "" && maskedTextBoxPlazo.Text != "")
+            if (textBoxNombre.Text != "")
             {
                 //VALORES DE LA QUERY DE INSERCIÓN
                 String descripcion = textBoxNombre.Text;
@@ -71,7 +71,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
             else
             {
-                MessageBox.Show("Introduzca valores en los campos Nombre y Plazo");
+                MessageBox.Show("Introduzca el Nombre del tipo de Gestión.");
             }
         }
 

@@ -132,7 +132,7 @@
             this.groupBox2.Size = new System.Drawing.Size(328, 418);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Tipo de Tarea";
+            this.groupBox2.Text = "Tareas con Procedimiento";
             // 
             // textBoxFiltroTarea
             // 

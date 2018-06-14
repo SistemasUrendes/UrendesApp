@@ -301,6 +301,8 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes {
             
             private global::System.Data.DataColumn columnDescripción;
             
+            private global::System.Data.DataColumn columnIdNuevo;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public DataTable1DataTable() {
@@ -424,6 +426,14 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IdNuevoColumn {
+                get {
+                    return this.columnIdNuevo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -459,7 +469,7 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string Id, string Entidad, string T, string FIni, string FFin, string A, string I, string P, string Seguro, string Estado, string Descripción) {
+            public DataTable1Row AddDataTable1Row(string Id, string Entidad, string T, string FIni, string FFin, string A, string I, string P, string Seguro, string Estado, string Descripción, string IdNuevo) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
@@ -472,7 +482,8 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes {
                         P,
                         Seguro,
                         Estado,
-                        Descripción};
+                        Descripción,
+                        IdNuevo};
                 rowDataTable1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable1Row);
                 return rowDataTable1Row;
@@ -506,6 +517,7 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes {
                 this.columnSeguro = base.Columns["Seguro"];
                 this.columnEstado = base.Columns["Estado"];
                 this.columnDescripción = base.Columns["Descripción"];
+                this.columnIdNuevo = base.Columns["IdNuevo"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -533,6 +545,8 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes {
                 base.Columns.Add(this.columnEstado);
                 this.columnDescripción = new global::System.Data.DataColumn("Descripción", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDescripción);
+                this.columnIdNuevo = new global::System.Data.DataColumn("IdNuevo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdNuevo);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -851,6 +865,22 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string IdNuevo {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.IdNuevoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'IdNuevo\' de la tabla \'DataTable1\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.IdNuevoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsIdNull() {
                 return this.IsNull(this.tableDataTable1.IdColumn);
             }
@@ -979,6 +1009,18 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetDescripciónNull() {
                 this[this.tableDataTable1.DescripciónColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIdNuevoNull() {
+                return this.IsNull(this.tableDataTable1.IdNuevoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIdNuevoNull() {
+                this[this.tableDataTable1.IdNuevoColumn] = global::System.Convert.DBNull;
             }
         }
         

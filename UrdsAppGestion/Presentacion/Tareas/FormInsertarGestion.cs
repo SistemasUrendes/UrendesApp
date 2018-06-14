@@ -428,12 +428,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         }
         
-        public void recibirEntidad(String id_entidad)
+        public void recibirEntidad(String id_entidad,String nombre)
         {
             idEntidad = id_entidad;
             esperade = "E";
-            String sqlSelect = "SELECT ctos_entidades.Entidad FROM ctos_entidades WHERE(((ctos_entidades.IDEntidad) = " + id_entidad + "))";
-            textBoxEspera.Text = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+            //String sqlSelect = "SELECT ctos_entidades.Entidad FROM ctos_entidades WHERE(((ctos_entidades.IDEntidad) = " + id_entidad + "))";
+            textBoxEspera.Text = nombre;
         }
     
         private void tareaImportante()
@@ -531,28 +531,28 @@ namespace UrdsAppGestión.Presentacion.Tareas
             maskedTextBoxFFin.Text = DateTime.Now.ToShortDateString();
         }
        
-        public void recibirComunero (String idEntidad)
+        public void recibirComunero (String idEntidad,String nombre)
         {
             this.idEntidad = idEntidad;
             esperade = "C";
-            String sqlSelect = "SELECT ctos_entidades.Entidad FROM ctos_entidades WHERE(((ctos_entidades.IDEntidad) = " + idEntidad + "))";
-            textBoxEspera.Text = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+            //String sqlSelect = "SELECT ctos_entidades.Entidad FROM ctos_entidades WHERE(((ctos_entidades.IDEntidad) = " + idEntidad + "))";
+            textBoxEspera.Text = nombre;
         }
 
-        public void recibirProveedor(String idEntidad)
+        public void recibirProveedor(String idEntidad,String nombre)
         {
             this.idEntidad = idEntidad;
             esperade = "P";
-            String sqlSelect = "SELECT ctos_entidades.Entidad FROM ctos_entidades WHERE(((ctos_entidades.IDEntidad) = " + idEntidad + "))";
-            textBoxEspera.Text = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+            //String sqlSelect = "SELECT ctos_entidades.Entidad FROM ctos_entidades WHERE(((ctos_entidades.IDEntidad) = " + idEntidad + "))";
+            textBoxEspera.Text = nombre;
         }
 
-        public void recibirContacto(String idContacto)
+        public void recibirContacto(String idContacto,String nombre)
         {
             this.idEntidad = idContacto;
             esperade = "T";
-            String sqlSelect = "SELECT exp_contactos.Nombre FROM exp_contactos WHERE(((exp_contactos.IdDetEntTarea) = " + idContacto + "))";
-            textBoxEspera.Text = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+            //String sqlSelect = "SELECT exp_contactos.Nombre FROM exp_contactos WHERE(((exp_contactos.IdDetEntTarea) = " + idContacto + "))";
+            textBoxEspera.Text = nombre;
         }
 
         public void recibirOrgano(String idEntidad)
@@ -623,8 +623,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
                 else
                 {
-                    ComunidadesForms.CargosForms.FormCargos nueva = new ComunidadesForms.CargosForms.FormCargos(this,idComunidad.ToString());
-                    //ComunidadesForms.CargosForms.FormSeleccionarOrgano nueva = new ComunidadesForms.CargosForms.FormSeleccionarOrgano(this, idComunidad.ToString());
+                    //ComunidadesForms.CargosForms.FormCargos nueva = new ComunidadesForms.CargosForms.FormCargos(this,idComunidad.ToString());
+                    ComunidadesForms.CargosForms.FormSeleccionarOrgano nueva = new ComunidadesForms.CargosForms.FormSeleccionarOrgano(this, idComunidad.ToString());
                     nueva.ControlBox = true;
                     nueva.TopMost = true;
                     nueva.WindowState = FormWindowState.Normal;

@@ -188,16 +188,15 @@ namespace UrdsAppGestión.Presentacion.Tareas
             nueva.Show();
         }
 
-        public void recibirEntidad(String id_entidad)
+        public void recibirEntidad(String nombre, String correo, String tlf)
         {
+            /*
             String sqlSelectCorreo = "SELECT ctos_entidades.Entidad, ctos_detemail.Email FROM ctos_detemail RIGHT JOIN ctos_entidades ON ctos_detemail.IdEntidad = ctos_entidades.IDEntidad WHERE(((ctos_entidades.IDEntidad) = " + id_entidad + ") AND((ctos_detemail.Ppal) = -1))";
             DataTable tablaCorreo = Persistencia.SentenciasSQL.select(sqlSelectCorreo);
             String sqlSelectTlf = "SELECT ctos_entidades.Entidad, ctos_dettelf.Telefono FROM ctos_entidades INNER JOIN ctos_dettelf ON ctos_entidades.IDEntidad = ctos_dettelf.IdEntidad WHERE(((ctos_dettelf.Ppal) = -1) AND((ctos_entidades.IDEntidad) = " + id_entidad + "))";
             DataTable tablatlf = Persistencia.SentenciasSQL.select(sqlSelectTlf);
 
-            textBoxNombre.Text = "";
-            maskedTextBoxTelefono.Text = "";
-            textBoxCorreo.Text = "";
+            
 
             if (tablatlf.Rows.Count > 0)
             {
@@ -214,6 +213,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 MessageBox.Show("El contacto no tiene ni teléfono ni correo!");
                 return;
             }
+            */
+            textBoxNombre.Text = nombre;
+            maskedTextBoxTelefono.Text = tlf;
+            textBoxCorreo.Text = correo;
             entidad = true;
 
             //BLOQUEO EDICIÓN
@@ -223,10 +226,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         }
 
-        public void recibirProveedor (String idProveedor)
+        public void recibirProveedor (String nombre,String correo, String tlf)
         {
             //String sqlSelect = "SELECT ctos_entidades.Entidad, ctos_detemail.Email, ctos_dettelf.Telefono FROM((com_proveedores INNER JOIN ctos_entidades ON com_proveedores.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN ctos_detemail ON ctos_entidades.IDEntidad = ctos_detemail.IdEntidad) INNER JOIN ctos_dettelf ON ctos_entidades.IDEntidad = ctos_dettelf.IdEntidad WHERE(((com_proveedores.IdProveedor) = " + idProveedor + ") AND ((ctos_detemail.Ppal) = -1) AND((ctos_dettelf.Ppal) = -1) )";
-
+            /*
             textBoxNombre.Text = "";
             maskedTextBoxTelefono.Text = "";
             textBoxCorreo.Text = "";
@@ -252,6 +255,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 return;
             }
 
+            */
+
+            textBoxNombre.Text = nombre;
+            maskedTextBoxTelefono.Text = tlf;
+            textBoxCorreo.Text = correo;
+            
             proveedor = true;
 
             //BLOQUEO EDICIÓN
@@ -260,35 +269,22 @@ namespace UrdsAppGestión.Presentacion.Tareas
             maskedTextBoxTelefono.Enabled = false;
         }
 
-        public void recibirComunero (String idComunero)
+        public void recibirComunero (String idComunero,String nombre,String correo)
         {
-            //String sqlSelect = "SELECT ctos_entidades.Entidad, ctos_detemail.Email, ctos_dettelf.Telefono FROM((ctos_entidades INNER JOIN ctos_detemail ON ctos_entidades.IDEntidad = ctos_detemail.IdEntidad) INNER JOIN ctos_dettelf ON ctos_entidades.IDEntidad = ctos_dettelf.IdEntidad) INNER JOIN com_comuneros ON ctos_entidades.IDEntidad = com_comuneros.IdEntidad WHERE(((com_comuneros.IdComunero) = " + idComunero + ") AND ((ctos_detemail.Ppal) = -1) AND((ctos_dettelf.Ppal) = -1) )";
+            
 
-            textBoxNombre.Text = "";
-            maskedTextBoxTelefono.Text = "";
-            textBoxCorreo.Text = "";
-
-            String sqlSelectCorreo = "SELECT ctos_entidades.Entidad, ctos_detemail.Email FROM(com_comuneros INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN ctos_detemail ON com_comuneros.IdEmail = ctos_detemail.IdEmail WHERE(((ctos_detemail.Ppal) = -1) AND((com_comuneros.IdComunero) = " + idComunero + "))";
-            DataTable tablaCorreo = Persistencia.SentenciasSQL.select(sqlSelectCorreo);
-            String sqlSelectTlf = "SELECT ctos_entidades.Entidad, ctos_dettelf.Telefono FROM(com_comuneros INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN ctos_dettelf ON com_comuneros.IdEntidad = ctos_dettelf.IdEntidad WHERE(((com_comuneros.IdComunero) = " + idComunero + ") AND((ctos_dettelf.Ppal) = -1))";
+            String sqlSelectTlf = "SELECT ctos_dettelf.Telefono FROM(com_comuneros INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN ctos_dettelf ON com_comuneros.IdEntidad = ctos_dettelf.IdEntidad WHERE(((com_comuneros.IdComunero) = " + idComunero + ") AND((ctos_dettelf.Ppal) = -1))";
             DataTable tablatlf = Persistencia.SentenciasSQL.select(sqlSelectTlf);
+
+            maskedTextBoxTelefono.Text = "";
 
             if (tablatlf.Rows.Count > 0)
             {
-                textBoxNombre.Text = tablatlf.Rows[0][0].ToString();
-                maskedTextBoxTelefono.Text = tablatlf.Rows[0][1].ToString();
-            }
-            if (tablaCorreo.Rows.Count > 0)
-            {
-                textBoxNombre.Text = tablaCorreo.Rows[0][0].ToString();
-                textBoxCorreo.Text = tablaCorreo.Rows[0][1].ToString();
-            }
-            if (tablatlf.Rows.Count == 0 && tablaCorreo.Rows.Count == 0)
-            {
-                MessageBox.Show("El contacto no tiene ni teléfono ni correo!");
-                return;
+                maskedTextBoxTelefono.Text = tablatlf.Rows[0][0].ToString();
             }
 
+            textBoxNombre.Text = nombre;
+            textBoxCorreo.Text = correo;
             comunero = true;
 
             //BLOQUEO EDICIÓN

@@ -239,6 +239,7 @@
             this.buttonAddGrupo.TabIndex = 17;
             this.buttonAddGrupo.Text = "Añadir Grupo";
             this.buttonAddGrupo.UseVisualStyleBackColor = true;
+            this.buttonAddGrupo.Visible = false;
             this.buttonAddGrupo.Click += new System.EventHandler(this.buttonAddGrupo_Click);
             // 
             // buttonMttoCategoria

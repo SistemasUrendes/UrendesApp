@@ -143,12 +143,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
                 if (nombre_form_cargado == "FormInsertarContacto")
                 {
                     Tareas.FormInsertarContacto nuevo = (Tareas.FormInsertarContacto)existe;
-                    nuevo.recibirProveedor(dataGridView_proveedores.SelectedCells[0].Value.ToString());
+                    nuevo.recibirProveedor(dataGridView_proveedores.SelectedCells[4].Value.ToString(), dataGridView_proveedores.SelectedCells[6].Value.ToString(), dataGridView_proveedores.SelectedCells[7].Value.ToString());
                 }
                 if (nombre_form_cargado == "FormInsertarGestion")
                 {
                     Tareas.FormInsertarGestion nuevo = (Tareas.FormInsertarGestion)existe;
-                    nuevo.recibirProveedor(dataGridView_proveedores.SelectedCells[3].Value.ToString());
+                    nuevo.recibirProveedor(dataGridView_proveedores.SelectedCells[3].Value.ToString(), dataGridView_proveedores.SelectedCells[4].Value.ToString());
                 }
             }
             this.Close();

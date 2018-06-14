@@ -125,13 +125,19 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
             }
 
-            if (nombre != null) MessageBox.Show("Tipo de Tarea actualizado correctamente");
+            if (nombre != null)
+            {
+                MessageBox.Show("Tipo de Tarea actualizado correctamente");
+                form.cargarTiposTarea();
+                this.Close();
+            }
             else
             {
                 MessageBox.Show("Tipo de Tarea añadido correctamente");
                 form.cargarTiposTarea();
+                this.Close();
             }
-            cargarTipoTarea();
+            //cargarTipoTarea();
 
         }
 

@@ -36,6 +36,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox_organo = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxBloque = new System.Windows.Forms.TextBox();
+            this.buttonSeleccionarBloque = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox_nuevo
@@ -43,7 +46,7 @@
             this.textBox_nuevo.Enabled = false;
             this.textBox_nuevo.Location = new System.Drawing.Point(123, 72);
             this.textBox_nuevo.Name = "textBox_nuevo";
-            this.textBox_nuevo.Size = new System.Drawing.Size(121, 20);
+            this.textBox_nuevo.Size = new System.Drawing.Size(153, 20);
             this.textBox_nuevo.TabIndex = 0;
             // 
             // radioButton1
@@ -67,7 +70,7 @@
             "Secretario"});
             this.comboBox_sugerencia.Location = new System.Drawing.Point(123, 38);
             this.comboBox_sugerencia.Name = "comboBox_sugerencia";
-            this.comboBox_sugerencia.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_sugerencia.Size = new System.Drawing.Size(153, 21);
             this.comboBox_sugerencia.TabIndex = 2;
             // 
             // radioButton2
@@ -85,10 +88,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(94, 149);
+            this.button1.Location = new System.Drawing.Point(94, 182);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
+            this.button1.TabIndex = 10;
             this.button1.Text = "Añadir";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -108,14 +111,44 @@
             this.comboBox_organo.FormattingEnabled = true;
             this.comboBox_organo.Location = new System.Drawing.Point(123, 109);
             this.comboBox_organo.Name = "comboBox_organo";
-            this.comboBox_organo.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_organo.Size = new System.Drawing.Size(153, 21);
             this.comboBox_organo.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(33, 146);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Bloque:";
+            // 
+            // textBoxBloque
+            // 
+            this.textBoxBloque.Location = new System.Drawing.Point(123, 143);
+            this.textBoxBloque.Name = "textBoxBloque";
+            this.textBoxBloque.ReadOnly = true;
+            this.textBoxBloque.Size = new System.Drawing.Size(120, 20);
+            this.textBoxBloque.TabIndex = 8;
+            // 
+            // buttonSeleccionarBloque
+            // 
+            this.buttonSeleccionarBloque.Location = new System.Drawing.Point(249, 141);
+            this.buttonSeleccionarBloque.Name = "buttonSeleccionarBloque";
+            this.buttonSeleccionarBloque.Size = new System.Drawing.Size(27, 23);
+            this.buttonSeleccionarBloque.TabIndex = 9;
+            this.buttonSeleccionarBloque.Text = ">>";
+            this.buttonSeleccionarBloque.UseVisualStyleBackColor = true;
+            this.buttonSeleccionarBloque.Click += new System.EventHandler(this.buttonSeleccionarBloque_Click);
             // 
             // FormNuevoCargos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(273, 191);
+            this.ClientSize = new System.Drawing.Size(312, 226);
+            this.Controls.Add(this.buttonSeleccionarBloque);
+            this.Controls.Add(this.textBoxBloque);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBox_organo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
@@ -143,5 +176,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox_organo;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxBloque;
+        private System.Windows.Forms.Button buttonSeleccionarBloque;
     }
 }

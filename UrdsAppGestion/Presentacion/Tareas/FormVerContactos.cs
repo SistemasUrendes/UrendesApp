@@ -39,7 +39,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 if (nombre_form_anterior == "FormInsertarGestion")
                 {
                     FormInsertarGestion nuevo = (FormInsertarGestion)existe;
-                    nuevo.recibirContacto(dataGridViewContactos.SelectedCells[0].Value.ToString());
+                    nuevo.recibirContacto(dataGridViewContactos.SelectedCells[0].Value.ToString(), dataGridViewContactos.SelectedCells[1].Value.ToString());
                 }
                 this.Close();
             }

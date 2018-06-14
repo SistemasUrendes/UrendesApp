@@ -15,6 +15,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
         String id_comunidad_cargado = "0";
         FormCargos form_anterior;
         String id_entidad_nuevo;
+        String id_comunero;
 
         public FormCargosAlta(FormCargos form_anterior, String id_comunidad_cargado)
         {
@@ -74,7 +75,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
             }
             String fechaInicio = (Convert.ToDateTime(maskedTextBox1.Text)).ToString("yyyy-MM-dd");
 
-            String sqlInsert = "INSERT INTO com_cargoscom (IdComunidad, IdComunero, IdCargo, FInicio) VALUES (" + id_comunidad_cargado + "," + id_entidad_nuevo + "," + comboBox_cargo.SelectedValue.ToString() + ",'" + fechaInicio + "')";
+            String sqlInsert = "INSERT INTO com_cargoscom (IdComunidad, IdComunero, IdCargo, FInicio,IdDivision) VALUES (" + id_comunidad_cargado + "," + id_comunero + "," + comboBox_cargo.SelectedValue.ToString() + ",'" + fechaInicio + "','" + comboBoxDivision.SelectedValue.ToString() + "')";
 
             Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
             form_anterior.cargardatagrid();
@@ -93,10 +94,25 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
             }
         }
 
-        public void recibirComunero(String id_comunero,String nombre)
+        public void recibirComunero(String id_comunero,String nombre,String id_entidad)
         {
-            id_entidad_nuevo = id_comunero;
+            this.id_comunero = id_comunero;
             textBox_comunero.Text = nombre;
+            this.id_entidad_nuevo = id_entidad;
+
+            cargarDivisiones();
         }
+
+        private void cargarDivisiones()
+        {
+            String sqlSelect = "SELECT com_divisiones.IdDivision, com_divisiones.Division FROM com_comuneros INNER JOIN (com_divisiones INNER JOIN com_asociacion ON com_divisiones.IdDivision = com_asociacion.IdDivision) ON com_comuneros.IdComunero = com_asociacion.IdComunero WHERE(((com_comuneros.IdEntidad) = " + id_entidad_nuevo + "))";
+            DataTable divisiones = Persistencia.SentenciasSQL.select(sqlSelect);
+
+
+            comboBoxDivision.DataSource = divisiones;
+            comboBoxDivision.DisplayMember = "Division";
+            comboBoxDivision.ValueMember = "IdDivision"; 
+        }
+        
     }
 }

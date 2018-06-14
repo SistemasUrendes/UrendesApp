@@ -51,7 +51,6 @@
             this.dataGridViewAllGestion.AllowUserToDeleteRows = false;
             this.dataGridViewAllGestion.AllowUserToResizeRows = false;
             this.dataGridViewAllGestion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewAllGestion.ColumnHeadersVisible = false;
             this.dataGridViewAllGestion.Location = new System.Drawing.Point(351, 74);
             this.dataGridViewAllGestion.MultiSelect = false;
             this.dataGridViewAllGestion.Name = "dataGridViewAllGestion";
@@ -68,7 +67,6 @@
             this.dataGridViewAddGestion.AllowUserToDeleteRows = false;
             this.dataGridViewAddGestion.AllowUserToResizeRows = false;
             this.dataGridViewAddGestion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewAddGestion.ColumnHeadersVisible = false;
             this.dataGridViewAddGestion.Location = new System.Drawing.Point(12, 74);
             this.dataGridViewAddGestion.MultiSelect = false;
             this.dataGridViewAddGestion.Name = "dataGridViewAddGestion";

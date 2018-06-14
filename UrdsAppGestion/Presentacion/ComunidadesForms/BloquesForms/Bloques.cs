@@ -70,6 +70,11 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.BloquesForms
                     OperacionesForms.FormOperacionesListadoProveedores nuevo = (OperacionesForms.FormOperacionesListadoProveedores)existe;
                     nuevo.recogerBloque(dataGridView_bloques.SelectedCells[0].Value.ToString());
                 }
+                if (nombre_form_cargado == "FormNuevoCargos")
+                {
+                    CargosForms.FormNuevoCargos nuevo = (CargosForms.FormNuevoCargos)existe;
+                    nuevo.recogerBloque(dataGridView_bloques.SelectedCells[0].Value.ToString(), dataGridView_bloques.SelectedCells[1].Value.ToString());
+                }
             }
             this.Close();
         }
