@@ -591,11 +591,11 @@ namespace UrdsAppGestión.Presentacion
             }
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void button7_Click(object sender, EventArgs e)
         {
             String sqlSelect = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción FROM exp_tareas";
             DataTable tareas = Persistencia.SentenciasSQL.select(sqlSelect);
-            
+
             foreach (DataRow row in tareas.Rows)
             {
                 String sqlUpdate = "UPDATE exp_tareas SET DescripcionSinAcentos = '" + quitaAcentos(row[1].ToString()) + "' WHERE IdTarea = '" + row[0].ToString() + "'";
@@ -604,5 +604,6 @@ namespace UrdsAppGestión.Presentacion
 
             MessageBox.Show("Fin.");
         }
+
     }
 }
