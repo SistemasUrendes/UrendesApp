@@ -30,13 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTareasConfiguracion));
-            this.dataGridViewTipoGestion = new System.Windows.Forms.DataGridView();
-            this.buttonAddGestion = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.borrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBoxFiltroTipoGestion = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBoxFiltroTarea = new System.Windows.Forms.TextBox();
             this.buttonAddTipoTarea = new System.Windows.Forms.Button();
@@ -44,83 +37,23 @@
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.borrarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipoGestion)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonRemoveGestion = new System.Windows.Forms.Button();
+            this.buttonAddGestion = new System.Windows.Forms.Button();
+            this.buttonBajar = new System.Windows.Forms.Button();
+            this.buttonSubir = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxFiltroGestiones = new System.Windows.Forms.TextBox();
+            this.dataGridViewAddGestion = new System.Windows.Forms.DataGridView();
+            this.dataGridViewAllGestion = new System.Windows.Forms.DataGridView();
+            this.labelName = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipoTarea)).BeginInit();
             this.contextMenuStrip2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAddGestion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAllGestion)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dataGridViewTipoGestion
-            // 
-            this.dataGridViewTipoGestion.AllowUserToAddRows = false;
-            this.dataGridViewTipoGestion.AllowUserToDeleteRows = false;
-            this.dataGridViewTipoGestion.AllowUserToResizeRows = false;
-            this.dataGridViewTipoGestion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTipoGestion.Location = new System.Drawing.Point(6, 43);
-            this.dataGridViewTipoGestion.Name = "dataGridViewTipoGestion";
-            this.dataGridViewTipoGestion.ReadOnly = true;
-            this.dataGridViewTipoGestion.RowHeadersVisible = false;
-            this.dataGridViewTipoGestion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridViewTipoGestion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewTipoGestion.ShowEditingIcon = false;
-            this.dataGridViewTipoGestion.Size = new System.Drawing.Size(293, 350);
-            this.dataGridViewTipoGestion.TabIndex = 0;
-            this.dataGridViewTipoGestion.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTipoGestion_CellDoubleClick);
-            this.dataGridViewTipoGestion.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewTipoGestion_MouseClick);
-            // 
-            // buttonAddGestion
-            // 
-            this.buttonAddGestion.Location = new System.Drawing.Point(224, 17);
-            this.buttonAddGestion.Name = "buttonAddGestion";
-            this.buttonAddGestion.Size = new System.Drawing.Size(75, 23);
-            this.buttonAddGestion.TabIndex = 2;
-            this.buttonAddGestion.Text = "Añadir";
-            this.buttonAddGestion.UseVisualStyleBackColor = true;
-            this.buttonAddGestion.Click += new System.EventHandler(this.buttonAddGestion_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editarToolStripMenuItem,
-            this.borrarToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(107, 48);
-            // 
-            // editarToolStripMenuItem
-            // 
-            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            this.editarToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
-            this.editarToolStripMenuItem.Text = "Editar";
-            this.editarToolStripMenuItem.Click += new System.EventHandler(this.editarToolStripMenuItem_Click);
-            // 
-            // borrarToolStripMenuItem
-            // 
-            this.borrarToolStripMenuItem.Name = "borrarToolStripMenuItem";
-            this.borrarToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
-            this.borrarToolStripMenuItem.Text = "Borrar";
-            this.borrarToolStripMenuItem.Click += new System.EventHandler(this.borrarToolStripMenuItem_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.textBoxFiltroTipoGestion);
-            this.groupBox1.Controls.Add(this.buttonAddGestion);
-            this.groupBox1.Controls.Add(this.dataGridViewTipoGestion);
-            this.groupBox1.Location = new System.Drawing.Point(393, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(328, 418);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Tipo de Gestión";
-            // 
-            // textBoxFiltroTipoGestion
-            // 
-            this.textBoxFiltroTipoGestion.Location = new System.Drawing.Point(6, 19);
-            this.textBoxFiltroTipoGestion.Name = "textBoxFiltroTipoGestion";
-            this.textBoxFiltroTipoGestion.Size = new System.Drawing.Size(212, 20);
-            this.textBoxFiltroTipoGestion.TabIndex = 3;
-            this.textBoxFiltroTipoGestion.TextChanged += new System.EventHandler(this.textBoxFiltroTipoGestion_TextChanged);
             // 
             // groupBox2
             // 
@@ -167,6 +100,7 @@
             this.dataGridViewTipoTarea.ShowEditingIcon = false;
             this.dataGridViewTipoTarea.Size = new System.Drawing.Size(293, 350);
             this.dataGridViewTipoTarea.TabIndex = 0;
+            this.dataGridViewTipoTarea.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTipoTarea_CellClick);
             this.dataGridViewTipoTarea.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTipoTarea_CellDoubleClick);
             this.dataGridViewTipoTarea.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewTipoTarea_MouseClick);
             // 
@@ -192,39 +126,141 @@
             this.borrarToolStripMenuItem1.Text = "Borrar";
             this.borrarToolStripMenuItem1.Click += new System.EventHandler(this.borrarToolStripMenuItem1_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.labelName);
+            this.groupBox1.Controls.Add(this.buttonRemoveGestion);
+            this.groupBox1.Controls.Add(this.buttonAddGestion);
+            this.groupBox1.Controls.Add(this.buttonBajar);
+            this.groupBox1.Controls.Add(this.buttonSubir);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.textBoxFiltroGestiones);
+            this.groupBox1.Controls.Add(this.dataGridViewAddGestion);
+            this.groupBox1.Controls.Add(this.dataGridViewAllGestion);
+            this.groupBox1.Location = new System.Drawing.Point(355, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(702, 418);
+            this.groupBox1.TabIndex = 25;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Gestiones del procedimiento";
+            this.groupBox1.Visible = false;
+            // 
+            // buttonRemoveGestion
+            // 
+            this.buttonRemoveGestion.Location = new System.Drawing.Point(333, 254);
+            this.buttonRemoveGestion.Name = "buttonRemoveGestion";
+            this.buttonRemoveGestion.Size = new System.Drawing.Size(28, 23);
+            this.buttonRemoveGestion.TabIndex = 34;
+            this.buttonRemoveGestion.Text = ">>";
+            this.buttonRemoveGestion.UseVisualStyleBackColor = true;
+            // 
+            // buttonAddGestion
+            // 
+            this.buttonAddGestion.Location = new System.Drawing.Point(333, 225);
+            this.buttonAddGestion.Name = "buttonAddGestion";
+            this.buttonAddGestion.Size = new System.Drawing.Size(28, 23);
+            this.buttonAddGestion.TabIndex = 33;
+            this.buttonAddGestion.Text = "<<";
+            this.buttonAddGestion.UseVisualStyleBackColor = true;
+            // 
+            // buttonBajar
+            // 
+            this.buttonBajar.Location = new System.Drawing.Point(333, 143);
+            this.buttonBajar.Name = "buttonBajar";
+            this.buttonBajar.Size = new System.Drawing.Size(28, 23);
+            this.buttonBajar.TabIndex = 32;
+            this.buttonBajar.Text = "↓";
+            this.buttonBajar.UseVisualStyleBackColor = true;
+            // 
+            // buttonSubir
+            // 
+            this.buttonSubir.Location = new System.Drawing.Point(333, 114);
+            this.buttonSubir.Name = "buttonSubir";
+            this.buttonSubir.Size = new System.Drawing.Size(28, 23);
+            this.buttonSubir.TabIndex = 31;
+            this.buttonSubir.Text = "↑";
+            this.buttonSubir.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(25, 27);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(77, 13);
+            this.label2.TabIndex = 30;
+            this.label2.Text = "Procedimiento:";
+            // 
+            // textBoxFiltroGestiones
+            // 
+            this.textBoxFiltroGestiones.Location = new System.Drawing.Point(367, 19);
+            this.textBoxFiltroGestiones.Name = "textBoxFiltroGestiones";
+            this.textBoxFiltroGestiones.Size = new System.Drawing.Size(309, 20);
+            this.textBoxFiltroGestiones.TabIndex = 27;
+            // 
+            // dataGridViewAddGestion
+            // 
+            this.dataGridViewAddGestion.AllowUserToAddRows = false;
+            this.dataGridViewAddGestion.AllowUserToDeleteRows = false;
+            this.dataGridViewAddGestion.AllowUserToResizeRows = false;
+            this.dataGridViewAddGestion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAddGestion.Location = new System.Drawing.Point(28, 55);
+            this.dataGridViewAddGestion.MultiSelect = false;
+            this.dataGridViewAddGestion.Name = "dataGridViewAddGestion";
+            this.dataGridViewAddGestion.ReadOnly = true;
+            this.dataGridViewAddGestion.RowHeadersVisible = false;
+            this.dataGridViewAddGestion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewAddGestion.Size = new System.Drawing.Size(299, 338);
+            this.dataGridViewAddGestion.TabIndex = 26;
+            // 
+            // dataGridViewAllGestion
+            // 
+            this.dataGridViewAllGestion.AllowUserToAddRows = false;
+            this.dataGridViewAllGestion.AllowUserToDeleteRows = false;
+            this.dataGridViewAllGestion.AllowUserToResizeRows = false;
+            this.dataGridViewAllGestion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAllGestion.Location = new System.Drawing.Point(367, 55);
+            this.dataGridViewAllGestion.MultiSelect = false;
+            this.dataGridViewAllGestion.Name = "dataGridViewAllGestion";
+            this.dataGridViewAllGestion.ReadOnly = true;
+            this.dataGridViewAllGestion.RowHeadersVisible = false;
+            this.dataGridViewAllGestion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewAllGestion.Size = new System.Drawing.Size(309, 338);
+            this.dataGridViewAllGestion.TabIndex = 25;
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelName.Location = new System.Drawing.Point(108, 25);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(0, 17);
+            this.labelName.TabIndex = 35;
+            // 
             // FormTareasConfiguracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(991, 628);
+            this.ClientSize = new System.Drawing.Size(1069, 628);
             this.ControlBox = false;
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormTareasConfiguracion";
             this.Text = "Configuración Tarea";
             this.Load += new System.EventHandler(this.FormTareasConfiguracion_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipoGestion)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipoTarea)).EndInit();
             this.contextMenuStrip2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAddGestion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAllGestion)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dataGridViewTipoGestion;
-        private System.Windows.Forms.Button buttonAddGestion;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem borrarToolStripMenuItem;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBoxFiltroTipoGestion;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox textBoxFiltroTarea;
         private System.Windows.Forms.Button buttonAddTipoTarea;
@@ -232,5 +268,15 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem borrarToolStripMenuItem1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button buttonRemoveGestion;
+        private System.Windows.Forms.Button buttonAddGestion;
+        private System.Windows.Forms.Button buttonBajar;
+        private System.Windows.Forms.Button buttonSubir;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxFiltroGestiones;
+        private System.Windows.Forms.DataGridView dataGridViewAddGestion;
+        private System.Windows.Forms.DataGridView dataGridViewAllGestion;
+        private System.Windows.Forms.Label labelName;
     }
 }

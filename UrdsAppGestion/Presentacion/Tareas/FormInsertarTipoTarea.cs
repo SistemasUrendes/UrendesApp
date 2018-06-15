@@ -48,7 +48,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void cargarTodosTipoGestion()
         {
             String sqlSelect = "SELECT exp_tipogestion.IdTipoGestion, exp_tipogestion.Descripcion, ctos_gruposurd.Grupo AS Perfil, exp_tipogestion.Plazo AS Días, '0' AS `Orden` FROM exp_tipogestion LEFT JOIN ctos_gruposurd ON exp_tipogestion.IdGrupo = ctos_gruposurd.IdGrupoURD";
-            //String sqlSelect = "SELECT exp_tipogestion.IdTipoGestion, exp_tipogestion.Descripcion, exp_tipogestion.Plazo AS Días, '0' AS `Orden` FROM exp_tipogestion";
             allGestion = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewAllGestion.DataSource = allGestion;
 
@@ -64,7 +63,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void cargarTipoTarea()
         {
-            //String sqlSelect = "SELECT exp_tipogestion.IdTipoGestion, exp_tipogestion.Descripcion, exp_tipogestion.Plazo AS Días, exp_gestionEstado.Orden FROM exp_tipogestion INNER JOIN (exp_tipostareas INNER JOIN exp_gestionEstado ON exp_tipostareas.IdTipoTarea = exp_gestionEstado.IdTipoTarea) ON exp_tipogestion.IdTipoGestion = exp_gestionEstado.IdTipoGestion WHERE(((exp_tipostareas.IdTipoTarea) = " + idTipoTarea + ")) ORDER BY exp_gestionEstado.Orden";
             String sqlSelect = "SELECT exp_tipogestion.IdTipoGestion, exp_tipogestion.Descripcion, ctos_gruposurd.Grupo AS Perfil, exp_tipogestion.Plazo AS Días, exp_gestionEstado.Orden FROM(exp_tipogestion INNER JOIN(exp_tipostareas INNER JOIN exp_gestionEstado ON exp_tipostareas.IdTipoTarea = exp_gestionEstado.IdTipoTarea) ON exp_tipogestion.IdTipoGestion = exp_gestionEstado.IdTipoGestion) INNER JOIN ctos_gruposurd ON exp_tipogestion.IdGrupo = ctos_gruposurd.IdGrupoURD WHERE(((exp_tipostareas.IdTipoTarea) = " + idTipoTarea + ")) ORDER BY exp_gestionEstado.Orden";
             addGestion = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewAddGestion.DataSource = addGestion;
@@ -137,7 +135,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 form.cargarTiposTarea();
                 this.Close();
             }
-            //cargarTipoTarea();
 
         }
 
@@ -255,29 +252,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 dataGridViewAddGestion.Columns["Orden"].Width = 40;
             }
         }
-
-        /*
-        private Boolean comprobarOrden()
-        {
-            //POR IMPLEMENTAR
-            int [] ordenes = new int[20];
-            int ultimo = 0;
-            foreach (DataGridViewRow row in dataGridViewAddGestion.Rows)
-            {
-                int value = Int32.Parse(row.Cells["Orden"].Value.ToString());
-                ordenes[value] = 1;
-                if (value > ultimo) ultimo = value;
-            }
-            for ( int i = 1; i <= ultimo; i ++)
-            {
-                if (ordenes[i] != 1)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        */
+        
         private void buttonSubir_Click(object sender, EventArgs e)
         {
             if (dataGridViewAddGestion.SelectedRows.Count > 0)

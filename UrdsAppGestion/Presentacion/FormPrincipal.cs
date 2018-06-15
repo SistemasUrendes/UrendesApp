@@ -236,5 +236,22 @@ namespace UrdsAppGestión {
                 newMDIChild.Show();
             }
         }
+
+        private void mttoGestionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name == "FormGestionesConfiguracion").SingleOrDefault<Form>();
+            if (existe != null)
+            {
+                existe.WindowState = FormWindowState.Maximized;
+                existe.BringToFront();
+            }
+            else
+            {
+                Presentacion.Tareas.FormGestionesConfirguracion newMDIChild = new Presentacion.Tareas.FormGestionesConfirguracion();
+                newMDIChild.MdiParent = this;
+                newMDIChild.WindowState = FormWindowState.Maximized;
+                newMDIChild.Show();
+            }
+        }
     }
 }

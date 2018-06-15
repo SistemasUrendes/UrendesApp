@@ -1265,6 +1265,12 @@
     <Compile Include="Presentacion\Tareas\FormCorreoGrupo.Designer.cs">
       <DependentUpon>FormCorreoGrupo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Tareas\FormGestionesConfirguracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormGestionesConfirguracion.Designer.cs">
+      <DependentUpon>FormGestionesConfirguracion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Tareas\FormGestionesPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1921,6 +1927,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormDuplicarTarea.resx">
       <DependentUpon>FormDuplicarTarea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormGestionesConfirguracion.resx">
+      <DependentUpon>FormGestionesConfirguracion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormGestionesPrincipal.resx">
       <DependentUpon>FormGestionesPrincipal.cs</DependentUpon>

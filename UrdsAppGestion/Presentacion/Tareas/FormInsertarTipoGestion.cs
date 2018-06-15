@@ -12,14 +12,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
 {
     public partial class FormInsertarTipoGestion : Form
     {
-        FormTareasConfiguracion form;
+        FormGestionesConfirguracion form;
         String idTipoGestion;
-        public FormInsertarTipoGestion(FormTareasConfiguracion form)
+        public FormInsertarTipoGestion(FormGestionesConfirguracion form)
         {
             InitializeComponent();
             this.form = form;
         }
-        public FormInsertarTipoGestion(FormTareasConfiguracion form,String idTipoGestion)
+        public FormInsertarTipoGestion(FormGestionesConfirguracion form,String idTipoGestion)
         {
             InitializeComponent();
             this.form = form;

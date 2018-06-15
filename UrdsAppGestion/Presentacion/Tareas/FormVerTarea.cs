@@ -1134,7 +1134,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (tablamail.Rows.Count > 0)
             {
                 String mail = tablamail.Rows[0][0].ToString();
-                System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\"" + generaAsunto() + "\",body= Este expediente requiere de su atención.");
+                System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\'" + generaAsunto() + "\',body= Este expediente requiere de su atención.");
             }
             else
             {
@@ -1155,7 +1155,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     if (tablamail.Rows.Count > 0)
                     {
                         String mail = tablamail.Rows[0][0].ToString();
-                        System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\"" + generaAsunto() + "\"");
+                        System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\'" + generaAsunto() + "\'");
                     }
 
                     else
@@ -1172,7 +1172,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     if (tablamail.Rows.Count > 0)
                     {
                         String mail = tablamail.Rows[0][0].ToString();
-                        System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\"" + generaAsunto() + "\"");
+                        System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\'" + generaAsunto() + "\'");
                     }
 
                     else

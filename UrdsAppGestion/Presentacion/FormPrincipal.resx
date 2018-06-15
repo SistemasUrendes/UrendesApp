@@ -139,6 +139,18 @@
   <data name="comunidadesToolStripMenuItem.Text" xml:space="preserve">
     <value>Comunidades</value>
   </data>
+  <data name="verTareasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 22</value>
+  </data>
+  <data name="verTareasToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ver tareas</value>
+  </data>
+  <data name="verGestionesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 22</value>
+  </data>
+  <data name="verGestionesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ver Gestiones</value>
+  </data>
   <data name="tareasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 20</value>
   </data>
@@ -266,21 +278,21 @@
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="verTareasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>144, 22</value>
-  </data>
-  <data name="verTareasToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ver tareas</value>
-  </data>
-  <data name="verGestionesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>144, 22</value>
-  </data>
-  <data name="verGestionesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ver Gestiones</value>
-  </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>309, 50</value>
   </metadata>
+  <data name="barrar_abajo_nombre.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 19</value>
+  </data>
+  <data name="barrar_abajo_nombre.Text" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="barra_abajo_bbdd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 19</value>
+  </data>
+  <data name="barra_abajo_bbdd.Text" xml:space="preserve">
+    <value>BBDD</value>
+  </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 543</value>
   </data>
@@ -304,18 +316,6 @@
   </data>
   <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="barrar_abajo_nombre.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 19</value>
-  </data>
-  <data name="barrar_abajo_nombre.Text" xml:space="preserve">
-    <value>Nombre</value>
-  </data>
-  <data name="barra_abajo_bbdd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 19</value>
-  </data>
-  <data name="barra_abajo_bbdd.Text" xml:space="preserve">
-    <value>BBDD</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -446,6 +446,12 @@
   <data name="&gt;&gt;mttoTareasToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;mttoGestionesToolStripMenuItem.Name" xml:space="preserve">
+    <value>mttoGestionesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;mttoGestionesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;mttoServiciosToolStripMenuItem.Name" xml:space="preserve">
     <value>mttoServiciosToolStripMenuItem</value>
   </data>
@@ -469,12 +475,6 @@
   </data>
   <data name="&gt;&gt;barra_abajo_bbdd.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mttoGestionesToolStripMenuItem.Name" xml:space="preserve">
-    <value>mttoGestionesToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;mttoGestionesToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FormPrincipal</value>

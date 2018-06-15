@@ -45,12 +45,12 @@
             this.cambiarUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mantenimientoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mttoTareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mttoGestionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mttoServiciosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conexiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.barrar_abajo_nombre = new System.Windows.Forms.ToolStripStatusLabel();
             this.barra_abajo_bbdd = new System.Windows.Forms.ToolStripStatusLabel();
-            this.mttoGestionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -168,6 +168,12 @@
             this.mttoTareasToolStripMenuItem.Name = "mttoTareasToolStripMenuItem";
             this.mttoTareasToolStripMenuItem.Click += new System.EventHandler(this.mttoTareasToolStripMenuItem_Click);
             // 
+            // mttoGestionesToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mttoGestionesToolStripMenuItem, "mttoGestionesToolStripMenuItem");
+            this.mttoGestionesToolStripMenuItem.Name = "mttoGestionesToolStripMenuItem";
+            this.mttoGestionesToolStripMenuItem.Click += new System.EventHandler(this.mttoGestionesToolStripMenuItem_Click);
+            // 
             // mttoServiciosToolStripMenuItem
             // 
             resources.ApplyResources(this.mttoServiciosToolStripMenuItem, "mttoServiciosToolStripMenuItem");
@@ -198,11 +204,6 @@
             this.barra_abajo_bbdd.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
             this.barra_abajo_bbdd.Name = "barra_abajo_bbdd";
             resources.ApplyResources(this.barra_abajo_bbdd, "barra_abajo_bbdd");
-            // 
-            // mttoGestionesToolStripMenuItem
-            // 
-            resources.ApplyResources(this.mttoGestionesToolStripMenuItem, "mttoGestionesToolStripMenuItem");
-            this.mttoGestionesToolStripMenuItem.Name = "mttoGestionesToolStripMenuItem";
             // 
             // FormPrincipal
             // 

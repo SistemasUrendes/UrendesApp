@@ -88,7 +88,7 @@ namespace UrdsAppGestión.Presentacion
                     if (rol_usuario == "Admin") {
                         foreach (ToolStripMenuItem item in form1Handler.menuStrip1.Items) {
                             foreach (ToolStripMenuItem item1 in item.DropDownItems) {
-                                if (item1.Text == "Conexión" || item1.Text == "Mtto. General" || item1.Text == "Mtto. Procedimientos" || item1.Text == "Mtto. Servicios") {
+                                if (item1.Text == "Conexión" || item1.Text == "Mtto. General" || item1.Text == "Mtto. Procedimientos" || item1.Text == "Mtto. Gestiones" || item1.Text == "Mtto. Servicios") {
                                     item1.Enabled = true;
                                 }
                             }
@@ -100,7 +100,7 @@ namespace UrdsAppGestión.Presentacion
                         {
                             foreach (ToolStripMenuItem item1 in item.DropDownItems)
                             {
-                                if (item1.Text == "Conexión" || item1.Text == "Mtto. General" || item1.Text == "Mtto. Procedimientos" || item1.Text == "Mtto. Servicios")
+                                if (item1.Text == "Conexión" || item1.Text == "Mtto. General" || item1.Text == "Mtto. Procedimientos" || item1.Text == "Mtto. Gestiones" || item1.Text == "Mtto. Servicios")
                                     item1.Enabled = false;
                             }
                         }
