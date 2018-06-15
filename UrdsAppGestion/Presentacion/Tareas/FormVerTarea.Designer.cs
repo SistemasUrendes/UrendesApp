@@ -243,6 +243,7 @@
             this.comboBoxTipo.Size = new System.Drawing.Size(195, 21);
             this.comboBoxTipo.TabIndex = 5;
             this.comboBoxTipo.SelectionChangeCommitted += new System.EventHandler(this.comboBoxTipo_SelectionChangeCommitted);
+            this.comboBoxTipo.Leave += new System.EventHandler(this.comboBoxTipo_Leave);
             // 
             // label2
             // 

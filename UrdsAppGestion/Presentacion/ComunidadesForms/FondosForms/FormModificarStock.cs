@@ -45,7 +45,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
 
         private void button_guardar_Click(object sender, EventArgs e)
         {
-            int 
+            //int 
             for (int a = 0; a < dataGridView_stock.Rows.Count; a++) {
                 String sqlUpdate = "UPDATE com_stockFondo SET Valor=Valor " + tipoOp + dataGridView_stock.Rows[a].Cells["Cantidad"].Value.ToString() + " WHERE IdStockFondo = " + dataGridView_stock.Rows[a].Cells["IdStockFondo"].Value.ToString();
 

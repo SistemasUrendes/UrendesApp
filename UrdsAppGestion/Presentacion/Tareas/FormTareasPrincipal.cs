@@ -125,7 +125,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 dataGridView_tareas.Columns["T"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridView_tareas.Columns["Descripción"].Width = 300;
                 dataGridView_tareas.Columns["DescripcionSinAcentos"].Visible = false;
-                //dataGridView_tareas.Columns["Bloque"].Width = 100;
                 dataGridView_tareas.Columns["Estado"].Width = 120;
                 dataGridView_tareas.Columns["FIni"].Width = 90;
                 dataGridView_tareas.Columns["FIni"].DefaultCellStyle.Format = "dd/MM/yyyy";
@@ -144,15 +143,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
 
 
-
-                //foreach (DataGridViewRow row in dataGridView_tareas.Rows)
-                //{
-                //    if (row.Cells["I"].Value.ToString() == "True" && row.Cells["FFin"].Value.ToString() == "")
-                //    {
-                //        row.DefaultCellStyle.BackColor = Color.Wheat;
-
-                //    }
-                //}
+                
             }
         }
 

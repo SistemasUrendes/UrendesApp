@@ -1794,51 +1794,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     e.Cancel = true;
                 }
             }
-        }
+        }        
 
-        private String quitaAcentos(String str)
+        private void comboBoxTipo_Leave(object sender, EventArgs e)
         {
-            String strfinal = "";
-
-            for(int i = 0; i < str.Length; i++)
+            if (comboBoxTipo.SelectedValue.ToString() == "2")
             {
-                strfinal += arreglaCaracter(str[i]);
+                checkBoxImportante.Checked = true;
             }
-            return strfinal;
-           
         }
-
-        private Char arreglaCaracter(Char c)
-        {
-            switch(c)
-            {
-                case 'á':
-                    return 'a';
-                case 'é':
-                    return 'e';
-                case 'í':
-                    return 'i';
-                case 'ó':
-                    return 'o';
-                case 'ú':
-                    return 'u';
-                case 'Á':
-                    return 'A';
-                case 'É':
-                    return 'E';
-                case 'Í':
-                    return 'I';
-                case 'Ó':
-                    return 'O';
-                case 'Ú':
-                    return 'U';
-                default:
-                    return c;
-            }
-            
-        }
-
-
-        
     }
 }
