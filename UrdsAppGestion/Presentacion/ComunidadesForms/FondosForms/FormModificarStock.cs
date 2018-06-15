@@ -45,9 +45,17 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
 
         private void button_guardar_Click(object sender, EventArgs e)
         {
-            int 
+            int cantidad = 0;
             for (int a = 0; a < dataGridView_stock.Rows.Count; a++) {
-                String sqlUpdate = "UPDATE com_stockFondo SET Valor=Valor " + tipoOp + dataGridView_stock.Rows[a].Cells["Cantidad"].Value.ToString() + " WHERE IdStockFondo = " + dataGridView_stock.Rows[a].Cells["IdStockFondo"].Value.ToString();
+                try {
+                    cantidad = Convert.ToInt32(dataGridView_stock.Rows[a].Cells["Cantidad"].Value);
+                }
+                catch (Exception) {
+                    MessageBox.Show("Valor introducido no correcto");
+                    return;
+                }
+
+                String sqlUpdate = "UPDATE com_stockFondo SET Valor=Valor " + tipoOp + cantidad.ToString() + " WHERE IdStockFondo = " + dataGridView_stock.Rows[a].Cells["IdStockFondo"].Value.ToString();
 
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
             }
