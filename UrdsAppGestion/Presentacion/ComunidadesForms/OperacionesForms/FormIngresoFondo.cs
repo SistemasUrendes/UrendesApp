@@ -123,6 +123,20 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             String sqlInsertDetLiq = "INSERT INTO com_opdetliquidacion (IdOp, IdLiquidacion, Porcentaje, Importe) VALUES (" + op + "," + comboBox_liquidación.SelectedValue.ToString() + ",1," + Logica.FuncionesGenerales.ArreglarImportes(textBox_importe.Text) + ")";
             Persistencia.SentenciasSQL.InsertarGenerico(sqlInsertDetLiq);
 
+            //COMPRUEBO QUE SI ES DE STOCK, INTRODUZCAN LOS VALORES PERTINENTES.
+            String sqlSelect = "SELECT com_fondos.IdFondo, com_fondos.Stock FROM com_fondos INNER JOIN com_liquidaciones ON com_fondos.IdFondo = com_liquidaciones.IdFondo WHERE com_liquidaciones.IdLiquidacion =" + comboBox_liquidación.SelectedValue.ToString();
+
+            DataTable esStock = Persistencia.SentenciasSQL.select(sqlSelect);
+
+            if (esStock.Rows.Count > 0)
+            {
+                if (esStock.Rows[0][1].ToString() == "True")
+                {
+                    FondosForms.FormModificarStock nueva2 = new FondosForms.FormModificarStock(esStock.Rows[0][0].ToString(), "-");
+                    nueva2.Show();
+                }
+            }
+
             int Idrecibo = Logica.FuncionesTesoreria.CreoReciboID(id_comunidad, id_entidad_nueva, fecha, Logica.FuncionesGenerales.ArreglarImportes(textBox_importe.Text), Logica.FuncionesGenerales.ArreglarImportes(textBox_importe.Text), textBox_descripcion.Text);
 
             Logica.FuncionesTesoreria.ActualizoIdReciboVencimiento(Idrecibo.ToString(), opdet.ToString());

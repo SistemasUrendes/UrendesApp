@@ -66,7 +66,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
         }
 
         public void cargarDatagrid() {
-            String sqlSelect = "SELECT com_fondos.IdFondo, com_bloques.Descripcion, com_fondos.NombreFondo, com_fondos.IdSubCuenta, com_fondos.TITSUBCTA, com_fondos.Cierre FROM com_fondos INNER JOIN com_bloques ON com_fondos.IdBloque = com_bloques.IdBloque GROUP BY com_fondos.IdFondo, com_fondos.IdComunidad, com_bloques.Descripcion, com_fondos.NombreFondo, com_fondos.IdSubCuenta, com_fondos.TITSUBCTA HAVING(((com_fondos.IdComunidad) = " + id_comunidad_cargado + "));";
+            String sqlSelect = "SELECT com_fondos.IdFondo, com_bloques.Descripcion, com_fondos.NombreFondo, com_fondos.IdSubCuenta, com_fondos.TITSUBCTA, com_fondos.Cierre, com_fondos.Stock FROM com_fondos INNER JOIN com_bloques ON com_fondos.IdBloque = com_bloques.IdBloque GROUP BY com_fondos.IdFondo, com_fondos.IdComunidad, com_bloques.Descripcion, com_fondos.NombreFondo, com_fondos.IdSubCuenta, com_fondos.TITSUBCTA HAVING(((com_fondos.IdComunidad) = " + id_comunidad_cargado + "));";
 
             fondos = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridView_Fondos.DataSource = fondos;
@@ -312,6 +312,17 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
         {
             Informes.FormVerInformeCuentas nueva = new Informes.FormVerInformeCuentas(id_comunidad_cargado);
             nueva.Show();
+        }
+
+        private void verStockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView_Fondos.SelectedRows[0].Cells["Stock"].Value.ToString() == "True") {
+                FormCrearStock nueva = new FormCrearStock(dataGridView_Fondos.SelectedRows[0].Cells["IdFondo"].Value.ToString());
+                nueva.Show();
+            }
+            else {
+                MessageBox.Show("Ese fondo no tiene Stock");
+            }
         }
     }
 }

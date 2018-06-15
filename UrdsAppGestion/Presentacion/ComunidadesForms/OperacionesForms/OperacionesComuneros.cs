@@ -303,10 +303,15 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
 
         private void liquidarAOtroFondoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String sqlSelect = "SELECT IdTipoReparto FROM com_operaciones WHERE IdOp = " + dataGridView_operaciones.SelectedRows[0].Cells[0].Value.ToString();
-            
-            OperacionesForms.FormLiquidarAOtroFondo nueva = new OperacionesForms.FormLiquidarAOtroFondo(dataGridView_operaciones.SelectedRows[0].Cells[0].Value.ToString(), id_comunidad_cargado, dataGridView_operaciones.SelectedRows[0].Cells[2].Value.ToString(), dataGridView_operaciones.SelectedRows[0].Cells[4].Value.ToString(), dataGridView_operaciones.SelectedRows[0].Cells[8].Value.ToString(),Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString());
-            nueva.Show();
+            if (Convert.ToDouble(dataGridView_operaciones.SelectedRows[0].Cells[10].Value) > 0)
+            {
+                String sqlSelect = "SELECT IdTipoReparto FROM com_operaciones WHERE IdOp = " + dataGridView_operaciones.SelectedRows[0].Cells[0].Value.ToString();
+
+                OperacionesForms.FormLiquidarAOtroFondo nueva = new OperacionesForms.FormLiquidarAOtroFondo(this, dataGridView_operaciones.SelectedRows[0].Cells[0].Value.ToString(), id_comunidad_cargado, dataGridView_operaciones.SelectedRows[0].Cells[2].Value.ToString(), dataGridView_operaciones.SelectedRows[0].Cells[4].Value.ToString(), dataGridView_operaciones.SelectedRows[0].Cells[8].Value.ToString(), Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString());
+                nueva.Show();
+            }else {
+                MessageBox.Show("La operación ya esta pagada.");
+            }
         }
 
         private void comboBox_ajustes_SelectionChangeCommitted(object sender, EventArgs e)

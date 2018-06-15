@@ -51,6 +51,7 @@
             this.iniciarConResultadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button4 = new System.Windows.Forms.Button();
+            this.verStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Fondos)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_detallesFondos)).BeginInit();
@@ -140,9 +141,10 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inciarToolStripMenuItem,
             this.cerrarFondoToolStripMenuItem,
-            this.informeToolStripMenuItem});
+            this.informeToolStripMenuItem,
+            this.verStockToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(144, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 114);
             // 
             // inciarToolStripMenuItem
             // 
@@ -265,6 +267,13 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // verStockToolStripMenuItem
+            // 
+            this.verStockToolStripMenuItem.Name = "verStockToolStripMenuItem";
+            this.verStockToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.verStockToolStripMenuItem.Text = "Ver Stock";
+            this.verStockToolStripMenuItem.Click += new System.EventHandler(this.verStockToolStripMenuItem_Click);
+            // 
             // FormFondos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -318,5 +327,6 @@
         private System.Windows.Forms.ToolStripMenuItem cerrarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem informeToolStripMenuItem;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ToolStripMenuItem verStockToolStripMenuItem;
     }
 }

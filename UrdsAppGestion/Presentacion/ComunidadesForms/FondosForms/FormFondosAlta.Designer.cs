@@ -42,6 +42,8 @@
             this.textBox_subcuenta = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox_tipoFondo = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.checkBox_stock = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label3
@@ -63,7 +65,7 @@
             // 
             // button_Guardar
             // 
-            this.button_Guardar.Location = new System.Drawing.Point(285, 156);
+            this.button_Guardar.Location = new System.Drawing.Point(283, 177);
             this.button_Guardar.Name = "button_Guardar";
             this.button_Guardar.Size = new System.Drawing.Size(75, 23);
             this.button_Guardar.TabIndex = 7;
@@ -73,7 +75,7 @@
             // 
             // button_Cancelar
             // 
-            this.button_Cancelar.Location = new System.Drawing.Point(366, 156);
+            this.button_Cancelar.Location = new System.Drawing.Point(364, 177);
             this.button_Cancelar.Name = "button_Cancelar";
             this.button_Cancelar.Size = new System.Drawing.Size(75, 23);
             this.button_Cancelar.TabIndex = 8;
@@ -161,11 +163,31 @@
             this.comboBox_tipoFondo.Size = new System.Drawing.Size(121, 21);
             this.comboBox_tipoFondo.TabIndex = 6;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(30, 155);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(44, 13);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Stock:  ";
+            // 
+            // checkBox_stock
+            // 
+            this.checkBox_stock.AutoSize = true;
+            this.checkBox_stock.Location = new System.Drawing.Point(103, 155);
+            this.checkBox_stock.Name = "checkBox_stock";
+            this.checkBox_stock.Size = new System.Drawing.Size(15, 14);
+            this.checkBox_stock.TabIndex = 18;
+            this.checkBox_stock.UseVisualStyleBackColor = true;
+            // 
             // FormFondosAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(451, 189);
+            this.ClientSize = new System.Drawing.Size(451, 212);
+            this.Controls.Add(this.checkBox_stock);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.comboBox_tipoFondo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox_subcuenta);
@@ -203,5 +225,7 @@
         private System.Windows.Forms.TextBox textBox_subcuenta;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox_tipoFondo;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox checkBox_stock;
     }
 }

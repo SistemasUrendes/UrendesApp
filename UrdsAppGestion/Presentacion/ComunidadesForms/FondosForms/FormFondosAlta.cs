@@ -52,8 +52,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
 
         private void button_Guardar_Click(object sender, EventArgs e)
         {
+            String stock = "0";
+
+            if (checkBox_stock.Checked) stock = "1";
+
             if (id_fondo_cargado != "0")  {
-                String sqlUpdate = "UPDATE com_fondos SET NombreFondo='" + textBox_nombre.Text + "', IdSubCuenta=" + maskedTextBox_idsucuenta.Text + ", IdBloque=" + id_bloque_nuevo + ", TITSUBCTA = '" + textBox_subcuenta.Text + "', TipoFondo = " + comboBox_tipoFondo.SelectedValue.ToString() + " WHERE IdFondo = " + id_fondo_cargado;
+                String sqlUpdate = "UPDATE com_fondos SET NombreFondo='" + textBox_nombre.Text + "', IdSubCuenta=" + maskedTextBox_idsucuenta.Text + ", IdBloque=" + id_bloque_nuevo + ", TITSUBCTA = '" + textBox_subcuenta.Text + "', TipoFondo = " + comboBox_tipoFondo.SelectedValue.ToString() + ", Stock = '" + stock + "' WHERE IdFondo = " + id_fondo_cargado;
 
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                 form_anterior.cargarDatagrid();
@@ -62,7 +66,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
             }
             else {
 
-                String sqlInsert = "INSERT INTO com_fondos (IdComunidad, TipoFondo, NombreFondo, IdSubCuenta, IdBloque, TITSUBCTA) VALUES (" + id_comunidad_cargado + "," + comboBox_tipoFondo.SelectedValue.ToString() + ",'" + textBox_nombre.Text + "'," + maskedTextBox_idsucuenta.Text + "," + id_bloque_nuevo + ",'" + textBox_subcuenta.Text  + "')";
+                String sqlInsert = "INSERT INTO com_fondos (IdComunidad, TipoFondo, NombreFondo, IdSubCuenta, IdBloque, TITSUBCTA, Stock ) VALUES (" + id_comunidad_cargado + "," + comboBox_tipoFondo.SelectedValue.ToString() + ",'" + textBox_nombre.Text + "'," + maskedTextBox_idsucuenta.Text + "," + id_bloque_nuevo + ",'" + textBox_subcuenta.Text  + "', '" + stock + "' )";
 
                 int idFondo = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsert);
                 
@@ -84,7 +88,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
 
                         int liqNueva = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsertLiqui);
 
-                        MessageBox.Show("Se ha creado una liquidación pasa ese fondo");
+                        //MessageBox.Show("Se ha creado una liquidación pasa ese fondo");
 
                         //REVISAR IdMetodo
                         //CREO UNA CUOTA
@@ -92,6 +96,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
                         //Persistencia.SentenciasSQL.InsertarGenerico(sqlInsertCuota);
 
                         //MessageBox.Show("Se ha creado una CUOTA pasa ese fondo");
+
+                        //SI ES STOCK CREO UNA FILA POR CADA VALOR QUE SE QUIERA
+                        FormCrearStock nueva = new FormCrearStock(idFondo.ToString());
+                        nueva.Show();
                     }
 
                 }

@@ -318,9 +318,21 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
         }
         public void recogerBloque(String id_liquidacion, String nombre_liquidacion)
         {
-            //MessageBox.Show(dataGridView_reparto.SelectedCells[0].Value.ToString());
             dataGridView_liquidacion.SelectedCells[1].Value = nombre_liquidacion;
             dataGridView_liquidacion.SelectedCells[4].Value = id_liquidacion;
+
+            //COMPRUEBO QUE SI ES DE STOCK, INTRODUZCAN LOS VALORES PERTINENTES.
+            String sqlSelect = "SELECT com_fondos.IdFondo, com_fondos.Stock FROM com_fondos INNER JOIN com_liquidaciones ON com_fondos.IdFondo = com_liquidaciones.IdFondo WHERE com_liquidaciones.IdLiquidacion =" + id_liquidacion;
+
+            DataTable esStock = Persistencia.SentenciasSQL.select(sqlSelect);
+
+            if (esStock.Rows.Count > 0) {
+               if (esStock.Rows[0][1].ToString() == "True" ) {
+                    FondosForms.FormModificarStock nueva = new FondosForms.FormModificarStock(esStock.Rows[0][0].ToString(),"+");
+                    nueva.Show();
+                }
+            }
+
         }
 
         private void dataGridView_liquidacion_KeyPress(object sender, KeyPressEventArgs e)

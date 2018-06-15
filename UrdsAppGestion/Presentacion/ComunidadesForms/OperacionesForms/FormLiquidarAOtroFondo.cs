@@ -18,8 +18,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
         String idSubCuenta;
         String Descripcion;
         String tipoReparto;
+        Operaciones_comuneros form_anterior;
 
-        public FormLiquidarAOtroFondo(String idOpPasado, String idComunidad, String idEntidad, String idSubCuenta, String Descripcion, String tipoReparto)
+        public FormLiquidarAOtroFondo(Operaciones_comuneros form_anterior, String idOpPasado, String idComunidad, String idEntidad, String idSubCuenta, String Descripcion, String tipoReparto)
         {
             InitializeComponent();
             this.idOpPasado = idOpPasado;
@@ -28,6 +29,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             this.idSubCuenta = idSubCuenta;
             this.Descripcion = Descripcion;
             this.tipoReparto = tipoReparto;
+            this.form_anterior = form_anterior;
         }
         public void cargarDatagrid() {
 
@@ -101,7 +103,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
 
                 String sqlInsertReparto ="";
                 double porcentaje = Convert.ToDouble(repartos.Rows[a][1].ToString()) * 100;
-                double total = (Convert.ToDouble(totalApagar.ToString().Replace(",", ".")) * porcentaje) / 100;
+                double total = (Convert.ToDouble(totalApagar.ToString()) * porcentaje)/100;
 
                 if (tipoReparto == "1")
                 {
@@ -132,15 +134,16 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             //CREO EL DETALLE
             Logica.FuncionesTesoreria.CreaDetalleMovimiento(idMovEntrada.ToString(), nuevaDet.ToString(), totalApagar.ToString().Replace(",", "."));
 
-            MessageBox.Show("CUOTA LIQUIDADA EN " + dataGridView_fondos.SelectedRows[0].Cells[1].Value.ToString());
+            //FromOperacionesVer vieja = new FromOperacionesVer(idOpPasado.ToString(), 2);
+            //vieja.Show();
 
-            FromOperacionesVer vieja = new FromOperacionesVer(idOpPasado.ToString(), 2);
-            vieja.Show();
+            //FromOperacionesVer nueva = new FromOperacionesVer(op.ToString(), 2);
+            //nueva.Show();
 
-            FromOperacionesVer nueva = new FromOperacionesVer(op.ToString(), 2);
-            nueva.Show();
-            
+            MessageBox.Show("Operación Liquidada");
             this.Close();
+            form_anterior.aplicarFiltro();
+
         }
         private String LiquidacionFondo() {
             String sqlSelectIdLiquidacion = "SELECT com_liquidaciones.IdLiquidacion FROM com_liquidaciones WHERE com_liquidaciones.IdFondo = " + dataGridView_fondos.SelectedRows[0].Cells[0].Value.ToString();
