@@ -684,6 +684,7 @@
             // 
             // buttonAddServicio
             // 
+            this.buttonAddServicio.Enabled = false;
             this.buttonAddServicio.Location = new System.Drawing.Point(564, 11);
             this.buttonAddServicio.Name = "buttonAddServicio";
             this.buttonAddServicio.Size = new System.Drawing.Size(88, 23);

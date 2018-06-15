@@ -12,36 +12,39 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
 {
     public partial class FormElementos : Form
     {
-        String idCategoria; 
+        String idServicio; 
         List<String> idElementosAtras;
         List<String> nombreElementosAtras;
         String nombreServicio;
+        String idCategoria;
         Tareas.FormServiciosConfiguracion form_anterior;
         
 
-        public FormElementos(Tareas.FormServiciosConfiguracion form_anterior, String idCategoria, String nombreServicio)
+        public FormElementos(Tareas.FormServiciosConfiguracion form_anterior, String idServicio , String nombreServicio)
         {
             InitializeComponent();
             idElementosAtras = new List<String>();
             nombreElementosAtras = new List<String>();
-            this.idCategoria = idCategoria;
+            this.idServicio = idServicio;
             this.form_anterior = form_anterior;
             this.nombreServicio = nombreServicio;
         }
 
         private void FormElementos_Load(object sender, EventArgs e)
         {
+            String sqlSelect = "SELECT exp_detElemento.IdCatElemento FROM exp_detElemento WHERE(((exp_detElemento.IdDetElemento) = " + idServicio + "))";
+            idCategoria = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
             rellenarTreeViewInicio();
             labelServicio.Text = nombreServicio;
         }
 
 
         public void rellenarTreeViewInicio()
-        {
+        { 
             updateRuta();
             treeViewElementos.Nodes.Clear();
             DataTable elementos;
-            String sqlSelect = "SELECT exp_detElemento.IdDetElemento, exp_detElemento.IdDetElementoPrev, exp_detElemento.Nombre, exp_detElemento.Descripcion FROM exp_detElemento WHERE(((exp_detElemento.IdDetElementoPrev) = 0) AND((exp_detElemento.IdCatElemento) = " + idCategoria + "))";
+            String sqlSelect = "SELECT exp_detElemento.IdDetElemento, exp_detElemento.IdDetElementoPrev, exp_detElemento.Nombre, exp_detElemento.Descripcion FROM exp_detElemento WHERE(((exp_detElemento.IdDetElementoPrev) = " + idServicio + "))"; 
             elementos = Persistencia.SentenciasSQL.select(sqlSelect);
 
             foreach (DataRow row in elementos.Rows)
@@ -58,7 +61,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
         {
             treeViewElementos.Nodes.Clear();
             DataTable elementos;
-            String sqlSelect = "SELECT exp_detElemento.IdDetElemento, exp_detElemento.IdDetElementoPrev, exp_detElemento.Nombre, exp_detElemento.Descripcion FROM exp_detElemento WHERE(((exp_detElemento.IdDetElementoPrev) = " + idElemento + ") AND((exp_detElemento.IdCatElemento) = " + idCategoria + "))";
+            String sqlSelect = "SELECT exp_detElemento.IdDetElemento, exp_detElemento.IdDetElementoPrev, exp_detElemento.Nombre, exp_detElemento.Descripcion FROM exp_detElemento WHERE(((exp_detElemento.IdDetElementoPrev) = " + idElemento + "))";
             elementos = Persistencia.SentenciasSQL.select(sqlSelect);
 
             foreach (DataRow row in elementos.Rows)
@@ -74,7 +77,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
         private void rellenarSubElementos(int idElemento, TreeNode node)
         {
             DataTable subElementos;
-            String sqlSelect = "SELECT exp_detElemento.IdDetElemento, exp_detElemento.IdDetElementoPrev, exp_detElemento.Nombre, exp_detElemento.Descripcion FROM exp_detElemento WHERE(((exp_detElemento.IdDetElementoPrev) = " + idElemento + ") AND((exp_detElemento.IdCatElemento) = " + idCategoria + "))";
+            String sqlSelect = "SELECT exp_detElemento.IdDetElemento, exp_detElemento.IdDetElementoPrev, exp_detElemento.Nombre, exp_detElemento.Descripcion FROM exp_detElemento WHERE(((exp_detElemento.IdDetElementoPrev) = " + idElemento + "))";
             subElementos = Persistencia.SentenciasSQL.select(sqlSelect);
 
             if (subElementos.Rows.Count == 0) { return; }
@@ -90,7 +93,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
         
         private void treeViewElementos_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            String sqlSelect = "SELECT exp_detElemento.IdDetElemento, exp_detElemento.IdDetElementoPrev, exp_detElemento.Nombre, exp_detElemento.Descripcion FROM exp_detElemento WHERE(((exp_detElemento.IdDetElementoPrev) = " + e.Node.Tag.ToString() + ") AND((exp_detElemento.IdCatElemento) = " + idCategoria + "))";
+            String sqlSelect = "SELECT exp_detElemento.IdDetElemento, exp_detElemento.IdDetElementoPrev, exp_detElemento.Nombre, exp_detElemento.Descripcion FROM exp_detElemento WHERE(((exp_detElemento.IdDetElementoPrev) = " + e.Node.Tag.ToString() + "))";
             DataTable subElementos = Persistencia.SentenciasSQL.select(sqlSelect);
             if (subElementos.Rows.Count > 0)
             {
@@ -141,36 +144,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
             }
         }
 
-
-        /*
-        private void buttonAddElementoPrincipal_Click(object sender, EventArgs e)
-        {
-            if (idElementosAtras.Count > 0)
-            {
-                int idElementoAnt = Int32.Parse(idElementosAtras.ElementAt(idElementosAtras.Count - 1));
-                String nombrecompleto = nombreElementosAtras.ElementAt(nombreElementosAtras.Count - 1);
-                String nombre = nombrecompleto.Substring(0, nombrecompleto.IndexOf(":"));
-                Tareas.FormInsertarElemento nueva = new Tareas.FormInsertarElemento(this, idElementoAnt, idComunidad, nombre);
-                nueva.ControlBox = true;
-                nueva.TopMost = true;
-                nueva.WindowState = FormWindowState.Normal;
-                nueva.StartPosition = FormStartPosition.CenterScreen;
-                nueva.Show();
-            }
-            else
-            {
-                Tareas.FormInsertarElemento nueva = new Tareas.FormInsertarElemento(this, 0, idComunidad, "Inicio");
-                nueva.ControlBox = true;
-                nueva.TopMost = true;
-                nueva.WindowState = FormWindowState.Normal;
-                nueva.StartPosition = FormStartPosition.CenterScreen;
-                
-                nueva.Show();
-            }
-
-        }
-        */
-
         private void añadirElementoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int idElementoAnt = Int32.Parse(treeViewElementos.SelectedNode.Tag.ToString());
@@ -204,23 +177,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
 
         private void buttonEnviar_Click(object sender, EventArgs e)
         {
-            /*
-            TreeNode node = treeViewElementos.SelectedNode;
-            if (node != null)
-            {
-                String nombrecompleto = node.Text.ToString();
-                String nombre = nombrecompleto.Substring(0, nombrecompleto.IndexOf(":"));
-                if (form_anterior1 != null) form_anterior1.recibirElemento(node.Tag.ToString(),nombre);
-                if (form_anterior2 != null) form_anterior2.recibirElemento(node.Tag.ToString(),nombre);
-                if (form_anterior3 != null) form_anterior3.recibirElemento(node.Tag.ToString(), nombre);
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar un elemento para poder añadirlo a la tarea");
-            }
-            */
-            
         }
         
 
@@ -252,7 +208,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Elementos
             }
             else
             {
-                Tareas.FormInsertarElemento nueva = new Tareas.FormInsertarElemento(this, 0, idCategoria, "Inicio");
+                Tareas.FormInsertarElemento nueva = new Tareas.FormInsertarElemento(this, Int32.Parse(idServicio), idCategoria, "Inicio");
                 nueva.ControlBox = true;
                 nueva.TopMost = true;
                 nueva.WindowState = FormWindowState.Normal;

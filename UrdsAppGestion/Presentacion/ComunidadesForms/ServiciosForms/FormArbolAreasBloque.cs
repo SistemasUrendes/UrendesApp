@@ -50,15 +50,16 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void cargarAreas()
         {
-            String sqlSelect = "SELECT IdCatElemento,Nombre,NombreCorto AS 'Abr.', Descripcion FROM exp_catElemento";
+            String sqlSelect = "SELECT exp_detElemento.IdDetElemento, exp_detElemento.Nombre,exp_detElemento.Descripcion, exp_catElemento.NombreCorto AS 'Abr.' FROM exp_catElemento INNER JOIN exp_detElemento ON exp_catElemento.IdCatElemento = exp_detElemento.IdCatElemento WHERE(((exp_detElemento.IdDetElementoPrev) = 0))";
+
             areasTabla = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewAllAreas.DataSource = areasTabla;
             if (dataGridViewAllAreas.Rows.Count > 0)
             {
-                dataGridViewAllAreas.Columns["IdCatElemento"].Visible = false;
-                dataGridViewAllAreas.Columns["Nombre"].Width = 100;
-                dataGridViewAllAreas.Columns["Abr."].Width = 50;
-                dataGridViewAllAreas.Columns["Descripcion"].Width = 130;
+                dataGridViewAllAreas.Columns["IdDetElemento"].Visible = false;
+                dataGridViewAllAreas.Columns["Nombre"].Width = 200;
+                dataGridViewAllAreas.Columns["Abr."].Width = 70;
+                dataGridViewAllAreas.Columns["Descripcion"].Visible = false;
             }
         }
 
@@ -67,7 +68,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             DataTable busqueda = areasTabla;
             busqueda.DefaultView.RowFilter = string.Empty;
 
-            String filtro = "Descripcion like '%" + textBoxFiltroAreas.Text.ToString() + "%' OR Nombre like '%" + textBoxFiltroAreas.Text.ToString() + "%'";
+            String filtro = "'Abr.' like '%" + textBoxFiltroAreas.Text.ToString() + "%' OR Nombre like '%" + textBoxFiltroAreas.Text.ToString() + "%'";
             busqueda.DefaultView.RowFilter = filtro;
             dataGridViewAllAreas.DataSource = busqueda;
         }
@@ -102,7 +103,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             int idAreaPrincipal = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsertPrincipal);
             String nombreCorto = dataGridViewAllAreas.SelectedRows[0].Cells[2].Value.ToString();
 
-            String sqlSelect = "SELECT exp_detElemento.Nombre, exp_detElemento.Descripcion, exp_detElemento.IdDetElemento FROM exp_detElemento WHERE(((exp_detElemento.IdDetElementoPrev) = 0) AND((exp_detElemento.IdCatElemento) = " + dataGridViewAllAreas.SelectedRows[0].Cells[0].Value.ToString() + "))";
+            String sqlSelect = "SELECT exp_detElemento.Nombre, exp_detElemento.Descripcion, exp_detElemento.IdDetElemento FROM exp_detElemento WHERE (((exp_detElemento.IdDetElementoPrev) = " + dataGridViewAllAreas.SelectedRows[0].Cells[0].Value.ToString() + "))";
             DataTable servicio = Persistencia.SentenciasSQL.select(sqlSelect);
 
             int count = 0;

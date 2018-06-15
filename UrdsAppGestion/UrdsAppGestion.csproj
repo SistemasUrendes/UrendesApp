@@ -164,6 +164,12 @@
     <Compile Include="Presentacion\ComunidadesForms\RemesasForms\FormCambiarCuenta.Designer.cs">
       <DependentUpon>FormCambiarCuenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ServiciosForms\FormInsertarCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ServiciosForms\FormInsertarCategoria.Designer.cs">
+      <DependentUpon>FormInsertarCategoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\EntidadesForms\FormRecibosEmitidos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1518,6 +1524,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\RemesasForms\FormCambiarCuenta.resx">
       <DependentUpon>FormCambiarCuenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ServiciosForms\FormInsertarCategoria.resx">
+      <DependentUpon>FormInsertarCategoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\EntidadesForms\FormRecibosEmitidos.resx">
       <DependentUpon>FormRecibosEmitidos.cs</DependentUpon>

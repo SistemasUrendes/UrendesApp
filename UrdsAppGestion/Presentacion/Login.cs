@@ -88,7 +88,7 @@ namespace UrdsAppGestión.Presentacion
                     if (rol_usuario == "Admin") {
                         foreach (ToolStripMenuItem item in form1Handler.menuStrip1.Items) {
                             foreach (ToolStripMenuItem item1 in item.DropDownItems) {
-                                if (item1.Text == "Conexión" || item1.Text == "Mtto. General" || item1.Text == "Mtto. Tareas" || item1.Text == "Mtto. Servicios") {
+                                if (item1.Text == "Conexión" || item1.Text == "Mtto. General" || item1.Text == "Mtto. Procedimientos" || item1.Text == "Mtto. Servicios") {
                                     item1.Enabled = true;
                                 }
                             }
@@ -100,7 +100,7 @@ namespace UrdsAppGestión.Presentacion
                         {
                             foreach (ToolStripMenuItem item1 in item.DropDownItems)
                             {
-                                if (item1.Text == "Conexión" || item1.Text == "Mtto. General" || item1.Text == "Mtto. Tareas" || item1.Text == "Mtto. Servicios")
+                                if (item1.Text == "Conexión" || item1.Text == "Mtto. General" || item1.Text == "Mtto. Procedimientos" || item1.Text == "Mtto. Servicios")
                                     item1.Enabled = false;
                             }
                         }
@@ -112,7 +112,7 @@ namespace UrdsAppGestión.Presentacion
                     form1Handler.Visible = true;
                     form1Handler.menuStrip1.Visible = true;
                     //form1Handler.label_nombreUser.Visible = true;
-                   // form1Handler.label_nombreUser.Text = nombre_usuario.ToString();
+                    //form1Handler.label_nombreUser.Text = nombre_usuario.ToString();
                     form1Handler.barrar_abajo_nombre.Text = " [ Usuario : " + nombre_usuario.ToString() + " ] ";
                     form1Handler.barra_abajo_bbdd.Text = " [ Conectado a " + Persistencia.conexion_bd.Database.ToString() + " ] ";
                 }

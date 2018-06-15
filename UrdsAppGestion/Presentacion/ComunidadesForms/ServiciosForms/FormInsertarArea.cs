@@ -13,30 +13,34 @@ namespace UrdsAppGestión.Presentacion.Tareas
     public partial class FormInsertarArea : Form
     {
         FormServiciosConfiguracion form;
-        String idCategoria;
+        String idServicio;
+        String idCategoria;       
+
         public FormInsertarArea(FormServiciosConfiguracion form)
         {
             InitializeComponent();
             this.form = form;
         }
         
-        public FormInsertarArea(FormServiciosConfiguracion form,String idCategoria)
+        public FormInsertarArea(FormServiciosConfiguracion form,String idServicio)
         {
             InitializeComponent();
             this.form = form;
-            this.idCategoria = idCategoria;
+            this.idServicio = idServicio;
         }
 
         private void FormInsertarArea_Load(object sender, EventArgs e)
         {
-            if (idCategoria != null)
+            if (idServicio != null)
             {
-                String sqlSelect = "SELECT Nombre,NombreCorto,Descripcion FROM exp_catElemento WHERE IdCatElemento = '" + idCategoria + "'";
+                String sqlSelect = "SELECT exp_detElemento.Nombre, exp_detElemento.Descripcion, exp_catElemento.Nombre, exp_catElemento.IdCatElemento FROM exp_detElemento INNER JOIN exp_catElemento ON exp_detElemento.IdCatElemento = exp_catElemento.IdCatElemento WHERE(((exp_detElemento.IdDetElemento) = '" + idServicio + "'))";
                 DataTable tablaArea = Persistencia.SentenciasSQL.select(sqlSelect);
 
                 textBoxNombre.Text = tablaArea.Rows[0][0].ToString();
-                textBoxNombreCorto.Text = tablaArea.Rows[0][1].ToString();
-                textBoxDescripcion.Text = tablaArea.Rows[0][2].ToString();
+                textBoxDescripcion.Text = tablaArea.Rows[0][1].ToString();
+                textBoxCategoria.Text = tablaArea.Rows[0][2].ToString();
+                idCategoria = tablaArea.Rows[0][3].ToString();
+
             }
         }
 
@@ -48,26 +52,46 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
             String nombre = textBoxNombre.Text;
-            String nombreCorto = textBoxNombreCorto.Text;
             String descripcion = textBoxDescripcion.Text;
-            
 
             if (idCategoria != null)
             {
-                String sqlUpdate = "UPDATE exp_catElemento SET Nombre = '" + nombre + "',NombreCorto = '" + nombreCorto + "',Descripcion = '" + descripcion + "' WHERE IdCatElemento = '" + idCategoria + "'";
-                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
-                form.cargarCategorias();
-                this.Close();
+                if (idServicio != null)
+                {
+                    String sqlUpdate = "UPDATE exp_detElemento SET Nombre = '" + nombre + "',Descripcion = '" + descripcion + "' WHERE IdDetElemento = '" + idServicio + "'";
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                    form.cargarTodasAreas();
+                    this.Close();
+                }
+                else
+                {
+                    String sqlInsert = "INSERT INTO exp_detElemento (Nombre,Descripcion,IdCatElemento) VALUES ('" + nombre + "','" + descripcion + "','" + idCategoria + "')";
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+                    MessageBox.Show("Servicio insertada correctamente");
+                    form.cargarTodasAreas();
+                    this.Close();
+                }
             }
             else
             {
-                String sqlInsert = "INSERT INTO exp_catElemento (Nombre,NombreCorto,Descripcion) VALUES ('" + nombre + "','" + nombreCorto + "','" + descripcion + "')";
-                Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
-                MessageBox.Show("Area insertada correctamente");
-                form.cargarCategorias();
-                this.Close();
+                MessageBox.Show("Selecciona Categoría");
             }
         }
+        
+        public void recibirCategoria(String categoria, String idCategoria)
+        {
+            textBoxCategoria.Text = categoria;
+            this.idCategoria = idCategoria;
+        }
 
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space)
+            {
+                if (idCategoria != null) return;
+                FormSeleccionarCategoria nueva = new FormSeleccionarCategoria(this);
+                nueva.Show();
+            }
+        }
     }
 }
