@@ -50,6 +50,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.barrar_abajo_nombre = new System.Windows.Forms.ToolStripStatusLabel();
             this.barra_abajo_bbdd = new System.Windows.Forms.ToolStripStatusLabel();
+            this.mttoGestionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -125,6 +126,7 @@
             this.cambiarUsuarioToolStripMenuItem,
             this.mantenimientoToolStripMenuItem,
             this.mttoTareasToolStripMenuItem,
+            this.mttoGestionesToolStripMenuItem,
             this.mttoServiciosToolStripMenuItem,
             this.conexiónToolStripMenuItem});
             this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
@@ -197,6 +199,11 @@
             this.barra_abajo_bbdd.Name = "barra_abajo_bbdd";
             resources.ApplyResources(this.barra_abajo_bbdd, "barra_abajo_bbdd");
             // 
+            // mttoGestionesToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mttoGestionesToolStripMenuItem, "mttoGestionesToolStripMenuItem");
+            this.mttoGestionesToolStripMenuItem.Name = "mttoGestionesToolStripMenuItem";
+            // 
             // FormPrincipal
             // 
             resources.ApplyResources(this, "$this");
@@ -240,6 +247,7 @@
         private System.Windows.Forms.ToolStripMenuItem verGestionesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mttoTareasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mttoServiciosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mttoGestionesToolStripMenuItem;
     }
 }
 

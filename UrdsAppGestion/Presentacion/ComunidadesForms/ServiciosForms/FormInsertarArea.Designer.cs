@@ -36,7 +36,7 @@
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.buttonGuardar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBoxNombreCorto = new System.Windows.Forms.TextBox();
+            this.textBoxCategoria = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // textBoxNombre
@@ -48,7 +48,7 @@
             // 
             // textBoxDescripcion
             // 
-            this.textBoxDescripcion.Location = new System.Drawing.Point(85, 72);
+            this.textBoxDescripcion.Location = new System.Drawing.Point(84, 56);
             this.textBoxDescripcion.Name = "textBoxDescripcion";
             this.textBoxDescripcion.Size = new System.Drawing.Size(264, 20);
             this.textBoxDescripcion.TabIndex = 2;
@@ -56,7 +56,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 75);
+            this.label1.Location = new System.Drawing.Point(12, 59);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 13);
             this.label1.TabIndex = 2;
@@ -73,20 +73,20 @@
             // 
             // buttonCancelar
             // 
-            this.buttonCancelar.Location = new System.Drawing.Point(273, 98);
+            this.buttonCancelar.Location = new System.Drawing.Point(273, 144);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancelar.TabIndex = 4;
+            this.buttonCancelar.TabIndex = 5;
             this.buttonCancelar.Text = "Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = true;
             this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
             // 
             // buttonGuardar
             // 
-            this.buttonGuardar.Location = new System.Drawing.Point(192, 98);
+            this.buttonGuardar.Location = new System.Drawing.Point(192, 144);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(75, 23);
-            this.buttonGuardar.TabIndex = 3;
+            this.buttonGuardar.TabIndex = 4;
             this.buttonGuardar.Text = "Guardar";
             this.buttonGuardar.UseVisualStyleBackColor = true;
             this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
@@ -94,26 +94,29 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 49);
+            this.label3.Location = new System.Drawing.Point(21, 96);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Nombre Corto:";
+            this.label3.Size = new System.Drawing.Size(57, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Categoría:";
             // 
-            // textBoxNombreCorto
+            // textBoxCategoria
             // 
-            this.textBoxNombreCorto.Location = new System.Drawing.Point(85, 46);
-            this.textBoxNombreCorto.Name = "textBoxNombreCorto";
-            this.textBoxNombreCorto.Size = new System.Drawing.Size(49, 20);
-            this.textBoxNombreCorto.TabIndex = 1;
+            this.textBoxCategoria.Location = new System.Drawing.Point(84, 93);
+            this.textBoxCategoria.Name = "textBoxCategoria";
+            this.textBoxCategoria.ReadOnly = true;
+            this.textBoxCategoria.Size = new System.Drawing.Size(264, 20);
+            this.textBoxCategoria.TabIndex = 3;
+            this.textBoxCategoria.Text = "Presiona Espacio para seleccionar Categoría";
+            this.textBoxCategoria.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // FormInsertarArea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(361, 135);
+            this.ClientSize = new System.Drawing.Size(361, 179);
+            this.Controls.Add(this.textBoxCategoria);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBoxNombreCorto);
             this.Controls.Add(this.buttonGuardar);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.label2);
@@ -123,7 +126,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormInsertarArea";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Insertar Area";
+            this.Text = "Insertar Servicio";
             this.Load += new System.EventHandler(this.FormInsertarArea_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -139,6 +142,6 @@
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Button buttonGuardar;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBoxNombreCorto;
+        private System.Windows.Forms.TextBox textBoxCategoria;
     }
 }
