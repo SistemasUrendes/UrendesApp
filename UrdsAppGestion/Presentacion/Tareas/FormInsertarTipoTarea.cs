@@ -89,6 +89,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void quitarTipoGestion()
         {
+            
             dataGridViewAddGestion.Rows.RemoveAt(dataGridViewAddGestion.SelectedRows[0].Index);
             order--;
             reordenarAddGestion();
@@ -119,7 +120,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 String idTipoGestion = row.Cells[0].Value.ToString();
                 String orden = row.Cells[4].Value.ToString();
                 String sqlInsert = "INSERT INTO exp_gestionEstado (IdTipoTarea,IdTipoGestion,Orden) VALUES ('" + idTipoTarea + "','" + idTipoGestion + "','" + orden + "')";
-                Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert).ToString();
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
 
             }
 
