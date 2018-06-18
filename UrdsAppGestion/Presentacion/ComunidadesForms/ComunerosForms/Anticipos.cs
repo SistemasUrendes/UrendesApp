@@ -35,16 +35,21 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms
 
         private void Anticipos_Load(object sender, EventArgs e)
         {
-            if (id_Entidad != "" && id_Entidad != null)   {
+            cargarDatagrid();
+        }
+        public void cargarDatagrid() {
+            if (id_Entidad != "" && id_Entidad != null)
+            {
                 maskedTextBox_inicio.Text = "";
                 maskedTextBox_fin.Text = "";
                 String sqlSelect = "SELECT com_opdetalles.IdOp, com_opdetalles.IdOpDet, com_opdetalles.IdEntidad, ctos_entidades.Entidad, com_subcuentas.IdSubcuenta, com_subcuentas.`TIT SUBCTA`, com_opdetalles.Fecha, com_operaciones.Documento, com_operaciones.Descripcion, com_opdetalles.Importe, com_opdetalles.ImpOpDetPte FROM((com_opdetalles INNER JOIN ctos_entidades ON com_opdetalles.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp) INNER JOIN com_subcuentas ON com_operaciones.IdSubCuenta = com_subcuentas.IdSubcuenta WHERE com_subcuentas.IdSubcuenta >= 43800 AND com_subcuentas.IdSubcuenta <= 46000 AND com_opdetalles.IdEntidad = " + id_Entidad + " AND com_operaciones.IdComunidad =" + id_Comunidad_cargado + " ORDER BY com_opdetalles.Fecha DESC;";
-                
+
                 operaciones = Persistencia.SentenciasSQL.select(sqlSelect);
                 dataGridView_anticipos.DataSource = operaciones;
                 ajustarDatagrid();
             }
-            else  {
+            else
+            {
                 String fechaInicio;
                 String fechaFin;
                 try
@@ -63,6 +68,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms
                 operaciones = Persistencia.SentenciasSQL.select(sqlSelect);
                 dataGridView_anticipos.DataSource = operaciones;
                 ajustarDatagrid();
+                sumarTotales();
             }
         }
         private void ajustarDatagrid() {
@@ -98,6 +104,33 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms
                 busqueda.DefaultView.RowFilter = "";
                 dataGridView_anticipos.DataSource = busqueda;
                 button_saldo.Text = "Con Saldo";
+            }
+            sumarTotales();
+        }
+        private void sumarTotales () {
+            Double sumaTotal = 0.00;
+            for (int a = 0; a<dataGridView_anticipos.Rows.Count; a++) {
+                sumaTotal += Convert.ToDouble(dataGridView_anticipos.Rows[a].Cells["ImpOpDetPte"].Value.ToString());
+            }
+            label3.Text = "Registros: " + dataGridView_anticipos.Rows.Count;
+            label4.Text = "Total Anticipos: " + sumaTotal.ToString() + "€";
+        }
+
+        private void compensarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OperacionesForms.FormCompensarAnticipos nuevo = new OperacionesForms.FormCompensarAnticipos(this, dataGridView_anticipos.SelectedCells[0].Value.ToString(), dataGridView_anticipos.SelectedCells[1].Value.ToString(), dataGridView_anticipos.SelectedCells[3].Value.ToString(), dataGridView_anticipos.SelectedCells[8].Value.ToString(), dataGridView_anticipos.SelectedCells[4].Value.ToString(), dataGridView_anticipos.SelectedCells[5].Value.ToString(), dataGridView_anticipos.SelectedCells[9].Value.ToString(), dataGridView_anticipos.SelectedCells[10].Value.ToString(), dataGridView_anticipos.SelectedCells[6].Value.ToString(), id_Comunidad_cargado, dataGridView_anticipos.SelectedCells[2].Value.ToString());
+            nuevo.Show();
+        }
+
+        private void dataGridView_anticipos_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                var hti = dataGridView_anticipos.HitTest(e.X, e.Y);
+                dataGridView_anticipos.ClearSelection();
+                dataGridView_anticipos.Rows[hti.RowIndex].Selected = true;
+
+                contextMenuStrip1.Show(Cursor.Position);
             }
         }
     }

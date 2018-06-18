@@ -24,7 +24,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
         String fecha;
         String id_comunidad;
         DataTable pagos;
-        Operaciones_comuneros form_anterior;
+        Operaciones_comuneros form_anterior = null;
+        ComunerosForms.Anticipos form_anterior_2 = null;
 
         public FormCompensarAnticipos(Operaciones_comuneros form_anterior, String id_operacion_pasado, String id_det_op, String entidad, String descripcion_operacion, String id_subcuenta, String nombre_subcuenta, String importe, String importePte, String fecha, String id_comunidad, String id_entidad)
         {
@@ -41,6 +42,23 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             this.id_comunidad = id_comunidad;
             this.id_det_op = id_det_op;
             this.form_anterior = form_anterior;
+
+        }
+        public FormCompensarAnticipos(ComunerosForms.Anticipos form_anterior_2, String id_operacion_pasado, String id_det_op, String entidad, String descripcion_operacion, String id_subcuenta, String nombre_subcuenta, String importe, String importePte, String fecha, String id_comunidad, String id_entidad)
+        {
+            InitializeComponent();
+            this.id_operacion_pasado = id_operacion_pasado;
+            this.entidad = entidad;
+            this.id_entidad = id_entidad;
+            this.descripcion_operacion = descripcion_operacion;
+            this.id_subcuenta = id_subcuenta;
+            this.nombre_subcuenta = nombre_subcuenta;
+            this.importe = importe;
+            this.importePte = importePte;
+            this.fecha = fecha;
+            this.id_comunidad = id_comunidad;
+            this.id_det_op = id_det_op;
+            this.form_anterior_2 = form_anterior_2;
 
         }
         private void button1_Click(object sender, EventArgs e)
@@ -113,7 +131,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
                     }
             }
             //form_anterior.cargardatagrid();
-            form_anterior.aplicarFiltro();
+            if (form_anterior != null)
+            {
+                form_anterior.aplicarFiltro();
+            }else {
+                form_anterior_2.cargarDatagrid();
+            }
             this.Close();
         }
 

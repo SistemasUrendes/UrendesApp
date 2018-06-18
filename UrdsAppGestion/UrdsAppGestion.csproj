@@ -2255,7 +2255,9 @@
     <Content Include="Resources\favicon.ico" />
     <Content Include="Resources\Logo Urendes - copia.png.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularReciboIVA\" />
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>

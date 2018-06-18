@@ -144,8 +144,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             form_anterior.cargardatagrid();
             this.Close();
             MessageBox.Show("Se ha generado el Recibo y debes informarlo");
-            
-            
 
             FromOperacionesVer nueva = new FromOperacionesVer(op.ToString(), 1, id_comunidad);
             nueva.Show();
