@@ -38,6 +38,7 @@
             this.editarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.borrarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labelName = new System.Windows.Forms.Label();
             this.buttonRemoveGestion = new System.Windows.Forms.Button();
             this.buttonAddGestion = new System.Windows.Forms.Button();
             this.buttonBajar = new System.Windows.Forms.Button();
@@ -46,7 +47,6 @@
             this.textBoxFiltroGestiones = new System.Windows.Forms.TextBox();
             this.dataGridViewAddGestion = new System.Windows.Forms.DataGridView();
             this.dataGridViewAllGestion = new System.Windows.Forms.DataGridView();
-            this.labelName = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipoTarea)).BeginInit();
             this.contextMenuStrip2.SuspendLayout();
@@ -143,7 +143,15 @@
             this.groupBox1.TabIndex = 25;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gestiones del procedimiento";
-            this.groupBox1.Visible = false;
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelName.Location = new System.Drawing.Point(108, 25);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(0, 17);
+            this.labelName.TabIndex = 35;
             // 
             // buttonRemoveGestion
             // 
@@ -153,6 +161,7 @@
             this.buttonRemoveGestion.TabIndex = 34;
             this.buttonRemoveGestion.Text = ">>";
             this.buttonRemoveGestion.UseVisualStyleBackColor = true;
+            this.buttonRemoveGestion.Click += new System.EventHandler(this.buttonRemoveGestion_Click);
             // 
             // buttonAddGestion
             // 
@@ -162,6 +171,7 @@
             this.buttonAddGestion.TabIndex = 33;
             this.buttonAddGestion.Text = "<<";
             this.buttonAddGestion.UseVisualStyleBackColor = true;
+            this.buttonAddGestion.Click += new System.EventHandler(this.buttonAddGestion_Click);
             // 
             // buttonBajar
             // 
@@ -171,6 +181,7 @@
             this.buttonBajar.TabIndex = 32;
             this.buttonBajar.Text = "↓";
             this.buttonBajar.UseVisualStyleBackColor = true;
+            this.buttonBajar.Click += new System.EventHandler(this.buttonBajar_Click);
             // 
             // buttonSubir
             // 
@@ -180,6 +191,7 @@
             this.buttonSubir.TabIndex = 31;
             this.buttonSubir.Text = "↑";
             this.buttonSubir.UseVisualStyleBackColor = true;
+            this.buttonSubir.Click += new System.EventHandler(this.buttonSubir_Click);
             // 
             // label2
             // 
@@ -196,6 +208,7 @@
             this.textBoxFiltroGestiones.Name = "textBoxFiltroGestiones";
             this.textBoxFiltroGestiones.Size = new System.Drawing.Size(309, 20);
             this.textBoxFiltroGestiones.TabIndex = 27;
+            this.textBoxFiltroGestiones.TextChanged += new System.EventHandler(this.textBoxFiltroGestiones_TextChanged);
             // 
             // dataGridViewAddGestion
             // 
@@ -211,6 +224,7 @@
             this.dataGridViewAddGestion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewAddGestion.Size = new System.Drawing.Size(299, 338);
             this.dataGridViewAddGestion.TabIndex = 26;
+            this.dataGridViewAddGestion.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAddGestion_CellDoubleClick);
             // 
             // dataGridViewAllGestion
             // 
@@ -226,15 +240,7 @@
             this.dataGridViewAllGestion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewAllGestion.Size = new System.Drawing.Size(309, 338);
             this.dataGridViewAllGestion.TabIndex = 25;
-            // 
-            // labelName
-            // 
-            this.labelName.AutoSize = true;
-            this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelName.Location = new System.Drawing.Point(108, 25);
-            this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(0, 17);
-            this.labelName.TabIndex = 35;
+            this.dataGridViewAllGestion.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAllGestion_CellDoubleClick);
             // 
             // FormTareasConfiguracion
             // 
