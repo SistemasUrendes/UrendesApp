@@ -196,8 +196,11 @@ namespace UrdsAppGestión.Presentacion.MantenimientoForms
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
+            for (int a =0; a <dataGridView_idBorrar.Rows.Count;a++) {
+                AjustarVencimiento(dataGridView_idBorrar.Rows[a].Cells[0].Value.ToString());
+            }
         }
+        //NO BORRAR SE LLAMA DESDE EL FORMULARIO DE OPDETALLES
         public static void AjustarVencimiento (String IdOp) {
             String IdSubcuenta = "";
             String IdEntidad = "";

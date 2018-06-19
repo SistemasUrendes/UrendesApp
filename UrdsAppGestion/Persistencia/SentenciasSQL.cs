@@ -16,7 +16,7 @@ namespace UrdsAppGestión.Persistencia
             //Form de Entidades.Hay más SQL dentro pero necesitan datos del formulario.
             "SELECT IdCategoria, IdGrupoCat,Descripcion FROM ctos_catentidades ORDER BY Descripcion;",
 
-            "SELECT ctos_entidades.IDEntidad, ctos_entidades.Entidad, ctos_entidades.NombreCorto, ctos_entidades.CIF, ctos_detallecat.IdCategoria, ctos_entidades.EntidadSinAcentos FROM ctos_entidades LEFT JOIN ctos_detallecat ON ctos_entidades.IDEntidad = ctos_detallecat.IdEntidad ORDER BY ctos_entidades.Entidad;",
+            "SELECT ctos_entidades.IDEntidad, ctos_entidades.Entidad, ctos_entidades.NombreCorto, ctos_entidades.CIF, ctos_entidades.EntidadSinAcentos, ctos_entidades.PalabrasClave FROM ctos_entidades ORDER BY ctos_entidades.Entidad;",
 
             "SELECT IdCategoria, IdGrupoCat,Descripcion FROM ctos_catentidades ORDER BY Descripcion;", 
             //#############################################################################

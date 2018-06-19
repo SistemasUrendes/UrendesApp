@@ -68,14 +68,14 @@ namespace UrdsAppGestión.Presentacion
                              nombreCorto = x.Field<string>("NombreCorto"),
                              entSinAcento = x.Field<string>("EntidadSinAcentos"),
                              ColY = (y == null) ? null : y.Field<string>("Telefono"),
-                             cate = (x.Field<int?>("IdCategoria") == null) ? null : x.Field<int?>("IdCategoria")
+                             cate = x.Field<string>("PalabrasClave")
                          };
 
             newTable = new DataTable();
             newTable.Columns.Add("IDEntidad", typeof(int));
             newTable.Columns.Add("Entidad", typeof(string));
             newTable.Columns.Add("Telefono", typeof(string));
-            newTable.Columns.Add("IdCategoria", typeof(int));
+            newTable.Columns.Add("PalabrasClave", typeof(string));
             newTable.Columns.Add("EntidadSinAcentos", typeof(string));
             newTable.Columns.Add("NombreCorto", typeof(string));
 
@@ -94,7 +94,7 @@ namespace UrdsAppGestión.Presentacion
                              entSinAcento = x.Field<string>("EntidadSinAcentos"),
                              tel = x.Field<string>("Telefono"),
                              correo = (y == null) ? null : y.Field<string>("Email"),
-                             cate = (x.Field<int?>("IdCategoria") == null) ? null : x.Field<int?>("IdCategoria")
+                             cate = x.Field<string>("PalabrasClave")
                          };
 
             newTable = new DataTable();
@@ -102,7 +102,7 @@ namespace UrdsAppGestión.Presentacion
             newTable.Columns.Add("Entidad", typeof(string));
             newTable.Columns.Add("Email", typeof(string));
             newTable.Columns.Add("Telefono", typeof(string));
-            newTable.Columns.Add("IdCategoria", typeof(int));
+            newTable.Columns.Add("PalabrasClave", typeof(string));
             newTable.Columns.Add("EntidadSinAcentos", typeof(string));
             newTable.Columns.Add("NombreCorto", typeof(string));
 
@@ -493,6 +493,21 @@ namespace UrdsAppGestión.Presentacion
                 System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + "\"");
             }
         }
-        
+
+        private void textBox_categoria_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_categoria.TextLength < 2)
+            {
+                DataTable busqueda = general;
+                busqueda.DefaultView.RowFilter = "PalabrasClave like '%%'";
+                this.dataGridView1.DataSource = busqueda;
+            }
+            else
+            {
+                DataTable busqueda = general;
+                busqueda.DefaultView.RowFilter = "PalabrasClave like '%" + textBox_categoria.Text + "%'";
+                this.dataGridView1.DataSource = busqueda;
+            }
+        }
     }
 }

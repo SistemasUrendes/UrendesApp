@@ -296,12 +296,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.BloquesForms
 
         private void cambiarSubcuotaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CambiarSubcuota nueva = new CambiarSubcuota(this, dataGridView_DetallesBloque.SelectedCells[4].Value.ToString());
+            CambiarSubcuota nueva = new CambiarSubcuota(this, dataGridView_DetallesBloque.SelectedCells[6].Value.ToString());
             nueva.Show();
         }
         public void recogerValorSubcuota(String subcuota_nueva)
         {
-            dataGridView_DetallesBloque.SelectedCells[4].Value = Convert.ToDouble(subcuota_nueva);
+            dataGridView_DetallesBloque.SelectedCells[6].Value = Convert.ToDouble(subcuota_nueva);
             label2.Visible = true;
         }
 

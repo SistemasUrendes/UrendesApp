@@ -501,7 +501,7 @@ namespace UrdsAppGestión.Presentacion
 
         private void button5_Click(object sender, EventArgs e)
         {
-            String idComunidad = "2";
+            String idComunidad = "7";
             progressBar1.Visible = true;
 
             String sqlSelectCuenta = "SELECT com_cuentas.IdCuenta FROM com_cuentas WHERE(((com_cuentas.IdComunidad) = " + idComunidad + ") AND((com_cuentas.A) = -1));";
