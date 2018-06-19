@@ -17,6 +17,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String idGestion;
         String fInicio;
         String idEntidad;
+        String idOrgano;
         DataTable infoGestion;
         FormVerTarea form_anterior;
         String sfInicio;
@@ -127,8 +128,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void cargarGestion()
         {
-            
+
             String sqlSelect = "SELECT exp_gestiones.Descripción, exp_gestiones.IdUser, exp_gestiones.FIni, exp_gestiones.FSeguir, exp_gestiones.FMax, exp_gestiones.FFin, exp_gestiones.Importante, ctos_entidades.Entidad, exp_gestiones.IdTipoGestion FROM exp_gestiones LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
+            //String sqlSelect = "SELECT exp_gestiones.Descripción, exp_gestiones.IdUser, exp_gestiones.FIni, exp_gestiones.FSeguir, exp_gestiones.FMax, exp_gestiones.FFin, exp_gestiones.Importante,If(exp_gestiones.TipoContacto = 'G',com_organos.Nombre,ctos_entidades.Entidad) AS Espera , exp_gestiones.IdTipoGestion FROM(exp_gestiones LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_organos ON exp_gestiones.IdEntidad = com_organos.IdOrgano WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
+
             infoGestion = Persistencia.SentenciasSQL.select(sqlSelect);
 
             textBoxDescripcion.Text = infoGestion.Rows[0][0].ToString();
@@ -432,7 +435,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             idEntidad = id_entidad;
             esperade = "E";
-            //String sqlSelect = "SELECT ctos_entidades.Entidad FROM ctos_entidades WHERE(((ctos_entidades.IDEntidad) = " + id_entidad + "))";
             textBoxEspera.Text = nombre;
         }
     
@@ -535,7 +537,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             this.idEntidad = idEntidad;
             esperade = "C";
-            //String sqlSelect = "SELECT ctos_entidades.Entidad FROM ctos_entidades WHERE(((ctos_entidades.IDEntidad) = " + idEntidad + "))";
             textBoxEspera.Text = nombre;
         }
 
@@ -543,7 +544,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             this.idEntidad = idEntidad;
             esperade = "P";
-            //String sqlSelect = "SELECT ctos_entidades.Entidad FROM ctos_entidades WHERE(((ctos_entidades.IDEntidad) = " + idEntidad + "))";
             textBoxEspera.Text = nombre;
         }
 
@@ -551,7 +551,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             this.idEntidad = idContacto;
             esperade = "T";
-            //String sqlSelect = "SELECT exp_contactos.Nombre FROM exp_contactos WHERE(((exp_contactos.IdDetEntTarea) = " + idContacto + "))";
             textBoxEspera.Text = nombre;
         }
 
@@ -559,6 +558,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             this.idEntidad = idEntidad;
             esperade = "G";
+            //textBoxEspera.Text = nombre;
+
             String sqlSelect = "SELECT com_cargos.Cargo FROM com_cargos INNER JOIN (com_comuneros INNER JOIN com_cargoscom ON com_comuneros.IdComunero = com_cargoscom.IdComunero) ON com_cargos.IdCargo = com_cargoscom.IdCargo WHERE(((com_comuneros.IdEntidad) = " + idEntidad + "))";
             textBoxEspera.Text = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
         }
@@ -623,8 +624,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
                 else
                 {
-                    //ComunidadesForms.CargosForms.FormCargos nueva = new ComunidadesForms.CargosForms.FormCargos(this,idComunidad.ToString());
-                    ComunidadesForms.CargosForms.FormSeleccionarOrgano nueva = new ComunidadesForms.CargosForms.FormSeleccionarOrgano(this, idComunidad.ToString());
+                    ComunidadesForms.CargosForms.FormCargos nueva = new ComunidadesForms.CargosForms.FormCargos(this,idComunidad.ToString());
+                    //ComunidadesForms.CargosForms.FormSeleccionarOrgano nueva = new ComunidadesForms.CargosForms.FormSeleccionarOrgano(this, idComunidad.ToString());
                     nueva.ControlBox = true;
                     nueva.TopMost = true;
                     nueva.WindowState = FormWindowState.Normal;

@@ -44,6 +44,7 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.buttonEnviar = new System.Windows.Forms.Button();
             this.buttonGrupo = new System.Windows.Forms.Button();
+            this.añadirOrganoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ListadeCargos)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -89,28 +90,29 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.altaToolStripMenuItem,
             this.borrarToolStripMenuItem,
-            this.verEntidadToolStripMenuItem});
+            this.verEntidadToolStripMenuItem,
+            this.añadirOrganoToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(134, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 114);
             // 
             // altaToolStripMenuItem
             // 
             this.altaToolStripMenuItem.Name = "altaToolStripMenuItem";
-            this.altaToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.altaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.altaToolStripMenuItem.Text = "Baja";
             this.altaToolStripMenuItem.Click += new System.EventHandler(this.altaToolStripMenuItem_Click);
             // 
             // borrarToolStripMenuItem
             // 
             this.borrarToolStripMenuItem.Name = "borrarToolStripMenuItem";
-            this.borrarToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.borrarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.borrarToolStripMenuItem.Text = "Borrar";
             this.borrarToolStripMenuItem.Click += new System.EventHandler(this.borrarToolStripMenuItem_Click);
             // 
             // verEntidadToolStripMenuItem
             // 
             this.verEntidadToolStripMenuItem.Name = "verEntidadToolStripMenuItem";
-            this.verEntidadToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.verEntidadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.verEntidadToolStripMenuItem.Text = "Ver Entidad";
             this.verEntidadToolStripMenuItem.Click += new System.EventHandler(this.verEntidadToolStripMenuItem_Click);
             // 
@@ -186,6 +188,13 @@
             this.buttonGrupo.UseVisualStyleBackColor = true;
             this.buttonGrupo.Click += new System.EventHandler(this.buttonGrupo_Click);
             // 
+            // añadirOrganoToolStripMenuItem
+            // 
+            this.añadirOrganoToolStripMenuItem.Name = "añadirOrganoToolStripMenuItem";
+            this.añadirOrganoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.añadirOrganoToolStripMenuItem.Text = "Añadir Organo";
+            this.añadirOrganoToolStripMenuItem.Click += new System.EventHandler(this.añadirOrganoToolStripMenuItem_Click);
+            // 
             // FormCargos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -230,5 +239,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button buttonEnviar;
         private System.Windows.Forms.Button buttonGrupo;
+        private System.Windows.Forms.ToolStripMenuItem añadirOrganoToolStripMenuItem;
     }
 }

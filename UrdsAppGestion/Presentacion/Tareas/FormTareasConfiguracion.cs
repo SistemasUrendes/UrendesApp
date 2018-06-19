@@ -440,5 +440,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
             busqueda.DefaultView.RowFilter = filtro;
             dataGridViewAllGestion.DataSource = busqueda;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

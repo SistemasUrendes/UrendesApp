@@ -29,18 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSeleccionarOrgano));
-            this.textBoxFiltroBloque = new System.Windows.Forms.TextBox();
+            this.textBoxFiltroOrganos = new System.Windows.Forms.TextBox();
             this.buttonEnviar = new System.Windows.Forms.Button();
-            this.dataGridViewBloques = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBloques)).BeginInit();
+            this.dataGridViewOrganos = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrganos)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBoxFiltroBloque
+            // textBoxFiltroOrganos
             // 
-            this.textBoxFiltroBloque.Location = new System.Drawing.Point(93, 14);
-            this.textBoxFiltroBloque.Name = "textBoxFiltroBloque";
-            this.textBoxFiltroBloque.Size = new System.Drawing.Size(319, 20);
-            this.textBoxFiltroBloque.TabIndex = 18;
+            this.textBoxFiltroOrganos.Location = new System.Drawing.Point(93, 14);
+            this.textBoxFiltroOrganos.Name = "textBoxFiltroOrganos";
+            this.textBoxFiltroOrganos.Size = new System.Drawing.Size(319, 20);
+            this.textBoxFiltroOrganos.TabIndex = 18;
+            this.textBoxFiltroOrganos.TextChanged += new System.EventHandler(this.textBoxFiltroBloque_TextChanged);
             // 
             // buttonEnviar
             // 
@@ -50,35 +51,38 @@
             this.buttonEnviar.TabIndex = 17;
             this.buttonEnviar.Text = "Enviar";
             this.buttonEnviar.UseVisualStyleBackColor = true;
+            this.buttonEnviar.Click += new System.EventHandler(this.buttonEnviar_Click);
             // 
-            // dataGridViewBloques
+            // dataGridViewOrganos
             // 
-            this.dataGridViewBloques.AllowUserToAddRows = false;
-            this.dataGridViewBloques.AllowUserToDeleteRows = false;
-            this.dataGridViewBloques.AllowUserToResizeRows = false;
-            this.dataGridViewBloques.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewBloques.Location = new System.Drawing.Point(12, 41);
-            this.dataGridViewBloques.MultiSelect = false;
-            this.dataGridViewBloques.Name = "dataGridViewBloques";
-            this.dataGridViewBloques.ReadOnly = true;
-            this.dataGridViewBloques.RowHeadersVisible = false;
-            this.dataGridViewBloques.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewBloques.Size = new System.Drawing.Size(400, 343);
-            this.dataGridViewBloques.TabIndex = 16;
+            this.dataGridViewOrganos.AllowUserToAddRows = false;
+            this.dataGridViewOrganos.AllowUserToDeleteRows = false;
+            this.dataGridViewOrganos.AllowUserToResizeRows = false;
+            this.dataGridViewOrganos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewOrganos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewOrganos.Location = new System.Drawing.Point(12, 41);
+            this.dataGridViewOrganos.MultiSelect = false;
+            this.dataGridViewOrganos.Name = "dataGridViewOrganos";
+            this.dataGridViewOrganos.ReadOnly = true;
+            this.dataGridViewOrganos.RowHeadersVisible = false;
+            this.dataGridViewOrganos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewOrganos.Size = new System.Drawing.Size(400, 343);
+            this.dataGridViewOrganos.TabIndex = 16;
             // 
             // FormSeleccionarOrgano
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(421, 392);
-            this.Controls.Add(this.textBoxFiltroBloque);
+            this.Controls.Add(this.textBoxFiltroOrganos);
             this.Controls.Add(this.buttonEnviar);
-            this.Controls.Add(this.dataGridViewBloques);
+            this.Controls.Add(this.dataGridViewOrganos);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormSeleccionarOrgano";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormSeleccionarOrgano";
             this.Load += new System.EventHandler(this.FormSeleccionarOrgano_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBloques)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrganos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -86,8 +90,8 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBoxFiltroBloque;
+        private System.Windows.Forms.TextBox textBoxFiltroOrganos;
         private System.Windows.Forms.Button buttonEnviar;
-        private System.Windows.Forms.DataGridView dataGridViewBloques;
+        private System.Windows.Forms.DataGridView dataGridViewOrganos;
     }
 }

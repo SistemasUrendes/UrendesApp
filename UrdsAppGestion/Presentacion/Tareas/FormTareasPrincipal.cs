@@ -625,14 +625,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void dataGridView_tareas_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == 11)
+            if (e.ColumnIndex == 12)
             {
-                if (e.Value.ToString() == "True")
+                if ((bool)e.Value)
                 {
                     dataGridView_tareas.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Wheat;
                 }
             }
-            
         }
 
         private void toolStripTextBoxFiltro_TextChanged(object sender, EventArgs e)

@@ -50,7 +50,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
         public void cargardatagrid() {
             //String sqlSelect = "SELECT com_cargoscom.IdCargoCom, com_cargos.Cargo, com_organos.Nombre, ctos_entidades.Entidad, com_comuneros.IdEntidad, com_divisiones.Division, com_cargoscom.FInicio, com_cargoscom.FFin FROM(com_divisiones RIGHT JOIN(((com_cargos INNER JOIN com_cargoscom ON com_cargos.IdCargo = com_cargoscom.IdCargo) INNER JOIN com_comuneros ON com_cargoscom.IdComunero = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) ON com_divisiones.IdDivision = com_comuneros.IdDivPpal) LEFT JOIN com_organos ON com_cargos.IdOrgano = com_organos.IdOrgano GROUP BY com_cargoscom.IdCargoCom, com_cargos.Cargo, com_organos.Nombre, ctos_entidades.Entidad, com_comuneros.IdEntidad, com_divisiones.Division, com_cargoscom.FInicio, com_cargoscom.FFin, com_cargoscom.IdComunidad HAVING(((com_cargoscom.IdComunidad) = " + id_comunidad_cargado + "))";
 
-            String sqlSelect = "SELECT com_cargoscom.IdCargoCom, com_cargos.Cargo, com_bloques.Descripcion AS Bloque, com_organos.Nombre AS Organo, ctos_entidades.Entidad, com_comuneros.IdEntidad, com_divisiones.Division, ctos_dettelf.Telefono, ctos_detemail.Email, com_cargoscom.FInicio, com_cargoscom.FFin FROM(((((((com_cargos INNER JOIN com_cargoscom ON com_cargos.IdCargo = com_cargoscom.IdCargo) INNER JOIN com_comuneros ON com_cargoscom.IdComunero = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_organos ON com_cargos.IdOrgano = com_organos.IdOrgano) INNER JOIN ctos_dettelf ON ctos_entidades.IDEntidad = ctos_dettelf.IdEntidad) INNER JOIN ctos_detemail ON ctos_entidades.IDEntidad = ctos_detemail.IdEntidad) LEFT JOIN com_bloques ON com_cargos.IdBloque = com_bloques.IdBloque) LEFT JOIN com_divisiones ON com_cargoscom.IdDivision = com_divisiones.IdDivision WHERE(((ctos_dettelf.Ppal) = -1) AND((ctos_detemail.Ppal) = -1)) GROUP BY com_cargoscom.IdCargoCom, com_cargos.Cargo, com_organos.Nombre, ctos_entidades.Entidad, com_comuneros.IdEntidad, com_divisiones.Division, ctos_dettelf.Telefono, ctos_detemail.Email, com_cargoscom.FInicio, com_cargoscom.FFin, com_cargoscom.IdComunidad, ctos_dettelf.Ppal, ctos_detemail.Ppal, com_cargoscom.IdComunidad HAVING(((com_cargoscom.IdComunidad) = " + id_comunidad_cargado + "))";
+            String sqlSelect = "SELECT com_cargoscom.IdCargoCom, com_cargos.Cargo, com_bloques.Descripcion AS Bloque, com_organos.Nombre AS Organo, ctos_entidades.Entidad, com_comuneros.IdEntidad, com_divisiones.Division, ctos_dettelf.Telefono, ctos_detemail.Email, com_cargoscom.FInicio, com_cargoscom.FFin, com_cargos.IdCargo FROM(((((((com_cargos INNER JOIN com_cargoscom ON com_cargos.IdCargo = com_cargoscom.IdCargo) INNER JOIN com_comuneros ON com_cargoscom.IdComunero = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_organos ON com_cargos.IdOrgano = com_organos.IdOrgano) INNER JOIN ctos_dettelf ON ctos_entidades.IDEntidad = ctos_dettelf.IdEntidad) INNER JOIN ctos_detemail ON ctos_entidades.IDEntidad = ctos_detemail.IdEntidad) LEFT JOIN com_bloques ON com_cargos.IdBloque = com_bloques.IdBloque) LEFT JOIN com_divisiones ON com_cargoscom.IdDivision = com_divisiones.IdDivision WHERE(((ctos_dettelf.Ppal) = -1) AND((ctos_detemail.Ppal) = -1)) GROUP BY com_cargoscom.IdCargoCom, com_cargos.Cargo, com_organos.Nombre, ctos_entidades.Entidad, com_comuneros.IdEntidad, com_divisiones.Division, ctos_dettelf.Telefono, ctos_detemail.Email, com_cargoscom.FInicio, com_cargoscom.FFin, com_cargoscom.IdComunidad, ctos_dettelf.Ppal, ctos_detemail.Ppal, com_cargoscom.IdComunidad HAVING(((com_cargoscom.IdComunidad) = " + id_comunidad_cargado + "))";
 
             cargos1 = Persistencia.SentenciasSQL.select(sqlSelect);
 
@@ -61,6 +61,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
             dataGridView_ListadeCargos.Columns["Entidad"].Width = 200;
             dataGridView_ListadeCargos.Columns["Telefono"].Width = 70;
             dataGridView_ListadeCargos.Columns["Email"].Width = 100;
+            dataGridView_ListadeCargos.Columns["IdCargo"].Visible = false;
 
         }
 
@@ -149,6 +150,19 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
         {
             EntidadesForms.FormInsertarGrupo nueva = new EntidadesForms.FormInsertarGrupo();
             nueva.Show();
+        }
+
+        private void añadirOrganoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSeleccionarOrgano nueva = new FormSeleccionarOrgano(this, id_comunidad_cargado,dataGridView_ListadeCargos.SelectedCells[11].Value.ToString());
+            nueva.Show();
+        }
+
+        public void addCargoOrgano(String idOrgano, String idCargo)
+        {
+            String sqlUpdate = "UPDATE com_cargos SET IdOrgano = '" + idOrgano + "' WHERE IdCargo = '" + idCargo + "'";
+            Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+            cargardatagrid();
         }
     }
 }
