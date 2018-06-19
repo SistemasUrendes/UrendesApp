@@ -43,7 +43,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.EnviosForms
             this.id_documento = id_documento;
             textBox_adjunto_1.Text = id_documento;
         }
-
         public CompletarEnvioForm(String id_documento, String id_tipo, String comunidades, String asunto,String ruta,String donde)
         {
             InitializeComponent();
@@ -56,7 +55,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.EnviosForms
             textBox_asusnto.Text = asunto;
             textBox_adjunto_1.Text = id_documento;
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             cuerpo = textBox_cuerpo.Text;
@@ -90,7 +88,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.EnviosForms
             else
                 return false;
         }
-
         private void EnviarCorreosComunidades()
         {
             String[] comunidades_array = comunidades.Split(',');
@@ -447,7 +444,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.EnviosForms
                 email.Dispose();
             }
         }
-
         private void textBox_adjunto_2_DoubleClick(object sender, EventArgs e)
         {
             Presentacion.EnviosForms.SeleccionAdjuntos nueva = new Presentacion.EnviosForms.SeleccionAdjuntos(this,id_comunidad,"2");
@@ -466,19 +462,16 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.EnviosForms
             }
         
         }
-
         private void textBox_adjunto_3_DoubleClick(object sender, EventArgs e)
         {
             Presentacion.EnviosForms.SeleccionAdjuntos nueva = new Presentacion.EnviosForms.SeleccionAdjuntos(this, id_comunidad, "3");
             nueva.Show();
         }
-
         private void textBox_adjunto_4_DoubleClick(object sender, EventArgs e)
         {
             Presentacion.EnviosForms.SeleccionAdjuntos nueva = new Presentacion.EnviosForms.SeleccionAdjuntos(this, id_comunidad, "4");
             nueva.Show();
         }
-
         private void CompletarEnvioForm_Load(object sender, EventArgs e)
         {
             textBox_test.Text = Login.getemail();
@@ -501,7 +494,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.EnviosForms
                 textBox_cuerpo.Text = tablaCuerpo.Rows[0][0].ToString();
             }
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             Presentacion.EnviosForms.FormSeleccionPlantillas nueva = new Presentacion.EnviosForms.FormSeleccionPlantillas(this);

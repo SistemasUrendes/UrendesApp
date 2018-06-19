@@ -92,74 +92,88 @@ namespace UrdsAppGestión.Presentacion
             if (Thread.CurrentThread.Name == null)
             Thread.CurrentThread.Name = numero_procesos.ToString();
 
-            MessageBox.Show("Numero de Correos que se van a Enviar : " + lista_correos.Count.ToString());
+            DialogResult resultado_message;
+            resultado_message = MessageBox.Show("Número de Correos que se van a Enviar : " + lista_correos.Count.ToString() + "\n¿Desea continuar?", "Envio Correos", MessageBoxButtons.OKCancel);
+            if (resultado_message == System.Windows.Forms.DialogResult.OK)
+            {
 
-            String fechaAltaLote = (Convert.ToDateTime(DateTime.Now)).ToString("yyyy-MM-dd hh:mm:ss");
-            String sqlLote = "INSERT INTO com_enviosLote (Fecha, Descripcion) VALUES ('" + fechaAltaLote + "','" + cuerpo.Replace("'","`") + "')";
-            int num_lote = Persistencia.SentenciasSQL.InsertarGenericoID(sqlLote);
-            
-            //Boolean encontrado = false;
+                //MessageBox.Show("Numero de Correos que se van a Enviar : " + lista_correos.Count.ToString());
 
-            for (int i = 0; i < lista_correos.Count; i++)  {
+                String fechaAltaLote = (Convert.ToDateTime(DateTime.Now)).ToString("yyyy-MM-dd hh:mm:ss");
+                String sqlLote = "INSERT INTO com_enviosLote (Fecha, Descripcion) VALUES ('" + fechaAltaLote + "','" + cuerpo.Replace("'", "`") + "')";
+                int num_lote = Persistencia.SentenciasSQL.InsertarGenericoID(sqlLote);
 
-               //String destinatario = "sistemas@urendes.com";
-               String destinatario = lista_correos[i].Correo;
+                //Boolean encontrado = false;
 
-                //if (destinatario != "sandrapenavinuesa@hotmail.com" && !encontrado) {
-                //    continue;
-                //}
-                //else if (destinatario == "sandrapenavinuesa@hotmail.com") {
-                //    encontrado = true;
-                //    MessageBox.Show(destinatario);
-                //    continue;
-                //}
-                //destinatario = "sistemas@urendes.com";
-
-                //GUARDO EL CORREO POR SI FALLA MAS TARDE
-                String sqlUpdate2 = "UPDATE com_enviosLote SET UltimoCorreo='" + destinatario + "' WHERE IdLote = " + num_lote;
-                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate2);
-
-                try  {
-                    EnviarCorreo(destinatario, asunto, cuerpo, adjuntos, from);
-                    //EnviarCorreo(destinatario, asunto + "-" + lista_correos[i].Correo, cuerpo, adjuntos,from);
-                    enviosCorrectos++;
-                }catch (Exception es){
-                    mensajeError = es.Message;
-                }
-                
-
-                String fechaRegistro = (Convert.ToDateTime(DateTime.Now)).ToString("yyyy-MM-dd hh:mm:ss");
-                String sql;
-
-                if (id_Doc == "")
+                for (int i = 0; i < lista_correos.Count; i++)
                 {
-                    sql = "INSERT INTO com_EnvSe (IdComunidad, TipoDocumento, IdLote, Medio, IdEntidad, IdDireccion, FechaEnvio, Descripcion) VALUES (" + lista_correos[i].IdComunidad1 + "," + id_tipoDoc + "," + num_lote + ",'Email'," + lista_correos[i].IdEntidad1 + "," + lista_correos[i].IdEmail1 + ",'" + fechaRegistro + "','" + asunto.Replace("'"," ") + "')";
-                }
-                else
-                {
-                    sql = "INSERT INTO com_EnvSe (IdComunidad, TipoDocumento, IdDocumento, IdLote, Medio, IdEntidad, IdDireccion, FechaEnvio, Descripcion) VALUES (" + lista_correos[i].IdComunidad1 + "," + id_tipoDoc + "," + id_Doc + "," + num_lote + ",'Email'," + lista_correos[i].IdEntidad1 + "," + lista_correos[i].IdEmail1 + ",'" + fechaRegistro + "','" + asunto.Replace("'", " ") + "')";
-                }
-                Persistencia.SentenciasSQL.InsertarGenerico(sql);
 
-                if (i == lista_correos.Count - 1)   {
-                    backgroundWorker1.ReportProgress(100, DateTime.Now);
-                    if (enviosCorrectos == lista_correos.Count) {
-                        String sqlUpdate = "UPDATE com_enviosLote SET Completo = 'Si', UltimoCorreo='-' WHERE IdLote = " + num_lote;
-                        Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
-                    }else {
-                        String sqlUpdate = "UPDATE com_enviosLote SET Completo='No', Error='" + mensajeError + "' WHERE IdLote = " + num_lote;
-                        Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                    //String destinatario = "sistemas@urendes.com";
+                    String destinatario = lista_correos[i].Correo;
+
+                    //if (destinatario != "sandrapenavinuesa@hotmail.com" && !encontrado) {
+                    //    continue;
+                    //}
+                    //else if (destinatario == "sandrapenavinuesa@hotmail.com") {
+                    //    encontrado = true;
+                    //    MessageBox.Show(destinatario);
+                    //    continue;
+                    //}
+                    //destinatario = "sistemas@urendes.com";
+
+                    //GUARDO EL CORREO POR SI FALLA MAS TARDE
+                    String sqlUpdate2 = "UPDATE com_enviosLote SET UltimoCorreo='" + destinatario + "' WHERE IdLote = " + num_lote;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate2);
+
+                    try
+                    {
+                        EnviarCorreo(destinatario, asunto, cuerpo, adjuntos, from);
+                        //EnviarCorreo(destinatario, asunto + "-" + lista_correos[i].Correo, cuerpo, adjuntos,from);
+                        enviosCorrectos++;
+                    }
+                    catch (Exception es)
+                    {
+                        mensajeError = es.Message;
+                    }
+
+
+                    String fechaRegistro = (Convert.ToDateTime(DateTime.Now)).ToString("yyyy-MM-dd hh:mm:ss");
+                    String sql;
+
+                    if (id_Doc == "")
+                    {
+                        sql = "INSERT INTO com_EnvSe (IdComunidad, TipoDocumento, IdLote, Medio, IdEntidad, IdDireccion, FechaEnvio, Descripcion) VALUES (" + lista_correos[i].IdComunidad1 + "," + id_tipoDoc + "," + num_lote + ",'Email'," + lista_correos[i].IdEntidad1 + "," + lista_correos[i].IdEmail1 + ",'" + fechaRegistro + "','" + asunto.Replace("'", " ") + "')";
+                    }
+                    else
+                    {
+                        sql = "INSERT INTO com_EnvSe (IdComunidad, TipoDocumento, IdDocumento, IdLote, Medio, IdEntidad, IdDireccion, FechaEnvio, Descripcion) VALUES (" + lista_correos[i].IdComunidad1 + "," + id_tipoDoc + "," + id_Doc + "," + num_lote + ",'Email'," + lista_correos[i].IdEntidad1 + "," + lista_correos[i].IdEmail1 + ",'" + fechaRegistro + "','" + asunto.Replace("'", " ") + "')";
+                    }
+                    Persistencia.SentenciasSQL.InsertarGenerico(sql);
+
+                    if (i == lista_correos.Count - 1)
+                    {
+                        backgroundWorker1.ReportProgress(100, DateTime.Now);
+                        if (enviosCorrectos == lista_correos.Count)
+                        {
+                            String sqlUpdate = "UPDATE com_enviosLote SET Completo = 'Si', UltimoCorreo='-' WHERE IdLote = " + num_lote;
+                            Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                        }
+                        else
+                        {
+                            String sqlUpdate = "UPDATE com_enviosLote SET Completo='No', Error='" + mensajeError + "' WHERE IdLote = " + num_lote;
+                            Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                        }
+                    }
+                    else
+                        backgroundWorker1.ReportProgress((100 * i) / lista_correos.Count, DateTime.Now);
+
+                    if (backgroundWorker1.CancellationPending)
+                    {
+                        e.Cancel = true;
+                        return;
                     }
                 }
-                else
-                    backgroundWorker1.ReportProgress((100 * i) / lista_correos.Count, DateTime.Now);
-
-                if (backgroundWorker1.CancellationPending) {
-                    e.Cancel = true;
-                    return;
-                }
             }
-
             TimeSpan duration = DateTime.Now - start;
             e.Result = "Duration: " + duration.TotalMilliseconds.ToString() + " ms.";
         }
