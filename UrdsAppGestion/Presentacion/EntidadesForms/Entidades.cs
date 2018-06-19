@@ -484,13 +484,7 @@ namespace UrdsAppGestión.Presentacion
                 Clipboard.SetDataObject(dataGridView1.SelectedRows[0].Cells[3].Value.ToString());
 
         }
-
-        private void buttonAddGrupo_Click(object sender, EventArgs e)
-        {
-            EntidadesForms.FormInsertarGrupo nueva = new EntidadesForms.FormInsertarGrupo();
-            nueva.Show();
-        }
-
+        
         private void enviarCorreoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String mail = dataGridView1.SelectedRows[0].Cells["Email"].Value.ToString();
@@ -499,10 +493,6 @@ namespace UrdsAppGestión.Presentacion
                 System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + "\"");
             }
         }
-
-        private void buttonMttoCategoria_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

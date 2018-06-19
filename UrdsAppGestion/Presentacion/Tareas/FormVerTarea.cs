@@ -37,6 +37,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private DataTable tablaBloque;
         private DataTable tablaFinalServicios;
         private bool edicion;
+        private String nombre_columna;
 
         public FormVerTarea(FormTareasPrincipal form_anterior, String idTarea)
         {
@@ -478,6 +479,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     dataGridViewGestiones.Rows[hti.RowIndex].Selected = true;
                     dataGridViewGestiones.Columns[hti.ColumnIndex].Selected = true;
                     dataGridViewGestiones.CurrentCell = this.dataGridViewGestiones[hti.ColumnIndex, hti.RowIndex];
+                    nombre_columna = dataGridViewGestiones.CurrentCell.OwningColumn.Name;
                     contextMenuStrip1.Show(Cursor.Position);
                 }
             }
@@ -1121,7 +1123,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 cargarContactos();
             }
         }
-
+        /*
         private void toolStripMenuItemCorreoResponsable_Click(object sender, EventArgs e)
         {
             String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
@@ -1183,6 +1185,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 MessageBox.Show("Asigne una persona a seguir para poder enviarle un correo");
             }
         }
+        */
 
         private String generaAsunto()
         {
@@ -1792,6 +1795,74 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (comboBoxTipo.SelectedValue.ToString() == "2")
             {
                 checkBoxImportante.Checked = true;
+            }
+        }
+
+        private void enviarCorreoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (nombre_columna == "Usuario")
+            {
+                String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
+
+                String sqlSelect = "SELECT ctos_detemail.Email FROM(exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN ctos_detemail ON ctos_urendes.identidad = ctos_detemail.IdEntidad WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
+                DataTable tablamail = Persistencia.SentenciasSQL.select(sqlSelect);
+                if (tablamail.Rows.Count > 0)
+                {
+                    String mail = tablamail.Rows[0][0].ToString();
+                    System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\'" + generaAsunto() + "\',body= Este expediente requiere de su atención.");
+                }
+                else
+                {
+                    MessageBox.Show("El responsable seleccionado no tiene correo asociado.");
+                }
+            }
+            else if (nombre_columna == "Espera de")
+            {
+                if (dataGridViewGestiones.SelectedRows[0].Cells[10].Value.ToString() != "")
+                {
+                    if (dataGridViewGestiones.SelectedRows[0].Cells[11].Value.ToString() != "T")
+                    {
+                        String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
+
+                        String sqlSelect = "SELECT ctos_detemail.Email FROM exp_gestiones INNER JOIN ctos_detemail ON exp_gestiones.IdEntidad = ctos_detemail.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_gestiones.IdGestión) = " + idGestion + "))";
+                        DataTable tablamail = Persistencia.SentenciasSQL.select(sqlSelect);
+                        if (tablamail.Rows.Count > 0)
+                        {
+                            String mail = tablamail.Rows[0][0].ToString();
+                            System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\'" + generaAsunto() + "\'");
+                        }
+
+                        else
+                        {
+                            MessageBox.Show("La entidad seleccionada no tiene correo asociado.");
+                        }
+                    }
+                    else
+                    {
+                        String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
+
+                        String sqlSelect = "SELECT exp_contactos.Correo FROM exp_contactos INNER JOIN exp_gestiones ON exp_contactos.IdDetEntTarea = exp_gestiones.IdEntidad WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
+                        DataTable tablamail = Persistencia.SentenciasSQL.select(sqlSelect);
+                        if (tablamail.Rows.Count > 0)
+                        {
+                            String mail = tablamail.Rows[0][0].ToString();
+                            System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\'" + generaAsunto() + "\'");
+                        }
+
+                        else
+                        {
+                            MessageBox.Show("El contacto selecionado no tiene correo asociado.");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Asigne una persona a seguir para poder enviarle un correo");
+                }
+            }
+            else if (nombre_columna == "Espera de")
+            {
+
             }
         }
     }

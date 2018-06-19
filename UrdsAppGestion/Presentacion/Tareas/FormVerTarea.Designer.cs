@@ -60,9 +60,6 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemEditarGestion = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAddSeguimiento = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemCorreoResponsable = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemCorreoSeguir = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemCorreoGrupo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemInfoEntidad = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemEliminarGestion = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -109,6 +106,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.buttonDuplicarTarea = new System.Windows.Forms.Button();
             this.textBoxIdTareaNuevo = new System.Windows.Forms.TextBox();
+            this.enviarCorreoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGestiones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSeguimientos)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -413,13 +411,11 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemEditarGestion,
             this.toolStripMenuItemAddSeguimiento,
-            this.toolStripMenuItemCorreoResponsable,
-            this.toolStripMenuItemCorreoSeguir,
-            this.toolStripMenuItemCorreoGrupo,
+            this.enviarCorreoToolStripMenuItem,
             this.toolStripMenuItemInfoEntidad,
             this.toolStripMenuItemEliminarGestion});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(189, 158);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(180, 114);
             // 
             // toolStripMenuItemEditarGestion
             // 
@@ -434,27 +430,6 @@
             this.toolStripMenuItemAddSeguimiento.Size = new System.Drawing.Size(188, 22);
             this.toolStripMenuItemAddSeguimiento.Text = "Añadir Seguimiento";
             this.toolStripMenuItemAddSeguimiento.Click += new System.EventHandler(this.toolStripMenuItemAddSeguimiento_Click);
-            // 
-            // toolStripMenuItemCorreoResponsable
-            // 
-            this.toolStripMenuItemCorreoResponsable.Name = "toolStripMenuItemCorreoResponsable";
-            this.toolStripMenuItemCorreoResponsable.Size = new System.Drawing.Size(188, 22);
-            this.toolStripMenuItemCorreoResponsable.Text = "Correo a Responsable";
-            this.toolStripMenuItemCorreoResponsable.Click += new System.EventHandler(this.toolStripMenuItemCorreoResponsable_Click);
-            // 
-            // toolStripMenuItemCorreoSeguir
-            // 
-            this.toolStripMenuItemCorreoSeguir.Name = "toolStripMenuItemCorreoSeguir";
-            this.toolStripMenuItemCorreoSeguir.Size = new System.Drawing.Size(188, 22);
-            this.toolStripMenuItemCorreoSeguir.Text = "Correo a Seguir";
-            this.toolStripMenuItemCorreoSeguir.Click += new System.EventHandler(this.toolStripMenuItemCorreoSeguir_Click);
-            // 
-            // toolStripMenuItemCorreoGrupo
-            // 
-            this.toolStripMenuItemCorreoGrupo.Name = "toolStripMenuItemCorreoGrupo";
-            this.toolStripMenuItemCorreoGrupo.Size = new System.Drawing.Size(188, 22);
-            this.toolStripMenuItemCorreoGrupo.Text = "Correo a Grupo";
-            this.toolStripMenuItemCorreoGrupo.Click += new System.EventHandler(this.toolStripMenuItemCorreoGrupo_Click);
             // 
             // toolStripMenuItemInfoEntidad
             // 
@@ -913,6 +888,13 @@
             this.textBoxIdTareaNuevo.TabIndex = 47;
             this.textBoxIdTareaNuevo.TabStop = false;
             // 
+            // enviarCorreoToolStripMenuItem
+            // 
+            this.enviarCorreoToolStripMenuItem.Name = "enviarCorreoToolStripMenuItem";
+            this.enviarCorreoToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.enviarCorreoToolStripMenuItem.Text = "Enviar Correo";
+            this.enviarCorreoToolStripMenuItem.Click += new System.EventHandler(this.enviarCorreoToolStripMenuItem_Click);
+            // 
             // FormVerTarea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1038,11 +1020,8 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip3;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemEditarContacto;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemEliminarContacto;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCorreoResponsable;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCorreoSeguir;
         private System.Windows.Forms.Button buttonCerrarGestion;
         private System.Windows.Forms.Button buttonEliminarTarea;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCorreoGrupo;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBoxCoste;
         private System.Windows.Forms.Label label14;
@@ -1071,5 +1050,6 @@
         private System.Windows.Forms.Button buttonAddServicio;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DataGridView dataGridViewServicios;
+        private System.Windows.Forms.ToolStripMenuItem enviarCorreoToolStripMenuItem;
     }
 }
