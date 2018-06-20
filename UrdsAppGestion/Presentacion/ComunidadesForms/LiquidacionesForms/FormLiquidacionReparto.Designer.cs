@@ -48,6 +48,7 @@
             this.groupBox_liqrec = new System.Windows.Forms.GroupBox();
             this.button_imprimirNuevos = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_reparto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_bloques)).BeginInit();
@@ -263,11 +264,23 @@
             this.groupBox2.Text = "Informe Liquidación";
             this.groupBox2.Visible = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(760, 30);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(131, 23);
+            this.button1.TabIndex = 22;
+            this.button1.Text = "Liquidación IVA";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_3);
+            // 
             // FormLiquidacionReparto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1046, 393);
+            this.ClientSize = new System.Drawing.Size(1046, 437);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox_liqrec);
             this.Controls.Add(this.button_verLiqRecibo);
@@ -320,5 +333,6 @@
         private System.Windows.Forms.GroupBox groupBox_liqrec;
         private System.Windows.Forms.Button button_imprimirNuevos;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -15,6 +15,8 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
         public int id_entidad_cargado = 0;
         String ruta = "";
         DataTable categorias;
+        Boolean editado = false;
+
         public VerEntidad(int id_entidad_cargado)
         {
             this.id_entidad_cargado = id_entidad_cargado;
@@ -59,15 +61,19 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
                 dataGridView_telefonos.Columns[1].Name = "Email";
                 dataGridView_telefonos.Columns[2].Name = "Principal";
             }
+
+            this.Text = this.Text + " [" + id_entidad_cargado + "]";
         }
         private void button3_Click(object sender, EventArgs e)
         {
             FormTelefono nueva = new FormTelefono(this, id_entidad_cargado);
             nueva.Show();
+            editado = true;
         }
         private void button_editar_cabecera_Click(object sender, EventArgs e)
         {
             AddEntidad editar = new AddEntidad(id_entidad_cargado);
+            editado = true;
             this.Close();
             editar.Show();
         }
@@ -135,6 +141,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
         {
             FormTelefono nueva = new FormTelefono(this, id_entidad_cargado, (int)dataGridView_telefonos.SelectedCells[0].Value);
             nueva.Show();
+            editado = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -159,6 +166,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
                     MessageBox.Show("Borrado");
                     cargaTelefonos();
                 }
+                editado = true;
 
             }
         }
@@ -167,11 +175,13 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
         {
             FormCorreos nueva = new FormCorreos(this, id_entidad_cargado);
             nueva.Show();
+            editado = true;
         }
         private void button6_Click(object sender, EventArgs e)
         {
             FormCorreos nueva = new FormCorreos(this, id_entidad_cargado, (int)dataGridView_correos.SelectedCells[0].Value);
             nueva.Show();
+            editado = true;
         }
         private void button5_Click(object sender, EventArgs e)
         {
@@ -194,7 +204,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
                     MessageBox.Show("Borrado");
                     cargaCorreos();
                 }
-
+                editado = true;
             }
         }
         public void cargoBanco()
@@ -297,12 +307,14 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
         {
             FormDirecciones nueva = new FormDirecciones(this, dataGridView_direcciones.SelectedCells[0].Value.ToString(), id_entidad_cargado);
             nueva.Show();
+            editado = true;
         }
 
         private void button_anyadir_Click(object sender, EventArgs e)
         {
             FormDirecciones nueva = new FormDirecciones(this, id_entidad_cargado);
             nueva.Show();
+            editado = true;
         }
 
         private void button_borrar_Click(object sender, EventArgs e)
@@ -315,6 +327,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
                 comprueboPrincipalDireccion(dataGridView_direcciones.SelectedCells[0].Value.ToString());
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrar);
                 cargoDirecciones();
+                editado = true;
             }
         }
         private void comprueboPrincipalDireccion(String id_direccion)
@@ -359,12 +372,14 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
         {
             FormBancos nueva = new FormBancos(this,id_entidad_cargado.ToString());
             nueva.Show();
+            editado = true;
         }
 
         private void button_editar_cuenta_Click(object sender, EventArgs e)
         {
             FormBancos nueva = new FormBancos(this, dataGridView_bancos.SelectedCells[0].Value.ToString(), id_entidad_cargado.ToString());
             nueva.Show();
+            editado = true;
         }
 
         private void button_borrar_cuenta_Click(object sender, EventArgs e)
@@ -377,6 +392,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
                 comprueboPrincipalCuenta(dataGridView_bancos.SelectedCells[0].Value.ToString());
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrar);
                 cargoBanco();
+                editado = true;
             }
         }
         public void cargoContactos() {
@@ -392,12 +408,14 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
         {
             FormContacto nueva = new FormContacto(this, id_entidad_cargado,this.dataGridView_contactos.SelectedCells[0].Value.ToString());
             nueva.Show();
+            editado = true;
         }
 
         private void button_anyadir_contacto_Click(object sender, EventArgs e)
         {
             FormContacto nueva = new FormContacto(this, id_entidad_cargado);
             nueva.Show();
+            editado = true;
         }
 
         private void button_borrar_contacto_Click(object sender, EventArgs e)
@@ -410,6 +428,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
                 comprueboPrincipalCuenta(dataGridView_contactos.SelectedCells[0].Value.ToString());
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrar);
                 cargoContactos();
+                editado = true;
             }
         }
 
@@ -423,6 +442,10 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
 
         private void VerEntidad_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (editado)  {
+                String sql = "UPDATE ctos_entidades SET FechaRevision='" + DateTime.Today.Date.ToShortDateString() + "', UserRevision='" + Login.getnombre() + "' WHERE IDEntidad = " + id_entidad_cargado;
+                Persistencia.SentenciasSQL.InsertarGenerico(sql);
+            }
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -552,7 +575,11 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
         {
             if (dataGridViewCategorias.SelectedCells.Count > 0)
             {
-                if (!yaExisteCategoria(dataGridViewCategorias.SelectedCells[0].Value.ToString())) addCategoriaEntidad();
+                if (!yaExisteCategoria(dataGridViewCategorias.SelectedCells[0].Value.ToString()))
+                {
+                    addCategoriaEntidad();
+                    editado = true;
+                }
                 else
                 {
                     MessageBox.Show("¡Categoría ya agregada!");
@@ -573,6 +600,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
             if (dataGridViewCatAsig.SelectedCells.Count > 0)
             {
                 removeCategoriaEntidad();
+                editado = true;
             }
         }
 
