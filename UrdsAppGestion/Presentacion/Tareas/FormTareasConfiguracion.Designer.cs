@@ -50,7 +50,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textBoxFiltroCategorias = new System.Windows.Forms.TextBox();
             this.buttonAddCategoria = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewCategorias = new System.Windows.Forms.DataGridView();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipoTarea)).BeginInit();
             this.contextMenuStrip2.SuspendLayout();
@@ -58,7 +58,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAddGestion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAllGestion)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCategorias)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -252,13 +252,13 @@
             // 
             this.groupBox3.Controls.Add(this.textBoxFiltroCategorias);
             this.groupBox3.Controls.Add(this.buttonAddCategoria);
-            this.groupBox3.Controls.Add(this.dataGridView1);
+            this.groupBox3.Controls.Add(this.dataGridViewCategorias);
             this.groupBox3.Location = new System.Drawing.Point(12, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(328, 418);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Categorías de Tipos";
+            this.groupBox3.Text = "Categorías de Procedimientos";
             // 
             // textBoxFiltroCategorias
             // 
@@ -277,21 +277,21 @@
             this.buttonAddCategoria.UseVisualStyleBackColor = true;
             this.buttonAddCategoria.Click += new System.EventHandler(this.button1_Click);
             // 
-            // dataGridView1
+            // dataGridViewCategorias
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 43);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(293, 350);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridViewCategorias.AllowUserToAddRows = false;
+            this.dataGridViewCategorias.AllowUserToDeleteRows = false;
+            this.dataGridViewCategorias.AllowUserToResizeRows = false;
+            this.dataGridViewCategorias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCategorias.Location = new System.Drawing.Point(6, 43);
+            this.dataGridViewCategorias.Name = "dataGridViewCategorias";
+            this.dataGridViewCategorias.ReadOnly = true;
+            this.dataGridViewCategorias.RowHeadersVisible = false;
+            this.dataGridViewCategorias.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewCategorias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewCategorias.ShowEditingIcon = false;
+            this.dataGridViewCategorias.Size = new System.Drawing.Size(293, 350);
+            this.dataGridViewCategorias.TabIndex = 0;
             // 
             // FormTareasConfiguracion
             // 
@@ -316,7 +316,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAllGestion)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCategorias)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -342,6 +342,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox textBoxFiltroCategorias;
         private System.Windows.Forms.Button buttonAddCategoria;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewCategorias;
     }
 }

@@ -251,11 +251,12 @@
             this.comboBoxEspera.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxEspera.FormattingEnabled = true;
             this.comboBoxEspera.Items.AddRange(new object[] {
-            "Entidad",
-            "Comunero",
-            "Proveedor",
-            "Org. Gobierno",
-            "Contactos"});
+            "Entidades",
+            "Comuneros",
+            "Proveedores",
+            "Cargos",
+            "Contactos",
+            "Grupo"});
             this.comboBoxEspera.Location = new System.Drawing.Point(87, 114);
             this.comboBoxEspera.Name = "comboBoxEspera";
             this.comboBoxEspera.Size = new System.Drawing.Size(158, 21);

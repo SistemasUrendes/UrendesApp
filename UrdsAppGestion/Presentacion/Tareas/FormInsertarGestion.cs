@@ -434,7 +434,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         public void recibirEntidad(String id_entidad,String nombre)
         {
             idEntidad = id_entidad;
-            esperade = "E";
+            esperade = "ENT";
             textBoxEspera.Text = nombre;
         }
     
@@ -536,6 +536,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         public void recibirComunero (String idEntidad,String nombre)
         {
             this.idEntidad = idEntidad;
+            //esperade = "COM";
             esperade = "C";
             textBoxEspera.Text = nombre;
         }
@@ -543,6 +544,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         public void recibirProveedor(String idEntidad,String nombre)
         {
             this.idEntidad = idEntidad;
+            //esperade = "PRO";
             esperade = "P";
             textBoxEspera.Text = nombre;
         }
@@ -550,6 +552,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         public void recibirContacto(String idContacto,String nombre)
         {
             this.idEntidad = idContacto;
+            //esperade = "TMP";
             esperade = "T";
             textBoxEspera.Text = nombre;
         }
@@ -557,11 +560,19 @@ namespace UrdsAppGestión.Presentacion.Tareas
         public void recibirOrgano(String idEntidad)
         {
             this.idEntidad = idEntidad;
+            //esperade = "CAR";
             esperade = "G";
             //textBoxEspera.Text = nombre;
 
             String sqlSelect = "SELECT com_cargos.Cargo FROM com_cargos INNER JOIN (com_comuneros INNER JOIN com_cargoscom ON com_comuneros.IdComunero = com_cargoscom.IdComunero) ON com_cargos.IdCargo = com_cargoscom.IdCargo WHERE(((com_comuneros.IdEntidad) = " + idEntidad + "))";
             textBoxEspera.Text = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+        }
+        
+        public void recibirGrupo(String idGrupo, String nombre)
+        {
+            //this.idEntidad = idGrupo;
+            //esperade = "GOB";
+            //textBoxEspera.Text = nombre;
         }
 
         private void buttonEspera_Click(object sender, EventArgs e)
@@ -648,6 +659,24 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 nueva.WindowState = FormWindowState.Normal;
                 nueva.StartPosition = FormStartPosition.CenterScreen;
                 nueva.Show();
+            }
+            //GRUPO
+            else if (comboBoxEspera.SelectedIndex == 5)
+            {
+                MessageBox.Show("Funcionalidad no disponible.");
+                /*
+                if (idTarea == null)
+                {
+                    String sqlSelect = "SELECT exp_gestiones.IdTarea FROM exp_gestiones WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
+                    idTarea = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+                }
+                FormCorreoGrupo nueva = new FormCorreoGrupo(this, idComunidad.ToString());
+                nueva.ControlBox = true;
+                nueva.TopMost = true;
+                nueva.WindowState = FormWindowState.Normal;
+                nueva.StartPosition = FormStartPosition.CenterScreen;
+                nueva.Show();
+                */
             }
         }
 
