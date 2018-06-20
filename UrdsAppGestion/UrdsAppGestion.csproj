@@ -158,6 +158,12 @@
     <Compile Include="Presentacion\ComunidadesForms\Impuestos\Informes\FormVerInforme.Designer.cs">
       <DependentUpon>FormVerInforme.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularReciboIVA\FormVerInformeParticularReciboIVA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularReciboIVA\FormVerInformeParticularReciboIVA.Designer.cs">
+      <DependentUpon>FormVerInformeParticularReciboIVA.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\ComunidadesForms\OperacionesForms\FormLiquidarAOtroFondo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1542,6 +1548,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\FondosForms\FormModificarStock.resx">
       <DependentUpon>FormModificarStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularReciboIVA\FormVerInformeParticularReciboIVA.resx">
+      <DependentUpon>FormVerInformeParticularReciboIVA.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularReciboIVA\ReportInformeParticularReciboIVA.rdlc" />
     <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormLiquidarAOtroFondo.resx">
