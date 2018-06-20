@@ -178,6 +178,7 @@
             this.Controls.Add(this.dataGridView_bloques);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Bloques";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bloques";
             this.Load += new System.EventHandler(this.Bloques_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_bloques)).EndInit();

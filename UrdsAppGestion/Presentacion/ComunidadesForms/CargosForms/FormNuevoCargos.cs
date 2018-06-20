@@ -73,6 +73,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
         {
             BloquesForms.Bloques nueva = new BloquesForms.Bloques(this, "FormNuevoCargos", id_comunidad_cargado);
             nueva.TopMost = true;
+            nueva.ControlBox = true;
             nueva.Show();
         }
 
