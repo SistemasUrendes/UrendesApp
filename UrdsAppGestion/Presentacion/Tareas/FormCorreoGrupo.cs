@@ -17,6 +17,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String idTarea;
         String descripcion;
         String idComunidad;
+        FormInsertarGestion formAnt;
 
         public FormCorreoGrupo(String idGestion,String idEntidad, String idTarea, String descripcion, String idComunidad)
         {
@@ -28,6 +29,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.idComunidad = idComunidad;
         }
 
+        public FormCorreoGrupo(FormInsertarGestion formAnt, String idComunidad)
+        {
+            InitializeComponent();
+            this.formAnt = formAnt;
+            this.idComunidad = idComunidad;
+        }
+
         private void FormCorreoGrupo_Load(object sender, EventArgs e)
         {
             rellenarComboBox();
@@ -35,29 +43,38 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonEnviar_Click(object sender, EventArgs e)
         {
-            String idGrupo = comboBoxGrupo.SelectedValue.ToString();
-            String mail = "";
-            DataTable grupoContactos = null;
-            String sqlContactos = "SELECT ctos_detemail.Email AS Correo FROM((exp_categoriaContactos INNER JOIN exp_catcontactos ON exp_categoriaContactos.IdGrupo = exp_catcontactos.IdCategoria) INNER JOIN exp_contactos ON exp_catcontactos.IdContacto = exp_contactos.IdDetEntTarea) INNER JOIN ctos_detemail ON exp_contactos.IdEntidad = ctos_detemail.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_categoriaContactos.IdGrupo) = " + comboBoxGrupo.SelectedValue + ") AND ((exp_catcontactos.TipoContacto) = 'T'))";
-            grupoContactos = Persistencia.SentenciasSQL.select(sqlContactos);
-
-            String sqlProveedores = "SELECT ctos_detemail.Email AS Correo FROM(((exp_categoriaContactos INNER JOIN exp_catcontactos ON exp_categoriaContactos.IdGrupo = exp_catcontactos.IdCategoria) INNER JOIN com_proveedores ON exp_catcontactos.IdContacto = com_proveedores.IdProveedor) INNER JOIN ctos_entidades ON com_proveedores.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN ctos_detemail ON ctos_entidades.IDEntidad = ctos_detemail.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_categoriaContactos.IdGrupo) = " + comboBoxGrupo.SelectedValue + ") AND ((exp_catcontactos.TipoContacto) = 'P'))";
-            grupoContactos.Merge(Persistencia.SentenciasSQL.select(sqlProveedores));
-
-            String sqlCargos = "SELECT ctos_detemail.Email AS Correo FROM ctos_detemail INNER JOIN ((((exp_categoriaContactos INNER JOIN exp_catcontactos ON exp_categoriaContactos.IdGrupo = exp_catcontactos.IdCategoria) INNER JOIN com_cargos ON exp_catcontactos.IdContacto = com_cargos.IdCargo) INNER JOIN com_cargoscom ON com_cargos.IdCargo = com_cargoscom.IdCargo) INNER JOIN com_comuneros ON com_cargoscom.IdComunero = com_comuneros.IdComunero) ON ctos_detemail.IdEntidad = com_comuneros.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_categoriaContactos.IdGrupo) = " + comboBoxGrupo.SelectedValue + ") AND ((com_cargos.Baja) = 0) AND((exp_catcontactos.TipoContacto) = 'O'))";
-            grupoContactos.Merge(Persistencia.SentenciasSQL.select(sqlCargos));
-
-            String sqlComuneros = "SELECT ctos_detemail.Email AS Correo FROM((exp_categoriaContactos INNER JOIN exp_catcontactos ON exp_categoriaContactos.IdGrupo = exp_catcontactos.IdCategoria) INNER JOIN (ctos_detemail INNER JOIN com_comuneros ON ctos_detemail.IdEntidad = com_comuneros.IdEntidad) ON exp_catcontactos.IdContacto = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_categoriaContactos.IdGrupo) = " + comboBoxGrupo.SelectedValue + ") AND((exp_catcontactos.TipoContacto) = 'C'))";
-            grupoContactos.Merge(Persistencia.SentenciasSQL.select(sqlComuneros));
-            
-            for (int i = 0; i < grupoContactos.Rows.Count; i++)
+            if (formAnt != null)
             {
-                mail += grupoContactos.Rows[i][0].ToString();
-                if (i < grupoContactos.Rows.Count - 1) mail += ",";
+                formAnt.recibirGrupo(comboBoxGrupo.SelectedValue.ToString(),comboBoxGrupo.SelectedText.ToString());
+            
+                this.Close();
             }
+            else
+            {
+                String idGrupo = comboBoxGrupo.SelectedValue.ToString();
+                String mail = "";
+                DataTable grupoContactos = null;
+                String sqlContactos = "SELECT ctos_detemail.Email AS Correo FROM((exp_categoriaContactos INNER JOIN exp_catcontactos ON exp_categoriaContactos.IdGrupo = exp_catcontactos.IdCategoria) INNER JOIN exp_contactos ON exp_catcontactos.IdContacto = exp_contactos.IdDetEntTarea) INNER JOIN ctos_detemail ON exp_contactos.IdEntidad = ctos_detemail.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_categoriaContactos.IdGrupo) = " + comboBoxGrupo.SelectedValue + ") AND ((exp_catcontactos.TipoContacto) = 'T'))";
+                grupoContactos = Persistencia.SentenciasSQL.select(sqlContactos);
 
-            System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\'" + mail + "\',subject=\'" + generaAsunto() + "\'");
-            this.Close();
+                String sqlProveedores = "SELECT ctos_detemail.Email AS Correo FROM(((exp_categoriaContactos INNER JOIN exp_catcontactos ON exp_categoriaContactos.IdGrupo = exp_catcontactos.IdCategoria) INNER JOIN com_proveedores ON exp_catcontactos.IdContacto = com_proveedores.IdProveedor) INNER JOIN ctos_entidades ON com_proveedores.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN ctos_detemail ON ctos_entidades.IDEntidad = ctos_detemail.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_categoriaContactos.IdGrupo) = " + comboBoxGrupo.SelectedValue + ") AND ((exp_catcontactos.TipoContacto) = 'P'))";
+                grupoContactos.Merge(Persistencia.SentenciasSQL.select(sqlProveedores));
+
+                String sqlCargos = "SELECT ctos_detemail.Email AS Correo FROM ctos_detemail INNER JOIN ((((exp_categoriaContactos INNER JOIN exp_catcontactos ON exp_categoriaContactos.IdGrupo = exp_catcontactos.IdCategoria) INNER JOIN com_cargos ON exp_catcontactos.IdContacto = com_cargos.IdCargo) INNER JOIN com_cargoscom ON com_cargos.IdCargo = com_cargoscom.IdCargo) INNER JOIN com_comuneros ON com_cargoscom.IdComunero = com_comuneros.IdComunero) ON ctos_detemail.IdEntidad = com_comuneros.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_categoriaContactos.IdGrupo) = " + comboBoxGrupo.SelectedValue + ") AND ((com_cargos.Baja) = 0) AND((exp_catcontactos.TipoContacto) = 'O'))";
+                grupoContactos.Merge(Persistencia.SentenciasSQL.select(sqlCargos));
+
+                String sqlComuneros = "SELECT ctos_detemail.Email AS Correo FROM((exp_categoriaContactos INNER JOIN exp_catcontactos ON exp_categoriaContactos.IdGrupo = exp_catcontactos.IdCategoria) INNER JOIN (ctos_detemail INNER JOIN com_comuneros ON ctos_detemail.IdEntidad = com_comuneros.IdEntidad) ON exp_catcontactos.IdContacto = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_categoriaContactos.IdGrupo) = " + comboBoxGrupo.SelectedValue + ") AND((exp_catcontactos.TipoContacto) = 'C'))";
+                grupoContactos.Merge(Persistencia.SentenciasSQL.select(sqlComuneros));
+
+                for (int i = 0; i < grupoContactos.Rows.Count; i++)
+                {
+                    mail += grupoContactos.Rows[i][0].ToString();
+                    if (i < grupoContactos.Rows.Count - 1) mail += ",";
+                }
+
+                System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\'" + mail + "\',subject=\'" + generaAsunto() + "\'");
+                this.Close();
+            }
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)

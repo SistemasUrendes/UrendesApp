@@ -85,7 +85,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormCorreoGrupo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormCorreoGrupo";
+            this.Text = "Seleccionar Grupo";
             this.Load += new System.EventHandler(this.FormCorreoGrupo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

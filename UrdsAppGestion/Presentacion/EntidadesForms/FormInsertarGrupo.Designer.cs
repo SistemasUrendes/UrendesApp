@@ -275,7 +275,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormInsertarGrupo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormInsertarGrupo";
+            this.Text = "Grupos";
             this.Load += new System.EventHandler(this.FormInsertarGrupo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGrupo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContactos)).EndInit();
