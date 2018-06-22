@@ -97,8 +97,6 @@ namespace UrdsAppGestión.Presentacion
             if (resultado_message == System.Windows.Forms.DialogResult.OK)
             {
 
-                //MessageBox.Show("Numero de Correos que se van a Enviar : " + lista_correos.Count.ToString());
-
                 String fechaAltaLote = (Convert.ToDateTime(DateTime.Now)).ToString("yyyy-MM-dd hh:mm:ss");
                 String sqlLote = "INSERT INTO com_enviosLote (Fecha, Descripcion) VALUES ('" + fechaAltaLote + "','" + cuerpo.Replace("'", "`") + "')";
                 int num_lote = Persistencia.SentenciasSQL.InsertarGenericoID(sqlLote);
@@ -208,6 +206,7 @@ namespace UrdsAppGestión.Presentacion
         }
         private void EnviarCorreo(String destinatario, String Asunto, String Cuerpo, List<String> adjuntos,String from)
         {
+            //destinatario = "sistemas@urendes.com";
             //destinatario = "alex.cremeria@gmail.com";
 
             //Sustituir \n por <br>
@@ -231,26 +230,20 @@ namespace UrdsAppGestión.Presentacion
                     email.Attachments.Add(new Attachment(@adjuntos[a]));
 
 
-            SmtpClient smtp = new SmtpClient();
+            /*SmtpClient smtp = new SmtpClient();
             smtp.Host = "hl316.hosteurope.es";
             smtp.Port = 587;
             smtp.EnableSsl = true;
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("admin@envios.urendes.com", "#.Urds16");
+            smtp.Credentials = new NetworkCredential("admin@envios.urendes.com", "#.Urds16");*/
 
-            /*SmtpClient smtp = new SmtpClient();
-            smtp.Host = "mail.urendes.com";
-            smtp.Port = 26;
-            smtp.EnableSsl = false;
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("sistemas@urendes.com", "#.Urds16");*/
 
-            /*SmtpClient smtp = new SmtpClient();
-            smtp.Host = "cp5023.webempresa.eu";
-            smtp.Port = 465;
-            //smtp.EnableTls = true;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "urendes.com";
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("sistemas@urendes.com", "#.Urds16");*/
+            smtp.Credentials = new NetworkCredential("sistemas@urendes.com", "#.Urds16");
 
             try
             {
@@ -258,11 +251,11 @@ namespace UrdsAppGestión.Presentacion
                 numero_Correos++;
                 if (numero_Correos == 10)
                 {
-                    Thread.Sleep(20000);
+                    Thread.Sleep(10000);
                     numero_Correos = 0;
                 }
 
-                Thread.Sleep(20000);
+                Thread.Sleep(3000);
                 email.Dispose();
             }
             catch (Exception e) {
@@ -469,7 +462,6 @@ namespace UrdsAppGestión.Presentacion
 
                         for (int b = 0; b < Recibos.Rows.Count; b++)
                         {
-
                             //COMPRUEBO EL PAGADOR ES EL MISMO QUE LA ENTIDAD RECIBIDA
                             String sqlIdEntidadPagador = "SELECT com_recibos.IdEntidad, ctos_entidades.Entidad FROM com_recibos INNER JOIN ctos_entidades ON com_recibos.IdEntidad = ctos_entidades.IDEntidad WHERE(((com_recibos.IdRecibo) = " + Recibos.Rows[b][0].ToString() + " ));";
 

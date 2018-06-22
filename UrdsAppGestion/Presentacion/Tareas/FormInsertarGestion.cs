@@ -17,7 +17,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String idGestion;
         String fInicio;
         String idEntidad;
-        String idOrgano;
+        //String idOrgano;
         DataTable infoGestion;
         FormVerTarea form_anterior;
         String sfInicio;

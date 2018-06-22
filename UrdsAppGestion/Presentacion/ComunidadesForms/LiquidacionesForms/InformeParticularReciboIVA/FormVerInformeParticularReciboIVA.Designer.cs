@@ -33,7 +33,8 @@
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVerInformeParticularRecibo));
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource5 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVerInformeParticularReciboIVA));
             this.ReciboBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DataSetInformeParticularRecibo = new UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.InformeParticularRecibo.DataSetInformeParticularRecibo();
             this.dataSet2BindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -43,6 +44,9 @@
             this.dataSetLiqResumenBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DataSetReparto = new UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.InformeParticularRecibo.DataSetReparto();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.ComunidadBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.EntidadBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ReciboBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataSetInformeParticularRecibo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet2BindingSource)).BeginInit();
@@ -51,6 +55,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataSetInfoEntidadxsd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetLiqResumenBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataSetReparto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ComunidadBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EntidadBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // ReciboBindingSource
@@ -99,25 +106,38 @@
             reportDataSource3.Value = this.dataSetInfoEntidadxsdBindingSource;
             reportDataSource4.Name = "DataSet2";
             reportDataSource4.Value = this.dataSetLiqResumenBindingSource;
+            reportDataSource5.Name = "DataSet5";
+            reportDataSource5.Value = this.bindingSource1;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource3);
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource4);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource5);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.InformeParticular" +
-    "Recibo.ReportInformeParticularRecibo.rdlc";
+    "ReciboIVA.ReportInformeParticularReciboIVA.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.Size = new System.Drawing.Size(665, 579);
             this.reportViewer1.TabIndex = 0;
             // 
-            // FormVerInformeParticularRecibo
+            // ComunidadBindingSource
+            // 
+            this.ComunidadBindingSource.DataMember = "Comunidad";
+            this.ComunidadBindingSource.DataSource = this.dataSet2;
+            // 
+            // EntidadBindingSource
+            // 
+            this.EntidadBindingSource.DataMember = "Entidad";
+            this.EntidadBindingSource.DataSource = this.dataSetInfoEntidadxsd;
+            // 
+            // FormVerInformeParticularReciboIVA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(665, 579);
             this.Controls.Add(this.reportViewer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FormVerInformeParticularRecibo";
+            this.Name = "FormVerInformeParticularReciboIVA";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Informe Particular Recibo";
             this.TopMost = true;
@@ -130,6 +150,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataSetInfoEntidadxsd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetLiqResumenBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataSetReparto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ComunidadBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EntidadBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -144,5 +167,8 @@
         private DataSetInfoEntidadxsd dataSetInfoEntidadxsd;
         private System.Windows.Forms.BindingSource dataSetLiqResumenBindingSource;
         public Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private System.Windows.Forms.BindingSource ComunidadBindingSource;
+        private System.Windows.Forms.BindingSource EntidadBindingSource;
+        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }

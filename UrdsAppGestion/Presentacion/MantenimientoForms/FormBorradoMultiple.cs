@@ -211,7 +211,7 @@ namespace UrdsAppGestión.Presentacion.MantenimientoForms
             String IdOpDet = "";
 
             //PONGO A 0 EL IMPORTE DEL VENCIMIENTO CREANDO MOVIMIENTOS.
-            Double totalMov = 0.00;
+            //Double totalMov = 0.00;
             String sqlVencimientos = "SELECT com_opdetalles.IdOpDet, com_operaciones.ImpOp, com_operaciones.IdOp FROM com_opdetalles INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp WHERE com_opdetalles.IdOp = " + IdOp;
 
             DataTable vencimientos = Persistencia.SentenciasSQL.select(sqlVencimientos);
