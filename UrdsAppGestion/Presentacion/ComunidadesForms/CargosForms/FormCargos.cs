@@ -146,7 +146,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
 
         private void buttonGrupo_Click(object sender, EventArgs e)
         {
-            EntidadesForms.FormInsertarGrupo nueva = new EntidadesForms.FormInsertarGrupo();
+            EntidadesForms.FormInsertarGrupo nueva = new EntidadesForms.FormInsertarGrupo(id_comunidad_cargado);
             nueva.Show();
         }
 

@@ -17,7 +17,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String idGestion;
         String fInicio;
         String idEntidad;
-        String idOrgano;
         DataTable infoGestion;
         FormVerTarea form_anterior;
         String sfInicio;
@@ -129,8 +128,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void cargarGestion()
         {
 
-            String sqlSelect = "SELECT exp_gestiones.Descripción, exp_gestiones.IdUser, exp_gestiones.FIni, exp_gestiones.FSeguir, exp_gestiones.FMax, exp_gestiones.FFin, exp_gestiones.Importante, ctos_entidades.Entidad, exp_gestiones.IdTipoGestion FROM exp_gestiones LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
-            //String sqlSelect = "SELECT exp_gestiones.Descripción, exp_gestiones.IdUser, exp_gestiones.FIni, exp_gestiones.FSeguir, exp_gestiones.FMax, exp_gestiones.FFin, exp_gestiones.Importante,If(exp_gestiones.TipoContacto = 'G',com_organos.Nombre,ctos_entidades.Entidad) AS Espera , exp_gestiones.IdTipoGestion FROM(exp_gestiones LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_organos ON exp_gestiones.IdEntidad = com_organos.IdOrgano WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
+            //String sqlSelect = "SELECT exp_gestiones.Descripción, exp_gestiones.IdUser, exp_gestiones.FIni, exp_gestiones.FSeguir, exp_gestiones.FMax, exp_gestiones.FFin, exp_gestiones.Importante, ctos_entidades.Entidad, exp_gestiones.IdTipoGestion FROM exp_gestiones LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
+            String sqlSelect = "SELECT exp_gestiones.Descripción, exp_gestiones.IdUser, exp_gestiones.FIni, exp_gestiones.FSeguir, exp_gestiones.FMax, exp_gestiones.FFin, exp_gestiones.Importante, If(exp_gestiones.TipoContacto = 'GOB',exp_categoriaContactos.Nombre,ctos_entidades.Entidad) AS Espera, exp_gestiones.IdTipoGestion FROM(exp_gestiones LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_categoriaContactos ON exp_gestiones.IdEntidad = exp_categoriaContactos.IdGrupo WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
 
             infoGestion = Persistencia.SentenciasSQL.select(sqlSelect);
 
@@ -536,32 +535,28 @@ namespace UrdsAppGestión.Presentacion.Tareas
         public void recibirComunero (String idEntidad,String nombre)
         {
             this.idEntidad = idEntidad;
-            //esperade = "COM";
-            esperade = "C";
+            esperade = "COM";
             textBoxEspera.Text = nombre;
         }
 
         public void recibirProveedor(String idEntidad,String nombre)
         {
             this.idEntidad = idEntidad;
-            //esperade = "PRO";
-            esperade = "P";
+            esperade = "PRO";
             textBoxEspera.Text = nombre;
         }
 
         public void recibirContacto(String idContacto,String nombre)
         {
             this.idEntidad = idContacto;
-            //esperade = "TMP";
-            esperade = "T";
+            esperade = "TMP";
             textBoxEspera.Text = nombre;
         }
 
         public void recibirOrgano(String idEntidad)
         {
             this.idEntidad = idEntidad;
-            //esperade = "CAR";
-            esperade = "G";
+            esperade = "CAR";
             //textBoxEspera.Text = nombre;
 
             String sqlSelect = "SELECT com_cargos.Cargo FROM com_cargos INNER JOIN (com_comuneros INNER JOIN com_cargoscom ON com_comuneros.IdComunero = com_cargoscom.IdComunero) ON com_cargos.IdCargo = com_cargoscom.IdCargo WHERE(((com_comuneros.IdEntidad) = " + idEntidad + "))";
@@ -570,9 +565,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
         
         public void recibirGrupo(String idGrupo, String nombre)
         {
-            //this.idEntidad = idGrupo;
-            //esperade = "GOB";
-            //textBoxEspera.Text = nombre;
+            this.idEntidad = idGrupo;
+            esperade = "GOB";
+            textBoxEspera.Text = nombre;
         }
 
         private void buttonEspera_Click(object sender, EventArgs e)
@@ -663,8 +658,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             //GRUPO
             else if (comboBoxEspera.SelectedIndex == 5)
             {
-                MessageBox.Show("Funcionalidad no disponible.");
-                /*
+                
                 if (idTarea == null)
                 {
                     String sqlSelect = "SELECT exp_gestiones.IdTarea FROM exp_gestiones WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
@@ -676,7 +670,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 nueva.WindowState = FormWindowState.Normal;
                 nueva.StartPosition = FormStartPosition.CenterScreen;
                 nueva.Show();
-                */
             }
         }
 
