@@ -38,11 +38,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (idTipoTarea != null)
             {
                 cargarTipoTarea();
-                textBoxNombre.Visible = false;
-                label2.Visible = false;
-                labelName.Text = nombre;
+                textBoxNombre.Text = nombre;
             }
             cargarTodosTipoGestion();
+            cargarComboBoxCategorias();
         }
 
         private void cargarTodosTipoGestion()
@@ -60,6 +59,17 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 dataGridViewAllGestion.Columns["Orden"].Visible = false;
             }
         }
+
+        private void cargarComboBoxCategorias()
+        {
+            String sqlSelect = "SELECT exp_catTareas.IdCatTareas, exp_catTareas.Nombre FROM exp_catTareas";
+            DataTable categoria = Persistencia.SentenciasSQL.select(sqlSelect);
+
+            comboBoxCategorias.DataSource = categoria;
+            comboBoxCategorias.DisplayMember = "Nombre";
+            comboBoxCategorias.ValueMember = "IdCatTareas";
+        }
+        
 
         private void cargarTipoTarea()
         {
@@ -106,11 +116,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     textBoxNombre.SelectAll();
                     return;
                 }
-                String sqlInsert = "INSERT INTO exp_tipostareas (TipoTarea) VALUES ('" + textBoxNombre.Text.ToString() + "')";
+                String sqlInsert = "INSERT INTO exp_tipostareas (TipoTarea,IdCatTareas) VALUES ('" + textBoxNombre.Text.ToString() + "'," + comboBoxCategorias.SelectedValue.ToString() + "')";
                 idTipoTarea = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsert).ToString();
             }
             else
             {
+
+                String sqlUpdate = "UPDATE exp_tipostareas SET TipoTarea = '" + textBoxNombre.Text.ToString() + "',IdCatTareas = '" + comboBoxCategorias.SelectedValue.ToString() + "' WHERE IdTipoTarea = " + idTipoTarea;
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                 String sqlBorrar = "DELETE FROM exp_gestionEstado WHERE IdTipoTarea = " + idTipoTarea;
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrar);
             }
@@ -121,7 +134,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 String orden = row.Cells[4].Value.ToString();
                 String sqlInsert = "INSERT INTO exp_gestionEstado (IdTipoTarea,IdTipoGestion,Orden) VALUES ('" + idTipoTarea + "','" + idTipoGestion + "','" + orden + "')";
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
-
+            
             }
 
             if (nombre != null)

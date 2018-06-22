@@ -33,7 +33,6 @@
             this.dataGridViewAddGestion = new System.Windows.Forms.DataGridView();
             this.textBoxFiltroGestiones = new System.Windows.Forms.TextBox();
             this.textBoxNombre = new System.Windows.Forms.TextBox();
-            this.labelName = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonSubir = new System.Windows.Forms.Button();
             this.buttonBajar = new System.Windows.Forms.Button();
@@ -41,6 +40,8 @@
             this.buttonRemoveGestion = new System.Windows.Forms.Button();
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.buttonGuardar = new System.Windows.Forms.Button();
+            this.comboBoxCategorias = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAllGestion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAddGestion)).BeginInit();
             this.SuspendLayout();
@@ -91,15 +92,6 @@
             this.textBoxNombre.Name = "textBoxNombre";
             this.textBoxNombre.Size = new System.Drawing.Size(245, 20);
             this.textBoxNombre.TabIndex = 4;
-            // 
-            // labelName
-            // 
-            this.labelName.AutoSize = true;
-            this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelName.Location = new System.Drawing.Point(13, 48);
-            this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(0, 17);
-            this.labelName.TabIndex = 5;
             // 
             // label2
             // 
@@ -170,11 +162,31 @@
             this.buttonGuardar.UseVisualStyleBackColor = true;
             this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
             // 
+            // comboBoxCategorias
+            // 
+            this.comboBoxCategorias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxCategorias.FormattingEnabled = true;
+            this.comboBoxCategorias.Location = new System.Drawing.Point(66, 39);
+            this.comboBoxCategorias.Name = "comboBoxCategorias";
+            this.comboBoxCategorias.Size = new System.Drawing.Size(245, 21);
+            this.comboBoxCategorias.TabIndex = 13;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 42);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Categoría:";
+            // 
             // FormInsertarTipoTarea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(672, 457);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.comboBoxCategorias);
             this.Controls.Add(this.buttonGuardar);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonRemoveGestion);
@@ -182,7 +194,6 @@
             this.Controls.Add(this.buttonBajar);
             this.Controls.Add(this.buttonSubir);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.labelName);
             this.Controls.Add(this.textBoxNombre);
             this.Controls.Add(this.textBoxFiltroGestiones);
             this.Controls.Add(this.dataGridViewAddGestion);
@@ -205,7 +216,6 @@
         private System.Windows.Forms.DataGridView dataGridViewAddGestion;
         private System.Windows.Forms.TextBox textBoxFiltroGestiones;
         private System.Windows.Forms.TextBox textBoxNombre;
-        private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonSubir;
         private System.Windows.Forms.Button buttonBajar;
@@ -213,5 +223,7 @@
         private System.Windows.Forms.Button buttonRemoveGestion;
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Button buttonGuardar;
+        private System.Windows.Forms.ComboBox comboBoxCategorias;
+        private System.Windows.Forms.Label label1;
     }
 }

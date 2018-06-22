@@ -17,6 +17,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String idTarea;
         String descripcion;
         String idComunidad;
+        DataTable tablaGrupos;
         FormInsertarGestion formAnt;
 
         public FormCorreoGrupo(String idGestion,String idEntidad, String idTarea, String descripcion, String idComunidad)
@@ -45,7 +46,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (formAnt != null)
             {
-                formAnt.recibirGrupo(comboBoxGrupo.SelectedValue.ToString(),comboBoxGrupo.SelectedText.ToString());
+                formAnt.recibirGrupo(comboBoxGrupo.SelectedValue.ToString(), tablaGrupos.Rows[comboBoxGrupo.SelectedIndex][0].ToString());
             
                 this.Close();
             }
@@ -85,7 +86,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void rellenarComboBox()
         {
             String sqlComboGrupo = "SELECT exp_categoriaContactos.Nombre, exp_categoriaContactos.IdGrupo FROM exp_categoriaContactos WHERE exp_categoriaContactos.IdComunidad = " + idComunidad;
-            comboBoxGrupo.DataSource = Persistencia.SentenciasSQL.select(sqlComboGrupo);
+            tablaGrupos = Persistencia.SentenciasSQL.select(sqlComboGrupo);
+            comboBoxGrupo.DataSource = tablaGrupos;
             comboBoxGrupo.DisplayMember = "Nombre";
             comboBoxGrupo.ValueMember = "IdGrupo";
         }

@@ -244,9 +244,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
         public void cargarGestiones()
         {
 
-            String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin,If(exp_gestiones.TipoContacto = 'T',exp_contactos.Nombre ,If(exp_gestiones.TipoContacto = 'G',(SELECT com_cargos.Cargo FROM com_cargos INNER JOIN (com_comuneros INNER JOIN com_cargoscom ON com_comuneros.IdComunero = com_cargoscom.IdComunero) ON com_cargos.IdCargo = com_cargoscom.IdCargo WHERE(((com_comuneros.IdEntidad) = exp_gestiones.IdEntidad)) LIMIT 1 ),ctos_entidades.Entidad)) AS `Espera de`, exp_gestiones.TipoContacto AS T FROM exp_contactos RIGHT JOIN ((((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion) ON exp_contactos.IdDetEntTarea = exp_gestiones.IdEntidad WHERE(((exp_gestiones.IdTarea) = " + idTarea + ")";
+            //String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin,If(exp_gestiones.TipoContacto = 'T',exp_contactos.Nombre ,If(exp_gestiones.TipoContacto = 'G',(SELECT com_cargos.Cargo FROM com_cargos INNER JOIN (com_comuneros INNER JOIN com_cargoscom ON com_comuneros.IdComunero = com_cargoscom.IdComunero) ON com_cargos.IdCargo = com_cargoscom.IdCargo WHERE(((com_comuneros.IdEntidad) = exp_gestiones.IdEntidad)) LIMIT 1 ),ctos_entidades.Entidad)) AS `Espera de`, exp_gestiones.TipoContacto AS T FROM exp_contactos RIGHT JOIN ((((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion) ON exp_contactos.IdDetEntTarea = exp_gestiones.IdEntidad WHERE(((exp_gestiones.IdTarea) = " + idTarea + ")";
 
             //String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin,If(exp_gestiones.TipoContacto = 'T',exp_contactos.Nombre ,If(exp_gestiones.TipoContacto = 'G',(SELECT com_organos.Nombre FROM com_organos WHERE(((com_organos.IdOrgano) = exp_gestiones.IdEntidad)) LIMIT 1 ),ctos_entidades.Entidad)) AS `Espera de`, exp_gestiones.TipoContacto AS T FROM exp_contactos RIGHT JOIN ((((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion) ON exp_contactos.IdDetEntTarea = exp_gestiones.IdEntidad WHERE(((exp_gestiones.IdTarea) = " + idTarea + ")";
+
+            String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Descripción, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin,If(exp_gestiones.TipoContacto = 'TMP', exp_contactos.Nombre, If(exp_gestiones.TipoContacto = 'CAR', (SELECT com_cargos.Cargo FROM com_cargos INNER JOIN(com_comuneros INNER JOIN com_cargoscom ON com_comuneros.IdComunero = com_cargoscom.IdComunero) ON com_cargos.IdCargo = com_cargoscom.IdCargo WHERE(((com_comuneros.IdEntidad) = exp_gestiones.IdEntidad)) LIMIT 1), If(exp_gestiones.TipoContacto = 'GOB', (SELECT exp_categoriaContactos.Nombre FROM exp_categoriaContactos WHERE(((exp_gestiones.IdEntidad) = exp_categoriaContactos.IdGrupo))), ctos_entidades.Entidad))) AS `Espera de`, exp_gestiones.TipoContacto AS T FROM exp_categoriaContactos RIGHT JOIN(exp_contactos RIGHT JOIN(((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion) ON exp_contactos.IdDetEntTarea = exp_gestiones.IdEntidad) ON exp_categoriaContactos.IdGrupo = exp_gestiones.IdEntidad WHERE(((exp_gestiones.IdTarea) = " + idTarea + ")";
 
             //Abiertas
             if (comboBoxEstadoGestion.SelectedIndex == 0)
@@ -344,15 +346,15 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 dataGridViewGestiones.Columns["Id"].Width = 70;
                 dataGridViewGestiones.Columns["Ord"].Visible = false;
                 dataGridViewGestiones.Columns["Usuario"].Width = 70;
-                dataGridViewGestiones.Columns["Descripción"].Width = 290;
-                dataGridViewGestiones.Columns["Tipo Gestión"].Width = 120;
+                dataGridViewGestiones.Columns["Descripción"].Width = 170;
+                dataGridViewGestiones.Columns["Tipo Gestión"].Width = 210;
                 dataGridViewGestiones.Columns["S"].Width = 30;
                 dataGridViewGestiones.Columns["FIni"].Width = 90;
                 dataGridViewGestiones.Columns["FAgenda"].Width = 90;
                 dataGridViewGestiones.Columns["Fecha límite"].Width = 95;
                 dataGridViewGestiones.Columns["FFin"].Width = 90;
                 dataGridViewGestiones.Columns["Espera de"].Width = 240;
-                dataGridViewGestiones.Columns["T"].Width = 20;
+                dataGridViewGestiones.Columns["T"].Width = 50;
                 dataGridViewGestiones.Columns["T"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
         }
@@ -1811,7 +1813,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 if (tablamail.Rows.Count > 0)
                 {
                     String mail = tablamail.Rows[0][0].ToString();
-                    System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\'" + generaAsunto() + "\',body= Este expediente requiere de su atención.");
+                    System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\"" + generaAsunto() + "\",body= Este expediente requiere de su atención.");
                 }
                 else
                 {
@@ -1822,31 +1824,39 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 if (dataGridViewGestiones.SelectedRows[0].Cells[10].Value.ToString() != "")
                 {
-                    /*
-                    if (dataGridViewGestiones.SelectedRows[0].Cells[11].Value.ToString() == "G")
+                    
+                    if (dataGridViewGestiones.SelectedRows[0].Cells[11].Value.ToString() == "GOB")
                     {
-                        String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
                         String mail = "";
-                        String sqlSelect = "SELECT ctos_detemail.Email FROM exp_gestiones INNER JOIN((((com_organos INNER JOIN com_cargos ON com_organos.IdOrgano = com_cargos.IdOrgano) INNER JOIN com_cargoscom ON com_cargos.IdCargo = com_cargoscom.IdCargo) INNER JOIN com_comuneros ON com_cargoscom.IdComunero = com_comuneros.IdComunero) INNER JOIN ctos_detemail ON com_comuneros.IdEmail = ctos_detemail.IdEmail) ON exp_gestiones.IdEntidad = com_organos.IdOrgano WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
-                        DataTable tablamail = Persistencia.SentenciasSQL.select(sqlSelect);
-                        if (tablamail.Rows.Count > 0)
+                        DataTable grupoContactos = null;
+                        String sqlContactos = "SELECT ctos_detemail.Email AS Correo FROM((exp_catcontactos INNER JOIN exp_contactos ON exp_catcontactos.IdContacto = exp_contactos.IdDetEntTarea) INNER JOIN ctos_detemail ON exp_contactos.IdEntidad = ctos_detemail.IdEntidad) INNER JOIN exp_gestiones ON exp_catcontactos.IdCategoria = exp_gestiones.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_catcontactos.TipoContacto) = 'T')) GROUP BY exp_gestiones.IdGestión HAVING(((exp_gestiones.IdGestión) = " + idGestion + "))";
+                        grupoContactos = Persistencia.SentenciasSQL.select(sqlContactos);
+
+                        String sqlProveedores = "SELECT ctos_detemail.Email AS Correo FROM exp_gestiones INNER JOIN (((exp_catcontactos INNER JOIN com_proveedores ON exp_catcontactos.IdContacto = com_proveedores.IdProveedor) INNER JOIN ctos_entidades ON com_proveedores.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN ctos_detemail ON ctos_entidades.IDEntidad = ctos_detemail.IdEntidad) ON exp_gestiones.IdEntidad = exp_catcontactos.IdCategoria WHERE(((ctos_detemail.Ppal) = -1) AND((exp_catcontactos.TipoContacto) = 'P')) GROUP BY exp_gestiones.IdGestión HAVING(((exp_gestiones.IdGestión) = " + idGestion + "))";
+                        grupoContactos.Merge(Persistencia.SentenciasSQL.select(sqlProveedores));
+
+                        String sqlCargos = "SELECT ctos_detemail.Email  AS Correo FROM exp_gestiones INNER JOIN(ctos_detemail INNER JOIN(((exp_catcontactos INNER JOIN com_cargos ON exp_catcontactos.IdContacto = com_cargos.IdCargo) INNER JOIN com_cargoscom ON com_cargos.IdCargo = com_cargoscom.IdCargo) INNER JOIN com_comuneros ON com_cargoscom.IdComunero = com_comuneros.IdComunero) ON ctos_detemail.IdEntidad = com_comuneros.IdEntidad) ON exp_gestiones.IdEntidad = exp_catcontactos.IdCategoria WHERE((exp_catcontactos.TipoContacto) = 'O') AND((exp_gestiones.IdGestión) = " + idGestion +")";
+                        
+                        grupoContactos.Merge(Persistencia.SentenciasSQL.select(sqlCargos));
+
+                        String sqlComuneros = "SELECT ctos_detemail.Email AS Correo FROM exp_gestiones INNER JOIN((exp_catcontactos INNER JOIN(ctos_detemail INNER JOIN com_comuneros ON ctos_detemail.IdEntidad = com_comuneros.IdEntidad) ON exp_catcontactos.IdContacto = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) ON exp_gestiones.IdTipoGestion = exp_catcontactos.IdCategoria WHERE(((ctos_detemail.Ppal) = -1) AND((exp_catcontactos.TipoContacto) = 'C')) GROUP BY exp_gestiones.IdGestión HAVING(((exp_gestiones.IdGestión) = " + idGestion + "))";
+
+
+
+                        grupoContactos.Merge(Persistencia.SentenciasSQL.select(sqlComuneros));
+
+                        for (int i = 0; i < grupoContactos.Rows.Count; i++)
                         {
-                            for (int i = 0; i < tablamail.Rows.Count; i++)
+                            if (!mail.Contains(grupoContactos.Rows[i][0].ToString()))
                             {
-                                mail += tablamail.Rows[i][0].ToString();
-                                if (i < tablamail.Rows.Count - 1) mail += ",";
+                                mail += grupoContactos.Rows[i][0].ToString();
+                                if (i < grupoContactos.Rows.Count - 1) mail += ",";
                             }
-                            mail = tablamail.Rows[0][0].ToString();
-                            System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\'" + generaAsunto() + "\'");
                         }
 
-                        else
-                        {
-                            MessageBox.Show("La entidad seleccionada no tiene correo asociado.");
-                        }
+                        System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\'" + mail + "\',subject=\'" + generaAsunto() + "\"");
                     }
-                    */
-                    if (dataGridViewGestiones.SelectedRows[0].Cells[11].Value.ToString() != "T")
+                    else if (dataGridViewGestiones.SelectedRows[0].Cells[11].Value.ToString() != "TMP")
                     {
                         String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
 
@@ -1855,7 +1865,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                         if (tablamail.Rows.Count > 0)
                         {
                             String mail = tablamail.Rows[0][0].ToString();
-                            System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\'" + generaAsunto() + "\'");
+                            System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\"" + generaAsunto() + "\"");
                         }
 
                         else
@@ -1872,7 +1882,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                         if (tablamail.Rows.Count > 0)
                         {
                             String mail = tablamail.Rows[0][0].ToString();
-                            System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\'" + generaAsunto() + "\'");
+                            System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\"" + generaAsunto() + "\"");
                         }
                         else
                         {

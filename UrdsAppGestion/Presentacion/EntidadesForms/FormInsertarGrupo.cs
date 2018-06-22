@@ -16,6 +16,13 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
         DataTable grupoContactos;
         DataTable oldGrupoContactos;
         String idGrupo;
+        String idComunidad;
+
+        public FormInsertarGrupo(String idComunidad)
+        {
+            InitializeComponent();
+            this.idComunidad = idComunidad;
+        }
 
         public FormInsertarGrupo()
         {
@@ -98,6 +105,12 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
             comboBoxComunidad.DataSource = Persistencia.SentenciasSQL.select(sqlComboCom);
             comboBoxComunidad.DisplayMember = "NombreCorto";
             comboBoxComunidad.ValueMember = "IdComunidad";
+
+            if (idComunidad != null)
+            {
+                comboBoxComunidad.SelectedValue = idComunidad;
+                cambioComunidad();
+            }
             
         }
 
@@ -217,12 +230,18 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
 
         private void comboBoxComunidad_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            String sqlComboGrupo = "SELECT exp_categoriaContactos.Nombre, exp_categoriaContactos.IdGrupo FROM exp_categoriaContactos WHERE (exp_categoriaContactos.IdComunidad) = " + comboBoxComunidad.SelectedValue ;
+            cambioComunidad();
+        }
+
+        private void cambioComunidad()
+        {
+            String sqlComboGrupo = "SELECT exp_categoriaContactos.Nombre, exp_categoriaContactos.IdGrupo FROM exp_categoriaContactos WHERE (exp_categoriaContactos.IdComunidad) = " + comboBoxComunidad.SelectedValue;
             comboBoxGrupos.DataSource = Persistencia.SentenciasSQL.select(sqlComboGrupo);
             comboBoxGrupos.DisplayMember = "Nombre";
             comboBoxGrupos.ValueMember = "IdGrupo";
+            cambioGrupo();
         }
-        
+       
 
         private void textBoxfiltroTodas_TextChanged(object sender, EventArgs e)
         {
@@ -232,6 +251,11 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
         }
 
         private void comboBoxGrupos_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            cambioGrupo();
+        }
+
+        private void cambioGrupo()
         {
             grupoContactos = null;
             String sqlContactos = "SELECT exp_contactos.IdDetEntTarea AS ID,exp_contactos.Nombre,ctos_detemail.Email AS Correo,'T' AS T FROM((exp_categoriaContactos INNER JOIN exp_catcontactos ON exp_categoriaContactos.IdGrupo = exp_catcontactos.IdCategoria) INNER JOIN exp_contactos ON exp_catcontactos.IdContacto = exp_contactos.IdDetEntTarea) INNER JOIN ctos_detemail ON exp_contactos.IdEntidad = ctos_detemail.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_categoriaContactos.IdGrupo) = " + comboBoxGrupos.SelectedValue + ") AND ((exp_catcontactos.TipoContacto) = 'T'))";
@@ -257,7 +281,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
                 dataGridViewGrupo.Columns["T"].Width = 20;
             }
         }
-
+        
         private void buttonNuevoGrupo_Click(object sender, EventArgs e)
         {
             labelGrupo.Visible = true;
@@ -271,7 +295,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
 
         private void buttonOrgGobierno_Click(object sender, EventArgs e)
         {
-            String sqlSelect = "SELECT com_cargos.IdCargo, com_cargos.Cargo AS Nombre, ctos_detemail.Email AS Correo, 'O' AS T FROM((com_cargos INNER JOIN com_cargoscom ON com_cargos.IdCargo = com_cargoscom.IdCargo) INNER JOIN com_comuneros ON com_cargoscom.IdComunero = com_comuneros.IdComunero) INNER JOIN ctos_detemail ON com_comuneros.IdEmail = ctos_detemail.IdEmail WHERE(((com_cargos.Baja) = 0) AND((com_cargos.IdComunidad) = " + comboBoxComunidad.SelectedValue + "))";
+            String sqlSelect = "SELECT com_cargos.IdCargo, com_cargos.Cargo AS Nombre, ctos_detemail.Email AS Correo, 'O' AS T FROM((com_cargos INNER JOIN com_cargoscom ON com_cargos.IdCargo = com_cargoscom.IdCargo) INNER JOIN com_comuneros ON com_cargoscom.IdComunero = com_comuneros.IdComunero) INNER JOIN ctos_detemail ON com_comuneros.IdEmail = ctos_detemail.IdEmail WHERE(((com_cargos.IdComunidad) = " + comboBoxComunidad.SelectedValue + ") AND((com_cargoscom.FFin)Is Null))";
             contactos = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewContactos.DataSource = contactos;
             ajustarDatagridContactos();

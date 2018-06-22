@@ -605,5 +605,25 @@ namespace UrdsAppGestión.Presentacion
             MessageBox.Show("Fin.");
         }
 
+        private void button8_Click(object sender, EventArgs e)
+        {
+            String sqlSelect = "SELECT exp_gestiones.IdGestión, exp_gestiones.TipoContacto FROM exp_gestiones WHERE(((exp_gestiones.TipoContacto)Not Like ''))";
+            DataTable gestiones = Persistencia.SentenciasSQL.select(sqlSelect);
+
+            foreach ( DataRow row in gestiones.Rows)
+            {
+                String siglas = row[1].ToString();
+                if (siglas == "E") siglas = "ENT";
+                else if (siglas == "C") siglas = "COM";
+                else if (siglas == "P") siglas = "PRO";
+                else if (siglas == "G") siglas = "CAR";
+                else if (siglas == "T") siglas = "TMP";
+
+                String sqlInsert = "UPDATE exp_gestiones SET TipoContacto = '" + siglas + "' WHERE IdGestión = '" + row[0] + "'";
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+            }
+
+            MessageBox.Show("Fin.");
+        }
     }
 }

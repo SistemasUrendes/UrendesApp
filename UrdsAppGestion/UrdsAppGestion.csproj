@@ -226,6 +226,12 @@
     <Compile Include="Presentacion\MantenimientoForms\FormInsertarCategoria.Designer.cs">
       <DependentUpon>FormInsertarCategoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Tareas\FormCatProcedimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormCatProcedimiento.Designer.cs">
+      <DependentUpon>FormCatProcedimiento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Tareas\FormDuplicarTarea.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1939,6 +1945,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\ServiciosForms\FormAreasBloque.resx">
       <DependentUpon>FormAreasBloque.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormCatProcedimiento.resx">
+      <DependentUpon>FormCatProcedimiento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormCorreoGrupo.resx">
       <DependentUpon>FormCorreoGrupo.cs</DependentUpon>

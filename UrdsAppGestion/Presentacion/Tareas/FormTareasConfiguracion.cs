@@ -12,6 +12,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 {
     public partial class FormTareasConfiguracion : Form
     {
+        DataTable categorias;
         DataTable tipoTarea;
         DataTable allGestion;
         DataTable addGestion;
@@ -27,6 +28,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {   
             cargarTiposTarea();
             cargarTodosTipoGestion();
+            cargarCategorias();
             order = 1;
         }
 
@@ -441,9 +443,43 @@ namespace UrdsAppGestión.Presentacion.Tareas
             dataGridViewAllGestion.DataSource = busqueda;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonAddCategoria_Click(object sender, EventArgs e)
         {
+            FormCatProcedimiento nueva = new FormCatProcedimiento(this);
+            nueva.Show();
+        }
 
+        public void cargarCategorias()
+        {
+            String sqlSelect = "SELECT exp_catTareas.IdCatTareas, exp_catTareas.Nombre FROM exp_catTareas";
+            categorias = Persistencia.SentenciasSQL.select(sqlSelect);
+            dataGridViewCategorias.DataSource = categorias;
+            if (dataGridViewCategorias.Rows.Count > 0 )
+            {
+                dataGridViewCategorias.Columns["IdCatTareas"].Visible = false;
+            }
+        }
+
+        private void textBoxFiltroCategorias_TextChanged(object sender, EventArgs e)
+        {
+            DataTable busqueda = categorias;
+            busqueda.DefaultView.RowFilter = string.Empty;
+
+            String filtro = "Nombre like '%" + textBoxFiltroCategorias.Text.ToString() + "%'";
+            busqueda.DefaultView.RowFilter = filtro;
+            dataGridViewCategorias.DataSource = busqueda;
+        }
+
+        private void dataGridViewCategorias_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            cargarTiposCat(dataGridViewCategorias.SelectedRows[0].Cells[0].Value.ToString());
+        }
+
+        private void cargarTiposCat(String IdCat)
+        {
+            String sqlSelect = "SELECT exp_tipostareas.IdTipoTarea, exp_tipostareas.TipoTarea, exp_tipostareas.Corto FROM exp_catTareas INNER JOIN exp_tipostareas ON exp_catTareas.IdCatTareas = exp_tipostareas.IdCatTareas WHERE(((exp_catTareas.IdCatTareas) = '" + IdCat + "'))";
+            tipoTarea = Persistencia.SentenciasSQL.select(sqlSelect);
+            dataGridViewTipoTarea.DataSource = tipoTarea;
         }
     }
 }

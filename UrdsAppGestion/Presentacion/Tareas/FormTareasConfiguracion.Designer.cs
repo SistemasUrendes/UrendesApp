@@ -266,6 +266,7 @@
             this.textBoxFiltroCategorias.Name = "textBoxFiltroCategorias";
             this.textBoxFiltroCategorias.Size = new System.Drawing.Size(212, 20);
             this.textBoxFiltroCategorias.TabIndex = 3;
+            this.textBoxFiltroCategorias.TextChanged += new System.EventHandler(this.textBoxFiltroCategorias_TextChanged);
             // 
             // buttonAddCategoria
             // 
@@ -275,13 +276,14 @@
             this.buttonAddCategoria.TabIndex = 2;
             this.buttonAddCategoria.Text = "Añadir";
             this.buttonAddCategoria.UseVisualStyleBackColor = true;
-            this.buttonAddCategoria.Click += new System.EventHandler(this.button1_Click);
+            this.buttonAddCategoria.Click += new System.EventHandler(this.buttonAddCategoria_Click);
             // 
             // dataGridViewCategorias
             // 
             this.dataGridViewCategorias.AllowUserToAddRows = false;
             this.dataGridViewCategorias.AllowUserToDeleteRows = false;
             this.dataGridViewCategorias.AllowUserToResizeRows = false;
+            this.dataGridViewCategorias.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewCategorias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCategorias.Location = new System.Drawing.Point(6, 43);
             this.dataGridViewCategorias.Name = "dataGridViewCategorias";
@@ -292,6 +294,7 @@
             this.dataGridViewCategorias.ShowEditingIcon = false;
             this.dataGridViewCategorias.Size = new System.Drawing.Size(293, 350);
             this.dataGridViewCategorias.TabIndex = 0;
+            this.dataGridViewCategorias.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCategorias_CellClick);
             // 
             // FormTareasConfiguracion
             // 
