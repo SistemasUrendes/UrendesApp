@@ -2108,8 +2108,8 @@
             <Value>=Fields!IdSubCuenta.Value</Value>
           </SortExpression>
         </SortExpressions>
-        <Top>11.19149cm</Top>
-        <Left>2.29768cm</Left>
+        <Top>9.44596cm</Top>
+        <Left>2.51356cm</Left>
         <Height>1.19145cm</Height>
         <Width>12.65516cm</Width>
         <ZIndex>17</ZIndex>
@@ -2137,8 +2137,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox71</rd:DefaultName>
-        <Top>10.59149cm</Top>
-        <Left>0.60556cm</Left>
+        <Top>8.84596cm</Top>
+        <Left>0.82144cm</Left>
         <Height>0.49417cm</Height>
         <Width>7.21838cm</Width>
         <ZIndex>18</ZIndex>
@@ -2170,8 +2170,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>NumCuenta</rd:DefaultName>
-        <Top>13.14169cm</Top>
-        <Left>10.57246cm</Left>
+        <Top>11.39616cm</Top>
+        <Left>10.78834cm</Left>
         <Height>0.67937cm</Height>
         <Width>6.44242cm</Width>
         <ZIndex>19</ZIndex>
@@ -2203,8 +2203,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox82</rd:DefaultName>
-        <Top>13.17515cm</Top>
-        <Left>1.945cm</Left>
+        <Top>11.42962cm</Top>
+        <Left>2.16088cm</Left>
         <Height>0.67937cm</Height>
         <Width>3.82281cm</Width>
         <ZIndex>20</ZIndex>
@@ -2236,8 +2236,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Descripcion1</rd:DefaultName>
-        <Top>13.14169cm</Top>
-        <Left>5.81864cm</Left>
+        <Top>11.39616cm</Top>
+        <Left>6.03452cm</Left>
         <Height>0.67937cm</Height>
         <Width>4.74896cm</Width>
         <ZIndex>21</ZIndex>
@@ -2269,8 +2269,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Notas</rd:DefaultName>
-        <Top>12.48877cm</Top>
-        <Left>1.56033cm</Left>
+        <Top>10.74324cm</Top>
+        <Left>1.77621cm</Left>
         <Height>0.47653cm</Height>
         <Width>14.92055cm</Width>
         <ZIndex>22</ZIndex>
@@ -2498,8 +2498,8 @@
         </TablixRowHierarchy>
         <KeepTogether>true</KeepTogether>
         <DataSetName>DataSet2</DataSetName>
-        <Top>14.30378cm</Top>
-        <Left>0.65639cm</Left>
+        <Top>12.55825cm</Top>
+        <Left>0.87227cm</Left>
         <Height>1.2cm</Height>
         <Width>17.29376cm</Width>
         <ZIndex>24</ZIndex>
@@ -2513,7 +2513,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>6.15941in</Height>
+    <Height>5.49274in</Height>
     <Style />
   </Body>
   <Width>7.16944in</Width>
@@ -2983,58 +2983,6 @@
         <rd:DataSetName>DataSetLiq</rd:DataSetName>
         <rd:SchemaPath>C:\Users\Usuario\Source\Repos\AppUrds\UrdsAppGestion\Presentacion\ComunidadesForms\LiquidacionesForms\Informes\DataSetLiqResumen.xsd</rd:SchemaPath>
         <rd:TableName>Liquidacion</rd:TableName>
-        <rd:TableAdapterFillMethod />
-        <rd:TableAdapterGetDataMethod />
-        <rd:TableAdapterName />
-      </rd:DataSetInfo>
-    </DataSet>
-    <DataSet Name="DataSet5">
-      <Query>
-        <DataSourceName>DataSetLiquidacionConIVA</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="IdOp">
-          <DataField>IdOp</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="IdOpDet">
-          <DataField>IdOpDet</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="IdRecibo">
-          <DataField>IdRecibo</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="IdDivisionOP">
-          <DataField>IdDivisionOP</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="IdLiquidacion">
-          <DataField>IdLiquidacion</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="IdCuota">
-          <DataField>IdCuota</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="IVA">
-          <DataField>IVA</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ImpBase">
-          <DataField>ImpBase</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ImpIVA">
-          <DataField>ImpIVA</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>DataSetLiquidacionConIVA</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Usuario\Source\Repos\UrendesApp\UrdsAppGestion\Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularReciboIVA\DataSetLiquidacionConIVA.xsd</rd:SchemaPath>
-        <rd:TableName>IVA</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
         <rd:TableAdapterName />
