@@ -114,6 +114,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormListadoOrganos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormListadoOrganos.Designer.cs">
+      <DependentUpon>FormListadoOrganos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormNuevoGrupo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormNuevoGrupo.Designer.cs">
+      <DependentUpon>FormNuevoGrupo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormSeleccionarOrgano.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1047,10 +1059,10 @@
     <Compile Include="Presentacion\ComunidadesForms\Recibos\VerReporte.Designer.cs">
       <DependentUpon>VerReporte.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\EntidadesForms\FormInsertarGrupo.cs">
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormInsertarGrupo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion\EntidadesForms\FormInsertarGrupo.Designer.cs">
+    <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormInsertarGrupo.Designer.cs">
       <DependentUpon>FormInsertarGrupo.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\EnviosForms\CompletarEnvioForm.cs">
@@ -1449,6 +1461,12 @@
     <EmbeddedResource Include="Presentacion\ComunidadesForms\CargosForms\FormAnyadirOrgano.resx">
       <DependentUpon>FormAnyadirOrgano.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CargosForms\FormListadoOrganos.resx">
+      <DependentUpon>FormListadoOrganos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CargosForms\FormNuevoGrupo.resx">
+      <DependentUpon>FormNuevoGrupo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\CargosForms\FormOrganos.resx">
       <DependentUpon>FormOrganos.cs</DependentUpon>
     </EmbeddedResource>
@@ -1821,7 +1839,7 @@
     <EmbeddedResource Include="Presentacion\ComunidadesForms\Recibos\VerReporte.resx">
       <DependentUpon>VerReporte.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\EntidadesForms\FormInsertarGrupo.resx">
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\CargosForms\FormInsertarGrupo.resx">
       <DependentUpon>FormInsertarGrupo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\EnviosForms\CompletarEnvioForm.resx">

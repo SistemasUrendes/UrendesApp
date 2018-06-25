@@ -708,7 +708,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void dataGridView_tareas_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.ColumnIndex == 7)
+            if (e.ColumnIndex == 8)
             {
                 if (ordFIni == null || ordFIni == "DESC")
                 {
@@ -722,7 +722,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
                 aplicarFiltroTabla();
             }
-            else if (e.ColumnIndex == 8)
+            else if (e.ColumnIndex == 9)
             {
                 if (ordFFin == null || ordFFin == "DESC")
                 {

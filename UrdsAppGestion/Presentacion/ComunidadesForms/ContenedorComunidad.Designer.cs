@@ -70,6 +70,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.documentosYComunicacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.organosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -174,21 +175,21 @@
             // listadoToolStripMenuItem1
             // 
             this.listadoToolStripMenuItem1.Name = "listadoToolStripMenuItem1";
-            this.listadoToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.listadoToolStripMenuItem1.Size = new System.Drawing.Size(141, 22);
             this.listadoToolStripMenuItem1.Text = "Listado";
             this.listadoToolStripMenuItem1.Click += new System.EventHandler(this.listadoToolStripMenuItem1_Click);
             // 
             // operacionesToolStripMenuItem1
             // 
             this.operacionesToolStripMenuItem1.Name = "operacionesToolStripMenuItem1";
-            this.operacionesToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.operacionesToolStripMenuItem1.Size = new System.Drawing.Size(141, 22);
             this.operacionesToolStripMenuItem1.Text = "Operaciones";
             this.operacionesToolStripMenuItem1.Click += new System.EventHandler(this.operacionesToolStripMenuItem1_Click);
             // 
             // anticiposToolStripMenuItem1
             // 
             this.anticiposToolStripMenuItem1.Name = "anticiposToolStripMenuItem1";
-            this.anticiposToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.anticiposToolStripMenuItem1.Size = new System.Drawing.Size(141, 22);
             this.anticiposToolStripMenuItem1.Text = "Pendientes";
             this.anticiposToolStripMenuItem1.Click += new System.EventHandler(this.anticiposToolStripMenuItem1_Click);
             // 
@@ -196,7 +197,7 @@
             // 
             this.emergenciasToolStripMenuItem.Enabled = false;
             this.emergenciasToolStripMenuItem.Name = "emergenciasToolStripMenuItem";
-            this.emergenciasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.emergenciasToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.emergenciasToolStripMenuItem.Text = "Emergencias";
             this.emergenciasToolStripMenuItem.Visible = false;
             // 
@@ -306,6 +307,7 @@
             this.cuentasBancoToolStripMenuItem,
             this.fichaToolStripMenuItem,
             this.cargosToolStripMenuItem,
+            this.organosToolStripMenuItem,
             this.serviciosToolStripMenuItem,
             this.rutaToolStripMenuItem,
             this.toolStripSeparator1,
@@ -406,6 +408,13 @@
             this.tareasToolStripMenuItem.Text = "Tareas";
             this.tareasToolStripMenuItem.Click += new System.EventHandler(this.tareasToolStripMenuItem_Click);
             // 
+            // organosToolStripMenuItem
+            // 
+            this.organosToolStripMenuItem.Name = "organosToolStripMenuItem";
+            this.organosToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.organosToolStripMenuItem.Text = "Organos";
+            this.organosToolStripMenuItem.Click += new System.EventHandler(this.organosToolStripMenuItem_Click);
+            // 
             // ContenedorComunidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -468,5 +477,6 @@
         private System.Windows.Forms.ToolStripMenuItem ejerciciosToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem anticiposToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem serviciosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem organosToolStripMenuItem;
     }
 }

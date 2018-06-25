@@ -143,13 +143,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
             form_anterior.recibirOrgano(idEntidad);
             this.Close();
         }
-
-        private void buttonGrupo_Click(object sender, EventArgs e)
-        {
-            EntidadesForms.FormInsertarGrupo nueva = new EntidadesForms.FormInsertarGrupo(id_comunidad_cargado);
-            nueva.Show();
-        }
-
+        
         private void añadirOrganoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormSeleccionarOrgano nueva = new FormSeleccionarOrgano(this, id_comunidad_cargado,dataGridView_ListadeCargos.SelectedCells[9].Value.ToString());

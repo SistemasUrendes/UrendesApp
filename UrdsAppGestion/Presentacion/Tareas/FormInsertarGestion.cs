@@ -557,7 +557,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             this.idEntidad = idEntidad;
             esperade = "CAR";
-            //textBoxEspera.Text = nombre;
 
             String sqlSelect = "SELECT com_cargos.Cargo FROM com_cargos INNER JOIN (com_comuneros INNER JOIN com_cargoscom ON com_comuneros.IdComunero = com_cargoscom.IdComunero) ON com_cargos.IdCargo = com_cargoscom.IdCargo WHERE(((com_comuneros.IdEntidad) = " + idEntidad + "))";
             textBoxEspera.Text = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
@@ -692,5 +691,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             maskedTextBoxFFin.Text = monthCalendar1.SelectionRange.Start.ToShortDateString();
         }
+        
     }
 }
