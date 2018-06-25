@@ -37,14 +37,12 @@
             this.altaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.borrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verEntidadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.añadirOrganoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.buttonEnviar = new System.Windows.Forms.Button();
-            this.buttonGrupo = new System.Windows.Forms.Button();
-            this.añadirOrganoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ListadeCargos)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -93,7 +91,7 @@
             this.verEntidadToolStripMenuItem,
             this.añadirOrganoToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 92);
             // 
             // altaToolStripMenuItem
             // 
@@ -116,6 +114,13 @@
             this.verEntidadToolStripMenuItem.Text = "Ver Entidad";
             this.verEntidadToolStripMenuItem.Click += new System.EventHandler(this.verEntidadToolStripMenuItem_Click);
             // 
+            // añadirOrganoToolStripMenuItem
+            // 
+            this.añadirOrganoToolStripMenuItem.Name = "añadirOrganoToolStripMenuItem";
+            this.añadirOrganoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.añadirOrganoToolStripMenuItem.Text = "Añadir Organo";
+            this.añadirOrganoToolStripMenuItem.Click += new System.EventHandler(this.añadirOrganoToolStripMenuItem_Click);
+            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(144, 37);
@@ -128,23 +133,13 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(739, 37);
+            this.button4.Location = new System.Drawing.Point(929, 37);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(84, 23);
             this.button4.TabIndex = 5;
             this.button4.Text = "Añadir Cargo";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(829, 37);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(88, 23);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "Añadir Organo";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // label1
             // 
@@ -178,34 +173,15 @@
             this.buttonEnviar.Visible = false;
             this.buttonEnviar.Click += new System.EventHandler(this.buttonEnviar_Click);
             // 
-            // buttonGrupo
-            // 
-            this.buttonGrupo.Location = new System.Drawing.Point(923, 37);
-            this.buttonGrupo.Name = "buttonGrupo";
-            this.buttonGrupo.Size = new System.Drawing.Size(87, 23);
-            this.buttonGrupo.TabIndex = 10;
-            this.buttonGrupo.Text = "Añadir Grupo";
-            this.buttonGrupo.UseVisualStyleBackColor = true;
-            this.buttonGrupo.Click += new System.EventHandler(this.buttonGrupo_Click);
-            // 
-            // añadirOrganoToolStripMenuItem
-            // 
-            this.añadirOrganoToolStripMenuItem.Name = "añadirOrganoToolStripMenuItem";
-            this.añadirOrganoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.añadirOrganoToolStripMenuItem.Text = "Añadir Organo";
-            this.añadirOrganoToolStripMenuItem.Click += new System.EventHandler(this.añadirOrganoToolStripMenuItem_Click);
-            // 
             // FormCargos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 433);
             this.ControlBox = false;
-            this.Controls.Add(this.buttonGrupo);
             this.Controls.Add(this.buttonEnviar);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -234,11 +210,9 @@
         private System.Windows.Forms.ToolStripMenuItem verEntidadToolStripMenuItem;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button buttonEnviar;
-        private System.Windows.Forms.Button buttonGrupo;
         private System.Windows.Forms.ToolStripMenuItem añadirOrganoToolStripMenuItem;
     }
 }
