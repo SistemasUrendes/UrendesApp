@@ -79,7 +79,6 @@ namespace UrdsAppGestión.Persistencia {
             }
         }
 
-
         //Metodo que abre la conexión con los datos descritos.
         public static MySqlConnection abrir() {
             try {
