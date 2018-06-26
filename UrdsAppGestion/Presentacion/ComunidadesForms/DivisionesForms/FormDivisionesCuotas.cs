@@ -62,9 +62,18 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
 
                 cuotasDivision = Persistencia.SentenciasSQL.select(sqlSelect);
                 dataGridView_operacionesComuneros.DataSource = cuotasDivision;
-                ajustarDatagrid();
 
-            }else if (comboBox_filtrofecha.SelectedItem.ToString() == "Operaciones") {
+                dataGridView_operacionesComuneros.Columns["Descripcion1"].HeaderText = "Estado Cuota";
+                dataGridView_operacionesComuneros.Columns["Descripcion"].Width = 220;
+                //dataGridView_operacionesComuneros.Columns["Entidad"].Width = 250;
+                dataGridView_operacionesComuneros.Columns["IdDivision"].Visible = false;
+                dataGridView_operacionesComuneros.Columns["IdRecibo"].Visible = false;
+                //dataGridView_operacionesComuneros.Columns["IDEntidad"].Visible = false;
+
+                //ajustarDatagrid();
+
+            }
+            else if (comboBox_filtrofecha.SelectedItem.ToString() == "Operaciones") {
                 String sqlSelect = "SELECT com_operaciones.IdOp, ctos_entidades.Entidad, com_divisiones.Division, com_operaciones.Descripcion, com_operaciones.Fecha, com_operaciones.ImpOpPte, com_estadosCuotas.Descripcion, com_operaciones.FCertificado, com_operaciones.FEstadoCuota, com_operaciones.IdSubCuenta,com_operaciones.IdEstadoCuota, ctos_entidades.IDEntidad FROM((com_operaciones LEFT JOIN com_divisiones ON com_operaciones.IdDivision = com_divisiones.IdDivision) LEFT JOIN com_estadosCuotas ON com_operaciones.IdEstadoCuota = com_estadosCuotas.IdEstadoCuota) INNER JOIN ctos_entidades ON com_operaciones.IdEntidad = ctos_entidades.IDEntidad WHERE(((com_operaciones.Fecha) >= '" + fechaInicio + "' And (com_operaciones.Fecha) <= '" + fechaFin + "' ) AND (((com_operaciones.IdSubCuenta)=70000) Or (com_operaciones.IdSubCuenta)=70001) AND ((com_operaciones.IdComunidad)=" + id_comunidad_cargado + "))ORDER BY com_operaciones.Fecha ASC;";
 
                 cuotasDivision = Persistencia.SentenciasSQL.select(sqlSelect);

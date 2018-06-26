@@ -188,7 +188,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                 cargarDivisiones();
             }
         }
-
         private void button_editaasociacion_Click(object sender, EventArgs e)
         {
             FormAltaAsociacion nueva = new FormAltaAsociacion(this,id_comunidad,(int)dataGridView_detalles_divisiones.SelectedCells[1].Value, (int)dataGridView_divisiones.SelectedCells[0].Value,dataGridView_divisiones.CurrentCell.RowIndex);
@@ -200,7 +199,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             FormAltaAsociacion nueva = new FormAltaAsociacion(this, (int)dataGridView_divisiones.SelectedCells[0].Value,id_comunidad.ToString(), dataGridView_divisiones.CurrentCell.RowIndex);
             nueva.Show();
         }
-
+        
         private void comboBox_Filtro_SelectionChangeCommitted(object sender, EventArgs e)
         {
             ComboBox senderComboBox = (ComboBox)sender;
@@ -285,7 +284,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                 cargarDetallesDivisiones();
             }
         }
-
         private void button_enviar_Click(object sender, EventArgs e)
         {
             Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name.Contains(donde)).SingleOrDefault<Form>();    
@@ -331,9 +329,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                     this.Close();
                 }
             }
-           
         }
-
         private void cuotasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormDivisionesCuotas nueva = new FormDivisionesCuotas(id_comunidad.ToString(), dataGridView_divisiones.SelectedCells[0].Value.ToString());
@@ -451,5 +447,4 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
         }
     }
 }
-
 

@@ -180,7 +180,7 @@
             this.toolStripTextBox2,
             this.filtroAvanzadoToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(191, 123);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(191, 145);
             // 
             // reToolStripMenuItem
             // 
