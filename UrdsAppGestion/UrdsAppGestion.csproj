@@ -1291,12 +1291,6 @@
     <Compile Include="Presentacion\PlanContableForms\FormPlanContableAlta.Designer.cs">
       <DependentUpon>FormPlanContableAlta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\Tareas\FormCorreoGrupo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentacion\Tareas\FormCorreoGrupo.Designer.cs">
-      <DependentUpon>FormCorreoGrupo.cs</DependentUpon>
-    </Compile>
     <Compile Include="Presentacion\Tareas\FormGestionesConfirguracion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1966,9 +1960,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormCatProcedimiento.resx">
       <DependentUpon>FormCatProcedimiento.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\Tareas\FormCorreoGrupo.resx">
-      <DependentUpon>FormCorreoGrupo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormDuplicarTarea.resx">
       <DependentUpon>FormDuplicarTarea.cs</DependentUpon>

@@ -18,6 +18,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
         FormVerTarea form_anterior1;
         FormInsertarServicioTarea form_anterior2;
         FormTareasPrincipal form_anterior3;
+        ComunidadesForms.CargosForms.FormListadoOrganos form_anterior4;
+        ComunidadesForms.CargosForms.FormNuevoGrupo form_anterior5;
 
         public FormSeleccionarBloque(FormVerTarea form_anterior1, String idComunidad, String idTarea)
         {
@@ -48,6 +50,21 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.form_anterior3 = form_anterior3;
         }
 
+
+        public FormSeleccionarBloque(ComunidadesForms.CargosForms.FormListadoOrganos form_anterior4, String idComunidad)
+        {
+            InitializeComponent();
+            this.idComunidad = idComunidad;
+            this.form_anterior4 = form_anterior4;
+        }
+
+        public FormSeleccionarBloque(ComunidadesForms.CargosForms.FormNuevoGrupo form_anterior5, String idComunidad)
+        {
+            InitializeComponent();
+            this.idComunidad = idComunidad;
+            this.form_anterior5 = form_anterior5;
+        }
+
         private void FormSeleccionarBloque_Load(object sender, EventArgs e)
         {
             cargarBloques();
@@ -64,9 +81,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 sqlSelect = "SELECT exp_area.IdBloque, exp_area.Nombre AS Descripcion,'true' AS Selected FROM exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea WHERE(((exp_area.IdAreaPrevio) = 0) AND((exp_areaTarea.IdTarea) = " + idTarea + "))";
             }
+            else if (form_anterior4 != null || form_anterior5 != null)
+            {
+                sqlSelect = "SELECT com_bloques.IdBloque, com_bloques.Descripcion,'true' AS Selected  FROM com_bloques WHERE(((com_bloques.IdComunidad) = '" + idComunidad + "'))";
+            }
             else if(idTarea == null)
             {
-                sqlSelect = "SELECT exp_area.IdArea AS IdBloque, exp_area.Nombre,'true' AS Selected FROM com_comunidades INNER JOIN (exp_area INNER JOIN com_bloques ON exp_area.IdBloque = com_bloques.IdBloque) ON com_comunidades.IdComunidad = com_bloques.IdComunidad WHERE(((com_comunidades.IdComunidad) = " + idComunidad + ") AND((exp_area.IdAreaPrevio) = 0) AND((com_bloques.Baja) = 0))";
+                sqlSelect = "SELECT exp_area.IdArea AS IdBloque, exp_area.Nombre,'true' AS Selected FROM com_comunidades INNER JOIN (exp_area INNER JOIN com_bloques ON exp_area.IdBloque = com_bloques.IdBloque) ON com_comunidades.IdComunidad = com_bloques.IdComunidad WHERE(((com_comunidades.IdComunidad) = '" + idComunidad + "') AND((exp_area.IdAreaPrevio) = 0) AND((com_bloques.Baja) = 0))";
             }
             else
             {
@@ -167,6 +188,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (form_anterior2 != null) form_anterior2.recibirBloque(dataGridViewBloques.SelectedRows[0].Cells[1].Value.ToString());
             if (form_anterior3 != null) form_anterior3.recibirBloque(dataGridViewBloques.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewBloques.SelectedRows[0].Cells[1].Value.ToString());
+            if (form_anterior4 != null) form_anterior4.recibirBloque(dataGridViewBloques.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewBloques.SelectedRows[0].Cells[1].Value.ToString());
+            if (form_anterior5 != null) form_anterior5.recibirBloque(dataGridViewBloques.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewBloques.SelectedRows[0].Cells[1].Value.ToString());
             this.Close();
         }
         
@@ -176,9 +199,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (e.KeyCode == Keys.Enter)
             {
                 if (form_anterior1 != null) guardarBloques();
-                else if (form_anterior2 != null) form_anterior2.recibirBloque(dataGridViewBloques.SelectedRows[0].Cells[1].Value.ToString());
-                else if (form_anterior3 != null) form_anterior3.recibirBloque(dataGridViewBloques.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewBloques.SelectedRows[0].Cells[1].Value.ToString());
-                this.Close();
+                else enviarbloque();
             }
             if (e.KeyCode == Keys.Space)
             {
