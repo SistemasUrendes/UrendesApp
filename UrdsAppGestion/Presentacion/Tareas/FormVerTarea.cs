@@ -243,12 +243,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         
         public void cargarGestiones()
         {
-
-            //String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin,If(exp_gestiones.TipoContacto = 'T',exp_contactos.Nombre ,If(exp_gestiones.TipoContacto = 'G',(SELECT com_cargos.Cargo FROM com_cargos INNER JOIN (com_comuneros INNER JOIN com_cargoscom ON com_comuneros.IdComunero = com_cargoscom.IdComunero) ON com_cargos.IdCargo = com_cargoscom.IdCargo WHERE(((com_comuneros.IdEntidad) = exp_gestiones.IdEntidad)) LIMIT 1 ),ctos_entidades.Entidad)) AS `Espera de`, exp_gestiones.TipoContacto AS T FROM exp_contactos RIGHT JOIN ((((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion) ON exp_contactos.IdDetEntTarea = exp_gestiones.IdEntidad WHERE(((exp_gestiones.IdTarea) = " + idTarea + ")";
-
-            //String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_gestiones.Descripción, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin,If(exp_gestiones.TipoContacto = 'T',exp_contactos.Nombre ,If(exp_gestiones.TipoContacto = 'G',(SELECT com_organos.Nombre FROM com_organos WHERE(((com_organos.IdOrgano) = exp_gestiones.IdEntidad)) LIMIT 1 ),ctos_entidades.Entidad)) AS `Espera de`, exp_gestiones.TipoContacto AS T FROM exp_contactos RIGHT JOIN ((((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN exp_niveles ON exp_gestiones.IdNivel = exp_niveles.IdNivel) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion) ON exp_contactos.IdDetEntTarea = exp_gestiones.IdEntidad WHERE(((exp_gestiones.IdTarea) = " + idTarea + ")";
-
-            String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Descripción, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin,If(exp_gestiones.TipoContacto = 'TMP', exp_contactos.Nombre, If(exp_gestiones.TipoContacto = 'CAR', (SELECT com_cargos.Cargo FROM com_cargos INNER JOIN(com_comuneros INNER JOIN com_cargoscom ON com_comuneros.IdComunero = com_cargoscom.IdComunero) ON com_cargos.IdCargo = com_cargoscom.IdCargo WHERE(((com_comuneros.IdEntidad) = exp_gestiones.IdEntidad)) LIMIT 1), If(exp_gestiones.TipoContacto = 'GOB', (SELECT exp_categoriaContactos.Nombre FROM exp_categoriaContactos WHERE(((exp_gestiones.IdEntidad) = exp_categoriaContactos.IdGrupo))), ctos_entidades.Entidad))) AS `Espera de`, exp_gestiones.TipoContacto AS T FROM exp_categoriaContactos RIGHT JOIN(exp_contactos RIGHT JOIN(((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion) ON exp_contactos.IdDetEntTarea = exp_gestiones.IdEntidad) ON exp_categoriaContactos.IdGrupo = exp_gestiones.IdEntidad WHERE(((exp_gestiones.IdTarea) = " + idTarea + ")";
+            String sqlSelect = "SELECT exp_gestiones.IdGestión AS Id, exp_gestiones.Orden AS Ord, ctos_urendes.Usuario, exp_tipogestion.Descripcion AS `Tipo Gestión`, exp_gestiones.Descripción, exp_gestiones.Importante AS S, exp_gestiones.FIni, exp_gestiones.FSeguir AS FAgenda, exp_gestiones.FMax AS `Fecha Límite`, exp_gestiones.FFin,If(exp_gestiones.TipoContacto = 'TMP', exp_contactos.Nombre, If(exp_gestiones.TipoContacto = 'CAR', (SELECT com_cargos.Cargo FROM com_cargos INNER JOIN(com_comuneros INNER JOIN com_cargoscom ON com_comuneros.IdComunero = com_cargoscom.IdComunero) ON com_cargos.IdCargo = com_cargoscom.IdCargo WHERE(((com_comuneros.IdEntidad) = exp_gestiones.IdEntidad) AND((com_cargoscom.FFin)Is Null)) LIMIT 1), If(exp_gestiones.TipoContacto = 'GOB', (SELECT exp_categoriaContactos.Nombre FROM exp_categoriaContactos WHERE(((exp_gestiones.IdEntidad) = exp_categoriaContactos.IdGrupo))), ctos_entidades.Entidad))) AS `Espera de`, exp_gestiones.TipoContacto AS T FROM exp_categoriaContactos RIGHT JOIN(exp_contactos RIGHT JOIN(((exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion) ON exp_contactos.IdDetEntTarea = exp_gestiones.IdEntidad) ON exp_categoriaContactos.IdGrupo = exp_gestiones.IdEntidad WHERE(((exp_gestiones.IdTarea) = " + idTarea + ")";
 
             //Abiertas
             if (comboBoxEstadoGestion.SelectedIndex == 0)
@@ -1287,19 +1282,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
             }
         }
-
-        private void toolStripMenuItemCorreoGrupo_Click(object sender, EventArgs e)
-        {
-            String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
-            
-            Tareas.FormCorreoGrupo nueva = new FormCorreoGrupo(idGestion,idEntidad,idTarea, textBoxDescripcion.Text,idComunidad.ToString());
-            nueva.ControlBox = true;
-            nueva.TopMost = true;
-            nueva.WindowState = FormWindowState.Normal;
-            nueva.StartPosition = FormStartPosition.CenterScreen;
-            nueva.Show();
-        }
-
+        
         private void comboBoxTipo_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (comboBoxTipo.SelectedValue.ToString() == "2")

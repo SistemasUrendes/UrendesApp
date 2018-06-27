@@ -14,26 +14,59 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
     {
         String idComunidad;
         DataTable grupos;
+        String idBloque;
+        Tareas.FormInsertarGestion formAnt;
         public FormListadoOrganos(String idComunidad)
         {
             InitializeComponent();
             this.idComunidad = idComunidad;
         }
 
+
+        public FormListadoOrganos(Tareas.FormInsertarGestion formAnt, String idComunidad)
+        {
+            InitializeComponent();
+            this.idComunidad = idComunidad;
+            this.formAnt = formAnt;
+        }
+
         private void FormListadoOrganos_Load(object sender, EventArgs e)
         {
             cargarGrupos();
+            if (formAnt != null)
+            {
+                buttonEnviar.Visible = true;
+            }
         }
         
         public void cargarGrupos()
         {
-            String sqlComboGrupo = "SELECT exp_categoriaContactos.IdGrupo,exp_categoriaContactos.Nombre  FROM exp_categoriaContactos WHERE (exp_categoriaContactos.IdComunidad) = '" + idComunidad + "' AND FBaja Is Null";
-            grupos = Persistencia.SentenciasSQL.select(sqlComboGrupo);
+            //String sqlComboGrupo = "SELECT exp_categoriaContactos.IdGrupo,exp_categoriaContactos.Nombre  FROM exp_categoriaContactos WHERE (exp_categoriaContactos.IdComunidad) = '" + idComunidad + "' AND FBaja Is Null";
+            String sqlSelect = "SELECT exp_categoriaContactos.IdGrupo, exp_categoriaContactos.Nombre, com_bloques.Descripcion AS Bloque, DATE_FORMAT(Coalesce(exp_categoriaContactos.FBaja, 'ok'), '%d/%m/%Y') AS FBaja FROM exp_categoriaContactos LEFT JOIN com_bloques ON exp_categoriaContactos.IdBloque = com_bloques.IdBloque WHERE(((exp_categoriaContactos.IdComunidad) = '" + idComunidad + "'))";
+            grupos = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewOrganos.DataSource = grupos;
 
             if (dataGridViewOrganos.Rows.Count > 0 )
             {
                 dataGridViewOrganos.Columns["IdGrupo"].Visible = false;
+                dataGridViewOrganos.Columns["FBaja"].Width = 90;
+                dataGridViewOrganos.Columns["FBaja"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                dataGridViewOrganos.Columns["FBaja"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+        }
+
+        public void cargarGruposBloque()
+        {
+            String sqlSelect = "SELECT exp_categoriaContactos.IdGrupo, exp_categoriaContactos.Nombre, com_bloques.Descripcion AS Bloque, DATE_FORMAT(Coalesce(exp_categoriaContactos.FBaja, 'ok'), '%d/%m/%Y') AS FBaja FROM exp_categoriaContactos LEFT JOIN com_bloques ON exp_categoriaContactos.IdBloque = com_bloques.IdBloque WHERE (((exp_categoriaContactos.IdComunidad) = '" + idComunidad + "') AND (exp_categoriaContactos.IdBloque = '" + idBloque + "'))";
+            grupos = Persistencia.SentenciasSQL.select(sqlSelect);
+            dataGridViewOrganos.DataSource = grupos;
+
+            if (dataGridViewOrganos.Rows.Count > 0)
+            {
+                dataGridViewOrganos.Columns["IdGrupo"].Visible = false;
+                dataGridViewOrganos.Columns["FBaja"].Width = 90;
+                dataGridViewOrganos.Columns["FBaja"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                dataGridViewOrganos.Columns["FBaja"].SortMode = DataGridViewColumnSortMode.NotSortable;
             }
         }
 
@@ -89,6 +122,33 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
                     contextMenuStrip1.Show(Cursor.Position);
                 }
             }
+        }
+
+        private void buttonSelBloque_Click(object sender, EventArgs e)
+        {
+            Tareas.FormSeleccionarBloque nueva = new Tareas.FormSeleccionarBloque(this, idComunidad);
+            nueva.Show();
+        }
+
+        public void recibirBloque(String idBloque, String bloque)
+        {
+            textBoxBloque.Text = bloque;
+            this.idBloque = idBloque;
+
+            cargarGruposBloque();
+        }
+
+        private void textBoxOrgano_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            textBoxBloque.Text = "";
+            this.idBloque = null;
+            cargarGrupos();
+        }
+
+        private void buttonEnviar_Click(object sender, EventArgs e)
+        {
+            formAnt.recibirGrupo(dataGridViewOrganos.Rows[0].Cells[0].Value.ToString(), dataGridViewOrganos.Rows[0].Cells[1].Value.ToString());
+            this.Close();
         }
     }
 }

@@ -127,8 +127,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void cargarGestion()
         {
-
-            //String sqlSelect = "SELECT exp_gestiones.Descripción, exp_gestiones.IdUser, exp_gestiones.FIni, exp_gestiones.FSeguir, exp_gestiones.FMax, exp_gestiones.FFin, exp_gestiones.Importante, ctos_entidades.Entidad, exp_gestiones.IdTipoGestion FROM exp_gestiones LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
             String sqlSelect = "SELECT exp_gestiones.Descripción, exp_gestiones.IdUser, exp_gestiones.FIni, exp_gestiones.FSeguir, exp_gestiones.FMax, exp_gestiones.FFin, exp_gestiones.Importante, If(exp_gestiones.TipoContacto = 'GOB',exp_categoriaContactos.Nombre,ctos_entidades.Entidad) AS Espera, exp_gestiones.IdTipoGestion FROM(exp_gestiones LEFT JOIN ctos_entidades ON exp_gestiones.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN exp_categoriaContactos ON exp_gestiones.IdEntidad = exp_categoriaContactos.IdGrupo WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
 
             infoGestion = Persistencia.SentenciasSQL.select(sqlSelect);
@@ -558,7 +556,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.idEntidad = idEntidad;
             esperade = "CAR";
 
-            String sqlSelect = "SELECT com_cargos.Cargo FROM com_cargos INNER JOIN (com_comuneros INNER JOIN com_cargoscom ON com_comuneros.IdComunero = com_cargoscom.IdComunero) ON com_cargos.IdCargo = com_cargoscom.IdCargo WHERE(((com_comuneros.IdEntidad) = " + idEntidad + "))";
+            //String sqlSelect = "SELECT com_cargos.Cargo FROM com_cargos INNER JOIN (com_comuneros INNER JOIN com_cargoscom ON com_comuneros.IdComunero = com_cargoscom.IdComunero) ON com_cargos.IdCargo = com_cargoscom.IdCargo WHERE(((com_comuneros.IdEntidad) = " + idEntidad + "))";
+            String sqlSelect = "SELECT com_cargos.Cargo FROM com_cargos INNER JOIN(com_comuneros INNER JOIN com_cargoscom ON com_comuneros.IdComunero = com_cargoscom.IdComunero) ON com_cargos.IdCargo = com_cargoscom.IdCargo WHERE(((com_comuneros.IdEntidad) = '" + idEntidad + "') AND((com_cargoscom.FFin)Is Null))";
+
             textBoxEspera.Text = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
         }
         
@@ -620,7 +620,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     nueva.Show();
                 }
             }
-            //ORGANO GOBIERNO
+            //CARGOS GOBIERNO
             else if (comboBoxEspera.SelectedIndex == 3)
             {
                 if (idComunidad == 0)
@@ -630,7 +630,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 else
                 {
                     ComunidadesForms.CargosForms.FormCargos nueva = new ComunidadesForms.CargosForms.FormCargos(this,idComunidad.ToString());
-                    //ComunidadesForms.CargosForms.FormSeleccionarOrgano nueva = new ComunidadesForms.CargosForms.FormSeleccionarOrgano(this, idComunidad.ToString());
                     nueva.ControlBox = true;
                     nueva.TopMost = true;
                     nueva.WindowState = FormWindowState.Normal;
@@ -654,16 +653,15 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 nueva.StartPosition = FormStartPosition.CenterScreen;
                 nueva.Show();
             }
-            //GRUPO
+            //ORGANOS GOBIERNO
             else if (comboBoxEspera.SelectedIndex == 5)
             {
-                
                 if (idTarea == null)
                 {
                     String sqlSelect = "SELECT exp_gestiones.IdTarea FROM exp_gestiones WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
                     idTarea = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
                 }
-                FormCorreoGrupo nueva = new FormCorreoGrupo(this, idComunidad.ToString());
+                ComunidadesForms.CargosForms.FormListadoOrganos nueva = new ComunidadesForms.CargosForms.FormListadoOrganos(this, idComunidad.ToString());
                 nueva.ControlBox = true;
                 nueva.TopMost = true;
                 nueva.WindowState = FormWindowState.Normal;

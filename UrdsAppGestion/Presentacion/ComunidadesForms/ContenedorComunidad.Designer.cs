@@ -60,6 +60,7 @@
             this.cuentasBancoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fichaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cargosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.organosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serviciosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rutaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -70,7 +71,6 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.documentosYComunicacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.organosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -342,6 +342,13 @@
             this.cargosToolStripMenuItem.Text = "Cargos";
             this.cargosToolStripMenuItem.Click += new System.EventHandler(this.cargosToolStripMenuItem_Click);
             // 
+            // organosToolStripMenuItem
+            // 
+            this.organosToolStripMenuItem.Name = "organosToolStripMenuItem";
+            this.organosToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.organosToolStripMenuItem.Text = "Org. Gobierno";
+            this.organosToolStripMenuItem.Click += new System.EventHandler(this.organosToolStripMenuItem_Click);
+            // 
             // serviciosToolStripMenuItem
             // 
             this.serviciosToolStripMenuItem.Name = "serviciosToolStripMenuItem";
@@ -407,13 +414,6 @@
             this.tareasToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.tareasToolStripMenuItem.Text = "Tareas";
             this.tareasToolStripMenuItem.Click += new System.EventHandler(this.tareasToolStripMenuItem_Click);
-            // 
-            // organosToolStripMenuItem
-            // 
-            this.organosToolStripMenuItem.Name = "organosToolStripMenuItem";
-            this.organosToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.organosToolStripMenuItem.Text = "Organos";
-            this.organosToolStripMenuItem.Click += new System.EventHandler(this.organosToolStripMenuItem_Click);
             // 
             // ContenedorComunidad
             // 

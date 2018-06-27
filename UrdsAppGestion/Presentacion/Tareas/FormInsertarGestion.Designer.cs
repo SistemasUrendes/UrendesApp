@@ -256,7 +256,7 @@
             "Proveedores",
             "Cargos",
             "Contactos",
-            "Grupo"});
+            "Organos"});
             this.comboBoxEspera.Location = new System.Drawing.Point(87, 114);
             this.comboBoxEspera.Name = "comboBoxEspera";
             this.comboBoxEspera.Size = new System.Drawing.Size(158, 21);

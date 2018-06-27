@@ -15,6 +15,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
         String idGrupo;
         FormListadoOrganos formAnt;
         String idComunidad;
+        String idBloque;
 
         public FormNuevoGrupo(FormListadoOrganos formAnt, String idGrupo, String idComunidad)
         {
@@ -48,18 +49,37 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
-            if (idGrupo != null)
+            if (idBloque != null)
             {
-                String sqlUpdate = "UPDATE exp_categoriaContactos SET Nombre = '" + textBox1.Text + "' WHERE IdGrupo = " + idGrupo;
-                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                if (idGrupo != null)
+                {
+                    String sqlUpdate = "UPDATE exp_categoriaContactos SET Nombre = '" + textBox1.Text + "',IdBloque = '" + idBloque + "' WHERE IdGrupo = " + idGrupo;
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                }
+                else
+                {
+                    String sqlInsert = "INSERT INTO exp_categoriaContactos (Nombre,IdComunidad,IdBloque) VALUES ('" + textBox1.Text + "','" + idComunidad + "','" + idBloque + "')";
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+                }
+                formAnt.cargarGrupos();
+                this.Close();
             }
             else
             {
-                String sqlInsert = "INSERT INTO exp_categoriaContactos (Nombre,IdComunidad) VALUES ('" + textBox1.Text + "','" + idComunidad + "')";
-                Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+                MessageBox.Show("Selecciona un bloque para el Grupo.");
             }
-            formAnt.cargarGrupos();
-            this.Close();
+        }
+
+        private void buttonSelBloque_Click(object sender, EventArgs e)
+        {
+            Tareas.FormSeleccionarBloque nueva = new Tareas.FormSeleccionarBloque(this, idComunidad);
+            nueva.Show();
+        }
+
+        public void recibirBloque(String idBloque, String bloque)
+        {
+            textBoxBloque.Text = bloque;
+            this.idBloque = idBloque;
         }
     }
 }
