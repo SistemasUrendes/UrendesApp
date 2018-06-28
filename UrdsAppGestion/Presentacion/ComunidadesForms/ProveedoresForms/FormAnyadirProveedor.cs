@@ -80,11 +80,13 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ProveedoresForms
                 nueva.WindowState = FormWindowState.Normal;
                 nueva.StartPosition = FormStartPosition.CenterScreen;
                 nueva.textBox_buscar_nombre.Select();
-                nueva.textBox_buscar_nombre.Location = new Point(nueva.textBox_buscar_nombre.Location.X, nueva.textBox_buscar_nombre.Location.Y + 60);
+                nueva.textBox_buscar_nombre.Location = new Point(nueva.textBox_buscar_nombre.Location.X+230, nueva.textBox_buscar_nombre.Location.Y + 60);
                 nueva.label2.Location = new Point(label2.Location.X + 870, nueva.label2.Location.Y + 60);
                 nueva.label3.Visible = false;
                 nueva.label4.Visible = false;
+                nueva.label5.Visible = false;
                 nueva.textBox_correo_buscar.Visible = false;
+                nueva.textBox_categoria.Visible = false;
                 nueva.textBox_telefono_buscar.Visible = false;
                 nueva.dataGridView1.TabIndex = 2;
                 nueva.textBox_buscar_nombre.TabIndex = 1;

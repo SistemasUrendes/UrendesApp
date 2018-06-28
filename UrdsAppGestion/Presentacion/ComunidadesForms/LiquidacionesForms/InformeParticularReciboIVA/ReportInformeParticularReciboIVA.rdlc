@@ -1025,7 +1025,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.83813cm</Height>
+              <Height>0.7323cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -1083,7 +1083,7 @@
                         </TablixColumns>
                         <TablixRows>
                           <TablixRow>
-                            <Height>0.47198cm</Height>
+                            <Height>0.41906cm</Height>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
@@ -1318,7 +1318,7 @@
                             </TablixCells>
                           </TablixRow>
                           <TablixRow>
-                            <Height>0.36615cm</Height>
+                            <Height>0.31323cm</Height>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
@@ -1566,7 +1566,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.62646cm</Height>
+              <Height>0.22958cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -1627,6 +1627,11 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1709,7 +1714,7 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>4.5547cm</Top>
         <Left>0.43059cm</Left>
-        <Height>2.61167cm</Height>
+        <Height>2.10896cm</Height>
         <Width>17.29376cm</Width>
         <ZIndex>16</ZIndex>
         <Style>
