@@ -162,5 +162,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
             }
 
         }
+
+        private void buttonInformeJunta_Click(object sender, EventArgs e)
+        {
+            FormVerInformeJunta nueva = new FormVerInformeJunta(listBox_bloques.SelectedValue.ToString(),idComunidad, listBox_bloques.GetItemText(listBox_bloques.SelectedItem));
+            nueva.Show();
+            this.Close();
+        }
     }
 }

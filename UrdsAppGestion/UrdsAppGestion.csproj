@@ -138,6 +138,23 @@
     <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormPlantilla\FormDetalleCuotaCambiar.Designer.cs">
       <DependentUpon>FormDetalleCuotaCambiar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\FormVerInformeJunta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\FormVerInformeJunta.Designer.cs">
+      <DependentUpon>FormVerInformeJunta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\DataSetListadoJuntasBloque.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetListadoJuntasBloque.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\FormListadoJuntasBloque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\FormListadoJuntasBloque.Designer.cs">
+      <DependentUpon>FormListadoJuntasBloque.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\ComunidadesForms\FondosForms\FormCrearStock.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1541,6 +1558,12 @@
     <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\FormSubcuotaManual.resx">
       <DependentUpon>FormSubcuotaManual.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\FormVerInformeJunta.resx">
+      <DependentUpon>FormVerInformeJunta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\FormListadoJuntasBloque.resx">
+      <DependentUpon>FormListadoJuntasBloque.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\FormRangoFechasCuotasEmitidas.resx">
       <DependentUpon>FormRangoFechasCuotasEmitidas.cs</DependentUpon>
     </EmbeddedResource>
@@ -1549,6 +1572,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\InformeDeudasDivision.rdlc" />
     <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\ReportDivisionesCuotas.rdlc" />
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\ReportListadoJuntasBloque.rdlc" />
     <EmbeddedResource Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\VistaInformeDeudasDivision.resx">
       <DependentUpon>VistaInformeDeudasDivision.cs</DependentUpon>
     </EmbeddedResource>
@@ -2099,6 +2123,17 @@
     </None>
     <None Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\DataSetDeudasDivision.xss">
       <DependentUpon>DataSetDeudasDivision.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\DataSetListadoJuntasBloque.xsc">
+      <DependentUpon>DataSetListadoJuntasBloque.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\DataSetListadoJuntasBloque.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetListadoJuntasBloque.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\DataSetListadoJuntasBloque.xss">
+      <DependentUpon>DataSetListadoJuntasBloque.xsd</DependentUpon>
     </None>
     <None Include="Presentacion\ComunidadesForms\FondosForms\Informes\DataSetFondosInforme.xsc">
       <DependentUpon>DataSetFondosInforme.xsd</DependentUpon>

@@ -47,6 +47,7 @@
             this.button_seleccionarTodos = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox_buscar = new System.Windows.Forms.TextBox();
+            this.buttonInformeJunta = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_lista)).BeginInit();
             this.SuspendLayout();
             // 
@@ -221,11 +222,22 @@
             this.textBox_buscar.TabIndex = 18;
             this.textBox_buscar.TextChanged += new System.EventHandler(this.textBox_buscar_TextChanged);
             // 
+            // buttonInformeJunta
+            // 
+            this.buttonInformeJunta.Location = new System.Drawing.Point(139, 4);
+            this.buttonInformeJunta.Name = "buttonInformeJunta";
+            this.buttonInformeJunta.Size = new System.Drawing.Size(84, 22);
+            this.buttonInformeJunta.TabIndex = 19;
+            this.buttonInformeJunta.Text = "Informe Junta";
+            this.buttonInformeJunta.UseVisualStyleBackColor = true;
+            this.buttonInformeJunta.Click += new System.EventHandler(this.buttonInformeJunta_Click);
+            // 
             // FormBloquesJunta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1307, 649);
+            this.Controls.Add(this.buttonInformeJunta);
             this.Controls.Add(this.textBox_buscar);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button_seleccionarTodos);
@@ -275,5 +287,6 @@
         private System.Windows.Forms.Button button_seleccionarTodos;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox_buscar;
+        private System.Windows.Forms.Button buttonInformeJunta;
     }
 }

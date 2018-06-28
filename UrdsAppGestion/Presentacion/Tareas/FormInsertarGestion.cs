@@ -580,7 +580,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 Entidades nueva = new Entidades(this, Nombre);
                 nueva.ControlBox = true;
-                nueva.TopMost = true;
                 nueva.WindowState = FormWindowState.Normal;
                 nueva.StartPosition = FormStartPosition.CenterScreen;
                 nueva.textBox_buscar_nombre.Select();
@@ -597,7 +596,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 {
                     ComunidadesForms.Comuneros nueva = new ComunidadesForms.Comuneros(this, "FormInsertarGestion", idComunidad.ToString());
                     nueva.ControlBox = true;
-                    nueva.TopMost = true;
                     nueva.WindowState = FormWindowState.Normal;
                     nueva.StartPosition = FormStartPosition.CenterScreen;
                     nueva.Show();
@@ -614,7 +612,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 {
                     ComunidadesForms.OperacionesForms.FormOperacionesListadoProveedores nueva = new ComunidadesForms.OperacionesForms.FormOperacionesListadoProveedores(this, "FormInsertarGestion", idComunidad.ToString());
                     nueva.ControlBox = true;
-                    nueva.TopMost = true;
                     nueva.WindowState = FormWindowState.Normal;
                     nueva.StartPosition = FormStartPosition.CenterScreen;
                     nueva.Show();
@@ -631,7 +628,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 {
                     ComunidadesForms.CargosForms.FormCargos nueva = new ComunidadesForms.CargosForms.FormCargos(this,idComunidad.ToString());
                     nueva.ControlBox = true;
-                    nueva.TopMost = true;
                     nueva.WindowState = FormWindowState.Normal;
                     nueva.StartPosition = FormStartPosition.CenterScreen;
                     nueva.Show();
@@ -648,7 +644,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
                 FormVerContactos nueva = new FormVerContactos(this,"FormInsertarGestion",idTarea,idComunidad.ToString());
                 nueva.ControlBox = true;
-                nueva.TopMost = true;
                 nueva.WindowState = FormWindowState.Normal;
                 nueva.StartPosition = FormStartPosition.CenterScreen;
                 nueva.Show();
@@ -663,7 +658,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
                 ComunidadesForms.CargosForms.FormListadoOrganos nueva = new ComunidadesForms.CargosForms.FormListadoOrganos(this, idComunidad.ToString());
                 nueva.ControlBox = true;
-                nueva.TopMost = true;
                 nueva.WindowState = FormWindowState.Normal;
                 nueva.StartPosition = FormStartPosition.CenterScreen;
                 nueva.Show();

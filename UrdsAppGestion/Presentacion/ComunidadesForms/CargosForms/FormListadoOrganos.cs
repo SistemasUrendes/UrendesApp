@@ -79,6 +79,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
         private void cambiarNombreToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormNuevoGrupo nueva = new FormNuevoGrupo(this, dataGridViewOrganos.SelectedRows[0].Cells[0].Value.ToString(),idComunidad);
+            nueva.ControlBox = true;
+            nueva.WindowState = FormWindowState.Normal;
+            nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
         }
 
@@ -106,6 +109,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
         private void buttonNuevo_Click(object sender, EventArgs e)
         {
             FormNuevoGrupo nueva = new FormNuevoGrupo(this,idComunidad);
+            nueva.ControlBox = true;
+            nueva.WindowState = FormWindowState.Normal;
+            nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
         }
 

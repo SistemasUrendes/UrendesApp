@@ -413,7 +413,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
                 Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, fInicio,idComunidad);
                 nueva.ControlBox = true;
-                nueva.TopMost = true;
                 nueva.WindowState = FormWindowState.Normal;
                 nueva.StartPosition = FormStartPosition.CenterScreen;
                 nueva.Show();
@@ -425,7 +424,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 comboBoxEstadoGestion.SelectedIndex = 2;
                 Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, fInicio, idComunidad);
                 nueva.ControlBox = true;
-                nueva.TopMost = true;
                 nueva.WindowState = FormWindowState.Normal;
                 nueva.StartPosition = FormStartPosition.CenterScreen;
                 nueva.Show();
@@ -439,7 +437,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
                 Tareas.FormInsertarSeguimiento nueva = new FormInsertarSeguimiento(this, idGestion);
                 nueva.ControlBox = true;
-                nueva.TopMost = true;
                 nueva.WindowState = FormWindowState.Normal;
                 nueva.StartPosition = FormStartPosition.CenterScreen;
                 nueva.Show();
@@ -541,7 +538,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
             Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea,idGestion,fInicio, idComunidad);
             nueva.ControlBox = true;
-            nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;
             nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
@@ -552,7 +548,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String idSeguimiento = dataGridViewSeguimientos.SelectedRows[0].Cells[0].Value.ToString();
             Tareas.FormInsertarSeguimiento nueva = new FormInsertarSeguimiento(this, idGestion, idSeguimiento);
             nueva.ControlBox = true;
-            nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;
             nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
@@ -562,7 +557,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this,idGestion, idComunidad);
             nueva.ControlBox = true;
-            nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;
             nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
@@ -574,7 +568,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
             Tareas.FormInsertarSeguimiento nueva = new FormInsertarSeguimiento(this,idGestion,idSeguimiento,false);
             nueva.ControlBox = true;
-            nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;
             nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
@@ -897,7 +890,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 maskedTextBoxReferencia.Text = "";
                 Entidades nueva = new Entidades(this, this.Name);
                 nueva.ControlBox = true;
-                nueva.TopMost = true;
                 nueva.WindowState = FormWindowState.Normal;
                 nueva.StartPosition = FormStartPosition.CenterScreen;
                 nueva.textBox_buscar_nombre.Select();
@@ -1057,7 +1049,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 Tareas.FormInsertarContacto nueva = new FormInsertarContacto(this, idTarea,idComunidad.ToString());
                 nueva.ControlBox = true;
-                nueva.TopMost = true;
                 nueva.WindowState = FormWindowState.Normal;
                 nueva.StartPosition = FormStartPosition.CenterScreen;
                 nueva.Show();
@@ -1069,7 +1060,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String idContacto = dataGridViewContactos.SelectedRows[0].Cells[0].Value.ToString();
             Tareas.FormInsertarContacto nueva = new FormInsertarContacto(this, idTarea, idContacto,idComunidad.ToString(), false);
             nueva.ControlBox = true;
-            nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;
             nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
@@ -1097,7 +1087,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String idContacto = dataGridViewContactos.SelectedRows[0].Cells[0].Value.ToString();
             Tareas.FormInsertarContacto nueva = new FormInsertarContacto(this, idTarea, idContacto,idComunidad.ToString());
             nueva.ControlBox = true;
-            nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;
             nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
@@ -1384,7 +1373,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
                     Tareas.FormInsertarContacto nueva = new Tareas.FormInsertarContacto(this, idTarea, idContacto, idComunidad.ToString(), false);
                     nueva.ControlBox = true;
-                    nueva.TopMost = true;
                     nueva.WindowState = FormWindowState.Normal;
                     nueva.StartPosition = FormStartPosition.CenterScreen;
                     nueva.Show();
@@ -1399,7 +1387,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
                     EntidadesForms.VerEntidad nueva = new EntidadesForms.VerEntidad(Int32.Parse(idEntidad));
                     nueva.ControlBox = true;
-                    nueva.TopMost = true;
                     nueva.WindowState = FormWindowState.Normal;
                     nueva.StartPosition = FormStartPosition.CenterScreen;
                     nueva.Show();
@@ -1416,7 +1403,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
             Tareas.FormInsertarSeguimiento nueva = new FormInsertarSeguimiento(this, idGestion);
             nueva.ControlBox = true;
-            nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;
             nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
@@ -1463,7 +1449,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             
             Tareas.FormTareasPrincipal nueva = new Tareas.FormTareasPrincipal(this, this.Name , idComunidad.ToString());
             nueva.ControlBox = true;
-            nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;
             nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
@@ -1553,7 +1538,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     comboBoxTipo.Focus();
                     FormSeleccionarBloque nueva = new FormSeleccionarBloque(this, idComunidad.ToString(), idTarea);
                     nueva.ControlBox = true;
-                    nueva.TopMost = true;
                     nueva.WindowState = FormWindowState.Normal;
                     nueva.StartPosition = FormStartPosition.CenterScreen;
                     nueva.Show();
@@ -1568,7 +1552,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     comboBoxTipo.Focus();
                     FormSeleccionarBloque nueva = new FormSeleccionarBloque(this, idComunidad.ToString(), idTarea);
                     nueva.ControlBox = true;
-                    nueva.TopMost = true;
                     nueva.WindowState = FormWindowState.Normal;
                     nueva.StartPosition = FormStartPosition.CenterScreen;
                     nueva.Show();
@@ -1609,7 +1592,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
             FormDuplicarTarea nueva = new FormDuplicarTarea(form_anterior, idTipoTarea, fIni, descripcion, coste, seguro, acuerdoJunta, fechaActaAcordado, proximaJunta, refSiniestro, fFin, notas, importante, idEntidad, nombreComunidad, idComunidad, referencia, idTarea);
             nueva.ControlBox = true;
-            nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;
             nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
