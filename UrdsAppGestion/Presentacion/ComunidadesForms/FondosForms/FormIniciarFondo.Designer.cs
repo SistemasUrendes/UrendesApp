@@ -85,7 +85,7 @@
             this.textBox_importe.Name = "textBox_importe";
             this.textBox_importe.Size = new System.Drawing.Size(120, 20);
             this.textBox_importe.TabIndex = 4;
-            this.textBox_importe.Text = "0.00";
+            this.textBox_importe.Text = "0";
             this.textBox_importe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label2

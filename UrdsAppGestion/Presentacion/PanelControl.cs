@@ -199,7 +199,7 @@ namespace UrdsAppGestión.Presentacion
                 MessageBox.Show("Error. Details: " + (e.Error as Exception).ToString());
             else
             {
-                MessageBox.Show("La tarea ha finalizado. " + e.Result.ToString());
+                MessageBox.Show("La tarea ha finalizado en " + e.Result.ToString());
                                 dataGridView_tareas.Rows.RemoveAt(0);
                 numero_procesos--;
             }

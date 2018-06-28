@@ -237,14 +237,12 @@ namespace UrdsAppGestión.Presentacion
             int count = 0;
             foreach (object element in listBox_categoria.SelectedItems) {
                 DataRowView row = (DataRowView)element;
-                //MessageBox.Show(row[0].ToString());
-                filtro = filtro + "IdCategoria = " + row[0].ToString();
+                filtro = filtro + "PalabrasClave like '%" + row[2].ToString() + "%'";
                 if (count != listBox_categoria.SelectedItems.Count -1 ) {
                     filtro = filtro + " OR ";
                 }
                 count++;
             }
-
             busqueda.DefaultView.RowFilter = filtro;
             dataGridView1.DataSource = busqueda;
 

@@ -128,8 +128,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
 
                     String sqlUpdateAnterior = "UPDATE com_detallesfondo SET Resultado = " + Resultado.ToString().Replace(",", ".") + ", SaldoCierre=" + saldoResultado.ToString().Replace(",", ".") + ",Cierre=-1 WHERE IdDetalleFondo = " + idDetalleFondoAnterior;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdateAnterior);
-
-
                 }
             }
 

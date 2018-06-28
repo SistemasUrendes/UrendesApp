@@ -111,8 +111,6 @@ namespace UrdsAppGestión.Presentacion
                     this.Close();
                     form1Handler.Visible = true;
                     form1Handler.menuStrip1.Visible = true;
-                    //form1Handler.label_nombreUser.Visible = true;
-                    //form1Handler.label_nombreUser.Text = nombre_usuario.ToString();
                     form1Handler.barrar_abajo_nombre.Text = " [ Usuario : " + nombre_usuario.ToString() + " ] ";
                     form1Handler.barra_abajo_bbdd.Text = " [ Conectado a " + Persistencia.conexion_bd.Database.ToString() + " ] ";
                 }
@@ -126,7 +124,6 @@ namespace UrdsAppGestión.Presentacion
         private void textBox_password_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == Convert.ToChar(Keys.Enter)) {
-                //MessageBox.Show("Has pulsado enter");
                 ComprobarLogin();
             }
         }

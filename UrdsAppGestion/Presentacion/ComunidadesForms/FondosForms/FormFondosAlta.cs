@@ -97,9 +97,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
 
                         //MessageBox.Show("Se ha creado una CUOTA pasa ese fondo");
 
-                        //SI ES STOCK CREO UNA FILA POR CADA VALOR QUE SE QUIERA
-                        FormCrearStock nueva = new FormCrearStock(idFondo.ToString());
-                        nueva.Show();
+                        if (checkBox_stock.Checked)
+                        {
+                            //SI ES STOCK CREO UNA FILA POR CADA VALOR QUE SE QUIERA
+                            FormCrearStock nueva = new FormCrearStock(idFondo.ToString());
+                            nueva.Show();
+                        }
                     }
 
                 }

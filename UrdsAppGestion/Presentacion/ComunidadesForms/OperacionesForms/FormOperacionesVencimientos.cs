@@ -478,11 +478,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
                 nueva.Show();
             }
         }
-
         private void dataGridView_vencimientos_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             filas_eliminadas.Add(e.Row.Cells[0].Value.ToString());
-
         }
 
         private void dataGridView_vencimientos_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
