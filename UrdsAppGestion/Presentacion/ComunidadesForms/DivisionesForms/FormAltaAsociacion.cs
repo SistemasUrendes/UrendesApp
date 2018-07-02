@@ -20,6 +20,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
         int id_comunidad_cargado = 0;
         String id_comunidad_cargado1 = "0";
         DataTable fila;
+        Boolean quitarAsociacion = false;
+        Boolean añadirAsociacion = false;
         int indiceSel;
 
         public FormAltaAsociacion(Divisiones form_anterior, int id_division, String id_comunidad_cargado1, int indiceSel)
@@ -139,6 +141,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
                     if (EntidadComunero(id_entidad) != null) {
                         sql = "UPDATE com_asociacion SET IdComunero = " + EntidadComunero(id_entidad) + ", IdTipoAsoc = " + comboBox_tipoasociacion.SelectedValue.ToString() + ", Participacion = " + participacion + ", FechaAlta= '" + fechaAlta + "', FechaBaja= '" + fechaBaja + "', Ppal= " + ppal + " WHERE IdAsociacion =" + id_asociacion_cargado;
                         Persistencia.SentenciasSQL.InsertarGenerico(sql);
+
+                        //LO UTILIZO PARA ACTUALIZAR EL CAMPO DE ASOCIACIONES
+                        quitarAsociacion = true;
                     }
                 }
                 else if (textBox_fechabaja.Text.Replace("/","").Replace(" ", "") == "") { //ELIMINAR FECHA DE BAJA
@@ -146,6 +151,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
                     {
                         sql = "UPDATE com_asociacion SET IdComunero = " + EntidadComunero(id_entidad) + ", IdTipoAsoc = " + comboBox_tipoasociacion.SelectedValue.ToString() + ", Participacion = " + participacion + ", FechaAlta= '" + fechaAlta + "', FechaBaja= NULL, Ppal= " + ppal + " WHERE IdAsociacion =" + id_asociacion_cargado;
                         Persistencia.SentenciasSQL.InsertarGenerico(sql);
+
+                        //LO UTILIZO PARA ACTUALIZAR EL CAMPO DE ASOCIACIONES
+                        añadirAsociacion = true;
                     }
                 }
                 else {
@@ -156,6 +164,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
 
                     sql = "UPDATE com_asociacion SET IdComunero = " + EntidadComunero(id_entidad) + ", IdTipoAsoc = " + comboBox_tipoasociacion.SelectedValue.ToString() + ", Participacion = " + participacion + ", FechaAlta= '" + fechaAlta + "', Ppal= " + ppal + " WHERE IdAsociacion =" + id_asociacion_cargado;
                     Persistencia.SentenciasSQL.InsertarGenerico(sql);
+                    
+                    //LO UTILIZO PARA ACTUALIZAR EL CAMPO DE ASOCIACIONES
+                    añadirAsociacion = true;
                 }   
             }
             else {
@@ -171,7 +182,11 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
 
                     sql = "INSERT INTO com_asociacion(IdDivision, IdComunero , IdTipoAsoc, Participacion, FechaAlta, FechaBaja, Ppal) VALUES(" + id_division + "," + EntidadComunero(id_entidad) + "," + comboBox_tipoasociacion.SelectedValue.ToString() + "," + textBox_porcentaje.Text + ",'" + fechaAlta + "','" + fechaBaja + "'," + ppal + ")";
                     Persistencia.SentenciasSQL.InsertarGenerico(sql);
-                }else {
+
+                    //LO UTILIZO PARA ACTUALIZAR EL CAMPO DE ASOCIACIONES
+                    quitarAsociacion = true;
+                }
+                else {
 
                     if (ppal == "-1"){
                         comprobarOtrosRepresentante(id_division);
@@ -179,16 +194,61 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
 
                     sql = "INSERT INTO com_asociacion(IdDivision, IdComunero , IdTipoAsoc, Participacion, FechaAlta, Ppal) VALUES(" + id_division + "," + EntidadComunero(id_entidad) + "," + comboBox_tipoasociacion.SelectedValue.ToString() + "," + textBox_porcentaje.Text + ",'" + fechaAlta + "'," + ppal + ")";
                     Persistencia.SentenciasSQL.InsertarGenerico(sql);
+
+                    //LO UTILIZO PARA ACTUALIZAR EL CAMPO DE ASOCIACIONES
+                    añadirAsociacion = true;
                 }
             }
 
+            comprobarAsociaciones();
             form_anterior.cargarDivisiones();
             form_anterior.dataGridView_divisiones.CurrentCell = form_anterior.dataGridView_divisiones[2, indiceSel];
             form_anterior.buscar_text();
             form_anterior.cargarDetallesDivisiones();
             this.Close();
         }
+        private void comprobarAsociaciones() {
+            String nuevoAsociaciones = "";
 
+            if (quitarAsociacion || añadirAsociacion) {
+                String idComunero = EntidadComunero(id_entidad);
+                String sqlSelect = "SELECT com_divisiones.Division FROM com_divisiones WHERE(((com_divisiones.IdDivision) = " + id_division + ") AND((com_divisiones.IdComunidad) = " + id_comunidad_cargado + "));";
+                String nombredivision = (Persistencia.SentenciasSQL.select(sqlSelect)).Rows[0][0].ToString();
+
+                String sqlSelectComunero = "SELECT com_comuneros.Asociaciones FROM com_comuneros WHERE(((com_comuneros.IdComunero) = " + idComunero + "));";
+                String asociaciones = (Persistencia.SentenciasSQL.select(sqlSelectComunero)).Rows[0][0].ToString();
+
+                if (quitarAsociacion) {
+
+                    if (asociaciones.Contains(nombredivision + "(p)")) {
+                        nuevoAsociaciones = asociaciones.Replace(nombredivision + "(p)", "");
+                    }
+                    else if (asociaciones.Contains(nombredivision + "(i)")) {
+                        nuevoAsociaciones = asociaciones.Replace(nombredivision + "(i)", "");
+                    }
+                    else if(asociaciones.Contains(nombredivision + "(o)")) {
+                        nuevoAsociaciones = asociaciones.Replace(nombredivision + "(o)", "");
+                    }
+                }else {
+                    String tipo = comboBox_tipoasociacion.SelectedValue.ToString();
+                    if (tipo == "1")
+                        nuevoAsociaciones = asociaciones + "," + nombredivision + "(p)";
+                    if (tipo == "2")
+                        nuevoAsociaciones = asociaciones + "," + nombredivision + "(i)";
+                    if (tipo == "3")
+                        nuevoAsociaciones = asociaciones + "," + nombredivision + "(o)";
+                }
+
+                nuevoAsociaciones = nuevoAsociaciones.Replace(",,", ",");
+                nuevoAsociaciones = nuevoAsociaciones.Trim();
+                nuevoAsociaciones = nuevoAsociaciones.Replace(", ,", ",");
+                nuevoAsociaciones = nuevoAsociaciones.TrimStart(',', ' ');
+                nuevoAsociaciones = nuevoAsociaciones.TrimEnd(',',' ');
+
+                String sqlUpdate = "UPDATE com_comuneros SET Asociaciones='" + nuevoAsociaciones + "' WHERE IdComunero = " + idComunero;
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+            }
+        }
         private void textBox_fechaalta_Enter(object sender, EventArgs e)
         {
             if (textBox_fechaalta.Text != "")
@@ -238,7 +298,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
         private void checkBox_representante_CheckedChanged(object sender, EventArgs e)
         {
             if (textBox_fechabaja.MaskFull) {
-                MessageBox.Show("No puede tener fecha de baja un representante");
+                //MessageBox.Show("No puede tener fecha de baja un representante");
+                checkBox_representante.Checked = false;
                 checkBox_representante.Enabled = false;
             }
         }
@@ -265,6 +326,18 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
             id_entidad = id_comunero;
             String nombre = (Persistencia.SentenciasSQL.select("SELECT Entidad FROM ctos_entidades WHERE IdEntidad = " + id_comunero)).Rows[0][0].ToString();
             textBox_Comunero.Text = nombre;
+        }
+
+        private void textBox_fechabaja_Leave(object sender, EventArgs e)
+        {
+            if (textBox_fechabaja.MaskFull) {
+                checkBox_representante.Checked = false;
+                checkBox_representante.Enabled = false;
+            }
+            else
+            {
+                checkBox_representante.Enabled = true;
+            }
         }
     }
 }

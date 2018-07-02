@@ -104,13 +104,15 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.RemesasForms
                 if (dataGridView_detalles_remesa.SelectedRows.Count > 0)
                 {
                     DialogResult resultado_message;
-                    resultado_message = MessageBox.Show("¿Desea borrar este Recibo de la Remesa ?", "Borrar Recibo Remesa", MessageBoxButtons.OKCancel);
-                    if (resultado_message == System.Windows.Forms.DialogResult.OK)
-                    {
-                        String sqlBorrar = "DELETE From com_detremesa WHERE ((com_detremesa.IdDetRemesa)=" + dataGridView_detalles_remesa.SelectedRows[0].Cells[0].Value.ToString() + ");";
-                        Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrar);
-                        cargarDatagrid();
+                    resultado_message = MessageBox.Show("¿Desea borrar estos " + dataGridView_detalles_remesa.SelectedRows.Count + " Recibo de la Remesa ?", "Borrar Recibos Remesa", MessageBoxButtons.OKCancel);
+                    if (resultado_message == System.Windows.Forms.DialogResult.OK)  {
+                        for (int a = 0; a < dataGridView_detalles_remesa.SelectedRows.Count; a++)
+                        {
+                            String sqlBorrar = "DELETE From com_detremesa WHERE ((com_detremesa.IdDetRemesa)=" + dataGridView_detalles_remesa.SelectedRows[a].Cells[0].Value.ToString() + ");";
+                            Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrar);
+                        }
                     }
+                    cargarDatagrid();
                 }
             }
             else

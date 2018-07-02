@@ -39,7 +39,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.ReglasPa
             textBox_division.Text = nombreDivision;
 
         }
-
         private void button_guardar_Click(object sender, EventArgs e)
         {
             String activa = "0";

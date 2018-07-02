@@ -242,10 +242,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.RemesasForms
 
         private void comboBox_cuota_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            //DataTable busqueda = recibos;
-            //busqueda.DefaultView.RowFilter = "IdCuota = " + comboBox_cuota.SelectedValue.ToString();
-            //this.dataGridView_recibos.DataSource = busqueda;
-
             checkBox_cuenta.Checked = true;
         }
         private void AplicarFiltro() {
@@ -333,7 +329,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.RemesasForms
                 }
             }
         }
-
         private void dataGridView_recibos_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
             if (cargadoDatagrid)

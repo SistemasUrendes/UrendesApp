@@ -165,6 +165,7 @@
             this.textBox_fechabaja.Size = new System.Drawing.Size(72, 20);
             this.textBox_fechabaja.TabIndex = 4;
             this.textBox_fechabaja.ValidatingType = typeof(System.DateTime);
+            this.textBox_fechabaja.Leave += new System.EventHandler(this.textBox_fechabaja_Leave);
             // 
             // label1
             // 

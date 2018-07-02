@@ -62,7 +62,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
                 dataGridView_telefonos.Columns[2].Name = "Principal";
             }
 
-            this.Text = this.Text + " [" + id_entidad_cargado + "]";
+            this.Text = this.Text + " [ Id : " + id_entidad_cargado + "]";
         }
         private void button3_Click(object sender, EventArgs e)
         {
