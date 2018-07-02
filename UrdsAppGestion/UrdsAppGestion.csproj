@@ -144,6 +144,9 @@
     <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\FormVerInformeJunta.Designer.cs">
       <DependentUpon>FormVerInformeJunta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\DataSetListadoJuntasBloque.cs">
+      <DependentUpon>DataSetListadoJuntasBloque.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\ComunidadesForms\DivisionesForms\Informes\DataSetListadoJuntasBloque.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
