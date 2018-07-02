@@ -84,7 +84,7 @@
             // labelCuotaTotal
             // 
             this.labelCuotaTotal.AutoSize = true;
-            this.labelCuotaTotal.Location = new System.Drawing.Point(854, 724);
+            this.labelCuotaTotal.Location = new System.Drawing.Point(840, 724);
             this.labelCuotaTotal.Name = "labelCuotaTotal";
             this.labelCuotaTotal.Size = new System.Drawing.Size(0, 13);
             this.labelCuotaTotal.TabIndex = 5;

@@ -67,7 +67,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             conBloque = false;
         }
         //DUPLICAR TAREA
-        public FormVerTarea(FormTareasPrincipal form_anterior, String idTipoTarea,String fIni, String descripcion, String coste, String seguro, String acuerdoJunta, String fechaActaAcordado, String proximaJunta, String refSiniestro, String fFin,String notas, String importante,String idEntidad, String nombreComunidad, int idComunidad, String Referencia, String idTarea,Boolean contactos, Boolean expedientes)
+        public FormVerTarea(FormTareasPrincipal form_anterior, String idTipoTarea,String fIni, String descripcion, String coste, String seguro, String acuerdoJunta, String fechaActaAcordado, String proximaJunta, String refSiniestro, String notas, String importante,String idEntidad, String nombreComunidad, int idComunidad, String Referencia, String idTarea,Boolean contactos, Boolean expedientes)
         {
             InitializeComponent();
             conBloque = false;
@@ -76,8 +76,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBoxDescripcion.Text = descripcion;
             textBoxNotas.Text = notas;
             comboBoxTipo.SelectedValue = idTipoTarea;
-            maskedTextBoxFFin.Text = fFin;
-            fechaFin = fFin;
             maskedTextBoxFIni.Text = fIni;
             fInicio = fIni;
             textBoxCoste.Text = coste;
@@ -973,17 +971,18 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void ajustarDatagridContactos()
         {
-            
+            String telefono = "";
             //FORMATEO EL TELEFONO CON ESPACIOS PARA QUE SE PUEDA VER MEJOR
             for (int a = 0; a < dataGridViewContactos.RowCount; a++)
             {
                 try
                 {
-                    String telefono = dataGridViewContactos.Rows[a].Cells[2].Value.ToString().Replace(" ", "");
+                    telefono = dataGridViewContactos.Rows[a].Cells[2].Value.ToString().Replace(" ", "");
                     dataGridViewContactos.Rows[a].Cells[2].Value = String.Format("{0:###-###-###}", double.Parse(telefono));
                 }
                 catch (Exception)
                 {
+                    if (telefono == "") continue;
                     MessageBox.Show("Hay un teléfono incorrecto. ¡Revisar!");
                     continue;
                 }
@@ -1111,69 +1110,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 cargarContactos();
             }
         }
-        /*
-        private void toolStripMenuItemCorreoResponsable_Click(object sender, EventArgs e)
-        {
-            String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
-            
-            String sqlSelect = "SELECT ctos_detemail.Email FROM(exp_gestiones INNER JOIN ctos_urendes ON exp_gestiones.IdUser = ctos_urendes.IdURD) INNER JOIN ctos_detemail ON ctos_urendes.identidad = ctos_detemail.IdEntidad WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
-            DataTable tablamail = Persistencia.SentenciasSQL.select(sqlSelect);
-            if (tablamail.Rows.Count > 0)
-            {
-                String mail = tablamail.Rows[0][0].ToString();
-                System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\'" + generaAsunto() + "\',body= Este expediente requiere de su atención.");
-            }
-            else
-            {
-                MessageBox.Show("El responsable seleccionado no tiene correo asociado.");
-            }
-        }
-
-        private void toolStripMenuItemCorreoSeguir_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewGestiones.SelectedRows[0].Cells[10].Value.ToString() != "")
-            {
-                if (dataGridViewGestiones.SelectedRows[0].Cells[11].Value.ToString() != "T")
-                {
-                    String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
-
-                    String sqlSelect = "SELECT ctos_detemail.Email FROM exp_gestiones INNER JOIN ctos_detemail ON exp_gestiones.IdEntidad = ctos_detemail.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_gestiones.IdGestión) = " + idGestion + "))";
-                    DataTable tablamail = Persistencia.SentenciasSQL.select(sqlSelect);
-                    if (tablamail.Rows.Count > 0)
-                    {
-                        String mail = tablamail.Rows[0][0].ToString();
-                        System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\'" + generaAsunto() + "\'");
-                    }
-
-                    else
-                    {
-                        MessageBox.Show("La entidad seleccionada no tiene correo asociado.");
-                    }
-                }
-                else
-                {
-                    String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
-
-                    String sqlSelect = "SELECT exp_contactos.Correo FROM exp_contactos INNER JOIN exp_gestiones ON exp_contactos.IdDetEntTarea = exp_gestiones.IdEntidad WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
-                    DataTable tablamail = Persistencia.SentenciasSQL.select(sqlSelect);
-                    if (tablamail.Rows.Count > 0)
-                    {
-                        String mail = tablamail.Rows[0][0].ToString();
-                        System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\'" + generaAsunto() + "\'");
-                    }
-
-                    else
-                    {
-                        MessageBox.Show("El contacto selecionado no tiene correo asociado.");
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Asigne una persona a seguir para poder enviarle un correo");
-            }
-        }
-        */
 
         private String generaAsunto()
         {
@@ -1187,6 +1123,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 asunto += "- (" + comunidad.Rows[0][1].ToString(); //Referencia comunidad
                 asunto += "-" + idTareaNuevo(idTarea); //IdTarea
                 asunto += ") " + textBoxDescripcion.Text; //Descripción
+                if ( textBoxSiniestro.Text != "")
+                {
+                    asunto += " (Sini: " + textBoxSiniestro.Text + ")";
+                }
             }
             else
             {
@@ -1197,6 +1137,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 asunto += "- (Ref.0"; //Referencia
                 asunto += "-" + idTareaNuevo(idTarea); //IdTarea
                 asunto += ") " + textBoxDescripcion.Text; //Descripción
+                if (textBoxSiniestro.Text != "")
+                {
+                    asunto += " (Sini: " + textBoxSiniestro.Text + ")";
+                }
 
             }
             return asunto;
@@ -1590,7 +1534,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String nombreComunidad = textBoxEntidad.Text;
             String referencia = maskedTextBoxReferencia.Text;
 
-            FormDuplicarTarea nueva = new FormDuplicarTarea(form_anterior, idTipoTarea, fIni, descripcion, coste, seguro, acuerdoJunta, fechaActaAcordado, proximaJunta, refSiniestro, fFin, notas, importante, idEntidad, nombreComunidad, idComunidad, referencia, idTarea);
+            FormDuplicarTarea nueva = new FormDuplicarTarea(form_anterior, idTipoTarea, fIni, descripcion, coste, seguro, acuerdoJunta, fechaActaAcordado, proximaJunta, refSiniestro, notas, importante, idEntidad, nombreComunidad, idComunidad, referencia, idTarea);
             nueva.ControlBox = true;
             nueva.WindowState = FormWindowState.Normal;
             nueva.StartPosition = FormStartPosition.CenterScreen;

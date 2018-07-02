@@ -29,18 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormListadoJuntasBloque));
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.DataSetDeudasDivision = new UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes.DataSetDeudasDivision();
-            this.DeudasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.DataSetDeudasDivision)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DeudasBindingSource)).BeginInit();
+            this.dataSetListadoJuntasBloqueBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetListadoJuntasBloque = new UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes.DataSetListadoJuntasBloque();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetListadoJuntasBloqueBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetListadoJuntasBloque)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer1
             // 
             this.reportViewer1.AutoSize = true;
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = this.dataSetListadoJuntasBloqueBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes.ReportLista" +
     "doJuntasBloque.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
@@ -55,31 +59,32 @@
             this.reportViewer1.ShowRefreshButton = false;
             this.reportViewer1.ShowStopButton = false;
             this.reportViewer1.ShowZoomControl = false;
-            this.reportViewer1.Size = new System.Drawing.Size(1277, 564);
+            this.reportViewer1.Size = new System.Drawing.Size(833, 992);
             this.reportViewer1.TabIndex = 1;
             // 
-            // DataSetDeudasDivision
+            // dataSetListadoJuntasBloqueBindingSource
             // 
-            this.DataSetDeudasDivision.DataSetName = "DataSetDeudasDivision";
-            this.DataSetDeudasDivision.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.dataSetListadoJuntasBloqueBindingSource.DataSource = this.dataSetListadoJuntasBloque;
+            this.dataSetListadoJuntasBloqueBindingSource.Position = 0;
             // 
-            // DeudasBindingSource
+            // dataSetListadoJuntasBloque
             // 
-            this.DeudasBindingSource.DataMember = "Deudas";
-            this.DeudasBindingSource.DataSource = this.DataSetDeudasDivision;
+            this.dataSetListadoJuntasBloque.DataSetName = "DataSetListadoJuntasBloque";
+            this.dataSetListadoJuntasBloque.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // FormListadoJuntasBloque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1277, 564);
+            this.ClientSize = new System.Drawing.Size(833, 992);
             this.Controls.Add(this.reportViewer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormListadoJuntasBloque";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listado Juntas Bloque";
             this.Load += new System.EventHandler(this.FormListadoJuntasBloque_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.DataSetDeudasDivision)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DeudasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetListadoJuntasBloqueBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetListadoJuntasBloque)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -88,7 +93,7 @@
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private DataSetDeudasDivision DataSetDeudasDivision;
-        private System.Windows.Forms.BindingSource DeudasBindingSource;
+        private System.Windows.Forms.BindingSource dataSetListadoJuntasBloqueBindingSource;
+        private DataSetListadoJuntasBloque dataSetListadoJuntasBloque;
     }
 }

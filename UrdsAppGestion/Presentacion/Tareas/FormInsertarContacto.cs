@@ -122,14 +122,32 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String correo = textBoxCorreo.Text;
             String notas = textBoxNotas.Text;
 
+            if (telefono == "" && correo == "")
+            {
+                MessageBox.Show("Introduce un Correo o Teléfono.");
+                return; 
+            }
             if (idContacto == null)
             {
-                String sqlInsert = "INSERT INTO exp_contactos (Nombre,Tel,Correo,IdTarea) VALUES ('" + nombre + "'," + telefono + ",'" + correo + "'," + idTarea + ")";
-                idContacto = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsert).ToString();
+                if (telefono != "" && correo != "")
+                {
+                    String sqlInsert = "INSERT INTO exp_contactos (Nombre,Tel,Correo,IdTarea) VALUES ('" + nombre + "','" + telefono + "','" + correo + "','" + idTarea + "')";
+                    idContacto = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsert).ToString();
+                }
+                else if ( telefono != "")
+                {
+                    String sqlInsert = "INSERT INTO exp_contactos (Nombre,Tel,IdTarea) VALUES ('" + nombre + "','" + telefono + "','" + idTarea + "')";
+                    idContacto = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsert).ToString();
+                }
+                else
+                {
+                    String sqlInsert = "INSERT INTO exp_contactos (Nombre,Correo,IdTarea) VALUES ('" + nombre + "','" + correo + "','" + idTarea + "')";
+                    idContacto = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsert).ToString();
+                }
             }
             else
             {
-                String sqlUpdate = "UPDATE exp_contactos SET Nombre = '" + nombre + "',Tel = " + telefono + ",Correo = '" + correo + "' WHERE IdDetEntTarea = " + idContacto;
+                String sqlUpdate = "UPDATE exp_contactos SET Nombre = '" + nombre + "',Tel = '" + telefono + "',Correo = '" + correo + "' WHERE IdDetEntTarea = " + idContacto;
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
             }
             //TIPO CONTACTO

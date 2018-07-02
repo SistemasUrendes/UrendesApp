@@ -279,13 +279,13 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class DataTable1DataTable : global::System.Data.TypedTableBase<DataTable1Row> {
             
-            private global::System.Data.DataColumn columnDivs;
+            private global::System.Data.DataColumn columnDivisión;
             
-            private global::System.Data.DataColumn columnPropietario;
+            private global::System.Data.DataColumn columnEntidad;
             
             private global::System.Data.DataColumn columnAsociaciones;
             
-            private global::System.Data.DataColumn _columnCuota_Rept_;
+            private global::System.Data.DataColumn columnCuotas;
             
             private global::System.Data.DataColumn columnV_1;
             
@@ -295,7 +295,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes
             
             private global::System.Data.DataColumn columnV_4;
             
-            private global::System.Data.DataColumn columnV_5;
+            private global::System.Data.DataColumn columnRepresentacion;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -332,17 +332,17 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DivsColumn {
+            public global::System.Data.DataColumn DivisiónColumn {
                 get {
-                    return this.columnDivs;
+                    return this.columnDivisión;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn PropietarioColumn {
+            public global::System.Data.DataColumn EntidadColumn {
                 get {
-                    return this.columnPropietario;
+                    return this.columnEntidad;
                 }
             }
             
@@ -356,9 +356,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn _Cuota_Rept_Column {
+            public global::System.Data.DataColumn CuotasColumn {
                 get {
-                    return this._columnCuota_Rept_;
+                    return this.columnCuotas;
                 }
             }
             
@@ -396,9 +396,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn V_5Column {
+            public global::System.Data.DataColumn RepresentacionColumn {
                 get {
-                    return this.columnV_5;
+                    return this.columnRepresentacion;
                 }
             }
             
@@ -439,18 +439,18 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string Divs, string Propietario, string Asociaciones, string _Cuota_Rept_, string V_1, string V_2, string V_3, string V_4, string V_5) {
+            public DataTable1Row AddDataTable1Row(string División, string Entidad, string Asociaciones, string Cuotas, string V_1, string V_2, string V_3, string V_4, string Representacion) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Divs,
-                        Propietario,
+                        División,
+                        Entidad,
                         Asociaciones,
-                        _Cuota_Rept_,
+                        Cuotas,
                         V_1,
                         V_2,
                         V_3,
                         V_4,
-                        V_5};
+                        Representacion};
                 rowDataTable1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable1Row);
                 return rowDataTable1Row;
@@ -473,30 +473,28 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnDivs = base.Columns["Divs"];
-                this.columnPropietario = base.Columns["Propietario"];
+                this.columnDivisión = base.Columns["División"];
+                this.columnEntidad = base.Columns["Entidad"];
                 this.columnAsociaciones = base.Columns["Asociaciones"];
-                this._columnCuota_Rept_ = base.Columns["Cuota Rept."];
+                this.columnCuotas = base.Columns["Cuotas"];
                 this.columnV_1 = base.Columns["V_1"];
                 this.columnV_2 = base.Columns["V_2"];
                 this.columnV_3 = base.Columns["V_3"];
                 this.columnV_4 = base.Columns["V_4"];
-                this.columnV_5 = base.Columns["V_5"];
+                this.columnRepresentacion = base.Columns["Representacion"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnDivs = new global::System.Data.DataColumn("Divs", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDivs);
-                this.columnPropietario = new global::System.Data.DataColumn("Propietario", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPropietario);
+                this.columnDivisión = new global::System.Data.DataColumn("División", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDivisión);
+                this.columnEntidad = new global::System.Data.DataColumn("Entidad", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEntidad);
                 this.columnAsociaciones = new global::System.Data.DataColumn("Asociaciones", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAsociaciones);
-                this._columnCuota_Rept_ = new global::System.Data.DataColumn("Cuota Rept.", typeof(string), null, global::System.Data.MappingType.Element);
-                this._columnCuota_Rept_.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnCuota_Rept_");
-                this._columnCuota_Rept_.ExtendedProperties.Add("Generator_UserColumnName", "Cuota Rept.");
-                base.Columns.Add(this._columnCuota_Rept_);
+                this.columnCuotas = new global::System.Data.DataColumn("Cuotas", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCuotas);
                 this.columnV_1 = new global::System.Data.DataColumn("V_1", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnV_1);
                 this.columnV_2 = new global::System.Data.DataColumn("V_2", typeof(string), null, global::System.Data.MappingType.Element);
@@ -505,8 +503,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes
                 base.Columns.Add(this.columnV_3);
                 this.columnV_4 = new global::System.Data.DataColumn("V_4", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnV_4);
-                this.columnV_5 = new global::System.Data.DataColumn("V_5", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnV_5);
+                this.columnRepresentacion = new global::System.Data.DataColumn("Representacion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRepresentacion);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -649,33 +647,33 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Divs {
+            public string División {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.DivsColumn]));
+                        return ((string)(this[this.tableDataTable1.DivisiónColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Divs\' de la tabla \'DataTable1\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'División\' de la tabla \'DataTable1\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.DivsColumn] = value;
+                    this[this.tableDataTable1.DivisiónColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Propietario {
+            public string Entidad {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.PropietarioColumn]));
+                        return ((string)(this[this.tableDataTable1.EntidadColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Propietario\' de la tabla \'DataTable1\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Entidad\' de la tabla \'DataTable1\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.PropietarioColumn] = value;
+                    this[this.tableDataTable1.EntidadColumn] = value;
                 }
             }
             
@@ -697,17 +695,17 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string _Cuota_Rept_ {
+            public string Cuotas {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1._Cuota_Rept_Column]));
+                        return ((string)(this[this.tableDataTable1.CuotasColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Cuota Rept.\' de la tabla \'DataTable1\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Cuotas\' de la tabla \'DataTable1\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1._Cuota_Rept_Column] = value;
+                    this[this.tableDataTable1.CuotasColumn] = value;
                 }
             }
             
@@ -777,42 +775,42 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string V_5 {
+            public string Representacion {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.V_5Column]));
+                        return ((string)(this[this.tableDataTable1.RepresentacionColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'V_5\' de la tabla \'DataTable1\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Representacion\' de la tabla \'DataTable1\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.V_5Column] = value;
+                    this[this.tableDataTable1.RepresentacionColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDivsNull() {
-                return this.IsNull(this.tableDataTable1.DivsColumn);
+            public bool IsDivisiónNull() {
+                return this.IsNull(this.tableDataTable1.DivisiónColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDivsNull() {
-                this[this.tableDataTable1.DivsColumn] = global::System.Convert.DBNull;
+            public void SetDivisiónNull() {
+                this[this.tableDataTable1.DivisiónColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsPropietarioNull() {
-                return this.IsNull(this.tableDataTable1.PropietarioColumn);
+            public bool IsEntidadNull() {
+                return this.IsNull(this.tableDataTable1.EntidadColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetPropietarioNull() {
-                this[this.tableDataTable1.PropietarioColumn] = global::System.Convert.DBNull;
+            public void SetEntidadNull() {
+                this[this.tableDataTable1.EntidadColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -829,14 +827,14 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Is_Cuota_Rept_Null() {
-                return this.IsNull(this.tableDataTable1._Cuota_Rept_Column);
+            public bool IsCuotasNull() {
+                return this.IsNull(this.tableDataTable1.CuotasColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Set_Cuota_Rept_Null() {
-                this[this.tableDataTable1._Cuota_Rept_Column] = global::System.Convert.DBNull;
+            public void SetCuotasNull() {
+                this[this.tableDataTable1.CuotasColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -889,14 +887,14 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsV_5Null() {
-                return this.IsNull(this.tableDataTable1.V_5Column);
+            public bool IsRepresentacionNull() {
+                return this.IsNull(this.tableDataTable1.RepresentacionColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetV_5Null() {
-                this[this.tableDataTable1.V_5Column] = global::System.Convert.DBNull;
+            public void SetRepresentacionNull() {
+                this[this.tableDataTable1.RepresentacionColumn] = global::System.Convert.DBNull;
             }
         }
         

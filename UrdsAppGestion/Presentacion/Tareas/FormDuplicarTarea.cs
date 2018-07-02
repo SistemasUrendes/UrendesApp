@@ -22,11 +22,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String fechaActaAcordado;
         String proximaJunta;
         String refSiniestro;
-        String fFin;
         String notas;
         String importante;
-        //String nombreElemento;
-        //String idElemento;
         String idEntidad;
         String nombreComunidad;
         int idComunidad;
@@ -38,7 +35,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String idTarea;
         
 
-        public FormDuplicarTarea(FormTareasPrincipal form_anterior,String idTipoTarea, String fIni, String descripcion, String coste, String seguro, String acuerdoJunta, String fechaActaAcordado, String proximaJunta, String refSiniestro, String fFin, String notas, String importante, String idEntidad, String nombreComunidad, int idComunidad, String Referencia,String idTarea)
+        public FormDuplicarTarea(FormTareasPrincipal form_anterior,String idTipoTarea, String fIni, String descripcion, String coste, String seguro, String acuerdoJunta, String fechaActaAcordado, String proximaJunta, String refSiniestro, String notas, String importante, String idEntidad, String nombreComunidad, int idComunidad, String Referencia,String idTarea)
         {
             InitializeComponent();
             this.form_anterior = form_anterior;
@@ -51,11 +48,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.fechaActaAcordado = fechaActaAcordado;
             this.proximaJunta = proximaJunta ;
             this.refSiniestro = refSiniestro;
-            this.fFin = fFin;
             this.notas = notas;
             this.importante = importante;
-            //this.nombreElemento = nombreComunidad;
-            //this.idElemento = idElemento;
             this.idEntidad = idEntidad;
             this.nombreComunidad = nombreComunidad;
             this.idComunidad = idComunidad;
@@ -72,9 +66,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             Boolean contactos = checkBoxContactos.Checked;
             Boolean expedientes = checkBoxExpedientes.Checked;
-            FormVerTarea nueva = new FormVerTarea(form_anterior,idTipoTarea, fIni, descripcion, coste, seguro, acuerdoJunta, fechaActaAcordado, proximaJunta, refSiniestro, fFin, notas, importante, idEntidad, nombreComunidad, idComunidad, referencia, idTarea,contactos,expedientes);
+            FormVerTarea nueva = new FormVerTarea(form_anterior,idTipoTarea, fIni, descripcion, coste, seguro, acuerdoJunta, fechaActaAcordado, proximaJunta, refSiniestro, notas, importante, idEntidad, nombreComunidad, idComunidad, referencia, idTarea,contactos,expedientes);
             nueva.ControlBox = true;
-            //nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;
             nueva.StartPosition = FormStartPosition.CenterScreen;
             nueva.Show();
