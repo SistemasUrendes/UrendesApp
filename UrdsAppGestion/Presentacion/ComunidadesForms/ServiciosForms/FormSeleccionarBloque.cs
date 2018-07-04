@@ -83,15 +83,15 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
             else if (form_anterior4 != null || form_anterior5 != null)
             {
-                sqlSelect = "SELECT com_bloques.IdBloque, com_bloques.Descripcion,'true' AS Selected  FROM com_bloques WHERE(((com_bloques.IdComunidad) = '" + idComunidad + "'))";
+                sqlSelect = "SELECT com_bloques.IdBloque, com_bloques.Descripcion,'true' AS Selected FROM com_bloques WHERE(((com_bloques.IdComunidad) = '" + idComunidad + "') AND((com_bloques.IdTipoBloque) = 1))";
             }
             else if(idTarea == null)
             {
-                sqlSelect = "SELECT exp_area.IdArea AS IdBloque, exp_area.Nombre,'true' AS Selected FROM com_comunidades INNER JOIN (exp_area INNER JOIN com_bloques ON exp_area.IdBloque = com_bloques.IdBloque) ON com_comunidades.IdComunidad = com_bloques.IdComunidad WHERE(((com_comunidades.IdComunidad) = '" + idComunidad + "') AND((exp_area.IdAreaPrevio) = 0) AND((com_bloques.Baja) = 0))";
+                sqlSelect = "SELECT exp_area.IdArea AS IdBloque, exp_area.Nombre,'true' AS Selected FROM com_comunidades INNER JOIN (exp_area INNER JOIN com_bloques ON exp_area.IdBloque = com_bloques.IdBloque) ON com_comunidades.IdComunidad = com_bloques.IdComunidad WHERE(((com_comunidades.IdComunidad) = '" + idComunidad + "') AND((exp_area.IdAreaPrevio) = 0) AND((com_bloques.Baja) = 0) AND ((com_bloques.IdTipoBloque) = 1))";
             }
             else
             {
-                sqlSelect = "SELECT com_bloques.IdBloque, com_bloques.Descripcion, If((SELECT Count(*)FROM exp_area INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((exp_area.IdAreaPrevio) = 0) AND((exp_areaTarea.IdTarea) = " + idTarea + ") AND((exp_area.IdBloque) = com_bloques.IdBloque))) > 0,'true','false') AS Selected FROM com_bloques WHERE(((com_bloques.IdTipoBloque) = 1) AND((com_bloques.IdComunidad) = " + idComunidad + "))";
+                sqlSelect = "SELECT com_bloques.IdBloque, com_bloques.Descripcion, If((SELECT Count(*)FROM exp_area INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((exp_area.IdAreaPrevio) = 0) AND((exp_areaTarea.IdTarea) = " + idTarea + ") AND((exp_area.IdBloque) = com_bloques.IdBloque))) > 0,'true','false') AS Selected FROM com_bloques WHERE(((com_bloques.IdTipoBloque) = 1) AND((com_bloques.IdComunidad) = " + idComunidad + ") AND ((com_bloques.IdTipoBloque) = 1))";
             }
             tablaBloques = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewBloques.DataSource = tablaBloques;

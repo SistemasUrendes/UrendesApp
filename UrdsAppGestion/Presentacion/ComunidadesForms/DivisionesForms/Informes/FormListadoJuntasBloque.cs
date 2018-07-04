@@ -40,6 +40,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes
         {
             this.reportViewer1.RefreshReport();
         }
-        
+
     }
 }

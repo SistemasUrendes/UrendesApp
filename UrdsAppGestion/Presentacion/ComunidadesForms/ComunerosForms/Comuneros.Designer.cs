@@ -139,7 +139,8 @@
             this.comboBox2.Items.AddRange(new object[] {
             "Informe de deudas",
             "Confirmación de datos",
-            "Informe Recibos"});
+            "Informe Recibos",
+            "Divisiones con Asociaciones"});
             this.comboBox2.Location = new System.Drawing.Point(670, 23);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(156, 21);
