@@ -805,12 +805,19 @@ namespace UrdsAppGestión.Presentacion
 
             List<String> fallos = new List<String>();
             int a = 0;
+            String entidad;
             foreach (var fi in di.GetFiles("L" + idLiquidacion + "*"))
             {
                 //PREPARO EL IDENTIDAD PARA VER QUE TIPO DE ENVIO
                 String nombreFichero = fi.Name;
-                String entidad = fi.Name.Split('-')[2];
-                entidad = entidad.Split(' ')[0];
+                if (fi.Name.Split('-')[2].Split(' ')[0] == "IVA") {
+                    entidad = fi.Name.Split('-')[1].Split(' ')[0];
+                }
+                else {
+                    entidad = fi.Name.Split('-')[2];
+                    entidad = entidad.Split(' ')[0];
+                }
+
 
                 //if (entidad != "2137" && !encontrado)
                 //{
@@ -825,7 +832,8 @@ namespace UrdsAppGestión.Presentacion
                 //BUSCO COMO QUIERE EL ENVIO
                 if (entidad != "" && int.TryParse(entidad, out IdEntidad))
                 {
-                    String sqltipoEnvio = "SELECT com_comuneros.EnvioPostal, com_comuneros.EnvioEmail, com_comuneros.IdEmail, com_comuneros.IdComunero FROM com_comuneros WHERE(((com_comuneros.IdEntidad) = " + IdEntidad + "));";
+                    String sqltipoEnvio = "SELECT com_comuneros.EnvioPostal, com_comuneros.EnvioEmail, com_comuneros.IdEmail, com_comuneros.IdComunero FROM(com_liquidaciones INNER JOIN com_ejercicios ON com_liquidaciones.IdEjercicio = com_ejercicios.IdEjercicio) INNER JOIN com_comuneros ON com_ejercicios.IdComunidad = com_comuneros.IdComunidad WHERE(((com_comuneros.IdEntidad) = " + IdEntidad + ") AND((com_liquidaciones.IdLiquidacion) = " + idLiquidacion + "));";
+
                     DataTable tipoEnvio = Persistencia.SentenciasSQL.select(sqltipoEnvio);
 
                     if (tipoEnvio.Rows.Count == 1)

@@ -77,7 +77,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
 
         private void editarPlantillaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormCuotasPlantillaManualDetalle nueva = new FormCuotasPlantillaManualDetalle(id_comunidad_cargado, dataGridView_plantillas.SelectedCells[0].Value.ToString());
+            FormCuotasPlantillaManualDetalle nueva = new FormCuotasPlantillaManualDetalle(id_comunidad_cargado, dataGridView_plantillas.SelectedCells[0].Value.ToString(), dataGridView_plantillas.SelectedCells[2].Value.ToString());
             nueva.Show();
         }
          public void cargarPrefiltro() {
@@ -127,7 +127,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
 
         private void dataGridView_plantillas_DoubleClick(object sender, EventArgs e)
         {
-            FormCuotasPlantillaManualDetalle nueva = new FormCuotasPlantillaManualDetalle(id_comunidad_cargado, dataGridView_plantillas.SelectedCells[0].Value.ToString());
+            FormCuotasPlantillaManualDetalle nueva = new FormCuotasPlantillaManualDetalle(id_comunidad_cargado, dataGridView_plantillas.SelectedCells[0].Value.ToString(), dataGridView_plantillas.SelectedCells[2].Value.ToString());
             nueva.Show();
         }
     }

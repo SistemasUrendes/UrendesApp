@@ -86,7 +86,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
             comboBox_Fondo.DisplayMember = "NombreFondo";
             comboBox_Fondo.ValueMember = "IdFondo";
 
-            String SelectPlantillas = "SELECT com_cuotamanual.IdCuotaManual, com_cuotamanual.NombreCuotaManual FROM com_cuotamanual WHERE (((com_cuotamanual.Activa) = -1) And((com_cuotamanual.Abono) = 0) And((com_cuotamanual.IdComunidad) = " + id_comunidad_cargado + ")) ORDER BY com_cuotamanual.NombreCuotaManual;";
+            String SelectPlantillas = "SELECT com_cuotamanual.IdCuotaManual, com_cuotamanual.NombreCuotaManual FROM com_cuotamanual WHERE (((com_cuotamanual.Activa) = -1) And((com_cuotamanual.IdComunidad) = " + id_comunidad_cargado + ")) ORDER BY com_cuotamanual.NombreCuotaManual;";
 
             comboBox_PlantillaCuota.DataSource = Persistencia.SentenciasSQL.select(SelectPlantillas);
             comboBox_PlantillaCuota.DisplayMember = "NombreCuotaManual";

@@ -79,7 +79,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
         }
         public void cargaTelefonos()
         {
-            String sqlTelefonos = "SELECT IdDetTelf,IdEntidad,Descripcion,Telefono,Ppal FROM ctos_dettelf WHERE ctos_dettelf.IdEntidad = " + id_entidad_cargado;
+            String sqlTelefonos = "SELECT IdDetTelf,IdEntidad,Descripcion,Telefono,Ppal, Orden FROM ctos_dettelf WHERE ctos_dettelf.IdEntidad = " + id_entidad_cargado;
             DataTable telefonos = Persistencia.SentenciasSQL.select(sqlTelefonos);
             dataGridView_telefonos.DataSource = telefonos;
 

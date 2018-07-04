@@ -96,6 +96,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.BloquesForms
         public void cargarBloques() {
             String sql = "SELECT com_bloques.IdBloque, com_bloques.Descripcion, com_tipoSubcuota.Descripcion AS CálculoSubcuota, Sum(com_divisiones.Cuota) AS CG, Count(com_subcuotas.IdDivision) AS Cuenta, Sum(com_subcuotas.Parte) AS Partes, com_bloques.GG, com_bloques.Baja, com_bloques.IdTipoSubcuota, com_bloques.Fisica AS Fisico FROM((com_bloques LEFT JOIN com_tipoSubcuota ON com_bloques.IdTipoSubcuota = com_tipoSubcuota.IdTipoSubcuota) LEFT JOIN com_subcuotas ON com_bloques.IdBloque = com_subcuotas.IdBloque) LEFT JOIN com_divisiones ON com_subcuotas.IdDivision = com_divisiones.IdDivision GROUP BY com_bloques.IdBloque, com_bloques.Descripcion, com_tipoSubcuota.Descripcion, com_bloques.GG, com_bloques.Baja, com_bloques.IdTipoSubcuota, com_bloques.CalculoSubcuota, com_bloques.IdComunidad, com_bloques.IdTipoBloque HAVING(((com_bloques.IdComunidad) = " + id_comunidad_cargado + ") AND((com_bloques.IdTipoBloque) = 1)) ORDER BY com_bloques.Descripcion;";
 
+
             bloques = Persistencia.SentenciasSQL.select(sql);
             dataGridView_bloques.DataSource = bloques;
             DataTable busqueda = bloques;

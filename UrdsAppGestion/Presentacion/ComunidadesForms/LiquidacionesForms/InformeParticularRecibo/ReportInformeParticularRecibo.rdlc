@@ -1162,7 +1162,6 @@
                                       </TopBorder>
                                       <BottomBorder>
                                         <Color>Black</Color>
-                                        <Width>1pt</Width>
                                       </BottomBorder>
                                       <LeftBorder>
                                         <Style>None</Style>
@@ -1172,7 +1171,7 @@
                                       </RightBorder>
                                       <PaddingLeft>2pt</PaddingLeft>
                                       <PaddingRight>2pt</PaddingRight>
-                                      <PaddingBottom>1pt</PaddingBottom>
+                                      <PaddingTop>1pt</PaddingTop>
                                     </Style>
                                   </Textbox>
                                 </CellContents>

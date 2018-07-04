@@ -253,8 +253,13 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
         {
             if (dataGridView_operaciones.SelectedRows.Count == 1)
             {
-                    DivisionesForms.FormReasignarPagador nueva = new DivisionesForms.FormReasignarPagador(this, id_comunidad_cargado, dataGridView_operaciones.SelectedCells[0].Value.ToString(), dataGridView_operaciones.SelectedCells[3].Value.ToString(), dataGridView_operaciones.SelectedCells[2].Value.ToString(),dataGridView_operaciones.SelectedCells[10].Value.ToString(),"OperacionComuneros");
+                if (Convert.ToDouble(dataGridView_operaciones.SelectedCells[10].Value.ToString()) > 0)
+                {
+                    DivisionesForms.FormReasignarPagador nueva = new DivisionesForms.FormReasignarPagador(this, id_comunidad_cargado, dataGridView_operaciones.SelectedCells[0].Value.ToString(), dataGridView_operaciones.SelectedCells[3].Value.ToString(), dataGridView_operaciones.SelectedCells[2].Value.ToString(), dataGridView_operaciones.SelectedCells[10].Value.ToString(), "OperacionComuneros");
                     nueva.Show();
+                }else {
+                    MessageBox.Show("Esa operación ya esta pagada");
+                }
             }
             else
             {
@@ -272,7 +277,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
         {
             String idOpBorrar = dataGridView_operaciones.SelectedRows[0].Cells[0].Value.ToString();
             DialogResult resultado_message;
-            resultado_message = MessageBox.Show("¿ Desea borrar la Operación ?", "Borrar Operación", MessageBoxButtons.OKCancel);
+            resultado_message = MessageBox.Show("¿ Desea borrar la operación ?", "Borrar Operación", MessageBoxButtons.OKCancel);
             if (resultado_message == System.Windows.Forms.DialogResult.OK)
             {
                 String resultado = Logica.FuncionesOperaciones.CombrobacionesBorrarOp(idOpBorrar);

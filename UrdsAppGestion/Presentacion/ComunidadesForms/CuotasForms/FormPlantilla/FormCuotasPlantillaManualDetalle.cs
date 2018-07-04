@@ -15,13 +15,16 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
         DataTable filas_pegadas = new DataTable();
         String id_comunidad_cargado;
         String id_plantilla_pasado;
+        String tipoCuota = "";
         List<String> id_divisiones = new List<String>();
 
-        public FormCuotasPlantillaManualDetalle(String id_comunidad_cargado, String id_plantilla_pasado)
+        public FormCuotasPlantillaManualDetalle(String id_comunidad_cargado, String id_plantilla_pasado, String tipoCuota)
         {
             InitializeComponent();
             this.id_comunidad_cargado = id_comunidad_cargado;
             this.id_plantilla_pasado = id_plantilla_pasado;
+            if (tipoCuota == "True")
+                this.tipoCuota = "-";
         }
 
         private void textBox_filtro_division_Click(object sender, EventArgs e)
@@ -37,7 +40,17 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
                 Clipboard.SetDataObject(d);
                 e.Handled = true;
             }
-            else if (e.Control && e.KeyCode == Keys.V)  {  
+            else if (e.Control && e.KeyCode == Keys.V)  {
+
+                filas_pegadas.Columns.Clear();
+                filas_pegadas.Rows.Clear();
+                filas_pegadas.Columns.Add("IdDetCuotaManual");
+                filas_pegadas.Columns.Add("IdDivision");
+                filas_pegadas.Columns.Add("Division");
+                filas_pegadas.Columns.Add("IdBloque");
+                filas_pegadas.Columns.Add("Descripcion");
+                filas_pegadas.Columns.Add("Importe");
+
                 string s = Clipboard.GetText();
                 string[] lines = s.Split('\n');
 
@@ -72,7 +85,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
             filas_pegadas = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridView_PlantillaManual.DataSource = filas_pegadas;
             dataGridView_PlantillaManual.Enabled = true;
-            dataGridView_PlantillaManual.Columns[3].Visible = false;
+            //dataGridView_PlantillaManual.Columns[3].Visible = false;
         }
 
         private void textBox_filtro_division_Leave(object sender, EventArgs e)
@@ -109,8 +122,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
 
                 for (int a = 0; a < dataGridView_PlantillaManual.Rows.Count;a++)
                 {
-                    string id = dataGridView_PlantillaManual.Rows[a].Cells[0].Value.ToString();
-                    if (!todoCorrecto(Convert.ToInt32(id)))
+                    if (!todoCorrecto(a))
                         TodoBien = false;
                 }
 
@@ -120,16 +132,17 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
                         string id = dataGridView_PlantillaManual.Rows[a].Cells[0].Value.ToString();
                         if (id == "0")
                         {
-                            String sqlInsert = "INSERT INTO com_cuotamanualdet (IdCuotaManual, IdDivision, IdBloque, Importe) VALUES (" + id_plantilla_pasado + "," + dataGridView_PlantillaManual.Rows[a].Cells[1].Value.ToString() + "," + dataGridView_PlantillaManual.Rows[a].Cells[3].Value.ToString() + "," + dataGridView_PlantillaManual.Rows[a].Cells[5].Value.ToString() + ")";
+                            String sqlInsert = "INSERT INTO com_cuotamanualdet (IdCuotaManual, IdDivision, IdBloque, Importe) VALUES (" + id_plantilla_pasado + "," + dataGridView_PlantillaManual.Rows[a].Cells[1].Value.ToString() + "," + dataGridView_PlantillaManual.Rows[a].Cells[3].Value.ToString() + "," + tipoCuota + dataGridView_PlantillaManual.Rows[a].Cells[5].Value.ToString().Replace(',', '.') + ")";
 
                             Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
                         }else {
-                            String sqlUpdate = "UPDATE com_cuotamanualdet SET IdCuotaManual=" + id_plantilla_pasado + ", IdDivision=" + dataGridView_PlantillaManual.Rows[a].Cells[1].Value.ToString() + ",IdBloque=" + dataGridView_PlantillaManual.Rows[a].Cells[3].Value.ToString() + ",Importe=" + dataGridView_PlantillaManual.Rows[a].Cells[5].Value.ToString() + " WHERE IdDetCuotaManual = " + id;
+                            String sqlUpdate = "UPDATE com_cuotamanualdet SET IdCuotaManual=" + id_plantilla_pasado + ", IdDivision=" + dataGridView_PlantillaManual.Rows[a].Cells[1].Value.ToString() + ",IdBloque=" + dataGridView_PlantillaManual.Rows[a].Cells[3].Value.ToString() + ",Importe=" +tipoCuota + dataGridView_PlantillaManual.Rows[a].Cells[5].Value.ToString().Replace(',','.') + " WHERE IdDetCuotaManual = " + id;
 
                             Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                         }
                     }
                     cargarDatagrid();
+                    this.Close();
                 }
                 else {
                     MessageBox.Show("Hay alguna linea incorrecta");
@@ -175,12 +188,14 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
             resultado_message = MessageBox.Show("¿Quitar división de la lista ?", "Quitar División", MessageBoxButtons.OKCancel);
             if (resultado_message == System.Windows.Forms.DialogResult.OK)
             {
-                if (dataGridView_PlantillaManual.SelectedRows[0].Cells[0].Value.ToString() == "0")
-                    dataGridView_PlantillaManual.Rows.RemoveAt(dataGridView_PlantillaManual.CurrentRow.Index);
-                else
-                {
-                    String sqlDelete = "DELETE FROM com_cuotamanualdet WHERE IdDetCuotaManual = " + dataGridView_PlantillaManual.SelectedRows[0].Cells[0].Value.ToString();
-                    Persistencia.SentenciasSQL.InsertarGenerico(sqlDelete);
+                for (int a = 0; a < dataGridView_PlantillaManual.Rows.Count; a++){
+                    if (dataGridView_PlantillaManual.SelectedRows[a].Cells[0].Value.ToString() == "0")
+                        dataGridView_PlantillaManual.Rows.RemoveAt(dataGridView_PlantillaManual.CurrentRow.Index);
+                    else
+                    {
+                        String sqlDelete = "DELETE FROM com_cuotamanualdet WHERE IdDetCuotaManual = " + dataGridView_PlantillaManual.SelectedRows[a].Cells[0].Value.ToString();
+                        Persistencia.SentenciasSQL.InsertarGenerico(sqlDelete);
+                    }
                 }
                 cargarDatagrid();
             }

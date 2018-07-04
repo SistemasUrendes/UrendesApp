@@ -36,12 +36,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms.FormPlantill
         {
             try
             {
-                int importe = Convert.ToInt32(textBox_importe.Text);
+                double importe = Convert.ToDouble(textBox_importe.Text);
             }catch {
-                MessageBox.Show("El Importe debe ser entero");
+                MessageBox.Show("El Importe no es un número");
                 return;
             }
-            form_anterior.recibirDatos(comboBox_bloque.SelectedValue.ToString(), comboBox_bloque.Text, textBox_importe.Text);
+            form_anterior.recibirDatos(comboBox_bloque.SelectedValue.ToString(), comboBox_bloque.Text, textBox_importe.Text.Replace('.',','));
             this.Close();
         }
     }

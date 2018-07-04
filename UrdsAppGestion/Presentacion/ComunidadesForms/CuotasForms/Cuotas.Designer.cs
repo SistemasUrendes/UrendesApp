@@ -69,15 +69,15 @@
             // 
             this.button_Añadir.Location = new System.Drawing.Point(23, 12);
             this.button_Añadir.Name = "button_Añadir";
-            this.button_Añadir.Size = new System.Drawing.Size(54, 23);
+            this.button_Añadir.Size = new System.Drawing.Size(84, 23);
             this.button_Añadir.TabIndex = 1;
-            this.button_Añadir.Text = "Nueva";
+            this.button_Añadir.Text = "Nueva Cuota";
             this.button_Añadir.UseVisualStyleBackColor = true;
             this.button_Añadir.Click += new System.EventHandler(this.button_Añadir_Click);
             // 
             // button_Borrar
             // 
-            this.button_Borrar.Location = new System.Drawing.Point(83, 12);
+            this.button_Borrar.Location = new System.Drawing.Point(113, 12);
             this.button_Borrar.Name = "button_Borrar";
             this.button_Borrar.Size = new System.Drawing.Size(52, 23);
             this.button_Borrar.TabIndex = 3;
@@ -130,7 +130,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(141, 12);
+            this.button1.Location = new System.Drawing.Point(171, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(154, 23);
             this.button1.TabIndex = 9;

@@ -289,6 +289,11 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
                 this.dataGridView_Cuotas.DataSource = busqueda;
             }
         }
+
+        private void button_abonoCuota_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
