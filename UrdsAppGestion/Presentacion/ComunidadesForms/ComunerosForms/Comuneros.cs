@@ -411,12 +411,18 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
         private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e)
         {
             
-            if (comboBox2.SelectedIndex < 3)
+            if (comboBox2.SelectedIndex == 0)
             {
                 ComunerosForms.VistaInforme nueva = new ComunerosForms.VistaInforme(dataGridView_comuneros.SelectedRows[0].Cells[0].Value.ToString(), id_comunidad, dataGridView_comuneros.SelectedRows[0].Cells[1].Value.ToString());
                 nueva.Show();
             }
-            else if (comboBox2.SelectedIndex == 3)
+            else if (comboBox2.SelectedIndex == 1) {
+                MessageBox.Show("Informe no disponible");
+            }
+            else if (comboBox2.SelectedIndex == 2) {
+                MessageBox.Show("Informe no disponible");
+            }
+            else if (comboBox2.SelectedIndex == 3) 
             {
                 ComunerosForms.Informes.FormDivisionesAsociaciones nueva = new ComunerosForms.Informes.FormDivisionesAsociaciones(id_comunidad);
                 nueva.Show();
