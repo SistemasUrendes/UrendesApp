@@ -49,6 +49,7 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.buttonOrdenTlf = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -254,11 +255,22 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
+            // buttonOrdenTlf
+            // 
+            this.buttonOrdenTlf.Location = new System.Drawing.Point(163, 445);
+            this.buttonOrdenTlf.Name = "buttonOrdenTlf";
+            this.buttonOrdenTlf.Size = new System.Drawing.Size(75, 61);
+            this.buttonOrdenTlf.TabIndex = 16;
+            this.buttonOrdenTlf.Text = "Actualizar Orden Teléfono";
+            this.buttonOrdenTlf.UseVisualStyleBackColor = true;
+            this.buttonOrdenTlf.Click += new System.EventHandler(this.buttonOrdenTlf_Click);
+            // 
             // FormMantenimiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 560);
+            this.Controls.Add(this.buttonOrdenTlf);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
@@ -307,5 +319,6 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button buttonOrdenTlf;
     }
 }

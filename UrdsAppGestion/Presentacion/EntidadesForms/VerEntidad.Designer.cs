@@ -83,6 +83,7 @@
             this.copiarCuentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox_ruta = new System.Windows.Forms.TextBox();
+            this.buttonOrdenar = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_correos)).BeginInit();
@@ -146,6 +147,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.buttonOrdenar);
             this.tabPage1.Controls.Add(this.button4);
             this.tabPage1.Controls.Add(this.button5);
             this.tabPage1.Controls.Add(this.button6);
@@ -233,7 +235,7 @@
             // 
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.button3.Location = new System.Drawing.Point(345, 23);
+            this.button3.Location = new System.Drawing.Point(287, 20);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(55, 26);
             this.button3.TabIndex = 4;
@@ -245,7 +247,7 @@
             // 
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.button2.Location = new System.Drawing.Point(461, 23);
+            this.button2.Location = new System.Drawing.Point(403, 20);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(64, 26);
             this.button2.TabIndex = 3;
@@ -258,7 +260,7 @@
             this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.button1.Location = new System.Drawing.Point(405, 23);
+            this.button1.Location = new System.Drawing.Point(347, 20);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(51, 26);
             this.button1.TabIndex = 2;
@@ -717,6 +719,18 @@
             this.textBox_ruta.TabIndex = 25;
             this.textBox_ruta.Click += new System.EventHandler(this.textBox_ruta_Click);
             // 
+            // buttonOrdenar
+            // 
+            this.buttonOrdenar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.buttonOrdenar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.buttonOrdenar.Location = new System.Drawing.Point(473, 20);
+            this.buttonOrdenar.Name = "buttonOrdenar";
+            this.buttonOrdenar.Size = new System.Drawing.Size(55, 26);
+            this.buttonOrdenar.TabIndex = 10;
+            this.buttonOrdenar.Text = "Ordenar";
+            this.buttonOrdenar.UseVisualStyleBackColor = true;
+            this.buttonOrdenar.Click += new System.EventHandler(this.buttonOrdenar_Click);
+            // 
             // VerEntidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -823,5 +837,6 @@
         private System.Windows.Forms.DataGridView dataGridViewCategorias;
         private System.Windows.Forms.TextBox textBoxFiltroCategoria;
         public System.Windows.Forms.DataGridView dataGridView_bancos;
+        private System.Windows.Forms.Button buttonOrdenar;
     }
 }

@@ -28,6 +28,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String filtroConcat;
         String busquedaConcat;
         String codigoCat;
+        String ordDescripcion;
 
         public FormTareasPrincipal(String id_comunidad)
         {
@@ -296,19 +297,23 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 sqlSelect += " AND (exp_area.codigoArea Like '%" + codigoCat + "%')";
             }
             sqlSelect += " GROUP BY exp_tareas.IdTarea";
-            if (ordFIni == null && ordFFin == null)
+            if (ordFIni == null && ordFFin == null && ordDescripcion == null)
             {
                 sqlSelect += " ORDER BY exp_tareas.FIni ASC";
             }
-            if (ordFIni != null && ordFFin == null)
+            else if (ordFIni != null)
             {
                 sqlSelect += " ORDER BY exp_tareas.FIni " + ordFIni;
             }
-            else if (ordFIni == null && ordFFin != null)
+            else if (ordFFin != null)
             {
                 sqlSelect += " ORDER BY exp_tareas.FFin " + ordFFin;
             }
-
+            else if (ordDescripcion != null)
+            {
+                sqlSelect += " ORDER BY exp_tareas.Descripción " + ordDescripcion;
+            }
+            
             tareas = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridView_tareas.DataSource = tareas;
             labelCount.Text = "Elementos: " + tareas.Rows.Count.ToString();
@@ -528,7 +533,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 DataTable comunidad = Persistencia.SentenciasSQL.select(sqlSelect);
                 String idEntidad = comunidad.Rows[0][0].ToString();
                 String nombreComunidad = comunidad.Rows[0][1].ToString();
-                Tareas.Informes.VistaInformeSeguimiento nueva = new Informes.VistaInformeSeguimiento(idEntidad, nombreComunidad, tareas, fIni1, fIni2, fFin1, fFin2, acuerdo, importante, proxJunta, seguro);
+                Informes.VistaInformeSeguimiento nueva = new Informes.VistaInformeSeguimiento(idEntidad, nombreComunidad, tareas, fIni1, fIni2, fFin1, fFin2, acuerdo, importante, proxJunta, seguro);
                 nueva.Show();
             }
             else
@@ -708,7 +713,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void dataGridView_tareas_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.ColumnIndex == 8)
+            if (e.ColumnIndex == dataGridView_tareas.Columns["FIni"].Index)
             {
                 if (ordFIni == null || ordFIni == "DESC")
                 {
@@ -720,9 +725,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     ordFIni = "DESC";
                     ordFFin = null;
                 }
+                ordDescripcion = null;
                 aplicarFiltroTabla();
             }
-            else if (e.ColumnIndex == 9)
+            else if (e.ColumnIndex == dataGridView_tareas.Columns["FFin"].Index)
             {
                 if (ordFFin == null || ordFFin == "DESC")
                 {
@@ -734,8 +740,17 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     ordFIni = null;
                     ordFFin = "DESC";
                 }
+                ordDescripcion = null;
                 aplicarFiltroTabla();
             }
+            else if (e.ColumnIndex == dataGridView_tareas.Columns["Descripción"].Index)
+            {
+                if (ordDescripcion != null && ordDescripcion == "ASC") ordDescripcion = "DESC";
+                else ordDescripcion = "ASC";
+                ordFFin = null;
+                ordFIni = null;
+            }
+
         }
 
         private void textBox_Entidad_MouseDoubleClick(object sender, MouseEventArgs e)

@@ -79,7 +79,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
         }
         public void cargaTelefonos()
         {
-            String sqlTelefonos = "SELECT IdDetTelf,IdEntidad,Descripcion,Telefono,Ppal, Orden FROM ctos_dettelf WHERE ctos_dettelf.IdEntidad = " + id_entidad_cargado;
+            String sqlTelefonos = "SELECT IdDetTelf,IdEntidad,Descripcion,Telefono,Ppal, Orden FROM ctos_dettelf WHERE ctos_dettelf.IdEntidad = '" + id_entidad_cargado + "' ORDER BY Orden";
             DataTable telefonos = Persistencia.SentenciasSQL.select(sqlTelefonos);
             dataGridView_telefonos.DataSource = telefonos;
 
@@ -87,8 +87,9 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
             dataGridView_telefonos.Columns[1].Visible = false;
             dataGridView_telefonos.Columns[2].Width = 265;
             dataGridView_telefonos.Columns[3].Width = 172;
-            dataGridView_telefonos.Columns[4].Width = 65;
-            
+            dataGridView_telefonos.Columns[4].Visible = false;
+            dataGridView_telefonos.Columns[5].Width = 65;
+
             //FORMATEO EL TELEFONO CON ESPACIOS PARA QUE SE PUEDA VER MEJOR
             for (int a = 0; a < dataGridView_telefonos.RowCount;a++) {
                 try
@@ -682,6 +683,12 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
                 
             }
             this.dataGridViewCategorias.DataSource = busqueda;
+        }
+
+        private void buttonOrdenar_Click(object sender, EventArgs e)
+        {
+            FormOrdenarTelefonos nueva = new FormOrdenarTelefonos(this,id_entidad_cargado.ToString(), label_entidad.Text);
+            nueva.Show();
         }
     }
 }
