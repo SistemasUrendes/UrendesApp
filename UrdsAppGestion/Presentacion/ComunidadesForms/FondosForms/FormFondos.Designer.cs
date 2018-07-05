@@ -40,6 +40,7 @@
             this.inciarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarFondoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView_detallesFondos = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -51,7 +52,6 @@
             this.iniciarConResultadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button4 = new System.Windows.Forms.Button();
-            this.verStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Fondos)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_detallesFondos)).BeginInit();
@@ -80,7 +80,6 @@
             // 
             // button3
             // 
-            this.button3.Enabled = false;
             this.button3.Location = new System.Drawing.Point(174, 15);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
@@ -144,7 +143,7 @@
             this.informeToolStripMenuItem,
             this.verStockToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(144, 92);
             // 
             // inciarToolStripMenuItem
             // 
@@ -166,6 +165,13 @@
             this.informeToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.informeToolStripMenuItem.Text = "Informe";
             this.informeToolStripMenuItem.Click += new System.EventHandler(this.informeToolStripMenuItem_Click);
+            // 
+            // verStockToolStripMenuItem
+            // 
+            this.verStockToolStripMenuItem.Name = "verStockToolStripMenuItem";
+            this.verStockToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.verStockToolStripMenuItem.Text = "Ver Stock";
+            this.verStockToolStripMenuItem.Click += new System.EventHandler(this.verStockToolStripMenuItem_Click);
             // 
             // dataGridView_detallesFondos
             // 
@@ -266,13 +272,6 @@
             this.button4.Text = "Informe";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // verStockToolStripMenuItem
-            // 
-            this.verStockToolStripMenuItem.Name = "verStockToolStripMenuItem";
-            this.verStockToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.verStockToolStripMenuItem.Text = "Ver Stock";
-            this.verStockToolStripMenuItem.Click += new System.EventHandler(this.verStockToolStripMenuItem_Click);
             // 
             // FormFondos
             // 
