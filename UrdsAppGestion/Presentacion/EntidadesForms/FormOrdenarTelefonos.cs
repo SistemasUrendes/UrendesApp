@@ -70,40 +70,48 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
                 ponerPrincipal(dataGridView_telefonos.Rows[1].Cells[0].Value.ToString());
                 cargarTelefonos();
                 formAnt.cargaTelefonos();
-            }
-            //GENERAL
-            else
-            {
-                String ordenAnt = dataGridView_telefonos.SelectedRows[0].Cells["Orden"].Value.ToString();
-                int ordenN = Int32.Parse(ordenAnt) + 1;
-                actualizarOrden(dataGridView_telefonos.Rows[ordenN].Cells["IdDetTelf"].Value.ToString(), ordenAnt);
-                actualizarOrden(dataGridView_telefonos.SelectedRows[0].Cells["IdDetTelf"].Value.ToString(), ordenN.ToString());
-                cargarTelefonos();
-                formAnt.cargaTelefonos();
-            }
-        }
-
-        private void buttonBajar_Click(object sender, EventArgs e)
-        {
-            //ÚLTIMO
-            if (dataGridView_telefonos.SelectedRows[0].Cells["Orden"].Value.ToString() == (dataGridView_telefonos.Rows.Count + 1).ToString() ) return;
-            //PRIMERO
-            else if (dataGridView_telefonos.SelectedRows[0].Cells["Orden"].Value.ToString() == "2")
-            {
-                quitarPrincipal(dataGridView_telefonos.Rows[0].Cells[0].Value.ToString());
-                ponerPrincipal(dataGridView_telefonos.Rows[1].Cells[0].Value.ToString());
-                cargarTelefonos();
-                formAnt.cargaTelefonos();
+                dataGridView_telefonos.ClearSelection();
+                dataGridView_telefonos.Rows[0].Selected = true;
             }
             //GENERAL
             else
             {
                 String ordenAnt = dataGridView_telefonos.SelectedRows[0].Cells["Orden"].Value.ToString();
                 int ordenN = Int32.Parse(ordenAnt) - 1;
-                actualizarOrden(dataGridView_telefonos.Rows[ordenN].Cells["IdDetTelf"].Value.ToString(), ordenAnt);
+                actualizarOrden(dataGridView_telefonos.Rows[ordenN-1].Cells["IdDetTelf"].Value.ToString(), ordenAnt);
                 actualizarOrden(dataGridView_telefonos.SelectedRows[0].Cells["IdDetTelf"].Value.ToString(), ordenN.ToString());
                 cargarTelefonos();
                 formAnt.cargaTelefonos();
+                dataGridView_telefonos.ClearSelection();
+                dataGridView_telefonos.Rows[ordenN-1].Selected = true;
+            }
+        }
+
+        private void buttonBajar_Click(object sender, EventArgs e)
+        {
+            //ÚLTIMO
+            if (dataGridView_telefonos.SelectedRows[0].Cells["Orden"].Value.ToString() == (dataGridView_telefonos.Rows.Count).ToString() ) return;
+            //PRIMERO
+            else if (dataGridView_telefonos.SelectedRows[0].Cells["Orden"].Value.ToString() == "1")
+            {
+                quitarPrincipal(dataGridView_telefonos.Rows[0].Cells[0].Value.ToString());
+                ponerPrincipal(dataGridView_telefonos.Rows[1].Cells[0].Value.ToString());
+                cargarTelefonos();
+                formAnt.cargaTelefonos();
+                dataGridView_telefonos.ClearSelection();
+                dataGridView_telefonos.Rows[1].Selected = true;
+            }
+            //GENERAL
+            else
+            {
+                String ordenAnt = dataGridView_telefonos.SelectedRows[0].Cells["Orden"].Value.ToString();
+                int ordenN = Int32.Parse(ordenAnt) + 1;
+                actualizarOrden(dataGridView_telefonos.Rows[Int32.Parse(ordenAnt)].Cells["IdDetTelf"].Value.ToString(), ordenAnt);
+                actualizarOrden(dataGridView_telefonos.SelectedRows[0].Cells["IdDetTelf"].Value.ToString(), ordenN.ToString());
+                cargarTelefonos();
+                formAnt.cargaTelefonos();
+                dataGridView_telefonos.ClearSelection();
+                dataGridView_telefonos.Rows[Int32.Parse(ordenAnt)].Selected = true;
             }
         }
 
