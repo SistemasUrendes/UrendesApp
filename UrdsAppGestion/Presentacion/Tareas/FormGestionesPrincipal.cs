@@ -214,10 +214,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 sqlSelect += " AND (exp_gestiones.IdUser = " + responsable + ")";
             }
-            //if (idElemento != null)
-            //{
-            //    sqlSelect += " AND (exp_tareas.IdElemento = " + idElemento + ")";
-            //}
 
             sqlSelect += " ORDER BY exp_gestiones.FSeguir ASC";
 

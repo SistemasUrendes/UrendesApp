@@ -208,30 +208,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         public void recibirEntidad(String nombre, String correo, String tlf)
         {
-            /*
-            String sqlSelectCorreo = "SELECT ctos_entidades.Entidad, ctos_detemail.Email FROM ctos_detemail RIGHT JOIN ctos_entidades ON ctos_detemail.IdEntidad = ctos_entidades.IDEntidad WHERE(((ctos_entidades.IDEntidad) = " + id_entidad + ") AND((ctos_detemail.Ppal) = -1))";
-            DataTable tablaCorreo = Persistencia.SentenciasSQL.select(sqlSelectCorreo);
-            String sqlSelectTlf = "SELECT ctos_entidades.Entidad, ctos_dettelf.Telefono FROM ctos_entidades INNER JOIN ctos_dettelf ON ctos_entidades.IDEntidad = ctos_dettelf.IdEntidad WHERE(((ctos_dettelf.Ppal) = -1) AND((ctos_entidades.IDEntidad) = " + id_entidad + "))";
-            DataTable tablatlf = Persistencia.SentenciasSQL.select(sqlSelectTlf);
-
-            
-
-            if (tablatlf.Rows.Count > 0)
-            {
-                textBoxNombre.Text = tablatlf.Rows[0][0].ToString();
-                maskedTextBoxTelefono.Text = tablatlf.Rows[0][1].ToString();
-            }
-            if (tablaCorreo.Rows.Count > 0)
-            {
-                textBoxNombre.Text = tablaCorreo.Rows[0][0].ToString();
-                textBoxCorreo.Text = tablaCorreo.Rows[0][1].ToString();
-            }
-            if (tablatlf.Rows.Count == 0 && tablaCorreo.Rows.Count == 0)
-            {
-                MessageBox.Show("El contacto no tiene ni teléfono ni correo!");
-                return;
-            }
-            */
             textBoxNombre.Text = nombre;
             maskedTextBoxTelefono.Text = tlf;
             textBoxCorreo.Text = correo;
@@ -246,35 +222,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         public void recibirProveedor (String nombre,String correo, String tlf)
         {
-            //String sqlSelect = "SELECT ctos_entidades.Entidad, ctos_detemail.Email, ctos_dettelf.Telefono FROM((com_proveedores INNER JOIN ctos_entidades ON com_proveedores.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN ctos_detemail ON ctos_entidades.IDEntidad = ctos_detemail.IdEntidad) INNER JOIN ctos_dettelf ON ctos_entidades.IDEntidad = ctos_dettelf.IdEntidad WHERE(((com_proveedores.IdProveedor) = " + idProveedor + ") AND ((ctos_detemail.Ppal) = -1) AND((ctos_dettelf.Ppal) = -1) )";
-            /*
-            textBoxNombre.Text = "";
-            maskedTextBoxTelefono.Text = "";
-            textBoxCorreo.Text = "";
-
-            String sqlSelectCorreo = "SELECT ctos_entidades.Entidad, ctos_detemail.Email FROM(ctos_entidades INNER JOIN ctos_detemail ON ctos_entidades.IDEntidad = ctos_detemail.IdEntidad) INNER JOIN com_proveedores ON ctos_entidades.IDEntidad = com_proveedores.IdEntidad WHERE(((com_proveedores.IdProveedor) = " + idProveedor + ") AND((ctos_detemail.Ppal) = -1))";
-            DataTable tablaCorreo = Persistencia.SentenciasSQL.select(sqlSelectCorreo);
-            String sqlSelectTlf = "SELECT ctos_entidades.Entidad, ctos_dettelf.Telefono FROM(ctos_entidades INNER JOIN com_proveedores ON ctos_entidades.IDEntidad = com_proveedores.IdEntidad) INNER JOIN ctos_dettelf ON ctos_entidades.IDEntidad = ctos_dettelf.IdEntidad WHERE(((com_proveedores.IdProveedor) = " + idProveedor + ") AND((ctos_dettelf.Ppal) = -1))";
-            DataTable tablatlf = Persistencia.SentenciasSQL.select(sqlSelectTlf);
-
-            if (tablatlf.Rows.Count > 0)
-            {
-                textBoxNombre.Text = tablatlf.Rows[0][0].ToString();
-                maskedTextBoxTelefono.Text = tablatlf.Rows[0][1].ToString();
-            }
-            if (tablaCorreo.Rows.Count > 0)
-            {
-                textBoxNombre.Text = tablaCorreo.Rows[0][0].ToString();
-                textBoxCorreo.Text = tablaCorreo.Rows[0][1].ToString();
-            }
-            if (tablatlf.Rows.Count == 0 && tablaCorreo.Rows.Count == 0)
-            {
-                MessageBox.Show("El contacto no tiene ni teléfono ni correo!");
-                return;
-            }
-
-            */
-
             textBoxNombre.Text = nombre;
             maskedTextBoxTelefono.Text = tlf;
             textBoxCorreo.Text = correo;
@@ -326,7 +273,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;
             nueva.StartPosition = FormStartPosition.CenterScreen;
-            //nueva.textBox_buscar.Select();
             nueva.Show();
         }
 
@@ -337,7 +283,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;
             nueva.StartPosition = FormStartPosition.CenterScreen;
-            //nueva.textBox_buscar.Select();
             nueva.Show();
         }
         

@@ -284,10 +284,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 sqlSelect += " AND (com_comunidades.IdGestor = " + gestor + " OR com_comunidades.IdGestor2 = " + gestor + ")";
             }
-            //if (idAreaBloque != null && codigoCat != null)
-            //{
-            //    sqlSelect += " AND (exp_area.codigoArea Like '%" + idAreaBloque + "" + codigoCat + "%')";
-            //}
             if (idAreaBloque != null)
             {
                 sqlSelect += " AND (exp_areaTarea.IdArea = " + idAreaBloque + ")";

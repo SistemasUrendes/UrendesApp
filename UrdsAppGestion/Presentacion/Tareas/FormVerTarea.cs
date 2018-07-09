@@ -112,7 +112,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 cargarCabecera();
                 comboBoxEstadoGestion.SelectedIndex = 2; //TODAS
-                //cargarTodosSeguimientos();
                 cargarContactos();
                 cargarExpedientes();
                 cargarBloque();
@@ -595,8 +594,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     form_anterior.aplicarFiltroTabla();
                     form_anterior.filtroNombre();
                 }
-
-                //String tarea = idTarea + " " + textBoxDescripcion.Text;
+                
                 String tarea = "20" + idTareaNuevo(idTarea).Replace(@"/",@"\") + " " + textBoxDescripcion.Text;
                 String rutaCheck = rutaEntidad().Trim('#');
                 ruta = @rutaCheck + @"\EXPEDIENTES\" + tarea;
@@ -801,13 +799,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     sqlUpdate = "UPDATE exp_tareas SET Importante = 0 WHERE IdTarea = " + idTarea;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                 }
-                /*
-                if (idElemento != null && idElemento != "-1")
-                {
-                    sqlUpdate = "UPDATE exp_tareas SET IdElemento = '" + idElemento +"' WHERE IdTarea = " + idTarea;
-                    Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
-                }
-                */
             }
             //AÑADIR NUEVA TAREA
             else
@@ -846,13 +837,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     sqlInsert = "UPDATE exp_tareas SET Ruta = '" + fixRuta + "' WHERE IdTarea = " + idTarea;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
                 }
-                /*
-                if (idElemento != null && idElemento != "-1")
-                {
-                    sqlInsert = "UPDATE exp_tareas SET IdElemento = '" + idElemento + "' WHERE IdTarea = " + idTarea;
-                    Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
-                }
-                */
                 String Nombre = "FormVerTarea" + idTarea;
 
                 this.Name = Nombre;

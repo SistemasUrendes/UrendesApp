@@ -55,16 +55,18 @@
             // labelEntidad
             // 
             this.labelEntidad.AutoSize = true;
+            this.labelEntidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelEntidad.Location = new System.Drawing.Point(13, 13);
             this.labelEntidad.Name = "labelEntidad";
-            this.labelEntidad.Size = new System.Drawing.Size(0, 13);
+            this.labelEntidad.Size = new System.Drawing.Size(0, 17);
             this.labelEntidad.TabIndex = 2;
             // 
             // buttonBajar
             // 
-            this.buttonBajar.Location = new System.Drawing.Point(473, 187);
+            this.buttonBajar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonBajar.Location = new System.Drawing.Point(472, 184);
             this.buttonBajar.Name = "buttonBajar";
-            this.buttonBajar.Size = new System.Drawing.Size(28, 23);
+            this.buttonBajar.Size = new System.Drawing.Size(28, 57);
             this.buttonBajar.TabIndex = 34;
             this.buttonBajar.Text = "↓";
             this.buttonBajar.UseVisualStyleBackColor = true;
@@ -72,9 +74,10 @@
             // 
             // buttonSubir
             // 
-            this.buttonSubir.Location = new System.Drawing.Point(473, 158);
+            this.buttonSubir.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSubir.Location = new System.Drawing.Point(473, 121);
             this.buttonSubir.Name = "buttonSubir";
-            this.buttonSubir.Size = new System.Drawing.Size(28, 23);
+            this.buttonSubir.Size = new System.Drawing.Size(28, 57);
             this.buttonSubir.TabIndex = 33;
             this.buttonSubir.Text = "↑";
             this.buttonSubir.UseVisualStyleBackColor = true;
