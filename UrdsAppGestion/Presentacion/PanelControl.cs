@@ -442,6 +442,7 @@ namespace UrdsAppGestión.Presentacion
             string encoding;
             string filenameExtension;
             String anteriorEntidad = "";
+            String sqlIdRecibos = "";
 
             if (Thread.CurrentThread.Name == null)
             {
@@ -456,8 +457,11 @@ namespace UrdsAppGestión.Presentacion
                 {
                     try
                     {
-                        String sqlIdRecibos = "SELECT com_opdetalles.IdRecibo, Sum(com_operaciones.ImpOp) AS SumaDeImpOp FROM(((com_opdetalles INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp) INNER JOIN com_opdetliquidacion ON com_operaciones.IdOp = com_opdetliquidacion.IdOp) INNER JOIN com_cuotas ON com_operaciones.IdCuota = com_cuotas.IdCuota) INNER JOIN com_recibos ON com_opdetalles.IdRecibo = com_recibos.IdRecibo GROUP BY com_opdetalles.IdRecibo, com_operaciones.IdCuota, com_operaciones.IdEntidad, com_opdetliquidacion.IdLiquidacion, com_cuotas.IdTipoCuota, com_recibos.ImpRboPte HAVING((Not(com_operaciones.IdCuota) Is Null) AND((com_operaciones.IdEntidad) = " + idEntidad + ") AND((com_opdetliquidacion.IdLiquidacion) = " + idLiquidacion + ") AND((com_cuotas.IdTipoCuota) = 1 OR (com_cuotas.IdTipoCuota) = 2) AND((com_recibos.ImpRboPte) > 0));";
-
+                        String sqlSelectTipo = "SELECT com_liquidaciones.IdTipoLiq FROM com_liquidaciones WHERE com_liquidaciones.IdLiquidacion = " + idLiquidacion;
+                        DataTable tipoLiq = Persistencia.SentenciasSQL.select(sqlSelectTipo);
+                        if (tipoLiq.Rows.Count > 0) {
+                            sqlIdRecibos = "SELECT com_opdetalles.IdRecibo, Sum(com_operaciones.ImpOp) AS SumaDeImpOp FROM(((com_opdetalles INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp) INNER JOIN com_opdetliquidacion ON com_operaciones.IdOp = com_opdetliquidacion.IdOp) INNER JOIN com_cuotas ON com_operaciones.IdCuota = com_cuotas.IdCuota) INNER JOIN com_recibos ON com_opdetalles.IdRecibo = com_recibos.IdRecibo GROUP BY com_opdetalles.IdRecibo, com_operaciones.IdCuota, com_operaciones.IdEntidad, com_opdetliquidacion.IdLiquidacion, com_cuotas.IdTipoCuota, com_recibos.ImpRboPte HAVING((Not(com_operaciones.IdCuota) Is Null) AND((com_operaciones.IdEntidad) = " + idEntidad + ") AND((com_opdetliquidacion.IdLiquidacion) = " + idLiquidacion + ") AND((com_cuotas.IdTipoCuota) = " + tipoLiq.Rows[0][0].ToString() + ") AND((com_recibos.ImpRboPte) > 0));";
+                        }
                         DataTable Recibos = Persistencia.SentenciasSQL.select(sqlIdRecibos);
 
                         for (int b = 0; b < Recibos.Rows.Count; b++)

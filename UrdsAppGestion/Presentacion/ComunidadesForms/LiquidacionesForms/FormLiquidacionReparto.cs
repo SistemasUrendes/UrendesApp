@@ -440,22 +440,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
         {
             if (dataGridView2.SelectedRows.Count > 0)
             {
-                String sqlIdRecibos = "SELECT com_opdetalles.IdRecibo, Sum(com_operaciones.ImpOp) AS SumaDeImpOp FROM((com_opdetalles INNER JOIN com_operaciones ON com_opdetalles.IdOp = com_operaciones.IdOp) INNER JOIN com_opdetliquidacion ON com_operaciones.IdOp = com_opdetliquidacion.IdOp) INNER JOIN com_cuotas ON com_operaciones.IdCuota = com_cuotas.IdCuota GROUP BY com_opdetalles.IdRecibo, com_operaciones.IdCuota, com_operaciones.IdEntidad, com_opdetliquidacion.IdLiquidacion, com_cuotas.IdTipoCuota HAVING((Not(com_operaciones.IdCuota) Is Null) AND((com_operaciones.IdEntidad) = " + dataGridView2.SelectedRows[0].Cells[0].Value.ToString() + ") AND((com_opdetliquidacion.IdLiquidacion) = " + id_liquidacion_pasado + ") AND((com_cuotas.IdTipoCuota) = 1));";
-
-
-                DataTable Recibos = Persistencia.SentenciasSQL.select(sqlIdRecibos);
-
-                String Liquidacion = (Persistencia.SentenciasSQL.select("SELECT LiqLargo FROM com_liquidaciones WHERE IdLiquidacion = " + id_liquidacion_pasado)).Rows[0][0].ToString();
-
-                if (Recibos.Rows.Count > 0)
-                {
-                    for (int a = 0; a < Recibos.Rows.Count; a++)
-                    {
-                        //InformeParticularRecibo.FormVerInformeParticularReciboIVA nueva = new InformeParticularRecibo.FormVerInformeParticularReciboIVA(id_liquidacion_pasado, id_comunidad_pasado, dataGridView2.SelectedRows[0].Cells[0].Value.ToString(), Recibos.Rows[a][0].ToString(), Liquidacion);
-                        //nueva.Show();
-
-                    }
-                }
+               
+                InformeParticularReciboIVA.FormVerInformeLiquidacionIVA nueva = new InformeParticularReciboIVA.FormVerInformeLiquidacionIVA(id_liquidacion_pasado, dataGridView2.SelectedRows[0].Cells[0].Value.ToString());
+                nueva.Show();
 
             }
         }

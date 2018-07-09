@@ -648,5 +648,25 @@ namespace UrdsAppGestión.Presentacion
             }
             MessageBox.Show("Fin.");
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            progressBar1.Visible = true;
+            String sqlEntidades = "SELECT ctos_entidades.IDEntidad FROM ctos_entidades GROUP BY ctos_entidades.IDEntidad;";
+            DataTable entidades = Persistencia.SentenciasSQL.select(sqlEntidades);
+            progressBar1.Maximum = entidades.Rows.Count;
+            for (int a = 0; a < entidades.Rows.Count;a++) {
+                progressBar1.Value = a;
+                String sqlSelect = "SELECT ctos_dettelf.IdEntidad, ctos_dettelf.Telefono, ctos_dettelf.Ppal, ctos_dettelf.Orden, ctos_dettelf.IdDetTelf FROM ctos_dettelf GROUP BY ctos_dettelf.IdEntidad, ctos_dettelf.Telefono, ctos_dettelf.Ppal, ctos_dettelf.Orden HAVING(((ctos_dettelf.IdEntidad) = " + entidades.Rows[a][0].ToString() + "));";
+                DataTable telefonos = Persistencia.SentenciasSQL.select(sqlSelect);
+                for (int b = 0; b < telefonos.Rows.Count; b++) {
+                    if (telefonos.Rows[b][2].ToString() == "True") break;
+                    if (b == telefonos.Rows.Count-1) {
+                        String sqlUpdate = "UPDATE ctos_dettelf SET Ppal=-1, Orden=1 WHERE IdDetTelf = " + telefonos.Rows[0][4].ToString();
+                        Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                    }
+                }
+            }
+        }
     }
 }

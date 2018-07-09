@@ -50,6 +50,7 @@
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.buttonOrdenTlf = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -135,7 +136,7 @@
             this.button1.Enabled = false;
             this.button1.Location = new System.Drawing.Point(281, 224);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 60);
+            this.button1.Size = new System.Drawing.Size(75, 60);
             this.button1.TabIndex = 4;
             this.button1.Text = "ActualizarSinAcentos";
             this.button1.UseVisualStyleBackColor = true;
@@ -265,11 +266,22 @@
             this.buttonOrdenTlf.UseVisualStyleBackColor = true;
             this.buttonOrdenTlf.Click += new System.EventHandler(this.buttonOrdenTlf_Click);
             // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(281, 445);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 60);
+            this.button9.TabIndex = 17;
+            this.button9.Text = "Poner Teléfonos Principal";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // FormMantenimiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 560);
+            this.Controls.Add(this.button9);
             this.Controls.Add(this.buttonOrdenTlf);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
@@ -320,5 +332,6 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button buttonOrdenTlf;
+        private System.Windows.Forms.Button button9;
     }
 }
