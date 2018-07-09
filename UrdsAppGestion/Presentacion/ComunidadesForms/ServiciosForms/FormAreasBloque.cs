@@ -120,7 +120,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 {
                     dataGridViewAddArea.Columns.Add(col.Clone() as DataGridViewColumn);
                 }
-                //ajustardataGridViewAddGestion();
             }
             if (!yaAñadida())
             {
@@ -137,7 +136,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     }
                     dataGridViewAddArea.Rows.Add(row);
                     dataGridViewAddArea.Refresh();
-                    //ajustardataGridViewAddGestion();
                 }
                 else
                 {
@@ -148,7 +146,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     newRow.ItemArray = row.ItemArray.Clone() as object[];
                     bloqueTabla.Rows.Add(newRow);
                     dataGridViewAddArea.Refresh();
-                    //ajustardataGridViewAddGestion();
                 }
             }
             dataGridViewAddArea.AllowUserToAddRows = false;

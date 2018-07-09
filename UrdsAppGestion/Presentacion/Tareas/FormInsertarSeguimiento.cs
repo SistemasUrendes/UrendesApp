@@ -62,7 +62,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 habilitarEdicion();
                 comboBoxUsuario.SelectedValue = Login.getId();
-                //maskedTextBoxFecha.Text = string.Format("{0:dd/MM/yyyy HH:mm:ss}", DateTime.Now);
                 maskedTextBoxFecha.Text = DateTime.Now.ToShortDateString();
 
             }
@@ -95,7 +94,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             //VALORES DE LA QUERY DE INSERCIÓN
             String notas = textBoxNotas.Text;
             String usuario = comboBoxUsuario.SelectedValue.ToString();
-            //String fecha = Convert.ToDateTime(maskedTextBoxFecha.Text).ToString("yyyy-MM-dd HH:mm:ss");
             String fecha = Convert.ToDateTime(maskedTextBoxFecha.Text).ToString("yyyy-MM-dd");
             if (idSeguimiento == null)
             {

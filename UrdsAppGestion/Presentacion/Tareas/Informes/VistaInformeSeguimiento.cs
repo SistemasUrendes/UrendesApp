@@ -42,6 +42,7 @@ namespace UrdsAppGestión.Presentacion.Tareas.Informes
             ReportParameter parametro1 = new ReportParameter("ffechaini1", Fini1);
             this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro1 });
 
+            if (Fini2 == "") Fini2 = DateTime.Now.ToShortDateString();
             ReportParameter parametro2 = new ReportParameter("ffechaini2", Fini2);
             this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parametro2 });
             
