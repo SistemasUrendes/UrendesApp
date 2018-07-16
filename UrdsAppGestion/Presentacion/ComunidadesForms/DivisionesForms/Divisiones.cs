@@ -20,6 +20,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
         String donde = "";
         Form form_anterior;
         Boolean cargado = false;
+        String idTarea;
 
         public Divisiones(int id_comunidad)
         {
@@ -33,21 +34,39 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             this.donde = donde;
             this.form_anterior = form_anterior;
         }
+        public Divisiones (Form form_anterior,String donde,String idTarea)
+        {
+            InitializeComponent();
+            this.idTarea = idTarea;
+            this.form_anterior = form_anterior;
+            this.donde = donde;
+        }
 
         private void FormDivisiones_Load(object sender, EventArgs e)
         {
-            if ( donde != "" ) {
+            if (idTarea != null)
+            {
                 button_enviar.Visible = true;
                 dataGridView_divisiones.MultiSelect = true;
-            }
-
-            cargarDivisiones();
-
-            if (divisiones.Rows.Count > 0)  {
-                cargarDetallesDivisiones();
+                cargarDivisionesTarea();
             }
             else
-                MessageBox.Show("No hay divisiones");
+            {
+                if (donde != "")
+                {
+                    button_enviar.Visible = true;
+                    dataGridView_divisiones.MultiSelect = true;
+                }
+
+                cargarDivisiones();
+
+                if (divisiones.Rows.Count > 0)
+                {
+                    cargarDetallesDivisiones();
+                }
+                else
+                    MessageBox.Show("No hay divisiones");
+            }
         }
         public void cargarDivisiones () {
             cargado = false;
@@ -328,6 +347,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                     nueva.recogerBloque(dataGridView_divisiones.SelectedCells[0].Value.ToString());
                     this.Close();
                 }
+                if (donde.Contains("FormVerTarea"))
+                {
+                    Tareas.FormVerTarea nueva = (Tareas.FormVerTarea)existe;
+                    nueva.recibirDivisiones(tablaSeleccionados());
+                    this.Close();
+                }
             }
         }
         private void cuotasToolStripMenuItem_Click(object sender, EventArgs e)
@@ -444,6 +469,40 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
         private void Divisiones_Shown(object sender, EventArgs e)
         {
             cargado = true;
+        }
+
+        private void cargarDivisionesTarea()
+        {
+            cargado =  false;
+            String sqlSelect = "SELECT com_divisiones.IdDivision, com_divisiones.IdComunidad, com_divisiones.Division, com_divisiones.Finca, com_divisiones.Orden, com_divisiones.IdTipoDiv, com_tipodivs.TipoDivision, com_divisiones.Cuota, com_divisiones.Excluido, com_divisiones.Notas FROM((com_divisiones INNER JOIN com_tipodivs ON com_divisiones.IdTipoDiv = com_tipodivs.IdTipoDiv) INNER JOIN com_subcuotas ON com_divisiones.IdDivision = com_subcuotas.IdDivision) INNER JOIN (exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea) ON com_subcuotas.IdBloque = exp_area.IdBloque GROUP BY com_divisiones.IdDivision, com_divisiones.IdComunidad, com_divisiones.Division, com_divisiones.Finca, com_divisiones.Orden, com_divisiones.IdTipoDiv, com_tipodivs.TipoDivision, com_divisiones.Cuota, com_divisiones.Excluido, com_divisiones.Notas, com_divisiones.Division, com_divisiones.IdComunidad, exp_area.IdAreaPrevio, exp_areaTarea.IdTarea HAVING(((exp_area.IdAreaPrevio) = 0) AND((exp_areaTarea.IdTarea) = " + idTarea + ")) ORDER BY com_divisiones.Orden, com_divisiones.Division";
+
+            divisiones = Persistencia.SentenciasSQL.select(sqlSelect);
+
+            if (divisiones.Rows.Count > 0)
+            {
+                dataGridView_divisiones.DataSource = divisiones;
+                label4.Text = "Total: " + divisiones.Rows.Count;
+                ajustarDatagrid();
+                cargado = true;
+            }
+            else
+            {
+                dataGridView_divisiones.DataSource = null;
+            }
+
+        }
+        
+
+        private DataTable tablaSeleccionados()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("IdDivision");
+            for (int i = 0; i < dataGridView_divisiones.SelectedRows.Count; i++)
+            {
+                dt.Rows.Add();
+                dt.Rows[i][0] = dataGridView_divisiones.SelectedRows[i].Cells[0].Value;
+            }
+            return dt;
         }
     }
 }

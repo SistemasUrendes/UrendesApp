@@ -124,6 +124,7 @@
             this.Name = "FormInsertarCategoria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Insertar Categoría";
+            this.Load += new System.EventHandler(this.FormInsertarCategoria_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

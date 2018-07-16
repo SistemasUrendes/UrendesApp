@@ -82,19 +82,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void borrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult resultado_message;
-            resultado_message = MessageBox.Show("¿Desea borrar este Bloque ?", "Borrar Bloque", MessageBoxButtons.OKCancel);
-            if (resultado_message == System.Windows.Forms.DialogResult.OK)
-            {
-                String sqlBorrar = "DELETE FROM exp_elementos WHERE IdElemento = " + dataGridViewBloque.SelectedRows[0].Cells[0].Value.ToString() ;
-                Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrar);
-                cargarBloques();
-            }
-        }
-        
-        private void dataGridViewBloque_MouseClick(object sender, MouseEventArgs e)
-        {
-            
+              
         }
 
         private void buttonAddArea_Click(object sender, EventArgs e)
@@ -138,27 +126,30 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         public void cargarTodasAreas()
         {
-            String sqlSelect = "SELECT IdDetElemento,Nombre,Descripcion FROM exp_detElemento WHERE IdDetElementoPrev = 0";
+            String sqlSelect = "SELECT exp_detElemento.IdDetElemento, exp_detElemento.Nombre, exp_catElemento.NombreCorto AS CAT, exp_detElemento.Descripcion FROM exp_detElemento INNER JOIN exp_catElemento ON exp_detElemento.IdCatElemento = exp_catElemento.IdCatElemento WHERE exp_detElemento.IdDetElementoPrev = 0";
             tablaAreas = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewAreas.DataSource = tablaAreas;
             if (dataGridViewAreas.Rows.Count > 0)
             {
                 dataGridViewAreas.Columns["IdDetElemento"].Visible = false;
-                dataGridViewAreas.Columns["Nombre"].Width = 110;
-                dataGridViewAreas.Columns["Descripcion"].Width = 170;
+                dataGridViewAreas.Columns["Nombre"].Width = 270;
+                dataGridViewAreas.Columns["CAT"].Width = 35;
+                dataGridViewAreas.Columns["Descripcion"].Width = 230;
             }
         }
 
         public void cargarAreas()
         {
-            String sqlSelect = "SELECT IdDetElemento,Nombre,Descripcion FROM exp_detElemento WHERE IdDetElementoPrev = 0 AND IdCatElemento = " + dataGridViewCategorias.SelectedCells[0].Value.ToString();
+            //String sqlSelec2t = "SELECT IdDetElemento,Nombre,Descripcion FROM exp_detElemento WHERE IdDetElementoPrev = 0 AND IdCatElemento = " + dataGridViewCategorias.SelectedCells[0].Value.ToString();
+            String sqlSelect = "SELECT exp_detElemento.IdDetElemento, exp_detElemento.Nombre, exp_catElemento.NombreCorto AS CAT, exp_detElemento.Descripcion FROM exp_detElemento INNER JOIN exp_catElemento ON exp_detElemento.IdCatElemento = exp_catElemento.IdCatElemento WHERE exp_detElemento.IdDetElementoPrev = 0 AND exp_detElemento.IdCatElemento = " + dataGridViewCategorias.SelectedCells[0].Value.ToString();
             tablaAreas = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewAreas.DataSource = tablaAreas;
             if (dataGridViewAreas.Rows.Count > 0)
             {
                 dataGridViewAreas.Columns["IdDetElemento"].Visible = false;
-                dataGridViewAreas.Columns["Nombre"].Width = 110;
-                dataGridViewAreas.Columns["Descripcion"].Width = 170;
+                dataGridViewAreas.Columns["Nombre"].Width = 270;
+                dataGridViewAreas.Columns["CAT"].Width = 35;
+                dataGridViewAreas.Columns["Descripcion"].Width = 230;
             }
         }
 
@@ -167,7 +158,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             DataTable busqueda = tablaAreas;
             busqueda.DefaultView.RowFilter = string.Empty;
 
-            String filtro = "Descripcion like '%" + textBoxAreas.Text.ToString() + "%'";
+            String filtro = "Descripcion like '%" + textBoxAreas.Text.ToString() + "%' OR Nombre like '%" + textBoxAreas.Text.ToString()  + "%'";
             busqueda.DefaultView.RowFilter = filtro;
             dataGridViewAreas.DataSource = busqueda;
         }
@@ -188,12 +179,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void borrarCategoríaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult resultado_message;
-            resultado_message = MessageBox.Show("¿Desea borrar esta Categoría ?", "Borrar Categoría", MessageBoxButtons.OKCancel);
+            resultado_message = MessageBox.Show("¿Desea borrar este Elemento ?", "Borrar Elemento", MessageBoxButtons.OKCancel);
             if (resultado_message == System.Windows.Forms.DialogResult.OK)
             {
-                String sqlBorrar = "DELETE FROM exp_catElemento WHERE IdCatElemento = " + dataGridViewAreas.SelectedRows[0].Cells[0].Value.ToString();
+                String sqlBorrar = "DELETE FROM exp_detElemento WHERE IdDetElemento = '" + dataGridViewAreas.SelectedRows[0].Cells[0].Value.ToString() + "'";
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrar);
-                cargarCategorias();
+                cargarAreas();
             }
         }
 
@@ -253,5 +244,27 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             cargarAreas();
         }
+
+        private void dataGridViewCategorias_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                var hti = dataGridViewCategorias.HitTest(e.X, e.Y);
+                if (hti.RowIndex > -1)
+                {
+                    dataGridViewCategorias.ClearSelection();
+                    dataGridViewCategorias.Rows[hti.RowIndex].Selected = true;
+                    dataGridViewCategorias.Columns[hti.ColumnIndex].Selected = true;
+                    contextMenuStrip1.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void editarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ComunidadesForms.ServiciosForms.FormInsertarCategoria nueva = new ComunidadesForms.ServiciosForms.FormInsertarCategoria(this,dataGridViewCategorias.SelectedRows[0].Cells[0].Value.ToString());
+            nueva.Show();
+        }
+        
     }
 }

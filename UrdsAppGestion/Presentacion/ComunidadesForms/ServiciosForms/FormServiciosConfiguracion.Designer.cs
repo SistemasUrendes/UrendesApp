@@ -35,20 +35,19 @@
             this.textBoxFiltroBloque = new System.Windows.Forms.TextBox();
             this.dataGridViewBloque = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.borrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonTodasAreas = new System.Windows.Forms.Button();
             this.textBoxAreas = new System.Windows.Forms.TextBox();
             this.buttonAddArea = new System.Windows.Forms.Button();
             this.dataGridViewAreas = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cambiarNombreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.borrarCategoríaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buttonActualizarClave = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.buttonAddCategoria = new System.Windows.Forms.Button();
             this.dataGridViewCategorias = new System.Windows.Forms.DataGridView();
-            this.buttonTodasAreas = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBloque)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -64,7 +63,7 @@
             this.groupBox2.Controls.Add(this.comboBoxComunidades);
             this.groupBox2.Controls.Add(this.textBoxFiltroBloque);
             this.groupBox2.Controls.Add(this.dataGridViewBloque);
-            this.groupBox2.Location = new System.Drawing.Point(725, 14);
+            this.groupBox2.Location = new System.Drawing.Point(983, 14);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(328, 428);
             this.groupBox2.TabIndex = 5;
@@ -106,21 +105,20 @@
             this.dataGridViewBloque.Size = new System.Drawing.Size(293, 350);
             this.dataGridViewBloque.TabIndex = 0;
             this.dataGridViewBloque.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBloque_CellDoubleClick);
-            this.dataGridViewBloque.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewBloque_MouseClick);
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.borrarToolStripMenuItem});
+            this.editarToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(107, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(159, 26);
             // 
-            // borrarToolStripMenuItem
+            // editarToolStripMenuItem
             // 
-            this.borrarToolStripMenuItem.Name = "borrarToolStripMenuItem";
-            this.borrarToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
-            this.borrarToolStripMenuItem.Text = "Borrar";
-            this.borrarToolStripMenuItem.Click += new System.EventHandler(this.borrarToolStripMenuItem_Click);
+            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
+            this.editarToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.editarToolStripMenuItem.Text = "Editar Categoría";
+            this.editarToolStripMenuItem.Click += new System.EventHandler(this.editarToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
@@ -130,10 +128,20 @@
             this.groupBox1.Controls.Add(this.dataGridViewAreas);
             this.groupBox1.Location = new System.Drawing.Point(367, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(328, 428);
+            this.groupBox1.Size = new System.Drawing.Size(583, 428);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Servicios";
+            // 
+            // buttonTodasAreas
+            // 
+            this.buttonTodasAreas.Location = new System.Drawing.Point(6, 19);
+            this.buttonTodasAreas.Name = "buttonTodasAreas";
+            this.buttonTodasAreas.Size = new System.Drawing.Size(121, 23);
+            this.buttonTodasAreas.TabIndex = 4;
+            this.buttonTodasAreas.Text = "Mostrar Todas Areas";
+            this.buttonTodasAreas.UseVisualStyleBackColor = true;
+            this.buttonTodasAreas.Click += new System.EventHandler(this.buttonTodasAreas_Click);
             // 
             // textBoxAreas
             // 
@@ -166,7 +174,7 @@
             this.dataGridViewAreas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewAreas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewAreas.ShowEditingIcon = false;
-            this.dataGridViewAreas.Size = new System.Drawing.Size(293, 350);
+            this.dataGridViewAreas.Size = new System.Drawing.Size(570, 350);
             this.dataGridViewAreas.TabIndex = 0;
             this.dataGridViewAreas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAreas_CellDoubleClick);
             this.dataGridViewAreas.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewAreas_MouseClick);
@@ -177,32 +185,21 @@
             this.cambiarNombreToolStripMenuItem,
             this.borrarCategoríaToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(161, 70);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(153, 70);
             // 
             // cambiarNombreToolStripMenuItem
             // 
             this.cambiarNombreToolStripMenuItem.Name = "cambiarNombreToolStripMenuItem";
-            this.cambiarNombreToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.cambiarNombreToolStripMenuItem.Text = "Editar";
+            this.cambiarNombreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cambiarNombreToolStripMenuItem.Text = "Renombrar";
             this.cambiarNombreToolStripMenuItem.Click += new System.EventHandler(this.cambiarNombreToolStripMenuItem_Click);
             // 
             // borrarCategoríaToolStripMenuItem
             // 
             this.borrarCategoríaToolStripMenuItem.Name = "borrarCategoríaToolStripMenuItem";
-            this.borrarCategoríaToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.borrarCategoríaToolStripMenuItem.Text = "Borrar Categoría";
+            this.borrarCategoríaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.borrarCategoríaToolStripMenuItem.Text = "Borrar Servicio";
             this.borrarCategoríaToolStripMenuItem.Click += new System.EventHandler(this.borrarCategoríaToolStripMenuItem_Click);
-            // 
-            // buttonActualizarClave
-            // 
-            this.buttonActualizarClave.Location = new System.Drawing.Point(1094, 58);
-            this.buttonActualizarClave.Name = "buttonActualizarClave";
-            this.buttonActualizarClave.Size = new System.Drawing.Size(75, 58);
-            this.buttonActualizarClave.TabIndex = 7;
-            this.buttonActualizarClave.Text = "Actualizar clave bloques";
-            this.buttonActualizarClave.UseVisualStyleBackColor = true;
-            this.buttonActualizarClave.Visible = false;
-            this.buttonActualizarClave.Click += new System.EventHandler(this.buttonActualizarClave_Click);
             // 
             // groupBox3
             // 
@@ -214,7 +211,7 @@
             this.groupBox3.Size = new System.Drawing.Size(328, 428);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Categorías";
+            this.groupBox3.Text = "Categorías Servicios";
             // 
             // textBox1
             // 
@@ -250,16 +247,7 @@
             this.dataGridViewCategorias.Size = new System.Drawing.Size(293, 350);
             this.dataGridViewCategorias.TabIndex = 0;
             this.dataGridViewCategorias.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCategorias_CellClick);
-            // 
-            // buttonTodasAreas
-            // 
-            this.buttonTodasAreas.Location = new System.Drawing.Point(6, 19);
-            this.buttonTodasAreas.Name = "buttonTodasAreas";
-            this.buttonTodasAreas.Size = new System.Drawing.Size(121, 23);
-            this.buttonTodasAreas.TabIndex = 4;
-            this.buttonTodasAreas.Text = "Mostrar Todas Areas";
-            this.buttonTodasAreas.UseVisualStyleBackColor = true;
-            this.buttonTodasAreas.Click += new System.EventHandler(this.buttonTodasAreas_Click);
+            this.dataGridViewCategorias.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewCategorias_MouseClick);
             // 
             // FormServiciosConfiguracion
             // 
@@ -268,7 +256,6 @@
             this.ClientSize = new System.Drawing.Size(1323, 476);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.buttonActualizarClave);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -297,7 +284,7 @@
         private System.Windows.Forms.TextBox textBoxFiltroBloque;
         private System.Windows.Forms.DataGridView dataGridViewBloque;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem borrarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBoxAreas;
         private System.Windows.Forms.Button buttonAddArea;
@@ -305,7 +292,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem cambiarNombreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem borrarCategoríaToolStripMenuItem;
-        private System.Windows.Forms.Button buttonActualizarClave;
         private System.Windows.Forms.Button buttonTodasAreas;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox textBox1;

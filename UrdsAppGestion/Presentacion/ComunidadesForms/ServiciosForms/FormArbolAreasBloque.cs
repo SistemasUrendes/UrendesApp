@@ -90,8 +90,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 String insertBloque = "INSERT INTO exp_area (IdAreaPrevio,IdBloque,Nombre,Descripcion,codigoArea) VALUE (0,'" + idBloque + "','" + nombreBloque + "','Bloque físico','0" + idBloque + "')";
                 areaBloque = Persistencia.SentenciasSQL.InsertarGenericoID(insertBloque);
             }
-            String codigoArea = "0" + idBloque + "S";
-
+            String codigoArea = "";
+            if (idBloque.Length < 10000) codigoArea = "0" + idBloque + "S";
+            else if (idBloque.Length < 1000) codigoArea = "00" + idBloque + "S";
+            else if (idBloque.Length < 100) codigoArea = "000" + idBloque + "S";
+            else if (idBloque.Length < 10) codigoArea = "0000" + idBloque + "S";
+            else codigoArea = idBloque + "S";
             String codigoCategoria = dataGridViewAllAreas.SelectedRows[0].Cells[0].Value.ToString();
             codigoCategoria = actualizaCodigoCat(codigoCategoria);
 

@@ -28,6 +28,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             cargarBloques();
             cargarServicios();
+            cargarCategorias();
             this.KeyPreview = true;
             if (Login.getRol() == "Admin")
             {
@@ -39,6 +40,20 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
         }
         
+        private void cargarCategorias()
+        {
+            String sqlSelect = "SELECT IdCatElemento,Nombre,NombreCorto AS 'Abr.',Descripcion FROM exp_catElemento";
+            DataTable tablaCategorias = Persistencia.SentenciasSQL.select(sqlSelect);
+            dataGridViewCategorias.DataSource = tablaCategorias;
+            if (dataGridViewCategorias.Rows.Count > 0)
+            {
+                dataGridViewCategorias.Columns["IdCatElemento"].Visible = false;
+                dataGridViewCategorias.Columns["Nombre"].Width = 100;
+                dataGridViewCategorias.Columns["Abr."].Width = 50;
+                dataGridViewCategorias.Columns["Descripcion"].Width = 130;
+            }
+        }
+
         private void cargarServicios()
         {
             DataTable tablaServicios = null;
@@ -178,7 +193,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void guardarServicios()
         {
-            String sqlSelectAntiguos = "SELECT exp_areaTarea.IdAreaTarea FROM exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea WHERE(((exp_areaTarea.IdTarea) = '" + idTarea + "') AND((exp_area.IdAreaPrevio) <> 0))";
+            String sqlSelectAntiguos = "SELECT exp_areaTarea.IdAreaTarea FROM exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea WHERE exp_areaTarea.IdTarea = '" + idTarea + "' AND exp_areaTarea.TipoArea = 'S'";
             DataTable antiguo = Persistencia.SentenciasSQL.select(sqlSelectAntiguos);
 
             foreach (DataRow rowAnt in antiguo.Rows)
@@ -191,11 +206,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 if (row["Selected"].ToString() == "true")
                 {
-                    String sqlInsert = "INSERT INTO exp_areaTarea (IdArea,IdTarea) VALUES ('" + row[0] + "','" + idTarea + "')";
+                    String sqlInsert = "INSERT INTO exp_areaTarea (IdArea,IdTarea,TipoArea) VALUES ('" + row[0] + "','" + idTarea + "','S')";
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
                 }
             }
             formAnt.cargarServicios();
+            formAnt.recibirServicios();
             this.Close();
         }
 

@@ -668,5 +668,17 @@ namespace UrdsAppGestión.Presentacion
                 }
             }
         }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            String sqlSelect = "SELECT exp_areaTarea.IdAreaTarea FROM exp_areaTarea";
+            DataTable areas = Persistencia.SentenciasSQL.select(sqlSelect);
+            foreach(DataRow row in areas.Rows)
+            {
+                String sqlUpdate = "Update exp_areaTarea SET TipoArea = 'B' WHERE IdAreaTarea = '" + row[0] + "'";
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+            }
+            MessageBox.Show("Fin");
+        }
     }
 }

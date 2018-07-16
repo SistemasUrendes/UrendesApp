@@ -346,12 +346,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 if (dataGridView_tareas.SelectedCells.Count > 0)
                 {
                     string idTarea = dataGridView_tareas.SelectedRows[0].Cells[0].Value.ToString();
-
+                    
                     Tareas.FormVerTarea nueva = new FormVerTarea(this, idTarea);
                     nueva.ControlBox = true;
                     nueva.WindowState = FormWindowState.Normal;
                     nueva.StartPosition = FormStartPosition.CenterScreen;
                     nueva.Show();
+                    
                 }
             }
         }
