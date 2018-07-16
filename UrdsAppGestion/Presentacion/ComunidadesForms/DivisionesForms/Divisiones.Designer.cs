@@ -180,7 +180,7 @@
             this.toolStripTextBox2,
             this.filtroAvanzadoToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(191, 145);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(191, 123);
             // 
             // reToolStripMenuItem
             // 
@@ -363,6 +363,7 @@
             this.Controls.Add(this.dataGridView_divisiones);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Divisiones";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Divisiones";
             this.Load += new System.EventHandler(this.FormDivisiones_Load);
             this.Shown += new System.EventHandler(this.Divisiones_Shown);

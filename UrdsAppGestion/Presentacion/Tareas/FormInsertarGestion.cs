@@ -89,18 +89,21 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 habilitarEdicion();
                 comboBoxUsuario.SelectedValue = Login.getId();
+                this.Name = "FormInsertarGestion 0" ;
             }
             //VER GESTIÓN
             else if (idTarea == null)
             {
                 cargarGestion();
-                bloquearEdicion();
+                bloquearEdicion();           
+                this.Name = "FormInsertarGestion " + idGestion;
             }
             //EDITAR GESTIÓN    
             else
             {
                 habilitarEdicion();
                 cargarGestion();
+                this.Name = "FormInsertarGestion " + idGestion;
             }
             monthCalendar1.MaxSelectionCount = 1;
         }
@@ -571,13 +574,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void buttonEspera_Click(object sender, EventArgs e)
         {
             //ENTIDAD
-            String Nombre = "FormInsertarGestion" + idTarea;
-
-            this.Name = Nombre;
+            
 
             if (comboBoxEspera.SelectedIndex == 0)
             {
-                Entidades nueva = new Entidades(this, Nombre);
+                Entidades nueva = new Entidades(this, this.Name);
                 nueva.ControlBox = true;
                 nueva.WindowState = FormWindowState.Normal;
                 nueva.StartPosition = FormStartPosition.CenterScreen;

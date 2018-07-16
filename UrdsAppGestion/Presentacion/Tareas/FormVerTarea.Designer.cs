@@ -60,6 +60,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemEditarGestion = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAddSeguimiento = new System.Windows.Forms.ToolStripMenuItem();
+            this.enviarCorreoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemInfoEntidad = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemEliminarGestion = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -106,7 +107,13 @@
             this.label7 = new System.Windows.Forms.Label();
             this.buttonDuplicarTarea = new System.Windows.Forms.Button();
             this.textBoxIdTareaNuevo = new System.Windows.Forms.TextBox();
-            this.enviarCorreoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBoxDivision = new System.Windows.Forms.TextBox();
+            this.buttonSelServicio = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.buttonSelDivision = new System.Windows.Forms.Button();
+            this.textBoxServicio = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGestiones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSeguimientos)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -126,7 +133,7 @@
             // 
             // textBoxIdTarea
             // 
-            this.textBoxIdTarea.Location = new System.Drawing.Point(65, 49);
+            this.textBoxIdTarea.Location = new System.Drawing.Point(65, 46);
             this.textBoxIdTarea.Name = "textBoxIdTarea";
             this.textBoxIdTarea.ReadOnly = true;
             this.textBoxIdTarea.Size = new System.Drawing.Size(64, 20);
@@ -135,10 +142,11 @@
             // 
             // textBoxDescripcion
             // 
-            this.textBoxDescripcion.Location = new System.Drawing.Point(194, 49);
+            this.textBoxDescripcion.Location = new System.Drawing.Point(65, 161);
             this.textBoxDescripcion.Name = "textBoxDescripcion";
             this.textBoxDescripcion.Size = new System.Drawing.Size(370, 20);
             this.textBoxDescripcion.TabIndex = 2;
+            this.textBoxDescripcion.TextChanged += new System.EventHandler(this.textBoxDescripcion_TextChanged);
             // 
             // textBoxNotas
             // 
@@ -161,7 +169,7 @@
             // 
             // maskedTextBoxFFin
             // 
-            this.maskedTextBoxFFin.Location = new System.Drawing.Point(194, 158);
+            this.maskedTextBoxFFin.Location = new System.Drawing.Point(194, 133);
             this.maskedTextBoxFFin.Mask = "00/00/0000";
             this.maskedTextBoxFFin.Name = "maskedTextBoxFFin";
             this.maskedTextBoxFFin.Size = new System.Drawing.Size(66, 20);
@@ -171,7 +179,7 @@
             // 
             // maskedTextBoxFIni
             // 
-            this.maskedTextBoxFIni.Location = new System.Drawing.Point(65, 158);
+            this.maskedTextBoxFIni.Location = new System.Drawing.Point(65, 133);
             this.maskedTextBoxFIni.Mask = "00/00/0000";
             this.maskedTextBoxFIni.Name = "maskedTextBoxFIni";
             this.maskedTextBoxFIni.Size = new System.Drawing.Size(65, 20);
@@ -181,7 +189,7 @@
             // 
             // textBoxSiniestro
             // 
-            this.textBoxSiniestro.Location = new System.Drawing.Point(358, 129);
+            this.textBoxSiniestro.Location = new System.Drawing.Point(311, 187);
             this.textBoxSiniestro.Name = "textBoxSiniestro";
             this.textBoxSiniestro.Size = new System.Drawing.Size(124, 20);
             this.textBoxSiniestro.TabIndex = 10;
@@ -191,7 +199,7 @@
             // 
             this.checkBoxSeguro.AutoSize = true;
             this.checkBoxSeguro.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxSeguro.Location = new System.Drawing.Point(499, 131);
+            this.checkBoxSeguro.Location = new System.Drawing.Point(499, 189);
             this.checkBoxSeguro.Name = "checkBoxSeguro";
             this.checkBoxSeguro.Size = new System.Drawing.Size(63, 17);
             this.checkBoxSeguro.TabIndex = 10;
@@ -203,7 +211,7 @@
             // 
             this.checkBoxAcuerdoJunta.AutoSize = true;
             this.checkBoxAcuerdoJunta.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxAcuerdoJunta.Location = new System.Drawing.Point(464, 161);
+            this.checkBoxAcuerdoJunta.Location = new System.Drawing.Point(464, 163);
             this.checkBoxAcuerdoJunta.Name = "checkBoxAcuerdoJunta";
             this.checkBoxAcuerdoJunta.Size = new System.Drawing.Size(98, 17);
             this.checkBoxAcuerdoJunta.TabIndex = 12;
@@ -215,7 +223,7 @@
             // 
             this.checkBoxProxJunta.AutoSize = true;
             this.checkBoxProxJunta.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxProxJunta.Location = new System.Drawing.Point(480, 187);
+            this.checkBoxProxJunta.Location = new System.Drawing.Point(480, 135);
             this.checkBoxProxJunta.Name = "checkBoxProxJunta";
             this.checkBoxProxJunta.Size = new System.Drawing.Size(82, 17);
             this.checkBoxProxJunta.TabIndex = 13;
@@ -224,7 +232,7 @@
             // 
             // maskedTextBoxFechaActa
             // 
-            this.maskedTextBoxFechaActa.Location = new System.Drawing.Point(358, 156);
+            this.maskedTextBoxFechaActa.Location = new System.Drawing.Point(355, 133);
             this.maskedTextBoxFechaActa.Mask = "00/00/0000";
             this.maskedTextBoxFechaActa.Name = "maskedTextBoxFechaActa";
             this.maskedTextBoxFechaActa.Size = new System.Drawing.Size(66, 20);
@@ -236,9 +244,9 @@
             // 
             this.comboBoxTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTipo.FormattingEnabled = true;
-            this.comboBoxTipo.Location = new System.Drawing.Point(65, 127);
+            this.comboBoxTipo.Location = new System.Drawing.Point(65, 104);
             this.comboBoxTipo.Name = "comboBoxTipo";
-            this.comboBoxTipo.Size = new System.Drawing.Size(195, 21);
+            this.comboBoxTipo.Size = new System.Drawing.Size(220, 21);
             this.comboBoxTipo.TabIndex = 5;
             this.comboBoxTipo.SelectionChangeCommitted += new System.EventHandler(this.comboBoxTipo_SelectionChangeCommitted);
             this.comboBoxTipo.Leave += new System.EventHandler(this.comboBoxTipo_Leave);
@@ -246,7 +254,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 52);
+            this.label2.Location = new System.Drawing.Point(19, 50);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 19;
@@ -255,7 +263,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 79);
+            this.label3.Location = new System.Drawing.Point(194, 50);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(46, 13);
             this.label3.TabIndex = 21;
@@ -342,7 +350,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(28, 134);
+            this.label9.Location = new System.Drawing.Point(26, 108);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(31, 13);
             this.label9.TabIndex = 29;
@@ -351,7 +359,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 161);
+            this.label10.Location = new System.Drawing.Point(10, 137);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(47, 13);
             this.label10.TabIndex = 30;
@@ -360,7 +368,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(149, 161);
+            this.label13.Location = new System.Drawing.Point(149, 137);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(36, 13);
             this.label13.TabIndex = 33;
@@ -420,28 +428,35 @@
             // toolStripMenuItemEditarGestion
             // 
             this.toolStripMenuItemEditarGestion.Name = "toolStripMenuItemEditarGestion";
-            this.toolStripMenuItemEditarGestion.Size = new System.Drawing.Size(188, 22);
+            this.toolStripMenuItemEditarGestion.Size = new System.Drawing.Size(179, 22);
             this.toolStripMenuItemEditarGestion.Text = "Editar";
             this.toolStripMenuItemEditarGestion.Click += new System.EventHandler(this.toolStripMenuItemEditarGestion_Click);
             // 
             // toolStripMenuItemAddSeguimiento
             // 
             this.toolStripMenuItemAddSeguimiento.Name = "toolStripMenuItemAddSeguimiento";
-            this.toolStripMenuItemAddSeguimiento.Size = new System.Drawing.Size(188, 22);
+            this.toolStripMenuItemAddSeguimiento.Size = new System.Drawing.Size(179, 22);
             this.toolStripMenuItemAddSeguimiento.Text = "Añadir Seguimiento";
             this.toolStripMenuItemAddSeguimiento.Click += new System.EventHandler(this.toolStripMenuItemAddSeguimiento_Click);
+            // 
+            // enviarCorreoToolStripMenuItem
+            // 
+            this.enviarCorreoToolStripMenuItem.Name = "enviarCorreoToolStripMenuItem";
+            this.enviarCorreoToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.enviarCorreoToolStripMenuItem.Text = "Enviar Correo";
+            this.enviarCorreoToolStripMenuItem.Click += new System.EventHandler(this.enviarCorreoToolStripMenuItem_Click);
             // 
             // toolStripMenuItemInfoEntidad
             // 
             this.toolStripMenuItemInfoEntidad.Name = "toolStripMenuItemInfoEntidad";
-            this.toolStripMenuItemInfoEntidad.Size = new System.Drawing.Size(188, 22);
+            this.toolStripMenuItemInfoEntidad.Size = new System.Drawing.Size(179, 22);
             this.toolStripMenuItemInfoEntidad.Text = "Ver Entidad";
             this.toolStripMenuItemInfoEntidad.Click += new System.EventHandler(this.toolStripMenuItemInfoEntidad_Click);
             // 
             // toolStripMenuItemEliminarGestion
             // 
             this.toolStripMenuItemEliminarGestion.Name = "toolStripMenuItemEliminarGestion";
-            this.toolStripMenuItemEliminarGestion.Size = new System.Drawing.Size(188, 22);
+            this.toolStripMenuItemEliminarGestion.Size = new System.Drawing.Size(179, 22);
             this.toolStripMenuItemEliminarGestion.Text = "Eliminar";
             this.toolStripMenuItemEliminarGestion.Click += new System.EventHandler(this.toolStripMenuItemEliminarGestion_Click);
             // 
@@ -480,20 +495,20 @@
             // 
             // textBoxEntidad
             // 
-            this.textBoxEntidad.Location = new System.Drawing.Point(135, 74);
+            this.textBoxEntidad.Location = new System.Drawing.Point(283, 46);
             this.textBoxEntidad.Name = "textBoxEntidad";
             this.textBoxEntidad.ReadOnly = true;
-            this.textBoxEntidad.Size = new System.Drawing.Size(429, 20);
+            this.textBoxEntidad.Size = new System.Drawing.Size(281, 20);
             this.textBoxEntidad.TabIndex = 4;
             this.textBoxEntidad.Text = "Pulsa espacio para Seleccionar Entidad";
             this.textBoxEntidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxEntidad_KeyPress);
             // 
             // maskedTextBoxReferencia
             // 
-            this.maskedTextBoxReferencia.Location = new System.Drawing.Point(65, 74);
+            this.maskedTextBoxReferencia.Location = new System.Drawing.Point(246, 46);
             this.maskedTextBoxReferencia.Mask = "999";
             this.maskedTextBoxReferencia.Name = "maskedTextBoxReferencia";
-            this.maskedTextBoxReferencia.Size = new System.Drawing.Size(64, 20);
+            this.maskedTextBoxReferencia.Size = new System.Drawing.Size(31, 20);
             this.maskedTextBoxReferencia.TabIndex = 3;
             this.maskedTextBoxReferencia.ValidatingType = typeof(int);
             this.maskedTextBoxReferencia.Leave += new System.EventHandler(this.maskedTextBoxReferencia_Leave);
@@ -660,7 +675,6 @@
             // 
             // buttonAddServicio
             // 
-            this.buttonAddServicio.Enabled = false;
             this.buttonAddServicio.Location = new System.Drawing.Point(564, 11);
             this.buttonAddServicio.Name = "buttonAddServicio";
             this.buttonAddServicio.Size = new System.Drawing.Size(88, 23);
@@ -749,7 +763,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(325, 134);
+            this.label8.Location = new System.Drawing.Point(278, 191);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(27, 13);
             this.label8.TabIndex = 37;
@@ -757,7 +771,7 @@
             // 
             // textBoxCoste
             // 
-            this.textBoxCoste.Location = new System.Drawing.Point(65, 185);
+            this.textBoxCoste.Location = new System.Drawing.Point(65, 187);
             this.textBoxCoste.Name = "textBoxCoste";
             this.textBoxCoste.Size = new System.Drawing.Size(100, 20);
             this.textBoxCoste.TabIndex = 8;
@@ -765,7 +779,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(20, 188);
+            this.label14.Location = new System.Drawing.Point(20, 191);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(37, 13);
             this.label14.TabIndex = 34;
@@ -774,7 +788,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(283, 161);
+            this.label11.Location = new System.Drawing.Point(280, 137);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(69, 13);
             this.label11.TabIndex = 38;
@@ -784,7 +798,7 @@
             // 
             this.checkBoxImportante.AutoSize = true;
             this.checkBoxImportante.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxImportante.Location = new System.Drawing.Point(291, 187);
+            this.checkBoxImportante.Location = new System.Drawing.Point(181, 189);
             this.checkBoxImportante.Name = "checkBoxImportante";
             this.checkBoxImportante.Size = new System.Drawing.Size(79, 17);
             this.checkBoxImportante.TabIndex = 12;
@@ -802,7 +816,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 19);
+            this.label12.Location = new System.Drawing.Point(1, 19);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(56, 13);
             this.label12.TabIndex = 40;
@@ -843,9 +857,9 @@
             // 
             // buttonBloque
             // 
-            this.buttonBloque.Location = new System.Drawing.Point(486, 100);
+            this.buttonBloque.Location = new System.Drawing.Point(252, 74);
             this.buttonBloque.Name = "buttonBloque";
-            this.buttonBloque.Size = new System.Drawing.Size(78, 21);
+            this.buttonBloque.Size = new System.Drawing.Size(33, 20);
             this.buttonBloque.TabIndex = 4;
             this.buttonBloque.Text = "Seleccionar";
             this.buttonBloque.UseVisualStyleBackColor = true;
@@ -853,17 +867,17 @@
             // 
             // textBoxBloque
             // 
-            this.textBoxBloque.Location = new System.Drawing.Point(65, 101);
+            this.textBoxBloque.Location = new System.Drawing.Point(65, 74);
             this.textBoxBloque.Name = "textBoxBloque";
             this.textBoxBloque.ReadOnly = true;
-            this.textBoxBloque.Size = new System.Drawing.Size(415, 20);
+            this.textBoxBloque.Size = new System.Drawing.Size(185, 20);
             this.textBoxBloque.TabIndex = 44;
             this.textBoxBloque.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBoxBloque_MouseDoubleClick);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(16, 104);
+            this.label7.Location = new System.Drawing.Point(14, 78);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(43, 13);
             this.label7.TabIndex = 45;
@@ -881,25 +895,88 @@
             // 
             // textBoxIdTareaNuevo
             // 
-            this.textBoxIdTareaNuevo.Location = new System.Drawing.Point(135, 49);
+            this.textBoxIdTareaNuevo.Location = new System.Drawing.Point(135, 46);
             this.textBoxIdTareaNuevo.Name = "textBoxIdTareaNuevo";
             this.textBoxIdTareaNuevo.ReadOnly = true;
             this.textBoxIdTareaNuevo.Size = new System.Drawing.Size(53, 20);
             this.textBoxIdTareaNuevo.TabIndex = 47;
             this.textBoxIdTareaNuevo.TabStop = false;
             // 
-            // enviarCorreoToolStripMenuItem
+            // label16
             // 
-            this.enviarCorreoToolStripMenuItem.Name = "enviarCorreoToolStripMenuItem";
-            this.enviarCorreoToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.enviarCorreoToolStripMenuItem.Text = "Enviar Correo";
-            this.enviarCorreoToolStripMenuItem.Click += new System.EventHandler(this.enviarCorreoToolStripMenuItem_Click);
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(291, 78);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(47, 13);
+            this.label16.TabIndex = 50;
+            this.label16.Text = "División:";
+            // 
+            // textBoxDivision
+            // 
+            this.textBoxDivision.Location = new System.Drawing.Point(344, 74);
+            this.textBoxDivision.Name = "textBoxDivision";
+            this.textBoxDivision.ReadOnly = true;
+            this.textBoxDivision.Size = new System.Drawing.Size(182, 20);
+            this.textBoxDivision.TabIndex = 49;
+            // 
+            // buttonSelServicio
+            // 
+            this.buttonSelServicio.Location = new System.Drawing.Point(532, 104);
+            this.buttonSelServicio.Name = "buttonSelServicio";
+            this.buttonSelServicio.Size = new System.Drawing.Size(30, 20);
+            this.buttonSelServicio.TabIndex = 48;
+            this.buttonSelServicio.Text = "Sel";
+            this.buttonSelServicio.UseVisualStyleBackColor = true;
+            this.buttonSelServicio.Click += new System.EventHandler(this.buttonSelDivSer_Click);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(22, 164);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(35, 13);
+            this.label18.TabIndex = 51;
+            this.label18.Text = "Desc:";
+            // 
+            // buttonSelDivision
+            // 
+            this.buttonSelDivision.Location = new System.Drawing.Point(532, 74);
+            this.buttonSelDivision.Name = "buttonSelDivision";
+            this.buttonSelDivision.Size = new System.Drawing.Size(30, 20);
+            this.buttonSelDivision.TabIndex = 52;
+            this.buttonSelDivision.Text = "Sel";
+            this.buttonSelDivision.UseVisualStyleBackColor = true;
+            this.buttonSelDivision.Click += new System.EventHandler(this.buttonSelDivision_Click);
+            // 
+            // textBoxServicio
+            // 
+            this.textBoxServicio.Location = new System.Drawing.Point(344, 104);
+            this.textBoxServicio.Name = "textBoxServicio";
+            this.textBoxServicio.ReadOnly = true;
+            this.textBoxServicio.Size = new System.Drawing.Size(182, 20);
+            this.textBoxServicio.TabIndex = 53;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(291, 108);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(48, 13);
+            this.label19.TabIndex = 54;
+            this.label19.Text = "Servicio:";
             // 
             // FormVerTarea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1239, 604);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.textBoxServicio);
+            this.Controls.Add(this.buttonSelDivision);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.textBoxDivision);
+            this.Controls.Add(this.buttonSelServicio);
             this.Controls.Add(this.textBoxIdTareaNuevo);
             this.Controls.Add(this.buttonDuplicarTarea);
             this.Controls.Add(this.label7);
@@ -1051,5 +1128,12 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DataGridView dataGridViewServicios;
         private System.Windows.Forms.ToolStripMenuItem enviarCorreoToolStripMenuItem;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox textBoxDivision;
+        private System.Windows.Forms.Button buttonSelServicio;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button buttonSelDivision;
+        private System.Windows.Forms.TextBox textBoxServicio;
+        private System.Windows.Forms.Label label19;
     }
 }

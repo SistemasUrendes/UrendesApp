@@ -33,20 +33,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ServiciosForms
             this.form = form;
             this.idCategoria = idCategoria;
         }
-
-        private void FormInsertarArea_Load(object sender, EventArgs e)
-        {
-            if (idCategoria != null)
-            {
-                String sqlSelect = "SELECT Nombre,NombreCorto,Descripcion FROM exp_catElemento WHERE IdCatElemento = '" + idCategoria + "'";
-                DataTable tablaArea = Persistencia.SentenciasSQL.select(sqlSelect);
-
-                textBoxNombre.Text = tablaArea.Rows[0][0].ToString();
-                textBoxNombreCorto.Text = tablaArea.Rows[0][1].ToString();
-                textBoxDescripcion.Text = tablaArea.Rows[0][2].ToString();
-            }
-        }
-
+        
         private void buttonGuardar_Click_1(object sender, EventArgs e)
         {
             String nombre = textBoxNombre.Text;
@@ -74,6 +61,19 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ServiciosForms
         private void buttonCancelar_Click_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void FormInsertarCategoria_Load(object sender, EventArgs e)
+        {
+            if (idCategoria != null)
+            {
+                String sqlSelect = "SELECT Nombre,NombreCorto,Descripcion FROM exp_catElemento WHERE IdCatElemento = '" + idCategoria + "'";
+                DataTable tablaArea = Persistencia.SentenciasSQL.select(sqlSelect);
+
+                textBoxNombre.Text = tablaArea.Rows[0][0].ToString();
+                textBoxNombreCorto.Text = tablaArea.Rows[0][1].ToString();
+                textBoxDescripcion.Text = tablaArea.Rows[0][2].ToString();
+            }
         }
     }
 }

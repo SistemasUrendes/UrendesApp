@@ -121,7 +121,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonEnviar_Click(object sender, EventArgs e)
         {
-            if (form_anterior1 != null && idComunidad != null) guardarBloques();
+            if (form_anterior1 != null && idComunidad != null)guardarBloques();
             else enviarbloque();
         }
 
@@ -175,6 +175,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
             }
             form_anterior1.cargarBloque();
+            form_anterior1.recibirBloque();
             this.Close();
         }
 

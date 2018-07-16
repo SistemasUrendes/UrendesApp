@@ -36,8 +36,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private bool expedientesDupli;
         private DataTable tablaBloque;
         private DataTable tablaFinalServicios;
+        private DataTable tablaDivisiones;
         private bool edicion;
         private String nombre_columna;
+        String[] descripcion = new String[5];
 
         public FormVerTarea(FormTareasPrincipal form_anterior, String idTarea)
         {
@@ -107,6 +109,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 form_anterior.CargarTareas();
                 form_anterior.aplicarFiltroTabla();
                 form_anterior.filtroNombre();
+                cargarArrayDescripcion();
             }
             if (idTarea != null)
             {
@@ -116,6 +119,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 cargarExpedientes();
                 cargarBloque();
                 bloquearEdicion();
+                cargarArrayDescripcion();
             }
             //NUEVA TAREA
             if (idTarea == null)
@@ -184,6 +188,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBoxRuta.ReadOnly = true;
             labelRutaLink.Enabled = false;
             buttonBloque.Visible = false;
+            buttonSelDivision.Visible = false;
+            buttonSelServicio.Visible = false;
             buttonDuplicarTarea.Enabled = true;
             edicion = false;
 
@@ -213,6 +219,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBoxRuta.ReadOnly = false;
             labelRutaLink.Enabled = true;
             buttonBloque.Visible = true;
+            buttonSelDivision.Visible = true;
+            buttonSelServicio.Visible = true;
             buttonDuplicarTarea.Enabled = false;
             if (textBoxEntidad.Text == "")
             {
@@ -408,11 +416,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     form_anterior.aplicarFiltroTabla();
                     form_anterior.filtroNombre();
                 }
-                Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, fInicio,idComunidad);
+                Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, fInicio, idComunidad);
                 nueva.ControlBox = true;
                 nueva.WindowState = FormWindowState.Normal;
                 nueva.StartPosition = FormStartPosition.CenterScreen;
                 nueva.Show();
+                
             }
             else
             {
@@ -424,6 +433,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 nueva.WindowState = FormWindowState.Normal;
                 nueva.StartPosition = FormStartPosition.CenterScreen;
                 nueva.Show();
+                
             }
         }
 
@@ -533,11 +543,20 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void toolStripMenuItemEditarGestion_Click(object sender, EventArgs e)
         {
             String idGestion = dataGridViewGestiones.SelectedRows[0].Cells[0].Value.ToString();
-            Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea,idGestion,fInicio, idComunidad);
-            nueva.ControlBox = true;
-            nueva.WindowState = FormWindowState.Normal;
-            nueva.StartPosition = FormStartPosition.CenterScreen;
-            nueva.Show();
+            
+            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name.Contains("FormInsertarGestion")).SingleOrDefault<Form>();
+            if (existe != null && existe.Name.Contains(idGestion))
+            {
+                existe.BringToFront();
+            }
+            else
+            {
+                Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idTarea, idGestion, fInicio, idComunidad);
+                nueva.ControlBox = true;
+                nueva.WindowState = FormWindowState.Normal;
+                nueva.StartPosition = FormStartPosition.CenterScreen;
+                nueva.Show();
+            }
         }
 
         private void toolStripMenuItemEditarSeguimiento_Click(object sender, EventArgs e)
@@ -552,11 +571,20 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void dataGridViewGestiones_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this,idGestion, idComunidad);
-            nueva.ControlBox = true;
-            nueva.WindowState = FormWindowState.Normal;
-            nueva.StartPosition = FormStartPosition.CenterScreen;
-            nueva.Show();
+
+            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name.Contains("FormInsertarGestion")).SingleOrDefault<Form>();
+            if (existe != null && existe.Name.Contains(idGestion))
+            {
+                existe.BringToFront();
+            }
+            else
+            {
+                Tareas.FormInsertarGestion nueva = new FormInsertarGestion(this, idGestion, idComunidad);
+                nueva.ControlBox = true;
+                nueva.WindowState = FormWindowState.Normal;
+                nueva.StartPosition = FormStartPosition.CenterScreen;
+                nueva.Show();
+            }
         }
 
         private void dataGridViewSeguimientos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -1206,6 +1234,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 checkBoxImportante.Checked = true;
             }
+            //actualizarDescripcion(comboBoxTipo.Text, 3);
         }
 
         public void tareaImportanteGestion()
@@ -1595,6 +1624,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     else bloques = row[2].ToString();
             }
             textBoxBloque.Text = bloques;
+            cargarDivisiones();
             cargarServicios();
         }
 
@@ -1604,8 +1634,33 @@ namespace UrdsAppGestión.Presentacion.Tareas
             nueva.Show();
         }
         
+        public void cargarDivisiones()
+        {
+            String sqlSelect = "SELECT com_divisiones.Division,com_divisiones.IdDivision FROM com_divisiones INNER JOIN exp_areaTarea ON com_divisiones.IdDivision = exp_areaTarea.IdArea WHERE(((exp_areaTarea.IdTarea) = " + idTarea + ") AND((exp_areaTarea.TipoArea) = 'D')) ORDER BY com_divisiones.IdDivision";
+
+            tablaDivisiones = Persistencia.SentenciasSQL.select(sqlSelect);
+            String divisiones = "";
+            foreach (DataRow row in tablaDivisiones.Rows)
+            {
+                if (divisiones.Length > 0) divisiones += " ; " + row[0];
+                else divisiones = row[0].ToString();
+            }
+            textBoxDivision.Text = divisiones;
+
+        }
+
         public void cargarServicios()
         {
+            String sqlSelect = "SELECT exp_area.Nombre FROM exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea WHERE(((exp_areaTarea.IdTarea) = " + idTarea + ") AND((exp_areaTarea.TipoArea) = 'S'))";
+            tablaFinalServicios = Persistencia.SentenciasSQL.select(sqlSelect);
+            String servicios = "";
+            foreach (DataRow row in tablaFinalServicios.Rows)
+            {
+                if (servicios.Length > 0) servicios += " ; " + row[0];
+                else servicios = row[0].ToString();
+            }
+            textBoxServicio.Text = servicios;
+            /*
             DataTable tablaServicios = null;
             tablaFinalServicios = null;
             foreach (DataRow row in tablaBloque.Rows)
@@ -1659,6 +1714,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 dataGridViewServicios.Columns["Bloque"].Width = 150;
                 dataGridViewServicios.Columns["Categoría"].Width = 150;
             }
+            */
         }
 
         private void buttonAddServicio_Click(object sender, EventArgs e)
@@ -1788,6 +1844,134 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     MessageBox.Show("Asigne una persona a seguir para poder enviarle un correo");
                 }
             }
+        }
+
+        private void buttonSelDivSer_Click(object sender, EventArgs e)
+        {
+            FormInsertarServicioTarea nueva = new FormInsertarServicioTarea(this, idTarea);
+            nueva.Show();
+        }
+
+        private void buttonSelDivision_Click(object sender, EventArgs e)
+        {   
+            
+            if (textBoxDivision.Text != "")
+            {
+                FormDivisionesTarea nueva = new FormDivisionesTarea(this, idTarea);
+                nueva.Show();
+            }
+            else
+            {
+                ComunidadesForms.Divisiones nueva = new ComunidadesForms.Divisiones(this, this.Name, idTarea);
+                nueva.ControlBox = true;
+                nueva.Show();
+            }
+        }
+
+        public void recibirDivisiones(DataTable table)
+        {
+            foreach (DataRow row in table.Rows)
+            {
+                String sqlInsert = "INSERT INTO exp_areaTarea (IdTarea,IdArea,TipoArea) VALUES ('" + idTarea + "','" + row[0] + "','D')";
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+            }
+            cargarDivisiones();
+            //actualizarDescripcion(textBoxDivision.Text, 1);
+        }
+        
+        private void actualizarDescripcion(String str, int campo)
+        {
+            switch(campo)
+            {
+                //BLOQUE
+                case 0:
+                    if (str.Length > 10) descripcion[0] = "Varios Bloques";
+                    else descripcion[0] = str;
+
+                    break;
+                //DIVISIÓN
+                case 1:
+                    if (str.Length > 0 )descripcion[0] = "";
+                    if (str.Length > 10) descripcion[1] = "Varias Divisiones";
+                    else descripcion[1] = str;
+                    break;
+                //SERVICIO
+                case 2:
+                    descripcion[2] = str;
+                    break;
+                //TIPO TAREA
+                case 3:
+                    descripcion[3] = str;
+                    break;
+                //AÑADIDO EXTRA
+                case 4:
+                    descripcion[4] = str;
+                    break;
+            }
+            String desc = null;
+            for ( int i = 0; i < descripcion.Length; i++)
+            {
+                if (i == 4) desc += " -";
+                if (desc != null && desc.Length > 0 && descripcion[i] != null && descripcion[i].Length > 0 ) desc += " " + descripcion[i];
+                else if (descripcion[i] != null && descripcion[i].Length > 0) desc = descripcion[i];
+            }
+            textBoxDescripcion.Text = desc;
+        }
+
+        private void guardarDescripcion(String str, int campo)
+        {
+            switch (campo)
+            {
+                //BLOQUE
+                case 0:
+                    if (str.Length > 10) descripcion[0] = "Varios Bloques";
+                    else descripcion[0] = str;
+
+                    break;
+                //DIVISIÓN
+                case 1:
+                    if (str.Length > 0) descripcion[0] = "";
+                    if (str.Length > 10) descripcion[1] = "Varias Divisiones";
+                    else descripcion[1] = str;
+                    break;
+                //SERVICIO
+                case 2:
+                    descripcion[2] = str;
+                    break;
+                //TIPO TAREA
+                case 3:
+                    descripcion[3] = str;
+                    break;
+                //AÑADIDO EXTRA
+                case 4:
+                    descripcion[4] = str;
+                    break;
+            }
+        }
+
+        public void recibirBloque()
+        {
+            //actualizarDescripcion(textBoxBloque.Text, 0);
+        }
+
+        public void recibirServicios()
+        {
+            //actualizarDescripcion(textBoxServicio.Text, 2);
+        }
+     
+        private void cargarArrayDescripcion()
+        {
+            guardarDescripcion(textBoxBloque.Text, 0);
+            guardarDescripcion(textBoxDivision.Text, 1);
+            guardarDescripcion(textBoxServicio.Text, 2);
+            guardarDescripcion(comboBoxTipo.Text, 3);
+            guardarDescripcion(textBoxDescripcion.Text.Substring(textBoxDescripcion.Text.LastIndexOf("-")+1),4);
+            
+        }
+
+        private void textBoxDescripcion_TextChanged(object sender, EventArgs e)
+        {
+            guardarDescripcion(textBoxDescripcion.Text.Substring(textBoxDescripcion.Text.LastIndexOf("-") + 1), 4);
         }
     }
 }
