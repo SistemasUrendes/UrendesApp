@@ -56,6 +56,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
             listBox_liquidaciones.ValueMember = "IdLiquidacion";
             listBox_liquidaciones.DisplayMember = "Liquidacion";
 
+            listBox_liquidaciones.ClearSelected();
+
             if (ImporteResultado != "")
                 textBox_importe.Text = ImporteResultado;
             else

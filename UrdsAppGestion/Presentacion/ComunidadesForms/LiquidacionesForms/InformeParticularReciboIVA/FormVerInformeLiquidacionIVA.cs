@@ -12,14 +12,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.Infor
 {
     public partial class FormVerInformeLiquidacionIVA : Form
     {
-        public FormVerInformeLiquidacionIVA(String IdLiquidacion, String IdEntidad)
+        public FormVerInformeLiquidacionIVA(DataTable data1)
         {
             InitializeComponent();
-            String sqlSelect = "SELECT com_liqreparto.IdDivision, com_liqreparto.Nombre, com_liqreparto.Descripcion, com_liqreparto.ImpBloque, com_liqreparto.CGP, com_liqreparto.Importe, com_subcuotas.Parte FROM com_subcuotas INNER JOIN (com_opdetliquidacion INNER JOIN com_liqreparto ON com_opdetliquidacion.IdLiquidacion = com_liqreparto.IdLiquidacion) ON(com_subcuotas.IdDivision = com_liqreparto.IdDivision) AND(com_subcuotas.IdBloque = com_liqreparto.IdBloque) GROUP BY com_liqreparto.IdDivision, com_liqreparto.Nombre, com_liqreparto.Descripcion, com_liqreparto.ImpBloque, com_liqreparto.CGP, com_liqreparto.Importe, com_subcuotas.Parte, com_opdetliquidacion.IdLiquidacion, com_liqreparto.IdTitular HAVING(((com_opdetliquidacion.IdLiquidacion) = " + IdLiquidacion + ") AND((com_liqreparto.IdTitular) = " + IdEntidad + "));";
-
-            DivisionLiquidacionBindingSource.DataSource = Persistencia.SentenciasSQL.select(sqlSelect);
-
-
+            DivisionLiquidacionBindingSource.DataSource = data1;
         }
 
         private void FormVerInformeLiquidacionIVA_Load(object sender, EventArgs e)

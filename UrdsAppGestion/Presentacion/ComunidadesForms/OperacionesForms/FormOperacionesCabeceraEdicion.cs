@@ -344,6 +344,5 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
                 }
             }
         }
-
     }
 }

@@ -59,19 +59,35 @@ namespace UrdsAppGestión.Presentacion
             textBox_password.Enabled = true;
         }
         public void ComprobarLogin() {
+            DataTable resultado = null;
+            MySqlConnection conexion = null;
+            String ip = "";
+
             try
             {
-                String ip = "192.168.0.20";
                 if (checkBox1.Checked)
                 {
-                    ip = "10.8.0.1";
-                    remoto = true;
+                   
+                        ip = "10.8.0.1";
+                        remoto = true;
+                    try
+                    {
+                        string datos = "server=" + ip + ";user=gestor;password=gestorurds;database=acceso;port=3307";
+                        conexion = new MySqlConnection(datos);
+                        conexion.Open();
+                    }catch {
+                        ip = "urendes-nas.ddns.net";
+                        string datos = "server=" + ip + ";user=gestor;password=gestorurds;database=acceso;port=3307";
+                        conexion = new MySqlConnection(datos);
+                        conexion.Open();
+                    }
+
+                }else {
+                    ip = "192.168.0.20";
+                    string datos = "server=" + ip + ";user=gestor;password=gestorurds;database=acceso;port=3307";
+                    conexion = new MySqlConnection(datos);
+                    conexion.Open();
                 }
-                string datos = "server=" + ip + ";user=gestor;password=gestorurds;database=acceso;port=3307";
-                MySqlConnection conexion = new MySqlConnection(datos);
-                DataTable resultado = null;
-                //Abro la conexión con la función que se encuentra en otra clase.
-                conexion.Open();
                 string sql = "SELECT * FROM usuarioAppAdmin WHERE password = '" +  this.textBox_password.Text + "'";
                 MySqlDataAdapter da = new MySqlDataAdapter(sql, conexion);
                 DataSet ds = new DataSet();

@@ -71,6 +71,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.documentosYComunicacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tareasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.impuestosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -314,6 +315,7 @@
             this.ejerciciosToolStripMenuItem1,
             this.liquidacionesToolStripMenuItem,
             this.cuotasToolStripMenuItem1,
+            this.impuestosToolStripMenuItem,
             this.informesToolStripMenuItem,
             this.toolStripSeparator2,
             this.documentosYComunicacionesToolStripMenuItem});
@@ -415,6 +417,13 @@
             this.tareasToolStripMenuItem.Text = "Tareas";
             this.tareasToolStripMenuItem.Click += new System.EventHandler(this.tareasToolStripMenuItem_Click);
             // 
+            // impuestosToolStripMenuItem
+            // 
+            this.impuestosToolStripMenuItem.Name = "impuestosToolStripMenuItem";
+            this.impuestosToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.impuestosToolStripMenuItem.Text = "Impuestos";
+            this.impuestosToolStripMenuItem.Click += new System.EventHandler(this.impuestosToolStripMenuItem_Click);
+            // 
             // ContenedorComunidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -478,5 +487,6 @@
         private System.Windows.Forms.ToolStripMenuItem anticiposToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem serviciosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem organosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem impuestosToolStripMenuItem;
     }
 }

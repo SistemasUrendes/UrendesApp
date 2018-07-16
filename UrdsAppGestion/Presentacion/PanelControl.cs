@@ -403,7 +403,7 @@ namespace UrdsAppGestión.Presentacion
         }
 
         //VERSIÓN NUEVA PARA CREAR LIQUIDACIÓN
-        public void CrearPDFLiquidacionNuevo (DataTable PdfCrear, String idComunidad, String idLiquidacion,String Ruta, String nombreCortoLiqPasado) {
+        public void CrearPDFLiquidacionNuevo (DataTable PdfCrear, String idComunidad, String idLiquidacion,String Ruta, String nombreCortoLiqPasado, DataTable resumenGastos, Boolean InformeEspecifico, DataTable infoComunidad) {
             proc1++;
             string[] row = new string[] { proc1.ToString(), "Creación PDF : " + nombreCortoLiqPasado, "0%" };
             dataGridView_tareas.Rows.Add(row);
@@ -414,6 +414,9 @@ namespace UrdsAppGestión.Presentacion
             arguments.Add(idLiquidacion);
             arguments.Add(Ruta);
             arguments.Add(nombreCortoLiqPasado);
+            arguments.Add(resumenGastos);
+            arguments.Add(InformeEspecifico);
+            arguments.Add(infoComunidad);
 
             var tarea1 = new BackgroundWorker()
             {
@@ -435,6 +438,9 @@ namespace UrdsAppGestión.Presentacion
             String idLiquidacion = (String)genericlist[2];
             String Ruta = (String)genericlist[3];
             String nombreCortoLiqPasado = (String)genericlist[4];
+            DataTable resumenGastos = (DataTable)genericlist[5];
+            Boolean InformeEspecifico = (Boolean)genericlist[6];
+            DataTable infoComunidad = (DataTable)genericlist[7];
 
             Warning[] warnings;
             string[] streamids;
@@ -448,7 +454,6 @@ namespace UrdsAppGestión.Presentacion
             {
                 Thread.CurrentThread.Name = numero_procesos.ToString();
             }
-
             for (int a = 0; a < PdfCrear.Rows.Count; a++)
             {
                 String idEntidad = PdfCrear.Rows[a][0].ToString();
@@ -479,7 +484,11 @@ namespace UrdsAppGestión.Presentacion
 
                             String Liquidacion = (Persistencia.SentenciasSQL.select("SELECT LiqLargo FROM com_liquidaciones WHERE IdLiquidacion = " + idLiquidacion)).Rows[0][0].ToString();
 
-                            ComunidadesForms.LiquidacionesForms.InformeParticularRecibo.FormVerInformeParticularRecibo nueva = new ComunidadesForms.LiquidacionesForms.InformeParticularRecibo.FormVerInformeParticularRecibo(idLiquidacion, idcomunidad, idEntidad, Recibos.Rows[b][0].ToString(), Liquidacion);
+                            //FILTRO POR EL IDRECIBO QUE TOCA SI ES EL INFORME ESPECIFICO
+                            if (InformeEspecifico)
+                                resumenGastos.DefaultView.RowFilter = "IdRecibo = " + Recibos.Rows[b][0].ToString();
+
+                            ComunidadesForms.LiquidacionesForms.InformeParticularRecibo.FormVerInformeParticularRecibo nueva = new ComunidadesForms.LiquidacionesForms.InformeParticularRecibo.FormVerInformeParticularRecibo(idLiquidacion, idcomunidad, idEntidad, Recibos.Rows[b][0].ToString(), Liquidacion, resumenGastos, infoComunidad);
 
                             byte[] bytes = nueva.reportViewer1.LocalReport.Render(
                                 "PDF", null, out mimeType, out encoding, out filenameExtension,

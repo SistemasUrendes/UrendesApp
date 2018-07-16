@@ -471,9 +471,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox31</rd:DefaultName>
         <Top>6.93706cm</Top>
-        <Left>13.13013cm</Left>
+        <Left>12.91846cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.53519cm</Width>
+        <Width>2.74686cm</Width>
         <ZIndex>15</ZIndex>
         <Style>
           <Border>
@@ -2739,8 +2739,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>IdRecibo</rd:DefaultName>
-          <Top>2.5309cm</Top>
-          <Left>2.45434cm</Left>
+          <Top>2.56618cm</Top>
+          <Left>2.38379cm</Left>
           <Height>0.45889cm</Height>
           <Width>8.32084cm</Width>
           <ZIndex>4</ZIndex>
@@ -2844,7 +2844,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox13</rd:DefaultName>
-          <Top>2.60146cm</Top>
+          <Top>2.56618cm</Top>
           <Left>15.3811cm</Left>
           <Height>0.42361cm</Height>
           <Width>2.81949cm</Width>
@@ -2887,6 +2887,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox5</rd:DefaultName>
+          <Top>0cm</Top>
           <Left>15.70059cm</Left>
           <Height>0.6cm</Height>
           <Width>2.5cm</Width>

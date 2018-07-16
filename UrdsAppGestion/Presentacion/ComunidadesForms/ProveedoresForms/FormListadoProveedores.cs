@@ -229,7 +229,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
 
         private void editarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ProveedoresForms.FormAnyadirProveedor nuevo = new ProveedoresForms.FormAnyadirProveedor(id_comunidad_cargado, this, dataGridView_proveedores.SelectedRows[0].Cells[7].Value.ToString());
+            ProveedoresForms.FormAnyadirProveedor nuevo = new ProveedoresForms.FormAnyadirProveedor(id_comunidad_cargado, this, dataGridView_proveedores.SelectedRows[0].Cells[0].Value.ToString());
             nuevo.Show();
         }
 

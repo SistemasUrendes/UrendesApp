@@ -73,17 +73,17 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
 
                 if (cabecera.Rows[0][3].ToString() == "1")
                 {
-
                     if (cabecera.Rows[0][10].ToString() == "")
                     {
-                        sqlInsertCabe = "INSERT INTO com_operaciones (IdComunidad, IdEntidad, IdSubCuenta, IdTipoReparto, Fecha, Documento, Descripcion,IdRetencion, BaseRet, Retencion,Notas, IdEstado, ImpOp, ImpOpPte, NumMov, Guardada, IdURD, FAct) VALUES (" + cabecera.Rows[0][0].ToString() + "," + cabecera.Rows[0][1].ToString() + "," + cabecera.Rows[0][2].ToString() + "," + cabecera.Rows[0][3].ToString() + ",'" + fechaOp + "','" + textBox_documento.Text + "','" + textBox_nuevo_nombre.Text + "'," + cabecera.Rows[0][4].ToString() + "," + cabecera.Rows[0][5].ToString().Replace(',', '.') + "," + cabecera.Rows[0][6].ToString().Replace(',', '.') + ",'" + cabecera.Rows[0][7].ToString() + "',1," + textBox_importe.Text.Replace(',', '.') + "," + textBox_importe.Text.Replace(',', '.') + ",0,'No'," + Login.getId() + ",'" + fechaAhora + "')";
+                        sqlInsertCabe = "INSERT INTO com_operaciones (IdComunidad, IdEntidad, IdSubCuenta, IdTipoReparto, Fecha, Documento, Descripcion,IdRetencion, BaseRet, Retencion, Notas, IdEstado, ImpOp, ImpOpPte, NumMov, Guardada, IdURD, FAct) VALUES (" + cabecera.Rows[0][0].ToString() + "," + cabecera.Rows[0][1].ToString() + "," + cabecera.Rows[0][2].ToString() + "," + cabecera.Rows[0][3].ToString() + ",'" + fechaOp + "','" + textBox_documento.Text + "','" + textBox_nuevo_nombre.Text + "'," + cabecera.Rows[0][4].ToString() + "," + cabecera.Rows[0][5].ToString().Replace(',', '.') + "," + cabecera.Rows[0][6].ToString().Replace(',', '.') + ",'" + cabecera.Rows[0][7].ToString() + "',1," + textBox_importe.Text.Replace(',', '.') + "," + textBox_importe.Text.Replace(',', '.') + ",0,'No'," + Login.getId() + ",'" + fechaAhora + "')";
                     }
                     else
                     {
-                        sqlInsertCabe = "INSERT INTO com_operaciones (IdComunidad, IdEntidad, IdSubCuenta, IdTipoReparto, Fecha, Documento, Descripcion,IdRetencion, BaseRet, Retencion,Notas, IdEstado, IdExpte, ImpOp, ImpOpPte, NumMov, Guardada, IdURD, FAct) VALUES (" + cabecera.Rows[0][0].ToString() + "," + cabecera.Rows[0][1].ToString() + "," + cabecera.Rows[0][2].ToString() + "," + cabecera.Rows[0][3].ToString() + ",'" + fechaOp + "','" + textBox_documento.Text + "','" + textBox_nuevo_nombre.Text + "'," + cabecera.Rows[0][4].ToString() + "," + cabecera.Rows[0][5].ToString().Replace(',', '.') + "," + cabecera.Rows[0][6].ToString().Replace(',', '.') + ",'" + cabecera.Rows[0][7].ToString() + "',1," + cabecera.Rows[0][10].ToString() + "," + textBox_importe.Text.Replace(',', '.') + "," + textBox_importe.Text.Replace(',', '.') + ",0,'No'," + Login.getId() + ",'" + fechaAhora + "')";
+                        sqlInsertCabe = "INSERT INTO com_operaciones (IdComunidad, IdEntidad, IdSubCuenta, IdTipoReparto, Fecha, Documento, Descripcion,IdRetencion, BaseRet, Retencion, Notas, IdEstado, IdExpte, ImpOp, ImpOpPte, NumMov, Guardada, IdURD, FAct) VALUES (" + cabecera.Rows[0][0].ToString() + "," + cabecera.Rows[0][1].ToString() + "," + cabecera.Rows[0][2].ToString() + "," + cabecera.Rows[0][3].ToString() + ",'" + fechaOp + "','" + textBox_documento.Text + "','" + textBox_nuevo_nombre.Text + "'," + cabecera.Rows[0][4].ToString() + "," + cabecera.Rows[0][5].ToString().Replace(',', '.') + "," + cabecera.Rows[0][6].ToString().Replace(',', '.') + ",'" + cabecera.Rows[0][7].ToString() + "',1," + cabecera.Rows[0][10].ToString() + "," + textBox_importe.Text.Replace(',', '.') + "," + textBox_importe.Text.Replace(',', '.') + ",0,'No'," + Login.getId() + ",'" + fechaAhora + "')";
                     }
                     id_op = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsertCabe);
-
+                    if (Convert.ToDouble(cabecera.Rows[0][6].ToString()) > 0.00)
+                        tieneRetencion(id_op.ToString(), fechaOp);
 
                     //CREAMOS IVA
                     String sqlSelectIva = "SELECT aux_iva.`%IVA`, com_opdetiva.IdIVA FROM com_opdetiva INNER JOIN aux_iva ON com_opdetiva.IdIVA = aux_iva.IdIVA WHERE(((com_opdetiva.IdOp) = " + id_op_bbdd + "));";
@@ -423,6 +423,44 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
 
             Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdateFav);
             MessageBox.Show("Favorita Actualizada");
+        }
+        private void tieneRetencion(String idOpNueva, String fecha)
+        {
+            //BUSCO EL PERIODO QUE LE PERTENECE DE IVA Y SI ESTA CERRADO LE PONGO EL SIGUIENTE
+            String sqlFechas = "SELECT com_ivaImpuestos.FIni, com_ivaImpuestos.FFin, com_ivaImpuestos.IdIvaImpuestos, com_ivaImpuestos.Cerrada, com_ivaImpuestos.Orden FROM com_ivaImpuestos WHERE IdComunidad = " + id_comunidad_cargado;
+            DataTable periodos = Persistencia.SentenciasSQL.select(sqlFechas);
+
+            for (int i = 0; i < periodos.Rows.Count; i++)
+            {
+
+                String fechaInicio = (Convert.ToDateTime(periodos.Rows[i][0] + "-" + DateTime.Now.Year.ToString())).ToString();
+                String fechaFin = (Convert.ToDateTime(periodos.Rows[i][1] + "-" + DateTime.Now.Year.ToString())).ToString();
+
+                if (Convert.ToDateTime(fechaInicio) <= Convert.ToDateTime(fecha) && Convert.ToDateTime(fechaFin) >= Convert.ToDateTime(fecha))
+                {
+
+                    if (periodos.Rows[i][3].ToString() != "True")
+                    {
+                        //MessageBox.Show(fecha + " | " + fechaInicio + " | " + fechaFin);
+                        String sqlUpdateOperacion = "UPDATE com_operaciones SET IdPeridoIVA=" + periodos.Rows[i][2] + " WHERE IdOp = " + idOpNueva;
+                        Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdateOperacion);
+                    }
+                    else
+                    {
+                        int actual = Convert.ToInt32(periodos.Rows[i][4].ToString());
+                        if (actual == 4) actual = 1;
+                        else actual++;
+
+                        String sqlSelect = "SELECT IdIvaImpuestos FROM com_ivaImpuestos WHERE IdComunidad = " + id_comunidad_cargado + " AND Orden = " + actual;
+                        DataTable periodoNuevo = Persistencia.SentenciasSQL.select(sqlSelect);
+                        if (periodoNuevo.Rows.Count > 0)
+                        {
+                            String sqlUpdateOperacion = "UPDATE com_operaciones SET IdPeridoIVA=" + periodoNuevo.Rows[0][0] + " WHERE IdOp = " + idOpNueva;
+                            Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdateOperacion);
+                        }
+                    }
+                }
+            }
         }
     }
 }

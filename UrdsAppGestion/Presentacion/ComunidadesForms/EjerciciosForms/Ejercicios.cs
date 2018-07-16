@@ -79,7 +79,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.EjerciciosForms
 
         private void impuestosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Impuestos.FormImpuestos nueva = new Impuestos.FormImpuestos(id_comunidad, dataGridView_Ejercicios.SelectedRows[0].Cells[0].Value.ToString(), (Convert.ToDateTime(dataGridView_Ejercicios.SelectedRows[0].Cells[5].Value.ToString()).Year).ToString());
+            Impuestos.FormImpuestos nueva = new Impuestos.FormImpuestos(id_comunidad, (Convert.ToDateTime(DateTime.Now.Year).ToString()));
             nueva.ControlBox = true;
             nueva.Show();
         }

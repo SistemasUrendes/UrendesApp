@@ -43,10 +43,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ProveedoresForms
             
             if (idProveedor != null) {
                 String sqlSelect = "SELECT com_proveedores.IdBloque, com_proveedores.IdEntidad, ctos_entidades.Entidad, com_proveedores.IdCategoria, com_proveedores.Servicio FROM com_proveedores INNER JOIN ctos_entidades ON com_proveedores.IdEntidad = ctos_entidades.IDEntidad WHERE com_proveedores.IdProveedor = " + idProveedor + " AND com_proveedores.IdComunidad = " + idComunidad;
-
-
-
-                ;
                 DataTable proveedor = Persistencia.SentenciasSQL.select(sqlSelect);
                 
                 if (proveedor.Rows[0][0].ToString() != "")
@@ -61,8 +57,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ProveedoresForms
                 textBox_entidad.Text = proveedor.Rows[0][2].ToString();
 
             }
-
-            
         }
 
         private void button_cancelar_Click(object sender, EventArgs e)

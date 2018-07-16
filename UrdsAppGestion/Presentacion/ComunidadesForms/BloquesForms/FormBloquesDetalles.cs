@@ -201,7 +201,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.BloquesForms
                         String sql = "UPDATE com_subcuotas SET Subcuota = " + (dataGridView_DetallesBloque.Rows[c].Cells["Subcuota"].Value.ToString()).Replace(",", ".") + ", Parte = '" + (dataGridView_DetallesBloque.Rows[c].Cells["Parte"].Value.ToString()).Replace(",", ".") + "' WHERE IdSubcuota = " + dataGridView_DetallesBloque.Rows[c].Cells[0].Value.ToString();
 
                         Persistencia.SentenciasSQL.InsertarGenerico(sql);
-                        campoCalculo();
+                        //campoCalculo();
                     }
                 }
                 if (id_divisiones != null)

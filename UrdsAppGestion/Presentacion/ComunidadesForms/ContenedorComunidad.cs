@@ -553,5 +553,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             CargosForms.FormListadoOrganos nueva = new CargosForms.FormListadoOrganos(id_comunidad.ToString());
             nueva.Show();
         }
+
+        private void impuestosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Impuestos.FormImpuestos nueva = new Impuestos.FormImpuestos(id_comunidad.ToString(), DateTime.Now.Year.ToString());
+            nueva.ControlBox = true;
+            nueva.Show();
+        }
     }
 }

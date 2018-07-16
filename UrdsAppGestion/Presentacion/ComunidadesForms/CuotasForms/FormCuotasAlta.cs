@@ -60,7 +60,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
                 String primerDia = (new DateTime(DateTime.Now.Year, 1, 1)).ToString("yyyy-MM-dd");
                 String ultimoDia = (new DateTime(DateTime.Now.Year, 12, DateTime.DaysInMonth(DateTime.Now.Year, 12))).ToString("yyyy-MM-dd");
 
-                String SelectLiquidaciones = "SELECT com_liquidaciones.IdLiquidacion, com_liquidaciones.Liquidacion FROM com_liquidaciones INNER JOIN com_ejercicios ON com_liquidaciones.IdEjercicio = com_ejercicios.IdEjercicio WHERE(((com_ejercicios.IdComunidad) = " + id_comunidad_cargado + ")) ORDER BY com_liquidaciones.IdLiquidacion DESC LIMIT 5;";
+                String SelectLiquidaciones = "SELECT com_liquidaciones.IdLiquidacion, com_liquidaciones.Liquidacion FROM com_liquidaciones INNER JOIN com_ejercicios ON com_liquidaciones.IdEjercicio = com_ejercicios.IdEjercicio WHERE(((com_ejercicios.IdComunidad) = " + id_comunidad_cargado + ")) ORDER BY com_liquidaciones.IdLiquidacion DESC LIMIT 7;";
 
                 DataTable posibles = Persistencia.SentenciasSQL.select(SelectLiquidaciones);
 
@@ -191,7 +191,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CuotasForms
             if (bloquesNegativos.Rows.Count > 0) {
                 String nombreBloque = (Persistencia.SentenciasSQL.select("SELECT Descripcion FROM com_bloques WHERE IdBloque = " + bloquesNegativos.Rows[0][1].ToString())).Rows[0][0].ToString();
 
-                MessageBox.Show("El bloque " + nombreBloque + " sale negativo. Por tanto tendras que generar una cuota de abono para dicho bloque.");
+                MessageBox.Show("El bloque " + nombreBloque + " sale negativo. Por tanto tendras que generar una remesa de abono para dicho bloque.");
             }
 
             String fechaAhora = (Convert.ToDateTime(DateTime.Now)).ToString("yyyy-MM-dd");

@@ -284,7 +284,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                 if (resultado == "true")
                 {
                     MessageBox.Show("Operación Borrada");
-                    cargardatagrid();
+                    //cargardatagrid();
                     aplicarFiltro();
                 }
                 else

@@ -196,7 +196,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
 
         private void button_addasociacion_Click(object sender, EventArgs e)
         {
-            FormAltaAsociacion nueva = new FormAltaAsociacion(this, (int)dataGridView_divisiones.SelectedCells[0].Value,id_comunidad.ToString(), dataGridView_divisiones.CurrentCell.RowIndex);
+            FormAltaAsociacion nueva = new FormAltaAsociacion(this, (int)dataGridView_divisiones.SelectedCells[0].Value,id_comunidad, dataGridView_divisiones.CurrentCell.RowIndex);
             nueva.Show();
         }
         

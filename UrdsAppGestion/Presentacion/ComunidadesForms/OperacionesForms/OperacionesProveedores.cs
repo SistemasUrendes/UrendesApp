@@ -220,7 +220,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                 String resultado = Logica.FuncionesOperaciones.CombrobacionesBorrarOp(idOpBorrar);
                 if (resultado == "true") {
                     MessageBox.Show("Operación Borrada");
-                    cargardatagrid();
+                    //cargardatagrid();
                     cargarFiltro();
                 }
                 else {

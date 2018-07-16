@@ -13,7 +13,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Impuestos
     public partial class FormImpuestos : Form
     {
         String idComunidad;
-        String idEjercicio = "";
         String anyo;
         String orden = "1";
         DataTable impuestos;
@@ -21,18 +20,17 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Impuestos
         String NombreComunidad;
         int numColumnaCheck;
 
-        public FormImpuestos(String idComunidad,String idEjercicio, String anyo)
+        public FormImpuestos(String idComunidad, String anyo)
         {
             InitializeComponent();
             this.idComunidad = idComunidad;
-            this.idEjercicio = idEjercicio;
             this.anyo = anyo;
 
         }
 
         public void cargarDatagrid() {
 
-            sqlSelect = "SELECT com_operaciones.IdComunidad, com_operaciones.IdOp, com_operaciones.Documento, ctos_entidades.Entidad, ctos_entidades.CIF, com_operaciones.Descripcion,  DATE_FORMAT(Coalesce(com_operaciones.Fecha,'ok'),'%d/%m/%Y') AS Fecha, com_operaciones.Retencion, com_operaciones.BaseRet, aux_retencion.`%Retencion` AS Retención, com_ivaImpuestos.Orden FROM com_ivaImpuestos INNER JOIN (aux_retencion INNER JOIN(ctos_entidades INNER JOIN com_operaciones ON ctos_entidades.IDEntidad = com_operaciones.IdEntidad) ON aux_retencion.IdRetencion = com_operaciones.IdRetencion) ON com_ivaImpuestos.IdIvaImpuestos = com_operaciones.IdPeridoIVA GROUP BY com_operaciones.IdComunidad, com_operaciones.IdOp, com_operaciones.Documento, ctos_entidades.Entidad, ctos_entidades.CIF, com_operaciones.Descripcion, com_operaciones.Fecha, com_operaciones.Retencion, com_operaciones.BaseRet, aux_retencion.`%Retencion`, com_ivaImpuestos.Orden HAVING(((com_operaciones.Retencion) > 0) AND((com_operaciones.IdComunidad) = " + idComunidad + "));";
+            sqlSelect = "SELECT com_operaciones.IdComunidad, com_operaciones.IdOp, com_operaciones.Documento, ctos_entidades.Entidad, ctos_entidades.CIF, com_operaciones.Descripcion,  DATE_FORMAT(Coalesce(com_operaciones.Fecha,'ok'),'%d/%m/%Y') AS Fecha, com_operaciones.Retencion, com_operaciones.BaseRet, aux_retencion.`%Retencion` AS Retención, com_ivaImpuestos.Orden, com_ivaImpuestos.Cerrada FROM com_ivaImpuestos INNER JOIN (aux_retencion INNER JOIN(ctos_entidades INNER JOIN com_operaciones ON ctos_entidades.IDEntidad = com_operaciones.IdEntidad) ON aux_retencion.IdRetencion = com_operaciones.IdRetencion) ON com_ivaImpuestos.IdIvaImpuestos = com_operaciones.IdPeridoIVA GROUP BY com_operaciones.IdComunidad, com_operaciones.IdOp, com_operaciones.Documento, ctos_entidades.Entidad, ctos_entidades.CIF, com_operaciones.Descripcion, com_operaciones.Fecha, com_operaciones.Retencion, com_operaciones.BaseRet, aux_retencion.`%Retencion`, com_ivaImpuestos.Orden HAVING(((com_operaciones.Retencion) > 0) AND((com_operaciones.IdComunidad) = " + idComunidad + "));";
 
             impuestos = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridView_impuestos.DataSource = impuestos;
@@ -104,9 +102,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Impuestos
             dataGridView_impuestos.Columns["Retención"].HeaderText = "%";
             dataGridView_impuestos.Columns["BaseRet"].DefaultCellStyle.Format = "c";
             dataGridView_impuestos.Columns["Retencion"].DefaultCellStyle.Format = "c";
-            dataGridView_impuestos.Columns["Retencion"].Width = 60;
+            dataGridView_impuestos.Columns["Retencion"].Width = 70;
             dataGridView_impuestos.Columns["Orden"].Visible = false;
             dataGridView_impuestos.Columns["IdComunidad"].Visible = false;
+            dataGridView_impuestos.Columns["Cerrada"].Width = 50;
+            dataGridView_impuestos.Columns["Retención"].Width = 40;
+
         }
 
         private void dataGridView_impuestos_DoubleClick(object sender, EventArgs e)
@@ -161,8 +162,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.Impuestos
                     String sqlUpdate = "UPDATE com_ivaImpuestos SET Cerrada= -1 WHERE Orden = " + orden + " AND IdComunidad = " + idComunidad;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
 
-                    Informes.FormVerInforme nueva = new Informes.FormVerInforme((DataTable)dataGridView_impuestos.DataSource,NombreComunidad);
-                    nueva.Show();
+                    //Informes.FormVerInforme nueva = new Informes.FormVerInforme((DataTable)dataGridView_impuestos.DataSource,NombreComunidad);
+                    //nueva.Show();
 
                     cargarDatagrid();
                 }

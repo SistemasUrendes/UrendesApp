@@ -83,7 +83,7 @@
             // 
             this.textBox_importe.Location = new System.Drawing.Point(117, 72);
             this.textBox_importe.Name = "textBox_importe";
-            this.textBox_importe.Size = new System.Drawing.Size(120, 20);
+            this.textBox_importe.Size = new System.Drawing.Size(72, 20);
             this.textBox_importe.TabIndex = 4;
             this.textBox_importe.Text = "0";
             this.textBox_importe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -103,7 +103,7 @@
             this.listBox_liquidaciones.Location = new System.Drawing.Point(117, 110);
             this.listBox_liquidaciones.Name = "listBox_liquidaciones";
             this.listBox_liquidaciones.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBox_liquidaciones.Size = new System.Drawing.Size(120, 95);
+            this.listBox_liquidaciones.Size = new System.Drawing.Size(232, 95);
             this.listBox_liquidaciones.TabIndex = 6;
             // 
             // label3
@@ -119,7 +119,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(288, 294);
+            this.ClientSize = new System.Drawing.Size(373, 296);
             this.Controls.Add(this.listBox_liquidaciones);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button1_traspaso);

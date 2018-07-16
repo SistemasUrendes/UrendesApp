@@ -18,17 +18,16 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
         int id_asociacion_cargado = 0;
         int id_division = 0;
         int id_comunidad_cargado = 0;
-        String id_comunidad_cargado1 = "0";
         DataTable fila;
         Boolean quitarAsociacion = false;
         Boolean añadirAsociacion = false;
         int indiceSel;
 
-        public FormAltaAsociacion(Divisiones form_anterior, int id_division, String id_comunidad_cargado1, int indiceSel)
+        public FormAltaAsociacion(Divisiones form_anterior, int id_division, int id_comunidad_cargado, int indiceSel)
         {
             InitializeComponent();
             this.form_anterior = form_anterior;
-            this.id_comunidad_cargado1 = id_comunidad_cargado1;
+            this.id_comunidad_cargado = id_comunidad_cargado;
             this.id_division = id_division;
             this.indiceSel = indiceSel;
         }
@@ -313,7 +312,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms
         private void textBox_Comunero_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (Char)Keys.Space) {
-                Comuneros nueva = new Comuneros(this, this.Name, id_comunidad_cargado1);
+                Comuneros nueva = new Comuneros(this, this.Name, id_comunidad_cargado.ToString());
                 nueva.ControlBox = true;
                 nueva.TopMost = true;
                 nueva.WindowState = FormWindowState.Normal;
