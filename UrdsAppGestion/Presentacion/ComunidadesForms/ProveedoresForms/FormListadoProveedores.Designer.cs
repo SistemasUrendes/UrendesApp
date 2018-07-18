@@ -39,9 +39,12 @@
             this.añadirBloqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarProveedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.darDeBajaProveedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox_informes = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.darDeAltaProveedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_proveedores)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -99,37 +102,46 @@
             this.verEntidadToolStripMenuItem,
             this.añadirBloqueToolStripMenuItem,
             this.editarToolStripMenuItem,
-            this.eliminarProveedorToolStripMenuItem});
+            this.eliminarProveedorToolStripMenuItem,
+            this.darDeBajaProveedorToolStripMenuItem,
+            this.darDeAltaProveedorToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(175, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(191, 158);
             // 
             // verEntidadToolStripMenuItem
             // 
             this.verEntidadToolStripMenuItem.Name = "verEntidadToolStripMenuItem";
-            this.verEntidadToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.verEntidadToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.verEntidadToolStripMenuItem.Text = "Ver Entidad";
             this.verEntidadToolStripMenuItem.Click += new System.EventHandler(this.verEntidadToolStripMenuItem_Click);
             // 
             // añadirBloqueToolStripMenuItem
             // 
             this.añadirBloqueToolStripMenuItem.Name = "añadirBloqueToolStripMenuItem";
-            this.añadirBloqueToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.añadirBloqueToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.añadirBloqueToolStripMenuItem.Text = "Añadir Bloque";
             this.añadirBloqueToolStripMenuItem.Click += new System.EventHandler(this.añadirBloqueToolStripMenuItem_Click);
             // 
             // editarToolStripMenuItem
             // 
             this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            this.editarToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.editarToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.editarToolStripMenuItem.Text = "Editar Proveedor";
             this.editarToolStripMenuItem.Click += new System.EventHandler(this.editarToolStripMenuItem_Click);
             // 
             // eliminarProveedorToolStripMenuItem
             // 
             this.eliminarProveedorToolStripMenuItem.Name = "eliminarProveedorToolStripMenuItem";
-            this.eliminarProveedorToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.eliminarProveedorToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.eliminarProveedorToolStripMenuItem.Text = "Eliminar Proveedor";
             this.eliminarProveedorToolStripMenuItem.Click += new System.EventHandler(this.eliminarProveedorToolStripMenuItem_Click);
+            // 
+            // darDeBajaProveedorToolStripMenuItem
+            // 
+            this.darDeBajaProveedorToolStripMenuItem.Name = "darDeBajaProveedorToolStripMenuItem";
+            this.darDeBajaProveedorToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.darDeBajaProveedorToolStripMenuItem.Text = "Dar de Baja Proveedor";
+            this.darDeBajaProveedorToolStripMenuItem.Click += new System.EventHandler(this.darDeBajaProveedorToolStripMenuItem_Click);
             // 
             // label2
             // 
@@ -162,12 +174,34 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Alta",
+            "Baja",
+            "Todos"});
+            this.comboBox1.Location = new System.Drawing.Point(824, 38);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 7;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // darDeAltaProveedorToolStripMenuItem
+            // 
+            this.darDeAltaProveedorToolStripMenuItem.Name = "darDeAltaProveedorToolStripMenuItem";
+            this.darDeAltaProveedorToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.darDeAltaProveedorToolStripMenuItem.Text = "Dar de Alta Proveedor";
+            this.darDeAltaProveedorToolStripMenuItem.Click += new System.EventHandler(this.darDeAltaProveedorToolStripMenuItem_Click);
+            // 
             // FormOperacionesListadoProveedores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1219, 571);
             this.ControlBox = false;
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox_informes);
             this.Controls.Add(this.label2);
@@ -202,5 +236,8 @@
         private System.Windows.Forms.ToolStripMenuItem eliminarProveedorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verEntidadToolStripMenuItem;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ToolStripMenuItem darDeBajaProveedorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem darDeAltaProveedorToolStripMenuItem;
     }
 }

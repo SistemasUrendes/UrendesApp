@@ -37,9 +37,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
         {
             if (nombre_form_cargado != "")
                 button_enviar.Visible = true;
-
             cargarDatagrid();
+            comboBox1.SelectedIndex = 0;
         }
+        /*
         public void cargarDatagrid()
         {
             newTable = new DataTable();
@@ -119,6 +120,94 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             dataGridView_proveedores.Columns[6].Width = 180;
 
         }
+        */
+
+        public void cargarDatagrid()
+        {
+            DateTime test = DateTime.Now;
+            newTable = new DataTable();
+            newTable2 = new DataTable();
+
+            String sqlSelectProveedores = "SELECT com_proveedores.IdProveedor, com_bloques.Descripcion as Bloque, ctos_catentidades.Descripcion, com_proveedores.IdEntidad, ctos_entidades.Entidad, com_proveedores.Servicio, com_proveedores.FBaja FROM((com_proveedores LEFT JOIN com_bloques ON com_proveedores.IdBloque = com_bloques.IdBloque) INNER JOIN ctos_entidades ON com_proveedores.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN ctos_catentidades ON com_proveedores.IdCategoria = ctos_catentidades.IdCategoria WHERE(((com_proveedores.IdComunidad) = " + id_comunidad_cargado + "))";
+
+            proveedores = Persistencia.SentenciasSQL.select(sqlSelectProveedores);
+
+            DataTable correos = Persistencia.SentenciasSQL.select("SELECT IdEntidad, Email FROM ctos_detemail WHERE Ppal = -1");
+
+            var result = from x in proveedores.AsEnumerable()
+                         join y in correos.AsEnumerable() on x.Field<int>("IdEntidad") equals y.Field<int>("IdEntidad")
+                         into xy
+                         from y in xy.DefaultIfEmpty()
+                         select new
+                         {
+                             ID = x.Field<int>("IdProveedor"),
+                             Field1 = x.Field<string>("Bloque"),
+                             Field2 = x.Field<string>("Descripcion"),
+                             Field3 = x.Field<int>("IdEntidad"),
+                             Field4 = x.Field<string>("Entidad"),
+                             Field5 = x.Field<string>("Servicio"),
+                             Field6 = x.Field<string>("FBaja"),
+                             Field7 = (y == null) ? null : y.Field<string>("Email")
+                         };
+
+            newTable.Columns.Add("IdProveedor", typeof(int));
+            newTable.Columns.Add("Bloque", typeof(string));
+            newTable.Columns.Add("Descripcion", typeof(string));
+            newTable.Columns.Add("IdEntidad", typeof(int));
+            newTable.Columns.Add("Entidad", typeof(string));
+            newTable.Columns.Add("Servicio", typeof(string));
+            newTable.Columns.Add("FBaja", typeof(string));
+            newTable.Columns.Add("Email", typeof(string));
+
+            foreach (var rowInfo in result)
+                newTable.Rows.Add(rowInfo.ID, rowInfo.Field1, rowInfo.Field2, rowInfo.Field3, rowInfo.Field4, rowInfo.Field5, rowInfo.Field6, rowInfo.Field7);
+
+            String sqlSelectTel = "SELECT ctos_dettelf.IdEntidad, ctos_dettelf.Telefono FROM ctos_dettelf WHERE(((ctos_dettelf.Ppal) = -1));";
+            DataTable telefonos = Persistencia.SentenciasSQL.select(sqlSelectTel);
+
+            var result2 = from x in newTable.AsEnumerable()
+                          join y in telefonos.AsEnumerable() on x.Field<int>("IdEntidad") equals y.Field<int>("IdEntidad")
+                          into xy
+                          from y in xy.DefaultIfEmpty()
+                          select new
+                          {
+                              ID = x.Field<int>("IdProveedor"),
+                              Field1 = x.Field<string>("Bloque"),
+                              Field2 = x.Field<string>("Descripcion"),
+                              Field3 = x.Field<int>("IdEntidad"),
+                              Field4 = x.Field<string>("Entidad"),
+                              Field5 = x.Field<string>("Servicio"),
+                              Field6 = x.Field<string>("FBaja"),
+                              Field7 = x.Field<string>("Email"),
+                              Field8 = (y == null) ? null : y.Field<string>("Telefono")
+                          };
+
+            newTable2.Columns.Add("IdProveedor", typeof(int));
+            newTable2.Columns.Add("Bloque", typeof(string));
+            newTable2.Columns.Add("Descripcion", typeof(string));
+            newTable2.Columns.Add("IdEntidad", typeof(int));
+            newTable2.Columns.Add("Entidad", typeof(string));
+            newTable2.Columns.Add("Servicio", typeof(string));
+            newTable2.Columns.Add("FBaja", typeof(string));
+            newTable2.Columns.Add("Email", typeof(string));
+            newTable2.Columns.Add("Telefono", typeof(string));
+
+            foreach (var rowInfo in result2)
+                newTable2.Rows.Add(rowInfo.ID, rowInfo.Field1, rowInfo.Field2, rowInfo.Field3, rowInfo.Field4, rowInfo.Field5, rowInfo.Field6, rowInfo.Field7, rowInfo.Field8);
+
+            dataGridView_proveedores.DataSource = newTable2;
+
+            dataGridView_proveedores.Columns[0].Width = 40;
+            dataGridView_proveedores.Columns[1].Width = 100;
+            dataGridView_proveedores.Columns[2].Width = 180;
+            dataGridView_proveedores.Columns[3].Visible = false;
+            dataGridView_proveedores.Columns[4].Width = 210;
+            dataGridView_proveedores.Columns[5].Width = 210;
+            dataGridView_proveedores.Columns[6].Width = 80;
+            dataGridView_proveedores.Columns[7].Width = 180;
+
+        }
+
 
         private void button_enviar_Click(object sender, EventArgs e)
         {
@@ -185,7 +274,16 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
                 var hti = dataGridView_proveedores.HitTest(e.X, e.Y);
                 dataGridView_proveedores.ClearSelection();
                 dataGridView_proveedores.Rows[hti.RowIndex].Selected = true;
-
+                if (dataGridView_proveedores.SelectedRows[0].Cells[6].Value.ToString() != "")
+                {
+                    contextMenuStrip1.Items[4].Visible = false;
+                    contextMenuStrip1.Items[5].Visible = true;
+                }
+                else
+                {
+                    contextMenuStrip1.Items[4].Visible = true;
+                    contextMenuStrip1.Items[5].Visible = false;
+                }
                 contextMenuStrip1.Show(Cursor.Position);
             }
         }
@@ -243,6 +341,35 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
         {
             EntidadesForms.VerEntidad nueva = new EntidadesForms.VerEntidad((int)dataGridView_proveedores.SelectedRows[0].Cells[3].Value);
             nueva.Show();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable busqueda = newTable2;
+            String campo = "";
+            if (comboBox1.SelectedIndex == 0) campo = "FBaja Is Null";
+            else if (comboBox1.SelectedIndex == 1) campo = "FBaja Not Like ''";
+            else
+            {
+                busqueda.DefaultView.RowFilter = null;
+                this.dataGridView_proveedores.DataSource = busqueda;
+                return;
+            }
+            busqueda.DefaultView.RowFilter = campo;
+            this.dataGridView_proveedores.DataSource = busqueda;
+        }
+
+        private void darDeBajaProveedorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProveedoresForms.FormDarDeBajaProveedor nueva = new ProveedoresForms.FormDarDeBajaProveedor(this, dataGridView_proveedores.SelectedRows[0].Cells[0].Value.ToString());
+            nueva.Show();
+        }
+
+        private void darDeAltaProveedorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String sqlUpdate = "UPDATE com_proveedores SET FBaja = '' WHERE IdProveedor = " + dataGridView_proveedores.SelectedRows[0].Cells[0].Value.ToString();
+            Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+            cargarDatagrid();
         }
     }
 }

@@ -51,31 +51,31 @@
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(43, 13);
             this.label18.TabIndex = 41;
-            this.label18.Text = "Bloque.";
+            this.label18.Text = "Bloque:";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(781, 47);
+            this.label16.Location = new System.Drawing.Point(770, 47);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(26, 13);
+            this.label16.Size = new System.Drawing.Size(48, 13);
             this.label16.TabIndex = 40;
-            this.label16.Text = "Cat.";
+            this.label16.Text = "Servicio:";
             // 
             // textBoxFiltroBloque
             // 
             this.textBoxFiltroBloque.Location = new System.Drawing.Point(594, 44);
             this.textBoxFiltroBloque.Name = "textBoxFiltroBloque";
-            this.textBoxFiltroBloque.Size = new System.Drawing.Size(170, 20);
+            this.textBoxFiltroBloque.Size = new System.Drawing.Size(164, 20);
             this.textBoxFiltroBloque.TabIndex = 2;
             this.textBoxFiltroBloque.TextChanged += new System.EventHandler(this.filtrarServicios);
             this.textBoxFiltroBloque.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxFiltroBloque_KeyDown);
             // 
             // textBoxFiltroCategoria
             // 
-            this.textBoxFiltroCategoria.Location = new System.Drawing.Point(813, 44);
+            this.textBoxFiltroCategoria.Location = new System.Drawing.Point(824, 44);
             this.textBoxFiltroCategoria.Name = "textBoxFiltroCategoria";
-            this.textBoxFiltroCategoria.Size = new System.Drawing.Size(170, 20);
+            this.textBoxFiltroCategoria.Size = new System.Drawing.Size(183, 20);
             this.textBoxFiltroCategoria.TabIndex = 3;
             this.textBoxFiltroCategoria.TextChanged += new System.EventHandler(this.filtrarServicios);
             this.textBoxFiltroCategoria.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxFiltroCategoria_KeyDown);
@@ -105,12 +105,13 @@
             this.dataGridViewServicios.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewServicios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewServicios.Location = new System.Drawing.Point(340, 70);
+            this.dataGridViewServicios.MultiSelect = false;
             this.dataGridViewServicios.Name = "dataGridViewServicios";
             this.dataGridViewServicios.ReadOnly = true;
             this.dataGridViewServicios.RowHeadersVisible = false;
             this.dataGridViewServicios.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewServicios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewServicios.Size = new System.Drawing.Size(643, 340);
+            this.dataGridViewServicios.Size = new System.Drawing.Size(667, 340);
             this.dataGridViewServicios.TabIndex = 4;
             this.dataGridViewServicios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewServicios_CellClick);
             this.dataGridViewServicios.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridViewServicios_KeyDown);
@@ -127,7 +128,7 @@
             // 
             // buttonAddServicio
             // 
-            this.buttonAddServicio.Location = new System.Drawing.Point(855, 12);
+            this.buttonAddServicio.Location = new System.Drawing.Point(879, 12);
             this.buttonAddServicio.Name = "buttonAddServicio";
             this.buttonAddServicio.Size = new System.Drawing.Size(128, 23);
             this.buttonAddServicio.TabIndex = 42;
@@ -142,6 +143,7 @@
             this.dataGridViewCategorias.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewCategorias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCategorias.Location = new System.Drawing.Point(12, 70);
+            this.dataGridViewCategorias.MultiSelect = false;
             this.dataGridViewCategorias.Name = "dataGridViewCategorias";
             this.dataGridViewCategorias.ReadOnly = true;
             this.dataGridViewCategorias.RowHeadersVisible = false;
@@ -149,6 +151,7 @@
             this.dataGridViewCategorias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewCategorias.Size = new System.Drawing.Size(322, 340);
             this.dataGridViewCategorias.TabIndex = 43;
+            this.dataGridViewCategorias.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCategorias_CellClick_1);
             // 
             // label1
             // 
@@ -164,7 +167,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(995, 422);
+            this.ClientSize = new System.Drawing.Size(1019, 422);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewCategorias);
             this.Controls.Add(this.buttonAddServicio);

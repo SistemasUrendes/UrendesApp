@@ -574,8 +574,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void buttonEspera_Click(object sender, EventArgs e)
         {
             //ENTIDAD
-            
-
             if (comboBoxEspera.SelectedIndex == 0)
             {
                 Entidades nueva = new Entidades(this, this.Name);

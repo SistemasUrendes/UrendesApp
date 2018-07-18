@@ -90,12 +90,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 String insertBloque = "INSERT INTO exp_area (IdAreaPrevio,IdBloque,Nombre,Descripcion,codigoArea) VALUE (0,'" + idBloque + "','" + nombreBloque + "','Bloque físico','0" + idBloque + "')";
                 areaBloque = Persistencia.SentenciasSQL.InsertarGenericoID(insertBloque);
             }
-            String codigoArea = "";
-            if (idBloque.Length < 10000) codigoArea = "0" + idBloque + "S";
-            else if (idBloque.Length < 1000) codigoArea = "00" + idBloque + "S";
-            else if (idBloque.Length < 100) codigoArea = "000" + idBloque + "S";
-            else if (idBloque.Length < 10) codigoArea = "0000" + idBloque + "S";
-            else codigoArea = idBloque + "S";
+            String codigoArea = codigoBloque(idBloque);
+
             String codigoCategoria = dataGridViewAllAreas.SelectedRows[0].Cells[0].Value.ToString();
             codigoCategoria = actualizaCodigoCat(codigoCategoria);
 
@@ -103,9 +99,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
             
             codigoArea += contarCategorias(codigoArea);
 
-            String sqlInsertPrincipal = "INSERT INTO exp_area (IdAreaPrevio,IdBloque,Nombre,Descripcion,NombreCorto,codigoArea) VALUES ('" + areaBloque + "','" + idBloque + "','" + dataGridViewAllAreas.SelectedRows[0].Cells[1].Value.ToString() + "','" + dataGridViewAllAreas.SelectedRows[0].Cells[3].Value.ToString() + "','" + dataGridViewAllAreas.SelectedRows[0].Cells[2].Value.ToString() + "','" + codigoArea  + "')";
+            String sqlInsertPrincipal = "INSERT INTO exp_area (IdAreaPrevio,IdBloque,Nombre,Descripcion,NombreCorto,codigoArea) VALUES ('" + areaBloque + "','" + idBloque + "','" + dataGridViewAllAreas.SelectedRows[0].Cells[1].Value.ToString() + "','" + dataGridViewAllAreas.SelectedRows[0].Cells[2].Value.ToString() + "','" + dataGridViewAllAreas.SelectedRows[0].Cells[3].Value.ToString() + "','" + codigoArea  + "')";
             int idAreaPrincipal = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsertPrincipal);
-            String nombreCorto = dataGridViewAllAreas.SelectedRows[0].Cells[2].Value.ToString();
+            String nombreCorto = dataGridViewAllAreas.SelectedRows[0].Cells[3].Value.ToString();
 
             String sqlSelect = "SELECT exp_detElemento.Nombre, exp_detElemento.Descripcion, exp_detElemento.IdDetElemento FROM exp_detElemento WHERE (((exp_detElemento.IdDetElementoPrev) = " + dataGridViewAllAreas.SelectedRows[0].Cells[0].Value.ToString() + "))";
             DataTable servicio = Persistencia.SentenciasSQL.select(sqlSelect);
@@ -300,7 +296,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String idElementoAnt = treeViewElementos.SelectedNode.Tag.ToString();
             String nombrecompleto = treeViewElementos.SelectedNode.Text.ToString();
             String nombre = nombrecompleto.Substring(0, nombrecompleto.IndexOf(":"));
-            Tareas.FormInsertarServicioBloque nueva = new Tareas.FormInsertarServicioBloque(this, idElementoAnt, idBloque, nombre);
+            FormInsertarServicioBloque nueva = new FormInsertarServicioBloque(this, idElementoAnt, idBloque, nombre);
             nueva.ControlBox = true;
             nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;
@@ -317,8 +313,16 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 resultado_message = MessageBox.Show("¿Desea borrar este Servicio?", "Borrar Servicio", MessageBoxButtons.OKCancel);
                 if (resultado_message == System.Windows.Forms.DialogResult.OK)
                 {
+
+
+                    String sqlSelectCodArea = "SELECT exp_area.codigoArea FROM exp_area WHERE(((exp_area.IdArea) = " + node.Tag + "))";
+                    String codigoArea = Persistencia.SentenciasSQL.select(sqlSelectCodArea).Rows[0][0].ToString();
+
                     String sqlBorrar = "DELETE FROM exp_area WHERE IdArea = " + node.Tag;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrar);
+
+                    String sqlBorrarHijos = "DELETE FROM exp_area WHERE codigoArea Like '" + codigoArea + "%'";
+                    Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrarHijos);
                     rellenarTreeViewInicio();
                 }
             }
@@ -374,6 +378,15 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 return original;
             }
+        }
+
+        private String codigoBloque(String idBloque)
+        {
+            if (idBloque.Length < 10000) return "0" + idBloque + "S";
+            else if (idBloque.Length < 1000) return "00" + idBloque + "S";
+            else if (idBloque.Length < 100) return "000" + idBloque + "S";
+            else if (idBloque.Length < 10) return "0000" + idBloque + "S";
+            else return idBloque + "S";
         }
     }
 }

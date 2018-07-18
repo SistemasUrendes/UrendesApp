@@ -153,7 +153,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
 
         private void buttonEnviar_Click(object sender, EventArgs e)
         {
-            formAnt.recibirGrupo(dataGridViewOrganos.Rows[0].Cells[0].Value.ToString(), dataGridViewOrganos.Rows[0].Cells[1].Value.ToString());
+            formAnt.recibirGrupo(dataGridViewOrganos.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewOrganos.SelectedRows[0].Cells[1].Value.ToString());
             this.Close();
         }
     }
