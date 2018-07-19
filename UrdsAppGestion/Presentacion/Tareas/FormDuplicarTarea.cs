@@ -17,7 +17,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String fIni;
         String descripcion;
         String coste;
-        String seguro;
         String acuerdoJunta;
         String fechaActaAcordado;
         String proximaJunta;
@@ -35,7 +34,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String idTarea;
         
 
-        public FormDuplicarTarea(FormTareasPrincipal form_anterior,String idTipoTarea, String fIni, String descripcion, String coste, String seguro, String acuerdoJunta, String fechaActaAcordado, String proximaJunta, String refSiniestro, String notas, String importante, String idEntidad, String nombreComunidad, int idComunidad, String Referencia,String idTarea)
+        public FormDuplicarTarea(FormTareasPrincipal form_anterior,String idTipoTarea, String fIni, String descripcion, String coste, String acuerdoJunta, String fechaActaAcordado, String proximaJunta, String refSiniestro, String notas, String importante, String idEntidad, String nombreComunidad, int idComunidad, String Referencia,String idTarea)
         {
             InitializeComponent();
             this.form_anterior = form_anterior;
@@ -43,7 +42,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.fIni = fIni;
             this.descripcion = descripcion;
             this.coste = coste;
-            this.seguro = seguro;
             this.acuerdoJunta = acuerdoJunta;
             this.fechaActaAcordado = fechaActaAcordado;
             this.proximaJunta = proximaJunta ;
@@ -66,7 +64,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             Boolean contactos = checkBoxContactos.Checked;
             Boolean expedientes = checkBoxExpedientes.Checked;
-            FormVerTarea nueva = new FormVerTarea(form_anterior,idTipoTarea, fIni, descripcion, coste, seguro, acuerdoJunta, fechaActaAcordado, proximaJunta, refSiniestro, notas, importante, idEntidad, nombreComunidad, idComunidad, referencia, idTarea,contactos,expedientes);
+            FormVerTarea nueva = new FormVerTarea(form_anterior,idTipoTarea, fIni, descripcion, coste, acuerdoJunta, fechaActaAcordado, proximaJunta, refSiniestro, notas, importante, idEntidad, nombreComunidad, idComunidad, referencia, idTarea,contactos,expedientes);
             nueva.ControlBox = true;
             nueva.WindowState = FormWindowState.Normal;
             nueva.StartPosition = FormStartPosition.CenterScreen;

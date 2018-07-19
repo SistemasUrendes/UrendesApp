@@ -27,7 +27,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void FormInsertarServicioTarea_Load(object sender, EventArgs e)
         {
             cargarBloques();
-            cargarServicios();
+            cargarTodosServicios();
             cargarCategorias();
             this.KeyPreview = true;
             if (Login.getRol() == "Admin")
@@ -38,6 +38,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 buttonAddServicio.Visible = false;
             }
+            filtrarServicios();
         }
         
         private void cargarCategorias()
@@ -54,7 +55,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
         }
 
-        private void cargarServicios()
+        private void cargarTodosServicios()
         {
             DataTable tablaServicios = null;
             tablaFinalServicios = null;
@@ -64,7 +65,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 String idAreaBloque = row[0].ToString();
                 String nombreBloque = row[2].ToString();
 
-                String sqlSelect = "SELECT exp_area.IdArea,'" + nombreBloque + "' AS Bloque,exp_area.Nombre AS Categoría, exp_area.Nombre AS Nombre ,exp_area_1.Nombre AS Previo,If((SELECT Count(*)FROM exp_areaTarea WHERE (((exp_areaTarea.IdArea)=exp_area.IdArea) AND ((exp_areaTarea.IdTarea)= " + idTarea + "))) > 0,'true','false') AS Selected FROM exp_area INNER JOIN exp_area AS exp_area_1 ON exp_area.IdAreaPrevio = exp_area_1.IdArea WHERE(((exp_area.IdAreaPrevio) = " + idAreaBloque + "))";
+                String sqlSelect = "SELECT exp_area.IdArea,'" + nombreBloque + "' AS Bloque,exp_area.Nombre AS Principal, exp_area.Nombre AS Nombre ,exp_area_1.Nombre AS Previo,exp_area.NombreCorto AS Cat, If((SELECT Count(*)FROM exp_areaTarea WHERE (((exp_areaTarea.IdArea)=exp_area.IdArea) AND ((exp_areaTarea.IdTarea)= " + idTarea + "))) > 0,'true','false') AS Selected FROM exp_area INNER JOIN exp_area AS exp_area_1 ON exp_area.IdAreaPrevio = exp_area_1.IdArea WHERE(((exp_area.IdAreaPrevio) = " + idAreaBloque + "))";
                 tablaServicios = Persistencia.SentenciasSQL.select(sqlSelect);
                 if (tablaFinalServicios == null) tablaFinalServicios = tablaServicios.Copy();
                 else tablaFinalServicios.Merge(tablaServicios);
@@ -72,14 +73,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 foreach (DataRow rowSub in tablaServicios.Rows)
                 {
                     DataTable subServicios = null;
-                    String sqlSelectSub = "SELECT exp_area.IdArea, '" + nombreBloque + "' AS Bloque,'" + rowSub[2] + "' AS Categoría, exp_area.Nombre AS Nombre ,exp_area_1.Nombre AS Previo,If((SELECT Count(*)FROM exp_areaTarea WHERE (((exp_areaTarea.IdArea)=exp_area.IdArea) AND ((exp_areaTarea.IdTarea)= " + idTarea + "))) > 0,'true','false') AS Selected FROM exp_area INNER JOIN exp_area AS exp_area_1 ON exp_area.IdAreaPrevio = exp_area_1.IdArea WHERE(((exp_area.IdAreaPrevio) = " + rowSub[0] + "))";
+                    String sqlSelectSub = "SELECT exp_area.IdArea, '" + nombreBloque + "' AS Bloque,'" + rowSub[2] + "' AS Principal, exp_area.Nombre AS Nombre ,exp_area_1.Nombre AS Previo,exp_area.NombreCorto AS Cat,If((SELECT Count(*)FROM exp_areaTarea WHERE (((exp_areaTarea.IdArea)=exp_area.IdArea) AND ((exp_areaTarea.IdTarea)= " + idTarea + "))) > 0,'true','false') AS Selected FROM exp_area INNER JOIN exp_area AS exp_area_1 ON exp_area.IdAreaPrevio = exp_area_1.IdArea WHERE(((exp_area.IdAreaPrevio) = " + rowSub[0] + "))";
                     subServicios = Persistencia.SentenciasSQL.select(sqlSelectSub);
                     if (subServicios.Rows.Count > 0) tablaFinalServicios.Merge(subServicios);
 
                     foreach (DataRow rowSub2 in subServicios.Rows)
                     {
                         DataTable subServicios2 = null;
-                        String sqlSelectSub2 = "SELECT exp_area.IdArea,'" + nombreBloque + "' AS Bloque,'" + rowSub[2] + "' AS Categoría, exp_area.Nombre AS Nombre ,exp_area_1.Nombre AS Previo,If((SELECT Count(*)FROM exp_areaTarea WHERE (((exp_areaTarea.IdArea)=exp_area.IdArea) AND ((exp_areaTarea.IdTarea)= " + idTarea + "))) > 0,'true','false') AS Selected FROM exp_area INNER JOIN exp_area AS exp_area_1 ON exp_area.IdAreaPrevio = exp_area_1.IdArea WHERE(((exp_area.IdAreaPrevio) = " + rowSub2[0] + "))";
+                        String sqlSelectSub2 = "SELECT exp_area.IdArea,'" + nombreBloque + "' AS Bloque,'" + rowSub[2] + "' AS Principal, exp_area.Nombre AS Nombre ,exp_area_1.Nombre AS Previo,exp_area.NombreCorto AS Cat,If((SELECT Count(*)FROM exp_areaTarea WHERE (((exp_areaTarea.IdArea)=exp_area.IdArea) AND ((exp_areaTarea.IdTarea)= " + idTarea + "))) > 0,'true','false') AS Selected FROM exp_area INNER JOIN exp_area AS exp_area_1 ON exp_area.IdAreaPrevio = exp_area_1.IdArea WHERE(((exp_area.IdAreaPrevio) = " + rowSub2[0] + "))";
                         subServicios2 = Persistencia.SentenciasSQL.select(sqlSelectSub2);
                         if (subServicios2.Rows.Count > 0 ) tablaFinalServicios.Merge(subServicios2);
                     }
@@ -106,14 +107,16 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 dataGridViewServicios.Columns["Nombre"].Width = 150;
                 dataGridViewServicios.Columns["Previo"].Width = 150;
                 dataGridViewServicios.Columns["Bloque"].Width = 100;
-                dataGridViewServicios.Columns["Categoría"].Width = 150;
+                dataGridViewServicios.Columns["Principal"].Width = 150;
+                dataGridViewServicios.Columns["Cat"].Width = 50;
                 dataGridViewServicios.Columns["Selected"].Visible = false;
 
 
                 dataGridViewServicios.Columns["Nombre"].SortMode = DataGridViewColumnSortMode.NotSortable;
                 dataGridViewServicios.Columns["Previo"].SortMode = DataGridViewColumnSortMode.NotSortable;
                 dataGridViewServicios.Columns["Bloque"].SortMode = DataGridViewColumnSortMode.NotSortable;
-                dataGridViewServicios.Columns["Categoría"].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewServicios.Columns["Principal"].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewServicios.Columns["Cat"].SortMode = DataGridViewColumnSortMode.NotSortable;
                 dataGridViewServicios.Columns["Sel"].SortMode = DataGridViewColumnSortMode.NotSortable;
             }
 
@@ -125,24 +128,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void filtrarServicios(object sender, EventArgs e)
         {
-            DataTable busqueda = tablaFinalServicios;
-            busqueda.DefaultView.RowFilter = string.Empty;
-
-            String filtro = "";
-            if (textBoxFiltroServicios.Text.ToString() != "") filtro += "Nombre like '%" + textBoxFiltroServicios.Text.ToString() + "%'";
-            if (textBoxFiltroCategoria.Text.ToString() != "")
-            {
-                if (textBoxFiltroServicios.Text.ToString() != "") filtro += " AND ";
-                filtro += "Categoría like '%" + textBoxFiltroCategoria.Text.ToString() + "%'";
-            }
-            if (textBoxFiltroBloque.Text.ToString() != "")
-            {
-                if (textBoxFiltroServicios.Text.ToString() != "" || textBoxFiltroCategoria.Text.ToString() != "") filtro += " AND ";
-                filtro += "Bloque like '%" + textBoxFiltroBloque.Text.ToString() + "%'";
-            }
-            busqueda.DefaultView.RowFilter = filtro;
-            dataGridViewServicios.DataSource = busqueda;
-            ajustarDatagridServicios();
+            filtrarServicios();
         }
 
         private void cargarBloques()
@@ -164,7 +150,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (e.KeyCode.ToString() == "F1")
             {
-                FormSeleccionarCategoria nueva = new FormSeleccionarCategoria(this, idTarea);
+                FormSeleccionarCategoria nueva = new FormSeleccionarCategoria(this, idTarea,dataGridViewCategorias.SelectedRows[0].Cells[2].Value.ToString());
                 nueva.Show();
             }
         }
@@ -259,6 +245,48 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String idComunidad = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
             Tareas.FormServiciosBloque nueva = new Tareas.FormServiciosBloque(idComunidad);
             nueva.Show();
+        }
+
+        private void dataGridViewCategorias_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            cargarServicios(dataGridViewCategorias.SelectedRows[0].Cells[1].Value.ToString());
+        }
+
+
+        private void cargarServicios(String idCategoria)
+        {
+            DataTable busqueda = tablaFinalServicios;
+            busqueda.DefaultView.RowFilter = string.Empty;
+        }
+
+        private void dataGridViewCategorias_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            filtrarServicios();
+        }
+
+        private void filtrarServicios()
+        {
+            DataTable busqueda = tablaFinalServicios;
+            busqueda.DefaultView.RowFilter = string.Empty;
+
+            String filtro = "";
+            
+            if (textBoxFiltroServicios.Text.ToString() != "") filtro += "Nombre like '%" + textBoxFiltroServicios.Text.ToString() + "%'";
+            if (textBoxFiltroCategoria.Text.ToString() != "")
+            {
+                if (textBoxFiltroServicios.Text.ToString() != "") filtro += " AND ";
+                filtro += "Principal like '%" + textBoxFiltroCategoria.Text.ToString() + "%'";
+            }
+            if (textBoxFiltroBloque.Text.ToString() != "")
+            {
+                if (textBoxFiltroServicios.Text.ToString() != "" || textBoxFiltroCategoria.Text.ToString() != "") filtro += " AND ";
+                filtro += "Bloque like '%" + textBoxFiltroBloque.Text.ToString() + "%'";
+            }
+            if (textBoxFiltroBloque.Text.ToString() != "" || textBoxFiltroCategoria.Text.ToString() != "" || textBoxFiltroServicios.Text.ToString() != "") filtro += " AND ";
+            filtro += "Cat like '" + dataGridViewCategorias.SelectedRows[0].Cells[2].Value + "'";
+            busqueda.DefaultView.RowFilter = filtro;
+            dataGridViewServicios.DataSource = busqueda;
+            ajustarDatagridServicios();
         }
     }
 }

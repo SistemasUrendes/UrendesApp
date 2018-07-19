@@ -69,7 +69,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             conBloque = false;
         }
         //DUPLICAR TAREA
-        public FormVerTarea(FormTareasPrincipal form_anterior, String idTipoTarea,String fIni, String descripcion, String coste, String seguro, String acuerdoJunta, String fechaActaAcordado, String proximaJunta, String refSiniestro, String notas, String importante,String idEntidad, String nombreComunidad, int idComunidad, String Referencia, String idTarea,Boolean contactos, Boolean expedientes)
+        public FormVerTarea(FormTareasPrincipal form_anterior, String idTipoTarea,String fIni, String descripcion, String coste, String acuerdoJunta, String fechaActaAcordado, String proximaJunta, String refSiniestro, String notas, String importante,String idEntidad, String nombreComunidad, int idComunidad, String Referencia, String idTarea,Boolean contactos, Boolean expedientes)
         {
             InitializeComponent();
             conBloque = false;
@@ -82,7 +82,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             fInicio = fIni;
             textBoxCoste.Text = coste;
             textBoxSiniestro.Text = refSiniestro;
-            if ( seguro == "-1") checkBoxSeguro.Checked = true;
             if ( acuerdoJunta == "-1") checkBoxAcuerdoJunta.Checked = true;
             maskedTextBoxFechaActa.Text = fechaActaAcordado;
             if ( proximaJunta == "-1") checkBoxProxJunta.Checked = true;
@@ -153,7 +152,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             fInicio = tarea.Rows[0][7].ToString();
             textBoxCoste.Text = tarea.Rows[0][8].ToString();
             textBoxSiniestro.Text = tarea.Rows[0][9].ToString();
-            checkBoxSeguro.Checked = bool.Parse(tarea.Rows[0][10].ToString());
             checkBoxAcuerdoJunta.Checked = bool.Parse(tarea.Rows[0][11].ToString());
             if (tarea.Rows[0][12].ToString() != "00/00/0000") maskedTextBoxFechaActa.Text = tarea.Rows[0][12].ToString();
             checkBoxProxJunta.Checked = bool.Parse(tarea.Rows[0][13].ToString());
@@ -177,7 +175,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBoxCoste.ReadOnly = true;
             checkBoxImportante.AutoCheck = false;
             textBoxSiniestro.ReadOnly = true;
-            checkBoxSeguro.AutoCheck = false;
             checkBoxAcuerdoJunta.AutoCheck = false;
             maskedTextBoxFechaActa.ReadOnly = true;
             if (maskedTextBoxFechaActa.Text == "  /  /") maskedTextBoxFechaActa.Mask = "";
@@ -191,6 +188,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             buttonSelDivision.Visible = false;
             buttonSelServicio.Visible = false;
             buttonDuplicarTarea.Enabled = true;
+            buttonSugerenciaDesc.Visible = false;
             edicion = false;
 
         }
@@ -207,7 +205,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             maskedTextBoxFIni.Mask = "00/00/0000";
             textBoxCoste.ReadOnly = false;
             textBoxSiniestro.ReadOnly = false;
-            checkBoxSeguro.AutoCheck = true;
             checkBoxAcuerdoJunta.AutoCheck = true;
             maskedTextBoxFechaActa.ReadOnly = false;
             maskedTextBoxFechaActa.Mask = "00/00/0000";
@@ -222,6 +219,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             buttonSelDivision.Visible = true;
             buttonSelServicio.Visible = true;
             buttonDuplicarTarea.Enabled = false;
+            buttonSugerenciaDesc.Visible = true;
             if (textBoxEntidad.Text == "")
             {
                 textBoxEntidad.Text = "Pulsa espacio para Seleccionar Entidad";
@@ -763,8 +761,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String descripcionSinAcentos = FormMantenimiento.quitaAcentos(descripcion);
             String coste = "";
             if (textBoxCoste.Text != "") coste = textBoxCoste.Text;
-            String seguro = "0";
-            if (checkBoxSeguro.Checked) seguro = "-1";
             String acuerdoJunta = "0";
             if (checkBoxAcuerdoJunta.Checked) acuerdoJunta = "-1";
             String fechaActaAcordado = null;
@@ -784,7 +780,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (idTarea != null)
             {
                 String fixRuta = ruta.Replace(@"\", @"\\");
-                String sqlUpdate = "UPDATE exp_tareas SET IdEntidad = " + idEntidad + ",IdRbleTarea = " + Login.getId() + ",IdTipoTarea = " + idTipoTarea + ",Descripción = '" + descripcion + "',DescripcionSinAcentos = '" + descripcionSinAcentos + "',Seguro = " + seguro + ",AcuerdoJunta = " + acuerdoJunta + ",RefSiniestro = '" + refSiniestro + "',ProximaJunta = " + proximaJunta + ",Notas = '" + notas + "' WHERE IdTarea = " + idTarea;
+                String sqlUpdate = "UPDATE exp_tareas SET IdEntidad = " + idEntidad + ",IdRbleTarea = " + Login.getId() + ",IdTipoTarea = " + idTipoTarea + ",Descripción = '" + descripcion + "',DescripcionSinAcentos = '" + descripcionSinAcentos + "',AcuerdoJunta = " + acuerdoJunta + ",RefSiniestro = '" + refSiniestro + "',ProximaJunta = " + proximaJunta + ",Notas = '" + notas + "' WHERE IdTarea = " + idTarea;
                 Persistencia.SentenciasSQL.InsertarGenericoID(sqlUpdate);
                 if (fIni != null)
                 {
@@ -832,7 +828,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             else
             {
                 String fixRuta = ruta.Replace(@"\", @"\\");
-                String sqlInsert = "INSERT INTO exp_tareas (IdEntidad,IdRbleTarea,IdTipoTarea,Descripción,DescripcionSinAcentos,Seguro,AcuerdoJunta,ProximaJunta,RefSiniestro,Notas,FIni) VALUES (" + idEntidad + "," + Login.getId() + "," + idTipoTarea + ",'" + descripcion + "','" + descripcionSinAcentos +  "'," + seguro + "," + acuerdoJunta + "," + proximaJunta + ",'" + refSiniestro + "','" + notas + "','" + fIni + "')";
+                String sqlInsert = "INSERT INTO exp_tareas (IdEntidad,IdRbleTarea,IdTipoTarea,Descripción,DescripcionSinAcentos,AcuerdoJunta,ProximaJunta,RefSiniestro,Notas,FIni) VALUES (" + idEntidad + "," + Login.getId() + "," + idTipoTarea + ",'" + descripcion + "','" + descripcionSinAcentos +  "'," + acuerdoJunta + "," + proximaJunta + ",'" + refSiniestro + "','" + notas + "','" + fIni + "')";
                 idTarea = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsert).ToString();
 
                 if (fFin != null)
@@ -954,7 +950,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (Regex.IsMatch(maskedTextBoxFechaActa.Text, sPattern))
             {
                 maskedTextBoxFechaActa.Text = maskedTextBoxFechaActa.Text + DateTime.Now.Year;
-                checkBoxProxJunta.Checked = true;
+                checkBoxAcuerdoJunta.Checked = true;
             }
             else if (Regex.IsMatch(maskedTextBoxFechaActa.Text, sPattern1))
             {
@@ -966,6 +962,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 {
                     maskedTextBoxFechaActa.Focus();
                     maskedTextBoxFechaActa.SelectAll();
+                }
+                else
+                {
+                    checkBoxAcuerdoJunta.Checked = false;
                 }
             }
         }
@@ -1234,7 +1234,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 checkBoxImportante.Checked = true;
             }
-            //actualizarDescripcion(comboBoxTipo.Text, 3);
+            actualizarDescripcion(comboBoxTipo.Text, 3);
         }
 
         public void tareaImportanteGestion()
@@ -1248,14 +1248,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
         }
         
-        private void textBoxSiniestro_Leave(object sender, EventArgs e)
-        {
-            if (textBoxSiniestro.Text != "")
-            {
-                checkBoxSeguro.Checked = true;
-            }
-        }
-
         private String limpiaRuta (String r)
         {
             String ruta;
@@ -1528,8 +1520,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (textBoxDescripcion.Text != "") descripcion = textBoxDescripcion.Text;
             String coste = "";
             if (textBoxCoste.Text != "") coste = textBoxCoste.Text;
-            String seguro = "0";
-            if (checkBoxSeguro.Checked) seguro = "-1";
             String acuerdoJunta = "0";
             if (checkBoxAcuerdoJunta.Checked) acuerdoJunta = "-1";
             String fechaActaAcordado = null;
@@ -1547,7 +1537,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String nombreComunidad = textBoxEntidad.Text;
             String referencia = maskedTextBoxReferencia.Text;
 
-            FormDuplicarTarea nueva = new FormDuplicarTarea(form_anterior, idTipoTarea, fIni, descripcion, coste, seguro, acuerdoJunta, fechaActaAcordado, proximaJunta, refSiniestro, notas, importante, idEntidad, nombreComunidad, idComunidad, referencia, idTarea);
+            FormDuplicarTarea nueva = new FormDuplicarTarea(form_anterior, idTipoTarea, fIni, descripcion, coste, acuerdoJunta, fechaActaAcordado, proximaJunta, refSiniestro, notas, importante, idEntidad, nombreComunidad, idComunidad, referencia, idTarea);
             nueva.ControlBox = true;
             nueva.WindowState = FormWindowState.Normal;
             nueva.StartPosition = FormStartPosition.CenterScreen;
@@ -1651,70 +1641,21 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         public void cargarServicios()
         {
-            String sqlSelect = "SELECT exp_area.Nombre FROM exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea WHERE(((exp_areaTarea.IdTarea) = " + idTarea + ") AND((exp_areaTarea.TipoArea) = 'S'))";
+            String sqlSelect = "SELECT exp_area.Nombre,exp_area.codigoArea FROM exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea WHERE(((exp_areaTarea.IdTarea) = " + idTarea + ") AND((exp_areaTarea.TipoArea) = 'S'))";
             tablaFinalServicios = Persistencia.SentenciasSQL.select(sqlSelect);
             String servicios = "";
+            String idServPrinc = "";
             foreach (DataRow row in tablaFinalServicios.Rows)
             {
-                if (servicios.Length > 0) servicios += " ; " + row[0];
-                else servicios = row[0].ToString();
+                if (servicios.Length > 0) servicios += " - ";
+                if (row[1].ToString().Length > 11)
+                {
+                    String sqlSelect2 = "SELECT Nombre FROM exp_area WHERE exp_area.codigoArea = '" + row[1].ToString().Substring(0, 11) + "'";
+                    servicios += Persistencia.SentenciasSQL.select(sqlSelect2).Rows[0][0].ToString();
+                }
+                servicios += " " + row[0].ToString();
             }
             textBoxServicio.Text = servicios;
-            /*
-            DataTable tablaServicios = null;
-            tablaFinalServicios = null;
-            foreach (DataRow row in tablaBloque.Rows)
-            {
-
-                String idAreaBloque = row[0].ToString();
-                String nombreBloque = row[2].ToString();
-
-
-                String sqlSelect = "SELECT exp_area.IdArea,'" + nombreBloque + "' AS Bloque, exp_area.Nombre AS Categoría,exp_area.Nombre AS Nombre , '' AS Previo FROM (exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea) INNER JOIN exp_area AS exp_area_1 ON exp_area.IdAreaPrevio = exp_area_1.IdArea WHERE(((exp_areaTarea.IdTarea) = " + idTarea + ") AND((exp_area.IdAreaPrevio) = " + idAreaBloque + "))";
-                
-                tablaServicios = Persistencia.SentenciasSQL.select(sqlSelect);
-                if (tablaFinalServicios == null) tablaFinalServicios = tablaServicios.Copy();
-                else tablaFinalServicios.Merge(tablaServicios);
-
-                String sqlSelectTodas = "SELECT exp_area.IdArea,'" + nombreBloque + "' AS Bloque, exp_area.Nombre AS Categoría,exp_area.Nombre AS Nombre , '' AS Previo FROM (exp_areaTarea RIGHT JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea) INNER JOIN exp_area AS exp_area_1 ON exp_area.IdAreaPrevio = exp_area_1.IdArea WHERE(((exp_area.IdAreaPrevio) = " + idAreaBloque + "))";
-
-                tablaServicios = Persistencia.SentenciasSQL.select(sqlSelectTodas);
-
-                foreach (DataRow rowSub in tablaServicios.Rows)
-                {
-                    DataTable subServicios = null;
-                    String sqlSelectSub = "SELECT exp_area.IdArea,'" + nombreBloque + "' AS Bloque,'" + rowSub[2] + "' AS Categoría,exp_area.Nombre AS Nombre , exp_area_1.Nombre AS Previo FROM (exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea) INNER JOIN exp_area AS exp_area_1 ON exp_area.IdAreaPrevio = exp_area_1.IdArea WHERE(((exp_areaTarea.IdTarea) = " + idTarea + ") AND((exp_area.IdAreaPrevio) = " + rowSub[0] + "))";
-
-                    subServicios = Persistencia.SentenciasSQL.select(sqlSelectSub);
-                    if (subServicios.Rows.Count > 0) tablaFinalServicios.Merge(subServicios);
-
-                    subServicios = null;
-                    String sqlSelectSubTodas = "SELECT exp_area.IdArea,'" + nombreBloque + "' AS Bloque,'" + rowSub[2] + "' AS Categoría,exp_area.Nombre AS Nombre , exp_area_1.Nombre AS Previo FROM (exp_areaTarea RIGHT JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea) INNER JOIN exp_area AS exp_area_1 ON exp_area.IdAreaPrevio = exp_area_1.IdArea WHERE(((exp_area.IdAreaPrevio) = " + rowSub[0] + "))";
-                    subServicios = Persistencia.SentenciasSQL.select(sqlSelectSubTodas);
-
-
-                    foreach (DataRow rowSub2 in subServicios.Rows)
-                    {
-                        DataTable subServicios2 = null;
-
-                        String sqlSelectSub2 = "SELECT exp_area.IdArea,'" + nombreBloque + "' AS Bloque,'" + rowSub[2] + "' AS Categoría,exp_area.Nombre AS Nombre , exp_area_1.Nombre AS Previo FROM (exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea) INNER JOIN exp_area AS exp_area_1 ON exp_area.IdAreaPrevio = exp_area_1.IdArea WHERE(((exp_areaTarea.IdTarea) = " + idTarea + ") AND((exp_area.IdAreaPrevio) = " + rowSub2[0] + "))";
-                        
-                        subServicios2 = Persistencia.SentenciasSQL.select(sqlSelectSub2);
-                        if (subServicios2.Rows.Count > 0) tablaFinalServicios.Merge(subServicios2);
-                    }
-                }
-            }
-            dataGridViewServicios.DataSource = tablaFinalServicios;
-
-            if (dataGridViewServicios.Rows.Count > 0)
-            {
-                dataGridViewServicios.Columns["IdArea"].Visible = false;
-                dataGridViewServicios.Columns["Nombre"].Width = 180;
-                dataGridViewServicios.Columns["Previo"].Width = 150;
-                dataGridViewServicios.Columns["Bloque"].Width = 150;
-                dataGridViewServicios.Columns["Categoría"].Width = 150;
-            }
-            */
         }
 
         private void buttonAddServicio_Click(object sender, EventArgs e)
@@ -1784,11 +1725,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
                         String sqlProveedores = "SELECT ctos_detemail.Email AS Correo FROM exp_gestiones INNER JOIN (((exp_catcontactos INNER JOIN com_proveedores ON exp_catcontactos.IdContacto = com_proveedores.IdProveedor) INNER JOIN ctos_entidades ON com_proveedores.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN ctos_detemail ON ctos_entidades.IDEntidad = ctos_detemail.IdEntidad) ON exp_gestiones.IdEntidad = exp_catcontactos.IdCategoria WHERE(((ctos_detemail.Ppal) = -1) AND((exp_catcontactos.TipoContacto) = 'P')) GROUP BY exp_gestiones.IdGestión HAVING(((exp_gestiones.IdGestión) = " + idGestion + "))";
                         grupoContactos.Merge(Persistencia.SentenciasSQL.select(sqlProveedores));
 
-                        String sqlCargos = "SELECT ctos_detemail.Email  AS Correo FROM exp_gestiones INNER JOIN(ctos_detemail INNER JOIN(((exp_catcontactos INNER JOIN com_cargos ON exp_catcontactos.IdContacto = com_cargos.IdCargo) INNER JOIN com_cargoscom ON com_cargos.IdCargo = com_cargoscom.IdCargo) INNER JOIN com_comuneros ON com_cargoscom.IdComunero = com_comuneros.IdComunero) ON ctos_detemail.IdEntidad = com_comuneros.IdEntidad) ON exp_gestiones.IdEntidad = exp_catcontactos.IdCategoria WHERE((exp_catcontactos.TipoContacto) = 'O') AND((exp_gestiones.IdGestión) = " + idGestion +")";
+                        String sqlCargos = "SELECT ctos_detemail.Email  AS Correo FROM exp_gestiones INNER JOIN(ctos_detemail INNER JOIN(((exp_catcontactos INNER JOIN com_cargos ON exp_catcontactos.IdContacto = com_cargos.IdCargo) INNER JOIN com_cargoscom ON com_cargos.IdCargo = com_cargoscom.IdCargo) INNER JOIN com_comuneros ON com_cargoscom.IdComunero = com_comuneros.IdComunero) ON ctos_detemail.IdEntidad = com_comuneros.IdEntidad) ON exp_gestiones.IdEntidad = exp_catcontactos.IdCategoria WHERE((exp_catcontactos.TipoContacto) = 'O') AND((exp_gestiones.IdGestión) = " + idGestion + ") AND ((com_cargoscom.FFin) is Null) AND ((ctos_detemail.Ppal)=-1)";
                         
                         grupoContactos.Merge(Persistencia.SentenciasSQL.select(sqlCargos));
 
-                        String sqlComuneros = "SELECT ctos_detemail.Email AS Correo FROM exp_gestiones INNER JOIN((exp_catcontactos INNER JOIN(ctos_detemail INNER JOIN com_comuneros ON ctos_detemail.IdEntidad = com_comuneros.IdEntidad) ON exp_catcontactos.IdContacto = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) ON exp_gestiones.IdTipoGestion = exp_catcontactos.IdCategoria WHERE(((ctos_detemail.Ppal) = -1) AND((exp_catcontactos.TipoContacto) = 'C')) GROUP BY exp_gestiones.IdGestión HAVING(((exp_gestiones.IdGestión) = " + idGestion + "))";
+                        String sqlComuneros = "SELECT ctos_detemail.Email AS Correo FROM exp_gestiones INNER JOIN((exp_catcontactos INNER JOIN(ctos_detemail INNER JOIN com_comuneros ON ctos_detemail.IdEntidad = com_comuneros.IdEntidad) ON exp_catcontactos.IdContacto = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) ON exp_gestiones.IdEntidad = exp_catcontactos.IdCategoria WHERE(((ctos_detemail.Ppal) = -1) AND((exp_catcontactos.TipoContacto) = 'C')) GROUP BY exp_gestiones.IdGestión HAVING(((exp_gestiones.IdGestión) = " + idGestion + "))";
 
 
 
@@ -1876,7 +1817,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
             }
             cargarDivisiones();
-            //actualizarDescripcion(textBoxDivision.Text, 1);
+            actualizarDescripcion(textBoxDivision.Text, 1);
         }
         
         private void actualizarDescripcion(String str, int campo)
@@ -1885,15 +1826,37 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 //BLOQUE
                 case 0:
-                    if (str.Length > 10) descripcion[0] = "Varios Bloques";
-                    else descripcion[0] = str;
-
+                    if (str.Length > 10)
+                    {
+                        descripcion[0] = "Varios Bloques";
+                        descripcion[1] = "";
+                        descripcion[2] = "";
+                    }
+                    else
+                    {
+                        descripcion[0] = str;
+                        descripcion[1] = "";
+                        descripcion[2] = "";
+                    }
                     break;
                 //DIVISIÓN
                 case 1:
-                    if (str.Length > 0 )descripcion[0] = "";
-                    if (str.Length > 10) descripcion[1] = "Varias Divisiones";
-                    else descripcion[1] = str;
+                    if (str.Length > 10)
+                    {
+                        descripcion[0] = "";
+                        descripcion[1] = "Varias Divisiones";
+                    }
+                    else if (str.Length > 0)
+                    {
+                        descripcion[0] = "";
+                        descripcion[1] = str;
+                    }
+                    else
+                    {
+                        descripcion[1] = "";
+                        if (textBoxBloque.Text.Length < 10 )descripcion[0] = textBoxBloque.Text;
+                        else descripcion[0] = "Varios Bloques";
+                    }
                     break;
                 //SERVICIO
                 case 2:
@@ -1903,21 +1866,18 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 case 3:
                     descripcion[3] = str;
                     break;
-                //AÑADIDO EXTRA
-                case 4:
-                    descripcion[4] = str;
-                    break;
             }
             String desc = null;
             for ( int i = 0; i < descripcion.Length; i++)
             {
-                if (i == 4) desc += " -";
                 if (desc != null && desc.Length > 0 && descripcion[i] != null && descripcion[i].Length > 0 ) desc += " " + descripcion[i];
                 else if (descripcion[i] != null && descripcion[i].Length > 0) desc = descripcion[i];
             }
-            textBoxDescripcion.Text = desc;
+            //textBoxDescripcion.Text = desc;
+            textBoxSugerencia.Text = desc;
         }
 
+        /*
         private void guardarDescripcion(String str, int campo)
         {
             switch (campo)
@@ -1932,7 +1892,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 case 1:
                     if (str.Length > 0) descripcion[0] = "";
                     if (str.Length > 10) descripcion[1] = "Varias Divisiones";
-                    else descripcion[1] = str;
+                    else descripcion[1] = textBoxBloque.Text;
                     break;
                 //SERVICIO
                 case 2:
@@ -1942,36 +1902,64 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 case 3:
                     descripcion[3] = str;
                     break;
-                //AÑADIDO EXTRA
-                case 4:
-                    descripcion[4] = str;
-                    break;
             }
         }
+        */
 
         public void recibirBloque()
         {
-            //actualizarDescripcion(textBoxBloque.Text, 0);
+            actualizarDescripcion(textBoxBloque.Text, 0);
         }
 
         public void recibirServicios()
         {
-            //actualizarDescripcion(textBoxServicio.Text, 2);
+            actualizarDescripcion(textBoxServicio.Text, 2);
+        }
+
+        public void recibirDivisiones()
+        {
+            actualizarDescripcion(textBoxDivision.Text, 1);
         }
      
         private void cargarArrayDescripcion()
         {
+            /*
             guardarDescripcion(textBoxBloque.Text, 0);
             guardarDescripcion(textBoxDivision.Text, 1);
             guardarDescripcion(textBoxServicio.Text, 2);
             guardarDescripcion(comboBoxTipo.Text, 3);
-            guardarDescripcion(textBoxDescripcion.Text.Substring(textBoxDescripcion.Text.LastIndexOf("-")+1),4);
-            
+            */
+            actualizarDescripcion(textBoxBloque.Text, 0);
+            actualizarDescripcion(textBoxDivision.Text, 1);
+            actualizarDescripcion(textBoxServicio.Text, 2);
+            actualizarDescripcion(comboBoxTipo.Text, 3);
+
         }
 
-        private void textBoxDescripcion_TextChanged(object sender, EventArgs e)
+        private void buttonSugerenciaDesc_Click(object sender, EventArgs e)
         {
-            guardarDescripcion(textBoxDescripcion.Text.Substring(textBoxDescripcion.Text.LastIndexOf("-") + 1), 4);
+            String desc = textBoxDescripcion.Text;
+            String cambio;
+            if (desc.IndexOf(';') == -1 ) cambio = desc;
+            else cambio = desc.Substring(desc.IndexOf(';') + 2);
+            String sugerencia = textBoxSugerencia.Text;
+            sugerencia += "; " + cambio;
+            textBoxDescripcion.Text = sugerencia;
+        }
+
+        private void checkBoxAcuerdoJunta_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxAcuerdoJunta.Checked == false)
+            {
+                maskedTextBoxFechaActa.Text = "";
+            }
+            else
+            {
+                if (maskedTextBoxFechaActa.Text == "  /  /")
+                {
+                    checkBoxAcuerdoJunta.Checked = false;
+                }
+            }
         }
     }
 }

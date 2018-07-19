@@ -456,6 +456,7 @@
             // 
             // buttonServicio
             // 
+            this.buttonServicio.Enabled = false;
             this.buttonServicio.Location = new System.Drawing.Point(772, 61);
             this.buttonServicio.Name = "buttonServicio";
             this.buttonServicio.Size = new System.Drawing.Size(63, 23);
@@ -467,6 +468,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Enabled = false;
             this.label7.Location = new System.Drawing.Point(445, 66);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(48, 13);
@@ -475,6 +477,7 @@
             // 
             // textBoxServicio
             // 
+            this.textBoxServicio.Enabled = false;
             this.textBoxServicio.Location = new System.Drawing.Point(499, 63);
             this.textBoxServicio.Name = "textBoxServicio";
             this.textBoxServicio.ReadOnly = true;

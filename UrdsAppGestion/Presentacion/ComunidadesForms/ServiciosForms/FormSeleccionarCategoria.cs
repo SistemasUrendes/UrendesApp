@@ -18,12 +18,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
         FormInsertarArea formAnt3;
         String idTarea;
         String idBloque;
+        String codCat;
 
-        public FormSeleccionarCategoria(FormInsertarServicioTarea formAnt1, String idTarea)
+        public FormSeleccionarCategoria(FormInsertarServicioTarea formAnt1, String idTarea,String codCat)
         {
             InitializeComponent();
             this.formAnt1 = formAnt1;
             this.idTarea = idTarea;
+            this.codCat = codCat;
         }
 
         public FormSeleccionarCategoria(FormTareasPrincipal formAnt2)
@@ -83,12 +85,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void cargarCategoriasTarea()
         {
             DataTable bloques;
-            String sqlSelect = "SELECT exp_area.IdArea FROM exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea WHERE(((exp_area.IdAreaPrevio) = 0) AND((exp_areaTarea.IdTarea) = " + idTarea + "))";
+            //String sqlSelect = "SELECT exp_area.IdArea FROM exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea WHERE(((exp_area.IdAreaPrevio) = 0) AND((exp_areaTarea.IdTarea) = " + idTarea + "))";
+            String sqlSelect = "SELECT exp_area.IdArea, exp_area.NombreCorto FROM exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea WHERE exp_area.IdAreaPrevio = 0 AND exp_areaTarea.IdTarea = " + idTarea;
             bloques = Persistencia.SentenciasSQL.select(sqlSelect);
 
             foreach(DataRow row in bloques.Rows)
             {
-                String sqlSelect2 = "SELECT Nombre,codigoArea FROM exp_area WHERE IdAreaPrevio = '" + row[0] + "'";
+                String sqlSelect2 = "SELECT Nombre,codigoArea FROM exp_area WHERE IdAreaPrevio = '" + row[0] + "' AND exp_area.NombreCorto Like '" + codCat + "'";
 
                 if (tablaCategorias == null) tablaCategorias = Persistencia.SentenciasSQL.select(sqlSelect2);
                 else tablaCategorias.Merge(Persistencia.SentenciasSQL.select(sqlSelect2));

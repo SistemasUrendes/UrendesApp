@@ -237,6 +237,12 @@
     <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\FormAnticiposProveedores.Designer.cs">
       <DependentUpon>FormAnticiposProveedores.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\FormDarDeBajaProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ProveedoresForms\FormDarDeBajaProveedor.Designer.cs">
+      <DependentUpon>FormDarDeBajaProveedor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\ComunidadesForms\RemesasForms\FormCambiarCuenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1646,6 +1652,9 @@
     <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularReciboIVA\ReportLiquidacionParticularIVA.rdlc" />
     <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormLiquidarAOtroFondo.resx">
       <DependentUpon>FormLiquidarAOtroFondo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ProveedoresForms\FormDarDeBajaProveedor.resx">
+      <DependentUpon>FormDarDeBajaProveedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\RemesasForms\FormCambiarCuenta.resx">
       <DependentUpon>FormCambiarCuenta.cs</DependentUpon>

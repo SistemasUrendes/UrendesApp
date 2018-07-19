@@ -94,6 +94,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
             }
             formAnt.cargarDivisiones();
+            formAnt.recibirDivisiones();
             this.Close();
         }
 
