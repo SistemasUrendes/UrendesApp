@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetIVATotales" targetNamespace="http://tempuri.org/DataSetIVATotales.xsd" xmlns:mstns="http://tempuri.org/DataSetIVATotales.xsd" xmlns="http://tempuri.org/DataSetIVATotales.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetIVATotales" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetIVATotales" msprop:Generator_UserDSName="DataSetIVATotales">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TotalIVA" msprop:Generator_TableClassName="TotalIVADataTable" msprop:Generator_TableVarName="tableTotalIVA" msprop:Generator_TablePropName="TotalIVA" msprop:Generator_RowDeletingName="TotalIVARowDeleting" msprop:Generator_RowChangingName="TotalIVARowChanging" msprop:Generator_RowEvHandlerName="TotalIVARowChangeEventHandler" msprop:Generator_RowDeletedName="TotalIVARowDeleted" msprop:Generator_UserTableName="TotalIVA" msprop:Generator_RowChangedName="TotalIVARowChanged" msprop:Generator_RowEvArgName="TotalIVARowChangeEvent" msprop:Generator_RowClassName="TotalIVARow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PorIVA" msprop:Generator_ColumnVarNameInTable="columnPorIVA" msprop:Generator_ColumnPropNameInRow="PorIVA" msprop:Generator_ColumnPropNameInTable="PorIVAColumn" msprop:Generator_UserColumnName="PorIVA" type="xs:string" minOccurs="0" />
+              <xs:element name="SumaDeBase" msprop:Generator_ColumnVarNameInTable="columnSumaDeBase" msprop:Generator_ColumnPropNameInRow="SumaDeBase" msprop:Generator_ColumnPropNameInTable="SumaDeBaseColumn" msprop:Generator_UserColumnName="SumaDeBase" type="xs:string" minOccurs="0" />
+              <xs:element name="SumaDelIVA" msprop:Generator_ColumnVarNameInTable="columnSumaDelIVA" msprop:Generator_ColumnPropNameInRow="SumaDelIVA" msprop:Generator_ColumnPropNameInTable="SumaDelIVAColumn" msprop:Generator_UserColumnName="SumaDelIVA" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

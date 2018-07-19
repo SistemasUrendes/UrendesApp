@@ -27,7 +27,7 @@
     <UpdateUrl>\\Urenux\app\App\</UpdateUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>61</ApplicationRevision>
+    <ApplicationRevision>63</ApplicationRevision>
     <ApplicationVersion>1.3.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -208,6 +208,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetInformeParticularIVA.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularReciboIVA\DataSetIVA.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetIVA.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularReciboIVA\DataSetIVATotales.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetIVATotales.xsd</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularReciboIVA\FormVerInformeLiquidacionIVA.cs">
       <SubType>Form</SubType>
@@ -1638,6 +1648,7 @@
     <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularReciboIVA\FormVerInformeLiquidacionIVA.resx">
       <DependentUpon>FormVerInformeLiquidacionIVA.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularReciboIVA\ReportIVA.rdlc" />
     <EmbeddedResource Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularReciboIVA\ReportLiquidacionParticularIVA.rdlc" />
     <EmbeddedResource Include="Presentacion\ComunidadesForms\OperacionesForms\FormLiquidarAOtroFondo.resx">
       <DependentUpon>FormLiquidarAOtroFondo.cs</DependentUpon>
@@ -2253,6 +2264,28 @@
     </None>
     <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularReciboIVA\DataSetInformeParticularIVA.xss">
       <DependentUpon>DataSetInformeParticularIVA.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularReciboIVA\DataSetIVA.xsc">
+      <DependentUpon>DataSetIVA.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularReciboIVA\DataSetIVA.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetIVA.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularReciboIVA\DataSetIVA.xss">
+      <DependentUpon>DataSetIVA.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularReciboIVA\DataSetIVATotales.xsc">
+      <DependentUpon>DataSetIVATotales.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularReciboIVA\DataSetIVATotales.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetIVATotales.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularReciboIVA\DataSetIVATotales.xss">
+      <DependentUpon>DataSetIVATotales.xsd</DependentUpon>
     </None>
     <None Include="Presentacion\ComunidadesForms\LiquidacionesForms\InformeParticularRecibo\DataSetInfoEntidadxsd.xsc">
       <DependentUpon>DataSetInfoEntidadxsd.xsd</DependentUpon>

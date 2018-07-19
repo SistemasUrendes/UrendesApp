@@ -243,21 +243,21 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
             double saldo = 0.00;
 
             //ENTRADAS
-            String sqlTotalEntradas = "SELECT Sum(com_operaciones.ImpOp) AS SumaDeImpOp, Sum(com_operaciones.ImpOpPte) AS SumaDeImpOpPte FROM(com_operaciones INNER JOIN com_opdetliquidacion ON com_operaciones.IdOp = com_opdetliquidacion.IdOp) INNER JOIN com_liquidaciones ON com_opdetliquidacion.IdLiquidacion = com_liquidaciones.IdLiquidacion GROUP BY com_liquidaciones.IdDetalleFondo, com_operaciones.IdSubCuenta HAVING(((com_liquidaciones.IdDetalleFondo) = " + idDetalleFondo + ") AND((com_operaciones.IdSubCuenta) = 70000 Or(com_operaciones.IdSubCuenta) = 70001 Or(com_operaciones.IdSubCuenta) = 70002));";
+            String sqlTotalEntradas = "SELECT Sum(com_opdetliquidacion.Importe) AS SumaDeImporte FROM(com_operaciones INNER JOIN com_opdetliquidacion ON com_operaciones.IdOp = com_opdetliquidacion.IdOp) INNER JOIN com_liquidaciones ON com_opdetliquidacion.IdLiquidacion = com_liquidaciones.IdLiquidacion GROUP BY com_liquidaciones.IdDetalleFondo, com_operaciones.IdSubCuenta HAVING(((com_liquidaciones.IdDetalleFondo) = " + idDetalleFondo + ") AND((com_operaciones.IdSubCuenta) = 70000 Or(com_operaciones.IdSubCuenta) = 70001 Or(com_operaciones.IdSubCuenta) = 70002));";
 
             DataTable totalesEntradas = Persistencia.SentenciasSQL.select(sqlTotalEntradas);
             for (int a = 0; a < totalesEntradas.Rows.Count; a++) {
                 totalEntradas += Convert.ToDouble(totalesEntradas.Rows[a][0].ToString());
-                totalEntradasPte += Convert.ToDouble(totalesEntradas.Rows[a][1].ToString());
+                //totalEntradasPte += Convert.ToDouble(totalesEntradas.Rows[a][1].ToString());
             }
 
             //SALIDAS
-            String sqlTotalSalidas = "SELECT Sum(com_operaciones.ImpOp) AS SumaDeImpOp, Sum(com_operaciones.ImpOpPte) AS SumaDeImpOpPte FROM(com_operaciones INNER JOIN com_opdetliquidacion ON com_operaciones.IdOp = com_opdetliquidacion.IdOp) INNER JOIN com_liquidaciones ON com_opdetliquidacion.IdLiquidacion = com_liquidaciones.IdLiquidacion GROUP BY com_liquidaciones.IdDetalleFondo, com_operaciones.IdSubCuenta HAVING(((com_liquidaciones.IdDetalleFondo) = " + idDetalleFondo + ") AND ((com_operaciones.IdSubCuenta)>=60000 And (com_operaciones.IdSubCuenta)<=69999));";
+            String sqlTotalSalidas = "SELECT Sum(com_opdetliquidacion.Importe) AS SumaDeImporte, com_operaciones.IdOp FROM(com_operaciones INNER JOIN com_opdetliquidacion ON com_operaciones.IdOp = com_opdetliquidacion.IdOp) INNER JOIN com_liquidaciones ON com_opdetliquidacion.IdLiquidacion = com_liquidaciones.IdLiquidacion GROUP BY com_liquidaciones.IdDetalleFondo, com_operaciones.IdSubCuenta, com_operaciones.IdOp HAVING(((com_liquidaciones.IdDetalleFondo) = " + idDetalleFondo + ") AND((com_operaciones.IdSubCuenta) >= 60000 And(com_operaciones.IdSubCuenta) <= 69999)); ";
 
             DataTable totalesSalidas = Persistencia.SentenciasSQL.select(sqlTotalSalidas);
             for (int a = 0; a < totalesSalidas.Rows.Count; a++)  {
                 totalSalidas += Convert.ToDouble(totalesSalidas.Rows[a][0].ToString());
-                totalSalidasPte += Convert.ToDouble(totalesSalidas.Rows[a][1].ToString());
+                //totalSalidasPte += Convert.ToDouble(totalesSalidas.Rows[a][1].ToString());
             }
 
             saldo = totalEntradas - totalSalidas;

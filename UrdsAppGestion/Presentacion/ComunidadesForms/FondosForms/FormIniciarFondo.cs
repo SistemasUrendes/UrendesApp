@@ -58,10 +58,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
 
             listBox_liquidaciones.ClearSelected();
 
-            if (ImporteResultado != "")
+            if (ImporteResultado != null)
                 textBox_importe.Text = ImporteResultado;
             else
-                textBox_importe.Text = "0.00";
+                textBox_importe.Text = "0";
         }
 
         private void button_fondoVacio_Click(object sender, EventArgs e)

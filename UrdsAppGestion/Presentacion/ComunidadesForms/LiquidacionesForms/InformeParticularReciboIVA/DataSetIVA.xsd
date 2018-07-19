@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetIVA" targetNamespace="http://tempuri.org/DataSetIVA.xsd" xmlns:mstns="http://tempuri.org/DataSetIVA.xsd" xmlns="http://tempuri.org/DataSetIVA.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetIVA" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetIVA" msprop:Generator_UserDSName="DataSetIVA">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="IVA" msprop:Generator_TableClassName="IVADataTable" msprop:Generator_TableVarName="tableIVA" msprop:Generator_TablePropName="IVA" msprop:Generator_RowDeletingName="IVARowDeleting" msprop:Generator_RowChangingName="IVARowChanging" msprop:Generator_RowEvHandlerName="IVARowChangeEventHandler" msprop:Generator_RowDeletedName="IVARowDeleted" msprop:Generator_UserTableName="IVA" msprop:Generator_RowChangedName="IVARowChanged" msprop:Generator_RowEvArgName="IVARowChangeEvent" msprop:Generator_RowClassName="IVARow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdDivision" msprop:Generator_ColumnVarNameInTable="columnIdDivision" msprop:Generator_ColumnPropNameInRow="IdDivision" msprop:Generator_ColumnPropNameInTable="IdDivisionColumn" msprop:Generator_UserColumnName="IdDivision" type="xs:string" minOccurs="0" />
+              <xs:element name="IdLiquidacion" msprop:Generator_ColumnVarNameInTable="columnIdLiquidacion" msprop:Generator_ColumnPropNameInRow="IdLiquidacion" msprop:Generator_ColumnPropNameInTable="IdLiquidacionColumn" msprop:Generator_UserColumnName="IdLiquidacion" type="xs:string" minOccurs="0" />
+              <xs:element name="PorIVA" msprop:Generator_ColumnVarNameInTable="columnPorIVA" msprop:Generator_ColumnPropNameInRow="PorIVA" msprop:Generator_ColumnPropNameInTable="PorIVAColumn" msprop:Generator_UserColumnName="PorIVA" type="xs:string" minOccurs="0" />
+              <xs:element name="Base" msprop:Generator_ColumnVarNameInTable="columnBase" msprop:Generator_ColumnPropNameInRow="Base" msprop:Generator_ColumnPropNameInTable="BaseColumn" msprop:Generator_UserColumnName="Base" type="xs:string" minOccurs="0" />
+              <xs:element name="IVA" msprop:Generator_ColumnVarNameInTable="columnIVA" msprop:Generator_ColumnPropNameInRow="IVA" msprop:Generator_ColumnPropNameInTable="IVAColumn" msprop:Generator_UserColumnName="IVA" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
