@@ -382,10 +382,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private String codigoBloque(String idBloque)
         {
-            if (idBloque.Length < 10000) return "0" + idBloque + "S";
-            else if (idBloque.Length < 1000) return "00" + idBloque + "S";
+            if (idBloque.Length < 10) return "0000" + idBloque + "S";
             else if (idBloque.Length < 100) return "000" + idBloque + "S";
-            else if (idBloque.Length < 10) return "0000" + idBloque + "S";
+            else if (idBloque.Length < 1000) return "00" + idBloque + "S";
+            else if (idBloque.Length < 10000) return "0" + idBloque + "S";
             else return idBloque + "S";
         }
     }

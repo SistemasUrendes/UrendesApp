@@ -87,7 +87,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
             else if(idTarea == null)
             {
-                sqlSelect = "SELECT exp_area.IdArea AS IdBloque, exp_area.Nombre,'true' AS Selected FROM com_comunidades INNER JOIN (exp_area INNER JOIN com_bloques ON exp_area.IdBloque = com_bloques.IdBloque) ON com_comunidades.IdComunidad = com_bloques.IdComunidad WHERE(((com_comunidades.IdComunidad) = '" + idComunidad + "') AND((exp_area.IdAreaPrevio) = 0) AND((com_bloques.Baja) = 0) AND ((com_bloques.IdTipoBloque) = 1))";
+                sqlSelect = "SELECT exp_area.IdBloque, exp_area.Nombre,'true' AS Selected FROM com_comunidades INNER JOIN (exp_area INNER JOIN com_bloques ON exp_area.IdBloque = com_bloques.IdBloque) ON com_comunidades.IdComunidad = com_bloques.IdComunidad WHERE(((com_comunidades.IdComunidad) = '" + idComunidad + "') AND((exp_area.IdAreaPrevio) = 0) AND((com_bloques.Baja) = 0) AND ((com_bloques.IdTipoBloque) = 1))";
             }
             else
             {
@@ -170,7 +170,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 if (row["Selected"].ToString() == "true")
                 {
-                    String sqlInsert = "INSERT INTO exp_areaTarea (IdArea,IdTarea) VALUES ('" + idAreaBloque(row[0].ToString()) + "','" + idTarea + "')";
+                    String sqlInsert = "INSERT INTO exp_areaTarea (IdArea,IdTarea,TipoArea) VALUES ('" + idAreaBloque(row[0].ToString()) + "','" + idTarea + "','B')";
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
                 }
             }

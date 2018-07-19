@@ -20,7 +20,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String id_comunidad;
         Form form_anterior;
         String form_ant;
-        String idAreaBloque;
+        String idBloque;
         String ordFIni;
         String ordFFin;
         Boolean boolContCom;
@@ -29,6 +29,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         String busquedaConcat;
         String codigoCat;
         String ordDescripcion;
+        String idDivision;
 
         public FormTareasPrincipal(String id_comunidad)
         {
@@ -87,23 +88,23 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String sqlSelect;
             if (id_comunidad == null && id_entidad == null)  {
                 
-                sqlSelect = "SELECT exp_tareas.IdTarea AS Id, exp_tareas.IDTareaCorto AS IdNuevo , ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.Corto AS T,If ((SELECT Count(*) FROM(com_bloques INNER JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea))) > 1, 'VARIOS BLOQ.' ,(SELECT com_bloques.Descripcion FROM(com_bloques LEFT JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea)))) AS Bloque, exp_tareas.Descripción, exp_tareas.DescripcionSinAcentos,(SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea = exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado, DATE_FORMAT(Coalesce(exp_tareas.FIni, 'ok'), '%d/%m/%Y') AS FIni, DATE_FORMAT(Coalesce(exp_tareas.FFin, 'ok'), '%d/%m/%Y') AS FFin, ctos_entidades.IDEntidad, exp_tareas.AcuerdoJunta AS A, exp_tareas.Importante AS I, exp_tareas.ProximaJunta AS P, exp_tareas.RefSiniestro AS Seguro FROM((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE (((com_comunidades.FBaja)Is Null) AND((com_comunidades.IdGestor = " + Login.getId() + ") OR((com_comunidades.IdGestor2) = " + Login.getId() + "))) AND exp_tareas.FFin is null GROUP BY exp_tareas.IdTarea ORDER BY exp_tareas.FIni ASC";
+                sqlSelect = "SELECT exp_tareas.IdTarea AS Id, exp_tareas.IDTareaCorto AS IdNuevo , ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.Corto AS T,If ((SELECT Count(*) FROM(com_bloques INNER JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea) AND ((exp_area.IdAreaPrevio)=0))) > 1, 'VARIOS BLOQ.' ,(SELECT com_bloques.Descripcion FROM(com_bloques LEFT JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea) AND ((exp_area.IdAreaPrevio)=0)))) AS Bloque, exp_tareas.Descripción, exp_tareas.DescripcionSinAcentos,(SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea = exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado, DATE_FORMAT(Coalesce(exp_tareas.FIni, 'ok'), '%d/%m/%Y') AS FIni, DATE_FORMAT(Coalesce(exp_tareas.FFin, 'ok'), '%d/%m/%Y') AS FFin, ctos_entidades.IDEntidad, exp_tareas.AcuerdoJunta AS A, exp_tareas.Importante AS I, exp_tareas.ProximaJunta AS P, exp_tareas.RefSiniestro AS Seguro FROM((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE (((com_comunidades.FBaja)Is Null) AND((com_comunidades.IdGestor = " + Login.getId() + ") OR((com_comunidades.IdGestor2) = " + Login.getId() + "))) AND exp_tareas.FFin is null GROUP BY exp_tareas.IdTarea ORDER BY exp_tareas.FIni ASC";
                 
                 comboBoxAdmComunidad.SelectedValue = Login.getId();
                 if (comboBoxAdmComunidad.SelectedValue == null)
                 {
                     comboBoxAdmComunidad.SelectedValue = 0;
-                    sqlSelect = "SELECT exp_tareas.IdTarea AS Id, exp_tareas.IDTareaCorto AS IdNuevo , ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.Corto AS T,If ((SELECT Count(*) FROM(com_bloques INNER JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea))) > 1, 'VARIOS BLOQ.' ,(SELECT com_bloques.Descripcion FROM(com_bloques LEFT JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea)))) AS Bloque, exp_tareas.Descripción, exp_tareas.DescripcionSinAcentos,(SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea=exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado, DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni, DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin,  ctos_entidades.IDEntidad, exp_tareas.AcuerdoJunta AS A, exp_tareas.Importante AS I, exp_tareas.ProximaJunta AS P, exp_tareas.RefSiniestro AS Seguro FROM ((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE((com_comunidades.FBaja) Is Null) AND exp_tareas.FFin is null GROUP BY exp_tareas.IdTarea ORDER BY exp_tareas.FIni ASC";
+                    sqlSelect = "SELECT exp_tareas.IdTarea AS Id, exp_tareas.IDTareaCorto AS IdNuevo , ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.Corto AS T,If ((SELECT Count(*) FROM(com_bloques INNER JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea) AND ((exp_area.IdAreaPrevio)=0))) > 1, 'VARIOS BLOQ.' ,(SELECT com_bloques.Descripcion FROM(com_bloques LEFT JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea) AND ((exp_area.IdAreaPrevio)=0)))) AS Bloque, exp_tareas.Descripción, exp_tareas.DescripcionSinAcentos,(SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea=exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado, DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni, DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin,  ctos_entidades.IDEntidad, exp_tareas.AcuerdoJunta AS A, exp_tareas.Importante AS I, exp_tareas.ProximaJunta AS P, exp_tareas.RefSiniestro AS Seguro FROM ((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE((com_comunidades.FBaja) Is Null) AND exp_tareas.FFin is null GROUP BY exp_tareas.IdTarea ORDER BY exp_tareas.FIni ASC";
                 }
             }
             else if (id_entidad != null)
             {
-                sqlSelect = "SELECT exp_tareas.IdTarea AS Id, exp_tareas.IDTareaCorto AS IdNuevo , ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.Corto AS T,If ((SELECT Count(*) FROM(com_bloques INNER JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea))) > 1, 'VARIOS BLOQ.' ,(SELECT com_bloques.Descripcion FROM(com_bloques LEFT JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea)))) AS Bloque, exp_tareas.Descripción, exp_tareas.DescripcionSinAcentos,(SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea=exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado,DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni, DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin,  ctos_entidades.IDEntidad, exp_tareas.AcuerdoJunta AS A, exp_tareas.Importante AS I, exp_tareas.ProximaJunta as P, exp_tareas.RefSiniestro AS Seguro FROM ((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea) WHERE (ctos_entidades.IDEntidad = " + id_entidad + ") AND exp_tareas.FFin is null GROUP BY exp_tareas.IdTarea ORDER BY exp_tareas.FIni ASC";
+                sqlSelect = "SELECT exp_tareas.IdTarea AS Id, exp_tareas.IDTareaCorto AS IdNuevo , ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.Corto AS T,If ((SELECT Count(*) FROM(com_bloques INNER JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea) AND ((exp_area.IdAreaPrevio)=0))) > 1, 'VARIOS BLOQ.' ,(SELECT com_bloques.Descripcion FROM(com_bloques LEFT JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea) AND ((exp_area.IdAreaPrevio)=0)))) AS Bloque, exp_tareas.Descripción, exp_tareas.DescripcionSinAcentos,(SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea=exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado,DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni, DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin,  ctos_entidades.IDEntidad, exp_tareas.AcuerdoJunta AS A, exp_tareas.Importante AS I, exp_tareas.ProximaJunta as P, exp_tareas.RefSiniestro AS Seguro FROM ((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea) WHERE (ctos_entidades.IDEntidad = " + id_entidad + ") AND exp_tareas.FFin is null GROUP BY exp_tareas.IdTarea ORDER BY exp_tareas.FIni ASC";
             }
             
             else
             {
-                sqlSelect = "SELECT exp_tareas.IdTarea AS Id, exp_tareas.IDTareaCorto AS IdNuevo , ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.Corto AS T,If ((SELECT Count(*) FROM(com_bloques INNER JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea))) > 1, 'VARIOS BLOQ.' ,(SELECT com_bloques.Descripcion FROM(com_bloques LEFT JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea)))) AS Bloque, exp_tareas.Descripción, exp_tareas.DescripcionSinAcentos,(SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea=exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado,DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni, DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin,  ctos_entidades.IDEntidad, exp_tareas.AcuerdoJunta AS A, exp_tareas.Importante AS I, exp_tareas.ProximaJunta as P, exp_tareas.RefSiniestro AS Seguro FROM((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad  WHERE(com_comunidades.IdComunidad = " + id_comunidad + ") AND exp_tareas.FFin is null GROUP BY exp_tareas.IdTarea ORDER BY exp_tareas.FIni ASC";
+                sqlSelect = "SELECT exp_tareas.IdTarea AS Id, exp_tareas.IDTareaCorto AS IdNuevo , ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.Corto AS T,If ((SELECT Count(*) FROM(com_bloques INNER JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea) AND ((exp_area.IdAreaPrevio)=0))) > 1, 'VARIOS BLOQ.' ,(SELECT com_bloques.Descripcion FROM(com_bloques LEFT JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea) AND ((exp_area.IdAreaPrevio)=0)))) AS Bloque, exp_tareas.Descripción, exp_tareas.DescripcionSinAcentos,(SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea=exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado,DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni, DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin,  ctos_entidades.IDEntidad, exp_tareas.AcuerdoJunta AS A, exp_tareas.Importante AS I, exp_tareas.ProximaJunta as P, exp_tareas.RefSiniestro AS Seguro FROM((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad  WHERE(com_comunidades.IdComunidad = " + id_comunidad + ") AND exp_tareas.FFin is null GROUP BY exp_tareas.IdTarea ORDER BY exp_tareas.FIni ASC";
             }
             tareas = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridView_tareas.DataSource = tareas;
@@ -217,7 +218,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String estado = comboBox_Estado.SelectedIndex.ToString();
             String gestor = comboBoxAdmComunidad.SelectedValue.ToString();
             
-            sqlSelect = "SELECT exp_tareas.IdTarea AS Id, exp_tareas.IDTareaCorto AS IdNuevo, ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.Corto AS T,If ((SELECT Count(*) FROM(com_bloques INNER JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea))) > 1, 'VARIOS BLOQ.' ,(SELECT com_bloques.Descripcion FROM(com_bloques LEFT JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea)))) AS Bloque,exp_tareas.Descripción, exp_tareas.DescripcionSinAcentos,(SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea=exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado, DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni, DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin,  ctos_entidades.IDEntidad, exp_tareas.AcuerdoJunta AS A, exp_tareas.Importante AS I, exp_tareas.ProximaJunta as P, exp_tareas.RefSiniestro AS Seguro FROM((com_comunidades RIGHT JOIN((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea) ON com_comunidades.IdEntidad = exp_tareas.IdEntidad) LEFT JOIN exp_areaTarea ON exp_tareas.IdTarea = exp_areaTarea.IdTarea) LEFT JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea WHERE(((com_comunidades.FBaja)Is Null))";
+            sqlSelect = "SELECT exp_tareas.IdTarea AS Id, exp_tareas.IDTareaCorto AS IdNuevo, ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.Corto AS T,If ((SELECT Count(*) FROM(com_bloques INNER JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea) AND ((exp_area.IdAreaPrevio)=0))) > 1, 'VARIOS BLOQ.' ,(SELECT com_bloques.Descripcion FROM(com_bloques LEFT JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea) AND ((exp_area.IdAreaPrevio)=0)))) AS Bloque,exp_tareas.Descripción, exp_tareas.DescripcionSinAcentos,(SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea=exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado, DATE_FORMAT(Coalesce(exp_tareas.FIni,'ok'),'%d/%m/%Y') AS FIni, DATE_FORMAT(Coalesce(exp_tareas.FFin,'ok'),'%d/%m/%Y') AS FFin,  ctos_entidades.IDEntidad, exp_tareas.AcuerdoJunta AS A, exp_tareas.Importante AS I, exp_tareas.ProximaJunta as P, exp_tareas.RefSiniestro AS Seguro FROM((com_comunidades RIGHT JOIN((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea) ON com_comunidades.IdEntidad = exp_tareas.IdEntidad) LEFT JOIN exp_areaTarea ON exp_tareas.IdTarea = exp_areaTarea.IdTarea) LEFT JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea WHERE ((com_comunidades.FBaja)Is Null)";
 
             if (id_comunidad != null)
             {
@@ -284,13 +285,17 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 sqlSelect += " AND (com_comunidades.IdGestor = " + gestor + " OR com_comunidades.IdGestor2 = " + gestor + ")";
             }
-            if (idAreaBloque != null)
+            if (idBloque != null && idDivision == null)
             {
-                sqlSelect += " AND (exp_areaTarea.IdArea = " + idAreaBloque + ")";
+                sqlSelect += " AND (exp_area.IdBloque = " + idBloque + ")";
             }
-            if (codigoCat != null)
+            if (codigoCat != null && idDivision == null)
             {
-                sqlSelect += " AND (exp_area.codigoArea Like '%" + codigoCat + "%')";
+                sqlSelect += " AND (exp_area.NombreCorto Like '" + codigoCat + "')";
+            }
+            if (idDivision != null)
+            {
+                sqlSelect += " AND (exp_areaTarea.IdArea = " + idDivision + ") AND (exp_areaTarea.TipoArea like 'D')";
             }
             sqlSelect += " GROUP BY exp_tareas.IdTarea";
             if (ordFIni == null && ordFFin == null && ordDescripcion == null)
@@ -583,7 +588,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 String idTarea = textBoxMostrar.Text.ToString();
                 if (existeTarea(idTarea))
                 {
-                    String sqlSelect = "SELECT exp_tareas.IdTarea AS Id, exp_tareas.IDTareaCorto AS IdNuevo , ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.Corto AS T,If ((SELECT Count(*) FROM(com_bloques INNER JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea))) > 1, 'VARIOS BLOQ.' ,(SELECT com_bloques.Descripcion FROM(com_bloques LEFT JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea)))) AS Bloque, exp_tareas.Descripción, exp_tareas.DescripcionSinAcentos,(SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea = exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado, DATE_FORMAT(Coalesce(exp_tareas.FIni, 'ok'), '%d/%m/%Y') AS FIni, DATE_FORMAT(Coalesce(exp_tareas.FFin, 'ok'), '%d/%m/%Y') AS FFin, ctos_entidades.IDEntidad, exp_tareas.AcuerdoJunta AS A, exp_tareas.Importante AS I, exp_tareas.ProximaJunta as P, exp_tareas.RefSiniestro AS Seguro FROM ((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea) WHERE exp_tareas.IdTarea = " + idTarea + " OR exp_tareas.IdTareaCorto = '" + idTarea + "' GROUP BY exp_tareas.IdTarea ";
+                    String sqlSelect = "SELECT exp_tareas.IdTarea AS Id, exp_tareas.IDTareaCorto AS IdNuevo , ctos_entidades.NombreCorto AS Entidad, exp_tipostareas.Corto AS T,If ((SELECT Count(*) FROM(com_bloques INNER JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea) AND ((exp_area.IdAreaPrevio)=0))) > 1, 'VARIOS BLOQ.' ,(SELECT com_bloques.Descripcion FROM(com_bloques LEFT JOIN exp_area ON com_bloques.IdBloque = exp_area.IdBloque) INNER JOIN exp_areaTarea ON exp_area.IdArea = exp_areaTarea.IdArea WHERE(((com_bloques.IdTipoBloque) = 1) AND((exp_areaTarea.IdTarea) = exp_tareas.IdTarea) AND ((exp_area.IdAreaPrevio)=0)))) AS Bloque, exp_tareas.Descripción, exp_tareas.DescripcionSinAcentos,(SELECT exp_tipogestion.Descripcion FROM exp_gestiones LEFT JOIN exp_tipogestion ON exp_gestiones.IdTipoGestion = exp_tipogestion.IdTipoGestion WHERE exp_gestiones.IdTarea = exp_tareas.IdTarea ORDER BY exp_gestiones.FIni DESC LIMIT 1 ) AS Estado, DATE_FORMAT(Coalesce(exp_tareas.FIni, 'ok'), '%d/%m/%Y') AS FIni, DATE_FORMAT(Coalesce(exp_tareas.FFin, 'ok'), '%d/%m/%Y') AS FFin, ctos_entidades.IDEntidad, exp_tareas.AcuerdoJunta AS A, exp_tareas.Importante AS I, exp_tareas.ProximaJunta as P, exp_tareas.RefSiniestro AS Seguro FROM ((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea) WHERE exp_tareas.IdTarea = " + idTarea + " OR exp_tareas.IdTareaCorto = '" + idTarea + "' GROUP BY exp_tareas.IdTarea ";
                     dataGridView_tareas.DataSource = Persistencia.SentenciasSQL.select(sqlSelect);
                 }
                 else
@@ -695,16 +700,16 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
         }
 
-        public void recibirBloque(String idAreaBloque, String nombre)
+        public void recibirBloque(String idBloque, String nombre)
         {
             textBoxBloque.Text = nombre;
-            this.idAreaBloque = idAreaBloque;
+            this.idBloque = idBloque;
         }
 
         private void textBoxBloque_DoubleClick(object sender, EventArgs e)
         {
             textBoxBloque.Text = "";
-            this.idAreaBloque = null;
+            this.idBloque = null;
         }
         
 
@@ -756,7 +761,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.id_entidad = null;
             maskedTextBoxRefComunidad.Text = "";
             textBox_Entidad.Text = "";
-            aplicarFiltroTabla();
         }
 
         public void filtroNombre()
@@ -771,22 +775,24 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonServicio_Click(object sender, EventArgs e)
         {
-            if (idAreaBloque != null)
+            if (idBloque != null)
             {
                 FormSeleccionarCategoria nueva = new FormSeleccionarCategoria(this);
                 nueva.Show();
             }
             else
             {
-                FormSeleccionarCategoria nueva = new FormSeleccionarCategoria(this,idAreaBloque);
+                FormSeleccionarCategoria nueva = new FormSeleccionarCategoria(this, idBloque);
                 nueva.Show();
             }
         }
 
         public void recibirCategoria(String nombreCategoria,String codigoCategoria)
         {
+            textBoxDivisión.Text = "";
+            this.idDivision = null;
             textBoxServicio.Text = nombreCategoria;
-            codigoCat = "S" + codigoCategoria;
+            codigoCat = codigoCategoria;
         }
 
         private void textBoxServicio_DoubleClick(object sender, EventArgs e)
@@ -794,6 +800,40 @@ namespace UrdsAppGestión.Presentacion.Tareas
             textBoxServicio.Text = "";
             this.codigoCat = null;
         }
-        
+
+        private void textBoxDivisión_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            textBoxDivisión.Text = "";
+            this.idDivision = null;
+        }
+
+        private void buttonDivisión_Click(object sender, EventArgs e)
+        {
+            if (id_comunidad != null)
+            {
+                if (idBloque != null)
+                {
+                    ComunidadesForms.Divisiones nueva = new ComunidadesForms.Divisiones(Int32.Parse(id_comunidad), this.Name, idBloque, this);
+                    nueva.Show();
+                }
+                else
+                {
+                    ComunidadesForms.Divisiones nueva = new ComunidadesForms.Divisiones(Int32.Parse(id_comunidad), this.Name, this);
+                    nueva.Show();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecciona una comunidad para filtrar por División.");
+            }
+        }
+
+        public void recibirDivision(String idDivision,String division)
+        {
+            textBoxServicio.Text = "";
+            this.codigoCat = null;
+            textBoxDivisión.Text = division;
+            this.idDivision = idDivision;
+        }
     }
 }

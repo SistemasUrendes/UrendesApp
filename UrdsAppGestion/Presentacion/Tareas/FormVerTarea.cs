@@ -1644,16 +1644,17 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String sqlSelect = "SELECT exp_area.Nombre,exp_area.codigoArea FROM exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea WHERE(((exp_areaTarea.IdTarea) = " + idTarea + ") AND((exp_areaTarea.TipoArea) = 'S'))";
             tablaFinalServicios = Persistencia.SentenciasSQL.select(sqlSelect);
             String servicios = "";
-            String idServPrinc = "";
             foreach (DataRow row in tablaFinalServicios.Rows)
             {
                 if (servicios.Length > 0) servicios += " - ";
                 if (row[1].ToString().Length > 11)
                 {
-                    String sqlSelect2 = "SELECT Nombre FROM exp_area WHERE exp_area.codigoArea = '" + row[1].ToString().Substring(0, 11) + "'";
-                    servicios += Persistencia.SentenciasSQL.select(sqlSelect2).Rows[0][0].ToString();
+                    String sqlSelect2 = "SELECT Nombre,NombreCorto FROM exp_area WHERE exp_area.codigoArea = '" + row[1].ToString().Substring(0, 11) + "'";
+                    DataTable servicio = Persistencia.SentenciasSQL.select(sqlSelect2);
+                    servicios += "(" + servicio.Rows[0][1] + ") " + servicio.Rows[0][0];
                 }
-                servicios += " " + row[0].ToString();
+                if ( servicios.Length > 0 )servicios += " " + row[0].ToString();
+                else servicios += row[0].ToString();
             }
             textBoxServicio.Text = servicios;
         }
@@ -1789,23 +1790,36 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonSelDivSer_Click(object sender, EventArgs e)
         {
-            FormInsertarServicioTarea nueva = new FormInsertarServicioTarea(this, idTarea);
-            nueva.Show();
-        }
-
-        private void buttonSelDivision_Click(object sender, EventArgs e)
-        {   
-            
-            if (textBoxDivision.Text != "")
+            if (idComunidad != 0 && textBoxBloque.Text != "")
             {
-                FormDivisionesTarea nueva = new FormDivisionesTarea(this, idTarea);
+                FormInsertarServicioTarea nueva = new FormInsertarServicioTarea(this, idTarea);
                 nueva.Show();
             }
             else
             {
-                ComunidadesForms.Divisiones nueva = new ComunidadesForms.Divisiones(this, this.Name, idTarea);
-                nueva.ControlBox = true;
-                nueva.Show();
+                MessageBox.Show("Selecciona Comunidad y Bloque para elegir el Servicio");
+            }
+        }
+
+        private void buttonSelDivision_Click(object sender, EventArgs e)
+        {
+            if (idComunidad != 0 && textBoxBloque.Text != "")
+            {
+                if (textBoxDivision.Text != "")
+                {
+                    FormDivisionesTarea nueva = new FormDivisionesTarea(this, idTarea);
+                    nueva.Show();
+                }
+                else
+                {
+                    ComunidadesForms.Divisiones nueva = new ComunidadesForms.Divisiones(this, this.Name, idTarea);
+                    nueva.ControlBox = true;
+                    nueva.Show();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecciona Comunidad y Bloque para elegir su División");
             }
         }
 
@@ -1961,5 +1975,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
             }
         }
+        
     }
 }

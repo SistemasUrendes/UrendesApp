@@ -70,16 +70,16 @@ namespace UrdsAppGestión.Presentacion.Tareas
             busqueda.DefaultView.RowFilter = filtro;
             dataGridViewCategorias.DataSource = busqueda;
         }
-
+        
         private void cargarCategorias()
         {
-            String sqlSelect2 = "SELECT exp_catElemento.Nombre, exp_catElemento.IdCatElemento AS codigoArea FROM exp_catElemento";
+            String sqlSelect2 = "SELECT exp_catElemento.Nombre, exp_catElemento.IdCatElemento,exp_catElemento.NombreCorto AS codigoArea FROM exp_catElemento";
 
             if (tablaCategorias == null) tablaCategorias = Persistencia.SentenciasSQL.select(sqlSelect2);
             else tablaCategorias.Merge(Persistencia.SentenciasSQL.select(sqlSelect2));
 
             dataGridViewCategorias.DataSource = tablaCategorias;
-            dataGridViewCategorias.Columns["codigoArea"].Visible = false;
+            dataGridViewCategorias.Columns["IdCatElemento"].Visible = false;
         } 
 
         private void cargarCategoriasTarea()
@@ -91,7 +91,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
             foreach(DataRow row in bloques.Rows)
             {
-                String sqlSelect2 = "SELECT Nombre,codigoArea FROM exp_area WHERE IdAreaPrevio = '" + row[0] + "' AND exp_area.NombreCorto Like '" + codCat + "'";
+                String sqlSelect2 = "SELECT Nombre,codigoArea,NombreCorto FROM exp_area WHERE IdAreaPrevio = '" + row[0] + "' AND exp_area.NombreCorto Like '" + codCat + "'";
 
                 if (tablaCategorias == null) tablaCategorias = Persistencia.SentenciasSQL.select(sqlSelect2);
                 else tablaCategorias.Merge(Persistencia.SentenciasSQL.select(sqlSelect2));
@@ -111,13 +111,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private void enviar()
         {
             String idCat = dataGridViewCategorias.SelectedRows[0].Cells[1].Value.ToString();
-            String codigo = "";
-            if (idCat.Length == 1) codigo = "00" + idCat;
-            else if (idCat.Length == 2) codigo = "0" + idCat;
-            else codigo = idCat;
-            
+                        
             if (formAnt1 != null) formAnt1.recibirCategoria(dataGridViewCategorias.SelectedRows[0].Cells[0].Value.ToString());
-            if (formAnt2 != null) formAnt2.recibirCategoria(dataGridViewCategorias.SelectedRows[0].Cells[0].Value.ToString(), codigo);
+            if (formAnt2 != null) formAnt2.recibirCategoria(dataGridViewCategorias.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewCategorias.SelectedRows[0].Cells[2].Value.ToString());
             if (formAnt3 != null) formAnt3.recibirCategoria(dataGridViewCategorias.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewCategorias.SelectedRows[0].Cells[1].Value.ToString());
             this.Close();
             

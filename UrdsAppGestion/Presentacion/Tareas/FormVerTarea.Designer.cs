@@ -98,19 +98,19 @@
             this.label20 = new System.Windows.Forms.Label();
             this.buttonSugerenciaDesc = new System.Windows.Forms.Button();
             this.tabPageExpedientes = new System.Windows.Forms.TabPage();
-            this.dataGridViewExpedientes = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
             this.buttonAddExpediente = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dataGridViewExpedientes = new System.Windows.Forms.DataGridView();
             this.tabPageContactos = new System.Windows.Forms.TabPage();
-            this.dataGridViewContactos = new System.Windows.Forms.DataGridView();
-            this.label17 = new System.Windows.Forms.Label();
-            this.buttonEnviarMail = new System.Windows.Forms.Button();
             this.buttonAddContacto = new System.Windows.Forms.Button();
+            this.buttonEnviarMail = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.dataGridViewContactos = new System.Windows.Forms.DataGridView();
             this.tabPagSeguimientos = new System.Windows.Forms.TabPage();
-            this.buttonAddSeguimiento = new System.Windows.Forms.Button();
-            this.dataGridViewSeguimientos = new System.Windows.Forms.DataGridView();
-            this.label5 = new System.Windows.Forms.Label();
             this.buttonTodosSeguimientos = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dataGridViewSeguimientos = new System.Windows.Forms.DataGridView();
+            this.buttonAddSeguimiento = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGestiones)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -751,6 +751,26 @@
             this.tabPageExpedientes.Text = "Expedientes";
             this.tabPageExpedientes.UseVisualStyleBackColor = true;
             // 
+            // buttonAddExpediente
+            // 
+            this.buttonAddExpediente.Location = new System.Drawing.Point(539, 8);
+            this.buttonAddExpediente.Name = "buttonAddExpediente";
+            this.buttonAddExpediente.Size = new System.Drawing.Size(113, 23);
+            this.buttonAddExpediente.TabIndex = 28;
+            this.buttonAddExpediente.Text = "Añadir Expediente";
+            this.buttonAddExpediente.UseVisualStyleBackColor = true;
+            this.buttonAddExpediente.Click += new System.EventHandler(this.buttonAddExpediente_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(75, 15);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "Expedientes";
+            // 
             // dataGridViewExpedientes
             // 
             this.dataGridViewExpedientes.AllowUserToAddRows = false;
@@ -768,26 +788,6 @@
             this.dataGridViewExpedientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewExpedientes_CellDoubleClick);
             this.dataGridViewExpedientes.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewExpedientes_MouseClick);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 15);
-            this.label1.TabIndex = 30;
-            this.label1.Text = "Expedientes";
-            // 
-            // buttonAddExpediente
-            // 
-            this.buttonAddExpediente.Location = new System.Drawing.Point(539, 8);
-            this.buttonAddExpediente.Name = "buttonAddExpediente";
-            this.buttonAddExpediente.Size = new System.Drawing.Size(113, 23);
-            this.buttonAddExpediente.TabIndex = 28;
-            this.buttonAddExpediente.Text = "Añadir Expediente";
-            this.buttonAddExpediente.UseVisualStyleBackColor = true;
-            this.buttonAddExpediente.Click += new System.EventHandler(this.buttonAddExpediente_Click);
-            // 
             // tabPageContactos
             // 
             this.tabPageContactos.Controls.Add(this.buttonAddContacto);
@@ -801,6 +801,36 @@
             this.tabPageContactos.TabIndex = 1;
             this.tabPageContactos.Text = "Contactos";
             this.tabPageContactos.UseVisualStyleBackColor = true;
+            // 
+            // buttonAddContacto
+            // 
+            this.buttonAddContacto.Location = new System.Drawing.Point(452, 10);
+            this.buttonAddContacto.Name = "buttonAddContacto";
+            this.buttonAddContacto.Size = new System.Drawing.Size(97, 23);
+            this.buttonAddContacto.TabIndex = 24;
+            this.buttonAddContacto.Text = "Añadir Contacto";
+            this.buttonAddContacto.UseVisualStyleBackColor = true;
+            this.buttonAddContacto.Click += new System.EventHandler(this.buttonAddContacto_Click);
+            // 
+            // buttonEnviarMail
+            // 
+            this.buttonEnviarMail.Location = new System.Drawing.Point(555, 10);
+            this.buttonEnviarMail.Name = "buttonEnviarMail";
+            this.buttonEnviarMail.Size = new System.Drawing.Size(97, 23);
+            this.buttonEnviarMail.TabIndex = 25;
+            this.buttonEnviarMail.Text = "Enviar Correo";
+            this.buttonEnviarMail.UseVisualStyleBackColor = true;
+            this.buttonEnviarMail.Click += new System.EventHandler(this.buttonEnviarMail_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(6, 15);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(61, 15);
+            this.label17.TabIndex = 26;
+            this.label17.Text = "Contactos";
             // 
             // dataGridViewContactos
             // 
@@ -820,36 +850,6 @@
             this.dataGridViewContactos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewContactos_CellDoubleClick);
             this.dataGridViewContactos.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewContactos_MouseClick);
             // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(6, 15);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(61, 15);
-            this.label17.TabIndex = 26;
-            this.label17.Text = "Contactos";
-            // 
-            // buttonEnviarMail
-            // 
-            this.buttonEnviarMail.Location = new System.Drawing.Point(555, 10);
-            this.buttonEnviarMail.Name = "buttonEnviarMail";
-            this.buttonEnviarMail.Size = new System.Drawing.Size(97, 23);
-            this.buttonEnviarMail.TabIndex = 25;
-            this.buttonEnviarMail.Text = "Enviar Correo";
-            this.buttonEnviarMail.UseVisualStyleBackColor = true;
-            this.buttonEnviarMail.Click += new System.EventHandler(this.buttonEnviarMail_Click);
-            // 
-            // buttonAddContacto
-            // 
-            this.buttonAddContacto.Location = new System.Drawing.Point(452, 10);
-            this.buttonAddContacto.Name = "buttonAddContacto";
-            this.buttonAddContacto.Size = new System.Drawing.Size(97, 23);
-            this.buttonAddContacto.TabIndex = 24;
-            this.buttonAddContacto.Text = "Añadir Contacto";
-            this.buttonAddContacto.UseVisualStyleBackColor = true;
-            this.buttonAddContacto.Click += new System.EventHandler(this.buttonAddContacto_Click);
-            // 
             // tabPagSeguimientos
             // 
             this.tabPagSeguimientos.Controls.Add(this.buttonTodosSeguimientos);
@@ -864,15 +864,25 @@
             this.tabPagSeguimientos.Text = "Seguimientos";
             this.tabPagSeguimientos.UseVisualStyleBackColor = true;
             // 
-            // buttonAddSeguimiento
+            // buttonTodosSeguimientos
             // 
-            this.buttonAddSeguimiento.Location = new System.Drawing.Point(537, 11);
-            this.buttonAddSeguimiento.Name = "buttonAddSeguimiento";
-            this.buttonAddSeguimiento.Size = new System.Drawing.Size(115, 23);
-            this.buttonAddSeguimiento.TabIndex = 21;
-            this.buttonAddSeguimiento.Text = "Añadir Seguimiento";
-            this.buttonAddSeguimiento.UseVisualStyleBackColor = true;
-            this.buttonAddSeguimiento.Click += new System.EventHandler(this.buttonAddSeguimiento_Click);
+            this.buttonTodosSeguimientos.Location = new System.Drawing.Point(403, 11);
+            this.buttonTodosSeguimientos.Name = "buttonTodosSeguimientos";
+            this.buttonTodosSeguimientos.Size = new System.Drawing.Size(128, 23);
+            this.buttonTodosSeguimientos.TabIndex = 20;
+            this.buttonTodosSeguimientos.Text = "Todos los Seguimientos";
+            this.buttonTodosSeguimientos.UseVisualStyleBackColor = true;
+            this.buttonTodosSeguimientos.Click += new System.EventHandler(this.buttonTodosSeguimientos_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(6, 15);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(158, 15);
+            this.label5.TabIndex = 25;
+            this.label5.Text = "Seguimientos de la Gestión";
             // 
             // dataGridViewSeguimientos
             // 
@@ -893,25 +903,15 @@
             this.dataGridViewSeguimientos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSeguimientos_CellDoubleClick);
             this.dataGridViewSeguimientos.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewSeguimientos_MouseClick);
             // 
-            // label5
+            // buttonAddSeguimiento
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(6, 15);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(158, 15);
-            this.label5.TabIndex = 25;
-            this.label5.Text = "Seguimientos de la Gestión";
-            // 
-            // buttonTodosSeguimientos
-            // 
-            this.buttonTodosSeguimientos.Location = new System.Drawing.Point(403, 11);
-            this.buttonTodosSeguimientos.Name = "buttonTodosSeguimientos";
-            this.buttonTodosSeguimientos.Size = new System.Drawing.Size(128, 23);
-            this.buttonTodosSeguimientos.TabIndex = 20;
-            this.buttonTodosSeguimientos.Text = "Todos los Seguimientos";
-            this.buttonTodosSeguimientos.UseVisualStyleBackColor = true;
-            this.buttonTodosSeguimientos.Click += new System.EventHandler(this.buttonTodosSeguimientos_Click);
+            this.buttonAddSeguimiento.Location = new System.Drawing.Point(537, 11);
+            this.buttonAddSeguimiento.Name = "buttonAddSeguimiento";
+            this.buttonAddSeguimiento.Size = new System.Drawing.Size(115, 23);
+            this.buttonAddSeguimiento.TabIndex = 21;
+            this.buttonAddSeguimiento.Text = "Añadir Seguimiento";
+            this.buttonAddSeguimiento.UseVisualStyleBackColor = true;
+            this.buttonAddSeguimiento.Click += new System.EventHandler(this.buttonAddSeguimiento_Click);
             // 
             // tabControl1
             // 

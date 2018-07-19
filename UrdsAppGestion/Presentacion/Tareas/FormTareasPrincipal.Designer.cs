@@ -73,6 +73,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.textBoxServicio = new System.Windows.Forms.TextBox();
             this.labelBusqueda = new System.Windows.Forms.Label();
+            this.buttonDivisión = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBoxDivisión = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tareas)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -213,10 +216,10 @@
             // 
             // maskedTextBoxRefComunidad
             // 
-            this.maskedTextBoxRefComunidad.Location = new System.Drawing.Point(500, 8);
+            this.maskedTextBoxRefComunidad.Location = new System.Drawing.Point(498, 8);
             this.maskedTextBoxRefComunidad.Mask = "999";
             this.maskedTextBoxRefComunidad.Name = "maskedTextBoxRefComunidad";
-            this.maskedTextBoxRefComunidad.Size = new System.Drawing.Size(31, 20);
+            this.maskedTextBoxRefComunidad.Size = new System.Drawing.Size(33, 20);
             this.maskedTextBoxRefComunidad.TabIndex = 2;
             this.maskedTextBoxRefComunidad.ValidatingType = typeof(int);
             this.maskedTextBoxRefComunidad.DoubleClick += new System.EventHandler(this.maskedTextBoxRefComunidad_DoubleClick);
@@ -398,10 +401,10 @@
             // 
             // textBoxBloque
             // 
-            this.textBoxBloque.Location = new System.Drawing.Point(500, 35);
+            this.textBoxBloque.Location = new System.Drawing.Point(498, 35);
             this.textBoxBloque.Name = "textBoxBloque";
             this.textBoxBloque.ReadOnly = true;
-            this.textBoxBloque.Size = new System.Drawing.Size(261, 20);
+            this.textBoxBloque.Size = new System.Drawing.Size(263, 20);
             this.textBoxBloque.TabIndex = 47;
             this.textBoxBloque.DoubleClick += new System.EventHandler(this.textBoxBloque_DoubleClick);
             // 
@@ -416,7 +419,7 @@
             // 
             // buttonBloque
             // 
-            this.buttonBloque.Location = new System.Drawing.Point(772, 33);
+            this.buttonBloque.Location = new System.Drawing.Point(773, 33);
             this.buttonBloque.Name = "buttonBloque";
             this.buttonBloque.Size = new System.Drawing.Size(63, 23);
             this.buttonBloque.TabIndex = 49;
@@ -456,8 +459,7 @@
             // 
             // buttonServicio
             // 
-            this.buttonServicio.Enabled = false;
-            this.buttonServicio.Location = new System.Drawing.Point(772, 61);
+            this.buttonServicio.Location = new System.Drawing.Point(582, 60);
             this.buttonServicio.Name = "buttonServicio";
             this.buttonServicio.Size = new System.Drawing.Size(63, 23);
             this.buttonServicio.TabIndex = 55;
@@ -468,8 +470,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Enabled = false;
-            this.label7.Location = new System.Drawing.Point(445, 66);
+            this.label7.Location = new System.Drawing.Point(445, 65);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(48, 13);
             this.label7.TabIndex = 54;
@@ -477,11 +478,10 @@
             // 
             // textBoxServicio
             // 
-            this.textBoxServicio.Enabled = false;
-            this.textBoxServicio.Location = new System.Drawing.Point(499, 63);
+            this.textBoxServicio.Location = new System.Drawing.Point(499, 61);
             this.textBoxServicio.Name = "textBoxServicio";
             this.textBoxServicio.ReadOnly = true;
-            this.textBoxServicio.Size = new System.Drawing.Size(261, 20);
+            this.textBoxServicio.Size = new System.Drawing.Size(77, 20);
             this.textBoxServicio.TabIndex = 53;
             this.textBoxServicio.DoubleClick += new System.EventHandler(this.textBoxServicio_DoubleClick);
             // 
@@ -494,12 +494,43 @@
             this.labelBusqueda.Size = new System.Drawing.Size(0, 13);
             this.labelBusqueda.TabIndex = 56;
             // 
+            // buttonDivisión
+            // 
+            this.buttonDivisión.Location = new System.Drawing.Point(773, 60);
+            this.buttonDivisión.Name = "buttonDivisión";
+            this.buttonDivisión.Size = new System.Drawing.Size(63, 23);
+            this.buttonDivisión.TabIndex = 59;
+            this.buttonDivisión.Text = "División";
+            this.buttonDivisión.UseVisualStyleBackColor = true;
+            this.buttonDivisión.Click += new System.EventHandler(this.buttonDivisión_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(651, 65);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(47, 13);
+            this.label8.TabIndex = 58;
+            this.label8.Text = "División:";
+            // 
+            // textBoxDivisión
+            // 
+            this.textBoxDivisión.Location = new System.Drawing.Point(704, 61);
+            this.textBoxDivisión.Name = "textBoxDivisión";
+            this.textBoxDivisión.ReadOnly = true;
+            this.textBoxDivisión.Size = new System.Drawing.Size(57, 20);
+            this.textBoxDivisión.TabIndex = 57;
+            this.textBoxDivisión.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBoxDivisión_MouseDoubleClick);
+            // 
             // FormTareasPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1152, 626);
             this.ControlBox = false;
+            this.Controls.Add(this.buttonDivisión);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.textBoxDivisión);
             this.Controls.Add(this.labelBusqueda);
             this.Controls.Add(this.buttonServicio);
             this.Controls.Add(this.label7);
@@ -596,5 +627,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBoxServicio;
         private System.Windows.Forms.Label labelBusqueda;
+        private System.Windows.Forms.Button buttonDivisión;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBoxDivisión;
     }
 }

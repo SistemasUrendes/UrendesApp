@@ -21,6 +21,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
         Form form_anterior;
         Boolean cargado = false;
         String idTarea;
+        String idBloque;
 
         public Divisiones(int id_comunidad)
         {
@@ -34,6 +35,15 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             this.donde = donde;
             this.form_anterior = form_anterior;
         }
+        public Divisiones(int id_comunidad, String donde,String idBloque, Form form_anterior)
+        {
+            InitializeComponent();
+            this.id_comunidad = id_comunidad;
+            this.donde = donde;
+            this.form_anterior = form_anterior;
+            this.idBloque = idBloque;
+        }
+
         public Divisiones (Form form_anterior,String donde,String idTarea)
         {
             InitializeComponent();
@@ -44,11 +54,18 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
 
         private void FormDivisiones_Load(object sender, EventArgs e)
         {
+            if (!this.IsMdiChild) this.ControlBox = true;
             if (idTarea != null)
             {
                 button_enviar.Visible = true;
                 dataGridView_divisiones.MultiSelect = true;
                 cargarDivisionesTarea();
+            }
+            else if (idBloque != null)
+            {
+                button_enviar.Visible = true;
+                dataGridView_divisiones.MultiSelect = false;
+                cargarDivisionesBloque();
             }
             else
             {
@@ -87,6 +104,29 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                 dataGridView_divisiones.DataSource = null;
             }
         }
+
+        public void cargarDivisionesBloque()
+        {
+            cargado = false;
+            String sql = "SELECT com_divisiones.IdDivision, com_divisiones.IdComunidad, com_divisiones.Division, com_divisiones.Finca, com_divisiones.Orden, com_divisiones.IdTipoDiv, com_tipodivs.TipoDivision, com_divisiones.Cuota, com_divisiones.Excluido, com_divisiones.Notas FROM(com_divisiones INNER JOIN com_tipodivs ON com_divisiones.IdTipoDiv = com_tipodivs.IdTipoDiv) INNER JOIN com_subcuotas ON com_divisiones.IdDivision = com_subcuotas.IdDivision GROUP BY com_divisiones.IdDivision, com_divisiones.IdComunidad, com_divisiones.Division, com_divisiones.Finca, com_divisiones.Orden, com_divisiones.IdTipoDiv, com_tipodivs.TipoDivision, com_divisiones.Cuota, com_divisiones.Excluido, com_divisiones.Notas, com_divisiones.Division, com_divisiones.IdComunidad, com_subcuotas.IdBloque HAVING(((com_divisiones.IdComunidad) = " + id_comunidad + ") AND((com_subcuotas.IdBloque) = " + idBloque + ")) ORDER BY com_divisiones.Orden, com_divisiones.Division";
+
+
+            divisiones = Persistencia.SentenciasSQL.select(sql);
+
+            if (divisiones.Rows.Count > 0)
+            {
+                dataGridView_divisiones.DataSource = divisiones;
+                label4.Text = "Total: " + divisiones.Rows.Count;
+                ajustarDatagrid();
+                cargado = true;
+            }
+            else
+            {
+                dataGridView_divisiones.DataSource = null;
+            }
+        }
+
+
         public void cargarDetallesDivisiones() {
             if (divisiones.Rows.Count > 0)
             {
@@ -351,6 +391,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                 {
                     Tareas.FormVerTarea nueva = (Tareas.FormVerTarea)existe;
                     nueva.recibirDivisiones(tablaSeleccionados());
+                    this.Close();
+                }
+                if (donde.Contains("FormTareasPrincipal"))
+                {
+                    Tareas.FormTareasPrincipal nueva = (Tareas.FormTareasPrincipal)existe;
+                    nueva.recibirDivision(dataGridView_divisiones.SelectedRows[0].Cells[0].Value.ToString(), dataGridView_divisiones.SelectedRows[0].Cells[2].Value.ToString());
                     this.Close();
                 }
             }
