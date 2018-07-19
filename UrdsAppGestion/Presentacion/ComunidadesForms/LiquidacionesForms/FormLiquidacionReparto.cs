@@ -465,12 +465,45 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
         {
             if (dataGridView2.SelectedRows.Count > 0)
             {
-                String sqlSelect = "SELECT com_liqreparto.IdDivision, com_liqreparto.Nombre, com_liqreparto.Descripcion, com_liqreparto.ImpBloque, com_liqreparto.CGP, com_liqreparto.Importe, com_subcuotas.Parte FROM com_subcuotas INNER JOIN (com_opdetliquidacion INNER JOIN com_liqreparto ON com_opdetliquidacion.IdLiquidacion = com_liqreparto.IdLiquidacion) ON(com_subcuotas.IdDivision = com_liqreparto.IdDivision) AND(com_subcuotas.IdBloque = com_liqreparto.IdBloque) GROUP BY com_liqreparto.IdDivision, com_liqreparto.Nombre, com_liqreparto.Descripcion, com_liqreparto.ImpBloque, com_liqreparto.CGP, com_liqreparto.Importe, com_subcuotas.Parte, com_opdetliquidacion.IdLiquidacion, com_liqreparto.IdTitular HAVING(((com_opdetliquidacion.IdLiquidacion) = " + id_liquidacion_pasado + ") AND((com_liqreparto.IdTitular) = " + dataGridView2.SelectedRows[0].Cells[0].Value.ToString() + "));";
+                DataTable infoComunidad = null;
+                DataTable datosReparto = null;
+                DataTable datosRepartoIVA = null;
+                DataTable datosRepartoResumenIVA = null;
+                DataTable InfoEntidad = null;
+                DataTable resumenGastos = null;
 
-                DataTable datos1 = Persistencia.SentenciasSQL.select(sqlSelect);
+                String sqlSelect = "SELECT com_liqreparto.IdDivision, com_liqreparto.Nombre, com_liqreparto.Descripcion, com_liqreparto.ImpBloque, com_liqreparto.CGP, com_liqreparto.Importe, com_subcuotas.Parte, com_liqreparto.IdLiquidacion, com_liqreparto.IdTitular FROM com_subcuotas INNER JOIN com_liqreparto ON (com_subcuotas.IdDivision = com_liqreparto.IdDivision) AND(com_subcuotas.IdBloque = com_liqreparto.IdBloque) GROUP BY com_liqreparto.IdDivision, com_liqreparto.Nombre, com_liqreparto.Descripcion, com_liqreparto.ImpBloque, com_liqreparto.CGP, com_liqreparto.Importe, com_subcuotas.Parte, com_liqreparto.IdLiquidacion, com_liqreparto.IdTitular HAVING(((com_liqreparto.IdLiquidacion) = " + id_liquidacion_pasado + ") AND((com_liqreparto.IdTitular) = " + dataGridView2.Rows[0].Cells[0].Value.ToString() + "));" ;
 
-                //InformeParticularReciboIVA.FormVerInformeLiquidacionIVA nueva = new InformeParticularReciboIVA.FormVerInformeLiquidacionIVA(datos1);
-                //nueva.Show();
+                datosReparto = Persistencia.SentenciasSQL.select(sqlSelect);
+
+                //BUSCO TODOS LOS IVAS PARA LUEGO USARLO EN EL SUBINFORME Y FILTRADO.
+                String sqlSelectIVA = "SELECT com_liqrepartoiva.IdDivision, com_liqrepartoiva.`%IVA` as PorIVA, Sum(com_liqrepartoiva.BaseDivBloq) AS Base, Sum(com_liqrepartoiva.IVADivBloq) AS IVA, com_liqrepartoiva.IdLiquidacion FROM com_liqrepartoiva GROUP BY com_liqrepartoiva.IdDivision, com_liqrepartoiva.`%IVA`, com_liqrepartoiva.IdLiquidacion HAVING(((com_liqrepartoiva.IdLiquidacion) = " + id_liquidacion_pasado + "));";
+
+                datosRepartoIVA = Persistencia.SentenciasSQL.select(sqlSelectIVA);
+
+
+                //BUSCO LA INFORMACION DE LA COMUNIDAD Y SE LA PASO AL INFORME
+                String sqlSelectInfoComunidad = "SELECT ctos_entidades.Entidad, ctos_entidades.CIF, ctos_detdirecent.Direccion, ctos_detdirecent.CP, ctos_detdirecent.Poblacion, ctos_detdirecent.Provincia, com_cuentas.Descripcion, com_cuentas.NumCuenta, com_comunidades.IdComunidad FROM com_cuentas INNER JOIN (com_comunidades INNER JOIN(ctos_entidades INNER JOIN ctos_detdirecent ON ctos_entidades.IDEntidad = ctos_detdirecent.IdEntidad) ON com_comunidades.IdEntidad = ctos_entidades.IDEntidad) ON com_cuentas.IdComunidad = com_comunidades.IdComunidad WHERE(((com_comunidades.IdComunidad) = " + id_comunidad_pasado + ") AND((com_cuentas.Ppal) = -1));";
+
+                infoComunidad = Persistencia.SentenciasSQL.select(sqlSelectInfoComunidad);
+
+                //BUSCO EL TOTAL DE LOS IVAS
+                String sqlSelectResumenIVA = "SELECT com_liqrepartoiva.`%IVA` AS PorIVA, Sum(com_liqrepartoiva.BaseDivBloq) AS SumaDeBase, Sum(com_liqrepartoiva.IVADivBloq) AS SumaDelIVA FROM com_liqrepartoiva GROUP BY com_liqrepartoiva.`%IVA`, com_liqrepartoiva.IdTitular, com_liqrepartoiva.IdLiquidacion HAVING(((com_liqrepartoiva.IdTitular) = " + dataGridView2.Rows[0].Cells[0].Value.ToString() + ") AND((com_liqrepartoiva.IdLiquidacion) = " + id_liquidacion_pasado + "));";
+
+                datosRepartoResumenIVA = Persistencia.SentenciasSQL.select(sqlSelectResumenIVA);
+
+                //BUSCO INFORMACION DE LA ENTIDAD
+                String sqlSelectInfoEntidad = "SELECT ctos_entidades.Entidad, ctos_entidades.CIF, ctos_detdirecent.Direccion, ctos_detdirecent.CP, ctos_detdirecent.Poblacion, ctos_detdirecent.Provincia FROM ctos_entidades INNER JOIN ctos_detdirecent ON ctos_entidades.IDEntidad = ctos_detdirecent.IdEntidad WHERE(((ctos_entidades.IDEntidad) = " + dataGridView2.Rows[0].Cells[0].Value.ToString() + ") AND (ctos_detdirecent.Ppal = -1));";
+
+                InfoEntidad = Persistencia.SentenciasSQL.select(sqlSelectInfoEntidad);
+
+                //BUSCO EL RESUMEN DE GASTOS Y LO ADJUNTO A LA LIQUIDACIÓN
+                resumenGastos = GenerarResumenGastos();
+
+                String Liquidacion = (Persistencia.SentenciasSQL.select("SELECT LiqLargo FROM com_liquidaciones WHERE IdLiquidacion = " + id_liquidacion_pasado)).Rows[0][0].ToString();
+
+                InformeParticularReciboIVA.FormVerInformeLiquidacionIVA nueva = new InformeParticularReciboIVA.FormVerInformeLiquidacionIVA(datosReparto, datosRepartoIVA, infoComunidad, datosRepartoResumenIVA, InfoEntidad, resumenGastos, Liquidacion);
+                nueva.Show();
 
             }
         }

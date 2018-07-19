@@ -51,7 +51,7 @@
             // 
             // button_enviar
             // 
-            this.button_enviar.Location = new System.Drawing.Point(385, 534);
+            this.button_enviar.Location = new System.Drawing.Point(490, 537);
             this.button_enviar.Name = "button_enviar";
             this.button_enviar.Size = new System.Drawing.Size(75, 23);
             this.button_enviar.TabIndex = 0;
@@ -81,17 +81,19 @@
             // 
             // textBox_asusnto
             // 
+            this.textBox_asusnto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_asusnto.Location = new System.Drawing.Point(94, 58);
             this.textBox_asusnto.Name = "textBox_asusnto";
-            this.textBox_asusnto.Size = new System.Drawing.Size(343, 20);
+            this.textBox_asusnto.Size = new System.Drawing.Size(471, 23);
             this.textBox_asusnto.TabIndex = 3;
             // 
             // textBox_cuerpo
             // 
+            this.textBox_cuerpo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_cuerpo.Location = new System.Drawing.Point(94, 101);
             this.textBox_cuerpo.Multiline = true;
             this.textBox_cuerpo.Name = "textBox_cuerpo";
-            this.textBox_cuerpo.Size = new System.Drawing.Size(343, 223);
+            this.textBox_cuerpo.Size = new System.Drawing.Size(471, 250);
             this.textBox_cuerpo.TabIndex = 4;
             this.textBox_cuerpo.Text = "\r\n\r\nAtentamente,\r\nAdministraciones Urendes, S.L.\r\nTelf. 96 123 70 13 - admin@uren" +
     "des.com";
@@ -106,7 +108,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.textBox_adjunto_1);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(158, 330);
+            this.groupBox1.Location = new System.Drawing.Point(229, 357);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(199, 149);
             this.groupBox1.TabIndex = 6;
@@ -212,7 +214,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(472, 568);
+            this.ClientSize = new System.Drawing.Size(577, 572);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox_test);
