@@ -520,6 +520,7 @@
             this.textBoxDivisión.ReadOnly = true;
             this.textBoxDivisión.Size = new System.Drawing.Size(57, 20);
             this.textBoxDivisión.TabIndex = 57;
+            this.textBoxDivisión.DoubleClick += new System.EventHandler(this.textBoxDivisión_DoubleClick);
             this.textBoxDivisión.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBoxDivisión_MouseDoubleClick);
             // 
             // FormTareasPrincipal

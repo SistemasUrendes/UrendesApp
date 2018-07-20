@@ -687,7 +687,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (id_comunidad != null)
             {
-                FormSeleccionarBloque nueva = new FormSeleccionarBloque(this,id_comunidad);
+                FormSeleccionarBloque nueva = new FormSeleccionarBloque(this, this.Name, id_comunidad);
                 nueva.ControlBox = true;
                 nueva.TopMost = true;
                 nueva.WindowState = FormWindowState.Normal;
@@ -834,6 +834,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.codigoCat = null;
             textBoxDivisión.Text = division;
             this.idDivision = idDivision;
+        }
+        
+        private void textBoxDivisión_DoubleClick(object sender, EventArgs e)
+        {
+            textBoxDivisión.Text = "";
+            this.idDivision = null;
         }
     }
 }

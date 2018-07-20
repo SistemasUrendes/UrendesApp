@@ -1485,7 +1485,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 if (idTarea != null)
                 {
                     comboBoxTipo.Focus();
-                    FormSeleccionarBloque nueva = new FormSeleccionarBloque(this, idComunidad.ToString(), idTarea);
+                    FormSeleccionarBloque nueva = new FormSeleccionarBloque(this,this.Name, idComunidad.ToString(), idTarea);
                     nueva.ControlBox = true;
                     nueva.WindowState = FormWindowState.Normal;
                     nueva.StartPosition = FormStartPosition.CenterScreen;
@@ -1499,7 +1499,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     textBoxIdTarea.Text = idTarea;
                     textBoxIdTareaNuevo.Text = idTareaNuevo(idTarea);
                     comboBoxTipo.Focus();
-                    FormSeleccionarBloque nueva = new FormSeleccionarBloque(this, idComunidad.ToString(), idTarea);
+                    FormSeleccionarBloque nueva = new FormSeleccionarBloque(this,this.Name, idComunidad.ToString(),idTarea);
                     nueva.ControlBox = true;
                     nueva.WindowState = FormWindowState.Normal;
                     nueva.StartPosition = FormStartPosition.CenterScreen;
@@ -1620,7 +1620,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void textBoxBloque_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            FormSeleccionarBloque nueva = new FormSeleccionarBloque(this, idTarea);
+            FormSeleccionarBloque nueva = new FormSeleccionarBloque(idTarea,this, this.Name);
             nueva.Show();
         }
         
@@ -1887,38 +1887,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 if (desc != null && desc.Length > 0 && descripcion[i] != null && descripcion[i].Length > 0 ) desc += " " + descripcion[i];
                 else if (descripcion[i] != null && descripcion[i].Length > 0) desc = descripcion[i];
             }
-            //textBoxDescripcion.Text = desc;
             textBoxSugerencia.Text = desc;
         }
-
-        /*
-        private void guardarDescripcion(String str, int campo)
-        {
-            switch (campo)
-            {
-                //BLOQUE
-                case 0:
-                    if (str.Length > 10) descripcion[0] = "Varios Bloques";
-                    else descripcion[0] = str;
-
-                    break;
-                //DIVISIÓN
-                case 1:
-                    if (str.Length > 0) descripcion[0] = "";
-                    if (str.Length > 10) descripcion[1] = "Varias Divisiones";
-                    else descripcion[1] = textBoxBloque.Text;
-                    break;
-                //SERVICIO
-                case 2:
-                    descripcion[2] = str;
-                    break;
-                //TIPO TAREA
-                case 3:
-                    descripcion[3] = str;
-                    break;
-            }
-        }
-        */
 
         public void recibirBloque()
         {
@@ -1937,12 +1907,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
      
         private void cargarArrayDescripcion()
         {
-            /*
-            guardarDescripcion(textBoxBloque.Text, 0);
-            guardarDescripcion(textBoxDivision.Text, 1);
-            guardarDescripcion(textBoxServicio.Text, 2);
-            guardarDescripcion(comboBoxTipo.Text, 3);
-            */
             actualizarDescripcion(textBoxBloque.Text, 0);
             actualizarDescripcion(textBoxDivision.Text, 1);
             actualizarDescripcion(textBoxServicio.Text, 2);

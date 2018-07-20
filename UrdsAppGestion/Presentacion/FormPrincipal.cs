@@ -188,7 +188,7 @@ namespace UrdsAppGestión {
         private void verGestionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name == "FormGestionesPrincipal").SingleOrDefault<Form>();
+            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name.Contains("FormGestionesPrincipal")).SingleOrDefault<Form>();
             if (existe != null)
             {
                 existe.WindowState = FormWindowState.Maximized;

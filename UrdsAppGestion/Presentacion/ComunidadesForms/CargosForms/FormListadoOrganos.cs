@@ -132,7 +132,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
 
         private void buttonSelBloque_Click(object sender, EventArgs e)
         {
-            Tareas.FormSeleccionarBloque nueva = new Tareas.FormSeleccionarBloque(this, idComunidad);
+            Tareas.FormSeleccionarBloque nueva = new Tareas.FormSeleccionarBloque(this,this.Name, idComunidad);
             nueva.Show();
         }
 

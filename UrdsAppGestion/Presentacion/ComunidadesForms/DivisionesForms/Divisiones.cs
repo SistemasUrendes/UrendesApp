@@ -399,6 +399,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                     nueva.recibirDivision(dataGridView_divisiones.SelectedRows[0].Cells[0].Value.ToString(), dataGridView_divisiones.SelectedRows[0].Cells[2].Value.ToString());
                     this.Close();
                 }
+                if (donde.Contains("FormGestionesPrincipal"))
+                {
+                    Tareas.FormGestionesPrincipal nueva = (Tareas.FormGestionesPrincipal)existe;
+                    nueva.recibirDivision(dataGridView_divisiones.SelectedRows[0].Cells[0].Value.ToString(), dataGridView_divisiones.SelectedRows[0].Cells[2].Value.ToString());
+                    this.Close();
+                }
             }
         }
         private void cuotasToolStripMenuItem_Click(object sender, EventArgs e)

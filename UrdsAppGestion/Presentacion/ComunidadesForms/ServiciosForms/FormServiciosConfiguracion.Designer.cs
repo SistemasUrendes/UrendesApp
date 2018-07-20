@@ -185,19 +185,19 @@
             this.cambiarNombreToolStripMenuItem,
             this.borrarCategoríaToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(153, 70);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(151, 48);
             // 
             // cambiarNombreToolStripMenuItem
             // 
             this.cambiarNombreToolStripMenuItem.Name = "cambiarNombreToolStripMenuItem";
-            this.cambiarNombreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cambiarNombreToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.cambiarNombreToolStripMenuItem.Text = "Renombrar";
             this.cambiarNombreToolStripMenuItem.Click += new System.EventHandler(this.cambiarNombreToolStripMenuItem_Click);
             // 
             // borrarCategoríaToolStripMenuItem
             // 
             this.borrarCategoríaToolStripMenuItem.Name = "borrarCategoríaToolStripMenuItem";
-            this.borrarCategoríaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.borrarCategoríaToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.borrarCategoríaToolStripMenuItem.Text = "Borrar Servicio";
             this.borrarCategoríaToolStripMenuItem.Click += new System.EventHandler(this.borrarCategoríaToolStripMenuItem_Click);
             // 
@@ -261,6 +261,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormServiciosConfiguracion";
             this.Text = "Configuración Servicios";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormServiciosConfiguracion_FormClosing);
             this.Load += new System.EventHandler(this.FormServiciosConfiguracion_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

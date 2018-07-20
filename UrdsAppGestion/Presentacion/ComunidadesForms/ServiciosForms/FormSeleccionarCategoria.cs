@@ -16,6 +16,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         FormInsertarServicioTarea formAnt1;
         FormTareasPrincipal formAnt2;
         FormInsertarArea formAnt3;
+        FormGestionesPrincipal formAnt4;
         String idTarea;
         String idBloque;
         String codCat;
@@ -34,19 +35,34 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.formAnt2 = formAnt2;
         }
 
-        public FormSeleccionarCategoria(FormInsertarArea formAnt3)
-        {
-            InitializeComponent();
-            this.formAnt3 = formAnt3;
-        }
-
-        public FormSeleccionarCategoria(FormTareasPrincipal formAnt2,String idBloque)
+        public FormSeleccionarCategoria(FormTareasPrincipal formAnt2, String idBloque)
         {
             InitializeComponent();
             this.formAnt2 = formAnt2;
             this.idBloque = idBloque;
         }
 
+        public FormSeleccionarCategoria(FormGestionesPrincipal formAnt4)
+        {
+            InitializeComponent();
+            this.formAnt4 = formAnt4;
+        }
+
+        public FormSeleccionarCategoria(FormGestionesPrincipal formAnt4, String idBloque)
+        {
+            InitializeComponent();
+            this.formAnt4 = formAnt4;
+            this.idBloque = idBloque;
+        }
+
+
+        public FormSeleccionarCategoria(FormInsertarArea formAnt3)
+        {
+            InitializeComponent();
+            this.formAnt3 = formAnt3;
+        }
+
+       
         private void FormSeleccionarCategoria_Load(object sender, EventArgs e)
         {
             if ( idTarea != null) cargarCategoriasTarea();
@@ -115,6 +131,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (formAnt1 != null) formAnt1.recibirCategoria(dataGridViewCategorias.SelectedRows[0].Cells[0].Value.ToString());
             if (formAnt2 != null) formAnt2.recibirCategoria(dataGridViewCategorias.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewCategorias.SelectedRows[0].Cells[2].Value.ToString());
             if (formAnt3 != null) formAnt3.recibirCategoria(dataGridViewCategorias.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewCategorias.SelectedRows[0].Cells[1].Value.ToString());
+            if (formAnt4 != null) formAnt4.recibirCategoria(dataGridViewCategorias.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewCategorias.SelectedRows[0].Cells[2].Value.ToString());
             this.Close();
             
         }

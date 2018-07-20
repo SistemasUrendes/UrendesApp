@@ -33,10 +33,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (Login.getRol() == "Admin")
             {
                 buttonAddServicio.Visible = true;
+                buttonMantenimiento.Visible = true;
             }
             else
             {
                 buttonAddServicio.Visible = false;
+                buttonMantenimiento.Visible = false;
             }
             filtrarServicios();
         }
@@ -86,6 +88,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     }
                 }
             }
+            dataGridViewServicios.DataSource = null;
+            dataGridViewServicios.Columns.Clear();
             dataGridViewServicios.DataSource = tablaFinalServicios;
 
             DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
@@ -141,7 +145,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (e.KeyCode.ToString() == "F1")
             {
-                FormSeleccionarBloque nueva = new FormSeleccionarBloque(this, idTarea);
+                FormSeleccionarBloque nueva = new FormSeleccionarBloque(this, this.Name, idTarea);
                 nueva.Show();
             }
         }
@@ -287,6 +291,23 @@ namespace UrdsAppGestión.Presentacion.Tareas
             busqueda.DefaultView.RowFilter = filtro;
             dataGridViewServicios.DataSource = busqueda;
             ajustarDatagridServicios();
+        }
+
+        private void buttonMantenimiento_Click(object sender, EventArgs e)
+        {
+            FormServiciosConfiguracion nueva = new FormServiciosConfiguracion(this);
+            nueva.ControlBox = true;
+            nueva.Show();
+        }
+
+        public void recargar()
+        {
+            //this.Focus();
+            //this.BringToFront();
+            cargarBloques();
+            cargarTodosServicios();
+            cargarCategorias();
+            filtrarServicios();
         }
     }
 }

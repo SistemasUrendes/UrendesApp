@@ -15,60 +15,38 @@ namespace UrdsAppGestión.Presentacion.Tareas
         DataTable tablaBloques;
         String idComunidad;
         String idTarea;
-        FormVerTarea form_anterior1;
-        FormInsertarServicioTarea form_anterior2;
-        FormTareasPrincipal form_anterior3;
-        ComunidadesForms.CargosForms.FormListadoOrganos form_anterior4;
-        ComunidadesForms.CargosForms.FormNuevoGrupo form_anterior5;
+        String nombreForm;
+        Form form_anterior;
 
-        public FormSeleccionarBloque(FormVerTarea form_anterior1, String idComunidad, String idTarea)
+        public FormSeleccionarBloque(Form form_anterior,String nombreForm, String idComunidad, String idTarea)
         {
             InitializeComponent();
             this.idComunidad = idComunidad;
             this.idTarea = idTarea;
-            this.form_anterior1 = form_anterior1;
+            this.form_anterior = form_anterior;
+            this.nombreForm = nombreForm;
         }
 
-        public FormSeleccionarBloque(FormVerTarea form_anterior1,String idTarea)
+        public FormSeleccionarBloque(String idTarea, Form form_anterior, String nombreForm)
         {
             InitializeComponent();
             this.idTarea = idTarea;
-            this.form_anterior1 = form_anterior1;
+            this.form_anterior = form_anterior;
+            this.nombreForm = nombreForm;
         }
-
-        public FormSeleccionarBloque(FormInsertarServicioTarea form_anterior2, String idTarea)
+                
+        public FormSeleccionarBloque(Form form_anterior, String nombreForm, String idComunidad)
         {
             InitializeComponent();
-            this.idTarea = idTarea;
-            this.form_anterior2 = form_anterior2;
+            this.idComunidad = idComunidad;
+            this.form_anterior = form_anterior;
+            this.nombreForm = nombreForm;
         }
         
-        public FormSeleccionarBloque(FormTareasPrincipal form_anterior3, String idComunidad)
-        {
-            InitializeComponent();
-            this.idComunidad = idComunidad;
-            this.form_anterior3 = form_anterior3;
-        }
-
-
-        public FormSeleccionarBloque(ComunidadesForms.CargosForms.FormListadoOrganos form_anterior4, String idComunidad)
-        {
-            InitializeComponent();
-            this.idComunidad = idComunidad;
-            this.form_anterior4 = form_anterior4;
-        }
-
-        public FormSeleccionarBloque(ComunidadesForms.CargosForms.FormNuevoGrupo form_anterior5, String idComunidad)
-        {
-            InitializeComponent();
-            this.idComunidad = idComunidad;
-            this.form_anterior5 = form_anterior5;
-        }
-
         private void FormSeleccionarBloque_Load(object sender, EventArgs e)
         {
             cargarBloques();
-            if (idComunidad == null && form_anterior2 == null)
+            if (idComunidad == null && !nombreForm.Contains("FormInsertarServicioTarea"))
             {
                 buttonEnviar.Visible = false;
             }
@@ -81,7 +59,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             {
                 sqlSelect = "SELECT exp_area.IdBloque, exp_area.Nombre AS Descripcion,'true' AS Selected FROM exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea WHERE(((exp_area.IdAreaPrevio) = 0) AND((exp_areaTarea.IdTarea) = " + idTarea + "))";
             }
-            else if (form_anterior4 != null || form_anterior5 != null)
+            else if (nombreForm.Contains("FormListadoOrganos") || nombreForm.Contains("FormNuevoGrupo"))
             {
                 sqlSelect = "SELECT com_bloques.IdBloque, com_bloques.Descripcion,'true' AS Selected FROM com_bloques WHERE(((com_bloques.IdComunidad) = '" + idComunidad + "') AND((com_bloques.IdTipoBloque) = 1))";
             }
@@ -121,13 +99,45 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonEnviar_Click(object sender, EventArgs e)
         {
-            if (form_anterior1 != null && idComunidad != null)guardarBloques();
-            else enviarbloque();
+            enviarFormAnt();
         }
-
-        private void dataGridViewBloques_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        
+        private void enviarFormAnt()
         {
-
+            Form existe = Application.OpenForms.OfType<Form>().Where(pre => pre.Name.Contains(nombreForm)).SingleOrDefault<Form>();
+            if (existe != null)
+            {
+                if (nombreForm.Contains("FormVerTarea"))
+                {
+                    if (idComunidad != null) guardarBloques();
+                }
+                else if (nombreForm.Contains("FormInsertarServicioTarea"))
+                {
+                    FormInsertarServicioTarea nueva = (FormInsertarServicioTarea)existe;
+                    nueva.recibirBloque(dataGridViewBloques.SelectedRows[0].Cells[1].Value.ToString());
+                }
+                else if (nombreForm.Contains("FormTareasPrincipal"))
+                {
+                    FormTareasPrincipal nueva = (FormTareasPrincipal)existe;
+                    nueva.recibirBloque(dataGridViewBloques.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewBloques.SelectedRows[0].Cells[1].Value.ToString());
+                }
+                else if (nombreForm.Contains("FormListadoOrganos"))
+                {
+                    ComunidadesForms.CargosForms.FormListadoOrganos nueva = (ComunidadesForms.CargosForms.FormListadoOrganos)existe;
+                    nueva.recibirBloque(dataGridViewBloques.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewBloques.SelectedRows[0].Cells[1].Value.ToString());
+                }
+                else if (nombreForm.Contains("FormNuevoGrupo"))
+                {
+                    ComunidadesForms.CargosForms.FormNuevoGrupo nueva = (ComunidadesForms.CargosForms.FormNuevoGrupo)existe;
+                    nueva.recibirBloque(dataGridViewBloques.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewBloques.SelectedRows[0].Cells[1].Value.ToString());
+                }
+                else if (nombreForm.Contains("FormGestionesPrincipal"))
+                {
+                    FormGestionesPrincipal nueva = (FormGestionesPrincipal)existe;
+                    nueva.recibirBloque(dataGridViewBloques.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewBloques.SelectedRows[0].Cells[1].Value.ToString());
+                }
+            }
+            this.Close();
         }
 
         private int indiceTabla(String idBloque)
@@ -174,8 +184,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
                 }
             }
-            form_anterior1.cargarBloque();
-            form_anterior1.recibirBloque();
+            FormVerTarea nueva = (FormVerTarea)form_anterior;
+            nueva.cargarBloque();
+            nueva.recibirBloque();
             this.Close();
         }
 
@@ -184,23 +195,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
             String sqlSelect = "SELECT IdArea FROM exp_area WHERE idBloque = " + idBloque + " AND IdAreaPrevio = 0";
             return Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
         }
-
-        private void enviarbloque()
-        {
-            if (form_anterior2 != null) form_anterior2.recibirBloque(dataGridViewBloques.SelectedRows[0].Cells[1].Value.ToString());
-            if (form_anterior3 != null) form_anterior3.recibirBloque(dataGridViewBloques.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewBloques.SelectedRows[0].Cells[1].Value.ToString());
-            if (form_anterior4 != null) form_anterior4.recibirBloque(dataGridViewBloques.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewBloques.SelectedRows[0].Cells[1].Value.ToString());
-            if (form_anterior5 != null) form_anterior5.recibirBloque(dataGridViewBloques.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewBloques.SelectedRows[0].Cells[1].Value.ToString());
-            this.Close();
-        }
         
 
         private void dataGridViewBloques_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (form_anterior1 != null) guardarBloques();
-                else enviarbloque();
+                enviarFormAnt();
             }
             if (e.KeyCode == Keys.Space)
             {
@@ -241,17 +242,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     }
                 }
             }
-            if (form_anterior2 != null)
+            else
             {
-                form_anterior2.recibirBloque(dataGridViewBloques.SelectedRows[0].Cells[1].Value.ToString());
-                this.Close();
+                enviarFormAnt();
             }
-            if (form_anterior3 != null)
-            {
-                form_anterior3.recibirBloque(dataGridViewBloques.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewBloques.SelectedRows[0].Cells[1].Value.ToString());
-                this.Close();
-            }
-
         }
     }
 
