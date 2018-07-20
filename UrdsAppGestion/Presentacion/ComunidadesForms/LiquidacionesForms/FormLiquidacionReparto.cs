@@ -472,7 +472,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
                 DataTable InfoEntidad = null;
                 DataTable resumenGastos = null;
 
-                String sqlSelect = "SELECT com_liqreparto.IdDivision, com_liqreparto.Nombre, com_liqreparto.Descripcion, com_liqreparto.ImpBloque, com_liqreparto.CGP, com_liqreparto.Importe, com_subcuotas.Parte, com_liqreparto.IdLiquidacion, com_liqreparto.IdTitular FROM com_subcuotas INNER JOIN com_liqreparto ON (com_subcuotas.IdDivision = com_liqreparto.IdDivision) AND(com_subcuotas.IdBloque = com_liqreparto.IdBloque) GROUP BY com_liqreparto.IdDivision, com_liqreparto.Nombre, com_liqreparto.Descripcion, com_liqreparto.ImpBloque, com_liqreparto.CGP, com_liqreparto.Importe, com_subcuotas.Parte, com_liqreparto.IdLiquidacion, com_liqreparto.IdTitular HAVING(((com_liqreparto.IdLiquidacion) = " + id_liquidacion_pasado + ") AND((com_liqreparto.IdTitular) = " + dataGridView2.Rows[0].Cells[0].Value.ToString() + "));" ;
+                String sqlSelect = "SELECT com_liqreparto.IdDivision, com_liqreparto.Nombre, com_liqreparto.Descripcion, com_liqreparto.ImpBloque, com_liqreparto.CGP, com_liqreparto.Importe, com_subcuotas.Parte, com_liqreparto.IdLiquidacion, com_liqreparto.IdTitular, com_liqreparto.IdBloque FROM com_subcuotas INNER JOIN com_liqreparto ON (com_subcuotas.IdDivision = com_liqreparto.IdDivision) AND(com_subcuotas.IdBloque = com_liqreparto.IdBloque) GROUP BY com_liqreparto.IdDivision, com_liqreparto.Nombre, com_liqreparto.Descripcion, com_liqreparto.ImpBloque, com_liqreparto.CGP, com_liqreparto.Importe, com_subcuotas.Parte, com_liqreparto.IdLiquidacion, com_liqreparto.IdTitular HAVING(((com_liqreparto.IdLiquidacion) = " + id_liquidacion_pasado + ") AND((com_liqreparto.IdTitular) = " + dataGridView2.Rows[0].Cells[0].Value.ToString() + "));" ;
 
                 datosReparto = Persistencia.SentenciasSQL.select(sqlSelect);
 
@@ -498,13 +498,26 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
                 InfoEntidad = Persistencia.SentenciasSQL.select(sqlSelectInfoEntidad);
 
                 //BUSCO EL RESUMEN DE GASTOS Y LO ADJUNTO A LA LIQUIDACIÓN
-                resumenGastos = GenerarResumenGastos();
+                resumenGastos = GenerarResumenGastosIVA();
+
+                //FILTRO POR EL IDRECIBO QUE TOCA SI ES EL INFORME ESPECIFICO
+                if (InformeEspecifico)
+                {
+                    String filtro = "IdBloque = ";
+                    for (int a = 0; a < datosReparto.Rows.Count; a++)
+                    {
+                        if (a == datosReparto.Rows.Count - 1)
+                            filtro += datosReparto.Rows[a][9].ToString();
+                        else
+                            filtro += datosReparto.Rows[a][9].ToString() + " OR IdBloque = ";
+                    }
+                    resumenGastos.DefaultView.RowFilter = filtro;
+                }
 
                 String Liquidacion = (Persistencia.SentenciasSQL.select("SELECT LiqLargo FROM com_liquidaciones WHERE IdLiquidacion = " + id_liquidacion_pasado)).Rows[0][0].ToString();
 
                 InformeParticularReciboIVA.FormVerInformeLiquidacionIVA nueva = new InformeParticularReciboIVA.FormVerInformeLiquidacionIVA(datosReparto, datosRepartoIVA, infoComunidad, datosRepartoResumenIVA, InfoEntidad, resumenGastos, Liquidacion);
                 nueva.Show();
-
             }
         }
         private DataTable GenerarResumenGastos () {
@@ -563,6 +576,35 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
                         newTable.Rows.Add(rowInfo.ID, rowInfo.Field1, rowInfo.Field2, rowInfo.Field3, rowInfo.Field4, rowInfo.Field5, rowInfo.Field6);
 
                     return newTable;
+                }
+            }
+            return null;
+        }
+        private DataTable GenerarResumenGastosIVA()
+        {
+            //////////////////////////////RESUMEN DE GASTOS
+
+            String sqlTipoInforme = "SELECT IdTipoInformeLiq FROM com_comunidades WHERE IdComunidad = " + id_comunidad_pasado;
+            DataTable TipoInforme = Persistencia.SentenciasSQL.select(sqlTipoInforme);
+
+            if (TipoInforme.Rows.Count > 0)
+            {
+                if (TipoInforme.Rows[0][0].ToString() == "1") //INFORME COMPLETO
+                {
+
+                    String ResumenLiq = "SELECT com_opdetbloques.IdBloque, com_bloques.Descripcion, com_operaciones.IdSubCuenta, com_subcuentas.`TIT SUBCTA` as TITSUBCTA , Sum((`com_opdetliquidacion`.`Importe`*`com_opdetbloques`.`Porcentaje`)*IF(`com_subcuentas`.`ES`=1,-1,1)) AS TotalSub, com_liquidaciones.Notas FROM((((com_opdetbloques INNER JOIN com_operaciones ON com_opdetbloques.IdOp = com_operaciones.IdOp) INNER JOIN com_opdetliquidacion ON com_operaciones.IdOp = com_opdetliquidacion.IdOp) INNER JOIN com_bloques ON com_opdetbloques.IdBloque = com_bloques.IdBloque) INNER JOIN com_subcuentas ON com_operaciones.IdSubCuenta = com_subcuentas.IdSubcuenta) INNER JOIN com_liquidaciones ON com_opdetliquidacion.IdLiquidacion = com_liquidaciones.IdLiquidacion GROUP BY com_operaciones.IdComunidad, com_opdetliquidacion.IdLiquidacion, com_opdetbloques.IdBloque, com_bloques.Descripcion, com_operaciones.IdSubCuenta, com_subcuentas.`TIT SUBCTA`, com_liquidaciones.Notas, com_bloques.IdTipoBloque, com_operaciones.IdTipoReparto HAVING(((com_operaciones.IdComunidad) = " + id_comunidad_pasado + ") AND((com_opdetliquidacion.IdLiquidacion) = " + id_liquidacion_pasado + ") AND((com_operaciones.IdSubCuenta)Between 60000 And 69999 Or(com_operaciones.IdSubCuenta) Between 70100 And 76900) AND((Sum((`com_opdetliquidacion`.`Importe` * `com_opdetbloques`.`Porcentaje`) * IF(`com_subcuentas`.`ES` = 1, -1, 1))) <> 0) AND((com_bloques.IdTipoBloque) = 1) AND((com_operaciones.IdTipoReparto) = 1)) ORDER BY com_opdetbloques.IdBloque, com_bloques.Descripcion, com_subcuentas.`TIT SUBCTA`;";
+
+                    return Persistencia.SentenciasSQL.select(ResumenLiq);
+                }
+                else if (TipoInforme.Rows[0][0].ToString() == "2") //INFORME ESPEFICIFO BLOQUE
+                {
+                    InformeEspecifico = true;
+                    newTable = new DataTable();
+
+                    String ResumenLiq = "SELECT com_opdetbloques.IdBloque, com_bloques.Descripcion, com_operaciones.IdSubCuenta, com_subcuentas.`TIT SUBCTA` as TITSUBCTA , Sum((`com_opdetliquidacion`.`Importe`*`com_opdetbloques`.`Porcentaje`)*IF(`com_subcuentas`.`ES`=1,-1,1)) AS TotalSub, com_liquidaciones.Notas FROM((((com_opdetbloques INNER JOIN com_operaciones ON com_opdetbloques.IdOp = com_operaciones.IdOp) INNER JOIN com_opdetliquidacion ON com_operaciones.IdOp = com_opdetliquidacion.IdOp) INNER JOIN com_bloques ON com_opdetbloques.IdBloque = com_bloques.IdBloque) INNER JOIN com_subcuentas ON com_operaciones.IdSubCuenta = com_subcuentas.IdSubcuenta) INNER JOIN com_liquidaciones ON com_opdetliquidacion.IdLiquidacion = com_liquidaciones.IdLiquidacion GROUP BY com_operaciones.IdComunidad, com_opdetliquidacion.IdLiquidacion, com_opdetbloques.IdBloque, com_bloques.Descripcion, com_operaciones.IdSubCuenta, com_subcuentas.`TIT SUBCTA`, com_liquidaciones.Notas, com_bloques.IdTipoBloque, com_operaciones.IdTipoReparto HAVING(((com_operaciones.IdComunidad) = " + id_comunidad_pasado + ") AND((com_opdetliquidacion.IdLiquidacion) = " + id_liquidacion_pasado + ") AND((com_operaciones.IdSubCuenta)Between 60000 And 69999 Or(com_operaciones.IdSubCuenta) Between 70100 And 76900) AND((Sum((`com_opdetliquidacion`.`Importe` * `com_opdetbloques`.`Porcentaje`) * IF(`com_subcuentas`.`ES` = 1, -1, 1))) <> 0) AND((com_bloques.IdTipoBloque) = 1) AND((com_operaciones.IdTipoReparto) = 1)) ORDER BY com_opdetbloques.IdBloque, com_bloques.Descripcion, com_subcuentas.`TIT SUBCTA`;";
+
+                    return Persistencia.SentenciasSQL.select(ResumenLiq);
+
                 }
             }
             return null;

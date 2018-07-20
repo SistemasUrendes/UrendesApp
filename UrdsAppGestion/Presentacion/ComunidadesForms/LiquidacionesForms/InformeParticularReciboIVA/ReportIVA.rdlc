@@ -9,18 +9,18 @@
               <Width>0.07938cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>1.89146cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>1.97083cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>1.99729cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.67938cm</Height>
+              <Height>0.52063cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -163,7 +163,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.46771cm</Height>
+              <Height>0.36188cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -223,8 +223,6 @@
                         <VerticalAlign>Top</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>1pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -258,8 +256,6 @@
                         <VerticalAlign>Top</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>1pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -293,10 +289,9 @@
                         <VerticalAlign>Top</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>1pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -335,8 +330,8 @@
             </FilterValues>
           </Filter>
         </Filters>
-        <Height>1.14708cm</Height>
-        <Width>7.57937cm</Width>
+        <Height>0.88251cm</Height>
+        <Width>5.93896cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -345,10 +340,10 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>0.45161in</Height>
+    <Height>0.34744in</Height>
     <Style />
   </Body>
-  <Width>2.98401in</Width>
+  <Width>2.33817in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
