@@ -33,10 +33,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (Login.getRol() == "Admin")
             {
                 buttonAddServicio.Visible = true;
+                buttonMantenimientoCat.Visible = true;
+                buttonMantenimientoBloques.Visible = true;
             }
             else
             {
                 buttonAddServicio.Visible = false;
+                buttonMantenimientoCat.Visible = false;
+                buttonMantenimientoBloques.Visible = false;
             }
             filtrarServicios();
         }
@@ -86,6 +90,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     }
                 }
             }
+            dataGridViewServicios.DataSource = null;
+            dataGridViewServicios.Columns.Clear();
             dataGridViewServicios.DataSource = tablaFinalServicios;
 
             DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
@@ -141,7 +147,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (e.KeyCode.ToString() == "F1")
             {
-                FormSeleccionarBloque nueva = new FormSeleccionarBloque(this, idTarea);
+                FormSeleccionarBloque nueva = new FormSeleccionarBloque(this, this.Name, idTarea);
                 nueva.Show();
             }
         }
@@ -287,6 +293,34 @@ namespace UrdsAppGestión.Presentacion.Tareas
             busqueda.DefaultView.RowFilter = filtro;
             dataGridViewServicios.DataSource = busqueda;
             ajustarDatagridServicios();
+        }
+
+        private void buttonMantenimiento_Click(object sender, EventArgs e)
+        {
+            FormServiciosConfiguracion nueva = new FormServiciosConfiguracion(this);
+            nueva.ControlBox = true;
+            nueva.Show();
+        }
+
+        public void recargar()
+        {   
+            cargarBloques();
+            cargarTodosServicios();
+            cargarCategorias();
+            filtrarServicios();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            String sqlSelect = "SELECT com_comunidades.IdComunidad FROM com_comunidades INNER JOIN exp_tareas ON com_comunidades.IdEntidad = exp_tareas.IdEntidad WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
+            String idComunidad = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+            FormServiciosBloque nueva = new FormServiciosBloque(idComunidad);
+            nueva.Show();
+        }
+
+        private void buttonRecargar_Click(object sender, EventArgs e)
+        {
+            recargar();
         }
     }
 }

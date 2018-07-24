@@ -972,9 +972,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         
                 
-    public void cargarContactos()
+        public void cargarContactos()
         {
-            String sqlSelect = "SELECT exp_contactos.IdDetEntTarea, exp_contactos.Nombre, exp_contactos.Tel AS Teléfono, exp_contactos.Correo, exp_contactos.Notas, exp_contactos.Proveedor as P, exp_contactos.Comunero as C,exp_contactos.Entidad as E  FROM exp_contactos WHERE(((exp_contactos.IdTarea) = " + idTarea + "))";
+            String sqlSelect = "SELECT exp_contactos.IdDetEntTarea, exp_contactos.Nombre, exp_contactos.Tel AS Teléfono, exp_contactos.Correo, exp_contactos.Notas, exp_contactos.TipoContacto AS Tipo, exp_contactos.IdEntidad FROM exp_contactos WHERE(((exp_contactos.IdTarea) = " + idTarea + "))";
 
             contactos = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewContactos.DataSource = contactos;
@@ -1006,11 +1006,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 dataGridViewContactos.Columns["Nombre"].Width = 200;
                 dataGridViewContactos.Columns["Teléfono"].Width = 75;
                 dataGridViewContactos.Columns["Correo"].Width = 160;
-                dataGridViewContactos.Columns["P"].Width = 30;
-                dataGridViewContactos.Columns["C"].Width = 30;
-                dataGridViewContactos.Columns["E"].Width = 30;
-                dataGridViewContactos.Columns["Notas"].Width = 110;
+                dataGridViewContactos.Columns["Tipo"].Width = 40;
+                dataGridViewContactos.Columns["Notas"].Width = 140;
                 dataGridViewContactos.Columns["Notas"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                dataGridViewContactos.Columns["IdEntidad"].Visible = false;
             }
         }
 
@@ -1034,7 +1033,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 MessageBox.Show("Selecciona un correo electrónico");
             }
         }
-
         public static bool comprobarFormatoEmail(string sEmailAComprobar)
         {
             String sFormato = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
@@ -1485,7 +1483,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 if (idTarea != null)
                 {
                     comboBoxTipo.Focus();
-                    FormSeleccionarBloque nueva = new FormSeleccionarBloque(this, idComunidad.ToString(), idTarea);
+                    FormSeleccionarBloque nueva = new FormSeleccionarBloque(this,this.Name, idComunidad.ToString(), idTarea);
                     nueva.ControlBox = true;
                     nueva.WindowState = FormWindowState.Normal;
                     nueva.StartPosition = FormStartPosition.CenterScreen;
@@ -1499,7 +1497,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     textBoxIdTarea.Text = idTarea;
                     textBoxIdTareaNuevo.Text = idTareaNuevo(idTarea);
                     comboBoxTipo.Focus();
-                    FormSeleccionarBloque nueva = new FormSeleccionarBloque(this, idComunidad.ToString(), idTarea);
+                    FormSeleccionarBloque nueva = new FormSeleccionarBloque(this,this.Name, idComunidad.ToString(),idTarea);
                     nueva.ControlBox = true;
                     nueva.WindowState = FormWindowState.Normal;
                     nueva.StartPosition = FormStartPosition.CenterScreen;
@@ -1620,7 +1618,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void textBoxBloque_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            FormSeleccionarBloque nueva = new FormSeleccionarBloque(this, idTarea);
+            FormSeleccionarBloque nueva = new FormSeleccionarBloque(idTarea,this, this.Name);
             nueva.Show();
         }
         
@@ -1720,7 +1718,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     {
                         String mail = "";
                         DataTable grupoContactos = null;
-                        String sqlContactos = "SELECT ctos_detemail.Email AS Correo FROM((exp_catcontactos INNER JOIN exp_contactos ON exp_catcontactos.IdContacto = exp_contactos.IdDetEntTarea) INNER JOIN ctos_detemail ON exp_contactos.IdEntidad = ctos_detemail.IdEntidad) INNER JOIN exp_gestiones ON exp_catcontactos.IdCategoria = exp_gestiones.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_catcontactos.TipoContacto) = 'T')) GROUP BY exp_gestiones.IdGestión HAVING(((exp_gestiones.IdGestión) = " + idGestion + "))";
+                        String sqlContactos = "SELECT exp_contactos.Correo FROM(exp_catcontactos INNER JOIN exp_contactos ON exp_catcontactos.IdContacto = exp_contactos.IdDetEntTarea) INNER JOIN exp_gestiones ON exp_catcontactos.IdCategoria = exp_gestiones.IdEntidad WHERE (exp_catcontactos.TipoContacto = 'T') GROUP BY exp_gestiones.IdGestión HAVING(((exp_gestiones.IdGestión) = " + idGestion + "))";
                         grupoContactos = Persistencia.SentenciasSQL.select(sqlContactos);
 
                         String sqlProveedores = "SELECT ctos_detemail.Email AS Correo FROM exp_gestiones INNER JOIN (((exp_catcontactos INNER JOIN com_proveedores ON exp_catcontactos.IdContacto = com_proveedores.IdProveedor) INNER JOIN ctos_entidades ON com_proveedores.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN ctos_detemail ON ctos_entidades.IDEntidad = ctos_detemail.IdEntidad) ON exp_gestiones.IdEntidad = exp_catcontactos.IdCategoria WHERE(((ctos_detemail.Ppal) = -1) AND((exp_catcontactos.TipoContacto) = 'P')) GROUP BY exp_gestiones.IdGestión HAVING(((exp_gestiones.IdGestión) = " + idGestion + "))";
@@ -1887,38 +1885,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 if (desc != null && desc.Length > 0 && descripcion[i] != null && descripcion[i].Length > 0 ) desc += " " + descripcion[i];
                 else if (descripcion[i] != null && descripcion[i].Length > 0) desc = descripcion[i];
             }
-            //textBoxDescripcion.Text = desc;
             textBoxSugerencia.Text = desc;
         }
-
-        /*
-        private void guardarDescripcion(String str, int campo)
-        {
-            switch (campo)
-            {
-                //BLOQUE
-                case 0:
-                    if (str.Length > 10) descripcion[0] = "Varios Bloques";
-                    else descripcion[0] = str;
-
-                    break;
-                //DIVISIÓN
-                case 1:
-                    if (str.Length > 0) descripcion[0] = "";
-                    if (str.Length > 10) descripcion[1] = "Varias Divisiones";
-                    else descripcion[1] = textBoxBloque.Text;
-                    break;
-                //SERVICIO
-                case 2:
-                    descripcion[2] = str;
-                    break;
-                //TIPO TAREA
-                case 3:
-                    descripcion[3] = str;
-                    break;
-            }
-        }
-        */
 
         public void recibirBloque()
         {
@@ -1937,12 +1905,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
      
         private void cargarArrayDescripcion()
         {
-            /*
-            guardarDescripcion(textBoxBloque.Text, 0);
-            guardarDescripcion(textBoxDivision.Text, 1);
-            guardarDescripcion(textBoxServicio.Text, 2);
-            guardarDescripcion(comboBoxTipo.Text, 3);
-            */
             actualizarDescripcion(textBoxBloque.Text, 0);
             actualizarDescripcion(textBoxDivision.Text, 1);
             actualizarDescripcion(textBoxServicio.Text, 2);
@@ -1975,6 +1937,61 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 }
             }
         }
-        
+
+        private void enviarCorreoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewContactos.SelectedRows[0].Cells[5].Value.ToString() == "GOB")
+            {
+                String idGrupo = dataGridViewContactos.SelectedRows[0].Cells[6].Value.ToString();
+                String mail = "";
+                DataTable grupoContactos = null;
+                String sqlContactos = "SELECT exp_contactos.Correo FROM(exp_catcontactos INNER JOIN exp_contactos ON exp_catcontactos.IdContacto = exp_contactos.IdDetEntTarea) INNER JOIN exp_categoriaContactos ON exp_catcontactos.IdCategoria = exp_categoriaContactos.IdGrupo WHERE (exp_categoriaContactos.IdGrupo = " + idGrupo + ") AND (exp_catcontactos.TipoContacto ='T')";
+                grupoContactos = Persistencia.SentenciasSQL.select(sqlContactos);
+
+                String sqlProveedores = "SELECT ctos_detemail.Email AS Correo FROM((exp_catcontactos INNER JOIN com_proveedores ON exp_catcontactos.IdContacto = com_proveedores.IdProveedor) INNER JOIN ctos_entidades ON com_proveedores.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN ctos_detemail ON ctos_entidades.IDEntidad = ctos_detemail.IdEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_catcontactos.TipoContacto) = 'P') AND((exp_catcontactos.IdCategoria) = " + idGrupo + "))";
+                grupoContactos.Merge(Persistencia.SentenciasSQL.select(sqlProveedores));
+
+                String sqlCargos = "SELECT ctos_detemail.Email AS Correo FROM ctos_detemail INNER JOIN (((exp_catcontactos INNER JOIN com_cargos ON exp_catcontactos.IdContacto = com_cargos.IdCargo) INNER JOIN com_cargoscom ON com_cargos.IdCargo = com_cargoscom.IdCargo) INNER JOIN com_comuneros ON com_cargoscom.IdComunero = com_comuneros.IdComunero) ON ctos_detemail.IdEntidad = com_comuneros.IdEntidad WHERE(((exp_catcontactos.TipoContacto) = 'O') AND((com_cargoscom.FFin)Is Null) AND((ctos_detemail.Ppal) = -1) AND((exp_catcontactos.IdCategoria) = " + idGrupo + "))";
+
+                grupoContactos.Merge(Persistencia.SentenciasSQL.select(sqlCargos));
+
+                String sqlComuneros = "SELECT ctos_detemail.Email AS Correo FROM(exp_catcontactos INNER JOIN(ctos_detemail INNER JOIN com_comuneros ON ctos_detemail.IdEntidad = com_comuneros.IdEntidad) ON exp_catcontactos.IdContacto = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad WHERE(((ctos_detemail.Ppal) = -1) AND((exp_catcontactos.TipoContacto) = 'C') AND((exp_catcontactos.IdCategoria) = " + idGrupo + "))";
+
+
+
+                grupoContactos.Merge(Persistencia.SentenciasSQL.select(sqlComuneros));
+
+                for (int i = 0; i < grupoContactos.Rows.Count; i++) 
+                {
+                    if (!mail.Contains(grupoContactos.Rows[i][0].ToString()))
+                    {
+                        mail += grupoContactos.Rows[i][0].ToString();
+                        if (i < grupoContactos.Rows.Count - 1) mail += ",";
+                    }
+                }
+
+                System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\'" + mail + "\',subject=\'" + generaAsunto() + "\"");
+            }
+            else
+            {
+                try
+                {
+                    String mail = dataGridViewContactos.SelectedRows[0].Cells[3].Value.ToString();
+                    if (comprobarFormatoEmail(mail))
+                    {
+                        System.Diagnostics.Process.Start("thunderbird", "-compose \"to=\"" + mail + ",subject=\"" + generaAsunto() + "\"");
+                    }
+                    else
+                    {
+
+                        MessageBox.Show("Correo electrónico no valido");
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Selecciona un correo electrónico");
+                }
+            }
+        }
     }
 }

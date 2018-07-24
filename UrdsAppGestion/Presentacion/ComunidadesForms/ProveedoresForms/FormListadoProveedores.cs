@@ -232,7 +232,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
                 if (nombre_form_cargado == "FormInsertarContacto")
                 {
                     Tareas.FormInsertarContacto nuevo = (Tareas.FormInsertarContacto)existe;
-                    nuevo.recibirProveedor(dataGridView_proveedores.SelectedCells[4].Value.ToString(), dataGridView_proveedores.SelectedCells[6].Value.ToString(), dataGridView_proveedores.SelectedCells[7].Value.ToString());
+                    nuevo.recibirProveedor(dataGridView_proveedores.SelectedCells[4].Value.ToString(), dataGridView_proveedores.SelectedRows[0].Cells["Email"].Value.ToString(), dataGridView_proveedores.SelectedRows[0].Cells["Telefono"].Value.ToString(), dataGridView_proveedores.SelectedRows[0].Cells["Descripcion"].Value.ToString());
                 }
                 if (nombre_form_cargado == "FormInsertarGestion")
                 {

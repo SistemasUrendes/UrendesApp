@@ -16,6 +16,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
         DataTable grupos;
         String idBloque;
         Tareas.FormInsertarGestion formAnt;
+        Tareas.FormInsertarContacto formAnt2;
         public FormListadoOrganos(String idComunidad)
         {
             InitializeComponent();
@@ -30,10 +31,18 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
             this.formAnt = formAnt;
         }
 
+
+        public FormListadoOrganos(Tareas.FormInsertarContacto formAnt2, String idComunidad)
+        {
+            InitializeComponent();
+            this.idComunidad = idComunidad;
+            this.formAnt2 = formAnt2;
+        }
+
         private void FormListadoOrganos_Load(object sender, EventArgs e)
         {
             cargarGrupos();
-            if (formAnt != null)
+            if (formAnt != null || formAnt2 != null)
             {
                 buttonEnviar.Visible = true;
             }
@@ -132,7 +141,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
 
         private void buttonSelBloque_Click(object sender, EventArgs e)
         {
-            Tareas.FormSeleccionarBloque nueva = new Tareas.FormSeleccionarBloque(this, idComunidad);
+            Tareas.FormSeleccionarBloque nueva = new Tareas.FormSeleccionarBloque(this,this.Name, idComunidad);
             nueva.Show();
         }
 
@@ -153,7 +162,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
 
         private void buttonEnviar_Click(object sender, EventArgs e)
         {
-            formAnt.recibirGrupo(dataGridViewOrganos.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewOrganos.SelectedRows[0].Cells[1].Value.ToString());
+            if (formAnt != null ) formAnt.recibirGrupo(dataGridViewOrganos.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewOrganos.SelectedRows[0].Cells[1].Value.ToString());
+            else if (formAnt2 != null ) formAnt2.recibirGrupo(dataGridViewOrganos.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewOrganos.SelectedRows[0].Cells[1].Value.ToString());
             this.Close();
         }
     }

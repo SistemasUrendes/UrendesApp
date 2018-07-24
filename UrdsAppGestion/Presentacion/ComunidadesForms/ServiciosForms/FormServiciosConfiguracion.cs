@@ -16,11 +16,17 @@ namespace UrdsAppGestión.Presentacion.Tareas
         DataTable tablaBloques;
         DataTable tablaCategorias;
         DataTable tablaAreas;
+        FormInsertarServicioTarea formAnt;
 
         public FormServiciosConfiguracion()
         {
             InitializeComponent();
-            
+        }
+
+        public FormServiciosConfiguracion(FormInsertarServicioTarea formAnt)
+        {
+            InitializeComponent();
+            this.formAnt = formAnt;
         }
 
         private void FormServiciosConfiguracion_Load(object sender, EventArgs e)
@@ -79,11 +85,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 dataGridViewBloque.Columns["Descripcion"].Width = 350;
             }
         }
-
-        private void borrarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-              
-        }
+        
 
         private void buttonAddArea_Click(object sender, EventArgs e)
         {
@@ -265,6 +267,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
             ComunidadesForms.ServiciosForms.FormInsertarCategoria nueva = new ComunidadesForms.ServiciosForms.FormInsertarCategoria(this,dataGridViewCategorias.SelectedRows[0].Cells[0].Value.ToString());
             nueva.Show();
         }
-        
+
+        private void FormServiciosConfiguracion_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnt.recargar();
+        }
     }
 }

@@ -40,6 +40,9 @@
             this.buttonAddServicio = new System.Windows.Forms.Button();
             this.dataGridViewCategorias = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.buttonMantenimientoCat = new System.Windows.Forms.Button();
+            this.buttonMantenimientoBloques = new System.Windows.Forms.Button();
+            this.buttonRecargar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewServicios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCategorias)).BeginInit();
             this.SuspendLayout();
@@ -64,7 +67,7 @@
             // 
             // textBoxFiltroBloque
             // 
-            this.textBoxFiltroBloque.Location = new System.Drawing.Point(594, 44);
+            this.textBoxFiltroBloque.Location = new System.Drawing.Point(594, 43);
             this.textBoxFiltroBloque.Name = "textBoxFiltroBloque";
             this.textBoxFiltroBloque.Size = new System.Drawing.Size(164, 20);
             this.textBoxFiltroBloque.TabIndex = 2;
@@ -73,7 +76,7 @@
             // 
             // textBoxFiltroCategoria
             // 
-            this.textBoxFiltroCategoria.Location = new System.Drawing.Point(824, 44);
+            this.textBoxFiltroCategoria.Location = new System.Drawing.Point(824, 43);
             this.textBoxFiltroCategoria.Name = "textBoxFiltroCategoria";
             this.textBoxFiltroCategoria.Size = new System.Drawing.Size(183, 20);
             this.textBoxFiltroCategoria.TabIndex = 3;
@@ -82,7 +85,7 @@
             // 
             // textBoxFiltroServicios
             // 
-            this.textBoxFiltroServicios.Location = new System.Drawing.Point(340, 44);
+            this.textBoxFiltroServicios.Location = new System.Drawing.Point(340, 43);
             this.textBoxFiltroServicios.Name = "textBoxFiltroServicios";
             this.textBoxFiltroServicios.Size = new System.Drawing.Size(199, 20);
             this.textBoxFiltroServicios.TabIndex = 1;
@@ -122,13 +125,13 @@
             this.buttonEnviar.Name = "buttonEnviar";
             this.buttonEnviar.Size = new System.Drawing.Size(88, 23);
             this.buttonEnviar.TabIndex = 5;
-            this.buttonEnviar.Text = "Enviar";
+            this.buttonEnviar.Text = "Guardar";
             this.buttonEnviar.UseVisualStyleBackColor = true;
             this.buttonEnviar.Click += new System.EventHandler(this.buttonEnviar_Click);
             // 
             // buttonAddServicio
             // 
-            this.buttonAddServicio.Location = new System.Drawing.Point(879, 12);
+            this.buttonAddServicio.Location = new System.Drawing.Point(798, 12);
             this.buttonAddServicio.Name = "buttonAddServicio";
             this.buttonAddServicio.Size = new System.Drawing.Size(128, 23);
             this.buttonAddServicio.TabIndex = 42;
@@ -157,17 +160,50 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 44);
+            this.label1.Location = new System.Drawing.Point(9, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 15);
             this.label1.TabIndex = 44;
             this.label1.Text = "Categorías:";
+            // 
+            // buttonMantenimientoCat
+            // 
+            this.buttonMantenimientoCat.Location = new System.Drawing.Point(236, 42);
+            this.buttonMantenimientoCat.Name = "buttonMantenimientoCat";
+            this.buttonMantenimientoCat.Size = new System.Drawing.Size(98, 23);
+            this.buttonMantenimientoCat.TabIndex = 45;
+            this.buttonMantenimientoCat.Text = "Mtto. Categorías";
+            this.buttonMantenimientoCat.UseVisualStyleBackColor = true;
+            this.buttonMantenimientoCat.Click += new System.EventHandler(this.buttonMantenimiento_Click);
+            // 
+            // buttonMantenimientoBloques
+            // 
+            this.buttonMantenimientoBloques.Location = new System.Drawing.Point(132, 41);
+            this.buttonMantenimientoBloques.Name = "buttonMantenimientoBloques";
+            this.buttonMantenimientoBloques.Size = new System.Drawing.Size(98, 24);
+            this.buttonMantenimientoBloques.TabIndex = 46;
+            this.buttonMantenimientoBloques.Text = "Mtto. Bloques";
+            this.buttonMantenimientoBloques.UseVisualStyleBackColor = true;
+            this.buttonMantenimientoBloques.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // buttonRecargar
+            // 
+            this.buttonRecargar.Location = new System.Drawing.Point(932, 12);
+            this.buttonRecargar.Name = "buttonRecargar";
+            this.buttonRecargar.Size = new System.Drawing.Size(75, 23);
+            this.buttonRecargar.TabIndex = 47;
+            this.buttonRecargar.Text = "Recargar";
+            this.buttonRecargar.UseVisualStyleBackColor = true;
+            this.buttonRecargar.Click += new System.EventHandler(this.buttonRecargar_Click);
             // 
             // FormInsertarServicioTarea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1019, 422);
+            this.Controls.Add(this.buttonRecargar);
+            this.Controls.Add(this.buttonMantenimientoBloques);
+            this.Controls.Add(this.buttonMantenimientoCat);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewCategorias);
             this.Controls.Add(this.buttonAddServicio);
@@ -204,5 +240,8 @@
         private System.Windows.Forms.Button buttonAddServicio;
         private System.Windows.Forms.DataGridView dataGridViewCategorias;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonMantenimientoCat;
+        private System.Windows.Forms.Button buttonMantenimientoBloques;
+        private System.Windows.Forms.Button buttonRecargar;
     }
 }

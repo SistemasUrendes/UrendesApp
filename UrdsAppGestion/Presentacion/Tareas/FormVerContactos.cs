@@ -47,7 +47,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void buttonAddContacto_Click(object sender, EventArgs e)
         {
-            Tareas.FormInsertarContacto nueva = new FormInsertarContacto(idTarea, idComunidad);
+            Tareas.FormInsertarContacto nueva = new FormInsertarContacto(this,idTarea, idComunidad);
             nueva.ControlBox = true;
             nueva.TopMost = true;
             nueva.WindowState = FormWindowState.Normal;
@@ -57,7 +57,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         public void cargarContactos()
         {
-            String sqlSelect = "SELECT exp_contactos.IdDetEntTarea, exp_contactos.Nombre, exp_contactos.Tel AS Teléfono, exp_contactos.Correo, exp_contactos.Proveedor as P, exp_contactos.Comunero as C,exp_contactos.Entidad as E  FROM exp_contactos WHERE(((exp_contactos.IdTarea) = " + idTarea + "))";
+            String sqlSelect = "SELECT exp_contactos.IdDetEntTarea, exp_contactos.Nombre, exp_contactos.Tel AS Teléfono, exp_contactos.Correo, exp_contactos.TipoContacto AS Tipo FROM exp_contactos WHERE(((exp_contactos.IdTarea) = " + idTarea + "))";
 
             contactos = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewContactos.DataSource = contactos;
@@ -87,10 +87,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 dataGridViewContactos.Columns[0].Visible = false;
                 dataGridViewContactos.Columns["Nombre"].Width = 255;
                 dataGridViewContactos.Columns["Teléfono"].Width = 75;
-                dataGridViewContactos.Columns["Correo"].Width = 180;
-                dataGridViewContactos.Columns["P"].Width = 30;
-                dataGridViewContactos.Columns["C"].Width = 30;
-                dataGridViewContactos.Columns["E"].Width = 30;
+                dataGridViewContactos.Columns["Correo"].Width = 200;
+                dataGridViewContactos.Columns["Tipo"].Width = 60;
             }
         }
     }

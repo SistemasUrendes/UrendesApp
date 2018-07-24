@@ -15,6 +15,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
         DataTable cargos1;
         String id_comunidad_cargado;
         Tareas.FormInsertarGestion form_anterior;
+        Tareas.FormInsertarContacto form_anterior2;
 
         public FormCargos(String id_comunidad_cargado)
         {
@@ -27,6 +28,13 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
             InitializeComponent();
             this.id_comunidad_cargado = id_comunidad_cargado;
             this.form_anterior = form_anterior;
+        }
+
+        public FormCargos(Tareas.FormInsertarContacto form_anterior2, String id_comunidad_cargado)
+        {
+            InitializeComponent();
+            this.id_comunidad_cargado = id_comunidad_cargado;
+            this.form_anterior2 = form_anterior2;
         }
 
         private void verFichaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -42,14 +50,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
             busqueda.DefaultView.RowFilter = "FFin is Null";
             dataGridView_ListadeCargos.DataSource = busqueda;
 
-            if (form_anterior != null)
+            if (form_anterior != null || form_anterior2 != null)
             {
                 buttonEnviar.Visible = true;
             }
         }
         public void cargardatagrid() {
-            //String sqlSelect = "SELECT com_cargoscom.IdCargoCom, com_cargos.Cargo, com_organos.Nombre, ctos_entidades.Entidad, com_comuneros.IdEntidad, com_divisiones.Division, com_cargoscom.FInicio, com_cargoscom.FFin FROM(com_divisiones RIGHT JOIN(((com_cargos INNER JOIN com_cargoscom ON com_cargos.IdCargo = com_cargoscom.IdCargo) INNER JOIN com_comuneros ON com_cargoscom.IdComunero = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) ON com_divisiones.IdDivision = com_comuneros.IdDivPpal) LEFT JOIN com_organos ON com_cargos.IdOrgano = com_organos.IdOrgano GROUP BY com_cargoscom.IdCargoCom, com_cargos.Cargo, com_organos.Nombre, ctos_entidades.Entidad, com_comuneros.IdEntidad, com_divisiones.Division, com_cargoscom.FInicio, com_cargoscom.FFin, com_cargoscom.IdComunidad HAVING(((com_cargoscom.IdComunidad) = " + id_comunidad_cargado + "))";
-
             String sqlSelect = "SELECT com_cargoscom.IdCargoCom, com_cargos.Cargo, com_bloques.Descripcion AS Bloque, com_organos.Nombre AS Organo, ctos_entidades.Entidad, com_comuneros.IdEntidad, com_divisiones.Division, com_cargoscom.FInicio, com_cargoscom.FFin, com_cargos.IdCargo FROM(((((com_cargos INNER JOIN com_cargoscom ON com_cargos.IdCargo = com_cargoscom.IdCargo) INNER JOIN com_comuneros ON com_cargoscom.IdComunero = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_organos ON com_cargos.IdOrgano = com_organos.IdOrgano) LEFT JOIN com_bloques ON com_cargos.IdBloque = com_bloques.IdBloque) LEFT JOIN com_divisiones ON com_cargoscom.IdDivision = com_divisiones.IdDivision GROUP BY com_cargoscom.IdCargoCom, com_cargos.Cargo, com_organos.Nombre, ctos_entidades.Entidad, com_comuneros.IdEntidad, com_divisiones.Division, com_cargoscom.FInicio, com_cargoscom.FFin, com_cargoscom.IdComunidad, com_cargoscom.IdComunidad HAVING(((com_cargoscom.IdComunidad) = " + id_comunidad_cargado + "))";
 
             cargos1 = Persistencia.SentenciasSQL.select(sqlSelect);
@@ -140,7 +146,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.CargosForms
         private void buttonEnviar_Click(object sender, EventArgs e)
         {
             String idEntidad = dataGridView_ListadeCargos.SelectedRows[0].Cells["IdEntidad"].Value.ToString();
-            form_anterior.recibirOrgano(idEntidad);
+            if (form_anterior != null ) form_anterior.recibirOrgano(idEntidad);
+            if (form_anterior2 != null) form_anterior2.recibirCargo(idEntidad, dataGridView_ListadeCargos.SelectedRows[0].Cells["Entidad"].Value.ToString(), dataGridView_ListadeCargos.SelectedRows[0].Cells["Cargo"].Value.ToString());
             this.Close();
         }
         
