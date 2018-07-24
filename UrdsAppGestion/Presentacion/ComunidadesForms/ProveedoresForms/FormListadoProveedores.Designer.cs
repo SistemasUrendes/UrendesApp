@@ -40,11 +40,12 @@
             this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarProveedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.darDeBajaProveedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.darDeAltaProveedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox_informes = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.darDeAltaProveedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_proveedores)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -70,7 +71,7 @@
             // 
             // button_enviar
             // 
-            this.button_enviar.Location = new System.Drawing.Point(1037, 36);
+            this.button_enviar.Location = new System.Drawing.Point(816, 36);
             this.button_enviar.Name = "button_enviar";
             this.button_enviar.Size = new System.Drawing.Size(102, 23);
             this.button_enviar.TabIndex = 3;
@@ -106,7 +107,7 @@
             this.darDeBajaProveedorToolStripMenuItem,
             this.darDeAltaProveedorToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(191, 158);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(191, 136);
             // 
             // verEntidadToolStripMenuItem
             // 
@@ -142,6 +143,13 @@
             this.darDeBajaProveedorToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.darDeBajaProveedorToolStripMenuItem.Text = "Dar de Baja Proveedor";
             this.darDeBajaProveedorToolStripMenuItem.Click += new System.EventHandler(this.darDeBajaProveedorToolStripMenuItem_Click);
+            // 
+            // darDeAltaProveedorToolStripMenuItem
+            // 
+            this.darDeAltaProveedorToolStripMenuItem.Name = "darDeAltaProveedorToolStripMenuItem";
+            this.darDeAltaProveedorToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.darDeAltaProveedorToolStripMenuItem.Text = "Dar de Alta Proveedor";
+            this.darDeAltaProveedorToolStripMenuItem.Click += new System.EventHandler(this.darDeAltaProveedorToolStripMenuItem_Click);
             // 
             // label2
             // 
@@ -182,18 +190,20 @@
             "Alta",
             "Baja",
             "Todos"});
-            this.comboBox1.Location = new System.Drawing.Point(824, 38);
+            this.comboBox1.Location = new System.Drawing.Point(1018, 37);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 7;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // darDeAltaProveedorToolStripMenuItem
+            // label3
             // 
-            this.darDeAltaProveedorToolStripMenuItem.Name = "darDeAltaProveedorToolStripMenuItem";
-            this.darDeAltaProveedorToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.darDeAltaProveedorToolStripMenuItem.Text = "Dar de Alta Proveedor";
-            this.darDeAltaProveedorToolStripMenuItem.Click += new System.EventHandler(this.darDeAltaProveedorToolStripMenuItem_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(966, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Estado :";
             // 
             // FormOperacionesListadoProveedores
             // 
@@ -201,6 +211,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1219, 571);
             this.ControlBox = false;
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox_informes);
@@ -239,5 +250,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ToolStripMenuItem darDeBajaProveedorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem darDeAltaProveedorToolStripMenuItem;
+        private System.Windows.Forms.Label label3;
     }
 }

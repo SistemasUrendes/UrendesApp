@@ -42,6 +42,8 @@
             this.buttonComuneros = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxNotas = new System.Windows.Forms.TextBox();
+            this.buttonCargo = new System.Windows.Forms.Button();
+            this.buttonOrgano = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBoxNombre
@@ -117,29 +119,29 @@
             // 
             this.buttonEntidad.Location = new System.Drawing.Point(65, 12);
             this.buttonEntidad.Name = "buttonEntidad";
-            this.buttonEntidad.Size = new System.Drawing.Size(53, 20);
+            this.buttonEntidad.Size = new System.Drawing.Size(36, 20);
             this.buttonEntidad.TabIndex = 5;
-            this.buttonEntidad.Text = "Entidad";
+            this.buttonEntidad.Text = "Ent";
             this.buttonEntidad.UseVisualStyleBackColor = true;
             this.buttonEntidad.Click += new System.EventHandler(this.buttonEntidad_Click);
             // 
             // buttonProveedores
             // 
-            this.buttonProveedores.Location = new System.Drawing.Point(126, 12);
+            this.buttonProveedores.Location = new System.Drawing.Point(107, 12);
             this.buttonProveedores.Name = "buttonProveedores";
-            this.buttonProveedores.Size = new System.Drawing.Size(68, 20);
+            this.buttonProveedores.Size = new System.Drawing.Size(38, 20);
             this.buttonProveedores.TabIndex = 6;
-            this.buttonProveedores.Text = "Proveedor";
+            this.buttonProveedores.Text = "Pro";
             this.buttonProveedores.UseVisualStyleBackColor = true;
             this.buttonProveedores.Click += new System.EventHandler(this.buttonProveedores_Click);
             // 
             // buttonComuneros
             // 
-            this.buttonComuneros.Location = new System.Drawing.Point(200, 12);
+            this.buttonComuneros.Location = new System.Drawing.Point(151, 12);
             this.buttonComuneros.Name = "buttonComuneros";
-            this.buttonComuneros.Size = new System.Drawing.Size(68, 20);
+            this.buttonComuneros.Size = new System.Drawing.Size(36, 20);
             this.buttonComuneros.TabIndex = 7;
-            this.buttonComuneros.Text = "Comunero";
+            this.buttonComuneros.Text = "Com";
             this.buttonComuneros.UseVisualStyleBackColor = true;
             this.buttonComuneros.Click += new System.EventHandler(this.buttonComuneros_Click);
             // 
@@ -160,11 +162,33 @@
             this.textBoxNotas.Size = new System.Drawing.Size(203, 98);
             this.textBoxNotas.TabIndex = 10;
             // 
+            // buttonCargo
+            // 
+            this.buttonCargo.Location = new System.Drawing.Point(193, 12);
+            this.buttonCargo.Name = "buttonCargo";
+            this.buttonCargo.Size = new System.Drawing.Size(33, 20);
+            this.buttonCargo.TabIndex = 11;
+            this.buttonCargo.Text = "Car";
+            this.buttonCargo.UseVisualStyleBackColor = true;
+            this.buttonCargo.Click += new System.EventHandler(this.buttonCargo_Click);
+            // 
+            // buttonOrgano
+            // 
+            this.buttonOrgano.Location = new System.Drawing.Point(232, 12);
+            this.buttonOrgano.Name = "buttonOrgano";
+            this.buttonOrgano.Size = new System.Drawing.Size(37, 20);
+            this.buttonOrgano.TabIndex = 12;
+            this.buttonOrgano.Text = "Org";
+            this.buttonOrgano.UseVisualStyleBackColor = true;
+            this.buttonOrgano.Click += new System.EventHandler(this.buttonOrgano_Click);
+            // 
             // FormInsertarContacto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(285, 271);
+            this.Controls.Add(this.buttonOrgano);
+            this.Controls.Add(this.buttonCargo);
             this.Controls.Add(this.textBoxNotas);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.buttonComuneros);
@@ -203,5 +227,7 @@
         private System.Windows.Forms.Button buttonComuneros;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBoxNotas;
+        private System.Windows.Forms.Button buttonCargo;
+        private System.Windows.Forms.Button buttonOrgano;
     }
 }

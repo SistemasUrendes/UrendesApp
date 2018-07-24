@@ -67,6 +67,7 @@
             this.maskedTextBoxReferencia = new System.Windows.Forms.MaskedTextBox();
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemEditarContacto = new System.Windows.Forms.ToolStripMenuItem();
+            this.enviarCorreoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCopiarPortapapelesContacto = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemEliminarContacto = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonCerrarGestion = new System.Windows.Forms.Button();
@@ -460,10 +461,11 @@
             // 
             this.contextMenuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemEditarContacto,
+            this.enviarCorreoToolStripMenuItem1,
             this.toolStripMenuItemCopiarPortapapelesContacto,
             this.toolStripMenuItemEliminarContacto});
             this.contextMenuStrip3.Name = "contextMenuStrip3";
-            this.contextMenuStrip3.Size = new System.Drawing.Size(193, 70);
+            this.contextMenuStrip3.Size = new System.Drawing.Size(193, 92);
             // 
             // toolStripMenuItemEditarContacto
             // 
@@ -471,6 +473,13 @@
             this.toolStripMenuItemEditarContacto.Size = new System.Drawing.Size(192, 22);
             this.toolStripMenuItemEditarContacto.Text = "Editar";
             this.toolStripMenuItemEditarContacto.Click += new System.EventHandler(this.toolStripMenuItemEditarContacto_Click);
+            // 
+            // enviarCorreoToolStripMenuItem1
+            // 
+            this.enviarCorreoToolStripMenuItem1.Name = "enviarCorreoToolStripMenuItem1";
+            this.enviarCorreoToolStripMenuItem1.Size = new System.Drawing.Size(192, 22);
+            this.enviarCorreoToolStripMenuItem1.Text = "Enviar Correo";
+            this.enviarCorreoToolStripMenuItem1.Click += new System.EventHandler(this.enviarCorreoToolStripMenuItem1_Click);
             // 
             // toolStripMenuItemCopiarPortapapelesContacto
             // 
@@ -804,7 +813,7 @@
             // 
             // buttonAddContacto
             // 
-            this.buttonAddContacto.Location = new System.Drawing.Point(452, 10);
+            this.buttonAddContacto.Location = new System.Drawing.Point(555, 9);
             this.buttonAddContacto.Name = "buttonAddContacto";
             this.buttonAddContacto.Size = new System.Drawing.Size(97, 23);
             this.buttonAddContacto.TabIndex = 24;
@@ -814,12 +823,13 @@
             // 
             // buttonEnviarMail
             // 
-            this.buttonEnviarMail.Location = new System.Drawing.Point(555, 10);
+            this.buttonEnviarMail.Location = new System.Drawing.Point(452, 9);
             this.buttonEnviarMail.Name = "buttonEnviarMail";
             this.buttonEnviarMail.Size = new System.Drawing.Size(97, 23);
             this.buttonEnviarMail.TabIndex = 25;
             this.buttonEnviarMail.Text = "Enviar Correo";
             this.buttonEnviarMail.UseVisualStyleBackColor = true;
+            this.buttonEnviarMail.Visible = false;
             this.buttonEnviarMail.Click += new System.EventHandler(this.buttonEnviarMail_Click);
             // 
             // label17
@@ -1091,5 +1101,6 @@
         private System.Windows.Forms.DataGridView dataGridViewSeguimientos;
         private System.Windows.Forms.Button buttonAddSeguimiento;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.ToolStripMenuItem enviarCorreoToolStripMenuItem1;
     }
 }

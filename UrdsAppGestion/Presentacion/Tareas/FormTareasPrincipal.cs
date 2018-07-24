@@ -253,7 +253,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
             if(seguro == "1")
             {
-               sqlSelect += " AND ((exp_tareas.Seguro = -1) OR (exp_tareas.RefSiniestro Is Not Null))";
+               sqlSelect += " AND (exp_tareas.RefSiniestro Is Not Null)";
             }
             if(importante == "1")
             {

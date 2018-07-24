@@ -52,6 +52,8 @@
             this.buttonOrdenTlf = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -249,6 +251,7 @@
             // 
             // button8
             // 
+            this.button8.Enabled = false;
             this.button8.Location = new System.Drawing.Point(40, 445);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(78, 60);
@@ -259,6 +262,7 @@
             // 
             // buttonOrdenTlf
             // 
+            this.buttonOrdenTlf.Enabled = false;
             this.buttonOrdenTlf.Location = new System.Drawing.Point(163, 445);
             this.buttonOrdenTlf.Name = "buttonOrdenTlf";
             this.buttonOrdenTlf.Size = new System.Drawing.Size(75, 61);
@@ -269,6 +273,7 @@
             // 
             // button9
             // 
+            this.button9.Enabled = false;
             this.button9.Location = new System.Drawing.Point(281, 445);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(75, 60);
@@ -288,11 +293,35 @@
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
+            // button11
+            // 
+            this.button11.Enabled = false;
+            this.button11.Location = new System.Drawing.Point(377, 377);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(75, 61);
+            this.button11.TabIndex = 19;
+            this.button11.Text = "Actualizar Tipo Contactos Tareas";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // button12
+            // 
+            this.button12.Enabled = false;
+            this.button12.Location = new System.Drawing.Point(377, 301);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(75, 61);
+            this.button12.TabIndex = 20;
+            this.button12.Text = "Actualizar F.Baja Proveedores";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
             // FormMantenimiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 560);
+            this.Controls.Add(this.button12);
+            this.Controls.Add(this.button11);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.buttonOrdenTlf);
@@ -347,5 +376,7 @@
         private System.Windows.Forms.Button buttonOrdenTlf;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button12;
     }
 }

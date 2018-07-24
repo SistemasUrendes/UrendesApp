@@ -614,6 +614,7 @@ namespace UrdsAppGestión.Presentacion
             {
                 String siglas = row[1].ToString();
                 if (siglas == "E") siglas = "ENT";
+                else if (siglas == "EN") siglas = "ENT";
                 else if (siglas == "C") siglas = "COM";
                 else if (siglas == "P") siglas = "PRO";
                 else if (siglas == "G") siglas = "CAR";
@@ -678,6 +679,53 @@ namespace UrdsAppGestión.Presentacion
                 String sqlUpdate = "Update exp_areaTarea SET TipoArea = 'B' WHERE IdAreaTarea = '" + row[0] + "'";
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
             }
+            MessageBox.Show("Fin");
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            String sqlSelect = "SELECT exp_contactos.IdDetEntTarea, exp_contactos.Proveedor, exp_contactos.Comunero, exp_contactos.Entidad FROM exp_contactos";
+            DataTable contactos = Persistencia.SentenciasSQL.select(sqlSelect);
+
+            foreach(DataRow row in contactos.Rows)
+            {
+                if (row[1].ToString() != "")
+                {
+                    Persistencia.SentenciasSQL.InsertarGenerico("Update exp_contactos SET TipoContacto = 'PRO' WHERE IdDetEntTarea = " + row[0]);
+                }
+                else if (row[2].ToString() != "")
+                {
+                    Persistencia.SentenciasSQL.InsertarGenerico("Update exp_contactos SET TipoContacto = 'COM' WHERE IdDetEntTarea = " + row[0]);
+                }
+                else if(row[3].ToString() != "")
+                {
+                    Persistencia.SentenciasSQL.InsertarGenerico("Update exp_contactos SET TipoContacto = 'ENT' WHERE IdDetEntTarea = " + row[0]);
+                }
+                else
+                {
+                    Persistencia.SentenciasSQL.InsertarGenerico("Update exp_contactos SET TipoContacto = 'TMP' WHERE IdDetEntTarea = " + row[0]);
+                }
+
+            }
+            MessageBox.Show("Fin");
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            String sqlSelect = "SELECT com_proveedores.IdProveedor, com_proveedores.FBaja FROM com_proveedores WHERE(((com_proveedores.FBaja)Is Not Null))";
+            DataTable proveedores = Persistencia.SentenciasSQL.select(sqlSelect);
+
+            foreach(DataRow row in proveedores.Rows)
+            {
+                String fecha = row[1].ToString();
+                String año = fecha.Substring(0, 4);
+                String mes = fecha.Substring(5, 2);
+                String dia = fecha.Substring(8, 2);
+                String nuevafecha = dia + "/" + mes + "/" + año;
+                String sqlInsert = "UPDATE com_proveedores SET FBaja = '" + nuevafecha + "' WHERE IdProveedor = " + row[0];
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+            }
+
             MessageBox.Show("Fin");
         }
     }

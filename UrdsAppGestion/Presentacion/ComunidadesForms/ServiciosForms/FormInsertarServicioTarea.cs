@@ -33,12 +33,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (Login.getRol() == "Admin")
             {
                 buttonAddServicio.Visible = true;
-                buttonMantenimiento.Visible = true;
+                buttonMantenimientoCat.Visible = true;
+                buttonMantenimientoBloques.Visible = true;
             }
             else
             {
                 buttonAddServicio.Visible = false;
-                buttonMantenimiento.Visible = false;
+                buttonMantenimientoCat.Visible = false;
+                buttonMantenimientoBloques.Visible = false;
             }
             filtrarServicios();
         }
@@ -301,13 +303,24 @@ namespace UrdsAppGestión.Presentacion.Tareas
         }
 
         public void recargar()
-        {
-            //this.Focus();
-            //this.BringToFront();
+        {   
             cargarBloques();
             cargarTodosServicios();
             cargarCategorias();
             filtrarServicios();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            String sqlSelect = "SELECT com_comunidades.IdComunidad FROM com_comunidades INNER JOIN exp_tareas ON com_comunidades.IdEntidad = exp_tareas.IdEntidad WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
+            String idComunidad = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+            FormServiciosBloque nueva = new FormServiciosBloque(idComunidad);
+            nueva.Show();
+        }
+
+        private void buttonRecargar_Click(object sender, EventArgs e)
+        {
+            recargar();
         }
     }
 }
