@@ -27,6 +27,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms {
             String sql = "SELECT com_asociacion.IdAsociacion, com_divisiones.Division, com_asociacion.Participacion, com_asociacion.FechaBaja FROM com_asociacion INNER JOIN com_divisiones ON com_asociacion.IdDivision = com_divisiones.IdDivision WHERE(((com_asociacion.IdComunero) = " + id_comunero_cargado + ") AND((com_asociacion.FechaBaja)Is Null));";
             dataGridView_ListaAsociaciones.DataSource = Persistencia.SentenciasSQL.select(sql);
 
+            dataGridView_ListaAsociaciones.Columns["Participacion"].DefaultCellStyle.Format = "p";
+
         }
         private void button1_Click(object sender, EventArgs e)  {
             this.Close();

@@ -45,7 +45,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
                     buttonaPdf.Enabled = true;
                     button_ver_pdf.Enabled = true;
                     groupBox_liqrec.Visible = true;
-                    button_verLiqRecibo.Visible = true;
+                    comboBox_ver.Visible = true;
+                    label5.Visible = true;
                 }
             }
             cargarDatagrid();
@@ -287,14 +288,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
             }
         }
 
-        //private void button1_Click_1(object sender, EventArgs e)
-        //{
-        //    if (dataGridView2.Rows.Count > 0)
-        //        imprimirLiquidacion();
-        //    else
-        //        MessageBox.Show("No hay reparto");
-        //}
-
         private void button1_Click_2(object sender, EventArgs e)
         {
             FolderBrowserDialog fichero = new FolderBrowserDialog();
@@ -379,9 +372,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
                 }
             }
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
+        private void verReciboLiquidacion() {
             DataTable resumenGastos = null;
             DataTable infoComunidad = null;
             if (dataGridView2.SelectedRows.Count > 0)
@@ -400,8 +391,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
 
                 infoComunidad = Persistencia.SentenciasSQL.select(sqlSelectInfoComunidad);
 
-
-                if (Recibos.Rows.Count > 0) {
+                if (Recibos.Rows.Count > 0)
+                {
                     for (int a = 0; a < Recibos.Rows.Count; a++)
                     {
                         //FILTRO POR EL IDRECIBO QUE TOCA SI ES EL INFORME ESPECIFICO
@@ -411,7 +402,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
                         InformeParticularRecibo.FormVerInformeParticularRecibo nueva = new InformeParticularRecibo.FormVerInformeParticularRecibo(id_liquidacion_pasado, id_comunidad_pasado, dataGridView2.SelectedRows[0].Cells[0].Value.ToString(), Recibos.Rows[a][0].ToString(), Liquidacion, resumenGastos, infoComunidad);
                         nueva.Show();
                     }
-                }else {
+                }
+                else
+                {
                     MessageBox.Show("NO SE A CREADO LA CUOTA, SOLO ES UN INFORME Y NO UN RECIBO");
                     InformeParticular.FormVerInformeParticular nueva = new InformeParticular.FormVerInformeParticular(id_comunidad_pasado, id_liquidacion_pasado, dataGridView2.SelectedRows[0].Cells[0].Value.ToString());
                     nueva.Show();
@@ -460,19 +453,15 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
                 }
             }
         }
-
-        private void button1_Click_3(object sender, EventArgs e)
-        {
+        private void verReciboLiquidacionIVA() {
             if (dataGridView2.SelectedRows.Count > 0)
             {
                 DataTable infoComunidad = null;
                 DataTable datosReparto = null;
                 DataTable datosRepartoIVA = null;
-                DataTable datosRepartoResumenIVA = null;
-                DataTable InfoEntidad = null;
                 DataTable resumenGastos = null;
 
-                String sqlSelect = "SELECT com_liqreparto.IdDivision, com_liqreparto.Nombre, com_liqreparto.Descripcion, com_liqreparto.ImpBloque, com_liqreparto.CGP, com_liqreparto.Importe, com_subcuotas.Parte, com_liqreparto.IdLiquidacion, com_liqreparto.IdTitular, com_liqreparto.IdBloque FROM com_subcuotas INNER JOIN com_liqreparto ON (com_subcuotas.IdDivision = com_liqreparto.IdDivision) AND(com_subcuotas.IdBloque = com_liqreparto.IdBloque) GROUP BY com_liqreparto.IdDivision, com_liqreparto.Nombre, com_liqreparto.Descripcion, com_liqreparto.ImpBloque, com_liqreparto.CGP, com_liqreparto.Importe, com_subcuotas.Parte, com_liqreparto.IdLiquidacion, com_liqreparto.IdTitular HAVING(((com_liqreparto.IdLiquidacion) = " + id_liquidacion_pasado + ") AND((com_liqreparto.IdTitular) = " + dataGridView2.Rows[0].Cells[0].Value.ToString() + "));" ;
+                String sqlSelect = "SELECT com_liqreparto.IdDivision, com_liqreparto.Nombre, com_liqreparto.Descripcion, com_liqreparto.ImpBloque, com_liqreparto.CGP, com_liqreparto.Importe, com_subcuotas.Parte, com_liqreparto.IdLiquidacion, com_liqreparto.IdTitular, com_liqreparto.IdBloque FROM com_subcuotas INNER JOIN com_liqreparto ON (com_subcuotas.IdDivision = com_liqreparto.IdDivision) AND(com_subcuotas.IdBloque = com_liqreparto.IdBloque) GROUP BY com_liqreparto.IdDivision, com_liqreparto.Nombre, com_liqreparto.Descripcion, com_liqreparto.ImpBloque, com_liqreparto.CGP, com_liqreparto.Importe, com_subcuotas.Parte, com_liqreparto.IdLiquidacion, com_liqreparto.IdTitular HAVING(((com_liqreparto.IdLiquidacion) = " + id_liquidacion_pasado + ") AND((com_liqreparto.IdTitular) = " + dataGridView2.Rows[0].Cells[0].Value.ToString() + "));";
 
                 datosReparto = Persistencia.SentenciasSQL.select(sqlSelect);
 
@@ -481,21 +470,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
 
                 datosRepartoIVA = Persistencia.SentenciasSQL.select(sqlSelectIVA);
 
-
                 //BUSCO LA INFORMACION DE LA COMUNIDAD Y SE LA PASO AL INFORME
                 String sqlSelectInfoComunidad = "SELECT ctos_entidades.Entidad, ctos_entidades.CIF, ctos_detdirecent.Direccion, ctos_detdirecent.CP, ctos_detdirecent.Poblacion, ctos_detdirecent.Provincia, com_cuentas.Descripcion, com_cuentas.NumCuenta, com_comunidades.IdComunidad FROM com_cuentas INNER JOIN (com_comunidades INNER JOIN(ctos_entidades INNER JOIN ctos_detdirecent ON ctos_entidades.IDEntidad = ctos_detdirecent.IdEntidad) ON com_comunidades.IdEntidad = ctos_entidades.IDEntidad) ON com_cuentas.IdComunidad = com_comunidades.IdComunidad WHERE(((com_comunidades.IdComunidad) = " + id_comunidad_pasado + ") AND((com_cuentas.Ppal) = -1));";
 
                 infoComunidad = Persistencia.SentenciasSQL.select(sqlSelectInfoComunidad);
-
-                //BUSCO EL TOTAL DE LOS IVAS
-                String sqlSelectResumenIVA = "SELECT com_liqrepartoiva.`%IVA` AS PorIVA, Sum(com_liqrepartoiva.BaseDivBloq) AS SumaDeBase, Sum(com_liqrepartoiva.IVADivBloq) AS SumaDelIVA FROM com_liqrepartoiva GROUP BY com_liqrepartoiva.`%IVA`, com_liqrepartoiva.IdTitular, com_liqrepartoiva.IdLiquidacion HAVING(((com_liqrepartoiva.IdTitular) = " + dataGridView2.Rows[0].Cells[0].Value.ToString() + ") AND((com_liqrepartoiva.IdLiquidacion) = " + id_liquidacion_pasado + "));";
-
-                datosRepartoResumenIVA = Persistencia.SentenciasSQL.select(sqlSelectResumenIVA);
-
-                //BUSCO INFORMACION DE LA ENTIDAD
-                String sqlSelectInfoEntidad = "SELECT ctos_entidades.Entidad, ctos_entidades.CIF, ctos_detdirecent.Direccion, ctos_detdirecent.CP, ctos_detdirecent.Poblacion, ctos_detdirecent.Provincia FROM ctos_entidades INNER JOIN ctos_detdirecent ON ctos_entidades.IDEntidad = ctos_detdirecent.IdEntidad WHERE(((ctos_entidades.IDEntidad) = " + dataGridView2.Rows[0].Cells[0].Value.ToString() + ") AND (ctos_detdirecent.Ppal = -1));";
-
-                InfoEntidad = Persistencia.SentenciasSQL.select(sqlSelectInfoEntidad);
 
                 //BUSCO EL RESUMEN DE GASTOS Y LO ADJUNTO A LA LIQUIDACIÓN
                 resumenGastos = GenerarResumenGastosIVA();
@@ -516,12 +494,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
 
                 String Liquidacion = (Persistencia.SentenciasSQL.select("SELECT LiqLargo FROM com_liquidaciones WHERE IdLiquidacion = " + id_liquidacion_pasado)).Rows[0][0].ToString();
 
-                InformeParticularReciboIVA.FormVerInformeLiquidacionIVA nueva = new InformeParticularReciboIVA.FormVerInformeLiquidacionIVA(datosReparto, datosRepartoIVA, infoComunidad, datosRepartoResumenIVA, InfoEntidad, resumenGastos, Liquidacion);
+                InformeParticularReciboIVA.FormVerInformeLiquidacionIVA nueva = new InformeParticularReciboIVA.FormVerInformeLiquidacionIVA(dataGridView2.Rows[0].Cells[0].Value.ToString(), id_liquidacion_pasado, datosReparto, datosRepartoIVA, infoComunidad, resumenGastos, Liquidacion);
                 nueva.Show();
             }
         }
         private DataTable GenerarResumenGastos () {
-            //////////////////////////////RESUMEN DE GASTOS
+            ////////////////////////////// RESUMEN DE GASTOS /////////////////////////////////
 
             String sqlTipoInforme = "SELECT IdTipoInformeLiq FROM com_comunidades WHERE IdComunidad = " + id_comunidad_pasado;
             DataTable TipoInforme = Persistencia.SentenciasSQL.select(sqlTipoInforme);
@@ -608,6 +586,60 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
                 }
             }
             return null;
+        }
+
+        private void comboBox_ver_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (comboBox_ver.SelectedIndex == 0) {
+                verReciboLiquidacion();
+            }
+            else if (comboBox_ver.SelectedIndex == 1) {
+                verReciboLiquidacionIVA();
+            }
+        }
+
+        private void button1_Click_4(object sender, EventArgs e)
+        {
+            DataTable resumenGastos = null;
+            DataTable infoComunidad = null;
+
+            FolderBrowserDialog fichero = new FolderBrowserDialog();
+
+            String RutaComunidad = (Persistencia.SentenciasSQL.select("SELECT ctos_entidades.Ruta FROM ctos_entidades INNER JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad WHERE(((com_comunidades.IdComunidad) = " + id_comunidad_pasado + "));")).Rows[0][0].ToString().Trim('#');
+
+            String anyo = Convert.ToDateTime((Persistencia.SentenciasSQL.select("SELECT FFin FROM com_liquidaciones WHERE IdLiquidacion = " + id_liquidacion_pasado)).Rows[0][0].ToString()).Year.ToString();
+            String path = @"\Liquidaciones\" + anyo + @"\";
+            fichero.SelectedPath = (RutaComunidad + path);
+
+            fichero.ShowNewFolderButton = true;
+
+            String Ruta = "";
+            if (fichero.ShowDialog() == DialogResult.OK)
+            {
+                Ruta = fichero.SelectedPath;
+                //GUARDO RUTA EN LA TABLA LIQUIDACIONES
+                String sqlUpdate = "UPDATE com_liquidaciones SET Ruta='" + @Ruta.Replace(@"\", @"\\") + "' WHERE IdLiquidacion = " + id_liquidacion_pasado;
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+
+                //BUSCO EL RESUMEN DE GASTOS Y LO ADJUNTO A LA LIQUIDACIÓN
+                resumenGastos = GenerarResumenGastosIVA();
+
+                //BUSCO LA INFORMACION DE LA COMUNIDAD Y SE LA PASO AL INFORME
+                String sqlSelectInfoComunidad = "SELECT ctos_entidades.Entidad, ctos_entidades.CIF, ctos_detdirecent.Direccion, ctos_detdirecent.CP, ctos_detdirecent.Poblacion, ctos_detdirecent.Provincia, com_cuentas.Descripcion, com_cuentas.NumCuenta, com_comunidades.IdComunidad FROM com_cuentas INNER JOIN (com_comunidades INNER JOIN(ctos_entidades INNER JOIN ctos_detdirecent ON ctos_entidades.IDEntidad = ctos_detdirecent.IdEntidad) ON com_comunidades.IdEntidad = ctos_entidades.IDEntidad) ON com_cuentas.IdComunidad = com_comunidades.IdComunidad WHERE(((com_comunidades.IdComunidad) = " + id_comunidad_pasado + ") AND((com_cuentas.Ppal) = -1));";
+
+                infoComunidad = Persistencia.SentenciasSQL.select(sqlSelectInfoComunidad);
+
+                String Liquidacion = (Persistencia.SentenciasSQL.select("SELECT LiqLargo FROM com_liquidaciones WHERE IdLiquidacion = " + id_liquidacion_pasado)).Rows[0][0].ToString();
+
+                PanelControl existe = Application.OpenForms.OfType<PanelControl>().Where(pre => pre.Name == "PanelControl").SingleOrDefault<PanelControl>();
+                if (existe != null)
+                {
+                    existe.WindowState = FormWindowState.Normal;
+                    existe.BringToFront();
+                    existe.CrearPDFLiquidacionIVA((DataTable)dataGridView2.DataSource, id_comunidad_pasado, id_liquidacion_pasado, Ruta, nombreCortoLiqPasado, resumenGastos, InformeEspecifico, infoComunidad,Liquidacion);
+                    this.Close();
+                }
+            }
         }
     }
 }

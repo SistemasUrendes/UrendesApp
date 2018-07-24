@@ -430,6 +430,121 @@ namespace UrdsAppGestión.Presentacion
             tarea1.RunWorkerAsync(arguments);
 
         }
+
+        public void CrearPDFLiquidacionIVA(DataTable PdfCrear, String idComunidad, String idLiquidacion, String Ruta, String nombreCortoLiqPasado, DataTable resumenGastos, Boolean InformeEspecifico, DataTable infoComunidad, String Liquidacion)
+        {
+            proc1++;
+            string[] row = new string[] { proc1.ToString(), "Creación PDF IVA : " + nombreCortoLiqPasado, "0%" };
+            dataGridView_tareas.Rows.Add(row);
+
+            List<object> arguments = new List<object>();
+            arguments.Add(PdfCrear);
+            arguments.Add(idComunidad);
+            arguments.Add(idLiquidacion);
+            arguments.Add(Ruta);
+            arguments.Add(nombreCortoLiqPasado);
+            arguments.Add(resumenGastos);
+            arguments.Add(InformeEspecifico);
+            arguments.Add(infoComunidad);
+            arguments.Add(Liquidacion);
+
+            var tarea1 = new BackgroundWorker()
+            {
+                WorkerReportsProgress = true,
+                WorkerSupportsCancellation = true
+            };
+
+            tarea1.DoWork += backgroundWorkerPdfLiqIVA_DoWork;
+            tarea1.ProgressChanged += backgroundWorker1_ProgressChanged;
+            tarea1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
+            numero_procesos++;
+            tarea1.RunWorkerAsync(arguments);
+
+        }
+        private void backgroundWorkerPdfLiqIVA_DoWork(object sender, DoWorkEventArgs e)
+        {
+            List<object> genericlist = e.Argument as List<object>;
+            DataTable PdfCrear = (DataTable)genericlist[0];
+            String idcomunidad = (String)genericlist[1];
+            String idLiquidacion = (String)genericlist[2];
+            String Ruta = (String)genericlist[3];
+            String nombreCortoLiqPasado = (String)genericlist[4];
+            DataTable resumenGastos = (DataTable)genericlist[5];
+            Boolean InformeEspecifico = (Boolean)genericlist[6];
+            DataTable infoComunidad = (DataTable)genericlist[7];
+            String Liquidacion = (String)genericlist[8];
+
+            Warning[] warnings;
+            string[] streamids;
+            string mimeType;
+            string encoding;
+            string filenameExtension;
+            String anteriorEntidad = "";
+            DataTable datosReparto = null;
+            DataTable datosRepartoIVA = null;
+
+            if (Thread.CurrentThread.Name == null)
+            {
+                Thread.CurrentThread.Name = numero_procesos.ToString();
+            }
+            for (int a = 0; a < PdfCrear.Rows.Count; a++)
+            {
+                String idEntidad = PdfCrear.Rows[a][0].ToString();
+                String Entidad = PdfCrear.Rows[a][1].ToString();
+                if (anteriorEntidad != idEntidad)
+                {
+                    try
+                    {
+                        String sqlSelect = "SELECT com_liqreparto.IdDivision, com_liqreparto.Nombre, com_liqreparto.Descripcion, com_liqreparto.ImpBloque, com_liqreparto.CGP, com_liqreparto.Importe, com_subcuotas.Parte, com_liqreparto.IdLiquidacion, com_liqreparto.IdTitular, com_liqreparto.IdBloque FROM com_subcuotas INNER JOIN com_liqreparto ON (com_subcuotas.IdDivision = com_liqreparto.IdDivision) AND(com_subcuotas.IdBloque = com_liqreparto.IdBloque) GROUP BY com_liqreparto.IdDivision, com_liqreparto.Nombre, com_liqreparto.Descripcion, com_liqreparto.ImpBloque, com_liqreparto.CGP, com_liqreparto.Importe, com_subcuotas.Parte, com_liqreparto.IdLiquidacion, com_liqreparto.IdTitular HAVING(((com_liqreparto.IdLiquidacion) = " + idLiquidacion + ") AND((com_liqreparto.IdTitular) = " + idEntidad + "));";
+
+                        datosReparto = Persistencia.SentenciasSQL.select(sqlSelect);
+
+                        //BUSCO TODOS LOS IVAS PARA LUEGO USARLO EN EL SUBINFORME Y FILTRADO.
+                        String sqlSelectIVA = "SELECT com_liqrepartoiva.IdDivision, com_liqrepartoiva.`%IVA` as PorIVA, Sum(com_liqrepartoiva.BaseDivBloq) AS Base, Sum(com_liqrepartoiva.IVADivBloq) AS IVA, com_liqrepartoiva.IdLiquidacion FROM com_liqrepartoiva GROUP BY com_liqrepartoiva.IdDivision, com_liqrepartoiva.`%IVA`, com_liqrepartoiva.IdLiquidacion HAVING(((com_liqrepartoiva.IdLiquidacion) = " + idLiquidacion + "));";
+
+                        datosRepartoIVA = Persistencia.SentenciasSQL.select(sqlSelectIVA);
+
+                        //FILTRO POR EL IDRECIBO QUE TOCA SI ES EL INFORME ESPECIFICO
+                        if (InformeEspecifico)
+                        {
+                            String filtro = "IdBloque = ";
+                            for (int b = 0; b < datosReparto.Rows.Count; b++)
+                            {
+                                if (b == datosReparto.Rows.Count - 1)
+                                    filtro += datosReparto.Rows[b][9].ToString();
+                                else
+                                    filtro += datosReparto.Rows[b][9].ToString() + " OR IdBloque = ";
+                            }
+                            resumenGastos.DefaultView.RowFilter = filtro;
+                        }
+
+                        ComunidadesForms.LiquidacionesForms.InformeParticularReciboIVA.FormVerInformeLiquidacionIVA nueva = new ComunidadesForms.LiquidacionesForms.InformeParticularReciboIVA.FormVerInformeLiquidacionIVA(idEntidad, idLiquidacion, datosReparto, datosRepartoIVA, infoComunidad, resumenGastos, Liquidacion);
+
+                        byte[] bytes = nueva.reportViewer1.LocalReport.Render(
+                                "PDF", null, out mimeType, out encoding, out filenameExtension,
+                                out streamids, out warnings);
+
+                            String nombre = "L" + idLiquidacion +  "-" + idEntidad + " " + nombreCortoLiqPasado + "-IVA " + Entidad + ".pdf";
+
+                            using (FileStream fs = new FileStream(Ruta + @"\" + nombre, FileMode.Create))
+                            {
+                                fs.Write(bytes, 0, bytes.Length);
+                                fs.Dispose();
+                            }
+
+                            nueva.Close();
+                        anteriorEntidad = idEntidad;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al crear el PDF => " + ex.Message);
+                    }
+                }
+                backgroundWorker1.ReportProgress((100 * a) / PdfCrear.Rows.Count, DateTime.Now);
+
+            }
+            e.Result = "Creación de PDF Completada";
+        }
         private void backgroundWorkerPdfLiqNueva_DoWork(object sender, DoWorkEventArgs e)
         {
             List<object> genericlist = e.Argument as List<object>;

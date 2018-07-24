@@ -134,12 +134,13 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                     dataGridView_divisiones.Rows[0].Selected = true;
                 }
 
-                String sql = "SELECT com_asociacion.IdDivision, com_asociacion.IdAsociacion, ctos_entidades.Entidad, com_tipoasociacion.TipoAsociación, com_asociacion.Participacion, com_asociacion.FechaAlta, com_asociacion.FechaBaja, com_asociacion.Ppal, ctos_entidades.IDEntidad FROM((com_asociacion INNER JOIN com_comuneros ON com_asociacion.IdComunero = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN com_tipoasociacion ON com_asociacion.IdTipoAsoc = com_tipoasociacion.IdTipoAsoc WHERE(((com_asociacion.IdDivision)= " + dataGridView_divisiones.SelectedRows[0].Cells[0].Value + "));";
+                String sql = "SELECT com_asociacion.IdDivision, com_asociacion.IdAsociacion, ctos_entidades.Entidad, com_tipoasociacion.TipoAsociación, com_asociacion.Participacion, com_asociacion.FechaAlta, com_asociacion.FechaBaja, com_asociacion.Ppal, ctos_entidades.IDEntidad, com_asociacion.IdComunero FROM((com_asociacion INNER JOIN com_comuneros ON com_asociacion.IdComunero = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN com_tipoasociacion ON com_asociacion.IdTipoAsoc = com_tipoasociacion.IdTipoAsoc WHERE(((com_asociacion.IdDivision)= " + dataGridView_divisiones.SelectedRows[0].Cells[0].Value + "));";
 
                 dataGridView_detalles_divisiones.DataSource = Persistencia.SentenciasSQL.select(sql);
                 dataGridView_detalles_divisiones.Columns[0].Visible = false;
                 dataGridView_detalles_divisiones.Columns["Entidad"].Width = 200;
                 dataGridView_detalles_divisiones.Columns[1].Visible = false;
+                dataGridView_detalles_divisiones.Columns["IdComunero"].Visible = false;
                 dataGridView_detalles_divisiones.Columns[3].HeaderText = "TipoAsociacion";
                 dataGridView_detalles_divisiones.Columns["IDEntidad"].Visible = false;
                 dataGridView_detalles_divisiones.Columns["Participacion"].DefaultCellStyle.Format = "p";
@@ -549,6 +550,12 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                 dt.Rows[i][0] = dataGridView_divisiones.SelectedRows[i].Cells[0].Value;
             }
             return dt;
+        }
+
+        private void verAsociacionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ComunerosForms.FormComuneroAsociaciones nueva = new ComunerosForms.FormComuneroAsociaciones(dataGridView_detalles_divisiones.SelectedRows[0].Cells[2].Value.ToString(), dataGridView_detalles_divisiones.SelectedRows[0].Cells[9].Value.ToString());
+            nueva.Show();
         }
     }
 }

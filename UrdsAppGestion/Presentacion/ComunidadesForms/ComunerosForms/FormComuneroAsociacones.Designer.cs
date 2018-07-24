@@ -39,15 +39,17 @@
             // 
             // textBox_Entidad
             // 
-            this.textBox_Entidad.Location = new System.Drawing.Point(98, 34);
+            this.textBox_Entidad.Enabled = false;
+            this.textBox_Entidad.Location = new System.Drawing.Point(114, 15);
             this.textBox_Entidad.Name = "textBox_Entidad";
+            this.textBox_Entidad.ReadOnly = true;
             this.textBox_Entidad.Size = new System.Drawing.Size(277, 20);
             this.textBox_Entidad.TabIndex = 0;
             // 
             // label_Entidad
             // 
             this.label_Entidad.AutoSize = true;
-            this.label_Entidad.Location = new System.Drawing.Point(31, 37);
+            this.label_Entidad.Location = new System.Drawing.Point(47, 18);
             this.label_Entidad.Name = "label_Entidad";
             this.label_Entidad.Size = new System.Drawing.Size(61, 13);
             this.label_Entidad.TabIndex = 1;
@@ -59,19 +61,19 @@
             this.dataGridView_ListaAsociaciones.AllowUserToDeleteRows = false;
             this.dataGridView_ListaAsociaciones.AllowUserToOrderColumns = true;
             this.dataGridView_ListaAsociaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_ListaAsociaciones.Location = new System.Drawing.Point(49, 94);
+            this.dataGridView_ListaAsociaciones.Location = new System.Drawing.Point(42, 68);
             this.dataGridView_ListaAsociaciones.MultiSelect = false;
             this.dataGridView_ListaAsociaciones.Name = "dataGridView_ListaAsociaciones";
             this.dataGridView_ListaAsociaciones.ReadOnly = true;
             this.dataGridView_ListaAsociaciones.RowHeadersVisible = false;
             this.dataGridView_ListaAsociaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_ListaAsociaciones.Size = new System.Drawing.Size(326, 173);
+            this.dataGridView_ListaAsociaciones.Size = new System.Drawing.Size(417, 206);
             this.dataGridView_ListaAsociaciones.TabIndex = 2;
             // 
             // label_ListaAsoc
             // 
             this.label_ListaAsoc.AutoSize = true;
-            this.label_ListaAsoc.Location = new System.Drawing.Point(49, 75);
+            this.label_ListaAsoc.Location = new System.Drawing.Point(42, 49);
             this.label_ListaAsoc.Name = "label_ListaAsoc";
             this.label_ListaAsoc.Size = new System.Drawing.Size(113, 13);
             this.label_ListaAsoc.TabIndex = 3;
@@ -79,7 +81,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(300, 300);
+            this.button1.Location = new System.Drawing.Point(384, 280);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 4;
@@ -91,7 +93,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(403, 335);
+            this.ClientSize = new System.Drawing.Size(493, 315);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label_ListaAsoc);
             this.Controls.Add(this.dataGridView_ListaAsociaciones);

@@ -169,7 +169,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(160, 386);
+            this.label2.Location = new System.Drawing.Point(190, 386);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(234, 16);
             this.label2.TabIndex = 13;
@@ -219,11 +219,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(27, 379);
+            this.button1.Location = new System.Drawing.Point(27, 383);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(153, 23);
             this.button1.TabIndex = 18;
-            this.button1.Text = "Campo Calculo";
+            this.button1.Text = "Actualizar Campo Detalle";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 

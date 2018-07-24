@@ -39,25 +39,25 @@
             this.DataSetInformeParticularIVA = new UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.InformeParticularReciboIVA.DataSetInformeParticularIVA();
             this.dataSet2BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet2 = new UrdsAppGestión.Presentacion.Informes.DataSet2();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.dataSetIVATotales = new UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.InformeParticularReciboIVA.DataSetIVATotales();
-            this.dataSetIVATotalesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ComunidadBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSetInfoEntidadxsd = new UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.InformeParticularRecibo.DataSetInfoEntidadxsd();
             this.dataSetInfoEntidadxsdBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSetLiqResumen = new UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.Informes.DataSetLiqResumen();
+            this.dataSetInfoEntidadxsd = new UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.InformeParticularRecibo.DataSetInfoEntidadxsd();
+            this.dataSetIVATotalesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetIVATotales = new UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.InformeParticularReciboIVA.DataSetIVATotales();
             this.dataSetLiqResumenBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetLiqResumen = new UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.Informes.DataSetLiqResumen();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.ComunidadBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DivisionLiquidacionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataSetInformeParticularIVA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet2BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetIVATotales)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetIVATotalesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ComunidadBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetInfoEntidadxsd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetInfoEntidadxsdBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetLiqResumen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetInfoEntidadxsd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetIVATotalesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetIVATotales)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetLiqResumenBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetLiqResumen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ComunidadBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // DivisionLiquidacionBindingSource
@@ -79,6 +79,36 @@
             // 
             this.dataSet2.DataSetName = "DataSet2";
             this.dataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dataSetInfoEntidadxsdBindingSource
+            // 
+            this.dataSetInfoEntidadxsdBindingSource.DataSource = this.dataSetInfoEntidadxsd;
+            this.dataSetInfoEntidadxsdBindingSource.Position = 0;
+            // 
+            // dataSetInfoEntidadxsd
+            // 
+            this.dataSetInfoEntidadxsd.DataSetName = "DataSetInfoEntidadxsd";
+            this.dataSetInfoEntidadxsd.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dataSetIVATotalesBindingSource
+            // 
+            this.dataSetIVATotalesBindingSource.DataSource = this.dataSetIVATotales;
+            this.dataSetIVATotalesBindingSource.Position = 0;
+            // 
+            // dataSetIVATotales
+            // 
+            this.dataSetIVATotales.DataSetName = "DataSetIVATotales";
+            this.dataSetIVATotales.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dataSetLiqResumenBindingSource
+            // 
+            this.dataSetLiqResumenBindingSource.DataSource = this.dataSetLiqResumen;
+            this.dataSetLiqResumenBindingSource.Position = 0;
+            // 
+            // dataSetLiqResumen
+            // 
+            this.dataSetLiqResumen.DataSetName = "DataSetLiq";
+            this.dataSetLiqResumen.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
@@ -105,40 +135,10 @@
             this.reportViewer1.Size = new System.Drawing.Size(733, 804);
             this.reportViewer1.TabIndex = 0;
             // 
-            // dataSetIVATotales
-            // 
-            this.dataSetIVATotales.DataSetName = "DataSetIVATotales";
-            this.dataSetIVATotales.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // dataSetIVATotalesBindingSource
-            // 
-            this.dataSetIVATotalesBindingSource.DataSource = this.dataSetIVATotales;
-            this.dataSetIVATotalesBindingSource.Position = 0;
-            // 
             // ComunidadBindingSource
             // 
             this.ComunidadBindingSource.DataMember = "Comunidad";
             this.ComunidadBindingSource.DataSource = this.dataSet2;
-            // 
-            // dataSetInfoEntidadxsd
-            // 
-            this.dataSetInfoEntidadxsd.DataSetName = "DataSetInfoEntidadxsd";
-            this.dataSetInfoEntidadxsd.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // dataSetInfoEntidadxsdBindingSource
-            // 
-            this.dataSetInfoEntidadxsdBindingSource.DataSource = this.dataSetInfoEntidadxsd;
-            this.dataSetInfoEntidadxsdBindingSource.Position = 0;
-            // 
-            // dataSetLiqResumen
-            // 
-            this.dataSetLiqResumen.DataSetName = "DataSetLiq";
-            this.dataSetLiqResumen.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // dataSetLiqResumenBindingSource
-            // 
-            this.dataSetLiqResumenBindingSource.DataSource = this.dataSetLiqResumen;
-            this.dataSetLiqResumenBindingSource.Position = 0;
             // 
             // FormVerInformeLiquidacionIVA
             // 
@@ -156,20 +156,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.DataSetInformeParticularIVA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet2BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetIVATotales)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetIVATotalesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ComunidadBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetInfoEntidadxsd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetInfoEntidadxsdBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetLiqResumen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetInfoEntidadxsd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetIVATotalesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetIVATotales)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetLiqResumenBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetLiqResumen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ComunidadBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.BindingSource DivisionLiquidacionBindingSource;
         private DataSetInformeParticularIVA DataSetInformeParticularIVA;
         private System.Windows.Forms.BindingSource dataSet2BindingSource;
@@ -181,5 +179,6 @@
         private System.Windows.Forms.BindingSource ComunidadBindingSource;
         private System.Windows.Forms.BindingSource dataSetLiqResumenBindingSource;
         private Informes.DataSetLiqResumen dataSetLiqResumen;
+        public Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

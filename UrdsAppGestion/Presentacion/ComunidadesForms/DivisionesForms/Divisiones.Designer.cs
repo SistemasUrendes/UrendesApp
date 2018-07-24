@@ -58,6 +58,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox_informes = new System.Windows.Forms.ComboBox();
+            this.verAsociacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_divisiones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_detalles_divisiones)).BeginInit();
             this.contextMenuStrip2.SuspendLayout();
@@ -294,14 +295,15 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.verEntidadToolStripMenuItem});
+            this.verEntidadToolStripMenuItem,
+            this.verAsociacionesToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(134, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(163, 70);
             // 
             // verEntidadToolStripMenuItem
             // 
             this.verEntidadToolStripMenuItem.Name = "verEntidadToolStripMenuItem";
-            this.verEntidadToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.verEntidadToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.verEntidadToolStripMenuItem.Text = "Ver Entidad";
             this.verEntidadToolStripMenuItem.Click += new System.EventHandler(this.verEntidadToolStripMenuItem_Click);
             // 
@@ -335,6 +337,13 @@
             this.comboBox_informes.Size = new System.Drawing.Size(196, 21);
             this.comboBox_informes.TabIndex = 28;
             this.comboBox_informes.SelectionChangeCommitted += new System.EventHandler(this.comboBox_informes_SelectionChangeCommitted);
+            // 
+            // verAsociacionesToolStripMenuItem
+            // 
+            this.verAsociacionesToolStripMenuItem.Name = "verAsociacionesToolStripMenuItem";
+            this.verAsociacionesToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.verAsociacionesToolStripMenuItem.Text = "Ver Asociaciones";
+            this.verAsociacionesToolStripMenuItem.Click += new System.EventHandler(this.verAsociacionesToolStripMenuItem_Click);
             // 
             // Divisiones
             // 
@@ -406,5 +415,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBox_informes;
+        private System.Windows.Forms.ToolStripMenuItem verAsociacionesToolStripMenuItem;
     }
 }

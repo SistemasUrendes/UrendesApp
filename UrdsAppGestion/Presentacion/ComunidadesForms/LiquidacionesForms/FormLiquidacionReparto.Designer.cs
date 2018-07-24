@@ -44,10 +44,11 @@
             this.buttonaPdf = new System.Windows.Forms.Button();
             this.button_ver_pdf = new System.Windows.Forms.Button();
             this.button_enviarTodos = new System.Windows.Forms.Button();
-            this.button_verLiqRecibo = new System.Windows.Forms.Button();
             this.groupBox_liqrec = new System.Windows.Forms.GroupBox();
             this.button_imprimirNuevos = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.comboBox_ver = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_reparto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -155,16 +156,16 @@
             // 
             // textBox_buscar
             // 
-            this.textBox_buscar.Location = new System.Drawing.Point(330, 32);
+            this.textBox_buscar.Location = new System.Drawing.Point(229, 27);
             this.textBox_buscar.Name = "textBox_buscar";
-            this.textBox_buscar.Size = new System.Drawing.Size(157, 20);
+            this.textBox_buscar.Size = new System.Drawing.Size(133, 20);
             this.textBox_buscar.TabIndex = 12;
             this.textBox_buscar.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(275, 35);
+            this.label4.Location = new System.Drawing.Point(174, 30);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 13;
@@ -210,7 +211,7 @@
             // 
             // button_enviarTodos
             // 
-            this.button_enviarTodos.Location = new System.Drawing.Point(19, 58);
+            this.button_enviarTodos.Location = new System.Drawing.Point(21, 112);
             this.button_enviarTodos.Name = "button_enviarTodos";
             this.button_enviarTodos.Size = new System.Drawing.Size(110, 23);
             this.button_enviarTodos.TabIndex = 18;
@@ -218,25 +219,14 @@
             this.button_enviarTodos.UseVisualStyleBackColor = true;
             this.button_enviarTodos.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // button_verLiqRecibo
-            // 
-            this.button_verLiqRecibo.Location = new System.Drawing.Point(511, 30);
-            this.button_verLiqRecibo.Name = "button_verLiqRecibo";
-            this.button_verLiqRecibo.Size = new System.Drawing.Size(130, 23);
-            this.button_verLiqRecibo.TabIndex = 19;
-            this.button_verLiqRecibo.Text = "Ver Liquidación";
-            this.button_verLiqRecibo.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.button_verLiqRecibo.UseVisualStyleBackColor = true;
-            this.button_verLiqRecibo.Visible = false;
-            this.button_verLiqRecibo.Click += new System.EventHandler(this.button2_Click);
-            // 
             // groupBox_liqrec
             // 
+            this.groupBox_liqrec.Controls.Add(this.button1);
             this.groupBox_liqrec.Controls.Add(this.button_imprimirNuevos);
             this.groupBox_liqrec.Controls.Add(this.button_enviarTodos);
             this.groupBox_liqrec.Location = new System.Drawing.Point(820, 231);
             this.groupBox_liqrec.Name = "groupBox_liqrec";
-            this.groupBox_liqrec.Size = new System.Drawing.Size(153, 97);
+            this.groupBox_liqrec.Size = new System.Drawing.Size(153, 141);
             this.groupBox_liqrec.TabIndex = 20;
             this.groupBox_liqrec.TabStop = false;
             this.groupBox_liqrec.Text = "Informe Liquidación Recibo";
@@ -256,7 +246,7 @@
             // 
             this.groupBox2.Controls.Add(this.buttonaPdf);
             this.groupBox2.Controls.Add(this.button_ver_pdf);
-            this.groupBox2.Location = new System.Drawing.Point(814, 353);
+            this.groupBox2.Location = new System.Drawing.Point(827, 379);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(146, 100);
             this.groupBox2.TabIndex = 21;
@@ -264,25 +254,49 @@
             this.groupBox2.Text = "Informe Liquidación";
             this.groupBox2.Visible = false;
             // 
+            // comboBox_ver
+            // 
+            this.comboBox_ver.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_ver.FormattingEnabled = true;
+            this.comboBox_ver.Items.AddRange(new object[] {
+            "Recibo Liq. ",
+            "Informe Liq. IVA"});
+            this.comboBox_ver.Location = new System.Drawing.Point(495, 30);
+            this.comboBox_ver.Name = "comboBox_ver";
+            this.comboBox_ver.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_ver.TabIndex = 23;
+            this.comboBox_ver.Visible = false;
+            this.comboBox_ver.SelectionChangeCommitted += new System.EventHandler(this.comboBox_ver_SelectionChangeCommitted);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(469, 34);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(26, 13);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Ver:";
+            this.label5.Visible = false;
+            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(760, 30);
+            this.button1.Location = new System.Drawing.Point(21, 69);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(131, 23);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Liquidación IVA";
+            this.button1.Size = new System.Drawing.Size(108, 23);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "Imprimir Todos IVA";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_3);
+            this.button1.Click += new System.EventHandler(this.button1_Click_4);
             // 
             // FormLiquidacionReparto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1046, 437);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(1046, 480);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.comboBox_ver);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox_liqrec);
-            this.Controls.Add(this.button_verLiqRecibo);
             this.Controls.Add(this.dataGridView_bloques);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox_buscar);
@@ -328,10 +342,11 @@
         private System.Windows.Forms.Button buttonaPdf;
         private System.Windows.Forms.Button button_ver_pdf;
         private System.Windows.Forms.Button button_enviarTodos;
-        private System.Windows.Forms.Button button_verLiqRecibo;
         private System.Windows.Forms.GroupBox groupBox_liqrec;
         private System.Windows.Forms.Button button_imprimirNuevos;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox comboBox_ver;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
     }
 }

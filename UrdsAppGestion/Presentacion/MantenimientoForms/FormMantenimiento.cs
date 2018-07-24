@@ -630,8 +630,6 @@ namespace UrdsAppGestión.Presentacion
         {
             String sqlSelect = "SELECT ctos_dettelf.IdDetTelf, ctos_dettelf.IdEntidad FROM ctos_dettelf WHERE(((ctos_dettelf.Orden) > 1))";
             DataTable ordenes = Persistencia.SentenciasSQL.select(sqlSelect);
-
-            String sqlSelect2 = "SELECT ctos_dettelf.IdDetTelf, ctos_dettelf.IdEntidad FROM ctos_dettelf GROUP BY ctos_dettelf.IdDetTelf, ctos_dettelf.IdEntidad, ctos_dettelf.Orden HAVING(((ctos_dettelf.Orden) > 1))";
             DataTable entidades = Persistencia.SentenciasSQL.select(sqlSelect);
             foreach (DataRow row in entidades.Rows)
             {

@@ -237,9 +237,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
         }
         public void CalcularFondo(String idDetalleFondo) {
             double totalEntradas = 0.00;
-            double totalEntradasPte = 0.00;
+            //double totalEntradasPte = 0.00;
             double totalSalidas = 0.00;
-            double totalSalidasPte = 0.00;
+            //double totalSalidasPte = 0.00;
             double saldo = 0.00;
 
             //ENTRADAS
