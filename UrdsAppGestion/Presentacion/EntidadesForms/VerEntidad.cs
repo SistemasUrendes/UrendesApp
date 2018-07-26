@@ -147,28 +147,83 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            DialogResult resultado_message;
-            int id_actualizar_principal = 0;
-            resultado_message = MessageBox.Show("¿Desea borrar este teléfono?", "Borrar Teléfono", MessageBoxButtons.OKCancel);
-            if (resultado_message == System.Windows.Forms.DialogResult.OK)
+            if (dataGridView_telefonos.SelectedRows.Count > 0)
             {
-
-                if (dataGridView_telefonos.Rows.Count > 0 && dataGridView_telefonos.SelectedCells[4].Value.ToString() == "True")
-                    id_actualizar_principal = (int)dataGridView_telefonos.Rows[0].Cells[0].Value;
-                String sqlBorrarTel = "DELETE FROM ctos_dettelf WHERE IdDetTelf = " + (int)dataGridView_telefonos.SelectedCells[0].Value;
-
-                if (Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrarTel))
+                DialogResult resultado_message;
+                //int id_actualizar_principal = 0;
+                resultado_message = MessageBox.Show("¿Desea borrar este teléfono?", "Borrar Teléfono", MessageBoxButtons.OKCancel);
+                if (resultado_message == System.Windows.Forms.DialogResult.OK)
                 {
-                    if (id_actualizar_principal != 0)
-                    {
-                        String actualizarPrincipal = "UPDATE ctos_dettelf SET Ppal = -1 WHERE IdDetTelf = " + id_actualizar_principal;
-                        if (Persistencia.SentenciasSQL.InsertarGenerico(actualizarPrincipal)) { }
-                    }
-                    MessageBox.Show("Borrado");
-                    cargaTelefonos();
-                }
-                editado = true;
+                    /*
+                    if (dataGridView_telefonos.Rows.Count > 0 && dataGridView_telefonos.SelectedCells[4].Value.ToString() == "True")
+                        id_actualizar_principal = (int)dataGridView_telefonos.Rows[0].Cells[0].Value;
+                    String sqlBorrarTel = "DELETE FROM ctos_dettelf WHERE IdDetTelf = " + (int)dataGridView_telefonos.SelectedCells[0].Value;
 
+                    if (Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrarTel))
+                    {
+                        if (id_actualizar_principal != 0)
+                        {
+                            String actualizarPrincipal = "UPDATE ctos_dettelf SET Ppal = -1 WHERE IdDetTelf = " + id_actualizar_principal;
+                            if (Persistencia.SentenciasSQL.InsertarGenerico(actualizarPrincipal)) { }
+                        }
+                        MessageBox.Show("Borrado");
+
+                    }
+                    */
+                    //ÚLTIMO TELÉFONO
+                    if (dataGridView_telefonos.SelectedRows[0].Cells[5].Value.ToString() == dataGridView_telefonos.Rows.Count.ToString())
+                    {
+                        String sqlBorrarTel = "DELETE FROM ctos_dettelf WHERE IdDetTelf = " + dataGridView_telefonos.SelectedRows[0].Cells[0].Value;
+                        Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrarTel);
+                    }
+                    //TELÉFONO 1 ( PRINCIPAL)
+                    else if (dataGridView_telefonos.SelectedRows[0].Cells[5].Value.ToString() == "1")
+                    {
+                        String sqlBorrarTel = "DELETE FROM ctos_dettelf WHERE IdDetTelf = " + dataGridView_telefonos.SelectedRows[0].Cells[0].Value;
+                        Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrarTel);
+
+                        String sqlSelect = "SELECT ctos_dettelf.IdDetTelf, ctos_dettelf.Orden FROM ctos_dettelf WHERE(((ctos_dettelf.Orden) > 1) AND((ctos_dettelf.IdEntidad) = " + id_entidad_cargado + "))";
+                        DataTable tlfs = Persistencia.SentenciasSQL.select(sqlSelect);
+                        int i = 2;
+                        foreach(DataRow row in tlfs.Rows)
+                        {
+                            String sqlUpdate = "";
+                            if (row[1].ToString() == "2")
+                            {
+                                sqlUpdate = "UPDATE ctos_dettelf SET Ppal = -1, Orden = 1 WHERE IdDetTelf = " + row[0];
+                            }
+                            else
+                            {
+                                sqlUpdate = "UPDATE ctos_dettelf SET Orden = " + i + " WHERE IdDetTelf = " + row[0];
+                                i++;
+                            }
+                            Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                        }
+                    }
+                    //RESTO TELÉFONOS
+                    else
+                    {
+                        String ordenBorrado = dataGridView_telefonos.SelectedRows[0].Cells[5].Value.ToString();
+                        String sqlBorrarTel = "DELETE FROM ctos_dettelf WHERE IdDetTelf = " + dataGridView_telefonos.SelectedRows[0].Cells[0].Value;
+                        Persistencia.SentenciasSQL.InsertarGenerico(sqlBorrarTel);
+
+                        String sqlSelect = "SELECT ctos_dettelf.IdDetTelf, ctos_dettelf.Orden FROM ctos_dettelf WHERE(((ctos_dettelf.Orden) > " + ordenBorrado + ") AND((ctos_dettelf.IdEntidad) = " + id_entidad_cargado + "))";
+                        DataTable tlfs = Persistencia.SentenciasSQL.select(sqlSelect);
+                        foreach (DataRow row in tlfs.Rows)
+                        {
+                            String sqlUpdate = "UPDATE ctos_dettelf SET Orden = " + ordenBorrado + " WHERE IdDetTelf = " + row[0];
+                            ordenBorrado = (Int32.Parse(ordenBorrado)+1).ToString();
+                            Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
+                        }
+                    }
+
+                    cargaTelefonos();
+                    editado = true;
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay telefono para borrar");
             }
         }
 

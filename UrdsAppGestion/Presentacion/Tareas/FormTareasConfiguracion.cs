@@ -17,11 +17,18 @@ namespace UrdsAppGestión.Presentacion.Tareas
         DataTable allGestion;
         DataTable addGestion;
         String idTipoTarea;
+        FormSeleccionarTipoTarea formAnt;
 
         int order;
         public FormTareasConfiguracion()
         {
             InitializeComponent();
+        }
+
+        public FormTareasConfiguracion(FormSeleccionarTipoTarea formAnt)
+        {
+            InitializeComponent();
+            this.formAnt = formAnt;
         }
 
         private void FormTareasConfiguracion_Load(object sender, EventArgs e)
@@ -30,6 +37,10 @@ namespace UrdsAppGestión.Presentacion.Tareas
             cargarTodosTipoGestion();
             cargarCategorias();
             order = 1;
+            if(formAnt != null)
+            {
+                this.ControlBox = true;
+            }
         }
 
         private void buttonAddTipoTarea_Click(object sender, EventArgs e)
@@ -394,12 +405,12 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 String sqlInsert = "INSERT INTO exp_gestionEstado (IdTipoTarea,IdTipoGestion,Orden) VALUES ('" + idTipoTarea + "','" + idTipoGestion + "','" + orden + "')";
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert).ToString();
             }
-            cargarTipoTarea();
+            cargarGestiones();
             dataGridViewAddGestion.ClearSelection();
             dataGridViewAddGestion.Rows[movimiento].Selected = true;
         }
 
-        private void cargarTipoTarea()
+        private void cargarGestiones()
         {
             String sqlSelect = "SELECT exp_tipogestion.IdTipoGestion, exp_tipogestion.Descripcion, ctos_gruposurd.Grupo AS Perfil, exp_tipogestion.Plazo AS Días, exp_gestionEstado.Orden FROM(exp_tipogestion INNER JOIN(exp_tipostareas INNER JOIN exp_gestionEstado ON exp_tipostareas.IdTipoTarea = exp_gestionEstado.IdTipoTarea) ON exp_tipogestion.IdTipoGestion = exp_gestionEstado.IdTipoGestion) INNER JOIN ctos_gruposurd ON exp_tipogestion.IdGrupo = ctos_gruposurd.IdGrupoURD WHERE(((exp_tipostareas.IdTipoTarea) = " + idTipoTarea + ")) ORDER BY exp_gestionEstado.Orden";
             addGestion = Persistencia.SentenciasSQL.select(sqlSelect);
@@ -414,7 +425,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.idTipoTarea = dataGridViewTipoTarea.SelectedRows[0].Cells[0].Value.ToString();
             labelName.Text = dataGridViewTipoTarea.SelectedRows[0].Cells[1].Value.ToString();
             order = 0;
-            cargarTipoTarea();
+            cargarGestiones();
         }
 
         private void dataGridViewAddGestion_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -472,14 +483,55 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void dataGridViewCategorias_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            cargarTiposCat(dataGridViewCategorias.SelectedRows[0].Cells[0].Value.ToString());
+            if (dataGridViewCategorias.SelectedRows.Count > 0)
+            {
+                cargarTiposCat(dataGridViewCategorias.SelectedRows[0].Cells[0].Value.ToString());
+            }
         }
 
         private void cargarTiposCat(String IdCat)
         {
-            String sqlSelect = "SELECT exp_tipostareas.IdTipoTarea, exp_tipostareas.TipoTarea, exp_tipostareas.Corto FROM exp_catTareas INNER JOIN exp_tipostareas ON exp_catTareas.IdCatTareas = exp_tipostareas.IdCatTareas WHERE(((exp_catTareas.IdCatTareas) = '" + IdCat + "'))";
+            String sqlSelect = "SELECT exp_tipostareas.IdTipoTarea, exp_tipostareas.TipoTarea AS Descripcion, Sum(exp_tipogestion.HorasDeTrabajo) AS CT FROM exp_tipogestion INNER JOIN (exp_tipostareas INNER JOIN exp_gestionEstado ON exp_tipostareas.IdTipoTarea = exp_gestionEstado.IdTipoTarea) ON exp_tipogestion.IdTipoGestion = exp_gestionEstado.IdTipoGestion WHERE(((exp_tipostareas.IdCatTareas) = '" + IdCat + "')) GROUP BY exp_tipostareas.IdTipoTarea, exp_tipostareas.TipoTarea";
+
+
             tipoTarea = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewTipoTarea.DataSource = tipoTarea;
+
+            if (dataGridViewTipoTarea.Rows.Count > 0)
+            {
+                dataGridViewTipoTarea.Columns["IdTipoTarea"].Visible = false;
+                dataGridViewTipoTarea.Columns["Descripcion"].Width = 240;
+                dataGridViewTipoTarea.Columns["CT"].Width = 40;
+            }
+        }
+
+        private void FormTareasConfiguracion_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (formAnt != null)
+            {
+                formAnt.cargarCategorias();
+                formAnt.cargarTiposTarea();
+            }
+        }
+
+        private void editarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormCatProcedimiento nueva = new FormCatProcedimiento(this,dataGridViewCategorias.SelectedRows[0].Cells[0].Value.ToString(), dataGridViewCategorias.SelectedRows[0].Cells[1].Value.ToString());
+            nueva.Show();
+        }
+
+        private void dataGridViewCategorias_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                var hti = dataGridViewCategorias.HitTest(e.X, e.Y);
+                if (hti.RowIndex > -1)
+                {
+                    dataGridViewCategorias.ClearSelection();
+                    dataGridViewCategorias.Rows[hti.RowIndex].Selected = true;
+                    contextMenuStrip1.Show(Cursor.Position);
+                }
+            }
         }
     }
 }

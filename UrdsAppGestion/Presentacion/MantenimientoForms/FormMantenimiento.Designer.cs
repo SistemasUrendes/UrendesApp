@@ -262,7 +262,6 @@
             // 
             // buttonOrdenTlf
             // 
-            this.buttonOrdenTlf.Enabled = false;
             this.buttonOrdenTlf.Location = new System.Drawing.Point(163, 445);
             this.buttonOrdenTlf.Name = "buttonOrdenTlf";
             this.buttonOrdenTlf.Size = new System.Drawing.Size(75, 61);
@@ -306,7 +305,6 @@
             // 
             // button12
             // 
-            this.button12.Enabled = false;
             this.button12.Location = new System.Drawing.Point(377, 301);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(75, 61);

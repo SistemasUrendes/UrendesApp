@@ -52,6 +52,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
         }
 
+
+
+
         private void cargarBloques()
         {
             String sqlSelect = "";
@@ -84,6 +87,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             dataGridViewBloques.Columns.Add(checkColumn);
 
             ajustarDataGrid();
+            
         }
 
         private void textBoxFiltroBloque_TextChanged(object sender, EventArgs e)
@@ -247,6 +251,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 enviarFormAnt();
             }
         }
+        
     }
 
 }

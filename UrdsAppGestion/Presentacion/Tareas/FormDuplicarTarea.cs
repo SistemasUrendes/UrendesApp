@@ -32,9 +32,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
         private Button buttonCancelar;
         private Button buttonDuplicar;
         String idTarea;
-        
+        String tipoTarea;
 
-        public FormDuplicarTarea(FormTareasPrincipal form_anterior,String idTipoTarea, String fIni, String descripcion, String coste, String acuerdoJunta, String fechaActaAcordado, String proximaJunta, String refSiniestro, String notas, String importante, String idEntidad, String nombreComunidad, int idComunidad, String Referencia,String idTarea)
+
+
+        public FormDuplicarTarea(FormTareasPrincipal form_anterior,String idTipoTarea, String fIni, String descripcion, String coste, String acuerdoJunta, String fechaActaAcordado, String proximaJunta, String refSiniestro, String notas, String importante, String idEntidad, String nombreComunidad, int idComunidad, String Referencia,String idTarea,String tipoTarea)
         {
             InitializeComponent();
             this.form_anterior = form_anterior;
@@ -53,6 +55,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.idComunidad = idComunidad;
             this.referencia = Referencia;
             this.idTarea = idTarea;
+            this.tipoTarea = tipoTarea;
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)
@@ -64,7 +67,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             Boolean contactos = checkBoxContactos.Checked;
             Boolean expedientes = checkBoxExpedientes.Checked;
-            FormVerTarea nueva = new FormVerTarea(form_anterior,idTipoTarea, fIni, descripcion, coste, acuerdoJunta, fechaActaAcordado, proximaJunta, refSiniestro, notas, importante, idEntidad, nombreComunidad, idComunidad, referencia, idTarea,contactos,expedientes);
+            FormVerTarea nueva = new FormVerTarea(form_anterior,idTipoTarea, fIni, descripcion, coste, acuerdoJunta, fechaActaAcordado, proximaJunta, refSiniestro, notas, importante, idEntidad, nombreComunidad, idComunidad, referencia, idTarea,contactos,expedientes, tipoTarea);
             nueva.ControlBox = true;
             nueva.WindowState = FormWindowState.Normal;
             nueva.StartPosition = FormStartPosition.CenterScreen;

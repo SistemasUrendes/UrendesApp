@@ -1452,6 +1452,12 @@
     <Compile Include="Presentacion\ComunidadesForms\ServiciosForms\FormServiciosConfiguracion.Designer.cs">
       <DependentUpon>FormServiciosConfiguracion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Tareas\FormSeleccionarTipoTarea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Tareas\FormSeleccionarTipoTarea.Designer.cs">
+      <DependentUpon>FormSeleccionarTipoTarea.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Tareas\FormTareasConfiguracion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2094,6 +2100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\ServiciosForms\FormServiciosConfiguracion.resx">
       <DependentUpon>FormServiciosConfiguracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Tareas\FormSeleccionarTipoTarea.resx">
+      <DependentUpon>FormSeleccionarTipoTarea.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Tareas\FormTareasConfiguracion.resx">
       <DependentUpon>FormTareasConfiguracion.cs</DependentUpon>

@@ -32,13 +32,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
             this.KeyPreview = true;
             if (Login.getRol() == "Admin")
             {
-                buttonAddServicio.Visible = true;
                 buttonMantenimientoCat.Visible = true;
                 buttonMantenimientoBloques.Visible = true;
             }
             else
             {
-                buttonAddServicio.Visible = false;
                 buttonMantenimientoCat.Visible = false;
                 buttonMantenimientoBloques.Visible = false;
             }

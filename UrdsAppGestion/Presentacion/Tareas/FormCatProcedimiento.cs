@@ -14,25 +14,26 @@ namespace UrdsAppGestión.Presentacion.Tareas
     {
         FormTareasConfiguracion formAnt;
         String idCategoria;
+        String nombre;
         public FormCatProcedimiento(FormTareasConfiguracion formAnt)
         {
             InitializeComponent();
             this.formAnt = formAnt;
         }
 
-        public FormCatProcedimiento(FormTareasConfiguracion formAnt, String idCategoria)
+        public FormCatProcedimiento(FormTareasConfiguracion formAnt, String idCategoria,String nombre)
         {
             InitializeComponent();
             this.formAnt = formAnt;
             this.idCategoria = idCategoria;
+            this.nombre = nombre;
         }
 
         private void FormCatProcedimiento_Load(object sender, EventArgs e)
         {
             if (idCategoria != null)
             {
-                String sqlSelect = "SELECT Nombre FROM exp_catTareas WHERE IdCatTareas = '" + idCategoria + "'";
-                textBoxNombre.Text = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+                textBoxNombre.Text = nombre;
             }
         }
 
