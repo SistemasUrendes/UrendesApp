@@ -1462,6 +1462,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     {
                         textBoxTipo.Text = "Incidencias";
                         this.idTipoTarea = "2";
+                        checkBoxImportante.Checked = true;
                     }
                     addTarea();
                     textBoxIdTarea.Text = idTarea;
