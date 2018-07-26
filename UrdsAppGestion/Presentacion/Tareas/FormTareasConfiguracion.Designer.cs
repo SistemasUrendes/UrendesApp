@@ -51,6 +51,8 @@
             this.textBoxFiltroCategorias = new System.Windows.Forms.TextBox();
             this.buttonAddCategoria = new System.Windows.Forms.Button();
             this.dataGridViewCategorias = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipoTarea)).BeginInit();
             this.contextMenuStrip2.SuspendLayout();
@@ -59,6 +61,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAllGestion)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCategorias)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -283,6 +286,7 @@
             this.dataGridViewCategorias.AllowUserToAddRows = false;
             this.dataGridViewCategorias.AllowUserToDeleteRows = false;
             this.dataGridViewCategorias.AllowUserToResizeRows = false;
+            this.dataGridViewCategorias.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewCategorias.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewCategorias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCategorias.Location = new System.Drawing.Point(6, 43);
@@ -295,6 +299,21 @@
             this.dataGridViewCategorias.Size = new System.Drawing.Size(293, 350);
             this.dataGridViewCategorias.TabIndex = 0;
             this.dataGridViewCategorias.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCategorias_CellClick);
+            this.dataGridViewCategorias.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewCategorias_MouseClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editarToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(105, 26);
+            // 
+            // editarToolStripMenuItem
+            // 
+            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
+            this.editarToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
+            this.editarToolStripMenuItem.Text = "Editar";
+            this.editarToolStripMenuItem.Click += new System.EventHandler(this.editarToolStripMenuItem_Click);
             // 
             // FormTareasConfiguracion
             // 
@@ -307,7 +326,9 @@
             this.Controls.Add(this.groupBox2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormTareasConfiguracion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Configuración Tarea";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormTareasConfiguracion_FormClosing);
             this.Load += new System.EventHandler(this.FormTareasConfiguracion_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -320,6 +341,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCategorias)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -346,5 +368,7 @@
         private System.Windows.Forms.TextBox textBoxFiltroCategorias;
         private System.Windows.Forms.Button buttonAddCategoria;
         private System.Windows.Forms.DataGridView dataGridViewCategorias;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
     }
 }

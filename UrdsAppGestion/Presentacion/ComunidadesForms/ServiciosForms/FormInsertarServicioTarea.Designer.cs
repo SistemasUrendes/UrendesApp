@@ -37,7 +37,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.dataGridViewServicios = new System.Windows.Forms.DataGridView();
             this.buttonEnviar = new System.Windows.Forms.Button();
-            this.buttonAddServicio = new System.Windows.Forms.Button();
             this.dataGridViewCategorias = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonMantenimientoCat = new System.Windows.Forms.Button();
@@ -125,19 +124,9 @@
             this.buttonEnviar.Name = "buttonEnviar";
             this.buttonEnviar.Size = new System.Drawing.Size(88, 23);
             this.buttonEnviar.TabIndex = 5;
-            this.buttonEnviar.Text = "Guardar";
+            this.buttonEnviar.Text = "Enviar";
             this.buttonEnviar.UseVisualStyleBackColor = true;
             this.buttonEnviar.Click += new System.EventHandler(this.buttonEnviar_Click);
-            // 
-            // buttonAddServicio
-            // 
-            this.buttonAddServicio.Location = new System.Drawing.Point(798, 12);
-            this.buttonAddServicio.Name = "buttonAddServicio";
-            this.buttonAddServicio.Size = new System.Drawing.Size(128, 23);
-            this.buttonAddServicio.TabIndex = 42;
-            this.buttonAddServicio.Text = "Añadir Servicio nuevo";
-            this.buttonAddServicio.UseVisualStyleBackColor = true;
-            this.buttonAddServicio.Click += new System.EventHandler(this.buttonAddServicio_Click);
             // 
             // dataGridViewCategorias
             // 
@@ -172,7 +161,7 @@
             this.buttonMantenimientoCat.Name = "buttonMantenimientoCat";
             this.buttonMantenimientoCat.Size = new System.Drawing.Size(98, 23);
             this.buttonMantenimientoCat.TabIndex = 45;
-            this.buttonMantenimientoCat.Text = "Mtto. Categorías";
+            this.buttonMantenimientoCat.Text = "Mtto. Servicios";
             this.buttonMantenimientoCat.UseVisualStyleBackColor = true;
             this.buttonMantenimientoCat.Click += new System.EventHandler(this.buttonMantenimiento_Click);
             // 
@@ -206,7 +195,6 @@
             this.Controls.Add(this.buttonMantenimientoCat);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewCategorias);
-            this.Controls.Add(this.buttonAddServicio);
             this.Controls.Add(this.buttonEnviar);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label16);
@@ -237,7 +225,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DataGridView dataGridViewServicios;
         private System.Windows.Forms.Button buttonEnviar;
-        private System.Windows.Forms.Button buttonAddServicio;
         private System.Windows.Forms.DataGridView dataGridViewCategorias;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonMantenimientoCat;

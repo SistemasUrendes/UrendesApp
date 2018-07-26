@@ -40,7 +40,6 @@
             this.checkBoxAcuerdoJunta = new System.Windows.Forms.CheckBox();
             this.checkBoxProxJunta = new System.Windows.Forms.CheckBox();
             this.maskedTextBoxFechaActa = new System.Windows.Forms.MaskedTextBox();
-            this.comboBoxTipo = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridViewGestiones = new System.Windows.Forms.DataGridView();
@@ -113,6 +112,8 @@
             this.dataGridViewSeguimientos = new System.Windows.Forms.DataGridView();
             this.buttonAddSeguimiento = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.textBoxTipo = new System.Windows.Forms.TextBox();
+            this.buttonTipoTarea = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGestiones)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -222,17 +223,6 @@
             this.maskedTextBoxFechaActa.TabIndex = 11;
             this.maskedTextBoxFechaActa.ValidatingType = typeof(System.DateTime);
             this.maskedTextBoxFechaActa.Leave += new System.EventHandler(this.maskedTextBoxFechaActa_Leave);
-            // 
-            // comboBoxTipo
-            // 
-            this.comboBoxTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxTipo.FormattingEnabled = true;
-            this.comboBoxTipo.Location = new System.Drawing.Point(76, 104);
-            this.comboBoxTipo.Name = "comboBoxTipo";
-            this.comboBoxTipo.Size = new System.Drawing.Size(220, 21);
-            this.comboBoxTipo.TabIndex = 5;
-            this.comboBoxTipo.SelectionChangeCommitted += new System.EventHandler(this.comboBoxTipo_SelectionChangeCommitted);
-            this.comboBoxTipo.Leave += new System.EventHandler(this.comboBoxTipo_Leave);
             // 
             // label2
             // 
@@ -934,11 +924,31 @@
             this.tabControl1.Size = new System.Drawing.Size(666, 334);
             this.tabControl1.TabIndex = 19;
             // 
+            // textBoxTipo
+            // 
+            this.textBoxTipo.Location = new System.Drawing.Point(76, 104);
+            this.textBoxTipo.Name = "textBoxTipo";
+            this.textBoxTipo.ReadOnly = true;
+            this.textBoxTipo.Size = new System.Drawing.Size(185, 20);
+            this.textBoxTipo.TabIndex = 60;
+            // 
+            // buttonTipoTarea
+            // 
+            this.buttonTipoTarea.Location = new System.Drawing.Point(263, 104);
+            this.buttonTipoTarea.Name = "buttonTipoTarea";
+            this.buttonTipoTarea.Size = new System.Drawing.Size(33, 20);
+            this.buttonTipoTarea.TabIndex = 61;
+            this.buttonTipoTarea.Text = "Seleccionar";
+            this.buttonTipoTarea.UseVisualStyleBackColor = true;
+            this.buttonTipoTarea.Click += new System.EventHandler(this.buttonTipoTarea_Click);
+            // 
             // FormVerTarea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1265, 604);
+            this.Controls.Add(this.buttonTipoTarea);
+            this.Controls.Add(this.textBoxTipo);
             this.Controls.Add(this.buttonSugerenciaDesc);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.textBoxSugerencia);
@@ -979,7 +989,6 @@
             this.Controls.Add(this.dataGridViewGestiones);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBoxTipo);
             this.Controls.Add(this.maskedTextBoxFechaActa);
             this.Controls.Add(this.checkBoxProxJunta);
             this.Controls.Add(this.checkBoxAcuerdoJunta);
@@ -1029,7 +1038,6 @@
         private System.Windows.Forms.CheckBox checkBoxAcuerdoJunta;
         private System.Windows.Forms.CheckBox checkBoxProxJunta;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxFechaActa;
-        private System.Windows.Forms.ComboBox comboBoxTipo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridViewGestiones;
@@ -1102,5 +1110,7 @@
         private System.Windows.Forms.Button buttonAddSeguimiento;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.ToolStripMenuItem enviarCorreoToolStripMenuItem1;
+        private System.Windows.Forms.TextBox textBoxTipo;
+        private System.Windows.Forms.Button buttonTipoTarea;
     }
 }

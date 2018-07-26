@@ -49,7 +49,7 @@
             this.groupBox1.Controls.Add(this.dataGridViewTipoGestion);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(328, 418);
+            this.groupBox1.Size = new System.Drawing.Size(383, 418);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tipo de Gestión";
@@ -58,13 +58,13 @@
             // 
             this.textBoxFiltroTipoGestion.Location = new System.Drawing.Point(6, 19);
             this.textBoxFiltroTipoGestion.Name = "textBoxFiltroTipoGestion";
-            this.textBoxFiltroTipoGestion.Size = new System.Drawing.Size(212, 20);
+            this.textBoxFiltroTipoGestion.Size = new System.Drawing.Size(280, 20);
             this.textBoxFiltroTipoGestion.TabIndex = 3;
             this.textBoxFiltroTipoGestion.TextChanged += new System.EventHandler(this.textBoxFiltroTipoGestion_TextChanged);
             // 
             // buttonAddGestion
             // 
-            this.buttonAddGestion.Location = new System.Drawing.Point(224, 17);
+            this.buttonAddGestion.Location = new System.Drawing.Point(292, 17);
             this.buttonAddGestion.Name = "buttonAddGestion";
             this.buttonAddGestion.Size = new System.Drawing.Size(75, 23);
             this.buttonAddGestion.TabIndex = 2;
@@ -85,7 +85,7 @@
             this.dataGridViewTipoGestion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewTipoGestion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewTipoGestion.ShowEditingIcon = false;
-            this.dataGridViewTipoGestion.Size = new System.Drawing.Size(293, 350);
+            this.dataGridViewTipoGestion.Size = new System.Drawing.Size(361, 350);
             this.dataGridViewTipoGestion.TabIndex = 0;
             this.dataGridViewTipoGestion.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTipoGestion_CellDoubleClick);
             this.dataGridViewTipoGestion.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewTipoGestion_MouseClick);

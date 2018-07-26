@@ -116,7 +116,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                     textBoxNombre.SelectAll();
                     return;
                 }
-                String sqlInsert = "INSERT INTO exp_tipostareas (TipoTarea,IdCatTareas) VALUES ('" + textBoxNombre.Text.ToString() + "'," + comboBoxCategorias.SelectedValue.ToString() + "')";
+                String sqlInsert = "INSERT INTO exp_tipostareas (TipoTarea,IdCatTareas) VALUES ('" + textBoxNombre.Text.ToString() + "','" + comboBoxCategorias.SelectedValue.ToString() + "')";
                 idTipoTarea = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsert).ToString();
             }
             else

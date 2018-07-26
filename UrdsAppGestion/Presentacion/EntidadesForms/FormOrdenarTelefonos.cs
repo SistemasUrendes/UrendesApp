@@ -123,7 +123,7 @@ namespace UrdsAppGestión.Presentacion.EntidadesForms
 
         private void ponerPrincipal(String idDetTelf)
         {
-            String sqlUpdate = "UPDATE ctos_dettelf SET Ppal = 1,Orden = 1 WHERE IdDetTelf = " + idDetTelf;
+            String sqlUpdate = "UPDATE ctos_dettelf SET Ppal = -1,Orden = 1 WHERE IdDetTelf = " + idDetTelf;
             Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
         }
 

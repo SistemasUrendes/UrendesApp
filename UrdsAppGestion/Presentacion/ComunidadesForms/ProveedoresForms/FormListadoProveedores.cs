@@ -162,7 +162,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             foreach (var rowInfo in result)
                 newTable.Rows.Add(rowInfo.ID, rowInfo.Field1, rowInfo.Field2, rowInfo.Field3, rowInfo.Field4, rowInfo.Field5, rowInfo.Field6, rowInfo.Field7);
 
-            String sqlSelectTel = "SELECT ctos_dettelf.IdEntidad, ctos_dettelf.Telefono FROM ctos_dettelf WHERE(((ctos_dettelf.Ppal) = -1));";
+            String sqlSelectTel = "SELECT ctos_dettelf.IdEntidad, ctos_dettelf.Telefono FROM ctos_dettelf WHERE ctos_dettelf.Orden = 1;";
             DataTable telefonos = Persistencia.SentenciasSQL.select(sqlSelectTel);
 
             var result2 = from x in newTable.AsEnumerable()

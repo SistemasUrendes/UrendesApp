@@ -710,20 +710,23 @@ namespace UrdsAppGestión.Presentacion
 
         private void button12_Click(object sender, EventArgs e)
         {
-            String sqlSelect = "SELECT com_proveedores.IdProveedor, com_proveedores.FBaja FROM com_proveedores WHERE(((com_proveedores.FBaja)Is Not Null))";
-            DataTable proveedores = Persistencia.SentenciasSQL.select(sqlSelect);
+            //String sqlSelect = "SELECT ctos_dettelf.IdDetTelf FROM ctos_dettelf WHERE(((ctos_dettelf.Ppal) = 1))";
+            //DataTable proveedores = Persistencia.SentenciasSQL.select(sqlSelect);
 
-            foreach(DataRow row in proveedores.Rows)
-            {
-                String fecha = row[1].ToString();
-                String año = fecha.Substring(0, 4);
-                String mes = fecha.Substring(5, 2);
-                String dia = fecha.Substring(8, 2);
-                String nuevafecha = dia + "/" + mes + "/" + año;
-                String sqlInsert = "UPDATE com_proveedores SET FBaja = '" + nuevafecha + "' WHERE IdProveedor = " + row[0];
-                Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
-            }
+            //foreach(DataRow row in proveedores.Rows)
+            //{
+            //String sqlInsert = "UPDATE exp_gestionEstado SET Ppal = '-1' WHERE IdDetTelf = " + row[0];
+            //Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+            //}
 
+            String sqlInsert = "INSERT INTO exp_gestionEstado (IdTipoTarea,IdTipoGestion,Orden) VALUES (1,1,1)";
+            Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+
+            String sqlInsert2 = "INSERT INTO exp_gestionEstado (IdTipoTarea,IdTipoGestion,Orden) VALUES (2,1,1)";
+            Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert2);
+
+            String sqlInsert3 = "INSERT INTO exp_gestionEstado (IdTipoTarea,IdTipoGestion,Orden) VALUES (3,1,1)";
+            Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert3);
             MessageBox.Show("Fin");
         }
     }
