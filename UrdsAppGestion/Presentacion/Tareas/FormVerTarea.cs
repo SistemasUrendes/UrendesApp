@@ -1515,6 +1515,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         
         private void duplicarTarea()
         {
+            copiarBloqueServDiv();
             if (contactosDupli)
             {
                 copiarContactos();
@@ -1524,6 +1525,38 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 copiarExpedientes();
             }
         }
+
+        private void copiarBloqueServDiv()
+        {
+            //BLOQUE
+            String sqlSelectBloq = "SELECT exp_areaTarea.IdArea FROM exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea WHERE(((exp_areaTarea.IdTarea) = " + idTareaDupli + ") AND((exp_areaTarea.TipoArea)Like 'B'))";
+            DataTable bloquesPrev = Persistencia.SentenciasSQL.select(sqlSelectBloq);
+
+            foreach (DataRow row in bloquesPrev.Rows)
+            {
+                String sqlInsert = "INSERT INTO exp_areaTarea (IdArea,IdTarea,TipoArea) VALUES ('" + row[0].ToString() + "','" + idTarea + "','B')";
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+            }
+            
+
+            //SERVICIOS
+            String sqlSelectSer = "SELECT exp_areaTarea.IdArea FROM exp_areaTarea INNER JOIN exp_area ON exp_areaTarea.IdArea = exp_area.IdArea WHERE(((exp_areaTarea.IdTarea) = " + idTareaDupli + ") AND((exp_areaTarea.TipoArea)Like 'S'))";
+            DataTable ServiciosPrev = Persistencia.SentenciasSQL.select(sqlSelectSer);
+            foreach (DataRow row in ServiciosPrev.Rows)
+            {   
+                String sqlInsert = "INSERT INTO exp_areaTarea (IdArea,IdTarea,TipoArea) VALUES ('" + row[0].ToString() + "','" + idTarea + "','S')";
+                Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
+            }
+
+            //DIVISIONES
+            String sqlSelectDiv = "SELECT exp_areaTarea.IdArea, exp_areaTarea.TipoArea FROM com_divisiones INNER JOIN exp_areaTarea ON com_divisiones.IdDivision = exp_areaTarea.IdArea WHERE(((exp_areaTarea.TipoArea)Like 'D') AND((exp_areaTarea.IdTarea) = " + idTareaDupli + "))";
+            DataTable DivisionesPrev = Persistencia.SentenciasSQL.select(sqlSelectDiv);
+            recibirDivisiones(DivisionesPrev);
+
+            cargarBloque();
+
+        }
+
         private void copiarContactos()
         {
             String sqlSelect = "SELECT exp_contactos.Nombre, exp_contactos.Tel AS Teléfono, exp_contactos.Correo, exp_contactos.Notas, exp_contactos.Proveedor as P, exp_contactos.Comunero as C,exp_contactos.Entidad as E  FROM exp_contactos WHERE(((exp_contactos.IdTarea) = " + idTareaDupli + "))";
