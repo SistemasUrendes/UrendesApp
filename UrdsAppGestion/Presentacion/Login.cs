@@ -76,10 +76,12 @@ namespace UrdsAppGestión.Presentacion
                         conexion = new MySqlConnection(datos);
                         conexion.Open();
                     }catch {
+                        /* //ESTA PREPARADO PARA CONECTARSE AL NAS SI FALLASE EL SERVIDOR LOCAL
                         ip = "urendes-nas.ddns.net";
                         string datos = "server=" + ip + ";user=gestor;password=gestorurds;database=acceso;port=3307";
                         conexion = new MySqlConnection(datos);
                         conexion.Open();
+                        */
                     }
 
                 }else {
