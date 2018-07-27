@@ -253,7 +253,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             }
             if(seguro == "1")
             {
-               sqlSelect += " AND (exp_tareas.RefSiniestro Is Not Null)";
+               sqlSelect += " AND (exp_tareas.RefSiniestro Not Like '')";
             }
             if(importante == "1")
             {
@@ -632,10 +632,11 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void dataGridView_tareas_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == 12)
+            if (e.ColumnIndex == 0)
             {
-                if ((bool)e.Value)
+                if ((bool)dataGridView_tareas.Rows[e.RowIndex].Cells[12].Value)
                 {
+                    e.CellStyle.BackColor = Color.Wheat;
                     dataGridView_tareas.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Wheat;
                 }
             }
