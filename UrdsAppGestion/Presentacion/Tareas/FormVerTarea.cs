@@ -1559,13 +1559,13 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void copiarContactos()
         {
-            String sqlSelect = "SELECT exp_contactos.Nombre, exp_contactos.Tel AS Teléfono, exp_contactos.Correo, exp_contactos.Notas, exp_contactos.Proveedor as P, exp_contactos.Comunero as C,exp_contactos.Entidad as E  FROM exp_contactos WHERE(((exp_contactos.IdTarea) = " + idTareaDupli + "))";
+            String sqlSelect = "SELECT exp_contactos.Nombre, exp_contactos.Tel AS Teléfono, exp_contactos.Correo, exp_contactos.Notas, exp_contactos.TipoContacto  FROM exp_contactos WHERE(((exp_contactos.IdTarea) = " + idTareaDupli + "))";
 
             DataTable contactos = Persistencia.SentenciasSQL.select(sqlSelect);
 
             foreach (DataRow row in contactos.Rows)
             {
-                String sqlInsert = "INSERT INTO exp_contactos (Nombre,Tel,Correo,Notas,Proveedor,Comunero,Entidad,IdTarea) VALUES ('" + row["Nombre"] + "'," + row["Teléfono"] + ", '" + row["Correo"] + "','" + row["Notas"] + "','" + row["P"] + "','" + row["C"] + "','" + row["E"] + "'," + idTarea + ")";
+                String sqlInsert = "INSERT INTO exp_contactos (Nombre,Tel,Correo,Notas,TipoContacto,IdTarea) VALUES ('" + row["Nombre"] + "'," + row["Teléfono"] + ", '" + row["Correo"] + "','" + row["Notas"] + "','" + row["TipoContacto"] + "'," + idTarea + ")";
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlInsert);
             }
         }
