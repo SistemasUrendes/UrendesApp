@@ -206,7 +206,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormInsertarServicioTarea";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormInsertarServicioTarea";
+            this.Text = "Servicio Tarea";
             this.Load += new System.EventHandler(this.FormInsertarServicioTarea_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewServicios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCategorias)).EndInit();

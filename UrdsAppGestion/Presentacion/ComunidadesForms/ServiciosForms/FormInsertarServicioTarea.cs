@@ -45,7 +45,9 @@ namespace UrdsAppGestión.Presentacion.Tareas
         
         private void cargarCategorias()
         {
-            String sqlSelect = "SELECT IdCatElemento,Nombre,NombreCorto AS 'Abr.',Descripcion FROM exp_catElemento";
+
+            //String sqlSelect = "SELECT IdCatElemento,Nombre,NombreCorto AS 'Abr.',Descripcion FROM exp_catElemento";
+            String sqlSelect = "SELECT exp_catElemento.IdCatElemento, exp_catElemento.Nombre, exp_catElemento.NombreCorto AS 'Abr.', exp_catElemento.Descripcion FROM exp_catElemento INNER JOIN (exp_area INNER JOIN exp_areaTarea ON exp_area.IdAreaPrevio = exp_areaTarea.IdArea) ON exp_catElemento.NombreCorto = exp_area.NombreCorto GROUP BY exp_areaTarea.IdTarea, exp_catElemento.IdCatElemento, exp_catElemento.Nombre, exp_catElemento.NombreCorto, exp_catElemento.Descripcion HAVING(((exp_areaTarea.IdTarea) = " + idTarea + "))";
             DataTable tablaCategorias = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridViewCategorias.DataSource = tablaCategorias;
             if (dataGridViewCategorias.Rows.Count > 0)
@@ -55,6 +57,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
                 dataGridViewCategorias.Columns["Abr."].Width = 50;
                 dataGridViewCategorias.Columns["Descripcion"].Width = 130;
             }
+            
         }
 
         private void cargarTodosServicios()
@@ -270,27 +273,30 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void filtrarServicios()
         {
-            DataTable busqueda = tablaFinalServicios;
-            busqueda.DefaultView.RowFilter = string.Empty;
+            if (dataGridViewCategorias.Rows.Count > 0)
+            {
+                DataTable busqueda = tablaFinalServicios;
+                busqueda.DefaultView.RowFilter = string.Empty;
 
-            String filtro = "";
-            
-            if (textBoxFiltroServicios.Text.ToString() != "") filtro += "Nombre like '%" + textBoxFiltroServicios.Text.ToString() + "%'";
-            if (textBoxFiltroCategoria.Text.ToString() != "")
-            {
-                if (textBoxFiltroServicios.Text.ToString() != "") filtro += " AND ";
-                filtro += "Principal like '%" + textBoxFiltroCategoria.Text.ToString() + "%'";
+                String filtro = "";
+
+                if (textBoxFiltroServicios.Text.ToString() != "") filtro += "Nombre like '%" + textBoxFiltroServicios.Text.ToString() + "%'";
+                if (textBoxFiltroCategoria.Text.ToString() != "")
+                {
+                    if (textBoxFiltroServicios.Text.ToString() != "") filtro += " AND ";
+                    filtro += "Principal like '%" + textBoxFiltroCategoria.Text.ToString() + "%'";
+                }
+                if (textBoxFiltroBloque.Text.ToString() != "")
+                {
+                    if (textBoxFiltroServicios.Text.ToString() != "" || textBoxFiltroCategoria.Text.ToString() != "") filtro += " AND ";
+                    filtro += "Bloque like '%" + textBoxFiltroBloque.Text.ToString() + "%'";
+                }
+                if (textBoxFiltroBloque.Text.ToString() != "" || textBoxFiltroCategoria.Text.ToString() != "" || textBoxFiltroServicios.Text.ToString() != "") filtro += " AND ";
+                filtro += "Cat like '" + dataGridViewCategorias.SelectedRows[0].Cells[2].Value + "'";
+                busqueda.DefaultView.RowFilter = filtro;
+                dataGridViewServicios.DataSource = busqueda;
+                ajustarDatagridServicios();
             }
-            if (textBoxFiltroBloque.Text.ToString() != "")
-            {
-                if (textBoxFiltroServicios.Text.ToString() != "" || textBoxFiltroCategoria.Text.ToString() != "") filtro += " AND ";
-                filtro += "Bloque like '%" + textBoxFiltroBloque.Text.ToString() + "%'";
-            }
-            if (textBoxFiltroBloque.Text.ToString() != "" || textBoxFiltroCategoria.Text.ToString() != "" || textBoxFiltroServicios.Text.ToString() != "") filtro += " AND ";
-            filtro += "Cat like '" + dataGridViewCategorias.SelectedRows[0].Cells[2].Value + "'";
-            busqueda.DefaultView.RowFilter = filtro;
-            dataGridViewServicios.DataSource = busqueda;
-            ajustarDatagridServicios();
         }
 
         private void buttonMantenimiento_Click(object sender, EventArgs e)
@@ -304,7 +310,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {   
             cargarBloques();
             cargarTodosServicios();
-            cargarCategorias();
+            cargarCategorias(); 
             filtrarServicios();
         }
 

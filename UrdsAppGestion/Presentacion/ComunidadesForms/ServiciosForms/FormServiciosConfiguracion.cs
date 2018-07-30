@@ -270,7 +270,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         private void FormServiciosConfiguracion_FormClosing(object sender, FormClosingEventArgs e)
         {
-            formAnt.recargar();
+            if(formAnt != null) formAnt.recargar();
         }
     }
 }

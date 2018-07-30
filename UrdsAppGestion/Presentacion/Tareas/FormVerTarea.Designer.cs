@@ -114,6 +114,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.textBoxTipo = new System.Windows.Forms.TextBox();
             this.buttonTipoTarea = new System.Windows.Forms.Button();
+            this.checkBoxSeguro = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGestiones)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -509,7 +510,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(289, 218);
+            this.label8.Location = new System.Drawing.Point(291, 218);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(27, 13);
             this.label8.TabIndex = 37;
@@ -942,11 +943,24 @@
             this.buttonTipoTarea.UseVisualStyleBackColor = true;
             this.buttonTipoTarea.Click += new System.EventHandler(this.buttonTipoTarea_Click);
             // 
+            // checkBoxSeguro
+            // 
+            this.checkBoxSeguro.AutoSize = true;
+            this.checkBoxSeguro.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBoxSeguro.Location = new System.Drawing.Point(225, 216);
+            this.checkBoxSeguro.Name = "checkBoxSeguro";
+            this.checkBoxSeguro.Size = new System.Drawing.Size(63, 17);
+            this.checkBoxSeguro.TabIndex = 62;
+            this.checkBoxSeguro.Text = "Seguro:";
+            this.checkBoxSeguro.UseVisualStyleBackColor = true;
+            this.checkBoxSeguro.CheckedChanged += new System.EventHandler(this.checkBoxSeguro_CheckedChanged);
+            // 
             // FormVerTarea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1265, 604);
+            this.Controls.Add(this.checkBoxSeguro);
             this.Controls.Add(this.buttonTipoTarea);
             this.Controls.Add(this.textBoxTipo);
             this.Controls.Add(this.buttonSugerenciaDesc);
@@ -1112,5 +1126,6 @@
         private System.Windows.Forms.ToolStripMenuItem enviarCorreoToolStripMenuItem1;
         private System.Windows.Forms.TextBox textBoxTipo;
         private System.Windows.Forms.Button buttonTipoTarea;
+        private System.Windows.Forms.CheckBox checkBoxSeguro;
     }
 }

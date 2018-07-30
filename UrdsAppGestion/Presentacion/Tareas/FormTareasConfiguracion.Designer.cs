@@ -110,7 +110,7 @@
             this.dataGridViewTipoTarea.Size = new System.Drawing.Size(293, 350);
             this.dataGridViewTipoTarea.TabIndex = 0;
             this.dataGridViewTipoTarea.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTipoTarea_CellClick);
-            this.dataGridViewTipoTarea.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTipoTarea_CellDoubleClick);
+            this.dataGridViewTipoTarea.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCategorias_CellClick);
             this.dataGridViewTipoTarea.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewTipoTarea_MouseClick);
             // 
             // contextMenuStrip2

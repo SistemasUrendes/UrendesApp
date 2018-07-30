@@ -114,8 +114,15 @@ namespace UrdsAppGestión.Presentacion.Tareas
             comboBoxUsuario.DataSource = Persistencia.SentenciasSQL.select(sqlComboUser);
             comboBoxUsuario.DisplayMember = "Usuario";
             comboBoxUsuario.ValueMember = "IdURD";
-            
-            String SqlComboTipo = "SELECT exp_tipogestion.Descripcion, exp_tipogestion.IdTipoGestion FROM exp_tipogestion";
+
+            if (idTarea == null)
+            {
+                String sqlSelect = "SELECT exp_gestiones.IdTarea FROM exp_gestiones WHERE(((exp_gestiones.IdGestión) = " + idGestion + "))";
+                idTarea = Persistencia.SentenciasSQL.select(sqlSelect).Rows[0][0].ToString();
+
+            }
+            //String SqlComboTipo = "SELECT exp_tipogestion.Descripcion, exp_tipogestion.IdTipoGestion FROM exp_tipogestion";
+            String SqlComboTipo = "SELECT exp_tipogestion.Descripcion, exp_tipogestion.IdTipoGestion FROM exp_tareas INNER JOIN (exp_tipogestion INNER JOIN exp_gestionEstado ON exp_tipogestion.IdTipoGestion = exp_gestionEstado.IdTipoGestion) ON exp_tareas.IdTipoTarea = exp_gestionEstado.IdTipoTarea WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
             comboBoxTipoGestion.DataSource = Persistencia.SentenciasSQL.select(SqlComboTipo);
             comboBoxTipoGestion.DisplayMember = "Descripcion";
             comboBoxTipoGestion.ValueMember = "IdTipoGestion";

@@ -634,7 +634,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
         {
             if (e.ColumnIndex == 0)
             {
-                if ((bool)dataGridView_tareas.Rows[e.RowIndex].Cells[12].Value)
+                if ((bool)dataGridView_tareas.Rows[e.RowIndex].Cells["I"].Value)
                 {
                     e.CellStyle.BackColor = Color.Wheat;
                     dataGridView_tareas.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Wheat;

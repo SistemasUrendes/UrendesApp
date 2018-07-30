@@ -135,8 +135,6 @@ namespace UrdsAppGestión.Presentacion.Tareas
 
         public void cargarCabecera()
         {
-
-            //String sqlSelect = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tareas.IdEntidad, exp_tareas.Notas, exp_tareas.Ruta, exp_tareas.IdTipoTarea, exp_tareas.FFin, exp_tareas.FIni, exp_tareas.Coste, exp_tareas.RefSiniestro, exp_tareas.Seguro, exp_tareas.AcuerdoJunta, exp_tareas.FechaActaAcordado, exp_tareas.ProximaJunta, com_comunidades.Referencia, ctos_entidades.Entidad, exp_tareas.Importante, exp_tareas.IdTareaCorto FROM((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad) WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
             String sqlSelect = "SELECT exp_tareas.IdTarea, exp_tareas.Descripción, exp_tareas.IdEntidad, exp_tareas.Notas, exp_tareas.Ruta, exp_tareas.IdTipoTarea, exp_tareas.FFin, exp_tareas.FIni, exp_tareas.Coste, exp_tareas.RefSiniestro, exp_tareas.Seguro, exp_tareas.AcuerdoJunta, exp_tareas.FechaActaAcordado, exp_tareas.ProximaJunta, com_comunidades.Referencia, ctos_entidades.Entidad, exp_tareas.Importante, exp_tareas.IdTareaCorto, exp_tipostareas.TipoTarea FROM((exp_tareas INNER JOIN ctos_entidades ON exp_tareas.IdEntidad = ctos_entidades.IDEntidad) LEFT JOIN com_comunidades ON ctos_entidades.IDEntidad = com_comunidades.IdEntidad) INNER JOIN exp_tipostareas ON exp_tareas.IdTipoTarea = exp_tipostareas.IdTipoTarea WHERE(((exp_tareas.IdTarea) = " + idTarea + "))";
             tarea = Persistencia.SentenciasSQL.select(sqlSelect);
             
@@ -154,6 +152,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             fInicio = tarea.Rows[0][7].ToString();
             textBoxCoste.Text = tarea.Rows[0][8].ToString();
             textBoxSiniestro.Text = tarea.Rows[0][9].ToString();
+            checkBoxSeguro.Checked = bool.Parse(tarea.Rows[0][10].ToString());
             checkBoxAcuerdoJunta.Checked = bool.Parse(tarea.Rows[0][11].ToString());
             if (tarea.Rows[0][12].ToString() != "00/00/0000") maskedTextBoxFechaActa.Text = tarea.Rows[0][12].ToString();
             checkBoxProxJunta.Checked = bool.Parse(tarea.Rows[0][13].ToString());
@@ -747,6 +746,8 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (maskedTextBoxFFin.Text != "  /  /" && maskedTextBoxFFin.Text != "") fFin = Convert.ToDateTime(maskedTextBoxFFin.Text).ToString("yyyy-MM-dd");
             String ruta = textBoxRuta.Text;
             String notas = textBoxNotas.Text;
+            String seguro = "0";
+            if (checkBoxSeguro.Checked) seguro = "-1";
             String importante = "0";
             if (checkBoxImportante.Checked) importante = "-1";
             
@@ -755,7 +756,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (idTarea != null)
             {
                 String fixRuta = ruta.Replace(@"\", @"\\");
-                String sqlUpdate = "UPDATE exp_tareas SET IdEntidad = " + idEntidad + ",IdRbleTarea = " + Login.getId() + ",IdTipoTarea = " + idTipoTarea + ",Descripción = '" + descripcion + "',DescripcionSinAcentos = '" + descripcionSinAcentos + "',AcuerdoJunta = " + acuerdoJunta + ",RefSiniestro = '" + refSiniestro + "',ProximaJunta = " + proximaJunta + ",Notas = '" + notas + "' WHERE IdTarea = " + idTarea;
+                String sqlUpdate = "UPDATE exp_tareas SET IdEntidad = " + idEntidad + ",IdRbleTarea = " + Login.getId() + ",IdTipoTarea = " + idTipoTarea + ",Descripción = '" + descripcion + "',DescripcionSinAcentos = '" + descripcionSinAcentos + "',AcuerdoJunta = " + acuerdoJunta + ",Seguro = " + seguro + ",RefSiniestro = '" + refSiniestro + "',ProximaJunta = " + proximaJunta + ",Notas = '" + notas + "' WHERE IdTarea = " + idTarea;
                 Persistencia.SentenciasSQL.InsertarGenericoID(sqlUpdate);
                 if (fIni != null)
                 {
@@ -803,7 +804,7 @@ namespace UrdsAppGestión.Presentacion.Tareas
             else
             {
                 String fixRuta = ruta.Replace(@"\", @"\\");
-                String sqlInsert = "INSERT INTO exp_tareas (IdEntidad,IdRbleTarea,IdTipoTarea,Descripción,DescripcionSinAcentos,AcuerdoJunta,ProximaJunta,RefSiniestro,Notas,FIni) VALUES (" + idEntidad + "," + Login.getId() + "," + idTipoTarea + ",'" + descripcion + "','" + descripcionSinAcentos +  "'," + acuerdoJunta + "," + proximaJunta + ",'" + refSiniestro + "','" + notas + "','" + fIni + "')";
+                String sqlInsert = "INSERT INTO exp_tareas (IdEntidad,IdRbleTarea,IdTipoTarea,Descripción,DescripcionSinAcentos,AcuerdoJunta,ProximaJunta,RefSiniestro,Notas,FIni,Seguro) VALUES (" + idEntidad + "," + Login.getId() + "," + idTipoTarea + ",'" + descripcion + "','" + descripcionSinAcentos +  "'," + acuerdoJunta + "," + proximaJunta + ",'" + refSiniestro + "','" + notas + "','" + fIni + "'," + seguro + ")";
                 idTarea = Persistencia.SentenciasSQL.InsertarGenericoID(sqlInsert).ToString();
 
                 if (fFin != null)
@@ -2001,6 +2002,14 @@ namespace UrdsAppGestión.Presentacion.Tareas
             if (idTipoTarea == "2") checkBoxImportante.Checked = true;
             this.idTipoTarea = idTipoTarea;
             textBoxTipo.Text = tipoTarea;
+        }
+
+        private void checkBoxSeguro_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSeguro.Checked)
+            {
+                if (textBoxSiniestro.Text == "") textBoxSiniestro.Text = "PENDIENTE";
+            }
         }
     }
 }
