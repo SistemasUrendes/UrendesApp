@@ -126,7 +126,6 @@ namespace UrdsAppGestión.Presentacion
                     try
                     {
                         EnviarCorreo(destinatario, asunto, cuerpo, adjuntos, from);
-                        //EnviarCorreo(destinatario, asunto + "-" + lista_correos[i].Correo, cuerpo, adjuntos,from);
                         enviosCorrectos++;
                     }
                     catch (Exception es)

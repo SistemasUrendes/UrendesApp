@@ -42,7 +42,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms
 
                 cargarCombos(id_entidad_cargado);
 
-                String sqlComunero = "SELECT IdComunero, IdEntidad, IdDivPpal, IdFormaPago, IdDireccion, IdCC, IdEmail, IdTipoCopia, EnvioPostal, EnvioEmail, IVA, Notas FROM com_comuneros WHERE IdComunero = " + id_comunero_cargado;
+                String sqlComunero = "SELECT IdComunero, IdEntidad, IdDivPpal, IdFormaPago, IdDireccion, IdCC, IdEmail, IdTipoCopia, EnvioPostal, EnvioEmail, IVA, Notas, EmailCopia FROM com_comuneros WHERE IdComunero = " + id_comunero_cargado;
 
                 comunero = Persistencia.SentenciasSQL.select(sqlComunero);
 
@@ -52,14 +52,14 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms
                 if (comunero.Rows[0]["IdDireccion"].ToString() != "")
                     comboBox_Direccion.SelectedValue = comunero.Rows[0]["IdDireccion"].ToString();
 
-                if (comunero.Rows[0]["IdDivPpal"].ToString() != "")
-                    comboBox_DivsionPpal.SelectedValue = comunero.Rows[0]["IdDivPpal"].ToString();
-
                 if (comunero.Rows[0]["IdEmail"].ToString() != "")       
                     comboBox_Email.SelectedValue = comunero.Rows[0]["IdEmail"].ToString();
 
                 if (comunero.Rows[0]["IdCC"].ToString() != "")
                     comboBox_cc.SelectedValue = comunero.Rows[0]["IdCC"].ToString();
+
+                if (comunero.Rows[0]["EmailCopia"].ToString() != "")
+                    textBox_copiaEmail.Text = comunero.Rows[0]["EmailCopia"].ToString();
 
                 textBox_Notas.Text = comunero.Rows[0]["Notas"].ToString();
 
@@ -84,11 +84,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms
 
             comboBox_Email.DisplayMember = "Descripcion";
             comboBox_Email.ValueMember = "IdEmail";
-
-            String sqlDivisiones = "SELECT IdDivision, Division FROM com_divisiones WHERE IdComunidad = " + id_comunidad_cargado;
-            comboBox_DivsionPpal.DataSource = Persistencia.SentenciasSQL.select(sqlDivisiones);
-            comboBox_DivsionPpal.DisplayMember = "Division";
-            comboBox_DivsionPpal.ValueMember = "IdDivision";
 
             String sqlFormasPago = "SELECT IdFormaPago, FormaPago FROM aux_formapago";
             comboBox_FormadePago.DataSource = Persistencia.SentenciasSQL.select(sqlFormasPago);
@@ -123,6 +118,13 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms
                 MessageBox.Show("Debe seleccionar un email.");
                 return;
             }
+
+            if (textBox_copiaEmail.Text != "" && !EntidadesForms.FormCorreos.ComprobarFormatoEmail(textBox_copiaEmail.Text))
+            {
+                MessageBox.Show("Comprueba que el E-mail Copia es correcto");
+                return;
+            }
+
             else if (comboBox_Email.SelectedValue != null)
             {
                 idCorreo = comboBox_Email.SelectedValue.ToString();             
@@ -160,10 +162,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms
 
             if (id_comunero_cargado != "0") {
                 if (textBox_Notas.Text != "") {
-                    sqlUpdate = "UPDATE com_comuneros SET IdFormaPago=" + comboBox_FormadePago.SelectedValue.ToString() + ", IdDireccion=" + comboDireccion + ", IdCC=" + IdCC + ", IdEmail=" + idCorreo + ", EnvioPostal =" + EnvioPostal + ", EnvioEmail=" + Envio_email + ", IVA=" + IVA + ", Notas='" + textBox_Notas.Text + "' WHERE IdComunero = " + id_comunero_cargado;
+                    sqlUpdate = "UPDATE com_comuneros SET IdFormaPago=" + comboBox_FormadePago.SelectedValue.ToString() + ", IdDireccion=" + comboDireccion + ", IdCC=" + IdCC + ", IdEmail=" + idCorreo + ", EnvioPostal =" + EnvioPostal + ", EnvioEmail=" + Envio_email + ", IVA=" + IVA + ", Notas='" + textBox_Notas.Text + "' , EmailCopia = '" + textBox_copiaEmail.Text + "' WHERE IdComunero = " + id_comunero_cargado;
                 }
                 else {
-                    sqlUpdate = "UPDATE com_comuneros SET IdFormaPago=" + comboBox_FormadePago.SelectedValue.ToString() + ", IdDireccion=" + comboDireccion + ", IdCC=" + IdCC + ", IdEmail=" + idCorreo + ", EnvioPostal =" + EnvioPostal + ", EnvioEmail=" + Envio_email + ", IVA=" + IVA + ", Notas='' WHERE IdComunero = " + id_comunero_cargado;
+                    sqlUpdate = "UPDATE com_comuneros SET IdFormaPago=" + comboBox_FormadePago.SelectedValue.ToString() + ", IdDireccion=" + comboDireccion + ", IdCC=" + IdCC + ", IdEmail=" + idCorreo + ", EnvioPostal =" + EnvioPostal + ", EnvioEmail=" + Envio_email + ", IVA=" + IVA + ", Notas='', EmailCopia = '" + textBox_copiaEmail.Text + "' WHERE IdComunero = " + id_comunero_cargado;
                 }
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                 form_anterior.recargoFiltro();
@@ -173,10 +175,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms
             }
             else {
                 if (textBox_Notas.Text != "") {
-                        sqlInsertar = "INSERT INTO com_comuneros (IdComunidad, IdEntidad, IdFormaPago, IdDireccion, IdCC, IdEmail, EnvioPostal, EnvioEmail, IVA, Notas) VALUES (" + id_comunidad_cargado + "," + id_entidad_nuevo + "," + comboBox_FormadePago.SelectedValue.ToString() + "," + comboDireccion + "," + IdCC + "," + idCorreo + "," + EnvioPostal + "," + Envio_email + "," + IVA + ",'" + textBox_Notas.Text + "')";
+                        sqlInsertar = "INSERT INTO com_comuneros (IdComunidad, IdEntidad, IdFormaPago, IdDireccion, IdCC, IdEmail, EnvioPostal, EnvioEmail, IVA, Notas, EmailCopia) VALUES (" + id_comunidad_cargado + "," + id_entidad_nuevo + "," + comboBox_FormadePago.SelectedValue.ToString() + "," + comboDireccion + "," + IdCC + "," + idCorreo + "," + EnvioPostal + "," + Envio_email + "," + IVA + ",'" + textBox_Notas.Text + "','" + textBox_copiaEmail.Text + "')";
                 }else {
 
-                    sqlInsertar = "INSERT INTO com_comuneros (IdComunidad, IdEntidad, IdFormaPago, IdDireccion, IdCC, IdEmail, EnvioPostal, EnvioEmail, IVA) VALUES (" + id_comunidad_cargado + "," + id_entidad_nuevo + "," + comboBox_FormadePago.SelectedValue.ToString() + "," + comboBox_Direccion.SelectedValue.ToString() + "," + IdCC + "," + idCorreo + "," + EnvioPostal + "," + Envio_email + "," + IVA + ")";
+                    sqlInsertar = "INSERT INTO com_comuneros (IdComunidad, IdEntidad, IdFormaPago, IdDireccion, IdCC, IdEmail, EnvioPostal, EnvioEmail, IVA, EmailCopia) VALUES (" + id_comunidad_cargado + "," + id_entidad_nuevo + "," + comboBox_FormadePago.SelectedValue.ToString() + "," + comboBox_Direccion.SelectedValue.ToString() + "," + IdCC + "," + idCorreo + "," + EnvioPostal + "," + Envio_email + "," + IVA + ",'" + textBox_copiaEmail.Text + "')";
                 }
 
                 Persistencia.SentenciasSQL.InsertarGenerico(sqlInsertar);

@@ -64,6 +64,8 @@
             this.button4 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.textBox_buscar = new System.Windows.Forms.TextBox();
+            this.textBox_copiaEmail = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_comuneros)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -197,7 +199,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(56, 505);
+            this.label6.Location = new System.Drawing.Point(56, 503);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 13);
             this.label6.TabIndex = 13;
@@ -234,7 +236,7 @@
             // 
             this.checkBox_Activo.AutoSize = true;
             this.checkBox_Activo.Enabled = false;
-            this.checkBox_Activo.Location = new System.Drawing.Point(564, 391);
+            this.checkBox_Activo.Location = new System.Drawing.Point(767, 389);
             this.checkBox_Activo.Name = "checkBox_Activo";
             this.checkBox_Activo.Size = new System.Drawing.Size(56, 17);
             this.checkBox_Activo.TabIndex = 20;
@@ -245,7 +247,7 @@
             // 
             this.checkBox_papel.AutoSize = true;
             this.checkBox_papel.Enabled = false;
-            this.checkBox_papel.Location = new System.Drawing.Point(505, 477);
+            this.checkBox_papel.Location = new System.Drawing.Point(508, 389);
             this.checkBox_papel.Name = "checkBox_papel";
             this.checkBox_papel.Size = new System.Drawing.Size(53, 17);
             this.checkBox_papel.TabIndex = 21;
@@ -256,7 +258,7 @@
             // 
             this.checkBox_IVA.AutoSize = true;
             this.checkBox_IVA.Enabled = false;
-            this.checkBox_IVA.Location = new System.Drawing.Point(505, 391);
+            this.checkBox_IVA.Location = new System.Drawing.Point(718, 389);
             this.checkBox_IVA.Name = "checkBox_IVA";
             this.checkBox_IVA.Size = new System.Drawing.Size(43, 17);
             this.checkBox_IVA.TabIndex = 22;
@@ -267,7 +269,7 @@
             // 
             this.checkBox_EMail.AutoSize = true;
             this.checkBox_EMail.Enabled = false;
-            this.checkBox_EMail.Location = new System.Drawing.Point(564, 477);
+            this.checkBox_EMail.Location = new System.Drawing.Point(567, 389);
             this.checkBox_EMail.Name = "checkBox_EMail";
             this.checkBox_EMail.Size = new System.Drawing.Size(55, 17);
             this.checkBox_EMail.TabIndex = 23;
@@ -311,7 +313,7 @@
             this.textBox_Divppal.Location = new System.Drawing.Point(586, 416);
             this.textBox_Divppal.Name = "textBox_Divppal";
             this.textBox_Divppal.ReadOnly = true;
-            this.textBox_Divppal.Size = new System.Drawing.Size(209, 20);
+            this.textBox_Divppal.Size = new System.Drawing.Size(240, 20);
             this.textBox_Divppal.TabIndex = 28;
             // 
             // textBox_NumCuenta
@@ -319,16 +321,16 @@
             this.textBox_NumCuenta.Location = new System.Drawing.Point(586, 445);
             this.textBox_NumCuenta.Name = "textBox_NumCuenta";
             this.textBox_NumCuenta.ReadOnly = true;
-            this.textBox_NumCuenta.Size = new System.Drawing.Size(209, 20);
+            this.textBox_NumCuenta.Size = new System.Drawing.Size(240, 20);
             this.textBox_NumCuenta.TabIndex = 29;
             // 
             // textBox_Notas
             // 
-            this.textBox_Notas.Location = new System.Drawing.Point(149, 502);
+            this.textBox_Notas.Location = new System.Drawing.Point(149, 503);
             this.textBox_Notas.Multiline = true;
             this.textBox_Notas.Name = "textBox_Notas";
             this.textBox_Notas.ReadOnly = true;
-            this.textBox_Notas.Size = new System.Drawing.Size(646, 69);
+            this.textBox_Notas.Size = new System.Drawing.Size(677, 69);
             this.textBox_Notas.TabIndex = 30;
             // 
             // contextMenuStrip1
@@ -398,12 +400,31 @@
             this.textBox_buscar.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox_buscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView_comuneros_KeyDown);
             // 
+            // textBox_copiaEmail
+            // 
+            this.textBox_copiaEmail.Location = new System.Drawing.Point(586, 475);
+            this.textBox_copiaEmail.Name = "textBox_copiaEmail";
+            this.textBox_copiaEmail.ReadOnly = true;
+            this.textBox_copiaEmail.Size = new System.Drawing.Size(240, 20);
+            this.textBox_copiaEmail.TabIndex = 35;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(505, 478);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(72, 13);
+            this.label11.TabIndex = 34;
+            this.label11.Text = "Copia E-Mail: ";
+            // 
             // Comuneros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(849, 617);
+            this.ClientSize = new System.Drawing.Size(849, 587);
             this.ControlBox = false;
+            this.Controls.Add(this.textBox_copiaEmail);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.textBox_buscar);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.button4);
@@ -481,5 +502,7 @@
         public System.Windows.Forms.TextBox textBox_buscar;
         private System.Windows.Forms.ToolStripMenuItem verEntidadToolStripMenuItem;
         public System.Windows.Forms.DataGridView dataGridView_comuneros;
+        private System.Windows.Forms.TextBox textBox_copiaEmail;
+        private System.Windows.Forms.Label label11;
     }
 }
