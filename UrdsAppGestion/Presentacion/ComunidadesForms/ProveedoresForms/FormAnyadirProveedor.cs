@@ -42,7 +42,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ProveedoresForms
             comboBox_categoria.DisplayMember = "Descripcion";
             
             if (idProveedor != null) {
-                String sqlSelect = "SELECT com_proveedores.IdBloque, com_proveedores.IdEntidad, ctos_entidades.Entidad, com_proveedores.IdCategoria, com_proveedores.Servicio FROM com_proveedores INNER JOIN ctos_entidades ON com_proveedores.IdEntidad = ctos_entidades.IDEntidad WHERE com_proveedores.IdProveedor = " + idProveedor + " AND com_proveedores.IdComunidad = " + idComunidad;
+                String sqlSelect = "SELECT com_proveedores.IdBloque, com_proveedores.IdEntidad, ctos_entidades.Entidad, com_proveedores.IdCategoria, com_proveedores.Servicio, com_proveedores.RefContrato FROM com_proveedores INNER JOIN ctos_entidades ON com_proveedores.IdEntidad = ctos_entidades.IDEntidad WHERE com_proveedores.IdProveedor = " + idProveedor + " AND com_proveedores.IdComunidad = " + idComunidad;
                 DataTable proveedor = Persistencia.SentenciasSQL.select(sqlSelect);
                 
                 if (proveedor.Rows[0][0].ToString() != "")
@@ -51,10 +51,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ProveedoresForms
                 if (proveedor.Rows[0][3].ToString() != "")
                     comboBox_categoria.SelectedValue = proveedor.Rows[0][3].ToString();
 
-                textBox_descripcion.Text = proveedor.Rows[0][4].ToString();
-
                 id_entidad_nuevo = proveedor.Rows[0][1].ToString();
                 textBox_entidad.Text = proveedor.Rows[0][2].ToString();
+                textBox_descripcion.Text = proveedor.Rows[0][4].ToString();
+                textBox_ref.Text = proveedor.Rows[0][5].ToString();
 
             }
         }
@@ -98,15 +98,14 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.ProveedoresForms
             try {
                 if (idProveedor != null)
                 {
-                    String sqlUpdate = "UPDATE com_proveedores SET IdBloque =" + comboBox_bloque.SelectedValue + ", IdEntidad=" + id_entidad_nuevo + ", IdCategoria=" + comboBox_categoria.SelectedValue + ", Servicio='" + textBox_descripcion.Text + "' WHERE IdProveedor = " + idProveedor;
+                    String sqlUpdate = "UPDATE com_proveedores SET IdBloque =" + comboBox_bloque.SelectedValue + ", IdEntidad=" + id_entidad_nuevo + ", IdCategoria=" + comboBox_categoria.SelectedValue + ", Servicio='" + textBox_descripcion.Text + "', RefContrato = '" + textBox_ref.Text + "' WHERE IdProveedor = " + idProveedor;
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlUpdate);
                     form_anterior.cargarDatagrid();
                     this.Close();
                 }
                 else
                 {
-
-                    String sqlInsertProveedor = "INSERT INTO com_proveedores (IdComunidad, IdBloque, IdEntidad, IdCategoria, Servicio) VALUES (" + idComunidad + "," + comboBox_bloque.SelectedValue + "," + id_entidad_nuevo + "," + comboBox_categoria.SelectedValue + ",'" + textBox_descripcion.Text + "')";
+                    String sqlInsertProveedor = "INSERT INTO com_proveedores (IdComunidad, IdBloque, IdEntidad, IdCategoria, Servicio, RefContrato ) VALUES (" + idComunidad + "," + comboBox_bloque.SelectedValue + "," + id_entidad_nuevo + "," + comboBox_categoria.SelectedValue + ",'" + textBox_descripcion.Text + "','" + textBox_ref.Text + "')";
 
                     Persistencia.SentenciasSQL.InsertarGenerico(sqlInsertProveedor);
                     form_anterior.cargarDatagrid();

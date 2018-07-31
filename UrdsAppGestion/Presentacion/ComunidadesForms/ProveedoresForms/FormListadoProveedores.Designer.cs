@@ -63,7 +63,7 @@
             this.dataGridView_proveedores.RowHeadersVisible = false;
             this.dataGridView_proveedores.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
             this.dataGridView_proveedores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_proveedores.Size = new System.Drawing.Size(1199, 498);
+            this.dataGridView_proveedores.Size = new System.Drawing.Size(1164, 498);
             this.dataGridView_proveedores.TabIndex = 2;
             this.dataGridView_proveedores.DoubleClick += new System.EventHandler(this.dataGridView_proveedores_DoubleClick);
             this.dataGridView_proveedores.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView_proveedores_KeyPress);
@@ -71,7 +71,7 @@
             // 
             // button_enviar
             // 
-            this.button_enviar.Location = new System.Drawing.Point(816, 36);
+            this.button_enviar.Location = new System.Drawing.Point(854, 36);
             this.button_enviar.Name = "button_enviar";
             this.button_enviar.Size = new System.Drawing.Size(102, 23);
             this.button_enviar.TabIndex = 3;
@@ -154,7 +154,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(959, 15);
+            this.label2.Location = new System.Drawing.Point(985, 11);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 4;
@@ -166,7 +166,7 @@
             this.comboBox_informes.FormattingEnabled = true;
             this.comboBox_informes.Items.AddRange(new object[] {
             "Listado Proveedores"});
-            this.comboBox_informes.Location = new System.Drawing.Point(1018, 12);
+            this.comboBox_informes.Location = new System.Drawing.Point(1044, 8);
             this.comboBox_informes.Name = "comboBox_informes";
             this.comboBox_informes.Size = new System.Drawing.Size(121, 21);
             this.comboBox_informes.TabIndex = 5;
@@ -190,7 +190,7 @@
             "Alta",
             "Baja",
             "Todos"});
-            this.comboBox1.Location = new System.Drawing.Point(1018, 37);
+            this.comboBox1.Location = new System.Drawing.Point(1044, 33);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 7;
@@ -199,7 +199,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(966, 41);
+            this.label3.Location = new System.Drawing.Point(992, 37);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(46, 13);
             this.label3.TabIndex = 8;
@@ -209,7 +209,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1219, 571);
+            this.ClientSize = new System.Drawing.Size(1189, 571);
             this.ControlBox = false;
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBox1);

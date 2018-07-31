@@ -39,6 +39,8 @@
             this.button_guardar = new System.Windows.Forms.Button();
             this.button_cancelar = new System.Windows.Forms.Button();
             this.comboBox_categoria = new System.Windows.Forms.ComboBox();
+            this.textBox_ref = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox_entidad
@@ -88,7 +90,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(24, 119);
+            this.label4.Location = new System.Drawing.Point(21, 149);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 5;
@@ -98,14 +100,14 @@
             // 
             this.comboBox_bloque.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_bloque.FormattingEnabled = true;
-            this.comboBox_bloque.Location = new System.Drawing.Point(99, 116);
+            this.comboBox_bloque.Location = new System.Drawing.Point(99, 146);
             this.comboBox_bloque.Name = "comboBox_bloque";
             this.comboBox_bloque.Size = new System.Drawing.Size(121, 21);
             this.comboBox_bloque.TabIndex = 6;
             // 
             // button_guardar
             // 
-            this.button_guardar.Location = new System.Drawing.Point(204, 174);
+            this.button_guardar.Location = new System.Drawing.Point(204, 210);
             this.button_guardar.Name = "button_guardar";
             this.button_guardar.Size = new System.Drawing.Size(75, 23);
             this.button_guardar.TabIndex = 8;
@@ -115,7 +117,7 @@
             // 
             // button_cancelar
             // 
-            this.button_cancelar.Location = new System.Drawing.Point(285, 174);
+            this.button_cancelar.Location = new System.Drawing.Point(285, 210);
             this.button_cancelar.Name = "button_cancelar";
             this.button_cancelar.Size = new System.Drawing.Size(75, 23);
             this.button_cancelar.TabIndex = 9;
@@ -132,11 +134,29 @@
             this.comboBox_categoria.Size = new System.Drawing.Size(184, 21);
             this.comboBox_categoria.TabIndex = 10;
             // 
+            // textBox_ref
+            // 
+            this.textBox_ref.Location = new System.Drawing.Point(99, 116);
+            this.textBox_ref.Name = "textBox_ref";
+            this.textBox_ref.Size = new System.Drawing.Size(118, 20);
+            this.textBox_ref.TabIndex = 5;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(21, 119);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(79, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Ref. Contrato : ";
+            // 
             // FormAnyadirProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 212);
+            this.ClientSize = new System.Drawing.Size(384, 245);
+            this.Controls.Add(this.textBox_ref);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.comboBox_categoria);
             this.Controls.Add(this.button_cancelar);
             this.Controls.Add(this.button_guardar);
@@ -169,5 +189,7 @@
         private System.Windows.Forms.Button button_guardar;
         private System.Windows.Forms.Button button_cancelar;
         private System.Windows.Forms.ComboBox comboBox_categoria;
+        private System.Windows.Forms.TextBox textBox_ref;
+        private System.Windows.Forms.Label label5;
     }
 }
