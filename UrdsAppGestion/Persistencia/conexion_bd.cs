@@ -88,7 +88,6 @@ namespace UrdsAppGestión.Persistencia {
                 string datos = "server=" + ip_servidor + ";user=" + user + ";password=" + password + ";database=" + database + ";port=" + port + ";Allow Zero Datetime=True;CHARSET=utf8;ConnectionTimeout=900";
                 MySqlConnection conexion = new MySqlConnection(datos);
                 
-               // MessageBox.Show("Conectado a " + database);
                 return conexion;
             }
             catch (Exception e) {

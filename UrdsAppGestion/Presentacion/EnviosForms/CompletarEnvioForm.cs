@@ -99,19 +99,19 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.EnviosForms
                 if (comunidades_array[a].ToString() != "")
                 {
 
-                    String sql = "SELECT com_comuneros.IdComunero, com_comuneros.IdEntidad, com_comuneros.IdEmail, ctos_detemail.Email, com_comuneros.EnvioEmail, com_asociacion.Ppal FROM(com_comuneros INNER JOIN ctos_detemail ON com_comuneros.IdEmail = ctos_detemail.IdEmail) INNER JOIN com_asociacion ON com_comuneros.IdComunero = com_asociacion.IdComunero GROUP BY com_comuneros.IdComunero, com_comuneros.IdEntidad, com_comuneros.IdEmail, ctos_detemail.Email, com_comuneros.EnvioEmail, com_comuneros.IdComunidad, com_asociacion.Ppal HAVING(((com_comuneros.EnvioEmail) = -1) AND((com_comuneros.IdComunidad) = " + comunidades_array[a].ToString() + ") AND ((com_asociacion.Ppal) = -1));";
+                    String sql = "SELECT com_comuneros.IdComunero, com_comuneros.IdEntidad, com_comuneros.IdEmail, ctos_detemail.Email, com_comuneros.EnvioEmail, com_asociacion.Ppal, com_comuneros.EmailCopia FROM(com_comuneros INNER JOIN ctos_detemail ON com_comuneros.IdEmail = ctos_detemail.IdEmail) INNER JOIN com_asociacion ON com_comuneros.IdComunero = com_asociacion.IdComunero GROUP BY com_comuneros.IdComunero, com_comuneros.IdEntidad, com_comuneros.IdEmail, ctos_detemail.Email, com_comuneros.EnvioEmail, com_comuneros.IdComunidad, com_asociacion.Ppal HAVING(((com_comuneros.EnvioEmail) = -1) AND((com_comuneros.IdComunidad) = " + comunidades_array[a].ToString() + ") AND ((com_asociacion.Ppal) = -1));";
 
                     DataTable tabla_envios_comunidades = Persistencia.SentenciasSQL.select(sql);
                     for (int b = 0; b < tabla_envios_comunidades.Rows.Count; b++)
                     {
                         if (ComprobarFormatoEmail(tabla_envios_comunidades.Rows[b]["Email"].ToString()))
                         {
-                            EnvioCorreo envio = new EnvioCorreo(comunidades_array[a], tabla_envios_comunidades.Rows[b]["IdEntidad"].ToString(), tabla_envios_comunidades.Rows[b]["IdEmail"].ToString(), tabla_envios_comunidades.Rows[b]["Email"].ToString());
+                            EnvioCorreo envio = new EnvioCorreo(comunidades_array[a], tabla_envios_comunidades.Rows[b]["IdEntidad"].ToString(), tabla_envios_comunidades.Rows[b]["IdEmail"].ToString(), tabla_envios_comunidades.Rows[b]["Email"].ToString(), tabla_envios_comunidades.Rows[a]["EmailCopia"].ToString());
                             EntidadesBien.Add(envio);
                         }
                         else
                         {
-                            EnvioCorreo envio = new EnvioCorreo(comunidades_array[a], tabla_envios_comunidades.Rows[b]["IdEntidad"].ToString(), tabla_envios_comunidades.Rows[b]["IdEmail"].ToString(), tabla_envios_comunidades.Rows[b]["Email"].ToString());
+                            EnvioCorreo envio = new EnvioCorreo(comunidades_array[a], tabla_envios_comunidades.Rows[b]["IdEntidad"].ToString(), tabla_envios_comunidades.Rows[b]["IdEmail"].ToString(), tabla_envios_comunidades.Rows[b]["Email"].ToString(), tabla_envios_comunidades.Rows[a]["EmailCopia"].ToString());
                             EntidadesMal.Add(envio);
                         }
                     }
@@ -227,7 +227,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.EnviosForms
 
             List<EnvioCorreo> EntidadesMal = new List<EnvioCorreo>();
             List<EnvioCorreo> EntidadesBien = new List<EnvioCorreo>();
-            String sql = "SELECT com_subcuotas.IdBloque, com_asociacion.IdComunero, ctos_entidades.IDEntidad, com_asociacion.IdTipoAsoc, com_asociacion.Ppal, com_comuneros.IdDireccion, com_comuneros.IdEmail, com_comuneros.EnvioPostal, com_comuneros.EnvioEmail, com_divisiones.IdComunidad FROM(((com_subcuotas LEFT JOIN com_divisiones ON com_subcuotas.IdDivision = com_divisiones.IdDivision) LEFT JOIN com_asociacion ON com_divisiones.IdDivision = com_asociacion.IdDivision) LEFT JOIN com_comuneros ON com_asociacion.IdComunero = com_comuneros.IdComunero) LEFT JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad GROUP BY com_subcuotas.IdBloque, com_asociacion.IdComunero, ctos_entidades.Entidad, com_asociacion.IdTipoAsoc, com_asociacion.Ppal, com_comuneros.IdDireccion, com_comuneros.IdEmail, com_comuneros.EnvioPostal, com_comuneros.EnvioEmail, com_divisiones.IdComunidad HAVING(((com_subcuotas.IdBloque) = " + id_bloque + ") AND((com_asociacion.IdTipoAsoc) = 1) AND((com_asociacion.Ppal) = -1) AND((com_comuneros.EnvioEmail) = -1));";
+            String sql = "SELECT com_subcuotas.IdBloque, com_asociacion.IdComunero, ctos_entidades.IDEntidad, com_asociacion.IdTipoAsoc, com_asociacion.Ppal, com_comuneros.IdDireccion, com_comuneros.IdEmail, com_comuneros.EnvioPostal, com_comuneros.EnvioEmail, com_divisiones.IdComunidad,com_comuneros.EmailCopia FROM(((com_subcuotas LEFT JOIN com_divisiones ON com_subcuotas.IdDivision = com_divisiones.IdDivision) LEFT JOIN com_asociacion ON com_divisiones.IdDivision = com_asociacion.IdDivision) LEFT JOIN com_comuneros ON com_asociacion.IdComunero = com_comuneros.IdComunero) LEFT JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad GROUP BY com_subcuotas.IdBloque, com_asociacion.IdComunero, ctos_entidades.Entidad, com_asociacion.IdTipoAsoc, com_asociacion.Ppal, com_comuneros.IdDireccion, com_comuneros.IdEmail, com_comuneros.EnvioPostal, com_comuneros.EnvioEmail, com_divisiones.IdComunidad HAVING(((com_subcuotas.IdBloque) = " + id_bloque + ") AND((com_asociacion.IdTipoAsoc) = 1) AND((com_asociacion.Ppal) = -1) AND((com_comuneros.EnvioEmail) = -1));";
 
             DataTable correos = Persistencia.SentenciasSQL.select(sql);
             for (int a = 0; a < correos.Rows.Count; a++)
@@ -241,11 +241,11 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.EnviosForms
                             correo = Persistencia.SentenciasSQL.select(Sql);
 
                             if (!ComprobarFormatoEmail(correo.Rows[0][0].ToString())) {
-                                EnvioCorreo envio = new EnvioCorreo(correos.Rows[a]["IdComunidad"].ToString(), correos.Rows[a]["IDEntidad"].ToString(), correos.Rows[a]["IdEmail"].ToString(), correo.Rows[0][0].ToString());
+                                EnvioCorreo envio = new EnvioCorreo(correos.Rows[a]["IdComunidad"].ToString(), correos.Rows[a]["IDEntidad"].ToString(), correos.Rows[a]["IdEmail"].ToString(), correo.Rows[0][0].ToString(), correos.Rows[a]["EmailCopia"].ToString());
                                 EntidadesMal.Add(envio);
                             }
                             else {
-                                EnvioCorreo envio = new EnvioCorreo(correos.Rows[a]["IdComunidad"].ToString(), correos.Rows[a]["IDEntidad"].ToString(), correos.Rows[a]["IdEmail"].ToString(), correo.Rows[0][0].ToString());
+                                EnvioCorreo envio = new EnvioCorreo(correos.Rows[a]["IdComunidad"].ToString(), correos.Rows[a]["IDEntidad"].ToString(), correos.Rows[a]["IdEmail"].ToString(), correo.Rows[0][0].ToString(), correos.Rows[a]["EmailCopia"].ToString());
                                 EntidadesBien.Add(envio);
                             }
                         }

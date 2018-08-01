@@ -105,8 +105,6 @@ namespace UrdsAppGestión.Presentacion
 
                 for (int i = 0; i < lista_correos.Count; i++)
                 {
-
-                    //String destinatario = "sistemas@urendes.com";
                     String destinatario = lista_correos[i].Correo;
 
                     //if (destinatario != "sandrapenavinuesa@hotmail.com" && !encontrado) {
@@ -125,7 +123,7 @@ namespace UrdsAppGestión.Presentacion
 
                     try
                     {
-                        EnviarCorreo(destinatario, asunto, cuerpo, adjuntos, from);
+                        EnviarCorreo(destinatario, asunto, cuerpo, adjuntos, from, lista_correos[i].CorreoCopia);
                         enviosCorrectos++;
                     }
                     catch (Exception es)
@@ -203,7 +201,7 @@ namespace UrdsAppGestión.Presentacion
                 numero_procesos--;
             }
         }
-        private void EnviarCorreo(String destinatario, String Asunto, String Cuerpo, List<String> adjuntos,String from)
+        private void EnviarCorreo(String destinatario, String Asunto, String Cuerpo, List<String> adjuntos,String from, String opcionalCorreo = "")
         {
             //destinatario = "sistemas@urendes.com";
             //destinatario = "alex.cremeria@gmail.com";
@@ -213,6 +211,11 @@ namespace UrdsAppGestión.Presentacion
 
             MailMessage email = new MailMessage();
             email.To.Add(new MailAddress(destinatario));
+
+            //COMPRUEBA QUE EXISTA UN CORREO PARA ENVIAR UNA COPIA.
+            if (opcionalCorreo != "" && EntidadesForms.FormCorreos.ComprobarFormatoEmail(opcionalCorreo)) 
+                email.CC.Add(new MailAddress(opcionalCorreo));
+
             email.Bcc.Add(new MailAddress("no-reply@envios.urendes.com"));
             email.From = new MailAddress(from);
             email.Subject = Asunto;

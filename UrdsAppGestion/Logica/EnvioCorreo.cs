@@ -8,9 +8,11 @@ namespace UrdsAppGestión.Logica
 {
     public class EnvioCorreo {
         private String IdComunidad;
+        private String IdComunero;
         private String IdEntidad;
         private String IdEmail;
         private String correo;
+        private String correoCopia;
 
         public string IdComunidad1
         {
@@ -64,11 +66,32 @@ namespace UrdsAppGestión.Logica
             }
         }
 
+        public string CorreoCopia
+        {
+            get
+            {
+                return correoCopia;
+            }
+
+            set
+            {
+                correoCopia = value;
+            }
+        }
+
         public EnvioCorreo(String IdComunidad, String IdEntidad, String IdEmail, String correo) {
             this.IdComunidad = IdComunidad;
             this.IdEmail = IdEmail;
             this.IdEntidad = IdEntidad;
             this.correo = correo;
+        }
+        public EnvioCorreo(String IdComunidad, String IdEntidad, String IdEmail, String correo, String correoCopia)
+        {
+            this.IdComunidad = IdComunidad;
+            this.IdEmail = IdEmail;
+            this.IdEntidad = IdEntidad;
+            this.correo = correo;
+            this.correoCopia = correoCopia;
         }
         public EnvioCorreo(String IdComunidad, String IdEntidad, String IdEmail) {
             this.IdComunidad = IdComunidad;
