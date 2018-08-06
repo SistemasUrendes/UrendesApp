@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetCuentas" targetNamespace="http://tempuri.org/DataSetCuentas.xsd" xmlns:mstns="http://tempuri.org/DataSetCuentas.xsd" xmlns="http://tempuri.org/DataSetCuentas.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetCuentas" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetCuentas" msprop:Generator_UserDSName="DataSetCuentas">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Cuentas" msprop:Generator_TableClassName="CuentasDataTable" msprop:Generator_TableVarName="tableCuentas" msprop:Generator_TablePropName="Cuentas" msprop:Generator_RowDeletingName="CuentasRowDeleting" msprop:Generator_RowChangingName="CuentasRowChanging" msprop:Generator_RowEvHandlerName="CuentasRowChangeEventHandler" msprop:Generator_RowDeletedName="CuentasRowDeleted" msprop:Generator_UserTableName="Cuentas" msprop:Generator_RowChangedName="CuentasRowChanged" msprop:Generator_RowEvArgName="CuentasRowChangeEvent" msprop:Generator_RowClassName="CuentasRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdCuenta" msprop:Generator_ColumnVarNameInTable="columnIdCuenta" msprop:Generator_ColumnPropNameInRow="IdCuenta" msprop:Generator_ColumnPropNameInTable="IdCuentaColumn" msprop:Generator_UserColumnName="IdCuenta" type="xs:string" minOccurs="0" />
+              <xs:element name="IdEntidad" msprop:Generator_ColumnVarNameInTable="columnIdEntidad" msprop:Generator_ColumnPropNameInRow="IdEntidad" msprop:Generator_ColumnPropNameInTable="IdEntidadColumn" msprop:Generator_UserColumnName="IdEntidad" type="xs:string" minOccurs="0" />
+              <xs:element name="CC" msprop:Generator_ColumnVarNameInTable="columnCC" msprop:Generator_ColumnPropNameInRow="CC" msprop:Generator_ColumnPropNameInTable="CCColumn" msprop:Generator_UserColumnName="CC" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

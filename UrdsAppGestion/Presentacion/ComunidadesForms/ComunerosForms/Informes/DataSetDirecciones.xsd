@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetDirecciones" targetNamespace="http://tempuri.org/DataSetDirecciones.xsd" xmlns:mstns="http://tempuri.org/DataSetDirecciones.xsd" xmlns="http://tempuri.org/DataSetDirecciones.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetDirecciones" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetDirecciones" msprop:Generator_UserDSName="DataSetDirecciones">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Direcciones" msprop:Generator_TableClassName="DireccionesDataTable" msprop:Generator_TableVarName="tableDirecciones" msprop:Generator_TablePropName="Direcciones" msprop:Generator_RowDeletingName="DireccionesRowDeleting" msprop:Generator_RowChangingName="DireccionesRowChanging" msprop:Generator_RowEvHandlerName="DireccionesRowChangeEventHandler" msprop:Generator_RowDeletedName="DireccionesRowDeleted" msprop:Generator_UserTableName="Direcciones" msprop:Generator_RowChangedName="DireccionesRowChanged" msprop:Generator_RowEvArgName="DireccionesRowChangeEvent" msprop:Generator_RowClassName="DireccionesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdEntidad" msprop:Generator_ColumnVarNameInTable="columnIdEntidad" msprop:Generator_ColumnPropNameInRow="IdEntidad" msprop:Generator_ColumnPropNameInTable="IdEntidadColumn" msprop:Generator_UserColumnName="IdEntidad" type="xs:string" minOccurs="0" />
+              <xs:element name="IdDireccion" msprop:Generator_ColumnVarNameInTable="columnIdDireccion" msprop:Generator_ColumnPropNameInRow="IdDireccion" msprop:Generator_ColumnPropNameInTable="IdDireccionColumn" msprop:Generator_UserColumnName="IdDireccion" type="xs:string" minOccurs="0" />
+              <xs:element name="Direccion" msprop:Generator_ColumnVarNameInTable="columnDireccion" msprop:Generator_ColumnPropNameInRow="Direccion" msprop:Generator_ColumnPropNameInTable="DireccionColumn" msprop:Generator_UserColumnName="Direccion" type="xs:string" minOccurs="0" />
+              <xs:element name="CP" msprop:Generator_ColumnVarNameInTable="columnCP" msprop:Generator_ColumnPropNameInRow="CP" msprop:Generator_ColumnPropNameInTable="CPColumn" msprop:Generator_UserColumnName="CP" type="xs:string" minOccurs="0" />
+              <xs:element name="Poblacion" msprop:Generator_ColumnVarNameInTable="columnPoblacion" msprop:Generator_ColumnPropNameInRow="Poblacion" msprop:Generator_ColumnPropNameInTable="PoblacionColumn" msprop:Generator_UserColumnName="Poblacion" type="xs:string" minOccurs="0" />
+              <xs:element name="Provincia" msprop:Generator_ColumnVarNameInTable="columnProvincia" msprop:Generator_ColumnPropNameInRow="Provincia" msprop:Generator_ColumnPropNameInTable="ProvinciaColumn" msprop:Generator_UserColumnName="Provincia" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

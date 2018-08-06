@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetInformacionComuneros" targetNamespace="http://tempuri.org/DataSetInformacionComuneros.xsd" xmlns:mstns="http://tempuri.org/DataSetInformacionComuneros.xsd" xmlns="http://tempuri.org/DataSetInformacionComuneros.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetInformacionComuneros" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetInformacionComuneros" msprop:Generator_UserDSName="DataSetInformacionComuneros">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Comuneros" msprop:Generator_TableClassName="ComunerosDataTable" msprop:Generator_TableVarName="tableComuneros" msprop:Generator_TablePropName="Comuneros" msprop:Generator_RowDeletingName="ComunerosRowDeleting" msprop:Generator_RowChangingName="ComunerosRowChanging" msprop:Generator_RowEvHandlerName="ComunerosRowChangeEventHandler" msprop:Generator_RowDeletedName="ComunerosRowDeleted" msprop:Generator_UserTableName="Comuneros" msprop:Generator_RowChangedName="ComunerosRowChanged" msprop:Generator_RowEvArgName="ComunerosRowChangeEvent" msprop:Generator_RowClassName="ComunerosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdComunero" msprop:Generator_ColumnVarNameInTable="columnIdComunero" msprop:Generator_ColumnPropNameInRow="IdComunero" msprop:Generator_ColumnPropNameInTable="IdComuneroColumn" msprop:Generator_UserColumnName="IdComunero" type="xs:string" minOccurs="0" />
+              <xs:element name="IdEntidad" msprop:Generator_ColumnVarNameInTable="columnIdEntidad" msprop:Generator_ColumnPropNameInRow="IdEntidad" msprop:Generator_ColumnPropNameInTable="IdEntidadColumn" msprop:Generator_UserColumnName="IdEntidad" type="xs:string" minOccurs="0" />
+              <xs:element name="Asociaciones" msprop:Generator_ColumnVarNameInTable="columnAsociaciones" msprop:Generator_ColumnPropNameInRow="Asociaciones" msprop:Generator_ColumnPropNameInTable="AsociacionesColumn" msprop:Generator_UserColumnName="Asociaciones" type="xs:string" minOccurs="0" />
+              <xs:element name="FormaPago" msprop:Generator_ColumnVarNameInTable="columnFormaPago" msprop:Generator_ColumnPropNameInRow="FormaPago" msprop:Generator_ColumnPropNameInTable="FormaPagoColumn" msprop:Generator_UserColumnName="FormaPago" type="xs:string" minOccurs="0" />
+              <xs:element name="EnvioPostal" msprop:Generator_ColumnVarNameInTable="columnEnvioPostal" msprop:Generator_ColumnPropNameInRow="EnvioPostal" msprop:Generator_ColumnPropNameInTable="EnvioPostalColumn" msprop:Generator_UserColumnName="EnvioPostal" type="xs:string" minOccurs="0" />
+              <xs:element name="EnvioEmail" msprop:Generator_ColumnVarNameInTable="columnEnvioEmail" msprop:Generator_ColumnPropNameInRow="EnvioEmail" msprop:Generator_ColumnPropNameInTable="EnvioEmailColumn" msprop:Generator_UserColumnName="EnvioEmail" type="xs:string" minOccurs="0" />
+              <xs:element name="Entidad" msprop:Generator_ColumnVarNameInTable="columnEntidad" msprop:Generator_ColumnPropNameInRow="Entidad" msprop:Generator_ColumnPropNameInTable="EntidadColumn" msprop:Generator_UserColumnName="Entidad" type="xs:string" minOccurs="0" />
+              <xs:element name="IdEmail" msprop:Generator_ColumnVarNameInTable="columnIdEmail" msprop:Generator_ColumnPropNameInRow="IdEmail" msprop:Generator_ColumnPropNameInTable="IdEmailColumn" msprop:Generator_UserColumnName="IdEmail" type="xs:string" minOccurs="0" />
+              <xs:element name="IdCC" msprop:Generator_ColumnVarNameInTable="columnIdCC" msprop:Generator_ColumnPropNameInRow="IdCC" msprop:Generator_ColumnPropNameInTable="IdCCColumn" msprop:Generator_UserColumnName="IdCC" type="xs:string" minOccurs="0" />
+              <xs:element name="IdDireccion" msprop:Generator_ColumnVarNameInTable="columnIdDireccion" msprop:Generator_ColumnPropNameInRow="IdDireccion" msprop:Generator_ColumnPropNameInTable="IdDireccionColumn" msprop:Generator_UserColumnName="IdDireccion" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

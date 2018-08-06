@@ -417,14 +417,19 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             {
                 ComunerosForms.VistaInforme nueva = new ComunerosForms.VistaInforme(dataGridView_comuneros.SelectedRows[0].Cells[0].Value.ToString(), id_comunidad, dataGridView_comuneros.SelectedRows[0].Cells[1].Value.ToString());
                 nueva.Show();
-            }
+            }//CONFIRMACION DE DATOS
             else if (comboBox2.SelectedIndex == 1) {
                 MessageBox.Show("Informe no disponible");
-            }
+            }//LISTADO COMUNEROS
             else if (comboBox2.SelectedIndex == 2) {
+                ComunerosForms.Informes.FormVerInformeListaComuneros nueva = new ComunerosForms.Informes.FormVerInformeListaComuneros(id_comunidad);
+                nueva.Show();
+            }//LISTADO RECIBOS
+            else if (comboBox2.SelectedIndex == 3)
+            {
                 MessageBox.Show("Informe no disponible");
             }
-            else if (comboBox2.SelectedIndex == 3) 
+            else if (comboBox2.SelectedIndex == 4) 
             {
                 ComunerosForms.Informes.FormDivisionesAsociaciones nueva = new ComunerosForms.Informes.FormDivisionesAsociaciones(id_comunidad);
                 nueva.Show();

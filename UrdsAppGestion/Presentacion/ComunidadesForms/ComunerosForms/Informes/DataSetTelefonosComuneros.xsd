@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetTelefonosComuneros" targetNamespace="http://tempuri.org/DataSetTelefonosComuneros.xsd" xmlns:mstns="http://tempuri.org/DataSetTelefonosComuneros.xsd" xmlns="http://tempuri.org/DataSetTelefonosComuneros.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetTelefonosComuneros" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetTelefonosComuneros" msprop:Generator_UserDSName="DataSetTelefonosComuneros">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Telefonos" msprop:Generator_TableClassName="TelefonosDataTable" msprop:Generator_TableVarName="tableTelefonos" msprop:Generator_TablePropName="Telefonos" msprop:Generator_RowDeletingName="TelefonosRowDeleting" msprop:Generator_RowChangingName="TelefonosRowChanging" msprop:Generator_RowEvHandlerName="TelefonosRowChangeEventHandler" msprop:Generator_RowDeletedName="TelefonosRowDeleted" msprop:Generator_UserTableName="Telefonos" msprop:Generator_RowChangedName="TelefonosRowChanged" msprop:Generator_RowEvArgName="TelefonosRowChangeEvent" msprop:Generator_RowClassName="TelefonosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdEntidad" msprop:Generator_ColumnVarNameInTable="columnIdEntidad" msprop:Generator_ColumnPropNameInRow="IdEntidad" msprop:Generator_ColumnPropNameInTable="IdEntidadColumn" msprop:Generator_UserColumnName="IdEntidad" type="xs:string" minOccurs="0" />
+              <xs:element name="Telefono" msprop:Generator_ColumnVarNameInTable="columnTelefono" msprop:Generator_ColumnPropNameInRow="Telefono" msprop:Generator_ColumnPropNameInTable="TelefonoColumn" msprop:Generator_UserColumnName="Telefono" type="xs:string" minOccurs="0" />
+              <xs:element name="Orden" msprop:Generator_ColumnVarNameInTable="columnOrden" msprop:Generator_ColumnPropNameInRow="Orden" msprop:Generator_ColumnPropNameInTable="OrdenColumn" msprop:Generator_UserColumnName="Orden" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

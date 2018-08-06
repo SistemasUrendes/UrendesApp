@@ -132,16 +132,50 @@
     <Compile Include="Presentacion\ComunidadesForms\CargosForms\FormSeleccionarOrgano.Designer.cs">
       <DependentUpon>FormSeleccionarOrgano.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetCuentas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetCuentas.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetDirecciones.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetDirecciones.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetDivisionesAsociaciones.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetDivisionesAsociaciones.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetEmails.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetEmails.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetInformacionComuneros.cs">
+      <DependentUpon>DataSetInformacionComuneros.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetInformacionComuneros.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetInformacionComuneros.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetTelefonosComuneros.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetTelefonosComuneros.xsd</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\FormDivisionesAsociaciones.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\FormDivisionesAsociaciones.Designer.cs">
       <DependentUpon>FormDivisionesAsociaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\FormVerInformeListaComuneros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\FormVerInformeListaComuneros.Designer.cs">
+      <DependentUpon>FormVerInformeListaComuneros.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\ComunidadesForms\CuotasForms\FormPlantilla\FormDetalleCuotaCambiar.cs">
       <SubType>Form</SubType>
@@ -1593,9 +1627,15 @@
     <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\FormDivisionesAsociaciones.resx">
       <DependentUpon>FormDivisionesAsociaciones.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\FormVerInformeListaComuneros.resx">
+      <DependentUpon>FormVerInformeListaComuneros.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\InformeDeudas.rdlc" />
     <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\InformeDivisionesAsociaciones.rdlc" />
     <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\InformeMovimientos.rdlc" />
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\ReportDirecciones.rdlc" />
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\ReportListadoComuneros.rdlc" />
+    <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\SubReportTelefono.rdlc" />
     <EmbeddedResource Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\VistaInforme.resx">
       <DependentUpon>VistaInforme.cs</DependentUpon>
     </EmbeddedResource>
@@ -2142,6 +2182,17 @@
     <None Include="Presentacion\ComunidadesForms\CargosForms\Informes\DataSetCargos.xss">
       <DependentUpon>DataSetCargos.xsd</DependentUpon>
     </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetCuentas.xsc">
+      <DependentUpon>DataSetCuentas.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetCuentas.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetCuentas.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetCuentas.xss">
+      <DependentUpon>DataSetCuentas.xsd</DependentUpon>
+    </None>
     <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetDeudas.xsc">
       <DependentUpon>DataSetDeudas.xsd</DependentUpon>
     </None>
@@ -2152,6 +2203,17 @@
     </None>
     <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetDeudas.xss">
       <DependentUpon>DataSetDeudas.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetDirecciones.xsc">
+      <DependentUpon>DataSetDirecciones.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetDirecciones.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetDirecciones.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetDirecciones.xss">
+      <DependentUpon>DataSetDirecciones.xsd</DependentUpon>
     </None>
     <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetDivisionesAsociaciones.xsc">
       <DependentUpon>DataSetDivisionesAsociaciones.xsd</DependentUpon>
@@ -2164,6 +2226,28 @@
     <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetDivisionesAsociaciones.xss">
       <DependentUpon>DataSetDivisionesAsociaciones.xsd</DependentUpon>
     </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetEmails.xsc">
+      <DependentUpon>DataSetEmails.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetEmails.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetEmails.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetEmails.xss">
+      <DependentUpon>DataSetEmails.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetInformacionComuneros.xsc">
+      <DependentUpon>DataSetInformacionComuneros.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetInformacionComuneros.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetInformacionComuneros.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetInformacionComuneros.xss">
+      <DependentUpon>DataSetInformacionComuneros.xsd</DependentUpon>
+    </None>
     <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetMovimiento.xsc">
       <DependentUpon>DataSetMovimiento.xsd</DependentUpon>
     </None>
@@ -2174,6 +2258,17 @@
     </None>
     <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetMovimiento.xss">
       <DependentUpon>DataSetMovimiento.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetTelefonosComuneros.xsc">
+      <DependentUpon>DataSetTelefonosComuneros.xsd</DependentUpon>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetTelefonosComuneros.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetTelefonosComuneros.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Presentacion\ComunidadesForms\ComunerosForms\Informes\DataSetTelefonosComuneros.xss">
+      <DependentUpon>DataSetTelefonosComuneros.xsd</DependentUpon>
     </None>
     <None Include="Presentacion\ComunidadesForms\CuotasForms\Informes\DataSetCuota.xsc">
       <DependentUpon>DataSetCuota.xsd</DependentUpon>

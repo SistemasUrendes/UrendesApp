@@ -59,11 +59,12 @@ namespace UrdsAppGestión.Logica
 
 
             SmtpClient smtp = new SmtpClient();
-            smtp.Host = "hl316.hosteurope.es";
+            smtp.Host = "urendes.com";
             smtp.Port = 587;
             smtp.EnableSsl = true;
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("admin@envios.urendes.com", "#.Urds16");
+            smtp.Credentials = new NetworkCredential("sistemas@urendes.com", "#.Urds16");
+
             try
             {
                 smtp.Send(email);
