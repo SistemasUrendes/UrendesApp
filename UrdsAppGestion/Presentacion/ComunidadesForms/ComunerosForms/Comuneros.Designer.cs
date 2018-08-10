@@ -140,7 +140,6 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "Informe de deudas",
-            "Confirmación de datos",
             "Listado Alfabético",
             "Informe Recibos",
             "Divisiones con Asociaciones"});

@@ -55,10 +55,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.verEntidadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verAsociacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox_informes = new System.Windows.Forms.ComboBox();
-            this.verAsociacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_divisiones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_detalles_divisiones)).BeginInit();
             this.contextMenuStrip2.SuspendLayout();
@@ -298,7 +298,7 @@
             this.verEntidadToolStripMenuItem,
             this.verAsociacionesToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(163, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(163, 48);
             // 
             // verEntidadToolStripMenuItem
             // 
@@ -306,6 +306,13 @@
             this.verEntidadToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.verEntidadToolStripMenuItem.Text = "Ver Entidad";
             this.verEntidadToolStripMenuItem.Click += new System.EventHandler(this.verEntidadToolStripMenuItem_Click);
+            // 
+            // verAsociacionesToolStripMenuItem
+            // 
+            this.verAsociacionesToolStripMenuItem.Name = "verAsociacionesToolStripMenuItem";
+            this.verAsociacionesToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.verAsociacionesToolStripMenuItem.Text = "Ver Asociaciones";
+            this.verAsociacionesToolStripMenuItem.Click += new System.EventHandler(this.verAsociacionesToolStripMenuItem_Click);
             // 
             // label4
             // 
@@ -331,19 +338,13 @@
             this.comboBox_informes.FormattingEnabled = true;
             this.comboBox_informes.Items.AddRange(new object[] {
             "Cuotas Emitidas",
-            "Bloques Junta"});
+            "Bloques Junta",
+            "Confirmación Datos"});
             this.comboBox_informes.Location = new System.Drawing.Point(598, 26);
             this.comboBox_informes.Name = "comboBox_informes";
             this.comboBox_informes.Size = new System.Drawing.Size(196, 21);
             this.comboBox_informes.TabIndex = 28;
             this.comboBox_informes.SelectionChangeCommitted += new System.EventHandler(this.comboBox_informes_SelectionChangeCommitted);
-            // 
-            // verAsociacionesToolStripMenuItem
-            // 
-            this.verAsociacionesToolStripMenuItem.Name = "verAsociacionesToolStripMenuItem";
-            this.verAsociacionesToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.verAsociacionesToolStripMenuItem.Text = "Ver Asociaciones";
-            this.verAsociacionesToolStripMenuItem.Click += new System.EventHandler(this.verAsociacionesToolStripMenuItem_Click);
             // 
             // Divisiones
             // 

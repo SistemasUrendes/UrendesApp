@@ -110,7 +110,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             cargado = false;
             String sql = "SELECT com_divisiones.IdDivision, com_divisiones.IdComunidad, com_divisiones.Division, com_divisiones.Finca, com_divisiones.Orden, com_divisiones.IdTipoDiv, com_tipodivs.TipoDivision, com_divisiones.Cuota, com_divisiones.Excluido, com_divisiones.Notas, IF((SELECT ctos_entidades.Entidad FROM(com_asociacion INNER JOIN com_comuneros ON com_asociacion.IdComunero = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad WHERE com_asociacion.IdDivision = com_divisiones.IdDivision AND com_asociacion.Ppal = -1) <> '',(SELECT ctos_entidades.Entidad FROM (com_asociacion INNER JOIN com_comuneros ON com_asociacion.IdComunero = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad WHERE com_asociacion.IdDivision = com_divisiones.IdDivision AND com_asociacion.Ppal = -1),'' ) as Representante FROM(com_divisiones INNER JOIN com_tipodivs ON com_divisiones.IdTipoDiv = com_tipodivs.IdTipoDiv) INNER JOIN com_subcuotas ON com_divisiones.IdDivision = com_subcuotas.IdDivision GROUP BY com_divisiones.IdDivision, com_divisiones.IdComunidad, com_divisiones.Division, com_divisiones.Finca, com_divisiones.Orden, com_divisiones.IdTipoDiv, com_tipodivs.TipoDivision, com_divisiones.Cuota, com_divisiones.Excluido, com_divisiones.Notas, com_divisiones.Division, com_divisiones.IdComunidad, com_subcuotas.IdBloque HAVING(((com_divisiones.IdComunidad) = " + id_comunidad + ") AND((com_subcuotas.IdBloque) = " + idBloque + ")) ORDER BY com_divisiones.Orden, com_divisiones.Division";
 
-
             divisiones = Persistencia.SentenciasSQL.select(sql);
 
             if (divisiones.Rows.Count > 0)
@@ -510,6 +509,11 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             }
             else if (comboBox_informes.SelectedIndex == 1) {
                 FormBloquesJunta nueva = new FormBloquesJunta(id_comunidad.ToString());
+                nueva.Show();
+            }
+            else if (comboBox_informes.SelectedIndex == 2)
+            {
+                DivisionesForms.Informes.FormVerInformeConfirmaciónDatos nueva = new DivisionesForms.Informes.FormVerInformeConfirmaciónDatos(id_comunidad.ToString(),dataGridView_detalles_divisiones.Rows[0].Cells[9].Value.ToString(),dataGridView_divisiones.SelectedRows[0].Cells[0].Value.ToString(),dataGridView_divisiones.SelectedRows[0].Cells[2].Value.ToString(), dataGridView_divisiones.SelectedRows[0].Cells[6].Value.ToString(), dataGridView_detalles_divisiones.SelectedRows[0].Cells[8].Value.ToString());
                 nueva.Show();
             }
         }
