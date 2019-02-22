@@ -38,7 +38,7 @@
             this.repartoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.InformeParticular = new UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.InformeParticular.InformeParticular();
             this.dataSetLiqResumenBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSetLiqResumen = new UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.Informes.DataSetLiqResumen();
+            this.dataSetLiqResumen = new UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.Informes.DataSetLiq();
             this.dataSet2BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet2 = new UrdsAppGestión.Presentacion.Informes.DataSet2();
             this.dataSet2BindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -155,7 +155,7 @@
         private InformeParticular InformeParticular;
         private System.Windows.Forms.BindingSource repartoBindingSource1;
         private System.Windows.Forms.BindingSource dataSetLiqResumenBindingSource;
-        private Informes.DataSetLiqResumen dataSetLiqResumen;
+        private Informes.DataSetLiq dataSetLiqResumen;
         private System.Windows.Forms.BindingSource dataSet2BindingSource;
         private Presentacion.Informes.DataSet2 dataSet2;
         private System.Windows.Forms.BindingSource dataSet2BindingSource1;

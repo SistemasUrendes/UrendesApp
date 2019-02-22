@@ -90,6 +90,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             textBox_base_retencion.Text = "0";
             textBox_retencion.Text = "0";
 
+            maskedTextBox_fecha.Text = (Convert.ToDateTime(DateTime.Now)).ToString("dd-MM-yyyy");
 
             if (id_operacion_cargado != "0") {
                 String sqlSelect = "SELECT IdOp, IdComunidad, IdEntidad, IdSubCuenta, IdTipoReparto, Fecha, Documento, Descripcion, IdRetencion, BaseRet, Retencion, Notas, IdEstado, IdCuota, IdDivision, IdExpte, IdOpCrea, IdMovCrea, Aux, IdDivPar, ImpOp, ImpOpPte, NumMov, IdURD, FAct FROM com_operaciones WHERE IdOp = " + id_operacion_cargado;
@@ -163,6 +164,30 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // Cabecera de edicion aqui
+            //id_comunidad_cargado + "," + id_entidad_nuevo + "," + comboBox_cuenta_gastos.SelectedValue.ToString() + "," + comboBox_tipo_reparto.SelectedValue.ToString() + ",'" + fechaInicio + "','" + textBox_documento.Text + "','" + textBox_descripcion.Text + "'," + comboBox_porcentage
+
+            if (maskedTextBox_fecha.Text == "  /  /" )
+            {
+                MessageBox.Show("La fecha no puede estar vacía");
+                maskedTextBox_fecha.Text = (Convert.ToDateTime(DateTime.Now)).ToString("dd-MM-yyyy");
+                return;
+            }
+            if(id_entidad_nuevo == null)
+            {
+                MessageBox.Show("La identidad no puede estar vacía");
+                return;
+            }
+            if (textBox_documento.Text == "")
+            {
+                MessageBox.Show("El Documento no puede estar vacío");
+                return;
+            }
+            if (textBox_importe.Text == "")
+            {
+                MessageBox.Show("El Importe no puede estar vacío");
+                return;
+            }
             String fechaInicio = (Convert.ToDateTime(maskedTextBox_fecha.Text)).ToString("yyyy-MM-dd");
             String fecha_actualizacion = (Convert.ToDateTime(DateTime.Now)).ToString("yyyy-MM-dd hh:mm:ss");
 

@@ -66,15 +66,16 @@
             this.dataGridView_comunidades.AllowUserToDeleteRows = false;
             this.dataGridView_comunidades.AllowUserToResizeRows = false;
             this.dataGridView_comunidades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_comunidades.Location = new System.Drawing.Point(12, 118);
+            this.dataGridView_comunidades.Location = new System.Drawing.Point(3, 134);
             this.dataGridView_comunidades.MultiSelect = false;
             this.dataGridView_comunidades.Name = "dataGridView_comunidades";
             this.dataGridView_comunidades.ReadOnly = true;
             this.dataGridView_comunidades.RowHeadersVisible = false;
             this.dataGridView_comunidades.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView_comunidades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_comunidades.Size = new System.Drawing.Size(1244, 516);
+            this.dataGridView_comunidades.Size = new System.Drawing.Size(1022, 516);
             this.dataGridView_comunidades.TabIndex = 0;
+            this.dataGridView_comunidades.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_comunidades_CellContentClick);
             this.dataGridView_comunidades.DoubleClick += new System.EventHandler(this.dataGridView_comunidades_DoubleClick);
             this.dataGridView_comunidades.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView_comunidades_MouseClick);
             // 
@@ -108,6 +109,7 @@
             this.button1.Text = "Añadir";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox2
             // 
@@ -125,11 +127,12 @@
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(680, 12);
+            this.groupBox2.Location = new System.Drawing.Point(493, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(523, 100);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Buscar";
             // 
             // comboBox_contabilidad
             // 
@@ -282,40 +285,40 @@
             this.copiarNIFToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 136);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(131, 114);
             // 
             // abrirToolStripMenuItem
             // 
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.abrirToolStripMenuItem.Text = "Abrir";
             this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
             // 
             // entidadToolStripMenuItem
             // 
             this.entidadToolStripMenuItem.Name = "entidadToolStripMenuItem";
-            this.entidadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.entidadToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.entidadToolStripMenuItem.Text = "Entidad";
             this.entidadToolStripMenuItem.Click += new System.EventHandler(this.entidadToolStripMenuItem_Click);
             // 
             // rutaToolStripMenuItem
             // 
             this.rutaToolStripMenuItem.Name = "rutaToolStripMenuItem";
-            this.rutaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rutaToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.rutaToolStripMenuItem.Text = "Ruta";
             this.rutaToolStripMenuItem.Click += new System.EventHandler(this.rutaToolStripMenuItem_Click);
             // 
             // fichaToolStripMenuItem
             // 
             this.fichaToolStripMenuItem.Name = "fichaToolStripMenuItem";
-            this.fichaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fichaToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.fichaToolStripMenuItem.Text = "Ficha";
             this.fichaToolStripMenuItem.Click += new System.EventHandler(this.fichaToolStripMenuItem_Click);
             // 
             // copiarNIFToolStripMenuItem
             // 
             this.copiarNIFToolStripMenuItem.Name = "copiarNIFToolStripMenuItem";
-            this.copiarNIFToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.copiarNIFToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.copiarNIFToolStripMenuItem.Text = "Copiar NIF";
             this.copiarNIFToolStripMenuItem.Click += new System.EventHandler(this.copiarNIFToolStripMenuItem_Click);
             // 
@@ -323,7 +326,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1268, 646);
+            this.ClientSize = new System.Drawing.Size(1028, 646);
             this.ControlBox = false;
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);

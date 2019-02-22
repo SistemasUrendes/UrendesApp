@@ -29,23 +29,34 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
             calcularTotal();
         }
         private void cargarDatagrid() {
-            String sqlSelect = "SELECT com_operaciones.IdComunidad, com_opdetliquidacion.IdLiquidacion, com_operaciones.IdOp, com_operaciones.IdEntidad, com_operaciones.IdSubCuenta,  com_operaciones.IdTipoReparto, com_operaciones.Fecha,ctos_entidades.Entidad, com_operaciones.Documento, com_operaciones.Descripcion, com_subcuentas.`TIT SUBCTA`, ImpOp*If(com_subcuentas.ES=1,-1,1) AS ImporteOp, Sum(com_opdetliquidacion.Importe*If(com_subcuentas.ES=1,-1,1)) AS ImpLiq, (ImpOp*If(com_subcuentas.ES=1,-1,1))-Sum(com_opdetliquidacion.Importe*If(com_subcuentas.ES=1,-1,1)) AS Dif FROM((com_operaciones INNER JOIN com_opdetliquidacion ON com_operaciones.IdOp = com_opdetliquidacion.IdOp) INNER JOIN com_subcuentas ON com_operaciones.IdSubCuenta = com_subcuentas.IdSubcuenta) INNER JOIN ctos_entidades ON com_operaciones.IdEntidad = ctos_entidades.IDEntidad GROUP BY com_operaciones.IdComunidad, com_opdetliquidacion.IdLiquidacion, com_operaciones.IdOp, com_operaciones.IdEntidad, com_operaciones.IdTipoReparto, com_operaciones.Fecha, com_operaciones.Documento, com_operaciones.Descripcion, com_subcuentas.`TIT SUBCTA`, impOp* If(com_subcuentas.ES= 1,-1,1), com_operaciones.IdSubCuenta, ctos_entidades.Entidad HAVING(((com_opdetliquidacion.IdLiquidacion)=" + id_liquidacion_pasado + ") AND ((com_operaciones.IdSubCuenta) Between 60000 And 69999 Or(com_operaciones.IdSubCuenta) Between 70100 And 76900)) ORDER BY com_operaciones.IdOp, com_operaciones.Fecha;";
+            //colocar el cursor en espera:
+            Cursor.Current = Cursors.WaitCursor;
+            //Haces tus operaciones
 
+            String sqlSelect = "SELECT com_operaciones.IdComunidad, com_opdetliquidacion.IdLiquidacion, com_operaciones.IdOp, com_operaciones.IdEntidad, com_operaciones.IdSubCuenta,  com_operaciones.IdTipoReparto, com_operaciones.Fecha,ctos_entidades.Entidad, com_operaciones.Documento, com_operaciones.Descripcion, com_subcuentas.`TIT SUBCTA`, ImpOp*If(com_subcuentas.ES=1,-1,1) AS ImporteOp, Sum(com_opdetliquidacion.Importe*If(com_subcuentas.ES=1,-1,1)) AS ImpLiq, (ImpOp*If(com_subcuentas.ES=1,-1,1))-Sum(com_opdetliquidacion.Importe*If(com_subcuentas.ES=1,-1,1)) AS Dif FROM((com_operaciones INNER JOIN com_opdetliquidacion ON com_operaciones.IdOp = com_opdetliquidacion.IdOp) INNER JOIN com_subcuentas ON com_operaciones.IdSubCuenta = com_subcuentas.IdSubcuenta) INNER JOIN ctos_entidades ON com_operaciones.IdEntidad = ctos_entidades.IDEntidad GROUP BY com_operaciones.IdComunidad, com_opdetliquidacion.IdLiquidacion, com_operaciones.IdOp, com_operaciones.IdEntidad, com_operaciones.IdTipoReparto, com_operaciones.Fecha, com_operaciones.Documento, com_operaciones.Descripcion, com_subcuentas.`TIT SUBCTA`, impOp* If(com_subcuentas.ES= 1,-1,1), com_operaciones.IdSubCuenta, ctos_entidades.Entidad HAVING(((com_opdetliquidacion.IdLiquidacion)=" + id_liquidacion_pasado + ") AND ((com_operaciones.IdSubCuenta) Between 60000 And 69999 Or(com_operaciones.IdSubCuenta) Between 70100 And 76900)) ORDER BY com_operaciones.IdOp, com_operaciones.Fecha;";
+            //String sqlSelect = "SELECT com_operaciones.IdComunidad, com_opdetliquidacion.IdLiquidacion, com_operaciones.IdOp, com_operaciones.IdEntidad, com_operaciones.IdSubCuenta,  com_operaciones.IdTipoReparto, com_operaciones.Fecha,ctos_entidades.Entidad, com_operaciones.Documento, com_operaciones.Descripcion, com_subcuentas.`TIT SUBCTA`, ImpOp*If(com_subcuentas.ES=1,-1,1) AS ImporteOp, Sum(com_opdetliquidacion.Importe*If(com_subcuentas.ES=1,-1,1)) AS ImpLiq, (ImpOp*If(com_subcuentas.ES=1,-1,1))-Sum(com_opdetliquidacion.Importe*If(com_subcuentas.ES=1,-1,1)) AS Dif FROM((com_operaciones INNER JOIN com_opdetliquidacion ON com_operaciones.IdOp = com_opdetliquidacion.IdOp) INNER JOIN com_subcuentas ON com_operaciones.IdSubCuenta = com_subcuentas.IdSubcuenta) INNER JOIN ctos_entidades ON com_operaciones.IdEntidad = ctos_entidades.IDEntidad GROUP BY com_operaciones.IdComunidad, com_opdetliquidacion.IdLiquidacion, com_operaciones.IdOp, com_operaciones.IdEntidad, com_operaciones.IdTipoReparto, com_operaciones.Fecha, com_operaciones.Documento, com_operaciones.Descripcion, com_subcuentas.`TIT SUBCTA`, impOp* If(com_subcuentas.ES= 1,-1,1), com_operaciones.IdSubCuenta, ctos_entidades.Entidad  ORDER BY com_operaciones.IdOp, com_operaciones.Fecha;";
             operaciones = Persistencia.SentenciasSQL.select(sqlSelect);
             dataGridView_gastos.DataSource = operaciones;
 
             ajustarDatagrid();
+            //Colocas tu cursor en estado normal:
+            Cursor.Current = Cursors.Default;
+
         }
         private void ajustarDatagrid() {
+            // Jaume 04.02.2019
+            // Si el Datagrid está vacío
+            if (dataGridView_gastos.Container != null) { 
             dataGridView_gastos.Columns["IdComunidad"].Visible = false;
             dataGridView_gastos.Columns["IdLiquidacion"].Visible = false;
             dataGridView_gastos.Columns["IdEntidad"].Visible = false;
             dataGridView_gastos.Columns["IdTipoReparto"].Visible = false;
             dataGridView_gastos.Columns["TIT SUBCTA"].Visible = false;
             dataGridView_gastos.Columns["Dif"].Visible = false;
-
+            
             dataGridView_gastos.Columns["Descripcion"].Width = 200;
             dataGridView_gastos.Columns["Entidad"].Width = 200;
+            }
         }
         private void calcularTotal() {
             double suma = 0.00;

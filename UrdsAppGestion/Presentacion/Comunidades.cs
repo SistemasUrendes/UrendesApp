@@ -50,7 +50,7 @@ namespace UrdsAppGestión.Presentacion
 
             dataGridView_comunidades.Columns[1].Width = 40;
             dataGridView_comunidades.Columns[2].Width = 200;
-            dataGridView_comunidades.Columns[4].Width = 400;
+            dataGridView_comunidades.Columns[4].Width = 200;
             dataGridView_comunidades.Columns[6].Width = 140;
 
             dataGridView_comunidades.Columns["IdGestor"].Visible = false;
@@ -297,6 +297,16 @@ namespace UrdsAppGestión.Presentacion
         private void copiarNIFToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Clipboard.SetDataObject(dataGridView_comunidades.SelectedRows[0].Cells[3].Value.ToString());
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView_comunidades_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

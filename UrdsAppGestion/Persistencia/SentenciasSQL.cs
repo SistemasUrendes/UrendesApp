@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UrdsAppGestión.Persistencia;
+
 
 namespace UrdsAppGestión.Persistencia
 {
@@ -32,11 +34,10 @@ namespace UrdsAppGestión.Persistencia
                 MySqlConnection conn = Persistencia.conexion_bd.abrir();
                 conn.Open();
 
-                MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
+                MySqlDataAdapter da = new MySqlDataAdapter(selectCommandText: sql, connection: conn);
                 DataSet ds = new DataSet();
                 da.Fill(ds);
-                dt = ds.Tables[0];
-
+                    dt = ds.Tables[0];
                 conn.ClearAllPoolsAsync();
                 conn.Dispose();
                 Persistencia.conexion_bd.cerrar(conn);
@@ -111,6 +112,10 @@ namespace UrdsAppGestión.Persistencia
         public static int InsertarGenericoID(String sql)
         {
 
+            //colocar el cursor en espera:
+            Cursor.Current = Cursors.WaitCursor;
+            //Haces tus operaciones
+
             MySqlConnection conn = Persistencia.conexion_bd.abrir();
             conn.Open();
             MySqlCommand comm = conn.CreateCommand();
@@ -121,6 +126,10 @@ namespace UrdsAppGestión.Persistencia
             conn.ClearAllPoolsAsync();
             conn.Dispose();
             conn.Close();
+
+            //Colocas tu cursor en estado normal:
+            Cursor.Current = Cursors.Default;
+
 
             return (int)comm.LastInsertedId;
         }
@@ -148,6 +157,12 @@ namespace UrdsAppGestión.Persistencia
         public static Boolean InsertarGenerico(String sql) {
             try
             {
+
+                //colocar el cursor en espera:
+                Cursor.Current = Cursors.WaitCursor;
+                //Haces tus operaciones
+
+
                 MySqlConnection conn = Persistencia.conexion_bd.abrir();
                 conn.Open();
                 MySqlCommand comm = conn.CreateCommand();
@@ -157,7 +172,12 @@ namespace UrdsAppGestión.Persistencia
                 conn.ClearAllPoolsAsync();
                 conn.Dispose();
                 conn.Close();
+
+                //Colocas tu cursor en estado normal:
+                Cursor.Current = Cursors.Default;
+
                 return true;
+
             }
             catch (Exception e) {
                 MessageBox.Show("Ha habido un error al insertar en el generico" + e.Message);

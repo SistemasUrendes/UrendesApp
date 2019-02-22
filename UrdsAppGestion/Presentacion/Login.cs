@@ -83,8 +83,11 @@ namespace UrdsAppGestión.Presentacion
                     }
 
                 }else {
-                    ip = "192.168.0.20";
-                    string datos = "server=" + ip + ";user=gestor;password=gestorurds;database=acceso;port=3307";
+                    ip = "127.0.0.1";
+                    string datos = "server=" + ip + ";user=root;password='';database=acceso;port=3306";
+                    //ip = "192.168.0.20";
+                    //string datos = "server=" + ip + ";user=gestor;password=gestorurds;database=acceso;port=3307";
+
                     conexion = new MySqlConnection(datos);
                     conexion.Open();
                 }

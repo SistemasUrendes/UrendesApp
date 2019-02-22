@@ -2,6 +2,22 @@
 {
 }
 
+namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes
+{
+}
+
+namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes
+{
+}
+
+namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes
+{
+}
+
+namespace UrdsAppGestión.Presentacion.ComunidadesForms.DivisionesForms.Informes
+{
+}
+
 namespace UrdsAppGestión.Presentacion.ComunidadesForms.ComunerosForms.Informes
 {
 }

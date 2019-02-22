@@ -66,6 +66,8 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             dataGridView_add_iva.Columns[1].Name = "IVA";
             dataGridView_add_iva.Columns[2].Name = "Total";
             dataGridView_add_iva.Columns[3].Name = "ID";
+            // Jaume 14.02.2019 
+            //dataGridView_add_iva.Rows.Add(importeOperacion_cargado);
 
             dataGridView_add_iva.Columns[3].Visible = false;
 
@@ -150,16 +152,17 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
         {
             double ImporteOperacion = Convert.ToDouble(string.Format("{0:F2}", importeOperacion_cargado));
             double ImporteActual = Convert.ToDouble(string.Format("{0:F2}", textBox_importe_actual.Text));
-            //totalFilas = Convert.ToDouble(0.00);
+            double totalFilas;
+            totalFilas = Convert.ToDouble(0.00);
 
-            //for (int a = 0; a < dataGridView_add_iva.Rows.Count; a++)  {
-            //    if (dataGridView_add_iva.Rows[a].Cells[0].Value != null && dataGridView_add_iva.Rows[a].Cells[2].Value != null) {
+            for (int a = 0; a < dataGridView_add_iva.Rows.Count; a++)  {
+                if (dataGridView_add_iva.Rows[a].Cells[0].Value != null && dataGridView_add_iva.Rows[a].Cells[2].Value != null) {
 
-            //        double baseIva = Convert.ToDouble(string.Format("{0:F2}", dataGridView_add_iva.Rows[a].Cells[0].Value.ToString().Replace('.',',')));
-            //        double total = Convert.ToDouble(string.Format("{0:F2}", dataGridView_add_iva.Rows[a].Cells[2].Value.ToString()));
-            //        totalFilas = totalFilas + baseIva + total;
-            //    }
-            //}
+                    double baseIva = Convert.ToDouble(string.Format("{0:F2}", dataGridView_add_iva.Rows[a].Cells[0].Value.ToString().Replace('.',',')));
+                    double total = Convert.ToDouble(string.Format("{0:F2}", dataGridView_add_iva.Rows[a].Cells[2].Value.ToString()));
+                    totalFilas = totalFilas + baseIva + total;
+                }
+            }
             //MessageBox.Show(totalFilas.ToString() + "-" + importeOperacion_cargado);
 
             if (ImporteOperacion.Equals(ImporteActual)) { return true; }
@@ -199,6 +202,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
             double num, num2;
             if (dataGridView_add_iva.CurrentCell.ColumnIndex == 1)
             {
+                // aqui 08.02.2019
                 if (double.TryParse(valor.Row[1].ToString().Replace('.',','), out num) && double.TryParse(dataGridView_add_iva.Rows[dataGridView_add_iva.CurrentCell.RowIndex].Cells[0].Value.ToString().Replace('.', ','), out num2))  {
 
                     double numtotal = Convert.ToDouble(string.Format("{0:F2}", comprobarIVA(dataGridView_add_iva.Rows[dataGridView_add_iva.CurrentCell.RowIndex].Cells[0].Value.ToString().Replace('.', ','), valor.Row[1].ToString().Replace('.', ','))));
@@ -237,7 +241,10 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
                     }
                 }
             }
+
             textBox_importe_actual.Text = numTotalFila.ToString();
+            //textBox_importe_op.Text = numTotalFila.ToString();
+            //importeOperacion_cargado = textBox_importe_op.Text;
         }
 
         private void dataGridView_add_iva_KeyPress(object sender, KeyPressEventArgs e)
@@ -252,6 +259,11 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.OperacionesForms
         private void FormOperacionesAddIVA_FormClosing(object sender, FormClosingEventArgs e)
         {   if (guardada == "no")
                 borrarOperacionEnCurso();
+        }
+
+        private void dataGridView_add_iva_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

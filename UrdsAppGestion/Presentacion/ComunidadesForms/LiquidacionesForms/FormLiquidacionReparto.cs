@@ -70,7 +70,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
 
 
 
-            String sqlSelectBloques = "SELECT com_bloques.Descripcion, com_liqreparto.ImpBloque FROM com_liqreparto INNER JOIN com_bloques ON com_liqreparto.IdBloque = com_bloques.IdBloque GROUP BY com_liqreparto.IdLiquidacion, com_bloques.Descripcion, com_liqreparto.ImpBloque HAVING(((com_liqreparto.IdLiquidacion) = " + id_liquidacion_pasado + "));";
+            String sqlSelectBloques = "SELECT com_bloques.Descripcion, sum(com_liqreparto.Importe) as ImporteTotal FROM com_liqreparto INNER JOIN com_bloques ON com_liqreparto.IdBloque = com_bloques.IdBloque GROUP BY com_liqreparto.IdLiquidacion, com_bloques.Descripcion, com_liqreparto.ImpBloque HAVING(((com_liqreparto.IdLiquidacion) = " + id_liquidacion_pasado + "));";
+            //Jaume 21.02.2019 para que cuadre la suma de repartos por liquidacion y por bloques
+            //String sqlSelectBloques = "SELECT com_liqreparto.IdLiquidacion,Sum(com_liqreparto.Importe) FROM com_liqreparto   where(((com_liqreparto.IdLiquidacion) = 590))";
             DataTable Importebloques = Persistencia.SentenciasSQL.select(sqlSelectBloques);
 
             dataGridView_bloques.DataSource = Importebloques;
@@ -202,7 +204,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
                 RepartoIVABloques();
                 cargarDatagrid();
                 cerrarLiquidacion();
-                MessageBox.Show("El Reparto ha sido guardado.");
+                //MessageBox.Show("El Reparto ha sido guardado.");
                 progressBar1.Visible = false;
                 button_guardar.Enabled = false;
             }
@@ -213,8 +215,9 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
         }
         private void cerrarLiquidacion() {
 
+            // Jaume 21.02.2019 No Cerrar la Liquidación al recalcular poer 0 en vez de -1
             //CIERRO Y GUARDO EL TOTAL
-            String sqlCerrar = "UPDATE com_liquidaciones SET com_liquidaciones.Cerrada = -1, com_liquidaciones.Total = " + totalBloques.ToString().Replace(',','.') + "  WHERE(((com_liquidaciones.IdLiquidacion) = " + id_liquidacion_pasado + "));";
+            String sqlCerrar = "UPDATE com_liquidaciones SET com_liquidaciones.Cerrada = 0, com_liquidaciones.Total = " + totalBloques.ToString().Replace(',','.') + "  WHERE(((com_liquidaciones.IdLiquidacion) = " + id_liquidacion_pasado + "));";
             Persistencia.SentenciasSQL.InsertarGenerico(sqlCerrar);
         }
 
@@ -227,10 +230,19 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms
 
             DivisionConSubcuotas = Persistencia.SentenciasSQL.select("SELECT com_asociacion.IdDivision,com_divisiones.Division, com_asociacion.IdComunero, com_asociacion.IdTipoAsoc, com_asociacion.Ppal, ctos_entidades.Entidad, ctos_entidades.IdEntidad, com_comuneros.IdComunidad, com_subcuotas.Subcuota, com_subcuotas.IdBloque FROM(((com_asociacion INNER JOIN com_comuneros ON com_asociacion.IdComunero = com_comuneros.IdComunero) INNER JOIN ctos_entidades ON com_comuneros.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN com_divisiones ON com_asociacion.IdDivision = com_divisiones.IdDivision) INNER JOIN com_subcuotas ON com_divisiones.IdDivision = com_subcuotas.IdDivision GROUP BY com_asociacion.IdDivision, com_asociacion.IdComunero, com_asociacion.IdTipoAsoc, com_asociacion.Ppal, ctos_entidades.Entidad, com_comuneros.IdComunidad, com_subcuotas.Subcuota, com_subcuotas.IdBloque HAVING(((com_asociacion.IdTipoAsoc) = 1) AND((com_asociacion.Ppal) = -1) AND((com_comuneros.IdComunidad) = " + id_comunidad_pasado + "));");
 
+            //colocar el cursor en espera:
+            Cursor.Current = Cursors.WaitCursor;
+            //Haces tus operaciones
 
-            String liqIVA = "SELECT com_opdetliquidacion.IdLiquidacion, com_opdetbloques.IdBloque, com_bloques.Descripcion, com_opdetiva.IdIVA, aux_iva.`%IVA`, Sum(`com_opdetbloques`.`porcentaje`*`com_opdetiva`.`base`*`com_opdetliquidacion`.`porcentaje`*If(`com_operaciones`.`IdSubcuenta`>=70100,-1,1)) AS ImpBase, Sum(`com_opdetbloques`.`porcentaje`*`com_opdetiva`.`IVA`*`com_opdetliquidacion`.`porcentaje`*If(`com_operaciones`.`IdSubcuenta`>=70100,-1,1)) AS ImpIVA FROM((((com_operaciones INNER JOIN com_opdetliquidacion ON com_operaciones.IdOp = com_opdetliquidacion.IdOp) INNER JOIN com_opdetbloques ON com_operaciones.IdOp = com_opdetbloques.IdOp) INNER JOIN com_opdetiva ON com_operaciones.IdOp = com_opdetiva.IdOp) INNER JOIN aux_iva ON com_opdetiva.IdIVA = aux_iva.IdIVA) INNER JOIN com_bloques ON com_opdetbloques.IdBloque = com_bloques.IdBloque WHERE(((com_operaciones.IdSubCuenta)Between 60000 And 69999)) GROUP BY com_opdetliquidacion.IdLiquidacion, com_opdetbloques.IdBloque, com_bloques.Descripcion, com_opdetiva.IdIVA, aux_iva.`%IVA` HAVING(((com_opdetliquidacion.IdLiquidacion) = " + id_liquidacion_pasado + "));";
+            // 11.02.2019
+            String liqIVA = "SELECT com_opdetliquidacion.IdLiquidacion, com_opdetbloques.IdBloque, com_bloques.Descripcion, com_opdetiva.IdIVA, aux_iva.`%IVA`, Sum(`com_opdetbloques`.`porcentaje`*`com_opdetiva`.`base`*`com_opdetliquidacion`.`porcentaje`*If(`com_operaciones`.`IdSubcuenta`>=70100,-1,1)) AS ImpBase, Sum(`com_opdetbloques`.`porcentaje`*`com_opdetiva`.`IVA`*`com_opdetliquidacion`.`porcentaje`*If(`com_operaciones`.`IdSubcuenta`>=70100,-1,1)) AS ImpIVA FROM((((com_operaciones INNER JOIN com_opdetliquidacion ON com_operaciones.IdOp = com_opdetliquidacion.IdOp) INNER JOIN com_opdetbloques ON com_operaciones.IdOp = com_opdetbloques.IdOp) INNER JOIN com_opdetiva ON com_operaciones.IdOp = com_opdetiva.IdOp) INNER JOIN aux_iva ON com_opdetiva.IdIVA = aux_iva.IdIVA) INNER JOIN com_bloques ON com_opdetbloques.IdBloque = com_bloques.IdBloque WHERE(((com_operaciones.IdSubCuenta)Between 6000 And 6999)) GROUP BY com_opdetliquidacion.IdLiquidacion, com_opdetbloques.IdBloque, com_bloques.Descripcion, com_opdetiva.IdIVA, aux_iva.`%IVA` HAVING(((com_opdetliquidacion.IdLiquidacion) = " + id_liquidacion_pasado + "));";
+            //  String liqIVA = "SELECT com_opdetliquidacion.IdLiquidacion, com_opdetbloques.IdBloque, com_bloques.Descripcion, com_opdetiva.IdIVA, aux_iva.`%IVA`, Sum(`com_opdetbloques`.`porcentaje`*`com_opdetiva`.`base`*`com_opdetliquidacion`.`porcentaje`*If(`com_operaciones`.`IdSubcuenta`>=70100,-1,1)) AS ImpBase, Sum(`com_opdetbloques`.`porcentaje`*`com_opdetiva`.`IVA`*`com_opdetliquidacion`.`porcentaje`*If(`com_operaciones`.`IdSubcuenta`>=70100,-1,1)) AS ImpIVA FROM((((com_operaciones INNER JOIN com_opdetliquidacion ON com_operaciones.IdOp = com_opdetliquidacion.IdOp) INNER JOIN com_opdetbloques ON com_operaciones.IdOp = com_opdetbloques.IdOp) INNER JOIN com_opdetiva ON com_operaciones.IdOp = com_opdetiva.IdOp) INNER JOIN aux_iva ON com_opdetiva.IdIVA = aux_iva.IdIVA) INNER JOIN com_bloques ON com_opdetbloques.IdBloque = com_bloques.IdBloque WHERE((com_operaciones.IdSubCuenta>=60000 And com_operaciones.IdSubCuenta<=69999)) GROUP BY com_opdetliquidacion.IdLiquidacion, com_opdetbloques.IdBloque, com_bloques.Descripcion, com_opdetiva.IdIVA, aux_iva.`%IVA` HAVING(((com_opdetliquidacion.IdLiquidacion) = " + id_liquidacion_pasado + "));";
 
             DataTable ivas = Persistencia.SentenciasSQL.select(liqIVA);
+
+            //Colocas tu cursor en estado normal:
+            Cursor.Current = Cursors.Default;
+
 
             var result = from x in DivisionConSubcuotas.AsEnumerable()
                          join y in ivas.AsEnumerable() on x.Field<int>("IdBloque") equals y.Field<int>("IdBloque")
