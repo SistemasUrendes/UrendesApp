@@ -18,5 +18,7 @@ namespace UrdsAppGestión
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormPrincipal());
         }
+
+        /* Trying to make some changes for github*/
     }
 }
