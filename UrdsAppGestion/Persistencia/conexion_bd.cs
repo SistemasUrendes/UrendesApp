@@ -14,10 +14,10 @@ namespace UrdsAppGestión.Persistencia {
         private static String database = "urds";
         private static String port = "3307";
 */
-        private static String ip_servidor = "127.0.0.1";
-        private static String user = "root";
-        private static String password = "";
-        private static String database = "urds";
+        private static String ip_servidor = "localhost";
+        private static String user = "gestor";
+        private static String password = "gestorurds";
+        private static String database = "pruebalocal";
         private static String port = "3306";
 
 
