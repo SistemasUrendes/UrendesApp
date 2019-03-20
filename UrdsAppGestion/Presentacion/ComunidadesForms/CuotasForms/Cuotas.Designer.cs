@@ -67,7 +67,7 @@
             // 
             // button_Añadir
             // 
-            this.button_Añadir.Location = new System.Drawing.Point(23, 12);
+            this.button_Añadir.Location = new System.Drawing.Point(23, 37);
             this.button_Añadir.Name = "button_Añadir";
             this.button_Añadir.Size = new System.Drawing.Size(84, 23);
             this.button_Añadir.TabIndex = 1;
@@ -77,7 +77,7 @@
             // 
             // button_Borrar
             // 
-            this.button_Borrar.Location = new System.Drawing.Point(113, 12);
+            this.button_Borrar.Location = new System.Drawing.Point(113, 37);
             this.button_Borrar.Name = "button_Borrar";
             this.button_Borrar.Size = new System.Drawing.Size(52, 23);
             this.button_Borrar.TabIndex = 3;
@@ -109,7 +109,7 @@
             // 
             // button_IrAPlantillas
             // 
-            this.button_IrAPlantillas.Location = new System.Drawing.Point(862, 38);
+            this.button_IrAPlantillas.Location = new System.Drawing.Point(879, 38);
             this.button_IrAPlantillas.Name = "button_IrAPlantillas";
             this.button_IrAPlantillas.Size = new System.Drawing.Size(78, 23);
             this.button_IrAPlantillas.TabIndex = 6;
@@ -123,14 +123,14 @@
             this.comboBox_TipoPlantilla.FormattingEnabled = true;
             this.comboBox_TipoPlantilla.Items.AddRange(new object[] {
             "Manuales"});
-            this.comboBox_TipoPlantilla.Location = new System.Drawing.Point(740, 39);
+            this.comboBox_TipoPlantilla.Location = new System.Drawing.Point(740, 40);
             this.comboBox_TipoPlantilla.Name = "comboBox_TipoPlantilla";
             this.comboBox_TipoPlantilla.Size = new System.Drawing.Size(116, 21);
             this.comboBox_TipoPlantilla.TabIndex = 8;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(171, 12);
+            this.button1.Location = new System.Drawing.Point(171, 37);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(154, 23);
             this.button1.TabIndex = 9;
@@ -141,7 +141,7 @@
             // 
             // button_abonar
             // 
-            this.button_abonar.Location = new System.Drawing.Point(587, 37);
+            this.button_abonar.Location = new System.Drawing.Point(625, 39);
             this.button_abonar.Name = "button_abonar";
             this.button_abonar.Size = new System.Drawing.Size(109, 23);
             this.button_abonar.TabIndex = 10;
@@ -161,7 +161,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 44);
+            this.label1.Location = new System.Drawing.Point(685, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 12;
@@ -169,7 +169,7 @@
             // 
             // textBox_buscar
             // 
-            this.textBox_buscar.Location = new System.Drawing.Point(78, 41);
+            this.textBox_buscar.Location = new System.Drawing.Point(740, 12);
             this.textBox_buscar.Name = "textBox_buscar";
             this.textBox_buscar.Size = new System.Drawing.Size(217, 20);
             this.textBox_buscar.TabIndex = 13;

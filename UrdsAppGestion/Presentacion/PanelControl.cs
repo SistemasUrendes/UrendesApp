@@ -1085,5 +1085,11 @@ namespace UrdsAppGestión.Presentacion
                 
             }
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Presentacion.Prueba.Prueba nueva = new Presentacion.Prueba.Prueba();
+            nueva.Show();
+        }
     }
 }

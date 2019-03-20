@@ -104,7 +104,7 @@
             // 
             // button_Borrar
             // 
-            this.button_Borrar.Location = new System.Drawing.Point(202, 30);
+            this.button_Borrar.Location = new System.Drawing.Point(202, 56);
             this.button_Borrar.Name = "button_Borrar";
             this.button_Borrar.Size = new System.Drawing.Size(75, 23);
             this.button_Borrar.TabIndex = 8;
@@ -114,7 +114,7 @@
             // 
             // button_Editar
             // 
-            this.button_Editar.Location = new System.Drawing.Point(121, 30);
+            this.button_Editar.Location = new System.Drawing.Point(121, 56);
             this.button_Editar.Name = "button_Editar";
             this.button_Editar.Size = new System.Drawing.Size(75, 23);
             this.button_Editar.TabIndex = 7;
@@ -124,7 +124,7 @@
             // 
             // button_Añadir
             // 
-            this.button_Añadir.Location = new System.Drawing.Point(40, 30);
+            this.button_Añadir.Location = new System.Drawing.Point(40, 56);
             this.button_Añadir.Name = "button_Añadir";
             this.button_Añadir.Size = new System.Drawing.Size(75, 23);
             this.button_Añadir.TabIndex = 6;
@@ -266,7 +266,7 @@
             // 
             // button_enviar
             // 
-            this.button_enviar.Location = new System.Drawing.Point(368, 54);
+            this.button_enviar.Location = new System.Drawing.Point(40, 24);
             this.button_enviar.Name = "button_enviar";
             this.button_enviar.Size = new System.Drawing.Size(114, 23);
             this.button_enviar.TabIndex = 23;
@@ -277,7 +277,7 @@
             // 
             // textBox_buscar
             // 
-            this.textBox_buscar.Location = new System.Drawing.Point(97, 59);
+            this.textBox_buscar.Location = new System.Drawing.Point(625, 27);
             this.textBox_buscar.Name = "textBox_buscar";
             this.textBox_buscar.Size = new System.Drawing.Size(170, 20);
             this.textBox_buscar.TabIndex = 24;
@@ -286,7 +286,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(42, 64);
+            this.label1.Location = new System.Drawing.Point(570, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 25;
@@ -326,7 +326,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(544, 30);
+            this.label5.Location = new System.Drawing.Point(304, 62);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 13);
             this.label5.TabIndex = 27;
@@ -340,7 +340,7 @@
             "Cuotas Emitidas",
             "Bloques Junta",
             "Confirmación Datos"});
-            this.comboBox_informes.Location = new System.Drawing.Point(598, 26);
+            this.comboBox_informes.Location = new System.Drawing.Point(358, 58);
             this.comboBox_informes.Name = "comboBox_informes";
             this.comboBox_informes.Size = new System.Drawing.Size(196, 21);
             this.comboBox_informes.TabIndex = 28;

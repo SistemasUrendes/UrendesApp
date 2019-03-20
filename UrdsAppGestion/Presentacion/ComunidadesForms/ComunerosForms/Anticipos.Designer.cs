@@ -62,7 +62,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(286, 29);
+            this.button2.Location = new System.Drawing.Point(1061, 5);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(89, 23);
             this.button2.TabIndex = 19;
@@ -72,7 +72,7 @@
             // 
             // maskedTextBox_fin
             // 
-            this.maskedTextBox_fin.Location = new System.Drawing.Point(209, 31);
+            this.maskedTextBox_fin.Location = new System.Drawing.Point(984, 7);
             this.maskedTextBox_fin.Mask = "00/00/0000";
             this.maskedTextBox_fin.Name = "maskedTextBox_fin";
             this.maskedTextBox_fin.Size = new System.Drawing.Size(71, 20);
@@ -82,7 +82,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(167, 34);
+            this.label2.Location = new System.Drawing.Point(942, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 13);
             this.label2.TabIndex = 17;
@@ -91,7 +91,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 34);
+            this.label1.Location = new System.Drawing.Point(787, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 13);
             this.label1.TabIndex = 16;
@@ -99,7 +99,7 @@
             // 
             // maskedTextBox_inicio
             // 
-            this.maskedTextBox_inicio.Location = new System.Drawing.Point(90, 31);
+            this.maskedTextBox_inicio.Location = new System.Drawing.Point(865, 7);
             this.maskedTextBox_inicio.Mask = "00/00/0000";
             this.maskedTextBox_inicio.Name = "maskedTextBox_inicio";
             this.maskedTextBox_inicio.Size = new System.Drawing.Size(71, 20);

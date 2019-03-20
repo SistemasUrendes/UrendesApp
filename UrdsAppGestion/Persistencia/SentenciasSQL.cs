@@ -18,13 +18,15 @@ namespace UrdsAppGestión.Persistencia
             //Form de Entidades.Hay más SQL dentro pero necesitan datos del formulario.
             "SELECT IdCategoria, IdGrupoCat,Descripcion FROM ctos_catentidades ORDER BY Descripcion;",
 
-            "SELECT ctos_entidades.IDEntidad, ctos_entidades.Entidad, ctos_entidades.NombreCorto, ctos_entidades.CIF, ctos_entidades.EntidadSinAcentos, ctos_entidades.PalabrasClave FROM ctos_entidades ORDER BY ctos_entidades.Entidad;",
+            "SELECT ctos_entidades.IDEntidad, ctos_entidades.Entidad, ctos_entidades.NombreCorto, ctos_entidades.CIF, ctos_entidades.EntidadSinAcentos, ctos_entidades.PalabrasClave " +
+            "FROM ctos_entidades ORDER BY ctos_entidades.Entidad;",
 
             "SELECT IdCategoria, IdGrupoCat,Descripcion FROM ctos_catentidades ORDER BY Descripcion;", 
             //#############################################################################
 
             //ctos_entidades.Entidad
-            "SELECT com_comunidades.IdComunidad, com_comunidades.Referencia, ctos_entidades.NombreCorto, ctos_entidades.CIF, ctos_detdirecent.Direccion, ctos_detdirecent.CP, ctos_detdirecent.Poblacion, ctos_entidades.Ruta, ctos_urendes.IdURD, ctos_urendes_1.IdURD AS id_gestor, ctos_urendes.Usuario, ctos_urendes_1.Usuario, com_comunidades.IdEntidad, com_comunidades.FBaja, com_comunidades.IdGestor, com_comunidades.IdGestor2, com_comunidades.IdContabilidad, ctos_urendes_2.Usuario FROM ((((com_comunidades INNER JOIN ctos_entidades ON com_comunidades.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN ctos_urendes ON com_comunidades.IdGestor = ctos_urendes.IdURD) INNER JOIN ctos_detdirecent ON com_comunidades.IdEntidad = ctos_detdirecent.IdEntidad) LEFT JOIN ctos_urendes AS ctos_urendes_1 ON com_comunidades.IdGestor2 = ctos_urendes_1.IdURD) LEFT JOIN ctos_urendes AS ctos_urendes_2 ON com_comunidades.IdContabilidad = ctos_urendes_2.IdURD ORDER BY com_comunidades.Referencia;"
+            "SELECT com_comunidades.IdComunidad, com_comunidades.Referencia, ctos_entidades.NombreCorto, ctos_entidades.CIF, ctos_detdirecent.Direccion, ctos_detdirecent.CP, ctos_detdirecent.Poblacion, ctos_entidades.Ruta, ctos_urendes.IdURD, ctos_urendes_1.IdURD AS id_gestor, ctos_urendes.Usuario, ctos_urendes_1.Usuario, com_comunidades.IdEntidad, com_comunidades.FBaja, com_comunidades.IdGestor, com_comunidades.IdGestor2, com_comunidades.IdContabilidad, ctos_urendes_2.Usuario " +
+            "FROM ((((com_comunidades INNER JOIN ctos_entidades ON com_comunidades.IdEntidad = ctos_entidades.IDEntidad) INNER JOIN ctos_urendes ON com_comunidades.IdGestor = ctos_urendes.IdURD) INNER JOIN ctos_detdirecent ON com_comunidades.IdEntidad = ctos_detdirecent.IdEntidad) LEFT JOIN ctos_urendes AS ctos_urendes_1 ON com_comunidades.IdGestor2 = ctos_urendes_1.IdURD) LEFT JOIN ctos_urendes AS ctos_urendes_2 ON com_comunidades.IdContabilidad = ctos_urendes_2.IdURD ORDER BY com_comunidades.Referencia;"
             };
 
         public static DataTable select (String sql) {

@@ -47,7 +47,7 @@
             // textBox_Entidad
             // 
             this.textBox_Entidad.Enabled = false;
-            this.textBox_Entidad.Location = new System.Drawing.Point(114, 23);
+            this.textBox_Entidad.Location = new System.Drawing.Point(341, 35);
             this.textBox_Entidad.Name = "textBox_Entidad";
             this.textBox_Entidad.Size = new System.Drawing.Size(239, 20);
             this.textBox_Entidad.TabIndex = 0;
@@ -55,7 +55,7 @@
             // label_Entidad
             // 
             this.label_Entidad.AutoSize = true;
-            this.label_Entidad.Location = new System.Drawing.Point(47, 26);
+            this.label_Entidad.Location = new System.Drawing.Point(274, 38);
             this.label_Entidad.Name = "label_Entidad";
             this.label_Entidad.Size = new System.Drawing.Size(61, 13);
             this.label_Entidad.TabIndex = 1;
@@ -112,7 +112,7 @@
             // 
             // button_Añadir
             // 
-            this.button_Añadir.Location = new System.Drawing.Point(393, 56);
+            this.button_Añadir.Location = new System.Drawing.Point(45, 33);
             this.button_Añadir.Name = "button_Añadir";
             this.button_Añadir.Size = new System.Drawing.Size(58, 23);
             this.button_Añadir.TabIndex = 6;
@@ -122,7 +122,7 @@
             // 
             // button_Editar
             // 
-            this.button_Editar.Location = new System.Drawing.Point(457, 56);
+            this.button_Editar.Location = new System.Drawing.Point(109, 33);
             this.button_Editar.Name = "button_Editar";
             this.button_Editar.Size = new System.Drawing.Size(58, 23);
             this.button_Editar.TabIndex = 7;
@@ -132,7 +132,7 @@
             // 
             // button_Borrar
             // 
-            this.button_Borrar.Location = new System.Drawing.Point(521, 56);
+            this.button_Borrar.Location = new System.Drawing.Point(173, 33);
             this.button_Borrar.Name = "button_Borrar";
             this.button_Borrar.Size = new System.Drawing.Size(58, 23);
             this.button_Borrar.TabIndex = 8;

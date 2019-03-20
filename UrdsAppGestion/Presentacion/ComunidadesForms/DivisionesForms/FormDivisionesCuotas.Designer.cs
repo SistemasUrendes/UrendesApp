@@ -78,7 +78,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 48);
+            this.label1.Location = new System.Drawing.Point(710, 58);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 1;
@@ -92,14 +92,14 @@
             "Pendiente",
             "Cerrado",
             "Todo"});
-            this.comboBox_estado.Location = new System.Drawing.Point(89, 44);
+            this.comboBox_estado.Location = new System.Drawing.Point(788, 54);
             this.comboBox_estado.Name = "comboBox_estado";
             this.comboBox_estado.Size = new System.Drawing.Size(71, 21);
             this.comboBox_estado.TabIndex = 2;
             // 
             // maskedTextBox_fin
             // 
-            this.maskedTextBox_fin.Location = new System.Drawing.Point(208, 16);
+            this.maskedTextBox_fin.Location = new System.Drawing.Point(907, 26);
             this.maskedTextBox_fin.Mask = "00/00/0000";
             this.maskedTextBox_fin.Name = "maskedTextBox_fin";
             this.maskedTextBox_fin.Size = new System.Drawing.Size(77, 20);
@@ -109,7 +109,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(166, 20);
+            this.label2.Location = new System.Drawing.Point(865, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 13);
             this.label2.TabIndex = 17;
@@ -118,7 +118,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 20);
+            this.label3.Location = new System.Drawing.Point(710, 30);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 13);
             this.label3.TabIndex = 16;
@@ -126,7 +126,7 @@
             // 
             // maskedTextBox_inicio
             // 
-            this.maskedTextBox_inicio.Location = new System.Drawing.Point(89, 17);
+            this.maskedTextBox_inicio.Location = new System.Drawing.Point(788, 27);
             this.maskedTextBox_inicio.Mask = "00/00/0000";
             this.maskedTextBox_inicio.Name = "maskedTextBox_inicio";
             this.maskedTextBox_inicio.Size = new System.Drawing.Size(71, 20);
@@ -135,7 +135,7 @@
             // 
             // button_filtrar
             // 
-            this.button_filtrar.Location = new System.Drawing.Point(433, 12);
+            this.button_filtrar.Location = new System.Drawing.Point(1132, 22);
             this.button_filtrar.Name = "button_filtrar";
             this.button_filtrar.Size = new System.Drawing.Size(74, 79);
             this.button_filtrar.TabIndex = 19;
@@ -145,7 +145,7 @@
             // 
             // button_certificar
             // 
-            this.button_certificar.Location = new System.Drawing.Point(1005, 78);
+            this.button_certificar.Location = new System.Drawing.Point(12, 76);
             this.button_certificar.Name = "button_certificar";
             this.button_certificar.Size = new System.Drawing.Size(100, 23);
             this.button_certificar.TabIndex = 20;
@@ -202,7 +202,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 76);
+            this.label4.Location = new System.Drawing.Point(711, 86);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 13);
             this.label4.TabIndex = 21;
@@ -210,7 +210,7 @@
             // 
             // textBox_buscar
             // 
-            this.textBox_buscar.Location = new System.Drawing.Point(89, 71);
+            this.textBox_buscar.Location = new System.Drawing.Point(788, 81);
             this.textBox_buscar.Name = "textBox_buscar";
             this.textBox_buscar.Size = new System.Drawing.Size(121, 20);
             this.textBox_buscar.TabIndex = 22;
@@ -227,7 +227,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(169, 48);
+            this.label5.Location = new System.Drawing.Point(868, 58);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 13);
             this.label5.TabIndex = 25;
@@ -241,14 +241,14 @@
             "Certificadas",
             "No Certificadas",
             "Todas"});
-            this.comboBox_certificado.Location = new System.Drawing.Point(243, 43);
+            this.comboBox_certificado.Location = new System.Drawing.Point(942, 53);
             this.comboBox_certificado.Name = "comboBox_certificado";
             this.comboBox_certificado.Size = new System.Drawing.Size(153, 21);
             this.comboBox_certificado.TabIndex = 26;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1111, 78);
+            this.button1.Location = new System.Drawing.Point(118, 76);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(95, 23);
             this.button1.TabIndex = 27;
@@ -263,7 +263,7 @@
             this.comboBoxestado.Items.AddRange(new object[] {
             "Certificadas",
             "No Certificadas"});
-            this.comboBoxestado.Location = new System.Drawing.Point(282, 71);
+            this.comboBoxestado.Location = new System.Drawing.Point(981, 81);
             this.comboBoxestado.Name = "comboBoxestado";
             this.comboBoxestado.Size = new System.Drawing.Size(114, 21);
             this.comboBoxestado.TabIndex = 29;
@@ -271,7 +271,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(229, 76);
+            this.label6.Location = new System.Drawing.Point(928, 86);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(46, 13);
             this.label6.TabIndex = 28;
@@ -284,7 +284,7 @@
             this.comboBox_filtrofecha.Items.AddRange(new object[] {
             "Operaciones",
             "Certificados"});
-            this.comboBox_filtrofecha.Location = new System.Drawing.Point(291, 15);
+            this.comboBox_filtrofecha.Location = new System.Drawing.Point(990, 25);
             this.comboBox_filtrofecha.Name = "comboBox_filtrofecha";
             this.comboBox_filtrofecha.Size = new System.Drawing.Size(105, 21);
             this.comboBox_filtrofecha.TabIndex = 30;

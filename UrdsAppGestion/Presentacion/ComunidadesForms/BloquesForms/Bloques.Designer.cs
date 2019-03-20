@@ -66,7 +66,7 @@
             // 
             // button_Añadir
             // 
-            this.button_Añadir.Location = new System.Drawing.Point(12, 12);
+            this.button_Añadir.Location = new System.Drawing.Point(12, 38);
             this.button_Añadir.Name = "button_Añadir";
             this.button_Añadir.Size = new System.Drawing.Size(55, 23);
             this.button_Añadir.TabIndex = 3;
@@ -76,7 +76,7 @@
             // 
             // button_EditarBloque
             // 
-            this.button_EditarBloque.Location = new System.Drawing.Point(73, 12);
+            this.button_EditarBloque.Location = new System.Drawing.Point(73, 38);
             this.button_EditarBloque.Name = "button_EditarBloque";
             this.button_EditarBloque.Size = new System.Drawing.Size(55, 23);
             this.button_EditarBloque.TabIndex = 4;
@@ -86,7 +86,7 @@
             // 
             // button_Borrar
             // 
-            this.button_Borrar.Location = new System.Drawing.Point(134, 12);
+            this.button_Borrar.Location = new System.Drawing.Point(134, 38);
             this.button_Borrar.Name = "button_Borrar";
             this.button_Borrar.Size = new System.Drawing.Size(55, 23);
             this.button_Borrar.TabIndex = 5;
@@ -103,7 +103,7 @@
             "Desactivados",
             "Bloque General",
             "Ver Todos"});
-            this.comboBox_FiltroBloques.Location = new System.Drawing.Point(683, 43);
+            this.comboBox_FiltroBloques.Location = new System.Drawing.Point(683, 9);
             this.comboBox_FiltroBloques.Name = "comboBox_FiltroBloques";
             this.comboBox_FiltroBloques.Size = new System.Drawing.Size(121, 21);
             this.comboBox_FiltroBloques.TabIndex = 2;
@@ -112,7 +112,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(645, 47);
+            this.label2.Location = new System.Drawing.Point(645, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 14;
@@ -134,7 +134,7 @@
             // 
             // button_enviar
             // 
-            this.button_enviar.Location = new System.Drawing.Point(12, 12);
+            this.button_enviar.Location = new System.Drawing.Point(627, 38);
             this.button_enviar.Name = "button_enviar";
             this.button_enviar.Size = new System.Drawing.Size(177, 23);
             this.button_enviar.TabIndex = 1;
@@ -145,7 +145,7 @@
             // 
             // textBox_buscar
             // 
-            this.textBox_buscar.Location = new System.Drawing.Point(64, 43);
+            this.textBox_buscar.Location = new System.Drawing.Point(503, 10);
             this.textBox_buscar.Name = "textBox_buscar";
             this.textBox_buscar.Size = new System.Drawing.Size(125, 20);
             this.textBox_buscar.TabIndex = 15;
@@ -155,7 +155,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 46);
+            this.label1.Location = new System.Drawing.Point(448, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 16;

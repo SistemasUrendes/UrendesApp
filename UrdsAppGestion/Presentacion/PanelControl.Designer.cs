@@ -32,6 +32,7 @@
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.dataGridView_tareas = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tareas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,6 +63,16 @@
             this.dataGridView_tareas.Size = new System.Drawing.Size(279, 102);
             this.dataGridView_tareas.TabIndex = 1;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(574, 165);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Prueba";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // PanelControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -70,6 +81,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1155, 635);
             this.ControlBox = false;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView_tareas);
             this.Controls.Add(this.monthCalendar1);
             this.DoubleBuffered = true;
@@ -88,5 +100,6 @@
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         public System.Windows.Forms.DataGridView dataGridView_tareas;
+        private System.Windows.Forms.Button button1;
     }
 }

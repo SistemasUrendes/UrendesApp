@@ -43,7 +43,7 @@
             // 
             // textBox_representante
             // 
-            this.textBox_representante.Location = new System.Drawing.Point(123, 28);
+            this.textBox_representante.Location = new System.Drawing.Point(101, 31);
             this.textBox_representante.Name = "textBox_representante";
             this.textBox_representante.ReadOnly = true;
             this.textBox_representante.Size = new System.Drawing.Size(264, 20);
@@ -52,7 +52,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 31);
+            this.label1.Location = new System.Drawing.Point(12, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(83, 13);
             this.label1.TabIndex = 1;
@@ -61,7 +61,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(34, 60);
+            this.label2.Location = new System.Drawing.Point(12, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 2;
@@ -69,7 +69,7 @@
             // 
             // textBox_division
             // 
-            this.textBox_division.Location = new System.Drawing.Point(123, 57);
+            this.textBox_division.Location = new System.Drawing.Point(101, 60);
             this.textBox_division.Name = "textBox_division";
             this.textBox_division.ReadOnly = true;
             this.textBox_division.Size = new System.Drawing.Size(100, 20);
@@ -78,7 +78,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(34, 89);
+            this.label3.Location = new System.Drawing.Point(12, 92);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 13);
             this.label3.TabIndex = 4;
@@ -86,7 +86,7 @@
             // 
             // textBox_tipo
             // 
-            this.textBox_tipo.Location = new System.Drawing.Point(123, 86);
+            this.textBox_tipo.Location = new System.Drawing.Point(101, 89);
             this.textBox_tipo.Name = "textBox_tipo";
             this.textBox_tipo.ReadOnly = true;
             this.textBox_tipo.Size = new System.Drawing.Size(100, 20);
@@ -110,7 +110,7 @@
             // button_verCertificados
             // 
             this.button_verCertificados.Enabled = false;
-            this.button_verCertificados.Location = new System.Drawing.Point(894, 50);
+            this.button_verCertificados.Location = new System.Drawing.Point(914, 57);
             this.button_verCertificados.Name = "button_verCertificados";
             this.button_verCertificados.Size = new System.Drawing.Size(102, 56);
             this.button_verCertificados.TabIndex = 7;
@@ -119,7 +119,7 @@
             // 
             // button_nuevoCertificados
             // 
-            this.button_nuevoCertificados.Location = new System.Drawing.Point(777, 50);
+            this.button_nuevoCertificados.Location = new System.Drawing.Point(797, 57);
             this.button_nuevoCertificados.Name = "button_nuevoCertificados";
             this.button_nuevoCertificados.Size = new System.Drawing.Size(102, 56);
             this.button_nuevoCertificados.TabIndex = 8;

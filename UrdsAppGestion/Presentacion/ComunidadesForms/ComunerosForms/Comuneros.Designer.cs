@@ -91,7 +91,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(194, 23);
+            this.button3.Location = new System.Drawing.Point(194, 67);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 5;
@@ -101,7 +101,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(113, 23);
+            this.button2.Location = new System.Drawing.Point(113, 67);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 4;
@@ -111,7 +111,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(32, 23);
+            this.button1.Location = new System.Drawing.Point(32, 67);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
@@ -128,7 +128,7 @@
             "Movimientos",
             "Vencimientos",
             "Recibos"});
-            this.comboBox_operaciones.Location = new System.Drawing.Point(432, 22);
+            this.comboBox_operaciones.Location = new System.Drawing.Point(429, 25);
             this.comboBox_operaciones.Name = "comboBox_operaciones";
             this.comboBox_operaciones.Size = new System.Drawing.Size(156, 21);
             this.comboBox_operaciones.TabIndex = 5;
@@ -153,7 +153,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(370, 27);
+            this.label1.Location = new System.Drawing.Point(367, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 8;
@@ -385,7 +385,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(32, 75);
+            this.label10.Location = new System.Drawing.Point(589, 73);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(49, 13);
             this.label10.TabIndex = 32;
@@ -393,7 +393,7 @@
             // 
             // textBox_buscar
             // 
-            this.textBox_buscar.Location = new System.Drawing.Point(87, 72);
+            this.textBox_buscar.Location = new System.Drawing.Point(644, 70);
             this.textBox_buscar.Name = "textBox_buscar";
             this.textBox_buscar.Size = new System.Drawing.Size(182, 20);
             this.textBox_buscar.TabIndex = 33;

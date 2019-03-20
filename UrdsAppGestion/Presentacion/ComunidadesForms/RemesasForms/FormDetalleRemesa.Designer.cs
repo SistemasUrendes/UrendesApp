@@ -63,7 +63,7 @@
             // 
             // button_anyadir_recibos
             // 
-            this.button_anyadir_recibos.Location = new System.Drawing.Point(871, 31);
+            this.button_anyadir_recibos.Location = new System.Drawing.Point(12, 31);
             this.button_anyadir_recibos.Name = "button_anyadir_recibos";
             this.button_anyadir_recibos.Size = new System.Drawing.Size(100, 23);
             this.button_anyadir_recibos.TabIndex = 1;
@@ -73,7 +73,7 @@
             // 
             // buttonQuitarRecibos
             // 
-            this.buttonQuitarRecibos.Location = new System.Drawing.Point(977, 31);
+            this.buttonQuitarRecibos.Location = new System.Drawing.Point(118, 31);
             this.buttonQuitarRecibos.Name = "buttonQuitarRecibos";
             this.buttonQuitarRecibos.Size = new System.Drawing.Size(89, 23);
             this.buttonQuitarRecibos.TabIndex = 2;
@@ -83,7 +83,7 @@
             // 
             // buttonLanzar
             // 
-            this.buttonLanzar.Location = new System.Drawing.Point(1072, 31);
+            this.buttonLanzar.Location = new System.Drawing.Point(213, 31);
             this.buttonLanzar.Name = "buttonLanzar";
             this.buttonLanzar.Size = new System.Drawing.Size(75, 23);
             this.buttonLanzar.TabIndex = 3;
@@ -121,7 +121,7 @@
             // 
             // textBox_buscar
             // 
-            this.textBox_buscar.Location = new System.Drawing.Point(67, 36);
+            this.textBox_buscar.Location = new System.Drawing.Point(912, 34);
             this.textBox_buscar.Name = "textBox_buscar";
             this.textBox_buscar.Size = new System.Drawing.Size(235, 20);
             this.textBox_buscar.TabIndex = 7;
@@ -130,7 +130,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 39);
+            this.label2.Location = new System.Drawing.Point(857, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 13);
             this.label2.TabIndex = 8;
@@ -141,7 +141,7 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cambiarNºCuentaToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(178, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(178, 26);
             // 
             // cambiarNºCuentaToolStripMenuItem
             // 
