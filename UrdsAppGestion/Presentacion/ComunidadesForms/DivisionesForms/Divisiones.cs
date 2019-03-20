@@ -184,6 +184,22 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                 dataGridView_divisiones.Columns[hti.ColumnIndex].Selected = true;
                 dataGridView_divisiones.CurrentCell = this.dataGridView_divisiones[hti.ColumnIndex, hti.RowIndex];
                 nombre_columna = dataGridView_divisiones.CurrentCell.OwningColumn.Name;
+                
+                contextMenuStrip2.Items.Clear();
+                contextMenuStrip2.Items.Add("Editar");
+                contextMenuStrip2.Items.Add("Borrar");
+                contextMenuStrip2.Items.Add("Reglas de Pago");
+                contextMenuStrip2.Items.Add("Cuotas Pendientes");
+                contextMenuStrip2.Items.Add("Certificado de Deudas");
+
+
+                contextMenuStrip2.Items[0].Click += new EventHandler(this.button_Editar_Click);
+                contextMenuStrip2.Items[1].Click += new EventHandler(this.button_Borrar_Click);
+                contextMenuStrip2.Items[2].Click += new EventHandler(this.reToolStripMenuItem_Click);
+                contextMenuStrip2.Items[3].Click += new EventHandler(this.cuotasToolStripMenuItem_Click);
+                contextMenuStrip2.Items[4].Click += new EventHandler(this.certificadoDeDeudasToolStripMenuItem1_Click);
+                    
+
                 //buscarToolStripMenuItem.Text = "Buscar en " + nombre_columna;
                 if ( nombre_columna != "Cuota" ) {
                   if (nombre_columna != "Excluido") {
@@ -191,31 +207,6 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                         //toolStripTextBox2.Focus();
                     }
                 }
-            }
-        }
-        private void toolStripTextBox1_TextChanged(object sender, EventArgs e) {
-           //MessageBox.Show(dataGridView_divisiones.CurrentCell.OwningColumn.Name.ToString());
-        }
-
-        private void reglasDePagoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("hola");
-        }
-
-        private void toolStripTextBox2_TextChanged(object sender, EventArgs e)
-        {
-            if (toolStripTextBox2.TextLength == 0)
-            {
-                DataTable busqueda = divisiones;
-                busqueda.DefaultView.RowFilter = nombre_columna + " like '%%' ";
-                this.dataGridView_divisiones.DataSource = busqueda;
-            }
-            else
-            {
-                DataTable busqueda = divisiones;
-                String filtro = nombre_columna + " like '%" + toolStripTextBox2.Text.ToUpper().ToString() + "%'";
-                busqueda.DefaultView.RowFilter = filtro;
-                this.dataGridView_divisiones.DataSource = busqueda;
             }
         }
 
@@ -444,6 +435,19 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                 var hti = dataGridView_detalles_divisiones.HitTest(e.X, e.Y);
                 dataGridView_detalles_divisiones.ClearSelection();
                 dataGridView_detalles_divisiones.Rows[hti.RowIndex].Selected = true;
+                
+                contextMenuStrip1.Items.Clear();
+                contextMenuStrip1.Items.Add("Editar");
+                contextMenuStrip1.Items.Add("Borrar");
+                contextMenuStrip1.Items.Add("Ver Entidad");
+                contextMenuStrip1.Items.Add("Ver Asociaciones");
+
+
+                contextMenuStrip1.Items[0].Click += new EventHandler(this.button_editaasociacion_Click);
+                contextMenuStrip1.Items[1].Click += new EventHandler(this.button_borrarasociacion_Click);
+                contextMenuStrip1.Items[2].Click += new EventHandler(this.verEntidadToolStripMenuItem_Click);
+                contextMenuStrip1.Items[3].Click += new EventHandler(this.verAsociacionesToolStripMenuItem_Click);
+                
 
                 contextMenuStrip1.Show(Cursor.Position);
             }

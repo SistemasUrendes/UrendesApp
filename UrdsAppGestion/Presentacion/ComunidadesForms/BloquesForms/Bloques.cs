@@ -166,6 +166,15 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.BloquesForms
                 dataGridView_bloques.ClearSelection();
                 dataGridView_bloques.Rows[hti.RowIndex].Selected = true;
 
+                contextMenuStrip_Bloques.Items.Clear();
+                contextMenuStrip_Bloques.Items.Add("Editar");
+                contextMenuStrip_Bloques.Items.Add("Borrar");
+                contextMenuStrip_Bloques.Items.Add("SubCuotas");
+
+                contextMenuStrip_Bloques.Items[0].Click += new EventHandler(this.button_EditarBloque_Click);
+                contextMenuStrip_Bloques.Items[1].Click += new EventHandler(this.button_Borrar_Click);
+                contextMenuStrip_Bloques.Items[2].Click += new EventHandler(this.subCuotasToolStripMenuItem_Click);
+
                 contextMenuStrip_Bloques.Show(Cursor.Position);
             }
         }
