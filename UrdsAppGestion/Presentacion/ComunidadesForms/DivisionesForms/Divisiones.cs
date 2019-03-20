@@ -175,8 +175,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
         }
         private void dataGridView_divisiones_MouseClick(object sender, MouseEventArgs e) {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                toolStripTextBox2.Text = "";
+            {       
                 var hti = dataGridView_divisiones.HitTest(e.X, e.Y);
                 dataGridView_divisiones.ClearSelection();
                 dataGridView_divisiones.Rows[hti.RowIndex].Selected = true;

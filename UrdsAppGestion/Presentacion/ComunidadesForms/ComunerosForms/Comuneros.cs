@@ -184,7 +184,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             nueva.Show();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void buttonBorrarComunero_Click(object sender, EventArgs e)
         {
             DialogResult resultado_message;
             resultado_message = MessageBox.Show("¿Desea borrar este comunero ?", "Borrar Comunero", MessageBoxButtons.OKCancel);
@@ -196,7 +196,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             }
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        private void toolStripMenuAsociaciones_Click(object sender, EventArgs e)
         {
             ComunerosForms.FormComuneroAsociaciones nueva = new ComunerosForms.FormComuneroAsociaciones(dataGridView_comuneros.SelectedCells[2].Value.ToString() ,dataGridView_comuneros.SelectedCells[0].Value.ToString());
             nueva.Show();
@@ -209,6 +209,20 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
                 var hti = dataGridView_comuneros.HitTest(e.X, e.Y);
                 dataGridView_comuneros.ClearSelection();
                 dataGridView_comuneros.Rows[hti.RowIndex].Selected = true;
+
+                contextMenuStrip1.Items.Clear();
+                contextMenuStrip1.Items.Add("Editar");
+                contextMenuStrip1.Items.Add("Borrar");
+                contextMenuStrip1.Items.Add("Ver Entidad");
+                contextMenuStrip1.Items.Add("Asociaciones");
+                contextMenuStrip1.Items.Add("Reglas Recibos");
+
+
+                contextMenuStrip1.Items[0].Click += new EventHandler(this.buttonEditarComunero_Click);
+                contextMenuStrip1.Items[1].Click += new EventHandler(this.buttonBorrarComunero_Click);
+                contextMenuStrip1.Items[2].Click += new EventHandler(this.verEntidadToolStripMenuItem_Click);
+                contextMenuStrip1.Items[3].Click += new EventHandler(this.toolStripMenuAsociaciones_Click);
+                contextMenuStrip1.Items[4].Click += new EventHandler(this.reglasRecibosToolStripMenuItem_Click);
 
                 contextMenuStrip1.Show(Cursor.Position);
             }
@@ -227,7 +241,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms
             nueva.Show();
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        private void buttonEditarComunero_Click(object sender, EventArgs e)
         {
             ComunerosForms.FormAltaComunero nueva = new ComunerosForms.FormAltaComunero(this, dataGridView_comuneros.SelectedCells[0].Value.ToString(), dataGridView_comuneros.SelectedCells[1].Value.ToString(), id_comunidad,dataGridView_comuneros.SelectedRows[0].Index);
             nueva.Show();
