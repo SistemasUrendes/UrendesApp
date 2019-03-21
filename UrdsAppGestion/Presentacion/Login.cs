@@ -87,13 +87,8 @@ namespace UrdsAppGestión.Presentacion
                     }
 
                 }else {
-                    //datos local
-                    ip = "127.0.0.1";
-                    string datos = "server=" + ip + ";user=gestor;password=gestorurds;database=users;port=3306";
-
-                    //datos release
-                    //ip = "192.168.0.20";
-                    //string datos = "server=" + ip + ";user=gestor;password=gestorurds;database=acceso;port=3307";
+                    ip = "192.168.0.20";
+                    string datos = "server=" + ip + ";user=gestor;password=gestorurds;database=acceso;port=3307";
 
                     conexion = new MySqlConnection(datos);
                     conexion.Open();
@@ -139,6 +134,7 @@ namespace UrdsAppGestión.Presentacion
                     form1Handler.menuStrip1.Visible = true;
                     form1Handler.barrar_abajo_nombre.Text = " [ Usuario : " + nombre_usuario.ToString() + " ] ";
                     form1Handler.barra_abajo_bbdd.Text = " [ Conectado a " + Persistencia.conexion_bd.Database.ToString() + " ] ";
+                    form1Handler.barra_abajo_rol.Text = " [ Rol: " + Presentacion.Login.getRol().ToString() + " ] ";
                 }
                 else {
                     MessageBox.Show("Contraseña Incorrecta.");

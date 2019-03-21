@@ -51,6 +51,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.barrar_abajo_nombre = new System.Windows.Forms.ToolStripStatusLabel();
             this.barra_abajo_bbdd = new System.Windows.Forms.ToolStripStatusLabel();
+            this.barra_abajo_rol = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -190,7 +191,8 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.barrar_abajo_nombre,
-            this.barra_abajo_bbdd});
+            this.barra_abajo_bbdd,
+            this.barra_abajo_rol});
             resources.ApplyResources(this.statusStrip1, "statusStrip1");
             this.statusStrip1.Name = "statusStrip1";
             // 
@@ -201,9 +203,15 @@
             // 
             // barra_abajo_bbdd
             // 
-            this.barra_abajo_bbdd.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
-            this.barra_abajo_bbdd.Name = "barra_abajo_bbdd";
+            //this.barra_abajo_bbdd.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
             resources.ApplyResources(this.barra_abajo_bbdd, "barra_abajo_bbdd");
+            this.barra_abajo_bbdd.Name = "barra_abajo_bbdd";
+            // 
+            // barra_abajo_rol
+            // 
+            this.barra_abajo_rol.Name = "barra_abajo_rol";
+            resources.ApplyResources(this.barra_abajo_rol, "barra_abajo_rol");
+            this.barra_abajo_rol.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
             // 
             // FormPrincipal
             // 
@@ -239,6 +247,7 @@
         public System.Windows.Forms.StatusStrip statusStrip1;
         public System.Windows.Forms.ToolStripStatusLabel barrar_abajo_nombre;
         public System.Windows.Forms.ToolStripStatusLabel barra_abajo_bbdd;
+        public System.Windows.Forms.ToolStripStatusLabel barra_abajo_rol;
         private System.Windows.Forms.ToolStripMenuItem panelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem comunicadosGeneralesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem planContableToolStripMenuItem;
@@ -248,7 +257,7 @@
         private System.Windows.Forms.ToolStripMenuItem verGestionesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mttoTareasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mttoServiciosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mttoGestionesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mttoGestionesToolStripMenuItem;        
     }
 }
 
