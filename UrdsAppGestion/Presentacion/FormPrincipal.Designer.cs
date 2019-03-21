@@ -203,15 +203,14 @@
             // 
             // barra_abajo_bbdd
             // 
-            //this.barra_abajo_bbdd.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
             resources.ApplyResources(this.barra_abajo_bbdd, "barra_abajo_bbdd");
             this.barra_abajo_bbdd.Name = "barra_abajo_bbdd";
             // 
             // barra_abajo_rol
             // 
+            this.barra_abajo_rol.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
             this.barra_abajo_rol.Name = "barra_abajo_rol";
             resources.ApplyResources(this.barra_abajo_rol, "barra_abajo_rol");
-            this.barra_abajo_rol.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
             // 
             // FormPrincipal
             // 

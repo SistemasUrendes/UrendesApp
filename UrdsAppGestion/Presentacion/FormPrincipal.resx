@@ -121,31 +121,6 @@
     <value>194, 50</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>562, 24</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="menuStrip1.Text" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="panelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 20</value>
   </data>
@@ -164,12 +139,6 @@
   <data name="comunidadesToolStripMenuItem.Text" xml:space="preserve">
     <value>Comunidades</value>
   </data>
-  <data name="tareasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 20</value>
-  </data>
-  <data name="tareasToolStripMenuItem.Text" xml:space="preserve">
-    <value>Tareas</value>
-  </data>
   <data name="verTareasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 22</value>
   </data>
@@ -182,6 +151,13 @@
   <data name="verGestionesToolStripMenuItem.Text" xml:space="preserve">
     <value>Ver Gestiones</value>
   </data>
+  <data name="tareasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 20</value>
+  </data>
+  <data name="tareasToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tareas</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="proveedoresToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -202,12 +178,6 @@
   </data>
   <data name="comunicadosGeneralesToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
-  </data>
-  <data name="archivoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 20</value>
-  </data>
-  <data name="archivoToolStripMenuItem.Text" xml:space="preserve">
-    <value>Configuración</value>
   </data>
   <data name="planContableToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
@@ -278,11 +248,41 @@
   <data name="conexiónToolStripMenuItem.Text" xml:space="preserve">
     <value>Conexión</value>
   </data>
+  <data name="archivoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 20</value>
+  </data>
+  <data name="archivoToolStripMenuItem.Text" xml:space="preserve">
+    <value>Configuración</value>
+  </data>
+  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>562, 24</value>
+  </data>
+  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="menuStrip1.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>309, 50</value>
   </metadata>
   <data name="barrar_abajo_nombre.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 19</value>
+    <value>51, 17</value>
   </data>
   <data name="barrar_abajo_nombre.Text" xml:space="preserve">
     <value>Nombre</value>
@@ -291,19 +291,19 @@
     <value>False</value>
   </data>
   <data name="barra_abajo_bbdd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 19</value>
+    <value>37, 17</value>
   </data>
   <data name="barra_abajo_bbdd.Text" xml:space="preserve">
     <value>BBDD</value>
   </data>
   <data name="barra_abajo_rol.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 19</value>
+    <value>4, 17</value>
   </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 543</value>
+    <value>0, 545</value>
   </data>
   <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>562, 24</value>
+    <value>562, 22</value>
   </data>
   <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -360,7 +360,7 @@
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Administraciones Urendes</value>
+    <value>Administraciones Urendes V2.0</value>
   </data>
   <data name="&gt;&gt;panelToolStripMenuItem.Name" xml:space="preserve">
     <value>panelToolStripMenuItem</value>
