@@ -97,7 +97,16 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.RemesasForms
                 dataGridView_remesas.ClearSelection();
                 dataGridView_remesas.Rows[hti.RowIndex].Selected = true;
 
+                contextMenuStrip1.Items.Clear();
+                contextMenuStrip1.Items.Add("Eliminar");
+                contextMenuStrip1.Items.Add("Ver Detalles");
+
+                contextMenuStrip1.Items[0].Click += new EventHandler(this.button_eliminar_Click);
+                contextMenuStrip1.Items[1].Click += new EventHandler(this.button_detalles_Click);
+
+
                 contextMenuStrip1.Show(Cursor.Position);
+
             }
         }
     }

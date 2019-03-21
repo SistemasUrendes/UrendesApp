@@ -88,7 +88,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PanelControl";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Inicio";
+            this.Text = "User: " + Persistencia.conexion_bd.User + "; Database: " + Persistencia.conexion_bd.Database + "; IP: " + Persistencia.conexion_bd.Ip_servidor + ":" + Persistencia.conexion_bd.Port;
             this.Load += new System.EventHandler(this.PanelControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tareas)).EndInit();
             this.ResumeLayout(false);

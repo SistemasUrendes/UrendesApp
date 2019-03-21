@@ -66,11 +66,15 @@ namespace UrdsAppGestión.Presentacion
             {
                 if (checkBox1.Checked)
                 {
-                        ip = "10.8.0.1";
-                        remoto = true;
+                    //ip local
+                    ip = "10.8.0.1";                    
+                    remoto = true;
+
                     try
                     {
+                        //datos para pruebas locales
                         string datos = "server=" + ip + ";user=gestor;password=gestorurds;database=users;port=3306";
+
                         conexion = new MySqlConnection(datos);
                         conexion.Open();
                     }catch {
@@ -83,8 +87,11 @@ namespace UrdsAppGestión.Presentacion
                     }
 
                 }else {
+                    //datos local
                     ip = "127.0.0.1";
                     string datos = "server=" + ip + ";user=gestor;password=gestorurds;database=users;port=3306";
+
+                    //datos release
                     //ip = "192.168.0.20";
                     //string datos = "server=" + ip + ";user=gestor;password=gestorurds;database=acceso;port=3307";
 

@@ -89,13 +89,13 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
             nueva.Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonEditarFondo_Click(object sender, EventArgs e)
         {
             FormFondosAlta nueva = new FormFondosAlta(this, id_comunidad_cargado,dataGridView_Fondos.SelectedCells[0].Value.ToString());
             nueva.Show();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void buttonBorrarFondo_Click(object sender, EventArgs e)
         {
             DialogResult resultado_message;
             resultado_message = MessageBox.Show("¿Desea borrar este Fondo?", "Borrar Fondo", MessageBoxButtons.OKCancel);
@@ -175,6 +175,21 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
                 //} else
                     inciarToolStripMenuItem.Visible = true;
 
+                contextMenuStrip1.Items.Clear();
+                contextMenuStrip1.Items.Add("Editar");
+                contextMenuStrip1.Items.Add("Borrar");
+                contextMenuStrip1.Items.Add("Iniciar");
+                contextMenuStrip1.Items.Add("Cerrar Fondo");
+                contextMenuStrip1.Items.Add("Informe");
+                contextMenuStrip1.Items.Add("Ver Stock");
+
+                contextMenuStrip1.Items[0].Click += new EventHandler(this.buttonEditarFondo_Click);
+                contextMenuStrip1.Items[1].Click += new EventHandler(this.buttonBorrarFondo_Click);
+                contextMenuStrip1.Items[2].Click += new EventHandler(this.iniciarConResultadoToolStripMenuItem_Click);
+                contextMenuStrip1.Items[3].Click += new EventHandler(this.cerrarFondoToolStripMenuItem_Click);
+                contextMenuStrip1.Items[4].Click += new EventHandler(this.informeToolStripMenuItem_Click);
+                contextMenuStrip1.Items[5].Click += new EventHandler(this.verStockToolStripMenuItem_Click);
+
                 contextMenuStrip1.Show(Cursor.Position);
             }
         }
@@ -207,7 +222,7 @@ namespace UrdsAppGestión.Presentacion.ComunidadesForms.FondosForms
             {
                 var hti = dataGridView_detallesFondos.HitTest(e.X, e.Y);
                 dataGridView_detallesFondos.ClearSelection();
-                dataGridView_detallesFondos.Rows[hti.RowIndex].Selected = true;
+                dataGridView_detallesFondos.Rows[hti.RowIndex].Selected = true;              
 
                 contextMenuStrip2.Show(Cursor.Position);
             }
