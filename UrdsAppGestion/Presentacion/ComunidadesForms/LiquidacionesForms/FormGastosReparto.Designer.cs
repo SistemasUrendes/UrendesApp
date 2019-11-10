@@ -48,7 +48,7 @@
             this.dataGridView_gastos.ReadOnly = true;
             this.dataGridView_gastos.RowHeadersVisible = false;
             this.dataGridView_gastos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_gastos.Size = new System.Drawing.Size(1036, 475);
+            this.dataGridView_gastos.Size = new System.Drawing.Size(1004, 475);
             this.dataGridView_gastos.TabIndex = 2;
             this.dataGridView_gastos.DoubleClick += new System.EventHandler(this.dataGridView_gastos_DoubleClick);
             // 
@@ -91,7 +91,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1060, 555);
+            this.ClientSize = new System.Drawing.Size(1028, 555);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox_buscar);
             this.Controls.Add(this.textBox_total);

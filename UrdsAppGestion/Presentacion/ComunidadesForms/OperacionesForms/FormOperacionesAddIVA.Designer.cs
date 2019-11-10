@@ -71,6 +71,7 @@
             this.dataGridView_add_iva.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView_add_iva.Size = new System.Drawing.Size(329, 187);
             this.dataGridView_add_iva.TabIndex = 1;
+            this.dataGridView_add_iva.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_add_iva_CellContentClick);
             this.dataGridView_add_iva.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_add_iva_CellValueChanged);
             this.dataGridView_add_iva.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView_add_iva_EditingControlShowing);
             this.dataGridView_add_iva.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView_add_iva_KeyPress);

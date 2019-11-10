@@ -33,7 +33,7 @@
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVerInformeResumen));
             this.LiquidacionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.DataSetLiq = new UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.Informes.DataSetLiqResumen();
+            this.DataSetLiq = new UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.Informes.DataSetLiq();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.dataSetLiqInformacion = new UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.Informes.DataSetLiqInformacion();
             this.dataSetLiqInformacionBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -114,7 +114,7 @@
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.BindingSource LiquidacionBindingSource;
-        private DataSetLiqResumen DataSetLiq;
+        private DataSetLiq DataSetLiq;
         private System.Windows.Forms.BindingSource dataSetLiqInformacionBindingSource;
         private DataSetLiqInformacion dataSetLiqInformacion;
     }

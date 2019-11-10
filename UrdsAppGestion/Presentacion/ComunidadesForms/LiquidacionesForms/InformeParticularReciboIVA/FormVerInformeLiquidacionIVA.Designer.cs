@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource5 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource6 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource7 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource8 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource9 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource10 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVerInformeLiquidacionIVA));
             this.DivisionLiquidacionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DataSetInformeParticularIVA = new UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.InformeParticularReciboIVA.DataSetInformeParticularIVA();
@@ -44,7 +44,7 @@
             this.dataSetIVATotalesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetIVATotales = new UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.InformeParticularReciboIVA.DataSetIVATotales();
             this.dataSetLiqResumenBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSetLiqResumen = new UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.Informes.DataSetLiqResumen();
+            this.dataSetLiqResumen = new UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.Informes.DataSetLiq();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.ComunidadBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DivisionLiquidacionBindingSource)).BeginInit();
@@ -113,26 +113,26 @@
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "DataSet1";
-            reportDataSource1.Value = this.DivisionLiquidacionBindingSource;
-            reportDataSource2.Name = "DataSet2";
-            reportDataSource2.Value = this.dataSet2BindingSource;
-            reportDataSource3.Name = "DataSet3";
-            reportDataSource3.Value = this.dataSetInfoEntidadxsdBindingSource;
-            reportDataSource4.Name = "DataSet4";
-            reportDataSource4.Value = this.dataSetIVATotalesBindingSource;
-            reportDataSource5.Name = "DataSet5";
-            reportDataSource5.Value = this.dataSetLiqResumenBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource3);
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource4);
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource5);
+            reportDataSource6.Name = "DataSet1";
+            reportDataSource6.Value = this.DivisionLiquidacionBindingSource;
+            reportDataSource7.Name = "DataSet2";
+            reportDataSource7.Value = this.dataSet2BindingSource;
+            reportDataSource8.Name = "DataSet3";
+            reportDataSource8.Value = this.dataSetInfoEntidadxsdBindingSource;
+            reportDataSource9.Name = "DataSet4";
+            reportDataSource9.Value = this.dataSetIVATotalesBindingSource;
+            reportDataSource10.Name = "DataSet5";
+            reportDataSource10.Value = this.dataSetLiqResumenBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource6);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource7);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource8);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource9);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource10);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "UrdsAppGestión.Presentacion.ComunidadesForms.LiquidacionesForms.InformeParticular" +
     "ReciboIVA.ReportLiquidacionParticularIVA.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(733, 804);
+            this.reportViewer1.Size = new System.Drawing.Size(733, 749);
             this.reportViewer1.TabIndex = 0;
             // 
             // ComunidadBindingSource
@@ -144,7 +144,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(733, 804);
+            this.ClientSize = new System.Drawing.Size(733, 749);
             this.Controls.Add(this.reportViewer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormVerInformeLiquidacionIVA";
@@ -178,7 +178,7 @@
         private InformeParticularRecibo.DataSetInfoEntidadxsd dataSetInfoEntidadxsd;
         private System.Windows.Forms.BindingSource ComunidadBindingSource;
         private System.Windows.Forms.BindingSource dataSetLiqResumenBindingSource;
-        private Informes.DataSetLiqResumen dataSetLiqResumen;
+        private Informes.DataSetLiq dataSetLiqResumen;
         public Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }
