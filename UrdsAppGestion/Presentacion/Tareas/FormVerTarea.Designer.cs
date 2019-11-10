@@ -584,12 +584,12 @@
             this.contextMenuStrip5.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.borrarExpedienteToolStripMenuItem});
             this.contextMenuStrip5.Name = "contextMenuStrip5";
-            this.contextMenuStrip5.Size = new System.Drawing.Size(178, 26);
+            this.contextMenuStrip5.Size = new System.Drawing.Size(179, 26);
             // 
             // borrarExpedienteToolStripMenuItem
             // 
             this.borrarExpedienteToolStripMenuItem.Name = "borrarExpedienteToolStripMenuItem";
-            this.borrarExpedienteToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.borrarExpedienteToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.borrarExpedienteToolStripMenuItem.Text = "Eliminar Expediente";
             this.borrarExpedienteToolStripMenuItem.Click += new System.EventHandler(this.borrarExpedienteToolStripMenuItem_Click);
             // 
